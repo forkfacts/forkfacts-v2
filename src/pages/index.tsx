@@ -1,10 +1,17 @@
 import * as React from "react";
-import type { HeadFC, PageProps } from "gatsby";
+import type { PageProps, HeadProps } from "gatsby";
+import { SEO } from "../components";
 
 const IndexPage: React.FC<PageProps> = () => {
-  return <div>hello world</div>;
+  return (
+    <main>
+      <h1> Hello world</h1>
+    </main>
+  );
+};
+
+export const Head = (props: HeadProps) => {
+  return <SEO title="Home Page" description="The site home page" />;
 };
 
 export default IndexPage;
-
-export const Head: HeadFC = () => <title>Home Page</title>;

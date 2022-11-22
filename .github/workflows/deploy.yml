@@ -1,5 +1,7 @@
 name: FORKFACTS Deploy CI
-on: [push, pull_request]
+on:
+  push:
+    branches: [ayo_#3bfhet3_spin_gatsby_typescript_boilerplate]
 jobs:
 
   build:

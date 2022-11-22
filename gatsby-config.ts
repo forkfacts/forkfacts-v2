@@ -7,7 +7,7 @@ const config: GatsbyConfig = {
   plugins: [
     "gatsby-plugin-image",
     "gatsby-plugin-sitemap",
-    "gatsby-plugin-material-ui",
+    'gatsby-plugin-mui-emotion',
     {
       resolve: "gatsby-plugin-manifest",
       options: {

@@ -4,8 +4,8 @@ module.exports = {
   addons: [
     "@storybook/addon-links",
     "@storybook/addon-essentials",
-    "storybook-addon-material-ui",
-    "storybook-addon-gatsby",
+    "@storybook-addon-material-ui",
+    "@storybook-addon-gatsby",
   ],
   framework: "@storybook/react",
   core: {

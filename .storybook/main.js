@@ -6,6 +6,7 @@ module.exports = {
     "@storybook/addon-essentials",
     "storybook-addon-material-ui",
     "storybook-addon-gatsby",
+    "storybook-addon-material-ui",
   ],
   framework: "@storybook/react",
   core: {

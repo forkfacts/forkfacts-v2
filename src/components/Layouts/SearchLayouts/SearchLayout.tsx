@@ -11,6 +11,7 @@ import { makeStyles } from "@mui/styles";
 const useStyles = makeStyles((/*theme*/) => ({
   main: {
     boxShadow: "none",
+    margin: 0,
   },
   menuStyle: {
     color: "#356A1E",
@@ -29,7 +30,7 @@ const SearchLayout: React.FC<PageProps | PropsWithChildren> = ({ children }) => 
   const classes = useStyles();
 
   return (
-    <Box>
+    <div>
       <AppBar color="transparent" position="relative" className={classes.main}>
         <Toolbar>
           <IconButton size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 1 }}>
@@ -41,7 +42,7 @@ const SearchLayout: React.FC<PageProps | PropsWithChildren> = ({ children }) => 
         </Toolbar>
       </AppBar>
       <Box>{children}</Box>
-    </Box>
+    </div>
   );
 };
 

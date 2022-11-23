@@ -1,6 +1,4 @@
 import * as React from "react";
-import type { PageProps, HeadProps } from "gatsby";
-import { SEO } from "@forkfacts/components";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
@@ -24,7 +22,3 @@ export default function Index() {
     </Container>
   );
 }
-
-export const Head = (props: HeadProps) => {
-  return <SEO title="Home Page" description="The site home page" />;
-};

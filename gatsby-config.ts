@@ -1,3 +1,4 @@
+import path from "path";
 import type { GatsbyConfig } from "gatsby";
 import { siteMetadata } from "./src/gatsby/siteMetaData";
 
@@ -7,7 +8,7 @@ const config: GatsbyConfig = {
   plugins: [
     "gatsby-plugin-image",
     "gatsby-plugin-sitemap",
-    'gatsby-plugin-mui-emotion',
+    "gatsby-plugin-mui-emotion",
     {
       resolve: "gatsby-plugin-manifest",
       options: {
@@ -17,6 +18,15 @@ const config: GatsbyConfig = {
     "gatsby-plugin-mdx",
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
+    {
+      resolve: `gatsby-plugin-alias-imports`,
+      options: {
+        alias: {
+          "@forkfacts/components": path.resolve(__dirname, "src/components"),
+        },
+        extensions: [".tsx", ".ts"],
+      },
+    },
     {
       resolve: "gatsby-source-filesystem",
       options: {

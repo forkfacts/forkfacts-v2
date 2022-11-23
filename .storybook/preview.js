@@ -1,4 +1,6 @@
 import { action } from "@storybook/addon-actions"
+import { CssBaseline, ThemeProvider } from "@mui/material";
+import {lightTheme} from "../src/themes/lightTheme";
 
 // Gatsby's Link overrides:
 // Gatsby Link calls the `enqueue` & `hovering` methods on the global variable ___loader.
@@ -17,3 +19,12 @@ global.__BASE_PATH__ = "/"
 window.___navigate = pathname => {
     action("NavigateTo:")(pathname)
 }
+
+export const withMuiTheme = (Story) => (
+    <ThemeProvider theme={lightTheme}>
+        <CssBaseline />
+        <Story />
+    </ThemeProvider>
+);
+
+export const decorators = [withMuiTheme];

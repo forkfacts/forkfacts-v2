@@ -26,6 +26,8 @@
     "@emotion/styled": "latest",
     "@mdx-js/react": "^2.1.5",
     "@mui/material": "latest",
+    "@mui/styles": "^5.10.15",
+    "@mui/x-data-grid": "^5.17.12",
     "gatsby": "^5.0.0",
     "gatsby-plugin-image": "^3.0.0",
     "gatsby-plugin-manifest": "^5.0.0",

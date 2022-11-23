@@ -1,0 +1,27 @@
+.main {
+  display: block;
+  width: 100%;
+}
+
+.layoutWrapper {
+  display: flex;
+  align-items: center;
+}
+
+.layoutWrapper .menuIcon {
+  color: #356a1e;
+  width: 24px;
+  height: 24px;
+}
+
+.layoutWrapper .title {
+  font-family: Poppins;
+  font-style: normal;
+  font-size: 24px;
+  color: #356a1e;
+  line-height: 32px;
+  text-align: left;
+  vertical-align: top;
+  margin-left: 12.5px;
+  font-weight: 500;
+}

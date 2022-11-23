@@ -25,7 +25,7 @@ const config: GatsbyConfig = {
           "@forkfacts/components": path.resolve(__dirname, "src/components"),
           "@forkfacts/screens": path.resolve(__dirname, "src/screens"),
         },
-        extensions: [".tsx", ".ts"],
+        extensions: [".js", ".jsx", ".ts", ".tsx", ".css"],
       },
     },
     {

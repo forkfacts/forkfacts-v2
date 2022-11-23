@@ -1,6 +1,6 @@
 import React from "react";
 import SearchLayout from "./SearchLayout";
-import { ComponentMeta } from "@storybook/react";
+import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 
 export default {
@@ -13,8 +13,8 @@ export default {
   component: SearchLayout,
 } as ComponentMeta<typeof SearchLayout>;
 
-export const Mobile = () => {
-  return <SearchLayout>Page content goes here</SearchLayout>;
+export const Mobile: ComponentStory<typeof SearchLayout> = (args) => {
+  return <SearchLayout {...args}>Page content goes here</SearchLayout>;
 };
 Mobile.parameters = {
   viewport: {

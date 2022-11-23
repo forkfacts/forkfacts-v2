@@ -6,25 +6,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
-import { makeStyles } from "@mui/styles";
-
-const useStyles = makeStyles((/*theme*/) => ({
-  main: {
-    boxShadow: "none",
-    margin: 0,
-  },
-  menuStyle: {
-    color: "#356A1E",
-  },
-  text: {
-    color: "#356A1E",
-    fontStyle: "normal",
-    fontSize: "24px",
-    lineHeight: "32px",
-    textAlign: "left",
-    verticalAlign: "top",
-  },
-}));
+import { useStyles } from "./styles";
 
 const SearchLayout: React.FC<PageProps | PropsWithChildren> = ({ children }) => {
   const classes = useStyles();

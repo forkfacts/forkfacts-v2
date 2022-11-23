@@ -22,6 +22,7 @@ const SearchScreen = () => {
             textAlign: "center",
             fontSize: "24px",
             fontWeight: 600,
+            verticalAlign: "center",
           }}
         >
           Forkfacts, Your Healthy diet search place.

@@ -18,7 +18,8 @@
     "clean": "gatsby clean",
     "typecheck": "tsc --noEmit",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@emotion/react": "^11.10.5",
@@ -26,9 +27,9 @@
     "@emotion/styled": "latest",
     "@mdx-js/react": "^2.1.5",
     "@mui/material": "latest",
+    "gatsby": "^5.0.0",
     "@mui/styles": "^5.10.15",
     "@mui/x-data-grid": "^5.17.12",
-    "gatsby": "^5.0.0",
     "gatsby-plugin-image": "^3.0.0",
     "gatsby-plugin-manifest": "^5.0.0",
     "gatsby-plugin-mdx": "^5.0.0",
@@ -54,6 +55,9 @@
     "@types/react": "^18.0.25",
     "@types/react-dom": "^18.0.8",
     "babel-loader": "^8.3.0",
+    "husky": "^8.0.0",
+    "prettier": "2.8.0",
+    "pretty-quick": "^3.1.3",
     "storybook-addon-gatsby": "^0.0.5",
     "storybook-addon-material-ui": "^0.9.0-alpha.24",
     "typescript": "^4.8.4"

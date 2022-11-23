@@ -1,5 +1,5 @@
-import {createTheme} from "@mui/material";
-import {cyan, grey, purple} from "@mui/material/colors";
+import { createTheme } from "@mui/material";
+import { cyan, grey, purple } from "@mui/material/colors";
 
 export const lightTheme = createTheme({
   palette: {

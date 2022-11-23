@@ -3,3 +3,7 @@ package.json
 package-lock.json
 public
 plugins
+.idea/
+.storybook
+.husky
+README.md

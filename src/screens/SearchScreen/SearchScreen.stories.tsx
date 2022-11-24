@@ -1,10 +1,10 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
-import SearchScreen from "./index";
+import { SearchScreen } from "@forkfacts/screens";
 
 export default {
-  title: "Screens/SearchScreens",
+  title: "Screens/SearchScreen/Home",
   parameters: {
     viewport: {
       viewports: INITIAL_VIEWPORTS,

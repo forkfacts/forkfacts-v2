@@ -64,7 +64,13 @@ const SearchBaseScreen: React.FC<PropsWithChildren> = ({ children }) => {
               <InputAdornment position="end">
                 {isSearchEmpty || (
                   <CloseIcon
-                    sx={{ color: "#356A1E", width: "50px", height: "50px", py: "10px" }}
+                    sx={{
+                      color: "#356A1E",
+                      width: "50px",
+                      height: "50px",
+                      py: "10px",
+                      cursor: "pointer",
+                    }}
                     onClick={() => onCloseSearch()}
                   />
                 )}

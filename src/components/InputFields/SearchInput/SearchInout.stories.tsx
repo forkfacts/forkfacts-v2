@@ -2,7 +2,7 @@ import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 
-import SearchInput from "./SearchInput";
+import { SearchInput } from "@forkfacts/components";
 
 export default {
   title: "Components/InputFields/SearchInput",

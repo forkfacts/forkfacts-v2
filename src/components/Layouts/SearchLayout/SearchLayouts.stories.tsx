@@ -1,5 +1,5 @@
 import React from "react";
-import SearchLayout from "./SearchLayout";
+import { SearchLayout } from "@forkfacts/components";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 

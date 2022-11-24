@@ -1,6 +1,6 @@
 import React from "react";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
-import FactTable, { FactTableRow } from "./FactTable";
+import { FactTable, FactTableRow } from "@forkfacts/components";
 import { ComponentMeta } from "@storybook/react";
 
 export default {

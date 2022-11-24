@@ -13,7 +13,7 @@ interface SearchInputPropTypes {
 const SearchInput: React.FC<SearchInputPropTypes> = ({
   width = "100%",
   borderRadius = "10px",
-  size = "medium",
+  size = "small",
 }) => {
   return (
     <Box sx={{ width: width }}>

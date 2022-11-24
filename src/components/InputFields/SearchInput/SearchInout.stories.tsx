@@ -20,7 +20,7 @@ export default {
       options: ["medium", "small"],
     },
   },
-};
+} as ComponentMeta<typeof SearchInput>;
 
 export const Desktop: ComponentStory<typeof SearchInput> = (args) => {
   return <SearchInput {...args} />;

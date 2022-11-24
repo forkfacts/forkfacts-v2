@@ -1,3 +1,4 @@
+const path = require("path");
 module.exports = {
   // You will want to change this to wherever your Stories will live
   stories: ["../src/**/*.stories.mdx", "../src/**/*.stories.@(js|jsx|ts|tsx)"],
@@ -15,7 +16,13 @@ module.exports = {
     config.module.rules[0].use[0].options.plugins.push(
       require.resolve("babel-plugin-remove-graphql-queries")
     );
+    // using abolute import accessibility in our stories
+    config.resolve.alias["@forkfacts/components"] = path.resolve(__dirname, "../src/components");
+    config.resolve.alias["@forkfacts/screens"] = path.resolve(__dirname, "../src/screens");
     config.resolve.mainFields = ["browser", "module", "main"];
     return config;
+  },
+  resolve: {
+    modules: [path.resolve(__dirname, "src"), "node_modules"],
   },
 };

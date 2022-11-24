@@ -16,6 +16,7 @@ export default {
 export const Mobile: ComponentStory<typeof SearchLayout> = (args) => {
   return <SearchLayout {...args}>Page content goes here</SearchLayout>;
 };
+
 Mobile.parameters = {
   viewport: {
     defaultViewport: "iphone5",

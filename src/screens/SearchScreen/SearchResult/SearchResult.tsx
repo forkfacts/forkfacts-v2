@@ -5,6 +5,14 @@ import React, { useState } from "react";
 
 const SearchResult: React.FC = () => {
   const [isSearchEmpty, setIsSearchEmpty] = useState(true);
+
+  const recentLists = [
+    { image: "", name: "Kidney beans light, Legume", path: "/:id" },
+    { image: "", name: "Grape fruit juices", path: "/:id" },
+    { image: "", name: "Baked white bread, Baked products", path: "/:id" },
+    { image: "", name: "Grape fruit juice unsweentened, Fruit ...", path: "/:id" },
+    { image: "", name: "Banana dehydrated/ banana powder", path: "/:id" },
+  ];
   return (
     <MobileSearchBaseScreen
       isHome={false}

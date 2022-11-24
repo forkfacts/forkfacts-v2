@@ -1,11 +1,17 @@
 import { SearchBaseScreen } from "@forkfacts/components";
 import { Box } from "@mui/system";
-import React from "react";
+import React, { useState } from "react";
 
 const SearchComponent: React.FC = () => {
+  const [isSearchEmpty, setIsSearchEmpty] = useState(true);
+
   return (
     <Box>
-      <SearchBaseScreen />
+      <SearchBaseScreen
+        isSearchEmpty={isSearchEmpty}
+        setIsSearchEmpty={setIsSearchEmpty}
+        isHome={true}
+      />
     </Box>
   );
 };

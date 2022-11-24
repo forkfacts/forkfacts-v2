@@ -18,8 +18,18 @@ const useStyles = makeStyles({
   },
 });
 
-const SearchBaseScreen: React.FC<PropsWithChildren> = ({ children }) => {
-  const [isSearchEmpty, setIsSearchEmpty] = useState<boolean>(true);
+interface SearchBaseScreenProps {
+  setIsSearchEmpty: (a: boolean) => void;
+  isSearchEmpty: boolean;
+  isHome?: boolean;
+}
+
+const SearchBaseScreen: React.FC<SearchBaseScreenProps & PropsWithChildren> = ({
+  children,
+  isSearchEmpty = true,
+  isHome = false,
+  setIsSearchEmpty,
+}) => {
   const [searchValue, setSearchValue] = useState<string>("");
   const classes = useStyles();
 
@@ -37,55 +47,63 @@ const SearchBaseScreen: React.FC<PropsWithChildren> = ({ children }) => {
 
   return (
     <Box>
-      <CssBaseline />
-      <Container
-        sx={{
-          boxShadow: isSearchEmpty ? "0px 1px 4px 0px #000000" : 0,
-          boxSizing: "border-box",
-          pt: "15px",
-          pb: "15px",
-          pl: "11px",
-          pr: "20px",
-        }}
-      >
-        <TextField
-          id="filled-start-adornment"
-          type="text"
-          sx={{ width: "100%", borderBottom: "none" }}
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <ArrowBackIcon
-                  sx={{ color: "#356A1E", width: "50px", height: "50px", py: "10px" }}
-                />
-              </InputAdornment>
-            ),
-            endAdornment: (
-              <InputAdornment position="end">
-                {isSearchEmpty || (
-                  <CloseIcon
+      <Box>
+        <CssBaseline />
+        <Container
+          sx={{
+            boxShadow: isSearchEmpty && isHome ? "0px 1px 4px 0px #000000" : 0,
+            boxSizing: "border-box",
+            py: "20px",
+            pl: "5px",
+            pr: "20px",
+          }}
+        >
+          <TextField
+            id="filled-start-adornment"
+            type="text"
+            sx={{ width: "100%", borderBottom: "none" }}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <ArrowBackIcon
                     sx={{
                       color: "#356A1E",
-                      width: "50px",
-                      height: "50px",
+                      width: "45px",
+                      height: "45px",
                       py: "10px",
                       cursor: "pointer",
                     }}
-                    onClick={() => onCloseSearch()}
                   />
-                )}
-              </InputAdornment>
-            ),
-            classes,
-          }}
-          value={searchValue}
-          onChange={handleChange}
-          placeholder="Search for food product"
-          variant="standard"
-        />
-      </Container>
+                </InputAdornment>
+              ),
+              endAdornment: (
+                <InputAdornment position="end">
+                  {isSearchEmpty || (
+                    <CloseIcon
+                      sx={{
+                        color: "#356A1E",
+                        width: "45px",
+                        height: "45px",
+                        py: "10px",
+                        cursor: "pointer",
+                      }}
+                      onClick={() => onCloseSearch()}
+                    />
+                  )}
+                </InputAdornment>
+              ),
+              classes,
+            }}
+            value={searchValue}
+            onChange={handleChange}
+            placeholder="Search for food product"
+            variant="standard"
+          />
+        </Container>
+      </Box>
       {/* childern */}
-      <Box>{children}</Box>
+
+      <Box sx={{ position: "relative", width: "100%" }}>{children}</Box>
     </Box>
   );
 };

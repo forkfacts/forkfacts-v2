@@ -11,26 +11,29 @@ const SearchScreen: React.FC = () => {
           justifyContent: "center",
           maxHeight: "100vh",
           alignItems: "center",
-          marginTop: "130px",
+          mt: "130px",
+          width: "100%",
         }}
       >
         <Typography
           component="h2"
-          sx={{
-            color: "#000000",
-            lineHeight: "32px",
-            textAlign: "center",
-            fontSize: "24px",
-            fontWeight: 600,
-            verticalAlign: "center",
-          }}
+          sx={[
+            {
+              color: "#000000",
+              lineHeight: "32px",
+              textAlign: "center",
+              fontSize: "24px",
+              fontWeight: 600,
+              verticalAlign: "center",
+            },
+          ]}
         >
           Forkfacts, Your Healthy diet search place.
         </Typography>
       </Box>
-      {/* <Box>
-        <SearchInput />
-      </Box> */}
+      <Box sx={{ mt: "30px" }}>
+        <SearchInput width={"100%"} />
+      </Box>
     </SearchLayout>
   );
 };

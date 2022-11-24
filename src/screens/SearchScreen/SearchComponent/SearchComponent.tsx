@@ -4,9 +4,9 @@ import React from "react";
 
 const SearchComponent: React.FC = () => {
   return (
-    <div>
+    <Box>
       <SearchBaseScreen />
-    </div>
+    </Box>
   );
 };
 

@@ -1,8 +1,8 @@
 import React from "react";
-import { SearchLayout } from "@forkfacts/components";
+import { SearchInput, SearchLayout } from "@forkfacts/components";
 import { Box, Typography } from "@mui/material";
 
-const SearchScreen = () => {
+const SearchScreen: React.FC = () => {
   return (
     <SearchLayout>
       <Box
@@ -28,6 +28,9 @@ const SearchScreen = () => {
           Forkfacts, Your Healthy diet search place.
         </Typography>
       </Box>
+      {/* <Box>
+        <SearchInput />
+      </Box> */}
     </SearchLayout>
   );
 };

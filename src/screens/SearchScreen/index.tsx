@@ -31,7 +31,7 @@ const SearchScreen: React.FC = () => {
           Forkfacts, Your Healthy diet search place.
         </Typography>
       </Box>
-      <Box sx={{ mt: "30px" }}>
+      <Box sx={{ mt: "60px" }}>
         <SearchInput width={"100%"} />
       </Box>
     </SearchLayout>

@@ -4,7 +4,7 @@ import React from "react";
 
 const SearchComponent: React.FC = () => {
   return (
-    <div style={{ width: "100%" }}>
+    <div>
       <SearchBaseScreen />
     </div>
   );

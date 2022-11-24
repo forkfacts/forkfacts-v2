@@ -1,7 +1,9 @@
 import React, { PropsWithChildren, useState } from "react";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import { Box, TextField } from "@mui/material";
+import { Box, TextField, Container } from "@mui/material";
+import CssBaseline from "@mui/material/CssBaseline";
 import InputAdornment from "@mui/material/InputAdornment";
+
 import CloseIcon from "@mui/icons-material/Close";
 import { makeStyles } from "@mui/styles";
 
@@ -24,8 +26,8 @@ const SearchBaseScreen: React.FC<PropsWithChildren> = ({ children }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.currentTarget.value.length > 0) {
       setIsSearchEmpty(false);
-      setSearchValue(e.currentTarget.value);
     } else setIsSearchEmpty(true);
+    setSearchValue(e.currentTarget.value);
   };
 
   const onCloseSearch = () => {
@@ -34,8 +36,9 @@ const SearchBaseScreen: React.FC<PropsWithChildren> = ({ children }) => {
   };
 
   return (
-    <div>
-      <Box
+    <Box>
+      <CssBaseline />
+      <Container
         sx={{
           boxShadow: isSearchEmpty ? "0px 1px 4px 0px #000000" : 0,
           boxSizing: "border-box",
@@ -44,7 +47,6 @@ const SearchBaseScreen: React.FC<PropsWithChildren> = ({ children }) => {
           pl: "11px",
           pr: "20px",
         }}
-        style={{ width: "100%" }}
       >
         <TextField
           id="filled-start-adornment"
@@ -53,14 +55,16 @@ const SearchBaseScreen: React.FC<PropsWithChildren> = ({ children }) => {
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
-                <ArrowBackIcon sx={{ color: "#356A1E", fontSize: "30px", py: "10px" }} />
+                <ArrowBackIcon
+                  sx={{ color: "#356A1E", width: "50px", height: "50px", py: "10px" }}
+                />
               </InputAdornment>
             ),
             endAdornment: (
               <InputAdornment position="end">
                 {isSearchEmpty || (
                   <CloseIcon
-                    sx={{ color: "#356A1E", fontSize: "30px", py: "10px" }}
+                    sx={{ color: "#356A1E", width: "50px", height: "50px", py: "10px" }}
                     onClick={() => onCloseSearch()}
                   />
                 )}
@@ -73,10 +77,10 @@ const SearchBaseScreen: React.FC<PropsWithChildren> = ({ children }) => {
           placeholder="Search for food product"
           variant="standard"
         />
-      </Box>
+      </Container>
       {/* childern */}
       <Box>{children}</Box>
-    </div>
+    </Box>
   );
 };
 

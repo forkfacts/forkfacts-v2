@@ -1,22 +1,42 @@
+import React, { PropsWithChildren } from "react";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { Box, TextField } from "@mui/material";
 import InputAdornment from "@mui/material/InputAdornment";
-import React from "react";
+import CloseIcon from "@mui/icons-material/Close";
+import { makeStyles } from "@mui/styles";
 
-const SearchBaseScreen: React.FC<React.PropsWithChildren> = ({ children }) => {
+const useStyles = makeStyles({
+  underline: {
+    "&&&:before": {
+      borderBottom: "none",
+    },
+    "&&:after": {
+      borderBottom: "none",
+    },
+  },
+});
+
+const SearchBaseScreen: React.FC<PropsWithChildren> = ({ children }) => {
+  const classes = useStyles();
+
   return (
     <Box>
-      {/* header */}
       <Box sx={{ width: "100%" }}>
         <TextField
           id="filled-start-adornment"
-          sx={{ py: 2, width: "100%", borderBottom: "none" }}
+          sx={{ width: "100%", borderBottom: "none" }}
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
-                <ArrowBackIcon />
+                <ArrowBackIcon sx={{ width: "14px", height: "14px", color: "#356A1E" }} />
               </InputAdornment>
             ),
+            endAdornment: (
+              <InputAdornment position="end">
+                <CloseIcon sx={{ width: "14px", height: "14px", color: "#356A1E" }} />
+              </InputAdornment>
+            ),
+            classes,
           }}
           placeholder="Search for food product"
           variant="standard"

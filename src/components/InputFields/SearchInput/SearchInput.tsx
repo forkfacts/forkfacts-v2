@@ -3,17 +3,23 @@ import { SearchOutlined } from "@mui/icons-material";
 import { Box, TextField } from "@mui/material";
 import InputAdornment from "@mui/material/InputAdornment";
 
+type sizeType = "medium" | "small";
 interface SearchInputPropTypes {
-  width: string;
+  width?: string;
   borderRadius?: string;
+  size?: sizeType;
 }
 
-const SearchInput: React.FC<SearchInputPropTypes> = ({ width, borderRadius = "10px" }) => {
+const SearchInput: React.FC<SearchInputPropTypes> = ({
+  width = "100%",
+  borderRadius = "10px",
+  size = "medium",
+}) => {
   return (
     <Box sx={{ width: width }}>
-      <Box sx={{ position: "relative", width: "100%" }} style={{ borderRadius: "10px" }}>
+      <Box sx={{ position: "relative", width: "100%" }}>
         <TextField
-          size="small"
+          size={size}
           placeholder="Search"
           fullWidth
           InputProps={{

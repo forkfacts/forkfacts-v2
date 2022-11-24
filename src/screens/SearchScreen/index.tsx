@@ -32,7 +32,7 @@ const SearchScreen: React.FC = () => {
         </Typography>
       </Box>
       <Box sx={{ mt: "60px" }}>
-        <SearchInput width={"100%"} />
+        <SearchInput />
       </Box>
     </SearchLayout>
   );

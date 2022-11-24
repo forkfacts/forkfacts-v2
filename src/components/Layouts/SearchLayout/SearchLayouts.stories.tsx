@@ -4,7 +4,7 @@ import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 
 export default {
-  title: "Components/SearchLayout",
+  title: "Components/layouts/SearchLayout",
   parameters: {
     viewport: {
       viewports: INITIAL_VIEWPORTS,

@@ -7,25 +7,18 @@ on: push
 # List of jobs
 jobs:
   chromatic-deployment:
-    # Operating System
-    runs-on: ubuntu-latest
-    # Job steps
     steps:
-      - name: Checkout
+      # 👇 Version 2 of the action
+      - name: Checkout repository
         uses: actions/checkout@v2
         with:
-          fetch-depth: 0
-
-      - name: Setup Node.JS
-        uses: actions/setup-node@v2
-        with:
-          node-version: 18.x
-
+          fetch-depth: 0 # 👈 Required to retrieve git history
+      - name: Install dependencies
+        run: yarn
         # 👇 Adds Chromatic as a step in the workflow
       - name: Publish to Chromatic
         uses: chromaui/action@v1
-        # Chromatic GitHub Action options
+        # Options required to the GitHub Chromatic Action
         with:
           # 👇 Chromatic projectToken, refer to the manage page to obtain it.
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
-          zip: true

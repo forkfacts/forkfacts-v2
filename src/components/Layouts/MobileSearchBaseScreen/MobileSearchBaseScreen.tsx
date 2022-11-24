@@ -19,15 +19,15 @@ const useStyles = makeStyles({
 });
 
 interface SearchBaseScreenProps {
-  setIsSearchEmpty: (a: boolean) => void;
-  isSearchEmpty: boolean;
+  setIsSearchEmpty?: (a: boolean) => void;
+  isSearchEmpty?: boolean;
   isHome?: boolean;
 }
 
-const SearchBaseScreen: React.FC<SearchBaseScreenProps & PropsWithChildren> = ({
+const MobileSearchBaseScreen: React.FC<SearchBaseScreenProps & PropsWithChildren> = ({
   children,
   isSearchEmpty = true,
-  isHome = false,
+  isHome = true,
   setIsSearchEmpty,
 }) => {
   const [searchValue, setSearchValue] = useState<string>("");
@@ -35,13 +35,13 @@ const SearchBaseScreen: React.FC<SearchBaseScreenProps & PropsWithChildren> = ({
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.currentTarget.value.length > 0) {
-      setIsSearchEmpty(false);
-    } else setIsSearchEmpty(true);
+      setIsSearchEmpty && setIsSearchEmpty(false)!;
+    } else setIsSearchEmpty && setIsSearchEmpty(true)!;
     setSearchValue(e.currentTarget.value);
   };
 
   const onCloseSearch = () => {
-    setIsSearchEmpty(!isSearchEmpty);
+    setIsSearchEmpty && setIsSearchEmpty(!isSearchEmpty);
     setSearchValue("");
   };
 
@@ -102,10 +102,9 @@ const SearchBaseScreen: React.FC<SearchBaseScreenProps & PropsWithChildren> = ({
         </Container>
       </Box>
       {/* childern */}
-
       <Box sx={{ position: "relative", width: "100%" }}>{children}</Box>
     </Box>
   );
 };
 
-export default SearchBaseScreen;
+export default MobileSearchBaseScreen;

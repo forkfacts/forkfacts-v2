@@ -5,7 +5,7 @@ import AppBar from "@mui/material/AppBar";
 import MenuIcon from "@mui/icons-material/Menu";
 import "./search-layout.css";
 
-const SearchLayout: React.FC<PageProps | PropsWithChildren> = ({ children }) => {
+const MobileSearchLayout: React.FC<PageProps | PropsWithChildren> = ({ children }) => {
   return (
     <div className="main">
       <div className="layoutWrapper">
@@ -17,4 +17,4 @@ const SearchLayout: React.FC<PageProps | PropsWithChildren> = ({ children }) => 
   );
 };
 
-export default SearchLayout;
+export default MobileSearchLayout;

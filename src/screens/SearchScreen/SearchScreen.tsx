@@ -1,10 +1,10 @@
 import React from "react";
-import { SearchInput, SearchLayout } from "@forkfacts/components";
+import { SearchInput, MobileSearchLayout } from "@forkfacts/components";
 import { Box, Typography } from "@mui/material";
 
 const SearchScreen: React.FC = () => {
   return (
-    <SearchLayout>
+    <MobileSearchLayout>
       <Box
         sx={{
           display: "flex",
@@ -34,7 +34,7 @@ const SearchScreen: React.FC = () => {
       <Box sx={{ mt: "60px" }}>
         <SearchInput />
       </Box>
-    </SearchLayout>
+    </MobileSearchLayout>
   );
 };
 

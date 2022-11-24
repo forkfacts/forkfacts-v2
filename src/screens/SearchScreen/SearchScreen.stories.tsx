@@ -13,11 +13,11 @@ export default {
   component: SearchScreen,
 } as ComponentMeta<typeof SearchScreen>;
 
-export const SearchScreenForMobilePage: ComponentStory<typeof SearchScreen> = (args) => {
+export const SearchScreenHome: ComponentStory<typeof SearchScreen> = (args) => {
   return <SearchScreen {...args} />;
 };
 
-SearchScreenForMobilePage.parameters = {
+SearchScreenHome.parameters = {
   viewport: {
     defaultViewport: "iphone5",
   },

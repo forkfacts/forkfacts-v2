@@ -1,7 +1,8 @@
-import { MobileSearchBaseScreen, FactRecentSearchLists } from "@forkfacts/components";
-import { Typography } from "@mui/material";
-import { Box } from "@mui/system";
 import React, { useState } from "react";
+import { MobileSearchBaseScreen, FactRecentSearchLists } from "@forkfacts/components";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import { Button, Typography } from "@mui/material";
+import { Box } from "@mui/system";
 
 const SearchResult: React.FC = () => {
   const [isSearchEmpty, setIsSearchEmpty] = useState(true);
@@ -71,6 +72,19 @@ const SearchResult: React.FC = () => {
         </Box>
         <Box sx={{ mt: 3, py: "12px", px: "20px" }}>
           <FactRecentSearchLists recentLists={recentLists} />
+          <Button
+            variant="outlined"
+            endIcon={<KeyboardArrowDownIcon sx={{ color: "#356A1E" }} />}
+            sx={{
+              border: "none",
+              color: "#356A1E",
+              "&:hover": {
+                border: "none",
+              },
+            }}
+          >
+            View more
+          </Button>
         </Box>
       </div>
     </MobileSearchBaseScreen>

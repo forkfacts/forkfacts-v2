@@ -78,7 +78,7 @@ const MobileSearchBaseScreen: React.FC<SearchBaseScreenProps & PropsWithChildren
               ),
               endAdornment: (
                 <InputAdornment position="end">
-                  {isSearchEmpty || (
+                  {isSearchEmpty ? (
                     <CloseIcon
                       sx={{
                         color: "#356A1E",
@@ -89,7 +89,7 @@ const MobileSearchBaseScreen: React.FC<SearchBaseScreenProps & PropsWithChildren
                       }}
                       onClick={() => onCloseSearch()}
                     />
-                  )}
+                  ) : null}
                 </InputAdornment>
               ),
               classes,

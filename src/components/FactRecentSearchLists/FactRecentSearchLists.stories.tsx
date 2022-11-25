@@ -31,18 +31,10 @@ const recentLists = [
     path: "/:id",
   },
 ];
-export const Desktop = () => <FactRecentSearchLists recentLists={recentLists} />;
 
 export const Mobile = () => <FactRecentSearchLists recentLists={recentLists} />;
 Mobile.parameters = {
   viewport: {
     defaultViewport: "iphone5",
-  },
-};
-
-export const Tablet = () => <FactRecentSearchLists recentLists={recentLists} />;
-Tablet.parameters = {
-  viewport: {
-    defaultViewport: "ipad",
   },
 };

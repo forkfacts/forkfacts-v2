@@ -19,19 +19,16 @@ const FactRecentSearchLists: React.FC<propsTypes> = ({ recentLists }) => {
         <Paper
           elevation={0}
           key={index}
-          sx={{ width: "100%", display: "flex", alignItems: "center", mb: 4 }}
+          sx={{ width: "100%", display: "flex", alignItems: "center", mb: 5 }}
         >
           <img src={item.image} alt={item.name} style={{ width: "24px", height: "24px" }} />
           <Typography
             sx={{
               ml: 2,
-              fontStyle: "normal",
-              fontSize: "16px",
+              fontSize: (theme) => `${theme.spacing(2)}px`,
               lineHeight: "24px",
-              textAlign: "center",
               verticallAign: "top",
               letterSpacing: " 0.5px",
-              color: "#000000",
               fontWeight: 400,
             }}
           >

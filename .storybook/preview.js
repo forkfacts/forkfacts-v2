@@ -1,5 +1,6 @@
 import { action } from "@storybook/addon-actions";
-import { CssBaseline, ThemeProvider } from "@mui/material";
+import { CssBaseline } from "@mui/material";
+import { ThemeProvider } from "@mui/material/styles";
 import { lightTheme } from "../src/themes/lightTheme";
 
 // Gatsby's Link overrides:

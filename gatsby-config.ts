@@ -6,7 +6,9 @@ const config: GatsbyConfig = {
   siteMetadata: siteMetadata,
   graphqlTypegen: true,
   plugins: [
-    "gatsby-plugin-image",
+    `gatsby-plugin-image`,
+    `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`,
     "gatsby-plugin-sitemap",
     "gatsby-plugin-mui-emotion",
     {

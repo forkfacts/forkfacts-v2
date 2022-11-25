@@ -12,13 +12,24 @@ export default {
     },
   },
 } as ComponentMeta<typeof FactRecentSearchLists>;
-
 const recentLists = [
-  { image: "", name: "Kidney beans light, Legume", path: "/:id" },
-  { image: "", name: "Grape fruit juices", path: "/:id" },
-  { image: "", name: "Baked white bread, Baked products", path: "/:id" },
-  { image: "", name: "Grape fruit juice unsweentened, Fruit ...", path: "/:id" },
-  { image: "", name: "Banana dehydrated/ banana powder", path: "/:id" },
+  { image: "/recentImg.png", name: "Kidney beans light, Legume", path: "/:id" },
+  { image: "/recentImg.png", name: "Grape fruit juices", path: "/:id" },
+  {
+    image: "/recentImg.png",
+    name: "Baked white bread, Baked products",
+    path: "/:id",
+  },
+  {
+    image: "/recentImg.png",
+    name: "Grape fruit juice unsweentened, Fruit ...",
+    path: "/:id",
+  },
+  {
+    image: "/recentImg.png",
+    name: "Banana dehydrated/ banana powder",
+    path: "/:id",
+  },
 ];
 export const Desktop = () => <FactRecentSearchLists recentLists={recentLists} />;
 

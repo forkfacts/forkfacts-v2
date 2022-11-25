@@ -1,4 +1,4 @@
-import { MobileSearchBaseScreen } from "@forkfacts/components";
+import { MobileSearchBaseScreen, FactRecentSearchLists } from "@forkfacts/components";
 import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useState } from "react";
@@ -7,11 +7,23 @@ const SearchResult: React.FC = () => {
   const [isSearchEmpty, setIsSearchEmpty] = useState(true);
 
   const recentLists = [
-    { image: "", name: "Kidney beans light, Legume", path: "/:id" },
-    { image: "", name: "Grape fruit juices", path: "/:id" },
-    { image: "", name: "Baked white bread, Baked products", path: "/:id" },
-    { image: "", name: "Grape fruit juice unsweentened, Fruit ...", path: "/:id" },
-    { image: "", name: "Banana dehydrated/ banana powder", path: "/:id" },
+    { image: "/recentImg.png", name: "Kidney beans light, Legume", path: "/:id" },
+    { image: "/recentImg.png", name: "Grape fruit juices", path: "/:id" },
+    {
+      image: "/recentImg.png",
+      name: "Baked white bread, Baked products",
+      path: "/:id",
+    },
+    {
+      image: "/recentImg.png",
+      name: "Grape fruit juice unsweentened, Fruit ...",
+      path: "/:id",
+    },
+    {
+      image: "/recentImg.png",
+      name: "Banana dehydrated/ banana powder",
+      path: "/:id",
+    },
   ];
   return (
     <MobileSearchBaseScreen
@@ -57,7 +69,9 @@ const SearchResult: React.FC = () => {
             Clear all
           </Typography>
         </Box>
-        <Box>{/* recent search lists */}</Box>
+        <Box sx={{ mt: 3, py: "12px", px: "20px" }}>
+          <FactRecentSearchLists recentLists={recentLists} />
+        </Box>
       </div>
     </MobileSearchBaseScreen>
   );

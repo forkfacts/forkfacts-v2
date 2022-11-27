@@ -1,4 +1,4 @@
-import { Box, Paper, Typography } from "@mui/material";
+import { Box, Paper, Typography, useTheme } from "@mui/material";
 // will be use with real data
 // import { StaticImage } from "gatsby-plugin-image";
 import React from "react";
@@ -13,6 +13,8 @@ interface propsTypes {
 }
 
 const FactRecentSearchLists: React.FC<propsTypes> = ({ recentLists }) => {
+  const theme = useTheme();
+  console.log(theme.appColor.success);
   return (
     <Box>
       {recentLists.map((item, index) => (

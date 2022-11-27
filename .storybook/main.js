@@ -1,12 +1,11 @@
 const path = require("path");
 module.exports = {
-  // You will want to change this to wherever your Stories will live
   stories: ["../src/**/*.stories.mdx", "../src/**/*.stories.@(js|jsx|ts|tsx)"],
-  addons: ["@storybook/addon-links", "@storybook/addon-essentials"],
-  framework: "@storybook/react",
-  core: {
-    builder: "webpack5",
-  },
+  addons: [
+    "@storybook/addon-links",
+    "@storybook/addon-essentials",
+    "@storybook/addon-interactions",
+  ],
   webpackFinal: async (config) => {
     // Transpile Gatsby module because Gatsby includes un-transpiled ES6 code.
     config.module.rules[0].exclude = [/node_modules\/(?!(gatsby|gatsby-script)\/)/];
@@ -18,7 +17,8 @@ module.exports = {
     );
     // using abolute import accessibility in our stories
     config.resolve.alias["@forkfacts/components"] = path.resolve(__dirname, "../src/components");
-    config.resolve.alias["@forkfacts/screens"] = path.resolve(__dirname, "../src/screens");
+    config.resolve.alias["@forkfacts/components"] = path.resolve(__dirname, "../src/components");
+    config.resolve.alias["@forkfacts/screen"] = path.resolve(__dirname, "../src/styles");
     config.resolve.mainFields = ["browser", "module", "main"];
     return config;
   },
@@ -26,4 +26,8 @@ module.exports = {
     modules: [path.resolve(__dirname, "src"), "node_modules"],
   },
   staticDirs: ["../public", "../static"],
+  framework: "@storybook/react",
+  core: {
+    builder: "@storybook/builder-webpack5",
+  },
 };

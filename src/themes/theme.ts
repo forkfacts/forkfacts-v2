@@ -44,6 +44,10 @@ export const customTheme = createTheme({
   },
 });
 
+/*=============================================
+=      Custom theme types declaration block           =
+=============================================*/
+
 declare module "@mui/material/styles" {
   interface Theme {
     status: {
@@ -66,8 +70,10 @@ declare module "@mui/material/styles" {
   }
 }
 
+/*=====  End of Custom theme  types declaration block ======*/
+
 /*=============================================
-=            Typography            =
+=    Typography   theme types declaration block           =
 =============================================*/
 
 declare module "@mui/material/styles" {
@@ -92,7 +98,7 @@ declare module "@mui/material/Typography" {
 /*=====  End of Typography  ======*/
 
 /*=============================================
-=        Palette             =
+=     Palette   theme types declaration block  =
 =============================================*/
 declare module "@mui/material/styles" {
   interface Palette {
@@ -110,4 +116,4 @@ declare module "@mui/material/styles" {
   }
 }
 
-/*=====  End of  Palette  ======*/
+/*=====  End of  Palette theme types declaration block   ======*/

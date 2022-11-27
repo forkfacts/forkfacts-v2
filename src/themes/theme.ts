@@ -1,36 +1,23 @@
-import { red, orange } from "@mui/material/colors";
 import { createTheme } from "@mui/material/styles";
 
-// A custom theme for this app
 export const customTheme = createTheme({
   spacing: 8,
   palette: {
-    mode: "light",
-    primary: {
-      main: "#556cd6",
-      darker: "#053e85",
-    },
-    secondary: {
-      main: "#19857b",
-    },
-    error: {
-      main: red.A400,
-    },
-    custom: {
+    customGreen: {
       main: "#64748B",
       light: "#fff",
-      darker: "#053e85",
-      contrastText: "#fff",
+      dark: "red",
+      contrastText: "#ff8a80",
+    },
+    customBlack: {
+      main: "#880e4f",
+      light: "#5f0937",
+      dark: "#9f3e72",
+      contrastText: "#ffa199",
+      lightier: "#fff90",
     },
   },
   typography: {
-    subtitle1: {
-      fontSize: 14,
-    },
-    // Disable h3 variant
-    h3: {
-      fontSize: "100px",
-    },
     poster: {
       fontSize: "10px",
     },
@@ -38,82 +25,10 @@ export const customTheme = createTheme({
   status: {
     danger: "yellow",
     check: "purple",
+    main: "pink",
   },
   appColor: {
     success: "red",
+    light: "orange",
   },
 });
-
-/*=============================================
-=      Custom theme types declaration block           =
-=============================================*/
-
-declare module "@mui/material/styles" {
-  interface Theme {
-    status: {
-      danger: string;
-      check: string;
-    };
-    appColor: {
-      success: string;
-    };
-  }
-  // allow configuration using `createTheme`
-  interface ThemeOptions {
-    status: {
-      danger: string;
-      check: string;
-    };
-    appColor: {
-      success: string;
-    };
-  }
-}
-
-/*=====  End of Custom theme  types declaration block ======*/
-
-/*=============================================
-=    Typography   theme types declaration block           =
-=============================================*/
-
-declare module "@mui/material/styles" {
-  interface TypographyVariants {
-    poster: React.CSSProperties;
-  }
-
-  // allow configuration using `createTheme`
-  interface TypographyVariantsOptions {
-    poster?: React.CSSProperties;
-  }
-}
-
-// Update the Typography's variant prop options
-declare module "@mui/material/Typography" {
-  interface TypographyPropsVariantOverrides {
-    poster: true;
-    h3: false;
-  }
-}
-
-/*=====  End of Typography  ======*/
-
-/*=============================================
-=     Palette   theme types declaration block  =
-=============================================*/
-declare module "@mui/material/styles" {
-  interface Palette {
-    neutral: Palette["primary"];
-  }
-  interface PaletteOptions {
-    custom?: PaletteOptions["primary"];
-  }
-
-  interface PaletteColor {
-    darker: string;
-  }
-  interface SimplePaletteColorOptions {
-    darker?: string;
-  }
-}
-
-/*=====  End of  Palette theme types declaration block   ======*/

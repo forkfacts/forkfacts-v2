@@ -14,6 +14,7 @@ interface propsTypes {
 
 const FactRecentSearchLists: React.FC<propsTypes> = ({ recentLists }) => {
   const theme = useTheme();
+  console.log(theme.palette.customBlack);
   return (
     <Box>
       {recentLists.map((item, index) => (

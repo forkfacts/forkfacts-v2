@@ -1,9 +1,8 @@
 import { createTheme, PaletteColor, PaletteColorOptions } from "@mui/material/styles";
 
 /*=============================================
-  =            New theme customization            =
+  =            New themes customization            =
   =============================================*/
-
 declare module "@mui/material/styles" {
   interface Theme {
     status: {
@@ -30,11 +29,11 @@ declare module "@mui/material/styles" {
   }
 }
 
-/*=====  End of New theme customization  ======*/
+/*=====  End of New themes customization  ======*/
 
 /*=============================================
     =            Typography            =
-    =============================================*/
+ =============================================*/
 
 declare module "@mui/material/styles" {
   interface TypographyVariants {
@@ -58,7 +57,7 @@ declare module "@mui/material/Typography" {
 
 /*=============================================
     =        Palette             =
-    =============================================*/
+=============================================*/
 declare module "@mui/material/styles" {
   // append to color palette
   interface Palette {

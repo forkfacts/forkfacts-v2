@@ -1,10 +1,10 @@
 import * as React from "react";
-import { Link, PageProps } from "gatsby";
-import useSiteMetadata from "../hooks/useSiteMetadata";
+import { PageProps } from "gatsby";
+import { useTheme } from "@mui/material";
 
 const IndexPage: React.FC<PageProps> = () => {
-  const title = useSiteMetadata();
-  console.log(title);
+  const theme = useTheme();
+  console.log(theme);
   return <main>hello</main>;
 };
 

@@ -23,12 +23,15 @@ export const customTheme = createTheme({
         fontSize: "24px",
       },
       lg: {
-        fontSize: "100px",
+        // not real value yet
+        fontSize: "34px",
       },
       xl: {
+        // not real value yet
         fontSize: "10px",
       },
       xxl: {
+        // not real value yet
         fontSize: "10px",
       },
     },

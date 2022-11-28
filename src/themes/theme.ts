@@ -4,31 +4,33 @@ export const customTheme = createTheme({
   spacing: 8,
   palette: {
     customGreen: {
-      main: "#64748B",
-      light: "#fff",
-      dark: "red",
-      contrastText: "#ff8a80",
+      main: "#356A1E",
     },
     customBlack: {
-      main: "#880e4f",
-      light: "#5f0937",
-      dark: "#9f3e72",
-      contrastText: "#ffa199",
-      lightier: "#fff90",
+      main: "#000000",
     },
   },
   typography: {
-    poster: {
-      fontSize: "10px",
+    fontFamily: "Poppins",
+    customFontSize: {
+      xs: {
+        fontSize: "10px",
+      },
+      sm: {
+        fontSize: "16px",
+      },
+      md: {
+        fontSize: "10px",
+      },
+      lg: {
+        fontSize: "100px",
+      },
+      xl: {
+        fontSize: "10px",
+      },
+      xxl: {
+        fontSize: "10px",
+      },
     },
-  },
-  status: {
-    danger: "yellow",
-    check: "purple",
-    main: "pink",
-  },
-  appColor: {
-    success: "red",
-    light: "orange",
   },
 });

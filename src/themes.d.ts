@@ -5,24 +5,24 @@ import { createTheme, PaletteColor, PaletteColorOptions } from "@mui/material/st
   =============================================*/
 declare module "@mui/material/styles" {
   interface Theme {
-    status: {
+    status?: {
       danger: string;
       check: string;
       main: string;
     };
-    appColor: {
+    appColor?: {
       success: string;
       light: string;
     };
   }
   // allow configuration using `createTheme`
   interface ThemeOptions {
-    status: {
+    status?: {
       danger: string;
       check: string;
       main: string;
     };
-    appColor: {
+    appColor?: {
       success: string;
       light: string;
     };
@@ -37,19 +37,35 @@ declare module "@mui/material/styles" {
 
 declare module "@mui/material/styles" {
   interface TypographyVariants {
-    poster: React.CSSProperties;
+    customFontSize: {
+      xs: React.CSSProperties;
+      xl: React.CSSProperties;
+      sm: React.CSSProperties;
+      md: React.CSSProperties;
+      lg: React.CSSProperties;
+      xl: React.CSSProperties;
+      xxl: React.CSSProperties;
+    };
   }
 
   // allow configuration using `createTheme`
   interface TypographyVariantsOptions {
-    poster?: React.CSSProperties;
+    customFontSize: {
+      xs: React.CSSProperties;
+      xl: React.CSSProperties;
+      sm: React.CSSProperties;
+      md: React.CSSProperties;
+      lg: React.CSSProperties;
+      xl: React.CSSProperties;
+      xxl: React.CSSProperties;
+    };
   }
 }
 
 // Update the Typography's variant prop options
 declare module "@mui/material/Typography" {
   interface TypographyPropsVariantOverrides {
-    poster: true;
+    customFontSize: true;
   }
 }
 
@@ -67,13 +83,6 @@ declare module "@mui/material/styles" {
   interface PaletteOptions {
     customBlack?: PaletteColorOptions;
     customGreen?: PaletteColorOptions;
-  }
-  // append to color option
-  interface SimplePaletteColorOptions {
-    lightier?: string;
-  }
-  interface PaletteColor {
-    lightier?: string;
   }
 }
 

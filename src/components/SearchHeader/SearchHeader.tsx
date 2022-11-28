@@ -31,7 +31,7 @@ const SearchHeader: React.FC = ({}) => {
   const classes = useStyles();
 
   return (
-    <>
+    <Box>
       <AppBar color="transparent" className={classes.searchNav}>
         <Box
           sx={{
@@ -57,7 +57,7 @@ const SearchHeader: React.FC = ({}) => {
           />
         </Box>
       </AppBar>
-    </>
+    </Box>
   );
 };
 

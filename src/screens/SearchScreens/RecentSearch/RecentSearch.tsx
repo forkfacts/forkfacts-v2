@@ -1,15 +1,42 @@
 import React from "react";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import { Box, TextField, AppBar, Theme } from "@mui/material";
-import InputAdornment from "@mui/material/InputAdornment";
+import { Box, Theme, useTheme } from "@mui/material";
 import { makeStyles } from "@mui/styles";
+import { FactRecentSearchLists, SearchHeader } from "@forkfacts/components";
 
 const useStyles = makeStyles((theme: Theme) => ({}));
 
 const RecentSearchScreen: React.FC = ({}) => {
   const classes = useStyles();
+  const theme = useTheme();
 
-  return <></>;
+  const recentLists = [
+    { image: "/recentImg.png", name: "Kidney beans light, Legume", path: "/:id" },
+    { image: "/recentImg.png", name: "Grape fruit juices", path: "/:id" },
+    {
+      image: "/recentImg.png",
+      name: "Baked white bread, Baked products",
+      path: "/:id",
+    },
+    {
+      image: "/recentImg.png",
+      name: "Grape fruit juice unsweentened, Fruit ...",
+      path: "/:id",
+    },
+    {
+      image: "/recentImg.png",
+      name: "Banana dehydrated/ banana powder",
+      path: "/:id",
+    },
+  ];
+
+  return (
+    <Box>
+      <SearchHeader />
+      <Box sx={{ mt: theme.spacing(6) }}>
+        <FactRecentSearchLists recentLists={recentLists} />
+      </Box>
+    </Box>
+  );
 };
 
 export default RecentSearchScreen;

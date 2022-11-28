@@ -24,11 +24,15 @@ const useStyles = makeStyles((theme: Theme) => ({
   infoPage: {
     display: "grid",
     alignItems: "center",
-    flexDirection: "column",
     width: "100%",
     [theme.breakpoints.down("sm")]: {
       placeItem: "center",
       height: "100vh",
+    },
+  },
+  infoPageWrraper: {
+    [theme.breakpoints.down("sm")]: {
+      marginTop: "-4em",
     },
   },
   mobilePageText: {
@@ -57,7 +61,7 @@ export default function SearchScreen() {
       </AppBar>
       {/* content */}
       <Box className={styles.infoPage}>
-        <Box>
+        <Box className={styles.infoPageWrraper}>
           <Box sx={{ width: "100%", mb: "30px" }}>
             <Typography component="h2" className={styles.mobilePageText}>
               Forkfacts, Your Healthy diet search place.

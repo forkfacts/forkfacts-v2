@@ -38,6 +38,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   icon: {
     fontWeight: theme.typography.fontWeightBold,
+    color: theme.palette.customGreen?.main,
   },
 }));
 

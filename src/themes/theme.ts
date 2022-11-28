@@ -20,7 +20,7 @@ export const customTheme = createTheme({
         fontSize: "16px",
       },
       md: {
-        fontSize: "10px",
+        fontSize: "24px",
       },
       lg: {
         fontSize: "100px",

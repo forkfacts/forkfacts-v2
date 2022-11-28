@@ -1,6 +1,6 @@
 import React from "react";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import { Box, TextField, AppBar, Theme } from "@mui/material";
+import { Box, TextField, AppBar, Theme, CssBaseline } from "@mui/material";
 import InputAdornment from "@mui/material/InputAdornment";
 import { makeStyles } from "@mui/styles";
 
@@ -30,7 +30,12 @@ const SearchHeader: React.FC = ({}) => {
 
   return (
     <Box>
-      <AppBar color="transparent" className={classes.underline}>
+      <CssBaseline />
+      <AppBar
+        sx={{ boxShadow: 2, width: "100% !important" }}
+        color="transparent"
+        className={classes.underline}
+      >
         <Box
           sx={{
             py: "15px",

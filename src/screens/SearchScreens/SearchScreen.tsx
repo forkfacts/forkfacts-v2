@@ -6,64 +6,51 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { makeStyles } from "@mui/styles";
 import InputAdornment from "@mui/material/InputAdornment";
 
-const useStyles = makeStyles((theme: Theme) => ({
+import styles from "./searchscreen.module.css";
+
+const useStyles = makeStyles(({ spacing, typography, breakpoints }: Theme) => ({
   root: {
     width: "100%",
     flexGrow: 1,
   },
-  pageTitle: {
-    flexGrow: 1,
-    color: theme.palette.customGreen?.main,
-    fontSize: theme.typography.customFontSize.md.fontSize,
-    fontWeight: theme.typography.fontWeightMedium,
-  },
-  icon: {
-    fontWeight: theme.typography.fontWeightBold,
-    color: theme.palette.customGreen?.main,
-  },
   infoPage: {
-    display: "grid",
-    alignItems: "center",
+    display: "block",
     width: "100%",
-    [theme.breakpoints.down("sm")]: {
-      placeItem: "center",
-      height: "100vh",
+    [breakpoints.down("sm")]: {
+      marginTop: spacing(20),
     },
   },
   infoPageWrraper: {
-    [theme.breakpoints.down("sm")]: {
-      marginTop: "-4em",
+    [breakpoints.down("sm")]: {
+      marginTop: spacing(4.5),
     },
   },
-  mobilePageText: {
-    color: theme.palette.customBlack?.main,
-    lineHeight: "32px",
-    textAlign: "center",
-    fontSize: theme.typography.customFontSize.md.fontSize,
-    fontWeight: 600,
-    verticalAlign: "center",
+  spaceBottom: {
+    [breakpoints.down("sm")]: {
+      marginBottom: spacing(4.5),
+    },
   },
 }));
 
 export default function SearchScreen() {
-  const styles = useStyles();
+  const classes = useStyles();
   return (
-    <Box className={styles.root}>
+    <Box className={classes.root}>
       <AppBar color="transparent" sx={{ boxShadow: "none" }}>
         <Toolbar>
-          <IconButton size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 1 }}>
-            <MenuIcon className={styles.icon} />
+          <IconButton size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 0.5 }}>
+            <MenuIcon color="primary" />
           </IconButton>
-          <Typography variant="h1" className={styles.pageTitle}>
+          <Typography variant="h6" color="primary">
             Forkfacts
           </Typography>
         </Toolbar>
       </AppBar>
       {/* content */}
-      <Box className={styles.infoPage}>
-        <Box className={styles.infoPageWrraper}>
-          <Box sx={{ width: "100%", mb: "30px" }}>
-            <Typography component="h2" className={styles.mobilePageText}>
+      <Box className={classes.infoPage}>
+        <Box className={classes.infoPageWrraper}>
+          <Box className={classes.spaceBottom}>
+            <Typography className={styles.introText} color="common.black">
               Forkfacts, Your Healthy diet search place.
             </Typography>
           </Box>
@@ -82,8 +69,9 @@ export default function SearchScreen() {
               sx={{
                 "& fieldset": {
                   paddingLeft: (theme) => theme.spacing(2.5),
-                  borderRadius: "10px",
+                  borderRadius: (theme) => theme.spacing(1.25),
                   width: "100%",
+                  borderColor: "grey !important",
                 },
               }}
             />

@@ -1,0 +1,8 @@
+.introText {
+  font-weight: 600 !important;
+  font-size: 24px !important;
+  line-height: 32px !important;
+  display: flex;
+  align-items: center;
+  text-align: center;
+}

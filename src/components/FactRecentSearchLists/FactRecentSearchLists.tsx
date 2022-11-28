@@ -13,32 +13,35 @@ interface propsTypes {
   recentLists: Array<listItemTypes>;
 }
 
-const useStyles = makeStyles((theme: Theme) => ({
+const useStyles = makeStyles(({ spacing, palette, typography }: Theme) => ({
   root: {
     width: "100%",
-    maxWidth: 360,
-    backgroundColor: theme.palette.background.paper,
   },
 
   listItem: {
-    display: "flex",
-    alignItems: "center",
     width: "100%",
     padding: 0,
-    marginTop: "15px",
+    marginTop: spacing(3.5),
+  },
+  listWrapper: {
+    display: "flex",
+    alignItems: "center",
   },
   ListItemText: {
-    marginLeft: "10px",
-    lineHeight: "24px",
+    marginLeft: spacing(1),
+    lineHeight: spacing(4),
     fontStyle: "normal",
   },
   btn: {
-    color: theme.palette.customGreen?.main,
-    fontWeight: theme.typography.fontWeightBold,
+    fontWeight: typography.fontWeightBold,
+    fontSize: `${spacing(1.5)}`,
+    textTransform: "capitalize",
   },
   icon: {
-    fontWeight: theme.typography.fontWeightBold,
-    color: theme.palette.customGreen?.main,
+    fontWeight: typography.fontWeightBold,
+  },
+  viewMoreBox: {
+    marginTop: spacing(1.5),
   },
 }));
 
@@ -49,34 +52,22 @@ const FactRecentSearchLists: React.FC<propsTypes> = ({ recentLists }) => {
       <Box>
         <List>
           {recentLists.map((item, index) => (
-            <ListItem key={index} classes={{ root: styles.listItem }}>
-              <div>
+            <ListItem key={index} className={styles.listItem}>
+              <Box className={styles.listWrapper}>
                 <img src={item.image} alt={item.name} />
-              </div>
-              <ListItemText
-                className={styles.ListItemText}
-                primary={
-                  <Typography
-                    sx={{
-                      fontSize: ({ typography }) => typography.customFontSize.sm.fontSize,
-                      color: ({ palette }) => palette.customBlack?.main,
-                    }}
-                  >
-                    {item.name}
-                  </Typography>
-                }
-              />
+                <ListItemText
+                  className={styles.ListItemText}
+                  primary={<Typography variant="body1">{item.name}</Typography>}
+                />
+              </Box>
             </ListItem>
           ))}
         </List>
       </Box>
-      <Box>
-        <Button
-          variant="text"
-          endIcon={<ExpandMoreIcon className={styles.icon} />}
-          className={styles.btn}
-        >
+      <Box className={styles.viewMoreBox}>
+        <Button variant="text" color="primary" className={styles.btn}>
           View More
+          <ExpandMoreIcon className={styles.icon} />
         </Button>
       </Box>
     </Box>

@@ -37,7 +37,7 @@ declare module "@mui/material/styles" {
 
 declare module "@mui/material/styles" {
   interface TypographyVariants {
-    customFontSize: {
+    customFontSize?: {
       xs: React.CSSProperties;
       xl: React.CSSProperties;
       sm: React.CSSProperties;
@@ -50,7 +50,7 @@ declare module "@mui/material/styles" {
 
   // allow configuration using `createTheme`
   interface TypographyVariantsOptions {
-    customFontSize: {
+    customFontSize?: {
       xs: React.CSSProperties;
       xl: React.CSSProperties;
       sm: React.CSSProperties;

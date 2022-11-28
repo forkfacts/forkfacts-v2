@@ -1,8 +1,10 @@
-.introText {
-  font-weight: 600 !important;
-  font-size: 24px !important;
-  line-height: 32px !important;
-  display: flex;
-  align-items: center;
-  text-align: center;
+@media (max-width: 414px) {
+  .introText {
+    font-weight: 600 !important;
+    font-size: 24px !important;
+    line-height: 32px !important;
+    display: flex;
+    align-items: center;
+    text-align: center;
+  }
 }

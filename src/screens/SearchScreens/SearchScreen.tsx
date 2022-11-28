@@ -5,10 +5,9 @@ import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import { makeStyles } from "@mui/styles";
 import InputAdornment from "@mui/material/InputAdornment";
-
 import styles from "./searchscreen.module.css";
 
-const useStyles = makeStyles(({ spacing, typography, breakpoints }: Theme) => ({
+const useStyles = makeStyles(({ spacing, breakpoints }: Theme) => ({
   root: {
     width: "100%",
     flexGrow: 1,
@@ -27,7 +26,7 @@ const useStyles = makeStyles(({ spacing, typography, breakpoints }: Theme) => ({
   },
   spaceBottom: {
     [breakpoints.down("sm")]: {
-      marginBottom: spacing(4.5),
+      marginBottom: spacing(7),
     },
   },
 }));
@@ -41,7 +40,7 @@ export default function SearchScreen() {
           <IconButton size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 0.5 }}>
             <MenuIcon color="primary" />
           </IconButton>
-          <Typography variant="h6" color="primary">
+          <Typography variant="h5" color="primary">
             Forkfacts
           </Typography>
         </Toolbar>

@@ -4,7 +4,7 @@ import { Box, TextField, AppBar, Theme } from "@mui/material";
 import InputAdornment from "@mui/material/InputAdornment";
 import { makeStyles } from "@mui/styles";
 
-const useStyles = makeStyles((theme: Theme) => ({
+const useStyles = makeStyles(({ typography, spacing }: Theme) => ({
   underline: {
     "&&&:before": {
       borderBottom: "none",
@@ -14,14 +14,12 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   searchNav: {
-    boxShadow: "0px 1px 4px 0px #000000",
     boxSizing: "border-box",
-    borderRadius: "4px",
+    border: "none !importannt",
   },
   icon: {
-    fontWeight: theme.typography.fontWeightBold,
-    color: theme.palette.customGreen?.main,
-    width: "24px",
+    fontWeight: typography.fontWeightBold,
+    width: spacing(4),
     height: "24px",
     cursor: "pointer",
   },
@@ -32,7 +30,7 @@ const SearchHeader: React.FC = ({}) => {
 
   return (
     <Box>
-      <AppBar color="transparent" className={classes.searchNav}>
+      <AppBar color="transparent" className={classes.underline}>
         <Box
           sx={{
             py: "15px",

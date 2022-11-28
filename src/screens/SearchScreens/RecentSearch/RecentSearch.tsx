@@ -1,13 +1,10 @@
 import React from "react";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import { Box, TextField, Container } from "@mui/material";
-import CssBaseline from "@mui/material/CssBaseline";
+import { Box, TextField, AppBar, Theme } from "@mui/material";
 import InputAdornment from "@mui/material/InputAdornment";
-
-import CloseIcon from "@mui/icons-material/Close";
 import { makeStyles } from "@mui/styles";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme: Theme) => ({
   underline: {
     "&&&:before": {
       borderBottom: "none",
@@ -16,22 +13,30 @@ const useStyles = makeStyles({
       borderBottom: "none",
     },
   },
-});
+  searchNav: {
+    boxShadow: "0px 1px 4px 0px #000000",
+    boxSizing: "border-box",
+  },
+  icon: {
+    fontWeight: theme.typography.fontWeightBold,
+    color: theme.palette.customGreen?.main,
+    width: "24px",
+    height: "24px",
+    cursor: "pointer",
+  },
+}));
 
 const MobileSearchBaseScreen: React.FC = ({}) => {
   const classes = useStyles();
 
   return (
-    <Box>
-      <Box>
-        <CssBaseline />
-        <Container
+    <>
+      <AppBar color="transparent" className={classes.searchNav}>
+        <Box
           sx={{
-            boxShadow: "0px 1px 4px 0px #000000",
-            boxSizing: "border-box",
-            py: "20px",
-            pl: "5px",
+            py: "15px",
             pr: "20px",
+            pl: "11px",
           }}
         >
           <TextField
@@ -41,28 +46,7 @@ const MobileSearchBaseScreen: React.FC = ({}) => {
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
-                  <ArrowBackIcon
-                    sx={{
-                      color: "#356A1E",
-                      width: "45px",
-                      height: "45px",
-                      py: "10px",
-                      cursor: "pointer",
-                    }}
-                  />
-                </InputAdornment>
-              ),
-              endAdornment: (
-                <InputAdornment position="end">
-                  <CloseIcon
-                    sx={{
-                      color: "#356A1E",
-                      width: "45px",
-                      height: "45px",
-                      py: "10px",
-                      cursor: "pointer",
-                    }}
-                  />
+                  <ArrowBackIcon className={classes.icon} />
                 </InputAdornment>
               ),
               classes,
@@ -70,10 +54,9 @@ const MobileSearchBaseScreen: React.FC = ({}) => {
             placeholder="Search for food product"
             variant="standard"
           />
-        </Container>
-      </Box>
-      {/* childern */}
-    </Box>
+        </Box>
+      </AppBar>
+    </>
   );
 };
 

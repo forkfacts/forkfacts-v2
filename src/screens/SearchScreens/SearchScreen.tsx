@@ -22,14 +22,13 @@ const useStyles = makeStyles((theme: Theme) => ({
     color: theme.palette.customGreen?.main,
   },
   infoPage: {
-    display: "flex",
-    justifyContent: "center",
-    maxHeight: "100vh",
+    display: "grid",
     alignItems: "center",
     flexDirection: "column",
     width: "100%",
     [theme.breakpoints.down("sm")]: {
-      marginTop: "150px",
+      placeItem: "center",
+      height: "100vh",
     },
   },
   mobilePageText: {
@@ -58,31 +57,33 @@ export default function SearchScreen() {
       </AppBar>
       {/* content */}
       <Box className={styles.infoPage}>
-        <Box sx={{ mt: "40px", width: "100%" }}>
-          <Typography component="h2" className={styles.mobilePageText}>
-            Forkfacts, Your Healthy diet search place.
-          </Typography>
-        </Box>
-        <Box sx={{ mt: "40px", width: "100%" }}>
-          <TextField
-            size="small"
-            placeholder="Search"
-            fullWidth
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <SearchOutlined />
-                </InputAdornment>
-              ),
-            }}
-            sx={{
-              "& fieldset": {
-                paddingLeft: (theme) => theme.spacing(2.5),
-                borderRadius: "10px",
-                width: "100%",
-              },
-            }}
-          />
+        <Box>
+          <Box sx={{ width: "100%", mb: "30px" }}>
+            <Typography component="h2" className={styles.mobilePageText}>
+              Forkfacts, Your Healthy diet search place.
+            </Typography>
+          </Box>
+          <Box sx={{ width: "100%" }}>
+            <TextField
+              size="small"
+              placeholder="Search"
+              fullWidth
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <SearchOutlined />
+                  </InputAdornment>
+                ),
+              }}
+              sx={{
+                "& fieldset": {
+                  paddingLeft: (theme) => theme.spacing(2.5),
+                  borderRadius: "10px",
+                  width: "100%",
+                },
+              }}
+            />
+          </Box>
         </Box>
       </Box>
     </Box>

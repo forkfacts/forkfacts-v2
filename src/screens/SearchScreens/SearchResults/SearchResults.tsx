@@ -5,7 +5,7 @@ import { SearchStatus, FactRecentSearchLists, SearchHeader } from "@forkfacts/co
 
 const useStyles = makeStyles((theme: Theme) => ({}));
 
-const RecentSearchScreen: React.FC = ({}) => {
+const SearchResultsScreen: React.FC = ({}) => {
   const classes = useStyles();
   const theme = useTheme();
 
@@ -33,11 +33,11 @@ const RecentSearchScreen: React.FC = ({}) => {
     <Box>
       <SearchHeader />
       <Box sx={{ mt: theme.spacing(10) }}>
-        <SearchStatus status="recentScreen" />
+        <SearchStatus status="ResultsScreen" />
         <FactRecentSearchLists recentLists={recentLists} />
       </Box>
     </Box>
   );
 };
 
-export default RecentSearchScreen;
+export default SearchResultsScreen;

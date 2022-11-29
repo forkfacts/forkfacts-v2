@@ -31,11 +31,7 @@ const SearchHeader: React.FC = ({}) => {
   return (
     <Box>
       <CssBaseline />
-      <AppBar
-        sx={{ boxShadow: 2, width: "100% !important" }}
-        color="transparent"
-        className={classes.underline}
-      >
+      <AppBar sx={{ boxShadow: 2, zIndex: 999, bgcolor: "background.paper" }}>
         <Box
           sx={{
             py: "15px",

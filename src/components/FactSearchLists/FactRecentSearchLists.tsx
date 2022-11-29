@@ -25,9 +25,6 @@ interface propsTypes {
 const useStyles = makeStyles(({ spacing, breakpoints }: Theme) => ({
   root: {
     width: "100%",
-    [breakpoints.down("sm")]: {
-      marginTop: spacing(4),
-    },
   },
   groupTitle: {
     [breakpoints.down("sm")]: {
@@ -44,7 +41,7 @@ const FactSearchLists: React.FC<propsTypes> = ({ recentLists, grouped, groupList
         {grouped ? (
           <Box>
             {groupLists!.map((item, index) => (
-              <Box key={index} sx={{ mt: (theme) => theme.spacing(2.5) }}>
+              <Box key={index} sx={{ mt: (theme) => theme.spacing(3.5) }}>
                 <Typography color="text.secondary" className={styles.groupTitle}>
                   {item.groupTitle}
                 </Typography>

@@ -1,7 +1,7 @@
 import React from "react";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import { FactSearchLists } from "@forkfacts/components";
-import { ComponentMeta } from "@storybook/react";
+import { ComponentMeta, ComponentStory } from "@storybook/react";
 
 export default {
   title: "Components/FactSearchLists",
@@ -32,9 +32,35 @@ const recentLists = [
   },
 ];
 
-export const Mobile = () => <FactSearchLists recentLists={recentLists} />;
-Mobile.parameters = {
+const groupListsTypes = [
+  { groupTitle: "FRUIT AND FRUIT JUICES", listItems: recentLists },
+  { groupTitle: "BABY FOODS", listItems: recentLists.slice(0, 1) },
+  { groupTitle: "SWEETS", listItems: recentLists.slice(0, 2) },
+];
+
+export const GroupedMobileLists: ComponentStory<typeof FactSearchLists> = (args) => (
+  <FactSearchLists {...args} />
+);
+GroupedMobileLists.parameters = {
   viewport: {
     defaultViewport: "iphone5",
   },
+};
+
+GroupedMobileLists.args = {
+  groupLists: groupListsTypes,
+  grouped: true,
+};
+
+export const recentMobileLists: ComponentStory<typeof FactSearchLists> = (args) => (
+  <FactSearchLists {...args} />
+);
+recentMobileLists.parameters = {
+  viewport: {
+    defaultViewport: "iphone5",
+  },
+};
+
+recentMobileLists.args = {
+  recentLists: recentLists,
 };

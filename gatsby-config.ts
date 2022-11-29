@@ -26,6 +26,7 @@ const config: GatsbyConfig = {
       options: {
         alias: {
           "@forkfacts/components": path.resolve(__dirname, "src/components"),
+          "@forkfacts/helpers": path.resolve(__dirname, "src/helpers"),
           "@forkfacts/screens": path.resolve(__dirname, "src/screens"),
         },
         extensions: [".js", ".jsx", ".ts", ".tsx", ".css"],

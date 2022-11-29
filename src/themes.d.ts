@@ -1,4 +1,4 @@
-import { createTheme, PaletteColor, PaletteColorOptions } from "@mui/material/styles";
+import { createTheme, PaletteColor, PaletteColorOptions, Theme } from "@mui/material/styles";
 
 /*=============================================
   =            New themes customization            =
@@ -29,6 +29,10 @@ declare module "@mui/material/styles" {
   }
 }
 
+declare module "@mui/styles/defaultTheme" {
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface (remove this line if you don't have the rule enabled)
+  interface DefaultTheme extends Theme {}
+}
 /*=====  End of New themes customization  ======*/
 
 /*=============================================

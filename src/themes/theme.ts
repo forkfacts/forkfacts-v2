@@ -1,7 +1,6 @@
 import { createTheme } from "@mui/material/styles";
 
 export const customTheme = createTheme({
-  spacing: 8,
   typography: {
     fontFamily: "Poppins",
   },

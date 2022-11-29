@@ -17,6 +17,7 @@ module.exports = {
     );
     // using abolute import accessibility in our stories
     config.resolve.alias["@forkfacts/components"] = path.resolve(__dirname, "../src/components");
+    config.resolve.alias["@forkfacts/helpers"] = path.resolve(__dirname, "../src/helpers");
     config.resolve.alias["@forkfacts/screens"] = path.resolve(__dirname, "../src/screens");
     config.resolve.alias["@forkfacts/styles"] = path.resolve(__dirname, "../src/styles");
     config.resolve.mainFields = ["browser", "module", "main"];

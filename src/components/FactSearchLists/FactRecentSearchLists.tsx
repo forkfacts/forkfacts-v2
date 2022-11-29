@@ -1,9 +1,10 @@
-import { Box, Typography, List, Theme, Button } from "@mui/material";
+import { Box, Typography, List, Theme, Button, useTheme } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { makeStyles } from "@mui/styles";
 
 import React from "react";
 import FactlListItem from "./FactlListItem";
+import { addSpacing } from "@forkfacts/helpers";
 
 export interface listItemTypes {
   name: string;
@@ -35,13 +36,13 @@ const useStyles = makeStyles(({ spacing, typography, breakpoints }: Theme) => ({
   },
   groupTitle: {
     [breakpoints.down("sm")]: {
-      fontSize: `${4 + spacing(1)}px`,
+      fontSize: addSpacing(spacing, 4),
     },
   },
   btn: {
     [breakpoints.down("sm")]: {
       fontWeight: typography.fontWeightBold,
-      fontSize: `${4 + spacing(1)}px`,
+      fontSize: addSpacing(spacing, 4),
       textTransform: "capitalize",
     },
   },

@@ -1,29 +1,22 @@
 import * as React from "react";
-import { Box, Button, Grid } from "@mui/material";
-import DeleteIcon from "@mui/icons-material/Delete";
-import SendIcon from "@mui/icons-material/Send";
+import { Box, Button, Grid, Paper } from "@mui/material";
+import EggAltIcon from "@mui/icons-material/EggAlt";
 
 export default function SearchCategory() {
   return (
-    <Box sx={{ width: { sm: "100%" } }}>
-      <Grid container spacing={{ sm: 0, sx: 5 }}>
-        <Grid item sm={4} xs={6}>
-          <Box sx={{ p: "3px" }}>
-            <Button variant="outlined" startIcon={<DeleteIcon />}>
-              Delete
+    <Box sx={{ flexGrow: 1 }}>
+      <Grid container justifyContent="center" spacing={3}>
+        {[0, 1, 2].map((value) => (
+          <Grid key={value} item>
+            <Button
+              variant="outlined"
+              size="small"
+              startIcon={<EggAltIcon sx={{ width: "15px", height: "15px" }} />}
+            >
+              Small
             </Button>
-          </Box>
-        </Grid>
-        <Grid item sm={4} xs={6}>
-          <Button variant="outlined" startIcon={<DeleteIcon />}>
-            Delete
-          </Button>
-        </Grid>
-        <Grid item sm={4} xs={6}>
-          <Button variant="outlined" startIcon={<DeleteIcon />}>
-            Delete
-          </Button>
-        </Grid>
+          </Grid>
+        ))}
       </Grid>
     </Box>
   );

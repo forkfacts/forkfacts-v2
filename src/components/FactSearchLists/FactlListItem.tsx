@@ -7,7 +7,7 @@ const useStyles = makeStyles(({ spacing, palette, typography }: Theme) => ({
   listItem: {
     width: "100%",
     padding: 0,
-    marginTop: spacing(3.5),
+    marginTop: spacing(1),
   },
   listWrapper: {
     display: "flex",

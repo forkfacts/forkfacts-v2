@@ -29,13 +29,15 @@ const SearchResultsScreen: React.FC = () => {
     },
   ];
 
+  const groupListsTypes = [{ groupTitle: "FRUIT AND FRUIT JUICES", listItems: recentLists }];
+
   return (
     <Box>
       <SearchHeader showBorderBottom={false} openCloseBtn={true} />
       <Box sx={{ mt: theme.spacing(7) }}>
         <SearchStatus status="ResultsScreen" />
         <SearchCategory />
-        <FactSearchLists recentLists={recentLists} />
+        <FactSearchLists groupLists={groupListsTypes} grouped={true} />
       </Box>
     </Box>
   );

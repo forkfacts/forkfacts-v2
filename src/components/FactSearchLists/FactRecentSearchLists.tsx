@@ -1,4 +1,4 @@
-import { Box, Typography, List, ListItem, ListItemText, Theme, Button } from "@mui/material";
+import { Box, Typography, List, Theme, Button } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { makeStyles } from "@mui/styles";
 
@@ -13,25 +13,37 @@ export interface listItemTypes {
 
 export interface GroupListsTypes {
   listItems: Array<listItemTypes>;
-  groupedTitle: string;
+  groupTitle: string;
 }
 interface propsTypes {
-  recentLists: Array<listItemTypes>;
+  recentLists?: Array<listItemTypes>;
   grouped?: boolean;
   groupLists?: GroupListsTypes[];
 }
 
-const useStyles = makeStyles(({ spacing, typography }: Theme) => ({
+const useStyles = makeStyles(({ spacing, typography, breakpoints }: Theme) => ({
   root: {
     width: "100%",
+    [breakpoints.down("sm")]: {
+      marginTop: spacing(4),
+    },
   },
   viewMoreBox: {
-    marginTop: spacing(1.5),
+    [breakpoints.down("sm")]: {
+      marginTop: spacing(1.5),
+    },
+  },
+  groupTitle: {
+    [breakpoints.down("sm")]: {
+      fontSize: `${4 + spacing(1)}px`,
+    },
   },
   btn: {
-    fontWeight: typography.fontWeightBold,
-    fontSize: `${4 + spacing(1)}px`,
-    textTransform: "capitalize",
+    [breakpoints.down("sm")]: {
+      fontWeight: typography.fontWeightBold,
+      fontSize: `${4 + spacing(1)}px`,
+      textTransform: "capitalize",
+    },
   },
   icon: {
     fontWeight: typography.fontWeightBold,
@@ -47,9 +59,9 @@ const FactSearchLists: React.FC<propsTypes> = ({ recentLists, grouped, groupList
           <Box>
             <List>
               {groupLists!.map((item, index) => (
-                <Box>
-                  <Typography color="text.secondary" variant="body2">
-                    eyey
+                <Box key={index}>
+                  <Typography color="text.secondary" className={styles.groupTitle}>
+                    {item.groupTitle}
                   </Typography>
                   <List>
                     {item.listItems.map((item, index) => (
@@ -62,7 +74,7 @@ const FactSearchLists: React.FC<propsTypes> = ({ recentLists, grouped, groupList
           </Box>
         ) : (
           <List>
-            {recentLists.map((item, index) => (
+            {recentLists!.map((item, index) => (
               <FactlListItem key={index} item={item} />
             ))}
           </List>

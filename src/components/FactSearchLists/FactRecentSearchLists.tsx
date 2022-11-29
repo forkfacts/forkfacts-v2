@@ -10,10 +10,15 @@ export interface listItemTypes {
   path: string;
   image: string;
 }
+
+export interface GroupListsTypes {
+  listItems: Array<listItemTypes>;
+  groupedTitle: string;
+}
 interface propsTypes {
   recentLists: Array<listItemTypes>;
   grouped?: boolean;
-  groupTitle?: string;
+  groupLists?: GroupListsTypes[];
 }
 
 const useStyles = makeStyles(({ spacing, typography }: Theme) => ({
@@ -33,19 +38,25 @@ const useStyles = makeStyles(({ spacing, typography }: Theme) => ({
   },
 }));
 
-const FactSearchLists: React.FC<propsTypes> = ({ recentLists, grouped, groupTitle }) => {
+const FactSearchLists: React.FC<propsTypes> = ({ recentLists, grouped, groupLists }) => {
   const styles = useStyles();
   return (
     <Box className={styles.root}>
       <Box>
         {grouped ? (
           <Box>
-            <Typography color="text.secondary" variant="body2">
-              {groupTitle}
-            </Typography>
             <List>
-              {recentLists.map((item, index) => (
-                <FactlListItem key={index} item={item} />
+              {groupLists!.map((item, index) => (
+                <Box>
+                  <Typography color="text.secondary" variant="body2">
+                    eyey
+                  </Typography>
+                  <List>
+                    {item.listItems.map((item, index) => (
+                      <FactlListItem key={index} item={item} />
+                    ))}
+                  </List>
+                </Box>
               ))}
             </List>
           </Box>

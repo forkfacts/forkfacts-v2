@@ -9,7 +9,16 @@ export default function SearchCategory() {
         {["Food", "Recipe", "Library"].map((value, index) => (
           <Grid key={index} item>
             <Button
-              sx={{ textTransform: "capitalize", backgroundColor: "success", color: "secondary" }}
+              sx={{
+                textTransform: "capitalize",
+                backgroundColor: index === 0 ? "success.light" : "text.200",
+                color: index === 0 ? "success.main" : "text.secondary",
+                fontWeight: ({ typography }) => typography.fontWeightBold,
+                borderColor: index === 0 ? "success.main" : "text.secondary",
+                " &:hover": {
+                  borderColor: index === 0 ? "success.main" : "text.secondary",
+                },
+              }}
               variant="outlined"
               size="small"
               startIcon={

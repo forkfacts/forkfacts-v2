@@ -20,12 +20,12 @@ type propsTypes =
   | {
       recentLists: Array<listItemTypes>;
       grouped?: boolean;
-      groupLists?: GroupListsTypes[];
+      groupLists?: Array<GroupListsTypes>;
     }
   | {
       recentLists?: Array<listItemTypes>;
       grouped: boolean;
-      groupLists: GroupListsTypes[];
+      groupLists: Array<GroupListsTypes>;
     };
 
 const useStyles = makeStyles(({ spacing, breakpoints }: Theme) => ({

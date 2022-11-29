@@ -36,7 +36,6 @@ const SearchHeader: React.FC<pageStatusPropTypes> = ({ openCloseBtn, showBorderB
 
   return (
     <Box>
-      <CssBaseline />
       <AppBar
         sx={{
           boxShadow: showBorderBottom ? 1 : 0,

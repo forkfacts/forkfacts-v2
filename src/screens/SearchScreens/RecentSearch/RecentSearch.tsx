@@ -26,8 +26,10 @@ const RecentSearchScreen: React.FC = ({}) => {
   return (
     <Box>
       <SearchHeader showBorderBottom={false} openCloseBtn={false} />
-      <Box sx={{ mt: { xs: ({ spacing }) => spacing(9) } }}>
+      <Box sx={{ mt: ({ spacing }) => spacing(6.5) }}>
         <SearchStatus status="recentScreen" />
+      </Box>
+      <Box sx={{ mt: ({ spacing }) => spacing(2) }}>
         <FactSearchLists recentLists={recentLists} />
       </Box>
     </Box>

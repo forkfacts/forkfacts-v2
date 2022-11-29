@@ -10,7 +10,7 @@ import {
 
 const useStyles = makeStyles((theme: Theme) => ({}));
 
-const SearchResultsScreen: React.FC = ({}) => {
+const SearchResultsScreen: React.FC = () => {
   const classes = useStyles();
   const theme = useTheme();
 
@@ -36,8 +36,8 @@ const SearchResultsScreen: React.FC = ({}) => {
 
   return (
     <Box>
-      <SearchHeader />
-      <Box sx={{ mt: theme.spacing(10) }}>
+      <SearchHeader showBorderBottom={false} openCloseBtn={true} />
+      <Box sx={{ mt: theme.spacing(7) }}>
         <SearchStatus status="ResultsScreen" />
         <SearchCategory />
         <FactRecentSearchLists recentLists={recentLists} />

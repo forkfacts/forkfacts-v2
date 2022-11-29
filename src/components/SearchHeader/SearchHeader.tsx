@@ -3,6 +3,12 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { Box, TextField, AppBar, Theme, CssBaseline } from "@mui/material";
 import InputAdornment from "@mui/material/InputAdornment";
 import { makeStyles } from "@mui/styles";
+import CloseIcon from "@mui/icons-material/Close";
+
+type pageStatusPropTypes = {
+  showBorderBottom?: boolean;
+  openCloseBtn?: boolean;
+};
 
 const useStyles = makeStyles(({ typography, spacing }: Theme) => ({
   underline: {
@@ -25,13 +31,19 @@ const useStyles = makeStyles(({ typography, spacing }: Theme) => ({
   },
 }));
 
-const SearchHeader: React.FC = ({}) => {
+const SearchHeader: React.FC<pageStatusPropTypes> = ({ openCloseBtn, showBorderBottom = true }) => {
   const classes = useStyles();
 
   return (
     <Box>
       <CssBaseline />
-      <AppBar sx={{ boxShadow: 2, zIndex: 999, bgcolor: "background.paper" }}>
+      <AppBar
+        sx={{
+          boxShadow: showBorderBottom ? 1 : 0,
+          zIndex: 999,
+          bgcolor: "background.paper",
+        }}
+      >
         <Box
           sx={{
             py: "15px",
@@ -47,6 +59,11 @@ const SearchHeader: React.FC = ({}) => {
               startAdornment: (
                 <InputAdornment position="start">
                   <ArrowBackIcon className={classes.icon} />
+                </InputAdornment>
+              ),
+              endAdornment: (
+                <InputAdornment position="end">
+                  {openCloseBtn ? <CloseIcon className={classes.icon} /> : null}
                 </InputAdornment>
               ),
               classes,

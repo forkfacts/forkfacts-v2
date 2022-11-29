@@ -1,6 +1,6 @@
 import React from "react";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
-import { ComponentMeta } from "@storybook/react";
+import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { SearchHeader } from "@forkfacts/components";
 
 export default {
@@ -13,7 +13,7 @@ export default {
   },
 } as ComponentMeta<typeof SearchHeader>;
 
-export const Mobile = () => <SearchHeader />;
+export const Mobile: ComponentStory<typeof SearchHeader> = (args) => <SearchHeader {...args} />;
 Mobile.parameters = {
   viewport: {
     defaultViewport: "iphone5",

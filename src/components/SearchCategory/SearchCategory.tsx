@@ -9,10 +9,9 @@ export default function SearchCategory() {
         {["Food", "Recipe", "Library"].map((value, index) => (
           <Grid key={index} item>
             <Button
-              sx={{ textTransform: "capitalize", backgroundColor: "success" }}
+              sx={{ textTransform: "capitalize", backgroundColor: "success", color: "secondary" }}
               variant="outlined"
               size="small"
-              color="primary"
               startIcon={
                 <EggAltIcon
                   sx={{

@@ -1,14 +1,8 @@
 import React from "react";
-import { Box, Theme, Typography, useTheme } from "@mui/material";
-import { makeStyles } from "@mui/styles";
+import { Box } from "@mui/material";
 import { SearchStatus, FactSearchLists, SearchHeader } from "@forkfacts/components";
 
-const useStyles = makeStyles((theme: Theme) => ({}));
-
 const RecentSearchScreen: React.FC = ({}) => {
-  const classes = useStyles();
-  const theme = useTheme();
-
   const recentLists = [
     { image: "/recentImg.png", name: "Kidney beans light, Legume", path: "/:id" },
     { image: "/recentImg.png", name: "Grape fruit juices", path: "/:id" },
@@ -32,7 +26,7 @@ const RecentSearchScreen: React.FC = ({}) => {
   return (
     <Box>
       <SearchHeader showBorderBottom={false} openCloseBtn={false} />
-      <Box sx={{ mt: theme.spacing(9) }}>
+      <Box sx={{ mt: { xs: ({ spacing }) => spacing(9) } }}>
         <SearchStatus status="recentScreen" />
         <FactSearchLists recentLists={recentLists} />
       </Box>

@@ -9,7 +9,7 @@ type SearchStatusPropTypes = {
 
 export default function SearchStatus({ status }: SearchStatusPropTypes) {
   return (
-    <Box sx={{ width: "100%", my: ({ spacing }) => spacing(3) }}>
+    <Box sx={{ width: "100%", my: { xs: ({ spacing }) => spacing(3) } }}>
       {status === "recentScreen" ? (
         <Box
           sx={{

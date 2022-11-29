@@ -3,19 +3,25 @@ import { makeStyles } from "@mui/styles";
 import React from "react";
 import { listItemTypes } from "./FactRecentSearchLists";
 
-const useStyles = makeStyles(({ spacing, palette, typography }: Theme) => ({
+const useStyles = makeStyles(({ spacing, breakpoints }: Theme) => ({
   listItem: {
-    width: "100%",
-    padding: 0,
+    [breakpoints.down("sm")]: {
+      width: "100%",
+      padding: 0,
+    },
   },
   listWrapper: {
-    display: "flex",
-    alignItems: "center",
+    [breakpoints.down("sm")]: {
+      display: "flex",
+      alignItems: "center",
+    },
   },
   ListItemText: {
-    marginLeft: spacing(2),
-    lineHeight: spacing(3),
-    fontSize: spacing(2),
+    [breakpoints.down("sm")]: {
+      marginLeft: spacing(2),
+      lineHeight: spacing(3),
+      fontSize: spacing(2),
+    },
   },
 }));
 

@@ -28,7 +28,7 @@ export default function SearchStatus({ status }: SearchStatusPropTypes) {
         <Box>
           {" "}
           <Typography color="text.secondary" variant="body2">
-            I am searching for
+            I’m searching for
           </Typography>
         </Box>
       )}

@@ -29,12 +29,16 @@ const SearchResultsScreen: React.FC = () => {
     },
   ];
 
-  const groupListsTypes = [{ groupTitle: "FRUIT AND FRUIT JUICES", listItems: recentLists }];
+  const groupListsTypes = [
+    { groupTitle: "FRUIT AND FRUIT JUICES", listItems: recentLists },
+    { groupTitle: "BABY FOODS", listItems: recentLists.slice(0, 1) },
+    { groupTitle: "SWEETS", listItems: recentLists.slice(0, 2) },
+  ];
 
   return (
     <Box>
       <SearchHeader showBorderBottom={false} openCloseBtn={true} />
-      <Box sx={{ mt: theme.spacing(7) }}>
+      <Box sx={{ mt: theme.spacing(6) }}>
         <SearchStatus status="ResultsScreen" />
         <SearchCategory />
         <FactSearchLists groupLists={groupListsTypes} grouped={true} />

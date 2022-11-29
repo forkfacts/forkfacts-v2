@@ -10,24 +10,24 @@ type pageStatusPropTypes = {
   openCloseBtn?: boolean;
 };
 
-const useStyles = makeStyles(({ typography, spacing }: Theme) => ({
+const useStyles = makeStyles(({ typography, spacing, breakpoints }: Theme) => ({
   underline: {
-    "&&&:before": {
-      borderBottom: "none",
+    [breakpoints.down("sm")]: {
+      "&&&:before": {
+        borderBottom: "none",
+      },
+      "&&:after": {
+        borderBottom: "none",
+      },
     },
-    "&&:after": {
-      borderBottom: "none",
-    },
-  },
-  searchNav: {
-    boxSizing: "border-box",
-    border: "none !importannt",
   },
   icon: {
-    fontWeight: typography.fontWeightBold,
-    width: spacing(4),
-    height: "24px",
-    cursor: "pointer",
+    [breakpoints.down("sm")]: {
+      fontWeight: typography.fontWeightBold,
+      width: spacing(3),
+      height: spacing(3),
+      cursor: "pointer",
+    },
   },
 }));
 
@@ -40,17 +40,14 @@ const SearchHeader: React.FC<pageStatusPropTypes> = ({ openCloseBtn, showBorderB
       <AppBar
         sx={{
           boxShadow: showBorderBottom ? 1 : 0,
-          zIndex: 999,
+          zIndex: ({ zIndex }) => zIndex.appBar,
           bgcolor: "background.paper",
+          py: { xs: "15px" },
+          pr: { xs: "20px" },
+          pl: { xs: "11px" },
         }}
       >
-        <Box
-          sx={{
-            py: "15px",
-            pr: "20px",
-            pl: "11px",
-          }}
-        >
+        <Box>
           <TextField
             id="filled-start-adornment"
             type="text"
@@ -58,12 +55,12 @@ const SearchHeader: React.FC<pageStatusPropTypes> = ({ openCloseBtn, showBorderB
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
-                  <ArrowBackIcon className={classes.icon} />
+                  <ArrowBackIcon className={classes.icon} color="success" />
                 </InputAdornment>
               ),
               endAdornment: (
                 <InputAdornment position="end">
-                  {openCloseBtn ? <CloseIcon className={classes.icon} /> : null}
+                  {openCloseBtn ? <CloseIcon className={classes.icon} color="success" /> : null}
                 </InputAdornment>
               ),
               classes,

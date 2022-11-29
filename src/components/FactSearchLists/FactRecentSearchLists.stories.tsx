@@ -38,29 +38,29 @@ const groupListsTypes = [
   { groupTitle: "SWEETS", listItems: recentLists.slice(0, 2) },
 ];
 
-export const GroupedMobileLists: ComponentStory<typeof FactSearchLists> = (args) => (
+export const Grouped: ComponentStory<typeof FactSearchLists> = (args) => (
   <FactSearchLists {...args} />
 );
-GroupedMobileLists.parameters = {
+Grouped.parameters = {
   viewport: {
     defaultViewport: "iphone5",
   },
 };
 
-GroupedMobileLists.args = {
+Grouped.args = {
   groupLists: groupListsTypes,
   grouped: true,
 };
 
-export const recentMobileLists: ComponentStory<typeof FactSearchLists> = (args) => (
+export const Lists: ComponentStory<typeof FactSearchLists> = (args) => (
   <FactSearchLists {...args} />
 );
-recentMobileLists.parameters = {
+Lists.parameters = {
   viewport: {
     defaultViewport: "iphone5",
   },
 };
 
-recentMobileLists.args = {
+Lists.args = {
   recentLists: recentLists,
 };

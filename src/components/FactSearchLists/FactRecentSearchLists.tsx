@@ -16,11 +16,17 @@ export interface GroupListsTypes {
   listItems: Array<listItemTypes>;
   groupTitle: string;
 }
-interface propsTypes {
-  recentLists?: Array<listItemTypes>;
-  grouped?: boolean;
-  groupLists?: GroupListsTypes[];
-}
+type propsTypes =
+  | {
+      recentLists: Array<listItemTypes>;
+      grouped?: boolean;
+      groupLists?: GroupListsTypes[];
+    }
+  | {
+      recentLists?: Array<listItemTypes>;
+      grouped: boolean;
+      groupLists: GroupListsTypes[];
+    };
 
 const useStyles = makeStyles(({ spacing, breakpoints }: Theme) => ({
   root: {

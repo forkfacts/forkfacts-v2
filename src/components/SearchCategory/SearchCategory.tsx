@@ -1,19 +1,30 @@
 import * as React from "react";
-import { Box, Button, Grid, Paper } from "@mui/material";
+import { Box, Button, Grid } from "@mui/material";
 import EggAltIcon from "@mui/icons-material/EggAlt";
 
 export default function SearchCategory() {
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <Grid container justifyContent="center" spacing={3}>
-        {[0, 1, 2].map((value) => (
-          <Grid key={value} item>
+    <Box sx={{ width: "100%", mt: ({ spacing }) => spacing(3) }}>
+      <Grid container justifyContent="space-between">
+        {["Food", "Recipe", "Library"].map((value, index) => (
+          <Grid key={index} item>
             <Button
+              sx={{ textTransform: "capitalize", backgroundColor: "success" }}
               variant="outlined"
               size="small"
-              startIcon={<EggAltIcon sx={{ width: "15px", height: "15px" }} />}
+              color="primary"
+              startIcon={
+                <EggAltIcon
+                  sx={{
+                    color: "grey.300",
+                    width: "15px",
+                    height: "15px",
+                    fontSize: ({ typography }) => typography.fontSize,
+                  }}
+                />
+              }
             >
-              Small
+              {value}
             </Button>
           </Grid>
         ))}

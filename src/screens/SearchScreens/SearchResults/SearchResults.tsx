@@ -32,7 +32,7 @@ const SearchResultsScreen: React.FC = () => {
   return (
     <Box>
       <SearchHeader showBorderBottom={false} openCloseBtn={true} />
-      <Box sx={{ mt: ({ spacing }) => spacing(10) }}>
+      <Box sx={{ mt: ({ spacing }) => spacing(7) }}>
         <SearchStatus status="ResultsScreen" />
         <SearchCategory />
         <FactSearchLists groupLists={groupListsTypes} grouped={true} />

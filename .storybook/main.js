@@ -26,7 +26,7 @@ module.exports = {
   resolve: {
     modules: [path.resolve(__dirname, "src"), "node_modules"],
   },
-  staticDirs: ["../public", "../static"],
+  staticDirs: ["../static"],
   framework: "@storybook/react",
   core: {
     builder: "@storybook/builder-webpack5",

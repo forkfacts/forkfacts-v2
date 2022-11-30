@@ -1,18 +1,27 @@
 import * as React from "react";
 import { Box, Button, Grid } from "@mui/material";
 import EggAltIcon from "@mui/icons-material/EggAlt";
+import classnames from "classnames";
 import styles from "@forkfacts/styles/flex.module.css";
+import { useStyles } from "./styles";
 
 export default function SearchCategory() {
+  const classes = useStyles();
+
   return (
     <Box
       sx={{ width: "100%", mt: ({ spacing }) => spacing(3) }}
-      className={styles.pageFlexContainer}
+      className={classnames(styles.pageFlexColContainer, classes.root)}
     >
-      <Grid container justifyContent="space-between">
+      <Grid
+        container
+        justifyContent="space-between"
+        className={classnames(styles.pageFlexRowContainer, classes.gridWrapper)}
+      >
         {["Food", "Recipe", "Library"].map((value, index) => (
           <Grid key={index} item>
             <Button
+              className={classes.btn}
               sx={{
                 textTransform: "capitalize",
                 backgroundColor: index === 0 ? "success.light" : "text.200",
@@ -29,8 +38,8 @@ export default function SearchCategory() {
                 <EggAltIcon
                   sx={{
                     color: "grey.300",
-                    width: "15px",
-                    height: "15px",
+                    width: ({ spacing }) => spacing(1.9),
+                    height: ({ spacing }) => spacing(1.9),
                     fontSize: ({ typography }) => typography.fontSize,
                   }}
                 />

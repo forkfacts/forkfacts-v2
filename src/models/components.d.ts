@@ -3,7 +3,6 @@ export interface listItemTypes {
   path: string;
   image: string;
 }
-
 export interface GroupListsTypes {
   listItems: Array<listItemTypes>;
   groupTitle: string;
@@ -19,7 +18,6 @@ export type propsTypes =
       grouped: boolean;
       groupLists: Array<GroupListsTypes>;
     };
-
 export interface FactlListItemPropTypes {
   item: listItemTypes;
 }

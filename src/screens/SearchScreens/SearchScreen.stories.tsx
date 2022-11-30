@@ -19,3 +19,10 @@ Mobile.parameters = {
     defaultViewport: "iphone5",
   },
 };
+
+export const Tablet = () => <SearchScreen />;
+Tablet.parameters = {
+  viewport: {
+    defaultViewport: "ipad",
+  },
+};

@@ -1,45 +1,18 @@
 import * as React from "react";
-import { Box, TextField, Typography, Theme } from "@mui/material";
+import { Box, TextField, Typography } from "@mui/material";
 import { SearchOutlined } from "@mui/icons-material";
-import { makeStyles } from "@mui/styles";
 import InputAdornment from "@mui/material/InputAdornment";
-import styles from "./searchscreen.module.css";
-import { Header } from "@forkfacts/components";
-
-const useStyles = makeStyles(({ spacing, breakpoints }: Theme) => ({
-  root: {
-    width: "100%",
-    flexGrow: 1,
-  },
-  infoPage: {
-    display: "block",
-    width: "100%",
-    [breakpoints.down("sm")]: {
-      marginTop: spacing(20),
-    },
-  },
-  infoPageWrraper: {
-    [breakpoints.down("sm")]: {
-      marginTop: spacing(4.5),
-    },
-  },
-  spaceBottom: {
-    [breakpoints.down("sm")]: {
-      marginBottom: spacing(7),
-    },
-  },
-}));
+import { Layout } from "@forkfacts/components";
+import { useStyles } from "./styles";
 
 export default function SearchScreen() {
   const classes = useStyles();
   return (
-    <Box className={classes.root}>
-      <Header />
-      {/* content */}
-      <Box className={classes.infoPage}>
-        <Box className={classes.infoPageWrraper}>
+    <Layout>
+      <Box className={classes.root}>
+        <Box>
           <Box className={classes.spaceBottom}>
-            <Typography className={styles.introText} color="common.black">
+            <Typography variant="subtitle1" className={classes.searchtitle}>
               Forkfacts, Your Healthy diet search place.
             </Typography>
           </Box>
@@ -60,13 +33,20 @@ export default function SearchScreen() {
                   paddingLeft: (theme) => theme.spacing(2.5),
                   borderRadius: (theme) => theme.spacing(1.25),
                   width: "100%",
-                  borderColor: "grey !important",
+                  borderColor: "grey[100] !important",
+                  "&:hover": {
+                    borderColor: "grey[100] !important",
+                    outlineColor: "grey[100] !important",
+                  },
+                },
+                "&:focus fieldset": {
+                  borderColor: "grey[100] !important",
                 },
               }}
             />
           </Box>
         </Box>
       </Box>
-    </Box>
+    </Layout>
   );
 }

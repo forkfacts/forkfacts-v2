@@ -1,6 +1,12 @@
-.pageFlexContainer {
+.pageFlexColContainer {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 10px;
+}
+.pageFlexRowContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0px;
 }

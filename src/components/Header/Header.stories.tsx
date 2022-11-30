@@ -26,6 +26,9 @@ Mobile.parameters = {
   },
 };
 
-Mobile.args = {
-  status: "recentScreen",
+export const Tablet: ComponentStory<typeof Header> = () => <Header />;
+Tablet.parameters = {
+  viewport: {
+    defaultViewport: "ipad",
+  },
 };

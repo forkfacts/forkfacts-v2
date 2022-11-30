@@ -1,11 +1,10 @@
 import * as React from "react";
-import { Box, TextField, AppBar, Toolbar, Typography, Theme } from "@mui/material";
+import { Box, TextField, Typography, Theme } from "@mui/material";
 import { SearchOutlined } from "@mui/icons-material";
-import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
 import { makeStyles } from "@mui/styles";
 import InputAdornment from "@mui/material/InputAdornment";
 import styles from "./searchscreen.module.css";
+import { Header } from "@forkfacts/components";
 
 const useStyles = makeStyles(({ spacing, breakpoints }: Theme) => ({
   root: {
@@ -35,16 +34,7 @@ export default function SearchScreen() {
   const classes = useStyles();
   return (
     <Box className={classes.root}>
-      <AppBar color="transparent" sx={{ boxShadow: "none" }}>
-        <Toolbar>
-          <IconButton size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 0.5 }}>
-            <MenuIcon color="primary" />
-          </IconButton>
-          <Typography variant="h5" color="primary">
-            Forkfacts
-          </Typography>
-        </Toolbar>
-      </AppBar>
+      <Header />
       {/* content */}
       <Box className={classes.infoPage}>
         <Box className={classes.infoPageWrraper}>

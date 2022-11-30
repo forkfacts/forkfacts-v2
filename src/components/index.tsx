@@ -4,4 +4,5 @@ export { default as FactSearchLists } from "./FactSearchLists/FactRecentSearchLi
 export { default as SearchHeader } from "./SearchHeader/SearchHeader";
 export { default as SearchStatus } from "./SearchStatus/SearchStatus";
 export { default as SearchCategory } from "./SearchCategory/SearchCategory";
+export { default as Header } from "./Header/Header";
 export * from "./FactTable/FactTable";

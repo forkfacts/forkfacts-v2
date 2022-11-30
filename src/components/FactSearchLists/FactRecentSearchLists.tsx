@@ -1,35 +1,15 @@
 import { Box, Typography, List, Theme } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import React, { useState } from "react";
+import React from "react";
+import { propsTypes } from "@forkfacts/models";
 import FactlListItem from "./FactlListItem";
 import { addSpacing } from "@forkfacts/helpers";
 import ViewMoreListsBtn from "./ViewMoreLists";
 
-export interface listItemTypes {
-  name: string;
-  path: string;
-  image: string;
-}
-
-export interface GroupListsTypes {
-  listItems: Array<listItemTypes>;
-  groupTitle: string;
-}
-type propsTypes =
-  | {
-      recentLists: Array<listItemTypes>;
-      grouped?: boolean;
-      groupLists?: Array<GroupListsTypes>;
-    }
-  | {
-      recentLists?: Array<listItemTypes>;
-      grouped: boolean;
-      groupLists: Array<GroupListsTypes>;
-    };
-
 const useStyles = makeStyles(({ spacing, breakpoints }: Theme) => ({
   root: {
     [breakpoints.down("sm")]: {
+      maxWidth: "100%",
       width: "100%",
       display: "flex",
       flexDirection: "column",
@@ -53,7 +33,7 @@ const FactSearchLists: React.FC<propsTypes> = ({ recentLists, grouped, groupList
         {grouped ? (
           <Box>
             {groupLists!.map((item, index) => (
-              <List key={index} sx={{ mt: (theme) => theme.spacing(3.5) }}>
+              <List key={index}>
                 <Typography color="text.secondary" component="div" className={styles.groupTitle}>
                   {item.groupTitle}
                 </Typography>

@@ -1,13 +1,11 @@
 import { Box, ListItem, ListItemText, Theme, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import { addSpacing } from "@forkfacts/helpers";
 import React from "react";
-import { listItemTypes } from "./FactRecentSearchLists";
+import { listItemTypes } from "@forkfacts/models";
 
 const useStyles = makeStyles(({ spacing, breakpoints, palette }: Theme) => ({
   listItem: {
     [breakpoints.down("sm")]: {
-      maxWidth: "100%",
       width: "100%",
       padding: spacing(2.25, 2),
       display: "flex",

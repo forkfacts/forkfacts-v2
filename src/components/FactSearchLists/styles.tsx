@@ -52,9 +52,11 @@ export const useStyles = makeStyles(({ spacing, breakpoints, typography }: Theme
     },
   },
   imgStyles: {
-    flex: "none",
-    order: 0,
-    flexGrow: 0,
+    [breakpoints.down("sm")]: {
+      flex: "none",
+      order: 0,
+      flexGrow: 0,
+    },
   },
   btnWrapper: {
     [breakpoints.down("sm")]: {

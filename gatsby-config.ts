@@ -29,6 +29,7 @@ const config: GatsbyConfig = {
           "@forkfacts/helpers": path.resolve(__dirname, "src/helpers"),
           "@forkfacts/models": path.resolve(__dirname, "src/models"),
           "@forkfacts/screens": path.resolve(__dirname, "src/screens"),
+          "@forkfacts/styles": path.resolve(__dirname, "src/styles"),
         },
         extensions: [".js", ".jsx", ".ts", ".tsx", ".css"],
       },

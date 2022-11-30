@@ -1,10 +1,14 @@
 import * as React from "react";
 import { Box, Button, Grid } from "@mui/material";
 import EggAltIcon from "@mui/icons-material/EggAlt";
+import styles from "@forkfacts/styles/flex.module.css";
 
 export default function SearchCategory() {
   return (
-    <Box sx={{ width: "100%", mt: ({ spacing }) => spacing(3) }}>
+    <Box
+      sx={{ width: "100%", mt: ({ spacing }) => spacing(3) }}
+      className={styles.pageFlexContainer}
+    >
       <Grid container justifyContent="space-between">
         {["Food", "Recipe", "Library"].map((value, index) => (
           <Grid key={index} item>

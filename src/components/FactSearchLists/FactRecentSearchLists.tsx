@@ -1,29 +1,9 @@
-import { Box, Typography, List, Theme } from "@mui/material";
-import { makeStyles } from "@mui/styles";
+import { Box, Typography, List } from "@mui/material";
 import React from "react";
 import { propsTypes } from "@forkfacts/models";
 import FactlListItem from "./FactlListItem";
-import { addSpacing } from "@forkfacts/helpers";
 import ViewMoreListsBtn from "./ViewMoreLists";
-
-const useStyles = makeStyles(({ spacing, breakpoints }: Theme) => ({
-  root: {
-    [breakpoints.down("sm")]: {
-      maxWidth: "100%",
-      width: "100%",
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "flex-start",
-      padding: 0,
-    },
-  },
-  groupTitle: {
-    [breakpoints.down("sm")]: {
-      fontSize: addSpacing(spacing, 4),
-      padding: spacing(1.2, 2),
-    },
-  },
-}));
+import { useStyles } from "./styles";
 
 const FactSearchLists: React.FC<propsTypes> = ({ recentLists, grouped, groupLists }) => {
   const styles = useStyles();

@@ -19,3 +19,7 @@ export type propsTypes =
       grouped: boolean;
       groupLists: Array<GroupListsTypes>;
     };
+
+export interface FactlListItemPropTypes {
+  item: listItemTypes;
+}

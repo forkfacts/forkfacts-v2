@@ -1,7 +1,6 @@
 import { Box, Typography, List, Theme } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-
-import React from "react";
+import React, { useState } from "react";
 import FactlListItem from "./FactlListItem";
 import { addSpacing } from "@forkfacts/helpers";
 import ViewMoreListsBtn from "./ViewMoreLists";
@@ -30,11 +29,18 @@ type propsTypes =
 
 const useStyles = makeStyles(({ spacing, breakpoints }: Theme) => ({
   root: {
-    width: "100%",
+    [breakpoints.down("sm")]: {
+      width: "100%",
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "flex-start",
+      padding: 0,
+    },
   },
   groupTitle: {
     [breakpoints.down("sm")]: {
       fontSize: addSpacing(spacing, 4),
+      padding: spacing(1.2, 2),
     },
   },
 }));
@@ -47,17 +53,17 @@ const FactSearchLists: React.FC<propsTypes> = ({ recentLists, grouped, groupList
         {grouped ? (
           <Box>
             {groupLists!.map((item, index) => (
-              <Box key={index} sx={{ mt: (theme) => theme.spacing(3.5) }}>
-                <Typography color="text.secondary" className={styles.groupTitle}>
+              <List key={index} sx={{ mt: (theme) => theme.spacing(3.5) }}>
+                <Typography color="text.secondary" component="div" className={styles.groupTitle}>
                   {item.groupTitle}
                 </Typography>
-                <List>
+                <Box>
                   {item.listItems.map((item, index) => (
                     <FactlListItem key={index} item={item} />
                   ))}
-                </List>
+                </Box>
                 <ViewMoreListsBtn />
-              </Box>
+              </List>
             ))}
           </Box>
         ) : (

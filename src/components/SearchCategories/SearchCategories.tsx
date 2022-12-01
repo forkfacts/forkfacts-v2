@@ -7,6 +7,7 @@ import BookmarksIcon from "@mui/icons-material/Bookmarks";
 import { SearchCategory } from "@forkfacts/components";
 import { useStyles } from "./styles";
 
+// Pass an array of SearchCatgeory components to this component. It should be passed from Stories file
 export default function SearchCategories({ onSelectCategory }: SearchCategoriesProps) {
   const classes = useStyles();
 

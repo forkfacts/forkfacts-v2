@@ -5,23 +5,40 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
+import classnames from "classnames";
+import styles from "@forkfacts/styles/flex.module.css";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useStyles } from "./headerStyles";
 
-export default function ButtonAppBar() {
-  const styles = useStyles();
+interface props {
+  handleToggleEvenets: () => void;
+}
+
+export default function Header({ handleToggleEvenets }: props) {
+  const classes = useStyles();
   return (
     <Box>
       <AppBar position="fixed" color="transparent" sx={{ boxShadow: "none" }}>
         <Toolbar sx={{ position: "relative" }}>
-          <IconButton size="large" edge="start" color="primary" aria-label="menu" sx={{ mr: 0.5 }}>
+          <IconButton
+            size="large"
+            edge="start"
+            color="primary"
+            aria-label="menu"
+            sx={{ mr: 0.5 }}
+            onClick={handleToggleEvenets}
+          >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h5" color="primary">
+          <Typography color="primary.light" className={classes.pageTitle}>
             Forkfacts
           </Typography>
-          <Box className={styles.rightContent}>
-            <Button color="inherit" variant="contained" sx={{ shadow: 0 }}>
+          <Box className={classes.rightContent}>
+            <Button
+              color="primary"
+              variant="contained"
+              className={classnames(styles.pageFlexRowContainer, classes.authBtn)}
+            >
               Sign in
             </Button>
           </Box>

@@ -26,10 +26,11 @@ const LayoutComponent: FC<PropsWithChildren> = ({ children }) => {
 };
 
 const Layout: FC<PropsWithChildren> = ({ children }) => {
+  const handleToggleEvenets = () => {};
   return (
     <ThemeProvider theme={customTheme}>
       <Box>
-        <Header />
+        <Header handleToggleEvenets={handleToggleEvenets} />
       </Box>
       <LayoutComponent>{children}</LayoutComponent>
     </ThemeProvider>

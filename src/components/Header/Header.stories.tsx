@@ -17,16 +17,19 @@ export default {
       options: ["recentScreen", "ResultsScreen"],
     },
   },
+  args: {
+    handleToggleEvenets: () => console.log("toggle sidebar"),
+  },
 } as ComponentMeta<typeof Header>;
 
-export const Mobile: ComponentStory<typeof Header> = () => <Header />;
+export const Mobile: ComponentStory<typeof Header> = (args) => <Header {...args} />;
 Mobile.parameters = {
   viewport: {
     defaultViewport: "iphone5",
   },
 };
 
-export const Tablet: ComponentStory<typeof Header> = () => <Header />;
+export const Tablet: ComponentStory<typeof Header> = (args) => <Header {...args} />;
 Tablet.parameters = {
   viewport: {
     defaultViewport: "ipad",

@@ -22,13 +22,7 @@ export const useStyles = makeStyles(({ spacing, breakpoints, typography }: Theme
     [breakpoints.down("sm")]: {
       width: "100%",
       padding: spacing(2.25, 2),
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "flex-start",
       height: spacing(7.5),
-      flex: "none",
-      order: 1,
-      flexGrow: 0,
     },
   },
   listWrapper: {

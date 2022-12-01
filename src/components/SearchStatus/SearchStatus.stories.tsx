@@ -15,6 +15,7 @@ export default {
     status: {
       control: "select",
       options: ["recentScreen", "ResultsScreen"],
+      description: " status ",
     },
   },
 } as ComponentMeta<typeof SearchStatus>;
@@ -27,5 +28,6 @@ Mobile.parameters = {
 };
 
 Mobile.args = {
+  ...Mobile.args,
   status: "recentScreen",
 };

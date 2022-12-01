@@ -29,11 +29,13 @@ const SearchResultsScreen: React.FC = () => {
     { groupTitle: "SWEETS", listItems: recentLists.slice(0, 2) },
   ];
 
+  const onhandleClearSearch = () => {};
+
   return (
     <Box>
       <SearchHeader showBorderBottom={false} openCloseBtn={true} />
       <Box sx={{ mt: ({ spacing }) => spacing(7) }}>
-        <SearchStatus status="ResultsScreen" />
+        <SearchStatus status="ResultsScreen" onhandleClearSearch={onhandleClearSearch} />
         <SearchCategory />
         <FactSearchLists groupLists={groupListsTypes} grouped={true} />
       </Box>

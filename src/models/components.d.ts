@@ -29,12 +29,13 @@ export interface FactlListItemPropTypes {
   onSelectItem: (item: listItemTypes) => item;
 }
 
-// searchCategory
-export interface catergoryItemTypes {
+// searchCategory/Categories
+export interface SearchCategoryProps {
   label: string;
   Icon: SvgIconComponent;
+  onSelectCategory: (item: catergoryItemTypes.label) => item;
 }
-export interface SearchCategoryProps {
-  categories: Array<catergoryItemTypes>;
+
+export interface SearchCategoriesProps {
   onSelectCategory: (item: catergoryItemTypes.label) => item;
 }

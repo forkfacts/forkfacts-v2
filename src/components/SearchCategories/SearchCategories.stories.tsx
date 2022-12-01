@@ -2,19 +2,21 @@ import React from "react";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import EggAltIcon from "@mui/icons-material/EggAlt";
-import { SearchCategory } from "@forkfacts/components";
+import { SearchCategories } from "@forkfacts/components";
 
 export default {
-  title: "Components/SearchCategory",
-  component: SearchCategory,
+  title: "Components/SearchCategories",
+  component: SearchCategories,
   parameters: {
     viewport: {
       viewports: INITIAL_VIEWPORTS,
     },
   },
-} as ComponentMeta<typeof SearchCategory>;
+} as ComponentMeta<typeof SearchCategories>;
 
-export const Mobile: ComponentStory<typeof SearchCategory> = (args) => <SearchCategory {...args} />;
+export const Mobile: ComponentStory<typeof SearchCategories> = (args) => (
+  <SearchCategories {...args} />
+);
 Mobile.parameters = {
   viewport: {
     defaultViewport: "iphone5",
@@ -22,7 +24,5 @@ Mobile.parameters = {
 };
 
 Mobile.args = {
-  label: "Food",
-  Icon: EggAltIcon,
   onSelectCategory: (label: string) => label,
 };

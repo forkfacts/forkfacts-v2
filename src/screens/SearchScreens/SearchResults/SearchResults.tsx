@@ -1,16 +1,12 @@
 import React, { useState } from "react";
 import { Box } from "@mui/material";
-import EggAltIcon from "@mui/icons-material/EggAlt";
-import EmojiFoodBeverageIcon from "@mui/icons-material/EmojiFoodBeverage";
-import BookmarksIcon from "@mui/icons-material/Bookmarks";
 import { listItemTypes } from "@forkfacts/models";
-import { SearchStatus, FactSearchLists, SearchHeader, SearchCategory } from "@forkfacts/components";
-
-const categories = [
-  { label: "Food", Icon: EggAltIcon },
-  { label: "Recipe", Icon: EmojiFoodBeverageIcon },
-  { label: "Library", Icon: BookmarksIcon },
-];
+import {
+  SearchStatus,
+  FactSearchLists,
+  SearchHeader,
+  SearchCategories,
+} from "@forkfacts/components";
 
 const SearchResultsScreen: React.FC = () => {
   const [selectItem, setSelectItem] = useState<listItemTypes>({} as listItemTypes);
@@ -29,7 +25,7 @@ const SearchResultsScreen: React.FC = () => {
       <SearchHeader showBorderBottom={false} openCloseBtn={true} />
       <Box sx={{ mt: ({ spacing }) => spacing(7) }}>
         <SearchStatus status="ResultsScreen" onhandleClearSearch={onhandleClearSearch} />
-        <SearchCategory categories={categories} onSelectCategory={handleCategorySelect} />
+        <SearchCategories onSelectCategory={handleCategorySelect} />
         <FactSearchLists
           groupLists={groupListsTypes}
           grouped={true}

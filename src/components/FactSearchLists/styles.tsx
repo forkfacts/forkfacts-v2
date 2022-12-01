@@ -22,13 +22,6 @@ export const useStyles = makeStyles(({ spacing, breakpoints, typography }: Theme
       padding: spacing(1.2, 2),
     },
   },
-  imgStyles: {
-    [breakpoints.down("md")]: {
-      flex: "none",
-      order: 0,
-      flexGrow: 0,
-    },
-  },
   btnWrapper: {
     [breakpoints.down("md")]: {
       display: "flex",

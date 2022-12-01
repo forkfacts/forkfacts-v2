@@ -6,9 +6,6 @@ export const useStyles = makeStyles(({ spacing, breakpoints, typography }: Theme
     [breakpoints.down("md")]: {
       maxWidth: "100%",
       width: "100%",
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "flex-start",
       padding: 0,
     },
   },
@@ -17,9 +14,6 @@ export const useStyles = makeStyles(({ spacing, breakpoints, typography }: Theme
       marginLeft: spacing(-2),
       lineHeight: spacing(3),
       fontSize: spacing(2),
-      flex: "none",
-      order: 1,
-      flexGrow: 0,
     },
   },
   groupTitle: {

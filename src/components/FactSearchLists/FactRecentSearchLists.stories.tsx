@@ -1,6 +1,7 @@
 import React from "react";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import { FactSearchLists } from "@forkfacts/components";
+import { listItemTypes } from "@forkfacts/models";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 
 export default {
@@ -9,6 +10,21 @@ export default {
   parameters: {
     viewport: {
       viewports: INITIAL_VIEWPORTS,
+    },
+  },
+  argTypes: {
+    recentLists: {
+      description: "Data value that should be passed to the component",
+    },
+    onSelectItem: {
+      description: "A function that should be passed to select a single search item",
+    },
+    grouped: {
+      description: "If you want grouped table lists pass as a prop to render grouped data",
+    },
+    onViewMore: {
+      description:
+        "An event handler that should be passed if you want to view more lists or expand the lists",
     },
   },
 } as ComponentMeta<typeof FactSearchLists>;
@@ -51,8 +67,10 @@ Grouped.parameters = {
 Grouped.args = {
   groupLists: groupListsTypes,
   grouped: true,
+  onSelectItem: (item: listItemTypes) => item,
 };
 
+// Lists data display
 export const Lists: ComponentStory<typeof FactSearchLists> = (args) => (
   <FactSearchLists {...args} />
 );
@@ -64,4 +82,6 @@ Lists.parameters = {
 
 Lists.args = {
   recentLists: recentLists,
+  grouped: false,
+  onSelectItem: (item: listItemTypes) => item,
 };

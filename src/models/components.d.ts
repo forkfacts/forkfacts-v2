@@ -12,11 +12,15 @@ export type FactSearchListsPropsTypes =
       recentLists: Array<listItemTypes>;
       grouped?: boolean;
       groupLists?: Array<GroupListsTypes>;
+      onSelectItem: (item: listItemTypes) => item;
+      onViewMore?: () => void;
     }
   | {
       recentLists?: Array<listItemTypes>;
       grouped: boolean;
       groupLists: Array<GroupListsTypes>;
+      onSelectItem: (item: listItemTypes) => item;
+      onViewMore?: () => void;
     };
 export interface FactlListItemPropTypes {
   item: listItemTypes;

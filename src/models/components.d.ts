@@ -7,7 +7,7 @@ export interface GroupListsTypes {
   listItems: Array<listItemTypes>;
   groupTitle: string;
 }
-export type propsTypes =
+export type FactSearchListsPropsTypes =
   | {
       recentLists: Array<listItemTypes>;
       grouped?: boolean;
@@ -20,4 +20,5 @@ export type propsTypes =
     };
 export interface FactlListItemPropTypes {
   item: listItemTypes;
+  onSelectItem: (item: listItemTypes) => item;
 }

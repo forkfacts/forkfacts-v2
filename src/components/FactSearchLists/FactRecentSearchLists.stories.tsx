@@ -12,6 +12,7 @@ export default {
     },
   },
 } as ComponentMeta<typeof FactSearchLists>;
+
 const recentLists = [
   { image: "/recentImg.png", name: "Kidney beans light, Legume", path: "/:id" },
   { image: "/recentImg.png", name: "Grape fruit juices", path: "/:id" },

@@ -1,6 +1,5 @@
 import * as React from "react";
 import { PageProps } from "gatsby";
-import { useTheme } from "@mui/material";
 import { FactSearchLists } from "@forkfacts/components";
 
 const recentLists = [
@@ -30,8 +29,6 @@ const groupListsTypes = [
 ];
 
 const IndexPage: React.FC<PageProps> = () => {
-  const theme = useTheme();
-  console.log(theme);
   return (
     <main>
       <FactSearchLists groupLists={groupListsTypes} grouped />

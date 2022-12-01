@@ -1,12 +1,19 @@
 import { Box, Typography, List } from "@mui/material";
-import React from "react";
-import { propsTypes } from "@forkfacts/models";
+import React, { useState } from "react";
+import { FactSearchListsPropsTypes, listItemTypes } from "@forkfacts/models";
 import FactlListItem from "./FactlListItem";
 import ViewMoreListsBtn from "./ViewMoreLists";
 import { useStyles } from "./styles";
 
-const FactSearchLists: React.FC<propsTypes> = ({ recentLists, grouped, groupLists }) => {
+const FactSearchLists: React.FC<FactSearchListsPropsTypes> = ({
+  recentLists,
+  grouped,
+  groupLists,
+}) => {
   const styles = useStyles();
+  const [selectItem, setSelectItem] = useState<listItemTypes>({} as listItemTypes);
+
+  console.log(selectItem);
   return (
     <Box className={styles.root}>
       <Box>
@@ -19,7 +26,7 @@ const FactSearchLists: React.FC<propsTypes> = ({ recentLists, grouped, groupList
                 </Typography>
                 <Box>
                   {item.listItems.map((item, index) => (
-                    <FactlListItem key={index} item={item} />
+                    <FactlListItem key={index} item={item} onSelectItem={setSelectItem} />
                   ))}
                 </Box>
                 <ViewMoreListsBtn />
@@ -30,7 +37,7 @@ const FactSearchLists: React.FC<propsTypes> = ({ recentLists, grouped, groupList
           <Box>
             <List>
               {recentLists!.map((item, index) => (
-                <FactlListItem key={index} item={item} />
+                <FactlListItem key={index} item={item} onSelectItem={setSelectItem} />
               ))}
             </List>
             <ViewMoreListsBtn />

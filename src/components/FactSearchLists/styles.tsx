@@ -22,6 +22,14 @@ export const useStyles = makeStyles(({ spacing, breakpoints, typography }: Theme
       padding: spacing(1.2, 2),
     },
   },
+  groupWrapper: {
+    [breakpoints.down("md")]: {
+      marginTop: spacing(-4),
+      "&:first-child": {
+        marginTop: 0,
+      },
+    },
+  },
   btnWrapper: {
     [breakpoints.down("md")]: {
       display: "flex",
@@ -31,6 +39,9 @@ export const useStyles = makeStyles(({ spacing, breakpoints, typography }: Theme
       paddingLeft: spacing(2),
       paddingBottom: spacing(1.2),
       paddingRight: spacing(3.9),
+    },
+    "@media (max-width:320px)": {
+      fontSize: "10px",
     },
   },
   btn: {

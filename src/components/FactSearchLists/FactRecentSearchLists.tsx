@@ -19,7 +19,7 @@ const FactSearchLists: React.FC<FactSearchListsPropsTypes> = ({
       {grouped ? (
         <Box>
           {groupLists!.map((item, index) => (
-            <List key={index}>
+            <List key={index} className={styles.groupWrapper}>
               <Typography color="text.secondary" component="div" className={styles.groupTitle}>
                 {item.groupTitle}
               </Typography>

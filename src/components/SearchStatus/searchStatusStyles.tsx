@@ -10,6 +10,7 @@ export const useStyles = makeStyles(({ spacing, breakpoints, typography }: Theme
       width: "100%",
       display: "flex",
       justifyContent: "space-between",
+      alignItems: "center",
     },
   },
   btn: {

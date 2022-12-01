@@ -3,7 +3,7 @@ import { Theme } from "@mui/material";
 
 export const useStyles = makeStyles(({ spacing, breakpoints, typography }: Theme) => ({
   root: {
-    [breakpoints.down("sm")]: {
+    [breakpoints.down("md")]: {
       maxWidth: "100%",
       width: "100%",
       display: "flex",
@@ -12,32 +12,9 @@ export const useStyles = makeStyles(({ spacing, breakpoints, typography }: Theme
       padding: 0,
     },
   },
-  groupTitle: {
-    [breakpoints.down("sm")]: {
-      fontSize: spacing(1.4),
-      padding: spacing(1.2, 2),
-    },
-  },
-  listItem: {
-    [breakpoints.down("sm")]: {
-      width: "100%",
-      padding: spacing(2.25, 2),
-      height: spacing(7.5),
-    },
-  },
-  listWrapper: {
-    [breakpoints.down("sm")]: {
-      display: "flex",
-      flexDirection: "row",
-      alignItems: "center",
-      padding: 0,
-      gap: spacing(1.25),
-      height: spacing(3),
-    },
-  },
   ListItemText: {
-    [breakpoints.down("sm")]: {
-      marginLeft: spacing(1),
+    [breakpoints.down("md")]: {
+      marginLeft: spacing(-2),
       lineHeight: spacing(3),
       fontSize: spacing(2),
       flex: "none",
@@ -45,15 +22,21 @@ export const useStyles = makeStyles(({ spacing, breakpoints, typography }: Theme
       flexGrow: 0,
     },
   },
+  groupTitle: {
+    [breakpoints.down("md")]: {
+      fontSize: spacing(1.4),
+      padding: spacing(1.2, 2),
+    },
+  },
   imgStyles: {
-    [breakpoints.down("sm")]: {
+    [breakpoints.down("md")]: {
       flex: "none",
       order: 0,
       flexGrow: 0,
     },
   },
   btnWrapper: {
-    [breakpoints.down("sm")]: {
+    [breakpoints.down("md")]: {
       display: "flex",
       flexDirection: "column",
       alignItems: "flex-start",
@@ -64,7 +47,7 @@ export const useStyles = makeStyles(({ spacing, breakpoints, typography }: Theme
     },
   },
   btn: {
-    [breakpoints.down("sm")]: {
+    [breakpoints.down("md")]: {
       fontWeight: typography.fontWeightBold,
       fontSize: spacing(1.4),
       textTransform: "capitalize",

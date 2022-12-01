@@ -6,7 +6,7 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import classnames from "classnames";
-import { flexStyles } from "@forkfacts/styles";
+import flexStyles from "../../styles/flex.module.css";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useStyles } from "./headerStyles";
 

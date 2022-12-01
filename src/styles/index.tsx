@@ -1,3 +1,3 @@
-import flexStyles from "./flex.module.css";
+import * as flexStyles from "./flex.module.css";
 
 export { flexStyles };

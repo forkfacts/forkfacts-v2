@@ -1,3 +1,5 @@
+import { SvgIconComponent } from "@mui/icons-material";
+// factSearchLists
 export interface listItemTypes {
   name: string;
   path: string;
@@ -25,4 +27,14 @@ export type FactSearchListsPropsTypes =
 export interface FactlListItemPropTypes {
   item: listItemTypes;
   onSelectItem: (item: listItemTypes) => item;
+}
+
+// searchCategory
+export interface catergoryItemTypes {
+  label: string;
+  Icon: SvgIconComponent;
+}
+export interface SearchCategoryProps {
+  categories: Array<catergoryItemTypes>;
+  onSelectCategory: (item: catergoryItemTypes.label) => item;
 }

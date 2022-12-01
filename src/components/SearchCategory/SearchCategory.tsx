@@ -1,37 +1,30 @@
-import * as React from "react";
+import React from "react";
 import { Box, Button, Grid } from "@mui/material";
-import EggAltIcon from "@mui/icons-material/EggAlt";
-import classnames from "classnames";
-import EmojiFoodBeverageIcon from "@mui/icons-material/EmojiFoodBeverage";
-import BookmarksIcon from "@mui/icons-material/Bookmarks";
-import { flexStyles } from "@forkfacts/styles";
+import { SearchCategoryProps, catergoryItemTypes } from "@forkfacts/models";
 import { useStyles } from "./styles";
 
-const catergoryData = [
-  { name: "Food", Icon: EggAltIcon },
-  { name: "Recipe", Icon: EmojiFoodBeverageIcon },
-  { name: "Library", Icon: BookmarksIcon },
-];
-
-export default function SearchCategory() {
+export default function SearchCategory({ categories, onSelectCategory }: SearchCategoryProps) {
   const classes = useStyles();
 
   return (
-    <Box
-      sx={{ width: "100%", mt: ({ spacing }) => spacing(3) }}
-      className={classnames(flexStyles.pageFlexColContainer, classes.root)}
-    >
+    <Box sx={{ width: "100%", mt: ({ spacing }) => spacing(3) }} className={classes.root}>
       <Grid container justifyContent="space-between">
-        {catergoryData.map(({ name, Icon }, index) => (
+        {categories.map(({ label, Icon }: catergoryItemTypes, index: number) => (
           <Grid key={index} item>
             <Button
               className={classes.btn}
               variant="outlined"
+              onClick={() => onSelectCategory(label)}
               size="small"
+              sx={{
+                borderWidth: "2px !important",
+                borderColor: ({ palette }) => palette.grey[500],
+                color: ({ palette }) => palette.grey[700],
+              }}
               startIcon={
                 <Icon
+                  className={classes.icon}
                   sx={{
-                    color: "grey.300",
                     width: ({ spacing }) => spacing(1.9),
                     height: ({ spacing }) => spacing(1.9),
                     fontSize: ({ typography }) => typography.fontSize,
@@ -39,7 +32,7 @@ export default function SearchCategory() {
                 />
               }
             >
-              {name}
+              {label}
             </Button>
           </Grid>
         ))}

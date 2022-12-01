@@ -1,7 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import classnames from "classnames";
 import React from "react";
-import styles from "@forkfacts/styles/flex.module.css";
+import { flexStyles } from "@forkfacts/styles";
 import { useStyles } from "./searchStatusStyles";
 
 type status = "recentScreen" | "ResultsScreen";
@@ -18,7 +18,7 @@ export default function SearchStatus({ status, onhandleClearSearch }: SearchStat
     if (status === "ResultsScreen") onhandleClearSearch && onhandleClearSearch()!;
   };
   return (
-    <Box className={classnames(styles.pageFlexColContainer)}>
+    <Box className={classnames(flexStyles.pageFlexColContainer)}>
       {status === "recentScreen" ? (
         <Box className={classes.statusWrapper}>
           <Typography color="text.secondary" variant="subtitle2">

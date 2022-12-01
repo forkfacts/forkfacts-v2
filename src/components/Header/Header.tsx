@@ -6,7 +6,7 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import classnames from "classnames";
-import styles from "@forkfacts/styles/flex.module.css";
+import { flexStyles } from "@forkfacts/styles";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useStyles } from "./headerStyles";
 
@@ -37,7 +37,7 @@ export default function Header({ handleToggleEvenets }: props) {
             <Button
               color="primary"
               variant="contained"
-              className={classnames(styles.pageFlexRowContainer, classes.authBtn)}
+              className={classnames(flexStyles.pageFlexRowContainer, classes.authBtn)}
             >
               Sign in
             </Button>

@@ -1,1 +1,3 @@
-export * from "./flex.module.css";
+import { default as flexStyles } from "./flex.module.css";
+
+export { flexStyles };

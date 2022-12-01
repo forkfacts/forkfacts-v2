@@ -1,7 +1,7 @@
 import { makeStyles } from "@mui/styles";
 import { Theme } from "@mui/material";
 
-export const useStyles = makeStyles(({ spacing, breakpoints, typography }: Theme) => ({
+export const useStyles = makeStyles(({ spacing, breakpoints }: Theme) => ({
   root: {
     [breakpoints.down("sm")]: {
       paddingTop: "20px",

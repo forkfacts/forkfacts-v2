@@ -73,6 +73,13 @@ Grouped.args = {
   onSelectItem: (item: listItemTypes) => item,
 };
 
+Grouped.argTypes = {
+  grouped: {
+    table: { defaultValue: { summary: true } },
+    control: false,
+  },
+};
+
 // Lists data display
 export const Lists: ComponentStory<typeof FactSearchLists> = (args) => (
   <FactSearchLists {...args} />
@@ -87,4 +94,11 @@ Lists.args = {
   recentLists: recentLists,
   grouped: false,
   onSelectItem: (item: listItemTypes) => item,
+};
+
+Lists.argTypes = {
+  grouped: {
+    table: { defaultValue: { summary: false } },
+    control: false,
+  },
 };

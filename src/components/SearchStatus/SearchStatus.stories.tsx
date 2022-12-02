@@ -14,8 +14,19 @@ export default {
   argTypes: {
     status: {
       control: "select",
-      options: ["recentScreen", "ResultsScreen"],
-      description: " status ",
+      name: "Status",
+      options: ["RecentScreen", "ResultsScreen"],
+      description: "This option allows you display search screen you want on the page",
+      table: {
+        defaultValue: { summary: "Recentscreen" },
+      },
+    },
+    onhandleClearSearch: {
+      name: "onhandleClearSearch",
+      description: "A function that is passed to the component to clear search history",
+      table: {
+        typ: "onhandleClearSearch=()=>{}",
+      },
     },
   },
 } as ComponentMeta<typeof SearchStatus>;
@@ -29,5 +40,5 @@ Mobile.parameters = {
 
 Mobile.args = {
   ...Mobile.args,
-  status: "recentScreen",
+  status: "RecentScreen",
 };

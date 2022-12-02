@@ -11,9 +11,6 @@ type SearchStatusPropTypes = {
 
 export default function SearchStatus({ status, onhandleClearSearch }: SearchStatusPropTypes) {
   const classes = useStyles();
-
-  console.log(status);
-
   return (
     <Box className={classes.root}>
       {status === "RecentScreen" ? (

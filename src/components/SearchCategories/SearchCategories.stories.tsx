@@ -15,6 +15,16 @@ export default {
       viewports: INITIAL_VIEWPORTS,
     },
   },
+  argTypes: {
+    categoryOptions: {
+      name: "categoryOptions",
+      description: "Data array option that should be passed to the component",
+    },
+    onSelectCategory: {
+      name: "onSelectCategory",
+      description: "onSelectCategory function helps to selected single buttton data ",
+    },
+  },
 } as ComponentMeta<typeof SearchCategories>;
 
 export const Mobile: ComponentStory<typeof SearchCategories> = (args) => (

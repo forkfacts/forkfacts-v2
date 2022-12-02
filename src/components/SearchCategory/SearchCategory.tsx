@@ -1,5 +1,6 @@
 import React from "react";
 import { Button } from "@mui/material";
+import { blue } from "@mui/material/colors";
 import { SearchCategoryProps } from "@forkfacts/models";
 import { useStyles } from "./styles";
 
@@ -28,9 +29,11 @@ export default function SearchCategory({
       variant="outlined"
       sx={{
         color: ({ palette }) =>
-          selectedIndex === index ? palette.primary.main : palette.grey[700],
+          selectedIndex === index ? palette.primary.dark : palette.grey[700],
         borderColor: ({ palette }) =>
-          selectedIndex === index ? palette.primary.main : palette.grey[700],
+          selectedIndex === index ? palette.primary.dark : palette.grey[700],
+        backgroundColor: ({ palette }) =>
+          selectedIndex === index ? blue["50"] : palette.background.default,
       }}
       onClick={handleClick}
       size="small"

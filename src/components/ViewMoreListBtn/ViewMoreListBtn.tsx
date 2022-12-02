@@ -3,7 +3,7 @@ import { Box, Button } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { useStyles } from "./styles";
 
-export default function ViewMoreListsBtn({ onViewMore }: { onViewMore: () => void }) {
+export default function ViewMoreListBtn({ onViewMore }: { onViewMore: () => void }) {
   const styles = useStyles();
   return (
     <Box

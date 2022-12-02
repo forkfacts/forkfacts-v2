@@ -4,7 +4,7 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import { FactlListItemPropTypes } from "@forkfacts/models";
 
-import { useStyles } from "./styles";
+import { useStyles } from "../styles";
 
 export default function FactlListItem({ item, onSelectItem }: FactlListItemPropTypes) {
   const styles = useStyles();

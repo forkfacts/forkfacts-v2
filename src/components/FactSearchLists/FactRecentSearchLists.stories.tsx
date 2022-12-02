@@ -5,7 +5,7 @@ import { listItemTypes } from "@forkfacts/models";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 
 export default {
-  title: "Components/FactSearchLists",
+  title: "Components/FactSearchLists/FactSearchLists",
   component: FactSearchLists,
   parameters: {
     viewport: {

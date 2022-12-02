@@ -1,8 +1,7 @@
 import { Box, Typography, List } from "@mui/material";
 import React from "react";
 import { FactSearchListsPropsTypes } from "@forkfacts/models";
-import FactlListItem from "./FactlListItem";
-import ViewMoreListsBtn from "./ViewMoreLists";
+import { ViewMoreListBtn, FactlListItem } from "@forkfacts/components";
 import { useStyles } from "./styles";
 
 const FactSearchLists: React.FC<FactSearchListsPropsTypes> = ({
@@ -28,7 +27,7 @@ const FactSearchLists: React.FC<FactSearchListsPropsTypes> = ({
                   <FactlListItem key={index} item={item} onSelectItem={onSelectItem} />
                 ))}
               </Box>
-              <ViewMoreListsBtn onViewMore={onViewMore!} />
+              <ViewMoreListBtn onViewMore={onViewMore!} />
             </List>
           ))}
         </Box>
@@ -39,7 +38,7 @@ const FactSearchLists: React.FC<FactSearchListsPropsTypes> = ({
               <FactlListItem key={index} item={item} onSelectItem={onSelectItem} />
             ))}
           </List>
-          <ViewMoreListsBtn onViewMore={onViewMore!} />
+          <ViewMoreListBtn onViewMore={onViewMore!} />
         </Box>
       )}
     </Box>

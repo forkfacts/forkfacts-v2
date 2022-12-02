@@ -7,4 +7,6 @@ export { default as SearchCategory } from "./SearchCategory/SearchCategory";
 export { default as SearchCategories } from "./SearchCategories/SearchCategories";
 export { default as Header } from "./Header/Header";
 export { default as Layout } from "./Layouts/PageLayouts";
+export { default as ViewMoreListBtn } from "./ViewMoreListBtn/ViewMoreListBtn";
+export { default as FactlListItem } from "./FactSearchLists/FactSearchList/FactlListItem";
 export * from "./FactTable/FactTable";

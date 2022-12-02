@@ -10,11 +10,7 @@ export const useStyles = makeStyles(({ typography, palette, spacing, breakpoints
   },
   btn: {
     fontWeight: typography.fontWeightBold,
-    borderColor: palette.grey[500],
     lineHeight: "20px",
-    // "&:hover": {
-    //   color: palette.primary.main,
-    // },
   },
   icon: {
     "&:hover": {

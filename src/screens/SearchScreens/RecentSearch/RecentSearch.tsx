@@ -3,7 +3,7 @@ import { Box } from "@mui/material";
 import { listItemTypes } from "@forkfacts/models";
 import { SearchStatus, FactSearchLists, SearchHeader } from "@forkfacts/components";
 
-const RecentSearchScreen: React.FC = ({}) => {
+const RecentSearchScreen: React.FC = () => {
   const [selectItem, setSelectItem] = useState<listItemTypes>({} as listItemTypes);
   console.log("selectItem", selectItem);
   const handleViewMoreEvent = () => {
@@ -13,10 +13,8 @@ const RecentSearchScreen: React.FC = ({}) => {
   return (
     <Box>
       <SearchHeader showBorderBottom={false} openCloseBtn={false} />
-      <Box sx={{ mt: ({ spacing }) => spacing(6.5) }}>
-        <SearchStatus status="recentScreen" />
-      </Box>
-      <Box sx={{ mt: ({ spacing }) => spacing(2) }}>
+      <Box sx={{ mt: ({ spacing }) => spacing(5.5) }}>
+        <SearchStatus status="RecentScreen" />
         <FactSearchLists
           recentLists={recentLists}
           onSelectItem={setSelectItem}

@@ -29,6 +29,8 @@ export default function SearchCategory({
       sx={{
         color: ({ palette }) =>
           selectedIndex === index ? palette.primary.main : palette.grey[700],
+        borderColor: ({ palette }) =>
+          selectedIndex === index ? palette.primary.main : palette.grey[700],
       }}
       onClick={handleClick}
       size="small"

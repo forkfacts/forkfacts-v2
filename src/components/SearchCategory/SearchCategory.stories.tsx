@@ -14,8 +14,25 @@ export default {
     },
   },
   argTypes: {
+    index: {
+      name: "index",
+      description: "Index of the button should be passed down as prop",
+      control: "text",
+    },
+    label: {
+      name: "Label",
+      description: "Label title  of the button",
+      table: {
+        defaultValue: { summary: "Food" },
+      },
+    },
     onSelectCategory: {
-      control: { type: "function" },
+      name: "onSelectCategory",
+      description: "onSelectCategory function helps to selected single buttton data ",
+    },
+    setSelectedIndex: {
+      name: "setSelectedIndex",
+      description: "setSelectedIndex function get the current clicked button",
     },
   },
 } as ComponentMeta<typeof SearchCategory>;
@@ -32,21 +49,28 @@ selectedButton.parameters = {
 selectedButton.args = {
   label: "Food",
   Icon: EggAltOutlinedIcon,
+  index: 0,
+  selectedIndex: 0,
   onSelectCategory: (label: catergoryItemTypes) => label,
 };
 
-export const unSelectButton: ComponentStory<typeof SearchCategory> = (args) => (
+selectedButton.storyName = "seleted Button";
+
+// unselected button
+export const unSelectedButton: ComponentStory<typeof SearchCategory> = (args) => (
   <SearchCategory {...args} />
 );
-unSelectButton.parameters = {
+unSelectedButton.parameters = {
   viewport: {
     defaultViewport: "iphone6",
   },
 };
+unSelectedButton.storyName = "unSelected Button";
 
-unSelectButton.args = {
+unSelectedButton.args = {
   label: "Food",
   Icon: EggAltOutlinedIcon,
   onSelectCategory: (label: catergoryItemTypes) => label,
+  index: 0,
   selectedIndex: 1,
 };

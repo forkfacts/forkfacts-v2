@@ -11,12 +11,6 @@ export default {
       viewports: INITIAL_VIEWPORTS,
     },
   },
-  argTypes: {
-    status: {
-      control: "select",
-      options: ["recentScreen", "ResultsScreen"],
-    },
-  },
   args: {
     handleToggleEvenets: () => console.log("toggle sidebar"),
   },

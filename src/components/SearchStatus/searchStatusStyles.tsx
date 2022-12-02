@@ -10,7 +10,6 @@ export const useStyles = makeStyles(({ spacing, breakpoints, typography }: Theme
   },
   statusWrapper: {
     [breakpoints.down("sm")]: {
-      marginBottom: spacing(3),
       width: "100%",
       display: "flex",
       justifyContent: "space-between",

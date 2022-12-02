@@ -1,9 +1,8 @@
 import { Box, Typography } from "@mui/material";
-import classnames from "classnames";
 import React from "react";
 import { useStyles } from "./searchStatusStyles";
 
-type status = "recentScreen" | "ResultsScreen";
+type status = "RecentScreen" | "ResultsScreen";
 
 type SearchStatusPropTypes = {
   status: status;
@@ -13,12 +12,11 @@ type SearchStatusPropTypes = {
 export default function SearchStatus({ status, onhandleClearSearch }: SearchStatusPropTypes) {
   const classes = useStyles();
 
-  const onClearSearch = () => {
-    if (status === "ResultsScreen") onhandleClearSearch && onhandleClearSearch()!;
-  };
+  console.log(status);
+
   return (
     <Box className={classes.root}>
-      {status === "recentScreen" ? (
+      {status === "RecentScreen" ? (
         <Box className={classes.statusWrapper}>
           <Typography color="text.secondary" variant="subtitle2">
             Recent search
@@ -27,13 +25,13 @@ export default function SearchStatus({ status, onhandleClearSearch }: SearchStat
             color="primary"
             variant="caption"
             className={classes.btn}
-            onClick={() => onClearSearch()}
+            onClick={onhandleClearSearch}
           >
             Clear all
           </Typography>
         </Box>
       ) : (
-        <Box>
+        <Box className={classes.statusWrapper}>
           {" "}
           <Typography color="text.secondary" variant="body2">
             I’m searching for

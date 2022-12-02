@@ -5,6 +5,7 @@ module.exports = {
     "@storybook/addon-links",
     "@storybook/addon-essentials",
     "@storybook/addon-interactions",
+    "@storybook/addon-controls",
   ],
   webpackFinal: async (config) => {
     // Transpile Gatsby module because Gatsby includes un-transpiled ES6 code.
@@ -20,7 +21,7 @@ module.exports = {
     config.resolve.alias["@forkfacts/helpers"] = path.resolve(__dirname, "../src/helpers");
     config.resolve.alias["@forkfacts/screens"] = path.resolve(__dirname, "../src/screens");
     config.resolve.alias["@forkfacts/models"] = path.resolve(__dirname, "../src/models");
-    config.resolve.alias["@forkfacts/styles"] = path.resolve(__dirname, "../src/styles");
+    config.resolve.alias["@forkfacts/styles"] = path.resolve(__dirname, "../src/styles/");
     config.resolve.mainFields = ["browser", "module", "main"];
     return config;
   },

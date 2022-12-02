@@ -26,6 +26,9 @@ export default {
       description:
         "An event handler that should be passed if you want to view more lists or expand the lists",
     },
+    groupLists: {
+      description: "Grouped Data value that should be passed to the component",
+    },
   },
 } as ComponentMeta<typeof FactSearchLists>;
 

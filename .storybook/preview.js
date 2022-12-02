@@ -1,11 +1,9 @@
 import "@storybook/addon-console";
 import { action } from "@storybook/addon-actions";
 import { CssBaseline } from "@mui/material";
-import "@storybook/addon-actions/register";
 import { addDecorator } from "@storybook/react";
 import { withConsole, setConsoleOptions } from "@storybook/addon-console";
 import { ThemeProvider } from "@mui/material";
-import { ThemeProvider as Emotion10ThemeProvider } from "@emotion/react";
 import "@storybook/addon-actions/register";
 import "@fontsource/poppins"; // Defaults to weight 400.
 import { customTheme } from "../src/themes/theme";
@@ -43,13 +41,28 @@ export const parameters = {
   },
 };
 
-export const withMuiTheme = (Story) => (
-  <Emotion10ThemeProvider theme={customTheme}>
+export const globalTypes = {
+  theme: {
+    name: "Theme",
+    title: "Theme",
+    description: "Theme for your components",
+    defaultValue: "light",
+    toolbar: {
+      icon: "paintbrush",
+      dynamicTitle: true,
+      items: [
+        { value: "light", left: "☀️", title: "Light mode" },
+        { value: "dark", left: "🌙", title: "Dark mode" },
+      ],
+    },
+  },
+};
+
+export const decorators = [
+  (Story) => (
     <ThemeProvider theme={customTheme}>
       <CssBaseline />
       <Story />
     </ThemeProvider>
-  </Emotion10ThemeProvider>
-);
-
-export const decorators = [withMuiTheme];
+  ),
+];

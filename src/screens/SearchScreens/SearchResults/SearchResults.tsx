@@ -13,16 +13,17 @@ import {
 } from "@forkfacts/components";
 
 const SearchResultsScreen: React.FC = () => {
-  const [_, setSelectItem] = useState<listItemTypes>({} as listItemTypes);
-
   const handleViewMoreEvent = () => {
     console.log("view handler triggered");
   };
-
   const onhandleClearSearch = () => {};
 
   const handleCategorySelect = (value: catergoryItemTypes) => {
     console.log(value);
+  };
+
+  const onSelectItem = (item: listItemTypes) => {
+    console.log(item);
   };
 
   return (
@@ -37,7 +38,7 @@ const SearchResultsScreen: React.FC = () => {
         <FactSearchLists
           groupLists={groupListsTypes}
           grouped={true}
-          onSelectItem={setSelectItem}
+          onSelectItem={onSelectItem}
           onViewMore={handleViewMoreEvent}
         />
       </Box>

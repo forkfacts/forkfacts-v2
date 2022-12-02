@@ -16,7 +16,7 @@ export default {
 export const Mobile = () => <SearchScreen />;
 Mobile.parameters = {
   viewport: {
-    defaultViewport: "iphone5",
+    defaultViewport: "iphone6",
   },
 };
 

@@ -1,6 +1,6 @@
 import React from "react";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import { Box, TextField, AppBar, Theme, CssBaseline } from "@mui/material";
+import { Box, TextField, AppBar, Theme } from "@mui/material";
 import InputAdornment from "@mui/material/InputAdornment";
 import { makeStyles } from "@mui/styles";
 import CloseIcon from "@mui/icons-material/Close";
@@ -12,7 +12,7 @@ type pageStatusPropTypes = {
 
 const useStyles = makeStyles(({ typography, spacing, breakpoints }: Theme) => ({
   underline: {
-    [breakpoints.down("sm")]: {
+    [breakpoints.down("md")]: {
       "&&&:before": {
         borderBottom: "none",
       },

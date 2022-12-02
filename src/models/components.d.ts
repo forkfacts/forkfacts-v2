@@ -1,46 +1,64 @@
 import { SvgIconComponent } from "@mui/icons-material";
 
-// factSearchLists
+/*=============================================
+=            // 1,  factSearchLists            =
+=============================================*/
+
 export interface listItemTypes {
   name: string;
   path: string;
   image: string;
 }
-
 export interface GroupListsTypes {
   listItems: Array<listItemTypes>;
   groupTitle: string;
 }
+interface extendsProps {
+  onSelectItem: (item: listItemTypes) => item;
+  onViewMore?: () => void;
+}
 
-export type FactSearchListsPropsTypes =
+export type FactSearchListsPropsTypes = (
   | {
       recentLists: Array<listItemTypes>;
       grouped?: boolean;
       groupLists?: Array<GroupListsTypes>;
-      onSelectItem: (item: listItemTypes) => item;
-      onViewMore?: () => void;
     }
   | {
       recentLists?: Array<listItemTypes>;
       grouped: boolean;
       groupLists: Array<GroupListsTypes>;
-      onSelectItem: (item: listItemTypes) => item;
-      onViewMore?: () => void;
-    };
-
+    }
+) &
+  extendsProps;
 export interface FactlListItemPropTypes {
   item: listItemTypes;
   onSelectItem: (item: listItemTypes) => item;
 }
 
-// searchCategory/Categories
-export interface SearchCategoryProps {
+/*=====  End of // 1,  factSearchLists  ======*/
+
+/*=============================================
+=           // 2  searchCategory/Categories          =
+=============================================*/
+
+export interface catergoryItemTypes {
   label: string;
   Icon: SvgIconComponent;
-  onSelectCategory: (item: catergoryItemTypes.label) => item;
+}
+export interface onSelectCategoryTypes {
+  onSelectCategory: (item: catergoryItemTypes) => item;
+}
+export interface SearchCategoryProps extends onSelectCategoryTypes {
+  label: string;
+  Icon: SvgIconComponent;
+  index: number;
+  setSelectedIndex: (value: number) => value;
+  selectedIndex: number;
+}
+// Update the interface contract.
+export interface SearchCategoriesProps extends onSelectCategoryTypes {
+  categoryOptions: Array<catergoryItemTypes>;
 }
 
-// Update the interface contract.
-export interface SearchCategoriesProps {
-  onSelectCategory: (item: catergoryItemTypes.label) => item;
-}
+/*=====  End of// 2  searchCategory/Categories======*/

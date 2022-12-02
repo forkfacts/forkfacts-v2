@@ -1,8 +1,9 @@
 import React from "react";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import EggAltIcon from "@mui/icons-material/EggAlt";
+import EggAltOutlinedIcon from "@mui/icons-material/EggAltOutlined";
 import { SearchCategory } from "@forkfacts/components";
+import { catergoryItemTypes } from "@forkfacts/models";
 
 export default {
   title: "Components/SearchCategory",
@@ -12,17 +13,40 @@ export default {
       viewports: INITIAL_VIEWPORTS,
     },
   },
+  argTypes: {
+    onSelectCategory: {
+      control: { type: "function" },
+    },
+  },
 } as ComponentMeta<typeof SearchCategory>;
 
-export const Mobile: ComponentStory<typeof SearchCategory> = (args) => <SearchCategory {...args} />;
-Mobile.parameters = {
+export const selectedButton: ComponentStory<typeof SearchCategory> = (args) => (
+  <SearchCategory {...args} />
+);
+selectedButton.parameters = {
   viewport: {
-    defaultViewport: "iphone5",
+    defaultViewport: "iphone6",
   },
 };
 
-Mobile.args = {
+selectedButton.args = {
   label: "Food",
-  Icon: EggAltIcon,
-  onSelectCategory: (label: string) => label,
+  Icon: EggAltOutlinedIcon,
+  onSelectCategory: (label: catergoryItemTypes) => label,
+};
+
+export const unSelectButton: ComponentStory<typeof SearchCategory> = (args) => (
+  <SearchCategory {...args} />
+);
+unSelectButton.parameters = {
+  viewport: {
+    defaultViewport: "iphone6",
+  },
+};
+
+unSelectButton.args = {
+  label: "Food",
+  Icon: EggAltOutlinedIcon,
+  onSelectCategory: (label: catergoryItemTypes) => label,
+  selectedIndex: 1,
 };

@@ -18,7 +18,7 @@ export const Mobile: ComponentStory<typeof SearchResultsScreen> = (args) => (
 );
 Mobile.parameters = {
   viewport: {
-    defaultViewport: "iphone5",
+    defaultViewport: "iphone6",
   },
 };
 

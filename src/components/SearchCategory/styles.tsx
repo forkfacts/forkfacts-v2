@@ -1,5 +1,6 @@
 import { makeStyles } from "@mui/styles";
 import { Theme, useTheme } from "@mui/material";
+import { catergoryItemTypes } from "models/components";
 
 export const useStyles = makeStyles(({ typography, palette, spacing, breakpoints }: Theme) => ({
   root: {
@@ -9,10 +10,11 @@ export const useStyles = makeStyles(({ typography, palette, spacing, breakpoints
   },
   btn: {
     fontWeight: typography.fontWeightBold,
+    borderColor: palette.grey[500],
     lineHeight: "20px",
-    "&:hover": {
-      color: palette.primary.main,
-    },
+    // "&:hover": {
+    //   color: palette.primary.main,
+    // },
   },
   icon: {
     "&:hover": {

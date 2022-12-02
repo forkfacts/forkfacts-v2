@@ -1,8 +1,11 @@
 import React from "react";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import EggAltIcon from "@mui/icons-material/EggAlt";
+import EggAltOutlinedIcon from "@mui/icons-material/EggAltOutlined";
+import EmojiFoodBeverageOutlinedIcon from "@mui/icons-material/EmojiFoodBeverageOutlined";
+import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlined";
 import { SearchCategories } from "@forkfacts/components";
+import { catergoryItemTypes } from "@forkfacts/models";
 
 export default {
   title: "Components/SearchCategories",
@@ -19,10 +22,31 @@ export const Mobile: ComponentStory<typeof SearchCategories> = (args) => (
 );
 Mobile.parameters = {
   viewport: {
-    defaultViewport: "iphone5",
+    defaultViewport: "iphone6",
   },
 };
-
+const categoryOptions = [
+  { label: "Food", Icon: EggAltOutlinedIcon },
+  { label: "Recipe", Icon: EmojiFoodBeverageOutlinedIcon },
+  { label: "Library", Icon: BookmarkBorderOutlinedIcon },
+];
 Mobile.args = {
-  onSelectCategory: (label: string) => label,
+  ...Mobile.args,
+  onSelectCategory: (item: catergoryItemTypes) => item,
+  categoryOptions: categoryOptions,
+};
+
+// tablet screen size
+export const Tablet: ComponentStory<typeof SearchCategories> = (args) => (
+  <SearchCategories {...args} />
+);
+Tablet.parameters = {
+  viewport: {
+    defaultViewport: "ipad",
+  },
+};
+Tablet.args = {
+  ...Tablet.args,
+  onSelectCategory: (item: catergoryItemTypes) => item,
+  categoryOptions: categoryOptions,
 };

@@ -16,6 +16,6 @@ export default {
 export const Mobile: ComponentStory<typeof SearchHeader> = (args) => <SearchHeader {...args} />;
 Mobile.parameters = {
   viewport: {
-    defaultViewport: "iphone5",
+    defaultViewport: "iphone6",
   },
 };

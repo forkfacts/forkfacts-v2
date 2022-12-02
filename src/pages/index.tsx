@@ -1,6 +1,6 @@
 import * as React from "react";
 import { PageProps } from "gatsby";
-import { FactSearchLists } from "@forkfacts/components";
+import { SearchResultsScreen } from "@forkfacts/screens";
 
 const recentLists = [
   { image: "/recentImg.png", name: "Kidney beans light, Legume", path: "/:id" },
@@ -31,7 +31,7 @@ const groupListsTypes = [
 const IndexPage: React.FC<PageProps> = () => {
   return (
     <main>
-      <FactSearchLists groupLists={groupListsTypes} grouped />
+      <SearchResultsScreen />
     </main>
   );
 };

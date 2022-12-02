@@ -83,7 +83,7 @@ export const Desktop = () => <FactTable rows={rows} />;
 export const Mobile = () => <FactTable rows={rows} />;
 Mobile.parameters = {
   viewport: {
-    defaultViewport: "iphone5",
+    defaultViewport: "iphone6",
   },
 };
 

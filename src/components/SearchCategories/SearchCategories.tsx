@@ -1,36 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box, Grid } from "@mui/material";
 import { SearchCategoriesProps } from "@forkfacts/models";
-import EggAltIcon from "@mui/icons-material/EggAlt";
-import EmojiFoodBeverageIcon from "@mui/icons-material/EmojiFoodBeverage";
-import BookmarksIcon from "@mui/icons-material/Bookmarks";
 import { SearchCategory } from "@forkfacts/components";
 import { useStyles } from "./styles";
 
-// Pass an array of SearchCatgeory components to this component. It should be passed from Stories file
-export default function SearchCategories({ onSelectCategory }: SearchCategoriesProps) {
+export default function SearchCategories({
+  categoryOptions,
+  onSelectCategory,
+}: SearchCategoriesProps) {
   const classes = useStyles();
+  const [selectedIndex, setSelectedIndex] = useState(0);
 
   return (
-    <Box sx={{ width: "100%", mt: ({ spacing }) => spacing(3) }} className={classes.root}>
+    <Box sx={{ width: "100%", mt: ({ spacing }) => spacing(1) }} className={classes.root}>
       <Grid container justifyContent="space-between">
-        <Grid item>
-          <SearchCategory onSelectCategory={onSelectCategory} label="Food" Icon={EggAltIcon} />
-        </Grid>
-        <Grid item>
-          <SearchCategory
-            onSelectCategory={onSelectCategory}
-            label="Recipe"
-            Icon={EmojiFoodBeverageIcon}
-          />
-        </Grid>
-        <Grid item>
-          <SearchCategory
-            onSelectCategory={onSelectCategory}
-            label="Library"
-            Icon={BookmarksIcon}
-          />
-        </Grid>
+        {categoryOptions.map(({ label, Icon }, index: number) => {
+          return (
+            <Grid key={index} item>
+              <SearchCategory
+                index={index}
+                onSelectCategory={onSelectCategory}
+                label={label}
+                Icon={Icon}
+                setSelectedIndex={setSelectedIndex}
+                selectedIndex={selectedIndex}
+              />
+            </Grid>
+          );
+        })}
       </Grid>
     </Box>
   );

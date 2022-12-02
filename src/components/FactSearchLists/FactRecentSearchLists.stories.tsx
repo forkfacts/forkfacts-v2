@@ -60,7 +60,7 @@ export const Grouped: ComponentStory<typeof FactSearchLists> = (args) => (
 );
 Grouped.parameters = {
   viewport: {
-    defaultViewport: "iphone5",
+    defaultViewport: "iphone6",
   },
 };
 
@@ -76,7 +76,7 @@ export const Lists: ComponentStory<typeof FactSearchLists> = (args) => (
 );
 Lists.parameters = {
   viewport: {
-    defaultViewport: "iphone5",
+    defaultViewport: "iphone6",
   },
 };
 

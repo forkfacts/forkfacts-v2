@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Box } from "@mui/material";
-import { catergoryItemTypes, searchResultItemTypes } from "@forkfacts/models";
+import { catergoryItemType, SearchResultItemType } from "@forkfacts/models";
 import EggAltOutlinedIcon from "@mui/icons-material/EggAltOutlined";
 import EmojiFoodBeverageOutlinedIcon from "@mui/icons-material/EmojiFoodBeverageOutlined";
 import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlined";
@@ -18,11 +18,11 @@ const SearchResultsScreen: React.FC = () => {
   };
   const onhandleClearSearch = () => {};
 
-  const handleCategorySelect = (value: catergoryItemTypes) => {
+  const handleCategorySelect = (value: catergoryItemType) => {
     console.log(value);
   };
 
-  const onSelectItem = (item: searchResultItemTypes) => {
+  const onSelectItem = (item: SearchResultItemType) => {
     console.log(item);
   };
 
@@ -50,19 +50,19 @@ export default SearchResultsScreen;
 
 const recentLists = [
   { image: "/recentImg.png", name: "Kidney beans light, Legume", path: "/:id" },
-  { image: "/recentImg.png", name: "Grape fruit juices", path: "/:id" },
+  { image: "/image3.png", name: "Grape fruit juices", path: "/:id" },
   {
-    image: "/recentImg.png",
+    image: "/image2.png",
     name: "Baked white bread, Baked products",
     path: "/:id",
   },
   {
-    image: "/recentImg.png",
+    image: "/image4.png",
     name: "Grape fruit juice unsweentened, Fruit ...",
     path: "/:id",
   },
   {
-    image: "/recentImg.png",
+    image: "/image5.png",
     name: "Banana dehydrated/ banana powder",
     path: "/:id",
   },

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Box, Grid } from "@mui/material";
 import { SearchCategoriesProps } from "@forkfacts/models";
 import { SearchCategory } from "@forkfacts/components";
-import { useStyles } from "./styles";
+import { useStyles } from "./searchCategoriesStyles";
 
 export default function SearchCategories({
   categoryOptions,

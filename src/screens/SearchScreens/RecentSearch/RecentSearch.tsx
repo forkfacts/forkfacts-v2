@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Box } from "@mui/material";
-import { searchResultItemTypes } from "@forkfacts/models";
+import { SearchResultItemType } from "@forkfacts/models";
 import { SearchStatus, SearchResultItems, RecentSearchHeader } from "@forkfacts/components";
 
 const RecentSearchScreen: React.FC = () => {
-  const [selectItem, setSelectItem] = useState<searchResultItemTypes>({} as searchResultItemTypes);
+  const [selectItem, setSelectItem] = useState<SearchResultItemType>({} as SearchResultItemType);
   console.log("selectItem", selectItem);
   const handleViewMoreEvent = () => {
     console.log("view handler triggered");
@@ -28,19 +28,19 @@ const RecentSearchScreen: React.FC = () => {
 export default RecentSearchScreen;
 const recentLists = [
   { image: "/recentImg.png", name: "Kidney beans light, Legume", path: "/:id" },
-  { image: "/recentImg.png", name: "Grape fruit juices", path: "/:id" },
+  { image: "/image3.png", name: "Grape fruit juices", path: "/:id" },
   {
-    image: "/recentImg.png",
+    image: "/image2.png",
     name: "Baked white bread, Baked products",
     path: "/:id",
   },
   {
-    image: "/recentImg.png",
+    image: "/image4.png",
     name: "Grape fruit juice unsweentened, Fruit ...",
     path: "/:id",
   },
   {
-    image: "/recentImg.png",
+    image: "/image5.png",
     name: "Banana dehydrated/ banana powder",
     path: "/:id",
   },

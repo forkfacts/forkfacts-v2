@@ -3,7 +3,7 @@ import { Box, TextField, Typography } from "@mui/material";
 import { SearchOutlined } from "@mui/icons-material";
 import InputAdornment from "@mui/material/InputAdornment";
 import { Layout } from "@forkfacts/components";
-import { useStyles } from "./styles";
+import { useStyles } from "./searchScreenStyles";
 
 export default function SearchScreen() {
   const classes = useStyles();

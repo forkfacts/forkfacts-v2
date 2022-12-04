@@ -1,7 +1,7 @@
 import React from "react";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import { SearchResultItems } from "@forkfacts/components";
-import { searchResultItemTypes } from "@forkfacts/models";
+import { SearchResultItemType } from "@forkfacts/models";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 
 export default {
@@ -34,19 +34,19 @@ export default {
 
 const recentLists = [
   { image: "/recentImg.png", name: "Kidney beans light, Legume", path: "/:id" },
-  { image: "/recentImg.png", name: "Grape fruit juices", path: "/:id" },
+  { image: "/image3.png", name: "Grape fruit juices", path: "/:id" },
   {
-    image: "/recentImg.png",
+    image: "/image2.png",
     name: "Baked white bread, Baked products",
     path: "/:id",
   },
   {
-    image: "/recentImg.png",
+    image: "/image4.png",
     name: "Grape fruit juice unsweentened, Fruit ...",
     path: "/:id",
   },
   {
-    image: "/recentImg.png",
+    image: "/image5.png",
     name: "Banana dehydrated/ banana powder",
     path: "/:id",
   },
@@ -70,7 +70,7 @@ Grouped.parameters = {
 Grouped.args = {
   groupLists: GroupListsType,
   grouped: true,
-  onSelectItem: (item: searchResultItemTypes) => item,
+  onSelectItem: (item: SearchResultItemType) => item,
 };
 
 Grouped.argTypes = {
@@ -93,7 +93,7 @@ Lists.parameters = {
 Lists.args = {
   recentLists: recentLists,
   grouped: false,
-  onSelectItem: (item: searchResultItemTypes) => item,
+  onSelectItem: (item: SearchResultItemType) => item,
 };
 
 Lists.argTypes = {

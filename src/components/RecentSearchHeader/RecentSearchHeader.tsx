@@ -54,12 +54,12 @@ const SearchHeader: React.FC<pageStatusPropTypes> = ({ openCloseBtn, showBorderB
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
-                  <ArrowBackIcon className={classes.icon} color="success" />
+                  <ArrowBackIcon className={classes.icon} color="primary" />
                 </InputAdornment>
               ),
               endAdornment: (
                 <InputAdornment position="end">
-                  {openCloseBtn ? <CloseIcon className={classes.icon} color="success" /> : null}
+                  {openCloseBtn ? <CloseIcon className={classes.icon} color="primary" /> : null}
                 </InputAdornment>
               ),
               classes,

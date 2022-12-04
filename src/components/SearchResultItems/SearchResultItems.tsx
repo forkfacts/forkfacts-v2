@@ -1,10 +1,10 @@
 import { Box, Typography, List } from "@mui/material";
 import React from "react";
-import { SearchResultItemsPropsTypes } from "@forkfacts/models";
+import { SearchResultItemsPropsType } from "@forkfacts/models";
 import { ViewMoreButton, SearchResultItem } from "@forkfacts/components";
-import { useStyles } from "./styles";
+import { useStyles } from "./searchResultsItemsStyles";
 
-const SearchResultItems: React.FC<SearchResultItemsPropsTypes> = ({
+const SearchResultItems: React.FC<SearchResultItemsPropsType> = ({
   recentLists,
   grouped,
   groupLists,

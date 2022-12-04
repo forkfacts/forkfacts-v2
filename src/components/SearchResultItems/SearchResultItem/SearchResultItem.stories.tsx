@@ -2,7 +2,7 @@ import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import { SearchResultItem } from "@forkfacts/components";
-import { searchResultItemTypes } from "@forkfacts/models";
+import { SearchResultItemType } from "@forkfacts/models";
 
 export default {
   title: "Components/SearchResultItems/SearchResultItem",
@@ -32,7 +32,7 @@ searchItem.args = {
     image: "/recentImg.png",
     path: "/:",
   },
-  onSelectItem: (item: searchResultItemTypes) => item,
+  onSelectItem: (item: SearchResultItemType) => item,
 };
 searchItem.parameters = {
   viewport: {

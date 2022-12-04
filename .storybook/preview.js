@@ -22,7 +22,7 @@ setConsoleOptions({
 });
 /**
  *
- * This was installed automatically with storybook when using with typescript project
+ * This was installed automatically with storybook when using with typescript project(https://www.gatsbyjs.com/docs/how-to/testing/visual-testing-with-storybook/).
  *
  */
 global.___loader = {

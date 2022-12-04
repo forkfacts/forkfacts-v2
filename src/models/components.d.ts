@@ -1,64 +1,58 @@
 import { SvgIconComponent } from "@mui/icons-material";
 
 /*=============================================
-=            // 1,  factSearchLists            =
+=     SearchResultsItems typescript typings   =
 =============================================*/
-
-export interface searchResultItemTypes {
+export interface SearchResultItemType {
   name: string;
   path: string;
   image: string;
 }
 export interface GroupListsType {
-  listItems: Array<searchResultItemTypes>;
+  listItems: Array<SearchResultItemType>;
   groupTitle: string;
 }
-interface extendSearchResultItemsProps {
-  onSelectItem: (item: searchResultItemTypes) => item;
+interface ExtendSearchResultItemsProps {
+  onSelectItem: (item: SearchResultItemType) => item;
   onViewMore?: () => void;
 }
-
-export type SearchResultItemsPropsTypes = (
+export type SearchResultItemsPropsType = (
   | {
-      recentLists?: Array<searchResultItemTypes>;
+      recentLists?: Array<SearchResultItemType>;
       grouped: boolean;
       groupLists: Array<GroupListsType>;
     }
   | {
-      recentLists: Array<searchResultItemTypes>;
+      recentLists: Array<SearchResultItemType>;
       grouped?: boolean;
       groupLists?: Array<GroupListsType>;
     }
 ) &
-  extendSearchResultItemsProps;
-export interface SearchResultItemsPropTypes {
-  item: searchResultItemTypes;
-  onSelectItem: (item: searchResultItemTypes) => item;
+  ExtendSearchResultItemsProps;
+export interface SearchResultItemPropsType {
+  item: SearchResultItemType;
+  onSelectItem: (item: SearchResultItemType) => item;
 }
-
-/*=====  End of // 1,  factSearchLists  ======*/
+/*=====  End of SearchResultsItems typescript typings  ======*/
 
 /*=============================================
-=           // 2  searchCategory/Categories          =
+=    SearchCategorires/SearchCategory typescript  typings   =
 =============================================*/
-
-export interface catergoryItemTypes {
+export interface catergoryItemType {
   label: string;
   Icon: SvgIconComponent;
 }
-export interface onSelectCategoryTypes {
-  onSelectCategory: (item: catergoryItemTypes) => item;
+export interface onSelectCategoryType {
+  onSelectCategory: (item: catergoryItemType) => item;
 }
-export interface SearchCategoryProps extends onSelectCategoryTypes {
+export interface SearchCategoryProps extends onSelectCategoryType {
   label: string;
   Icon: SvgIconComponent;
   index: number;
   setSelectedIndex: (value: number) => value;
   selectedIndex: number;
 }
-// Update the interface contract.
-export interface SearchCategoriesProps extends onSelectCategoryTypes {
-  categoryOptions: Array<catergoryItemTypes>;
+export interface SearchCategoriesProps extends onSelectCategoryType {
+  categoryOptions: Array<catergoryItemType>;
 }
-
-/*=====  End of// 2  searchCategory/Categories======*/
+/*=====  End of  searchCategory/Categories======*/

@@ -2,7 +2,7 @@ import React from "react";
 import { Button } from "@mui/material";
 import { blue } from "@mui/material/colors";
 import { SearchCategoryProps } from "@forkfacts/models";
-import { useStyles } from "./styles";
+import { useStyles } from "./searchCategoryStyles";
 
 export default function SearchCategory({
   index,

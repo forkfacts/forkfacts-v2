@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Box } from "@mui/material";
-import { listItemTypes } from "@forkfacts/models";
-import { SearchStatus, FactSearchLists, SearchHeader } from "@forkfacts/components";
+import { searchResultItemTypes } from "@forkfacts/models";
+import { SearchStatus, SearchResultItems, RecentSearchHeader } from "@forkfacts/components";
 
 const RecentSearchScreen: React.FC = () => {
-  const [selectItem, setSelectItem] = useState<listItemTypes>({} as listItemTypes);
+  const [selectItem, setSelectItem] = useState<searchResultItemTypes>({} as searchResultItemTypes);
   console.log("selectItem", selectItem);
   const handleViewMoreEvent = () => {
     console.log("view handler triggered");
@@ -12,10 +12,10 @@ const RecentSearchScreen: React.FC = () => {
 
   return (
     <Box>
-      <SearchHeader showBorderBottom={false} openCloseBtn={false} />
+      <RecentSearchHeader showBorderBottom={false} openCloseBtn={false} />
       <Box sx={{ mt: ({ spacing }) => spacing(5.5) }}>
         <SearchStatus status="RecentScreen" />
-        <FactSearchLists
+        <SearchResultItems
           recentLists={recentLists}
           onSelectItem={setSelectItem}
           onViewMore={handleViewMoreEvent}

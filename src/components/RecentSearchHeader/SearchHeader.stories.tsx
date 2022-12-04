@@ -1,19 +1,21 @@
 import React from "react";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { SearchHeader } from "@forkfacts/components";
+import { RecentSearchHeader } from "@forkfacts/components";
 
 export default {
-  title: "Components/SearchHeader",
-  component: SearchHeader,
+  title: "Components/RecentSearchHeader",
+  component: RecentSearchHeader,
   parameters: {
     viewport: {
       viewports: INITIAL_VIEWPORTS,
     },
   },
-} as ComponentMeta<typeof SearchHeader>;
+} as ComponentMeta<typeof RecentSearchHeader>;
 
-export const Mobile: ComponentStory<typeof SearchHeader> = (args) => <SearchHeader {...args} />;
+export const Mobile: ComponentStory<typeof RecentSearchHeader> = (args) => (
+  <RecentSearchHeader {...args} />
+);
 Mobile.parameters = {
   viewport: {
     defaultViewport: "iphone6",

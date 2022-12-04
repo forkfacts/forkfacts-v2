@@ -1,12 +1,12 @@
 import React from "react";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
-import { FactSearchLists } from "@forkfacts/components";
-import { listItemTypes } from "@forkfacts/models";
+import { SearchResultItems } from "@forkfacts/components";
+import { searchResultItemTypes } from "@forkfacts/models";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 
 export default {
-  title: "Components/FactSearchLists/FactSearchLists",
-  component: FactSearchLists,
+  title: "Components/SearchResultItems",
+  component: SearchResultItems,
   parameters: {
     viewport: {
       viewports: INITIAL_VIEWPORTS,
@@ -30,7 +30,7 @@ export default {
       description: "Grouped Data value that should be passed to the component",
     },
   },
-} as ComponentMeta<typeof FactSearchLists>;
+} as ComponentMeta<typeof SearchResultItems>;
 
 const recentLists = [
   { image: "/recentImg.png", name: "Kidney beans light, Legume", path: "/:id" },
@@ -52,14 +52,14 @@ const recentLists = [
   },
 ];
 
-const groupListsTypes = [
+const GroupListsType = [
   { groupTitle: "FRUIT AND FRUIT JUICES", listItems: recentLists },
   { groupTitle: "BABY FOODS", listItems: recentLists.slice(0, 1) },
   { groupTitle: "SWEETS", listItems: recentLists.slice(0, 2) },
 ];
 
-export const Grouped: ComponentStory<typeof FactSearchLists> = (args) => (
-  <FactSearchLists {...args} />
+export const Grouped: ComponentStory<typeof SearchResultItems> = (args) => (
+  <SearchResultItems {...args} />
 );
 Grouped.parameters = {
   viewport: {
@@ -68,9 +68,9 @@ Grouped.parameters = {
 };
 
 Grouped.args = {
-  groupLists: groupListsTypes,
+  groupLists: GroupListsType,
   grouped: true,
-  onSelectItem: (item: listItemTypes) => item,
+  onSelectItem: (item: searchResultItemTypes) => item,
 };
 
 Grouped.argTypes = {
@@ -81,8 +81,8 @@ Grouped.argTypes = {
 };
 
 // Lists data display
-export const Lists: ComponentStory<typeof FactSearchLists> = (args) => (
-  <FactSearchLists {...args} />
+export const Lists: ComponentStory<typeof SearchResultItems> = (args) => (
+  <SearchResultItems {...args} />
 );
 Lists.parameters = {
   viewport: {
@@ -93,7 +93,7 @@ Lists.parameters = {
 Lists.args = {
   recentLists: recentLists,
   grouped: false,
-  onSelectItem: (item: listItemTypes) => item,
+  onSelectItem: (item: searchResultItemTypes) => item,
 };
 
 Lists.argTypes = {

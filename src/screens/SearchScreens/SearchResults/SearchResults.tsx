@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { Box } from "@mui/material";
-import { catergoryItemTypes, listItemTypes } from "@forkfacts/models";
+import { catergoryItemTypes, searchResultItemTypes } from "@forkfacts/models";
 import EggAltOutlinedIcon from "@mui/icons-material/EggAltOutlined";
 import EmojiFoodBeverageOutlinedIcon from "@mui/icons-material/EmojiFoodBeverageOutlined";
 import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlined";
 
 import {
   SearchStatus,
-  FactSearchLists,
-  SearchHeader,
+  SearchResultItems,
+  RecentSearchHeader,
   SearchCategories,
 } from "@forkfacts/components";
 
@@ -22,21 +22,21 @@ const SearchResultsScreen: React.FC = () => {
     console.log(value);
   };
 
-  const onSelectItem = (item: listItemTypes) => {
+  const onSelectItem = (item: searchResultItemTypes) => {
     console.log(item);
   };
 
   return (
     <Box>
-      <SearchHeader showBorderBottom={false} openCloseBtn={true} />
+      <RecentSearchHeader showBorderBottom={false} openCloseBtn={true} />
       <Box sx={{ mt: ({ spacing }) => spacing(7) }}>
         <SearchStatus status="ResultsScreen" onhandleClearSearch={onhandleClearSearch} />
         <SearchCategories
           onSelectCategory={handleCategorySelect}
           categoryOptions={categoryOptions}
         />
-        <FactSearchLists
-          groupLists={groupListsTypes}
+        <SearchResultItems
+          groupLists={GroupListsType}
           grouped={true}
           onSelectItem={onSelectItem}
           onViewMore={handleViewMoreEvent}
@@ -68,7 +68,7 @@ const recentLists = [
   },
 ];
 
-const groupListsTypes = [
+const GroupListsType = [
   { groupTitle: "FRUIT AND FRUIT JUICES", listItems: recentLists },
   { groupTitle: "BABY FOODS", listItems: recentLists.slice(0, 1) },
   { groupTitle: "SWEETS", listItems: recentLists.slice(0, 2) },

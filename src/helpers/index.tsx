@@ -1,3 +1,1 @@
-import { addSpacing } from "./utils";
-
-export { addSpacing };
+export * from "./utils";

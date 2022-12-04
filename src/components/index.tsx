@@ -1,12 +1,12 @@
 export { default as SEO } from "./Seo/Seo";
 export { default as FactTable } from "./FactTable/FactTable";
-export { default as FactSearchLists } from "./FactSearchLists/FactRecentSearchLists";
-export { default as SearchHeader } from "./SearchHeader/SearchHeader";
+export { default as SearchResultItems } from "./SearchResultItems/SearchResultItems";
+export { default as RecentSearchHeader } from "./RecentSearchHeader/RecentSearchHeader";
 export { default as SearchStatus } from "./SearchStatus/Searchstatus";
 export { default as SearchCategory } from "./SearchCategory/SearchCategory";
 export { default as SearchCategories } from "./SearchCategories/SearchCategories";
 export { default as Header } from "./Header/Header";
-export { default as Layout } from "./Layouts/PageLayouts";
-export { default as ViewMoreListBtn } from "./ViewMoreListBtn/ViewMoreListBtn";
-export { default as FactlListItem } from "./FactSearchLists/FactSearchList/FactlListItem";
+export { default as Layout } from "./Layout/Layout";
+export { default as ViewMoreButton } from "./Buttons/ViewMoreButton/ViewMoreButton";
+export { default as SearchResultItem } from "./SearchResultItems/SearchResultItem/SearchResultItem";
 export * from "./FactTable/FactTable";

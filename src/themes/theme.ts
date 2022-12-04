@@ -39,13 +39,4 @@ export const customTheme = createTheme({
       },
     },
   },
-  // palette: {
-  //   mode: "light",
-  //   primary: {
-  //     main: "#356A1E",
-  //   },
-  //   secondary: {
-  //     main: "#f50057",
-  //   },
-  // },
 });

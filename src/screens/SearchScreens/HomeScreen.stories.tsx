@@ -1,26 +1,26 @@
 import React from "react";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import { ComponentMeta } from "@storybook/react";
-import { SearchScreen } from "@forkfacts/screens";
+import { HomeScreen } from "@forkfacts/screens";
 
 export default {
-  title: "Screens/SearchScreen/Home",
-  component: SearchScreen,
+  title: "Screens/SearchScreen/HomeScreen",
+  component: HomeScreen,
   parameters: {
     viewport: {
       viewports: INITIAL_VIEWPORTS,
     },
   },
-} as ComponentMeta<typeof SearchScreen>;
+} as ComponentMeta<typeof HomeScreen>;
 
-export const Mobile = () => <SearchScreen />;
+export const Mobile = () => <HomeScreen />;
 Mobile.parameters = {
   viewport: {
     defaultViewport: "iphone6",
   },
 };
 
-export const Tablet = () => <SearchScreen />;
+export const Tablet = () => <HomeScreen />;
 Tablet.parameters = {
   viewport: {
     defaultViewport: "ipad",

@@ -4,36 +4,36 @@ import { SvgIconComponent } from "@mui/icons-material";
 =            // 1,  factSearchLists            =
 =============================================*/
 
-export interface listItemTypes {
+export interface searchResultItemTypes {
   name: string;
   path: string;
   image: string;
 }
-export interface GroupListsTypes {
-  listItems: Array<listItemTypes>;
+export interface GroupListsType {
+  listItems: Array<searchResultItemTypes>;
   groupTitle: string;
 }
-interface extendsProps {
-  onSelectItem: (item: listItemTypes) => item;
+interface extendSearchResultItemsProps {
+  onSelectItem: (item: searchResultItemTypes) => item;
   onViewMore?: () => void;
 }
 
-export type FactSearchListsPropsTypes = (
+export type SearchResultItemsPropsTypes = (
   | {
-      recentLists: Array<listItemTypes>;
-      grouped?: boolean;
-      groupLists?: Array<GroupListsTypes>;
+      recentLists?: Array<searchResultItemTypes>;
+      grouped: boolean;
+      groupLists: Array<GroupListsType>;
     }
   | {
-      recentLists?: Array<listItemTypes>;
-      grouped: boolean;
-      groupLists: Array<GroupListsTypes>;
+      recentLists: Array<searchResultItemTypes>;
+      grouped?: boolean;
+      groupLists?: Array<GroupListsType>;
     }
 ) &
-  extendsProps;
-export interface FactlListItemPropTypes {
-  item: listItemTypes;
-  onSelectItem: (item: listItemTypes) => item;
+  extendSearchResultItemsProps;
+export interface SearchResultItemsPropTypes {
+  item: searchResultItemTypes;
+  onSelectItem: (item: searchResultItemTypes) => item;
 }
 
 /*=====  End of // 1,  factSearchLists  ======*/

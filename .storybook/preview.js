@@ -8,6 +8,11 @@ import "@storybook/addon-actions/register";
 import "@fontsource/poppins"; // Defaults to weight 400.
 import { customTheme } from "../src/themes/theme";
 
+/**
+ *
+ * Storybook console addons configuration
+ *
+ */
 const optionsCallback = (options) => ({ panelExclude: [...options.panelExclude, /Warning/] });
 addDecorator((storyFn, context) => withConsole(optionsCallback)(storyFn)(context));
 
@@ -15,7 +20,11 @@ const panelExclude = setConsoleOptions({}).panelExclude;
 setConsoleOptions({
   panelExclude: [...panelExclude, /deprecated/],
 });
-
+/**
+ *
+ * This was installed automatically with storybook when using with typescript project
+ *
+ */
 global.___loader = {
   enqueue: () => {},
   hovering: () => {},
@@ -25,7 +34,11 @@ global.__BASE_PATH__ = "/";
 window.___navigate = (pathname) => {
   action("NavigateTo:")(pathname);
 };
-
+/**
+ *
+ * Custom parameter for all the  created components stories
+ *
+ */
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
   controls: {
@@ -40,7 +53,11 @@ export const parameters = {
       a[1].kind === b[1].kind ? 0 : a[1].id.localeCompare(b[1].id, undefined, { numeric: true }),
   },
 };
-
+/**
+ *
+ * Storybook global styles for all the components stories
+ *
+ */
 export const globalTypes = {
   theme: {
     name: "Theme",
@@ -57,7 +74,11 @@ export const globalTypes = {
     },
   },
 };
-
+/**
+ *
+ * Serve our storybook components and also provide MUI theme to the components
+ *
+ */
 export const decorators = [
   (Story) => (
     <ThemeProvider theme={customTheme}>

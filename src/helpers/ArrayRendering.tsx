@@ -7,7 +7,7 @@ interface FoorLoopProps<T> {
 export const ForLoops = <T extends {}>({ each, children }: FoorLoopProps<T>) => {
   if (each && !Array.isArray(each)) {
     return null;
-  } else if (Array.isArray(each) && each?.length && children.length) {
+  } else if (Array.isArray(each) && each?.length) {
     return <>{each.map((item, idx) => children(item, idx))}</>;
   }
   return null;

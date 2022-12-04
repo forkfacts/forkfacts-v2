@@ -24,7 +24,7 @@ export const useStyles = makeStyles(({ spacing, breakpoints, typography }: Theme
   },
   groupWrapper: {
     [breakpoints.down("md")]: {
-      marginTop: spacing(-4),
+      marginTop: spacing(-1),
       "&:first-child": {
         marginTop: 0,
       },

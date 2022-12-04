@@ -54,8 +54,8 @@ const recentLists = [
 
 const GroupListsType = [
   { groupTitle: "FRUIT AND FRUIT JUICES", listItems: recentLists },
-  { groupTitle: "BABY FOODS", listItems: recentLists.slice(0, 1) },
-  { groupTitle: "SWEETS", listItems: recentLists.slice(0, 2) },
+  { groupTitle: "BABY FOODS", listItems: recentLists.slice(0, 3) },
+  { groupTitle: "SWEETS", listItems: recentLists.slice(0, 4) },
 ];
 
 export const Grouped: ComponentStory<typeof SearchResultItems> = (args) => (

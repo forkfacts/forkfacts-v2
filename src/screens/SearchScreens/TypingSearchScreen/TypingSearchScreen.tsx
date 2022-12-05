@@ -33,7 +33,7 @@ const TypingSearchScreen: React.FC = () => {
         handleCloseHeader={handleCloseHeader}
         showClearInput={true}
       />
-      <Box sx={{ mt: ({ spacing }) => spacing(7) }}>
+      <Box sx={{ mt: ({ spacing }) => spacing(5) }}>
         <Box className={classes.statusWrapper}>
           {" "}
           <Typography color="text.secondary" variant="body2">

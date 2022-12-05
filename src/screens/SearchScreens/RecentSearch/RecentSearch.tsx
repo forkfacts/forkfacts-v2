@@ -23,7 +23,7 @@ const RecentSearchScreen: React.FC = () => {
         handleCloseHeader={handleCloseHeader}
         showClearInput={true}
       />
-      <Box sx={{ mt: ({ spacing }) => spacing(5.5) }}>
+      <Box sx={{ mt: ({ spacing }) => spacing(4) }}>
         <Box className={classes.statusWrapper}>
           <Typography color="text.secondary" variant="subtitle2">
             Recent search

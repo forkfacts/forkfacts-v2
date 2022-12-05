@@ -10,7 +10,7 @@ type pageStatusPropTypes = {
   openCloseBtn?: boolean;
 };
 
-const useStyles = makeStyles(({ typography, spacing, breakpoints }: Theme) => ({
+const useStyles = makeStyles(({ typography, spacing, breakpoints, palette }: Theme) => ({
   underline: {
     [breakpoints.down("md")]: {
       "&&&:before": {
@@ -19,6 +19,11 @@ const useStyles = makeStyles(({ typography, spacing, breakpoints }: Theme) => ({
       "&&:after": {
         borderBottom: "none",
       },
+      fontSize: spacing(1.75),
+      lineHeight: spacing(2.5),
+      letterSpacing: spacing(0.025),
+      color: palette.grey[700],
+      fontWeight: typography.fontWeightRegular,
     },
   },
   icon: {

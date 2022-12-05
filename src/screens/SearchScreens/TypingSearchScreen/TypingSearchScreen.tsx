@@ -1,22 +1,17 @@
-import React, { useState } from "react";
-import { Box } from "@mui/material";
+import React from "react";
+import { Box, Typography } from "@mui/material";
 import { catergoryItemType, SearchResultItemType } from "@forkfacts/models";
 import EggAltOutlinedIcon from "@mui/icons-material/EggAltOutlined";
 import EmojiFoodBeverageOutlinedIcon from "@mui/icons-material/EmojiFoodBeverageOutlined";
 import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlined";
+import { useStyles } from "./typeSearchScreenStyles";
 
-import {
-  SearchStatus,
-  SearchResultItems,
-  RecentSearchHeader,
-  SearchCategories,
-} from "@forkfacts/components";
+import { SearchResults, RecentSearchHeader, SearchCategories } from "@forkfacts/components";
 
 const TypingSearchScreen: React.FC = () => {
-  const handleViewMoreEvent = () => {
-    console.log("view handler triggered");
-  };
-  const onhandleClearSearch = () => {};
+  const handleViewMoreEvent = () => {};
+
+  const classes = useStyles();
 
   const handleCategorySelect = (value: catergoryItemType) => {
     console.log(value);
@@ -39,12 +34,17 @@ const TypingSearchScreen: React.FC = () => {
         showClearInput={true}
       />
       <Box sx={{ mt: ({ spacing }) => spacing(7) }}>
-        <SearchStatus status="ResultsScreen" onhandleClearSearch={onhandleClearSearch} />
+        <Box className={classes.statusWrapper}>
+          {" "}
+          <Typography color="text.secondary" variant="body2">
+            I’m searching for
+          </Typography>
+        </Box>
         <SearchCategories
           onSelectCategory={handleCategorySelect}
           categoryOptions={categoryOptions}
         />
-        <SearchResultItems
+        <SearchResults
           groupLists={GroupLists}
           grouped={true}
           onSelectItem={onSelectItem}

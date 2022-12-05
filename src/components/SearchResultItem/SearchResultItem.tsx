@@ -4,7 +4,7 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import { SearchResultItemPropsType } from "@forkfacts/models";
 
-import { useStyles } from "../searchResultsItemsStyles";
+import { useStyles } from "../SearchResults/searchResultsStyles";
 
 export default function SearchResultItem({ item, onSelectItem }: SearchResultItemPropsType) {
   const styles = useStyles();

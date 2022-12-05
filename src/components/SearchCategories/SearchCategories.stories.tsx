@@ -8,7 +8,7 @@ import { SearchCategories } from "@forkfacts/components";
 import { catergoryItemType } from "@forkfacts/models";
 
 export default {
-  title: "Components/SearchCategories/SearchCategories",
+  title: "Components/SearchCategories/Grouped",
   component: SearchCategories,
   parameters: {
     viewport: {

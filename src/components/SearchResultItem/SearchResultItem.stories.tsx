@@ -5,7 +5,7 @@ import { SearchResultItem } from "@forkfacts/components";
 import { SearchResultItemType } from "@forkfacts/models";
 
 export default {
-  title: "Components/SearchResultItems/SearchResultItem",
+  title: "Components/SearchResultsItem/SearchResultItem",
   component: SearchResultItem,
   parameters: {
     viewport: {

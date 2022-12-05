@@ -1,17 +1,19 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import { ViewMoreButton } from "@forkfacts/components";
+import { ViewMoreButton as ViewMoreBtn } from "@forkfacts/components";
 
 export default {
-  title: "Components/Buttons/ViewMoreButton",
-  component: ViewMoreButton,
+  title: "Components/Buttons",
+  component: ViewMoreBtn,
   argTypes: {},
-} as ComponentMeta<typeof ViewMoreButton>;
+} as ComponentMeta<typeof ViewMoreBtn>;
 
-const Template: ComponentStory<typeof ViewMoreButton> = (args) => <ViewMoreButton {...args} />;
+const Template: ComponentStory<typeof ViewMoreBtn> = (args) => <ViewMoreBtn {...args} />;
 
-export const Primary = Template.bind({});
-Primary.args = {
-  ...Primary.args,
+export const ViewMoreButton = Template.bind({});
+ViewMoreButton.args = {
+  ...ViewMoreButton.args,
 };
+
+ViewMoreButton.storyName = "ViewMoreButton";

@@ -3,7 +3,7 @@ import { Box, Typography, List } from "@mui/material";
 import { ForLoops } from "@forkfacts/helpers";
 import { SearchResultItemsPropsType } from "@forkfacts/models";
 import { ViewMoreButton, SearchResultItem } from "@forkfacts/components";
-import { useStyles } from "./searchResultsItemsStyles";
+import { useStyles } from "./searchResultsStyles";
 
 const SearchResultItems: React.FC<SearchResultItemsPropsType> = ({
   recentLists,

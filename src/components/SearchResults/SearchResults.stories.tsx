@@ -1,12 +1,12 @@
 import React from "react";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
-import { SearchResultItems } from "@forkfacts/components";
+import { SearchResults } from "@forkfacts/components";
 import { SearchResultItemType } from "@forkfacts/models";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 
 export default {
-  title: "Components/SearchResultItems",
-  component: SearchResultItems,
+  title: "Components/SearchResults",
+  component: SearchResults,
   parameters: {
     viewport: {
       viewports: INITIAL_VIEWPORTS,
@@ -30,7 +30,7 @@ export default {
       description: "Grouped Data value that should be passed to the component",
     },
   },
-} as ComponentMeta<typeof SearchResultItems>;
+} as ComponentMeta<typeof SearchResults>;
 
 const recentLists = [
   { image: "/recentImg.png", name: "Kidney beans light, Legume", path: "/:id" },
@@ -58,9 +58,9 @@ const GroupListsType = [
   { groupTitle: "SWEETS", listItems: recentLists.slice(0, 4) },
 ];
 
-export const SearchResultsItemsMultipleCategories: ComponentStory<typeof SearchResultItems> = (
+export const SearchResultsItemsMultipleCategories: ComponentStory<typeof SearchResults> = (
   args
-) => <SearchResultItems {...args} />;
+) => <SearchResults {...args} />;
 SearchResultsItemsMultipleCategories.parameters = {
   viewport: {
     defaultViewport: "iphone6",
@@ -80,9 +80,9 @@ SearchResultsItemsMultipleCategories.argTypes = {
   },
 };
 
-export const SearchResultsItemsSingleCategory: ComponentStory<typeof SearchResultItems> = (
-  args
-) => <SearchResultItems {...args} />;
+export const SearchResultsItemsSingleCategory: ComponentStory<typeof SearchResults> = (args) => (
+  <SearchResults {...args} />
+);
 SearchResultsItemsSingleCategory.parameters = {
   viewport: {
     defaultViewport: "iphone6",

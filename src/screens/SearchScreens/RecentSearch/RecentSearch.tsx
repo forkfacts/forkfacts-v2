@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { Box } from "@mui/material";
+import { Box, Typography, Button } from "@mui/material";
 import { SearchResultItemType } from "@forkfacts/models";
-import { SearchStatus, SearchResultItems, RecentSearchHeader } from "@forkfacts/components";
-
+import { SearchResults, RecentSearchHeader } from "@forkfacts/components";
+import { useStyles } from "./recentSearchStyles";
 const RecentSearchScreen: React.FC = () => {
   const [selectItem, setSelectItem] = useState<SearchResultItemType>({} as SearchResultItemType);
+  const classes = useStyles();
   console.log("selectItem", selectItem);
   const handleViewMoreEvent = () => {
     console.log("view handler triggered");
@@ -23,8 +24,15 @@ const RecentSearchScreen: React.FC = () => {
         showClearInput={true}
       />
       <Box sx={{ mt: ({ spacing }) => spacing(5.5) }}>
-        <SearchStatus status="RecentScreen" />
-        <SearchResultItems
+        <Box className={classes.statusWrapper}>
+          <Typography color="text.secondary" variant="subtitle2">
+            Recent search
+          </Typography>
+          <Button color="primary" variant="text" className={classes.btn}>
+            Clear all
+          </Button>
+        </Box>
+        <SearchResults
           recentLists={recentLists}
           onSelectItem={setSelectItem}
           onViewMore={handleViewMoreEvent}

@@ -21,7 +21,3 @@ Mobile.parameters = {
     defaultViewport: "iphone6",
   },
 };
-
-Mobile.args = {
-  status: "ResultsScreen",
-};

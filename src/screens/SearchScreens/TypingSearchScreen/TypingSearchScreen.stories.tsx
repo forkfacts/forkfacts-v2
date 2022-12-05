@@ -1,20 +1,20 @@
 import React from "react";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { SearchResultsScreen } from "@forkfacts/screens";
+import { TypingSearchScreen } from "@forkfacts/screens";
 
 export default {
-  title: "Screens/SearchScreen/SearchResultsScreen",
-  component: SearchResultsScreen,
+  title: "Screens/SearchScreen/TypingSearchScreen",
+  component: TypingSearchScreen,
   parameters: {
     viewport: {
       viewports: INITIAL_VIEWPORTS,
     },
   },
-} as ComponentMeta<typeof SearchResultsScreen>;
+} as ComponentMeta<typeof TypingSearchScreen>;
 
-export const Mobile: ComponentStory<typeof SearchResultsScreen> = (args) => (
-  <SearchResultsScreen {...args} />
+export const Mobile: ComponentStory<typeof TypingSearchScreen> = (args) => (
+  <TypingSearchScreen {...args} />
 );
 Mobile.parameters = {
   viewport: {

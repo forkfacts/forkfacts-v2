@@ -10,9 +10,18 @@ const RecentSearchScreen: React.FC = () => {
     console.log("view handler triggered");
   };
 
+  const handleCloseHeader = () => {};
+
+  const handleClearInput = () => {};
+
   return (
     <Box>
-      <RecentSearchHeader showBorderBottom={false} openCloseBtn={false} />
+      <RecentSearchHeader
+        showBorderBottom={false}
+        handleClearInput={handleClearInput}
+        handleCloseHeader={handleCloseHeader}
+        showClearInput={true}
+      />
       <Box sx={{ mt: ({ spacing }) => spacing(5.5) }}>
         <SearchStatus status="RecentScreen" />
         <SearchResultItems

@@ -12,7 +12,7 @@ import {
   SearchCategories,
 } from "@forkfacts/components";
 
-const SearchResultsScreen: React.FC = () => {
+const TypingSearchScreen: React.FC = () => {
   const handleViewMoreEvent = () => {
     console.log("view handler triggered");
   };
@@ -26,9 +26,18 @@ const SearchResultsScreen: React.FC = () => {
     console.log(item);
   };
 
+  const handleCloseHeader = () => {};
+
+  const handleClearInput = () => {};
+
   return (
     <Box>
-      <RecentSearchHeader showBorderBottom={false} openCloseBtn={true} />
+      <RecentSearchHeader
+        showBorderBottom={false}
+        handleClearInput={handleClearInput}
+        handleCloseHeader={handleCloseHeader}
+        showClearInput={true}
+      />
       <Box sx={{ mt: ({ spacing }) => spacing(7) }}>
         <SearchStatus status="ResultsScreen" onhandleClearSearch={onhandleClearSearch} />
         <SearchCategories
@@ -46,7 +55,7 @@ const SearchResultsScreen: React.FC = () => {
   );
 };
 
-export default SearchResultsScreen;
+export default TypingSearchScreen;
 
 const recentLists = [
   { image: "/recentImg.png", name: "Kidney beans light, Legume", path: "/:id" },

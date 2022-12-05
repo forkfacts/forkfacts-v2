@@ -36,7 +36,7 @@ const SearchResultsScreen: React.FC = () => {
           categoryOptions={categoryOptions}
         />
         <SearchResultItems
-          groupLists={GroupListsType}
+          groupLists={GroupLists}
           grouped={true}
           onSelectItem={onSelectItem}
           onViewMore={handleViewMoreEvent}
@@ -68,7 +68,7 @@ const recentLists = [
   },
 ];
 
-const GroupListsType = [
+const GroupLists = [
   { groupTitle: "FRUIT AND FRUIT JUICES", listItems: recentLists },
   { groupTitle: "BABY FOODS", listItems: recentLists.slice(0, 1) },
   { groupTitle: "SWEETS", listItems: recentLists.slice(0, 2) },

@@ -1,12 +1,12 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
-import { SearchResultItem } from "@forkfacts/components";
+import { SearchResultsSingleCategeory } from "@forkfacts/components";
 import { SearchResultItemType } from "@forkfacts/models";
 
 export default {
-  title: "Components/SearchResultItems/SearchResultItem",
-  component: SearchResultItem,
+  title: "Components/SearchResultItems/SearchResultsSingleCategeory",
+  component: SearchResultsSingleCategeory,
   parameters: {
     viewport: {
       viewports: INITIAL_VIEWPORTS,
@@ -20,9 +20,11 @@ export default {
       description: "A single search item prop passed to the component",
     },
   },
-} as ComponentMeta<typeof SearchResultItem>;
+} as ComponentMeta<typeof SearchResultsSingleCategeory>;
 
-const Template: ComponentStory<typeof SearchResultItem> = (args) => <SearchResultItem {...args} />;
+const Template: ComponentStory<typeof SearchResultsSingleCategeory> = (args) => (
+  <SearchResultsSingleCategeory {...args} />
+);
 
 export const searchItem = Template.bind({});
 searchItem.args = {
@@ -40,4 +42,4 @@ searchItem.parameters = {
   },
 };
 
-searchItem.storyName = "searchItem";
+searchItem.storyName = "SearchResultsSingleCategeory";

@@ -8,5 +8,5 @@ export { default as SearchCategories } from "./SearchCategories/SearchCategories
 export { default as Header } from "./Header/Header";
 export { default as Layout } from "./Layout/Layout";
 export { default as ViewMoreButton } from "./Buttons/ViewMoreButton/ViewMoreButton";
-export { default as SearchResultsSingleCategeory } from "./SearchResultItems/SearchResultsSingleCategeory/SearchResultsSingleCategeory";
+export { default as SearchResultItem } from "./SearchResultItems/SearchResultItem/SearchResultItem";
 export * from "./FactTable/FactTable";

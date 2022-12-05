@@ -58,44 +58,44 @@ const GroupListsType = [
   { groupTitle: "SWEETS", listItems: recentLists.slice(0, 4) },
 ];
 
-export const Grouped: ComponentStory<typeof SearchResultItems> = (args) => (
-  <SearchResultItems {...args} />
-);
-Grouped.parameters = {
+export const SearchResultsItemsMultipleCategories: ComponentStory<typeof SearchResultItems> = (
+  args
+) => <SearchResultItems {...args} />;
+SearchResultsItemsMultipleCategories.parameters = {
   viewport: {
     defaultViewport: "iphone6",
   },
 };
 
-Grouped.args = {
+SearchResultsItemsMultipleCategories.args = {
   groupLists: GroupListsType,
   grouped: true,
   onSelectItem: (item: SearchResultItemType) => item,
 };
 
-Grouped.argTypes = {
+SearchResultsItemsMultipleCategories.argTypes = {
   grouped: {
     table: { defaultValue: { summary: true } },
     control: false,
   },
 };
 
-export const Lists: ComponentStory<typeof SearchResultItems> = (args) => (
-  <SearchResultItems {...args} />
-);
-Lists.parameters = {
+export const SearchResultsItemsSingleCategory: ComponentStory<typeof SearchResultItems> = (
+  args
+) => <SearchResultItems {...args} />;
+SearchResultsItemsSingleCategory.parameters = {
   viewport: {
     defaultViewport: "iphone6",
   },
 };
 
-Lists.args = {
+SearchResultsItemsSingleCategory.args = {
   recentLists: recentLists,
   grouped: false,
   onSelectItem: (item: SearchResultItemType) => item,
 };
 
-Lists.argTypes = {
+SearchResultsItemsSingleCategory.argTypes = {
   grouped: {
     table: { defaultValue: { summary: false } },
     control: false,

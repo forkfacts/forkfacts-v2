@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Typography, List } from "@mui/material";
 import { ForLoops } from "@forkfacts/helpers";
 import { SearchResultItemsPropsType } from "@forkfacts/models";
-import { ViewMoreButton, SearchResultsSingleCategeory } from "@forkfacts/components";
+import { ViewMoreButton, SearchResultItem } from "@forkfacts/components";
 import { useStyles } from "./searchResultsItemsStyles";
 
 const SearchResultItems: React.FC<SearchResultItemsPropsType> = ({
@@ -34,11 +34,7 @@ const SearchResultItems: React.FC<SearchResultItemsPropsType> = ({
                       <ForLoops each={value.listItems}>
                         {(item, index) => {
                           return (
-                            <SearchResultsSingleCategeory
-                              key={index}
-                              item={item}
-                              onSelectItem={onSelectItem}
-                            />
+                            <SearchResultItem key={index} item={item} onSelectItem={onSelectItem} />
                           );
                         }}
                       </ForLoops>
@@ -56,13 +52,7 @@ const SearchResultItems: React.FC<SearchResultItemsPropsType> = ({
             <List sx={{ padding: 0 }}>
               <ForLoops each={recentLists}>
                 {(item, index) => {
-                  return (
-                    <SearchResultsSingleCategeory
-                      key={index}
-                      item={item}
-                      onSelectItem={onSelectItem}
-                    />
-                  );
+                  return <SearchResultItem key={index} item={item} onSelectItem={onSelectItem} />;
                 }}
               </ForLoops>
             </List>

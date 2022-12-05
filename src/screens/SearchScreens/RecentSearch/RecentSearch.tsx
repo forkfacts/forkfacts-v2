@@ -3,17 +3,19 @@ import { Box, Typography, Button } from "@mui/material";
 import { SearchResultItemType } from "@forkfacts/models";
 import { SearchResults, RecentSearchHeader } from "@forkfacts/components";
 import { useStyles } from "./recentSearchStyles";
-const RecentSearchScreen: React.FC = () => {
-  const [selectItem, setSelectItem] = useState<SearchResultItemType>({} as SearchResultItemType);
+
+interface RecentSearchScreenProps {
+  recentLists: SearchResultItemType[];
+}
+
+const RecentSearchScreen: React.FC<RecentSearchScreenProps> = ({ recentLists }) => {
   const classes = useStyles();
-  console.log("selectItem", selectItem);
   const handleViewMoreEvent = () => {
     console.log("view handler triggered");
   };
-
   const handleCloseHeader = () => {};
-
   const handleClearInput = () => {};
+  const onSelectItem = () => {};
 
   return (
     <Box>
@@ -34,7 +36,7 @@ const RecentSearchScreen: React.FC = () => {
         </Box>
         <SearchResults
           recentLists={recentLists}
-          onSelectItem={setSelectItem}
+          onSelectItem={onSelectItem}
           onViewMore={handleViewMoreEvent}
         />
       </Box>
@@ -43,22 +45,3 @@ const RecentSearchScreen: React.FC = () => {
 };
 
 export default RecentSearchScreen;
-const recentLists = [
-  { image: "/recentImg.png", name: "Kidney beans light, Legume", path: "/:id" },
-  { image: "/image3.png", name: "Grape fruit juices", path: "/:id" },
-  {
-    image: "/image2.png",
-    name: "Baked white bread, Baked products",
-    path: "/:id",
-  },
-  {
-    image: "/image4.png",
-    name: "Grape fruit juice unsweentened, Fruit ...",
-    path: "/:id",
-  },
-  {
-    image: "/image5.png",
-    name: "Banana dehydrated/ banana powder",
-    path: "/:id",
-  },
-];

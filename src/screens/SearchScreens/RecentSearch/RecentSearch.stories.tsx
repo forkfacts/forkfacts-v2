@@ -16,8 +16,32 @@ export default {
 export const Mobile: ComponentStory<typeof RecentSearchScreen> = (args) => (
   <RecentSearchScreen {...args} />
 );
+
+const recentLists = [
+  { image: "/recentImg.png", name: "Kidney beans light, Legume", path: "/:id" },
+  { image: "/image3.png", name: "Grape fruit juices", path: "/:id" },
+  {
+    image: "/image2.png",
+    name: "Baked white bread, Baked products",
+    path: "/:id",
+  },
+  {
+    image: "/image4.png",
+    name: "Grape fruit juice unsweentened, Fruit ...",
+    path: "/:id",
+  },
+  {
+    image: "/image5.png",
+    name: "Banana dehydrated/ banana powder",
+    path: "/:id",
+  },
+];
 Mobile.parameters = {
   viewport: {
     defaultViewport: "iphone6",
   },
+};
+
+Mobile.args = {
+  recentLists: recentLists,
 };

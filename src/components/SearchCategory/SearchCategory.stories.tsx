@@ -56,7 +56,6 @@ selectedButton.args = {
 
 selectedButton.storyName = "seleted Button";
 
-// unselected button
 export const unSelectedButton: ComponentStory<typeof SearchCategory> = (args) => (
   <SearchCategory {...args} />
 );

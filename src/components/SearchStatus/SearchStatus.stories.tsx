@@ -25,7 +25,7 @@ export default {
       name: "onhandleClearSearch",
       description: "A function that is passed to the component to clear search history",
       table: {
-        typ: "onhandleClearSearch=()=>{}",
+        type: "onhandleClearSearch=()=>{}",
       },
     },
   },

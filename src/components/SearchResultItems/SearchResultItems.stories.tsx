@@ -80,7 +80,6 @@ Grouped.argTypes = {
   },
 };
 
-// Lists data display
 export const Lists: ComponentStory<typeof SearchResultItems> = (args) => (
   <SearchResultItems {...args} />
 );

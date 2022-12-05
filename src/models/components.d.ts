@@ -1,8 +1,5 @@
 import { SvgIconComponent } from "@mui/icons-material";
 
-/*=============================================
-=     SearchResultsItems typescript types  =
-=============================================*/
 export interface SearchResultItemType {
   name: string;
   path: string;
@@ -33,11 +30,7 @@ export interface SearchResultItemPropsType {
   item: SearchResultItemType;
   onSelectItem: (item: SearchResultItemType) => item;
 }
-/*=====  End of SearchResultsItems typescript types  ======*/
 
-/*=============================================
-=    SearchCategorires/SearchCategory typescript  types   =
-=============================================*/
 export interface catergoryItemType {
   label: string;
   Icon: SvgIconComponent;
@@ -55,4 +48,3 @@ export interface SearchCategoryProps extends onSelectCategoryType {
 export interface SearchCategoriesProps extends onSelectCategoryType {
   categoryOptions: Array<catergoryItemType>;
 }
-/*=====  End of  SearchCategorires/SearchCategory types======*/

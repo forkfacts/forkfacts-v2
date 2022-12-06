@@ -6,7 +6,7 @@ export interface TypingSearchScreenProps extends onSelectCategoryType {
   handleClearInput: () => void;
   handleCloseHeader: () => void;
   handleViewMoreEvent: () => void;
-  onSelectItem: () => void;
+  onSelectItem: (item: SearchResultItemType) => item;
   showClearInput: boolean;
 }
 
@@ -15,6 +15,6 @@ export interface RecentSearchScreenProps {
   handleClearInput: () => void;
   handleCloseHeader: () => void;
   handleViewMoreEvent: () => void;
-  onSelectItem: () => void;
+  onSelectItem: (item: SearchResultItemType) => void;
   showClearInput: boolean;
 }

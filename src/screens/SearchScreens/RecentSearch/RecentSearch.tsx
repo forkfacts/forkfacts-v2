@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { Box, Typography, Button } from "@mui/material";
 import { RecentSearchScreenProps } from "@forkfacts/models";
 import { SearchResults, RecentSearchHeader } from "@forkfacts/components";
 import { useStyles } from "./recentSearchStyles";
 
-const RecentSearchScreen: React.FC<RecentSearchScreenProps> = ({
+const RecentSearch: React.FC<RecentSearchScreenProps> = ({
   recentLists,
   handleClearInput,
   handleCloseHeader,
@@ -12,7 +12,6 @@ const RecentSearchScreen: React.FC<RecentSearchScreenProps> = ({
   onSelectItem,
 }) => {
   const classes = useStyles();
-
   return (
     <Box>
       <RecentSearchHeader
@@ -39,5 +38,4 @@ const RecentSearchScreen: React.FC<RecentSearchScreenProps> = ({
     </Box>
   );
 };
-
-export default RecentSearchScreen;
+export default RecentSearch;

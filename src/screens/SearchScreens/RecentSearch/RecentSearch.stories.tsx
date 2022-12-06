@@ -43,5 +43,6 @@ Mobile.parameters = {
 };
 
 Mobile.args = {
+  ...Mobile.args,
   recentLists: recentLists,
 };

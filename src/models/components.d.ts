@@ -7,7 +7,7 @@ export interface SearchResultItemType {
 }
 export interface GroupListsType {
   listItems: Array<SearchResultItemType>;
-  groupTitle: string;
+  categoryName: string;
 }
 interface ExtendSearchResultItemsProps {
   onSelectItem: (item: SearchResultItemType) => item;
@@ -31,12 +31,12 @@ export interface SearchResultItemPropsType {
   onSelectItem: (item: SearchResultItemType) => item;
 }
 
-export interface catergoryItemType {
+export interface SearchCatergoryItemType {
   label: string;
   Icon: SvgIconComponent;
 }
 export interface onSelectCategoryType {
-  onSelectCategory: (item: catergoryItemType) => item;
+  onSelectCategory: (item: SearchCatergoryItemType) => item;
 }
 export interface SearchCategoryProps extends onSelectCategoryType {
   label: string;
@@ -46,10 +46,10 @@ export interface SearchCategoryProps extends onSelectCategoryType {
   selectedIndex: number;
 }
 export interface SearchCategoriesProps extends onSelectCategoryType {
-  categoryOptions: Array<catergoryItemType>;
+  categoryOptions: Array<SearchCatergoryItemType>;
 }
 
-export interface pageStatusPropTypes {
+export interface RecentSearchHeaderProps {
   showBorderBottom?: boolean;
   showClearInput?: boolean;
   handleCloseHeader: () => void;

@@ -3,10 +3,10 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { Box, TextField, AppBar } from "@mui/material";
 import InputAdornment from "@mui/material/InputAdornment";
 import CloseIcon from "@mui/icons-material/Close";
-import { pageStatusPropTypes } from "@forkfacts/models";
+import { RecentSearchHeaderProps } from "@forkfacts/models";
 import { useStyles } from "./RecentSearchHeaderStyles";
 
-const RecentSearchHeader: React.FC<pageStatusPropTypes> = ({
+const RecentSearchHeader: React.FC<RecentSearchHeaderProps> = ({
   showClearInput,
   showBorderBottom = false,
   handleCloseHeader,

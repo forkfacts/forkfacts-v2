@@ -26,9 +26,9 @@ const SearchResultItems: React.FC<SearchResultItemsPropsType> = ({
                     <Typography
                       color="text.secondary"
                       component="div"
-                      className={classes.groupTitle}
+                      className={classes.categoryName}
                     >
-                      {value.groupTitle}
+                      {value.categoryName}
                     </Typography>
                     <Box>
                       <ForLoops each={value.listItems}>

@@ -62,9 +62,9 @@ const recentLists = [
 ];
 
 const GroupListsType = [
-  { groupTitle: "FRUIT AND FRUIT JUICES", listItems: recentLists },
-  { groupTitle: "BABY FOODS", listItems: recentLists.slice(0, 3) },
-  { groupTitle: "SWEETS", listItems: recentLists.slice(0, 4) },
+  { categoryName: "FRUIT AND FRUIT JUICES", listItems: recentLists },
+  { categoryName: "BABY FOODS", listItems: recentLists.slice(0, 3) },
+  { categoryName: "SWEETS", listItems: recentLists.slice(0, 4) },
 ];
 
 const Template: ComponentStory<typeof SearchResults> = (args) => <SearchResults {...args} />;

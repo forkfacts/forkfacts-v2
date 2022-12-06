@@ -1,8 +1,8 @@
-import { GroupListsType, catergoryItemType, onSelectCategoryType } from "@forkfacts/models";
+import { GroupListsType, SearchCatergoryItemType, onSelectCategoryType } from "@forkfacts/models";
 
 export interface TypingSearchScreenProps extends onSelectCategoryType {
   groupLists: GroupListsType[];
-  categoryOptions: catergoryItemType[];
+  categoryOptions: SearchCatergoryItemType[];
   handleClearInput: () => void;
   handleCloseHeader: () => void;
   handleViewMoreEvent: () => void;

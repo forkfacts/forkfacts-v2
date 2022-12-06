@@ -15,7 +15,7 @@ export const useStyles = makeStyles(({ spacing, breakpoints, typography }: Theme
       fontSize: spacing(2),
     },
   },
-  groupTitle: {
+  categoryName: {
     [breakpoints.down("md")]: {
       fontSize: spacing(1.4),
       padding: spacing(1.2, 2),

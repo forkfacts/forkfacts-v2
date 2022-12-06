@@ -3,7 +3,7 @@ import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import EggAltOutlinedIcon from "@mui/icons-material/EggAltOutlined";
 import { SearchCategory } from "@forkfacts/components";
-import { catergoryItemType } from "@forkfacts/models";
+import { SearchCatergoryItemType } from "@forkfacts/models";
 
 export default {
   title: "Components/SearchCategories/Single",
@@ -51,7 +51,7 @@ selectedButton.args = {
   Icon: EggAltOutlinedIcon,
   index: 0,
   selectedIndex: 0,
-  onSelectCategory: (label: catergoryItemType) => label,
+  onSelectCategory: (label: SearchCatergoryItemType) => label,
 };
 
 selectedButton.storyName = "seleted Button";
@@ -69,7 +69,7 @@ unSelectedButton.storyName = "unSelected Button";
 unSelectedButton.args = {
   label: "Food",
   Icon: EggAltOutlinedIcon,
-  onSelectCategory: (label: catergoryItemType) => label,
+  onSelectCategory: (label: SearchCatergoryItemType) => label,
   index: 0,
   selectedIndex: 1,
 };

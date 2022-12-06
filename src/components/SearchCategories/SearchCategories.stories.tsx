@@ -27,9 +27,9 @@ export default {
   },
 } as ComponentMeta<typeof SearchCategories>;
 
-export const Mobile: ComponentStory<typeof SearchCategories> = (args) => (
-  <SearchCategories {...args} />
-);
+const Template: ComponentStory<typeof SearchCategories> = (args) => <SearchCategories {...args} />;
+
+export const Mobile = Template.bind({});
 Mobile.parameters = {
   viewport: {
     defaultViewport: "iphone6",
@@ -46,10 +46,7 @@ Mobile.args = {
   categoryOptions: categoryOptions,
 };
 
-// tablet screen size
-export const Tablet: ComponentStory<typeof SearchCategories> = (args) => (
-  <SearchCategories {...args} />
-);
+export const Tablet = Template.bind({});
 Tablet.parameters = {
   viewport: {
     defaultViewport: "ipad",

@@ -3,33 +3,24 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { Box, TextField, AppBar } from "@mui/material";
 import InputAdornment from "@mui/material/InputAdornment";
 import CloseIcon from "@mui/icons-material/Close";
+import { pageStatusPropTypes } from "@forkfacts/models";
 import { useStyles } from "./RecentSearchHeaderStyles";
 
-type pageStatusPropTypes = {
-  showBorderBottom?: boolean;
-  showClearInput?: boolean;
-  handleCloseHeader: () => void;
-  handleClearInput: () => void;
-};
-
-const SearchHeader: React.FC<pageStatusPropTypes> = ({
+const RecentSearchHeader: React.FC<pageStatusPropTypes> = ({
   showClearInput,
-  showBorderBottom = true,
+  showBorderBottom = false,
   handleCloseHeader,
   handleClearInput,
 }) => {
   const classes = useStyles();
 
   return (
-    <Box>
+    <Box className={classes.root}>
       <AppBar
         sx={{
           boxShadow: showBorderBottom ? 1 : 0,
           zIndex: ({ zIndex }) => zIndex.appBar,
           bgcolor: "background.paper",
-          py: { xs: "15px" },
-          pr: { xs: "20px" },
-          pl: { xs: "11px" },
         }}
       >
         <Box>
@@ -69,4 +60,4 @@ const SearchHeader: React.FC<pageStatusPropTypes> = ({
   );
 };
 
-export default SearchHeader;
+export default RecentSearchHeader;

@@ -11,7 +11,7 @@ export interface GroupListsType {
 }
 interface ExtendSearchResultItemsProps {
   onSelectItem: (item: SearchResultItemType) => item;
-  onViewMore?: () => void;
+  handleViewMore?: () => void;
 }
 export type SearchResultItemsPropsType = (
   | {
@@ -47,4 +47,11 @@ export interface SearchCategoryProps extends onSelectCategoryType {
 }
 export interface SearchCategoriesProps extends onSelectCategoryType {
   categoryOptions: Array<catergoryItemType>;
+}
+
+export interface pageStatusPropTypes {
+  showBorderBottom?: boolean;
+  showClearInput?: boolean;
+  handleCloseHeader: () => void;
+  handleClearInput: () => void;
 }

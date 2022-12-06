@@ -17,8 +17,16 @@ export default {
 } as ComponentMeta<typeof TypingSearchScreen>;
 
 const recentLists = [
-  { image: "/recentImg.png", name: "Kidney beans light, Legume", path: "/:id" },
-  { image: "/image3.png", name: "Grape fruit juices", path: "/:id" },
+  {
+    image: "/recentImg.png",
+    name: "Kidney beans light, Legume",
+    path: "/:id",
+  },
+  {
+    image: "/image3.png",
+    name: "Grape fruit juices",
+    path: "/:id",
+  },
   {
     image: "/image2.png",
     name: "Baked white bread, Baked products",
@@ -36,7 +44,7 @@ const recentLists = [
   },
 ];
 
-const GroupListsType = [
+const groupLists = [
   { groupTitle: "FRUIT AND FRUIT JUICES", listItems: recentLists },
   { groupTitle: "BABY FOODS", listItems: recentLists.slice(0, 3) },
   { groupTitle: "SWEETS", listItems: recentLists.slice(0, 4) },
@@ -58,6 +66,6 @@ Mobile.parameters = {
 };
 
 Mobile.args = {
-  groupLists: GroupListsType,
+  groupLists: groupLists,
   categoryOptions: categoryOptions,
 };

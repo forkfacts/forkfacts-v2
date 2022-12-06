@@ -2,6 +2,17 @@ import { makeStyles } from "@mui/styles";
 import { Theme } from "@mui/material";
 
 export const useStyles = makeStyles(({ typography, spacing, breakpoints, palette }: Theme) => ({
+  root: {
+    [breakpoints.down("md")]: {
+      display: "flex",
+      flexdDirection: "column",
+      alignItems: "center",
+      paddingTop: spacing(1.9),
+      paddingLeft: spacing(2),
+      paddingBottom: spacing(1.9),
+      paddingRight: spacing(3.9),
+    },
+  },
   underline: {
     [breakpoints.down("md")]: {
       "&&&:before": {

@@ -1,30 +1,19 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
 import { useStyles } from "./typeSearchScreenStyles";
-import { GroupListsType, catergoryItemType, SearchResultItemType } from "@forkfacts/models";
+import { TypingSearchScreenProps } from "@forkfacts/models";
 import { SearchResults, RecentSearchHeader, SearchCategories } from "@forkfacts/components";
 
-interface TypingSearchScreenProps {
-  groupLists: GroupListsType[];
-  categoryOptions: catergoryItemType[];
-}
-
-const TypingSearchScreen: React.FC<TypingSearchScreenProps> = ({ groupLists, categoryOptions }) => {
-  const handleViewMoreEvent = () => {};
-
+const TypingSearchScreen: React.FC<TypingSearchScreenProps> = ({
+  groupLists,
+  categoryOptions,
+  handleClearInput,
+  handleCloseHeader,
+  handleViewMoreEvent,
+  onSelectItem,
+  onSelectCategory,
+}) => {
   const classes = useStyles();
-
-  const handleCategorySelect = (value: catergoryItemType) => {
-    console.log(value);
-  };
-
-  const onSelectItem = (item: SearchResultItemType) => {
-    console.log(item);
-  };
-
-  const handleCloseHeader = () => {};
-
-  const handleClearInput = () => {};
 
   return (
     <Box>
@@ -34,22 +23,18 @@ const TypingSearchScreen: React.FC<TypingSearchScreenProps> = ({ groupLists, cat
         handleCloseHeader={handleCloseHeader}
         showClearInput={true}
       />
-      <Box sx={{ mt: ({ spacing }) => spacing(5) }}>
+      <Box sx={{ mt: ({ spacing }) => spacing(3) }}>
         <Box className={classes.statusWrapper}>
-          {" "}
           <Typography color="text.secondary" variant="body2">
             I’m searching for
           </Typography>
         </Box>
-        <SearchCategories
-          onSelectCategory={handleCategorySelect}
-          categoryOptions={categoryOptions}
-        />
+        <SearchCategories onSelectCategory={onSelectCategory} categoryOptions={categoryOptions} />
         <SearchResults
           groupLists={groupLists}
           grouped={true}
           onSelectItem={onSelectItem}
-          onViewMore={handleViewMoreEvent}
+          handleViewMore={handleViewMoreEvent}
         />
       </Box>
     </Box>

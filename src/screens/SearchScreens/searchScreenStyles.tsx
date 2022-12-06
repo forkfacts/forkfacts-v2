@@ -1,11 +1,13 @@
 import { makeStyles } from "@mui/styles";
 import { Theme } from "@mui/material";
 
+const headerHeight = 55.4993;
+
 export const useStyles = makeStyles(({ spacing, breakpoints }: Theme) => ({
   root: {
     width: "100%",
     flexGrow: 1,
-    minHeight: "92vh",
+    minHeight: `calc(100vh - ${headerHeight}px)`,
     display: "flex",
     justifyContent: "center",
     alignItems: "center",

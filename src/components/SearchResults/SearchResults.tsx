@@ -10,7 +10,7 @@ const SearchResultItems: React.FC<SearchResultItemsPropsType> = ({
   grouped,
   groupLists,
   onSelectItem,
-  onViewMore,
+  handleViewMore,
 }) => {
   const classes = useStyles();
 
@@ -22,7 +22,7 @@ const SearchResultItems: React.FC<SearchResultItemsPropsType> = ({
             <ForLoops each={groupLists}>
               {(value, idx) => {
                 return (
-                  <List key={idx} className={classes.groupWrapper}>
+                  <List key={idx} className={classes.listWrapper}>
                     <Typography
                       color="text.secondary"
                       component="div"
@@ -39,7 +39,9 @@ const SearchResultItems: React.FC<SearchResultItemsPropsType> = ({
                         }}
                       </ForLoops>
                     </Box>
-                    {value.listItems.length > 3 && <ViewMoreButton onViewMore={onViewMore!} />}
+                    {value.listItems.length > 3 && (
+                      <ViewMoreButton handleViewMore={handleViewMore!} />
+                    )}
                   </List>
                 );
               }}
@@ -49,7 +51,7 @@ const SearchResultItems: React.FC<SearchResultItemsPropsType> = ({
       ) : (
         <Box>
           {recentLists !== undefined && (
-            <List sx={{ padding: 0 }}>
+            <List sx={{ padding: 0 }} className={classes.listWrapper}>
               <ForLoops each={recentLists}>
                 {(item, index) => {
                   return <SearchResultItem key={index} item={item} onSelectItem={onSelectItem} />;
@@ -58,7 +60,7 @@ const SearchResultItems: React.FC<SearchResultItemsPropsType> = ({
             </List>
           )}
           {recentLists !== undefined && recentLists?.length > 3 && (
-            <ViewMoreButton onViewMore={onViewMore!} />
+            <ViewMoreButton handleViewMore={handleViewMore!} />
           )}
         </Box>
       )}

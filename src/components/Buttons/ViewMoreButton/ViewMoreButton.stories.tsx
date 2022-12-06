@@ -6,7 +6,12 @@ import { ViewMoreButton as ViewMoreBtn } from "@forkfacts/components";
 export default {
   title: "Components/Buttons",
   component: ViewMoreBtn,
-  argTypes: {},
+  argTypes: {
+    handleViewMore: {
+      name: "handleViewMore",
+      description: "A function prop to view more searched items",
+    },
+  },
 } as ComponentMeta<typeof ViewMoreBtn>;
 
 const Template: ComponentStory<typeof ViewMoreBtn> = (args) => <ViewMoreBtn {...args} />;

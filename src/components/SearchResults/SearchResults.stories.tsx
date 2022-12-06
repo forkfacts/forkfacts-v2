@@ -14,19 +14,28 @@ export default {
   },
   argTypes: {
     recentLists: {
+      name: "recentLists",
       description: "Data value that should be passed to the component",
     },
     onSelectItem: {
+      name: "onSelectItem",
       description: "A function that should be passed to select a single search item",
+      action: "onClick",
+      control: null,
     },
     grouped: {
+      name: "grouped",
       description: "If you want grouped table lists pass as a prop to render grouped data",
     },
-    onViewMore: {
+    handleViewMore: {
+      name: "handleViewMore",
       description:
         "An event handler that should be passed if you want to view more lists or expand the lists",
+      action: "onClick",
+      control: null,
     },
     groupLists: {
+      name: "groupLists",
       description: "Grouped Data value that should be passed to the component",
     },
   },
@@ -58,21 +67,20 @@ const GroupListsType = [
   { groupTitle: "SWEETS", listItems: recentLists.slice(0, 4) },
 ];
 
-export const SearchResultsItemsMultipleCategories: ComponentStory<typeof SearchResults> = (
-  args
-) => <SearchResults {...args} />;
+const Template: ComponentStory<typeof SearchResults> = (args) => <SearchResults {...args} />;
+
+export const SearchResultsItemsMultipleCategories = Template.bind({});
 SearchResultsItemsMultipleCategories.parameters = {
   viewport: {
     defaultViewport: "iphone6",
   },
 };
-
 SearchResultsItemsMultipleCategories.args = {
+  ...SearchResultsItemsMultipleCategories.args,
   groupLists: GroupListsType,
   grouped: true,
   onSelectItem: (item: SearchResultItemType) => item,
 };
-
 SearchResultsItemsMultipleCategories.argTypes = {
   grouped: {
     table: { defaultValue: { summary: true } },
@@ -80,21 +88,18 @@ SearchResultsItemsMultipleCategories.argTypes = {
   },
 };
 
-export const SearchResultsItemsSingleCategory: ComponentStory<typeof SearchResults> = (args) => (
-  <SearchResults {...args} />
-);
+export const SearchResultsItemsSingleCategory = Template.bind({});
 SearchResultsItemsSingleCategory.parameters = {
   viewport: {
     defaultViewport: "iphone6",
   },
 };
-
 SearchResultsItemsSingleCategory.args = {
+  ...SearchResultsItemsSingleCategory.args,
   recentLists: recentLists,
   grouped: false,
   onSelectItem: (item: SearchResultItemType) => item,
 };
-
 SearchResultsItemsSingleCategory.argTypes = {
   grouped: {
     table: { defaultValue: { summary: false } },

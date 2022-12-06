@@ -16,7 +16,7 @@ export default {
   },
 } as ComponentMeta<typeof TypingSearchScreen>;
 
-const recentLists = [
+const collection = [
   {
     image: "/recentImg.png",
     name: "Kidney beans light, Legume",
@@ -44,10 +44,10 @@ const recentLists = [
   },
 ];
 
-const groupLists = [
-  { categoryName: "FRUIT AND FRUIT JUICES", listItems: recentLists },
-  { categoryName: "BABY FOODS", listItems: recentLists.slice(0, 3) },
-  { categoryName: "SWEETS", listItems: recentLists.slice(0, 4) },
+const collectionGroupedItems = [
+  { categoryName: "FRUIT AND FRUIT JUICES", collection: collection },
+  { categoryName: "BABY FOODS", collection: collection.slice(0, 3) },
+  { categoryName: "SWEETS", collection: collection.slice(0, 4) },
 ];
 
 const categoryOptions = [
@@ -66,6 +66,7 @@ Mobile.parameters = {
 };
 
 Mobile.args = {
-  groupLists: groupLists,
+  collectionGroupedItems,
+  multiple: true,
   categoryOptions: categoryOptions,
 };

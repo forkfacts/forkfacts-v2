@@ -17,7 +17,7 @@ export const Mobile: ComponentStory<typeof RecentSearchScreen> = (args) => (
   <RecentSearchScreen {...args} />
 );
 
-const recentLists = [
+const collectionListsItems = [
   { image: "/recentImg.png", name: "Kidney beans light, Legume", path: "/:id" },
   { image: "/image3.png", name: "Grape fruit juices", path: "/:id" },
   {
@@ -44,5 +44,5 @@ Mobile.parameters = {
 
 Mobile.args = {
   ...Mobile.args,
-  recentLists: recentLists,
+  collectionListsItems,
 };

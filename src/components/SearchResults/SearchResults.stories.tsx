@@ -13,9 +13,9 @@ export default {
     },
   },
   argTypes: {
-    recentLists: {
-      name: "recentLists",
-      description: "Data value that should be passed to the component",
+    collection: {
+      name: "collection",
+      description: "Collection of single lists data that should be passed to the component",
     },
     onSelectItem: {
       name: "onSelectItem",
@@ -23,9 +23,9 @@ export default {
       action: "onClick",
       control: null,
     },
-    grouped: {
-      name: "grouped",
-      description: "If you want grouped table lists pass as a prop to render grouped data",
+    multiple: {
+      name: "multiple",
+      description: "If you want multiple table lists pass as a prop to render multiple data",
     },
     handleViewMore: {
       name: "handleViewMore",
@@ -34,14 +34,14 @@ export default {
       action: "onClick",
       control: null,
     },
-    groupLists: {
-      name: "groupLists",
-      description: "Grouped Data value that should be passed to the component",
+    collections: {
+      name: "collection",
+      description: "collections multiple data  that should be passed to the component",
     },
   },
 } as ComponentMeta<typeof SearchResults>;
 
-const recentLists = [
+const collectionListsItems = [
   { image: "/recentImg.png", name: "Kidney beans light, Legume", path: "/:id" },
   { image: "/image3.png", name: "Grape fruit juices", path: "/:id" },
   {
@@ -61,10 +61,10 @@ const recentLists = [
   },
 ];
 
-const GroupListsType = [
-  { categoryName: "FRUIT AND FRUIT JUICES", listItems: recentLists },
-  { categoryName: "BABY FOODS", listItems: recentLists.slice(0, 3) },
-  { categoryName: "SWEETS", listItems: recentLists.slice(0, 4) },
+const collectionGroupedItems = [
+  { categoryName: "FRUIT AND FRUIT JUICES", collection: collectionListsItems },
+  { categoryName: "BABY FOODS", collection: collectionListsItems.slice(0, 3) },
+  { categoryName: "SWEETS", collection: collectionListsItems.slice(0, 4) },
 ];
 
 const Template: ComponentStory<typeof SearchResults> = (args) => <SearchResults {...args} />;
@@ -77,12 +77,12 @@ SearchResultsItemsMultipleCategories.parameters = {
 };
 SearchResultsItemsMultipleCategories.args = {
   ...SearchResultsItemsMultipleCategories.args,
-  groupLists: GroupListsType,
-  grouped: true,
+  collectionGroupedItems,
+  multiple: true,
   onSelectItem: (item: SearchResultItemType) => item,
 };
 SearchResultsItemsMultipleCategories.argTypes = {
-  grouped: {
+  multiple: {
     table: { defaultValue: { summary: true } },
     control: false,
   },
@@ -96,12 +96,12 @@ SearchResultsItemsSingleCategory.parameters = {
 };
 SearchResultsItemsSingleCategory.args = {
   ...SearchResultsItemsSingleCategory.args,
-  recentLists: recentLists,
-  grouped: false,
+  collectionListsItems,
+  multiple: false,
   onSelectItem: (item: SearchResultItemType) => item,
 };
 SearchResultsItemsSingleCategory.argTypes = {
-  grouped: {
+  multiple: {
     table: { defaultValue: { summary: false } },
     control: false,
   },

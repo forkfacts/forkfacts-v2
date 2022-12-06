@@ -12,7 +12,7 @@ export default {
     },
   },
   args: {
-    handleToggleEvenets: () => console.log("toggle sidebar"),
+    handleToggleEvent: () => console.log("toggle sidebar"),
   },
 } as ComponentMeta<typeof Header>;
 

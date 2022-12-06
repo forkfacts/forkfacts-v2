@@ -13,7 +13,7 @@ export default {
     },
   },
   args: {
-    handleToggleEvenets: () => console.log("toggle sidebar"),
+    handleToggleButton: () => console.log("toggle sidebar"),
   },
 } as ComponentMeta<typeof Layout>;
 

@@ -5,13 +5,14 @@ import { TypingSearchScreenProps } from "@forkfacts/models";
 import { SearchResults, RecentSearchHeader, SearchCategories } from "@forkfacts/components";
 
 const TypingSearchScreen: React.FC<TypingSearchScreenProps> = ({
-  groupLists,
+  collectionGroupedItems,
   categoryOptions,
-  handleClearInput,
-  handleCloseHeader,
-  handleViewMoreEvent,
+  onClearSearch,
+  onClosePage,
+  handleViewMore,
   onSelectItem,
   onSelectCategory,
+  multiple,
 }) => {
   const classes = useStyles();
 
@@ -19,9 +20,9 @@ const TypingSearchScreen: React.FC<TypingSearchScreenProps> = ({
     <Box>
       <RecentSearchHeader
         showBorderBottom={false}
-        handleClearInput={handleClearInput}
-        handleCloseHeader={handleCloseHeader}
-        showClearInput={true}
+        onClearSearch={onClearSearch}
+        onClosePage={onClosePage}
+        showClearSearch={true}
       />
       <Box sx={{ mt: ({ spacing }) => spacing(2) }}>
         <Box className={classes.statusWrapper}>
@@ -31,10 +32,10 @@ const TypingSearchScreen: React.FC<TypingSearchScreenProps> = ({
         </Box>
         <SearchCategories onSelectCategory={onSelectCategory} categoryOptions={categoryOptions} />
         <SearchResults
-          groupLists={groupLists}
-          grouped={true}
+          collectionGroupedItems={collectionGroupedItems}
+          multiple={multiple}
           onSelectItem={onSelectItem}
-          handleViewMore={handleViewMoreEvent}
+          handleViewMore={handleViewMore}
         />
       </Box>
     </Box>

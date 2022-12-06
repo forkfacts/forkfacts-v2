@@ -2,11 +2,11 @@ import { ListItem, ListItemText, Typography } from "@mui/material";
 import React from "react";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
-import { SearchResultItemPropsType } from "@forkfacts/models";
+import { SearchResultItemProps } from "@forkfacts/models";
 
 import { useStyles } from "../SearchResults/searchResultsStyles";
 
-export default function SearchResultItem({ item, onSelectItem }: SearchResultItemPropsType) {
+export default function SearchResultItem({ item, onSelectItem }: SearchResultItemProps) {
   const styles = useStyles();
 
   return (

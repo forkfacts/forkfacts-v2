@@ -1,14 +1,14 @@
 import React from "react";
 import { Box, Typography, List } from "@mui/material";
 import { ForLoops } from "@forkfacts/helpers";
-import { SearchResultItemsPropsType } from "@forkfacts/models";
+import { SearchResultsProps } from "@forkfacts/models";
 import { ViewMoreButton, SearchResultItem } from "@forkfacts/components";
 import { useStyles } from "./searchResultsStyles";
 
-const SearchResultItems: React.FC<SearchResultItemsPropsType> = ({
-  recentLists,
-  grouped,
-  groupLists,
+const SearchResults: React.FC<SearchResultsProps> = ({
+  collectionGroupedItems,
+  collectionListsItems,
+  multiple,
   onSelectItem,
   handleViewMore,
 }) => {
@@ -16,10 +16,10 @@ const SearchResultItems: React.FC<SearchResultItemsPropsType> = ({
 
   return (
     <Box className={classes.root}>
-      {grouped ? (
+      {multiple ? (
         <Box>
-          {groupLists !== undefined && (
-            <ForLoops each={groupLists}>
+          {collectionGroupedItems !== undefined && (
+            <ForLoops each={collectionGroupedItems}>
               {(value, idx) => {
                 return (
                   <List key={idx} className={classes.listWrapper}>
@@ -31,7 +31,7 @@ const SearchResultItems: React.FC<SearchResultItemsPropsType> = ({
                       {value.categoryName}
                     </Typography>
                     <Box>
-                      <ForLoops each={value.listItems}>
+                      <ForLoops each={value.collection}>
                         {(item, index) => {
                           return (
                             <SearchResultItem key={index} item={item} onSelectItem={onSelectItem} />
@@ -39,7 +39,7 @@ const SearchResultItems: React.FC<SearchResultItemsPropsType> = ({
                         }}
                       </ForLoops>
                     </Box>
-                    {value.listItems.length > 3 && (
+                    {value.collection.length > 3 && (
                       <ViewMoreButton handleViewMore={handleViewMore!} />
                     )}
                   </List>
@@ -50,16 +50,16 @@ const SearchResultItems: React.FC<SearchResultItemsPropsType> = ({
         </Box>
       ) : (
         <Box>
-          {recentLists !== undefined && (
+          {collectionListsItems !== undefined && (
             <List sx={{ padding: 0 }} className={classes.listWrapper}>
-              <ForLoops each={recentLists}>
+              <ForLoops each={collectionListsItems}>
                 {(item, index) => {
                   return <SearchResultItem key={index} item={item} onSelectItem={onSelectItem} />;
                 }}
               </ForLoops>
             </List>
           )}
-          {recentLists !== undefined && recentLists?.length > 3 && (
+          {collectionListsItems !== undefined && collectionListsItems?.length > 3 && (
             <ViewMoreButton handleViewMore={handleViewMore!} />
           )}
         </Box>
@@ -68,4 +68,4 @@ const SearchResultItems: React.FC<SearchResultItemsPropsType> = ({
   );
 };
 
-export default SearchResultItems;
+export default SearchResults;

@@ -7,10 +7,10 @@ import { RecentSearchHeaderProps } from "@forkfacts/models";
 import { useStyles } from "./RecentSearchHeaderStyles";
 
 const RecentSearchHeader: React.FC<RecentSearchHeaderProps> = ({
-  showClearInput,
+  showClearSearch,
   showBorderBottom = false,
-  handleCloseHeader,
-  handleClearInput,
+  onClosePage,
+  onClearSearch,
 }) => {
   const classes = useStyles();
 
@@ -31,21 +31,13 @@ const RecentSearchHeader: React.FC<RecentSearchHeaderProps> = ({
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
-                  <ArrowBackIcon
-                    className={classes.icon}
-                    color="primary"
-                    onClick={handleCloseHeader}
-                  />
+                  <ArrowBackIcon className={classes.icon} color="primary" onClick={onClosePage} />
                 </InputAdornment>
               ),
               endAdornment: (
                 <InputAdornment position="end">
-                  {showClearInput ? (
-                    <CloseIcon
-                      className={classes.icon}
-                      color="primary"
-                      onClick={handleClearInput}
-                    />
+                  {showClearSearch ? (
+                    <CloseIcon className={classes.icon} color="primary" onClick={onClearSearch} />
                   ) : null}
                 </InputAdornment>
               ),

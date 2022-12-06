@@ -10,11 +10,11 @@ import flexStyles from "../../styles/flex.module.css";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useStyles } from "./headerStyles";
 
-interface props {
-  handleToggleEvenets: () => void;
+interface HeaderProps {
+  handleToggleButton: () => void;
 }
 
-export default function Header({ handleToggleEvenets }: props) {
+export default function Header({ handleToggleButton }: HeaderProps) {
   const classes = useStyles();
   return (
     <Box>
@@ -26,7 +26,7 @@ export default function Header({ handleToggleEvenets }: props) {
             color="primary"
             aria-label="menu"
             sx={{ mr: 0.5 }}
-            onClick={handleToggleEvenets}
+            onClick={handleToggleButton}
           >
             <MenuIcon />
           </IconButton>

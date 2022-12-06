@@ -3,11 +3,11 @@ import { Box, Button } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { useStyles } from "./viewMoreStyles";
 
-type propsTypes = {
+type ViewMoreButtonProps = {
   handleViewMore: () => void;
 };
 
-export default function ViewMoreButton({ handleViewMore }: propsTypes) {
+export default function ViewMoreButton({ handleViewMore }: ViewMoreButtonProps) {
   const styles = useStyles();
   return (
     <Box className={styles.btnWrapper}>

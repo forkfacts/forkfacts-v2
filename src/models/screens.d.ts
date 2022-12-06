@@ -1,20 +1,27 @@
-import { GroupListsType, SearchCatergoryItemType, onSelectCategoryType } from "@forkfacts/models";
+import {
+  collection,
+  SearchCatergoryItemType,
+  onSelectCategoryType,
+  collectionsType,
+} from "@forkfacts/models";
 
 export interface TypingSearchScreenProps extends onSelectCategoryType {
-  groupLists: GroupListsType[];
+  collectionGroupedItems: collectionsType[];
   categoryOptions: SearchCatergoryItemType[];
-  handleClearInput: () => void;
-  handleCloseHeader: () => void;
-  handleViewMoreEvent: () => void;
+  onClearSearch: () => void;
+  onClosePage: () => void;
+  handleViewMore: () => void;
   onSelectItem: (item: SearchResultItemType) => item;
-  showClearInput: boolean;
+  showClearSearch: boolean;
+  multiple: boolean;
 }
 
 export interface RecentSearchScreenProps {
-  recentLists: SearchResultItemType[];
-  handleClearInput: () => void;
-  handleCloseHeader: () => void;
-  handleViewMoreEvent: () => void;
+  collectionListsItems: SearchResultItemType[];
+  onClearSearch: () => void;
+  onClosePage: () => void;
+  handleViewMore: () => void;
   onSelectItem: (item: SearchResultItemType) => void;
-  showClearInput: boolean;
+  showClearSearch: boolean;
+  multiple: boolean;
 }

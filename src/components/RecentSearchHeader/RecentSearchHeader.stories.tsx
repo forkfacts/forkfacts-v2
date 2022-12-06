@@ -22,24 +22,24 @@ export default {
         },
       },
     },
-    handleCloseHeader: {
-      name: "handleCloseHeader",
+    onClosePage: {
+      name: "onClosePage",
       description:
-        "handleCloseHeader is a functon prop passed into the component that will close the current page the component is being used.",
+        "onClosePage is a functon prop passed into the component that will close the current page the component is being used.",
       action: "onClick",
       control: null,
     },
-    handleClearInput: {
-      name: "handleClearInput",
+    onClearSearch: {
+      name: "onClearSearch",
       description:
-        "handleClearInput is a functon prop passed into the component to  clear the search input field",
+        "onClearSearch is a functon prop passed into the component to  clear the search input field",
       action: "onClick",
       control: null,
     },
-    showClearInput: {
-      name: "showClearInput",
+    showClearSearch: {
+      name: "showClearSearch",
       description:
-        "showClearInput is boolean prop passed into the component and which allows you to trigger handleClearInput",
+        "showClearSearch is boolean prop passed into the component and which allows you to trigger onClearSearch",
       table: {
         defaultValue: {
           summary: false,
@@ -64,5 +64,5 @@ Mobile.parameters = {
 Mobile.args = {
   ...Mobile.args,
   showBorderBottom: true,
-  showClearInput: false,
+  showClearSearch: false,
 };

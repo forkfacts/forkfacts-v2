@@ -5,28 +5,28 @@ export interface SearchResultItemType {
   path: string;
   image: string;
 }
-export interface GroupListsType {
-  listItems: Array<SearchResultItemType>;
+export interface collectionsType {
+  collection: Array<SearchResultItemType>;
   categoryName: string;
 }
 interface ExtendSearchResultItemsProps {
   onSelectItem: (item: SearchResultItemType) => item;
   handleViewMore?: () => void;
 }
-export type SearchResultItemsPropsType = (
+export type SearchResultsProps = (
   | {
-      recentLists?: Array<SearchResultItemType>;
-      grouped: boolean;
-      groupLists: Array<GroupListsType>;
+      collectionListsItems?: Array<SearchResultItemType>;
+      multiple: boolean;
+      collectionGroupedItems: Array<collectionsType>;
     }
   | {
-      recentLists: Array<SearchResultItemType>;
-      grouped?: boolean;
-      groupLists?: Array<GroupListsType>;
+      collectionListsItems: Array<SearchResultItemType>;
+      multiple?: boolean;
+      collectionGroupedItems?: Array<collectionsType>;
     }
 ) &
   ExtendSearchResultItemsProps;
-export interface SearchResultItemPropsType {
+export interface SearchResultItemProps {
   item: SearchResultItemType;
   onSelectItem: (item: SearchResultItemType) => item;
 }
@@ -51,7 +51,7 @@ export interface SearchCategoriesProps extends onSelectCategoryType {
 
 export interface RecentSearchHeaderProps {
   showBorderBottom?: boolean;
-  showClearInput?: boolean;
-  handleCloseHeader: () => void;
-  handleClearInput: () => void;
+  showClearSearch?: boolean;
+  onClosePage: () => void;
+  onClearSearch: () => void;
 }

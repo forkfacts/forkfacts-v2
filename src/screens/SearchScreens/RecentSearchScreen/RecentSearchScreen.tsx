@@ -2,13 +2,13 @@ import React from "react";
 import { Box, Typography, Button } from "@mui/material";
 import { RecentSearchScreenProps } from "@forkfacts/models";
 import { SearchResults, RecentSearchHeader } from "@forkfacts/components";
-import { useStyles } from "./recentSearchStyles";
+import { useStyles } from "./recentSearchScreenStyles";
 
 const RecentSearch: React.FC<RecentSearchScreenProps> = ({
-  recentLists,
-  handleClearInput,
-  handleCloseHeader,
-  handleViewMoreEvent,
+  collectionListsItems,
+  onClearSearch,
+  onClosePage,
+  handleViewMore,
   onSelectItem,
 }) => {
   const classes = useStyles();
@@ -16,23 +16,23 @@ const RecentSearch: React.FC<RecentSearchScreenProps> = ({
     <Box>
       <RecentSearchHeader
         showBorderBottom={false}
-        handleClearInput={handleClearInput}
-        handleCloseHeader={handleCloseHeader}
-        showClearInput={false}
+        onClearSearch={onClearSearch}
+        onClosePage={onClosePage}
+        showClearSearch={false}
       />
       <Box sx={{ mt: ({ spacing }) => spacing(2) }}>
         <Box className={classes.statusWrapper}>
           <Typography color="text.secondary" variant="subtitle2">
             Recent search
           </Typography>
-          <Button color="primary" variant="text" className={classes.btn} onClick={handleClearInput}>
+          <Button color="primary" variant="text" className={classes.btn} onClick={onClearSearch}>
             Clear all
           </Button>
         </Box>
         <SearchResults
-          recentLists={recentLists}
+          collectionListsItems={collectionListsItems}
           onSelectItem={onSelectItem}
-          handleViewMore={handleViewMoreEvent}
+          handleViewMore={handleViewMore}
         />
       </Box>
     </Box>

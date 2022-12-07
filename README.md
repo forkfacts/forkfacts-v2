@@ -72,7 +72,7 @@ cd forkfacts-v2 && npm install or npm i
      return config
   }
   ```
-* Copy and paste preview.js: Copy.storybook/preview.js: copy code to clipboard.
+* Copy and paste preview.js:
 
   ```
   import { action } from "@storybook/addon-actions"

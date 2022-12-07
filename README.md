@@ -56,24 +56,28 @@ cd forkfacts-v2 && npm install or npm i
 
 - Run `npx sb init --builder webpack5`
 - Add the following code below to main.js file and preview.js inside the .storybook folder created when you initialized storybook on your project.`
-- Copy and paste on main.js:
-  `webpackFinal: async config => {
-// Transpile Gatsby module because Gatsby includes un-transpiled ES6 code.
-config.module.rules[0].exclude = [/node_modules\/(?!(gatsby|gatsby-script)\/)/]
-    // Remove core-js to prevent issues with Storybook
-    config.module.rules[0].exclude= [/core-js/]
-    // Use babel-plugin-remove-graphql-queries to remove static queries from components when rendering in storybook
-    config.module.rules[0].use[0].options.plugins.push(
-      require.resolve("babel-plugin-remove-graphql-queries")
-    )
-    config.resolve.mainFields=["browser", "module", "main"]
-    return config
-}
-`
-- Copy and paste preview.js: Copy.storybook/preview.js: copy code to clipboard
-  `import { action } from "@storybook/addon-actions"
+
+* Copy and paste on main.js:
+  ```
+  webpackFinal: async config => {
+  // Transpile Gatsby module because Gatsby includes un-transpiled ES6 code.
+  config.module.rules[0].exclude = [/node_modules\/(?!(gatsby|gatsby-script)\/)/]
+     // Remove core-js to prevent issues with Storybook
+     config.module.rules[0].exclude= [/core-js/]
+     // Use babel-plugin-remove-graphql-queries to remove static queries from components when rendering in storybook
+     config.module.rules[0].use[0].options.plugins.push(
+       require.resolve("babel-plugin-remove-graphql-queries")
+     )
+     config.resolve.mainFields=["browser", "module", "main"]
+     return config
+  }
+  ```
+* Copy and paste preview.js: Copy.storybook/preview.js: copy code to clipboard.
+
+  ```
+  import { action } from "@storybook/addon-actions"
   // Gatsby's Link overrides:
-  // Gatsby Link calls the `enqueue`&`hovering`methods on the global variable **_loader.
+  // Gatsby Link calls the `enqueue` & `hovering` methods on the global variable **_loader.
   // This global object isn't set in storybook context, requiring you to override it to empty functions (no-op),
   // so Gatsby Link doesn't throw errors.
   global._**loader = {
@@ -82,12 +86,15 @@ config.module.rules[0].exclude = [/node_modules\/(?!(gatsby|gatsby-script)\/)/]
   }
   // This global variable prevents the "**BASE_PATH** is not defined" error inside Storybook.
   global.**BASE_PATH** = "/"
-  // Navigating through a gatsby app using gatsby-link or any other gatsby component will use the`\_\_\_navigate`method.
+  // Navigating through a gatsby app using gatsby-link or any other gatsby component will use the `___navigate` method.
   // In Storybook, it makes more sense to log an action than doing an actual navigate. Check out the actions addon docs for more info: https://storybook.js.org/docs/react/essentials/actions
   window.\_\_\_navigate = pathname => {
-  action("NavigateTo:")(pathname)`
-- To understand more, visit storybook setup with gatsby (https://www.gatsbyjs.com/docs/how-to/testing/visual-testing-with-storybook/).
-- To understand how to setup storybook with React (https://storybook.js.org/docs/react/get-started/install)
+  action("NavigateTo:")(pathname)
+
+  ```
+
+- To understand more, visit storybook setup with gatsby [Gatsby Storybook Installation Page](https://www.gatsbyjs.com/docs/how-to/testing/visual-testing-with-storybook/).
+- To understand how to setup storybook with React [Storybook Installation Page](https://storybook.js.org/docs/react/get-started/install)
 
 ## How you should commit your code
 

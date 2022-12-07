@@ -108,11 +108,11 @@ cd forkfacts-v2 && npm install or npm i
 
 - Run `npm run build-storybook` to create production build.
 
-### How to use Storybook Component Controls Addon.
+### How to use Storybook Controls Addon.
 
 **Storybook Controls gives you a graphical UI to interact with a component's arguments dynamically without needing to code. It creates an addon panel next to your component examples ("stories"), so you can edit them live. Controls do not require any modification to your components**.
 
-To use the Controls addon, you need to write your stories using args. Storybook will automatically generate UI controls based on your args and what it can infer about your component. Still, you can configure the controls further using argTypes, see below.
+To use the Controls addon, you need to write your stories using args. Storybook will automatically generate UI controls based on your args and what it can infer about your component. Still, you can configure the controls further using argTypes, read more at [storybook controls github tutorial](https://github.com/storybookjs/storybook/blob/next/docs/essentials/controls.md) and [storybook controls documentation](https://storybook.js.org/docs/react/essentials/controls).
 
 #### Choosing the control type
 

@@ -1,6 +1,6 @@
 # Introduction
 
-This project is home for consumer facing website. In order to create this website, there are other different github projects
+This project is home for consumer facing website version 2. In order to create this website, there are other different github projects
 that are responsible for their own thing and generate artifacts used by this project.
 
 # Getting Started
@@ -10,7 +10,6 @@ that are responsible for their own thing and generate artifacts used by this pro
 - You must have `npm` installed on your machine. Run `sudo npm install -g npm` on Linux or Mac to install `npm`. To learn more,
   follow [`npm documentation`](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm).
 - You must have the latest version of the node installed on your machine. To install the latest version visits [`Node documentation`](https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions).
-- If you want to enable search, see [how to enable search section](#enable-search-on-the-project)
 
 ## Steps to run the project
 
@@ -21,7 +20,7 @@ git clone https://github.com/forkfacts/forkfacts-v2
 ```
 
 **Note - Do you use multiple Github SSH Keys locally?**  
-Before you run `git clone` command, please do not forget the following
+Before you run the `git clone` command, please do not forget the following steps:
 
 - Update the github domain in your `git clone command`. For example, based on your `~/.ssh/config`, your clone command may be  
   `git clone https://github.com/forkfacts/forkfacts-v2`.
@@ -49,15 +48,56 @@ cd forkfacts-v2 && npm install or npm i
 - Run `npm run build` to create production build.
 - Run `gatsby serve` to start production build locally. It will start project on http://localhost:9000/
 
+#### How storybook works on the project and with gatsby.
+
+## How to install storybook with gatsby
+
+### Install and initialized storybook
+
+- Run `npx sb init --builder webpack5`
+- Add the following code below to main.js file and preview.js inside the .storybook folder created when you initialized storybook on your project.`
+- Copy and paste on main.js:
+  `webpackFinal: async config => {
+// Transpile Gatsby module because Gatsby includes un-transpiled ES6 code.
+config.module.rules[0].exclude = [/node_modules\/(?!(gatsby|gatsby-script)\/)/]
+    // Remove core-js to prevent issues with Storybook
+    config.module.rules[0].exclude= [/core-js/]
+    // Use babel-plugin-remove-graphql-queries to remove static queries from components when rendering in storybook
+    config.module.rules[0].use[0].options.plugins.push(
+      require.resolve("babel-plugin-remove-graphql-queries")
+    )
+    config.resolve.mainFields=["browser", "module", "main"]
+    return config
+}
+`
+- Copy and paste preview.js: Copy.storybook/preview.js: copy code to clipboard
+  `import { action } from "@storybook/addon-actions"
+  // Gatsby's Link overrides:
+  // Gatsby Link calls the `enqueue`&`hovering`methods on the global variable **_loader.
+  // This global object isn't set in storybook context, requiring you to override it to empty functions (no-op),
+  // so Gatsby Link doesn't throw errors.
+  global._**loader = {
+  enqueue: () => {},
+  hovering: () => {},
+  }
+  // This global variable prevents the "**BASE_PATH** is not defined" error inside Storybook.
+  global.**BASE_PATH** = "/"
+  // Navigating through a gatsby app using gatsby-link or any other gatsby component will use the`\_\_\_navigate`method.
+  // In Storybook, it makes more sense to log an action than doing an actual navigate. Check out the actions addon docs for more info: https://storybook.js.org/docs/react/essentials/actions
+  window.\_\_\_navigate = pathname => {
+  action("NavigateTo:")(pathname)`
+- To understand more, visit storybook setup with gatsby (https://www.gatsbyjs.com/docs/how-to/testing/visual-testing-with-storybook/).
+- To understand how to setup storybook with React (https://storybook.js.org/docs/react/get-started/install)
+
 ## How you should commit your code
 
 1. You can Assign yourself an **unassigned** ticket from the list of `🥑 High` priority.
-2. Create a feature branch based on latest `develop` branch. We are using Semantic Release for automated releases. So, please refer to
+2. Create a feature branch based on latest `main` branch. We are using Semantic Release for automated releases. So, please refer to
    [commit message format](https://semantic-release.gitbook.io/semantic-release/#commit-message-format) guidelines to indicate the nature of change.
    Read [Github Docs](https://docs.github.com/en/github/writing-on-github/working-with-advanced-formatting/autolinked-references-and-urls)
    on how to reference issues in commits and in pull requests.
-3. The commit format should look like this: `[your name]_[ticket id]_[task title]`.Example (` git commit -m 'ayomiku_#3efhet3_commit_your_change_task'`).
-4. Early on (with your first commit push itself), create a draft pull requests to ensure builds are running and there are no merge
+3. The commit format should look like this: `[your name]_[ticket id]_[task title]`.Example (`git commit -m "ayomiku_#3efhet3_commit_your_change_task"`).
+4. Early on (with your first commit push itself),then you can create a draft pull requests to ensure builds are running and there are no merge
    conflicts. This can save a lot of time in the integration later. Also, with each PR, chromatic builds are connected to generate
    updated storybook components. This can be of tremendous help during the code review.
 5. Once you are done with the work, assign your PR to a reviewer.

@@ -49,7 +49,7 @@ cd forkfacts-v2 && npm install or npm i
 
 ## How Storybook Works on the Project and with Gatsby.
 
-> This setup is not necessary for this project, it has already been added in the project..
+> **This setup is not necessary for this project, it has already been added in the project.**
 
 ### How to Install Storybook with Gatsby
 
@@ -57,7 +57,7 @@ cd forkfacts-v2 && npm install or npm i
 
 ### Storybook Configuration with Gatsby
 
-- Add the following code below to main.js file and preview.js inside the .storybook folder created when you initialized storybook on your project.`
+- **Add the following code below to main.js file and preview.js inside the .storybook folder created when you initialized storybook on your project.**
 
 * Copy and paste on main.js:
   ```

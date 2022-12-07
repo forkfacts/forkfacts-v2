@@ -123,6 +123,21 @@ To use the Controls addon, you need to write your stories using args. Storybook 
 
 By default, Storybook will choose a control for each arg based on the initial value of the arg. It works well with certain types of args, such as boolean values or free-text strings, but in other cases, you want a more restricted control. Read more at [storybook controls github tutorial](https://github.com/storybookjs/storybook/blob/next/docs/essentials/controls.md) and [storybook controls documentation](https://storybook.js.org/docs/react/essentials/controls).
 
+## Release
+
+We are using a version of [6 weeks cycle](https://3.basecamp-help.com/article/35-the-six-week-cycle). However, we may not
+always run for 6 weeks depending upon the time and bandwidth available. But we do run a cycle. We prioritize what we can
+do in a cycle, and create a milestone. All our milestones are available [here](https://github.com/forkfacts/forkfacts/milestones).
+
+We try to keep the name of milestone from the list of herbs available [here](https://www.britannica.com/topic/list-of-herbs-and-spices-2024392)
+
+We are using [GitFlow](https://nvie.com/posts/a-successful-git-branching-model/) to release the project. The feature branches
+are worked upon based on the `sub branches`. The code reviews (PRs) are opened against `develop` branch. Once a PR
+is merged, it goes into the `sub branches` branch.
+
+From time to time, we open a PR from `sub branches` to `main` branch. Currently, we do not wait for a cycle to complete
+in order to merge to `main`. We prefer to merge to `main` (hence a release) as soon as we are happy with the quality of work.
+
 ## How You Should Commit Your Code
 
 1. You can Assign yourself an **unassigned** ticket from the list of `🥑 High` priority.

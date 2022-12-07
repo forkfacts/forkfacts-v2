@@ -135,3 +135,10 @@ By default, Storybook will choose a control for each arg based on the initial va
    conflicts. This can save a lot of time in the integration later. Also, with each PR, chromatic builds are connected to generate
    updated storybook components. This can be of tremendous help during the code review.
 5. Once you are done with the work, assign your PR to a reviewer.
+
+## These are basic rules that must be respected in this project.
+
+1. There should not be any errors on the console.
+2. No use of @ts-ignore in the .tsx files.
+3. No console.log allowed in the code except in the development mode when you are debugging an issue. No information should be displayed on the browser console.
+4. Do not include a blank or inactive file in the project.

@@ -49,7 +49,7 @@ cd forkfacts-v2 && npm install or npm i
 
 ## How Storybook Works on the Project and with Gatsby.
 
-> This setup is not needed in this project, it has already been added to the project.
+> This setup is not necessary for this project, it has already been added in the project..
 
 ### How to Install Storybook with Gatsby
 
@@ -98,7 +98,7 @@ cd forkfacts-v2 && npm install or npm i
 - To understand more, visit storybook setup with gatsby [Gatsby Storybook Installation Page](https://www.gatsbyjs.com/docs/how-to/testing/visual-testing-with-storybook/).
 - To understand how to setup storybook with React [Storybook Installation Page](https://storybook.js.org/docs/react/get-started/install)
 
-### Run storybook on the Project
+### How Run to storybook.
 
 ##### Development
 
@@ -107,6 +107,15 @@ cd forkfacts-v2 && npm install or npm i
 ##### Production
 
 - Run `npm run build-storybook` to create production build.
+
+### How to use Storybook Component Controls Addon.
+
+[^1]: ** Storybook Controls gives you a graphical UI to interact with a component's arguments dynamically without needing to code. It creates an addon panel next to your component examples ("stories"), so you can edit them live. Controls do not require any modification to your components **.
+[^2]: To use the Controls addon, you need to write your stories using args. Storybook will automatically generate UI controls based on your args and what it can infer about your component. Still, you can configure the controls further using argTypes, see below.
+
+#### Choosing the control type
+
+[^1]: By default, Storybook will choose a control for each arg based on the initial value of the arg. It works well with certain types of args, such as boolean values or free-text strings, but in other cases, you want a more restricted control.
 
 ## How You Should Commit Your Code
 

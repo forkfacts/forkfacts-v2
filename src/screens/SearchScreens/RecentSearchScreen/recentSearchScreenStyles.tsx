@@ -20,7 +20,7 @@ export const useStyles = makeStyles(({ spacing, breakpoints, typography }: Theme
       fontSize: spacing(1.2),
       lineHeight: spacing(2),
       textTransform: "capitalize",
-      textaAign: "center",
+      textAlign: "center",
       letterSpacing: spacing(0.005),
       cursor: "pointer",
     },

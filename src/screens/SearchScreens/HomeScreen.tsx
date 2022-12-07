@@ -12,7 +12,7 @@ export default function SearchScreen() {
       <Box className={classes.root}>
         <Box>
           <Box className={classes.spaceBottom}>
-            <Typography variant="subtitle1" className={classes.searchtitle}>
+            <Typography variant="subtitle1" className={classes.searchTitle}>
               Forkfacts, Your Healthy diet search place.
             </Typography>
           </Box>

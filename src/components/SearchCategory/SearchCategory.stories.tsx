@@ -28,7 +28,7 @@ export default {
     },
     onSelectCategory: {
       name: "onSelectCategory",
-      description: "onSelectCategory function helps to selected single buttton data ",
+      description: "onSelectCategory function helps to selected single button data ",
     },
     setSelectedIndex: {
       name: "setSelectedIndex",

@@ -22,7 +22,7 @@ export default {
     },
     onSelectCategory: {
       name: "onSelectCategory",
-      description: "onSelectCategory function helps to selected single buttton data ",
+      description: "onSelectCategory function helps to select single button value",
     },
   },
 } as ComponentMeta<typeof SearchCategories>;

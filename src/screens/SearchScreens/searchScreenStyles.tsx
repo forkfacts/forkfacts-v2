@@ -17,7 +17,7 @@ export const useStyles = makeStyles(({ spacing, breakpoints }: Theme) => ({
       marginBottom: spacing(4),
     },
   },
-  searchtitle: {
+  searchTitle: {
     fontSize: spacing(3),
     fontWeight: 600,
     display: "flex",

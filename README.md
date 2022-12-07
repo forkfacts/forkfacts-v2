@@ -50,11 +50,12 @@ cd forkfacts-v2 && npm install or npm i
 
 #### How storybook works on the project and with gatsby.
 
-## How to install storybook with gatsby
+## How to Install Storybook with Gatsby
 
-### Install and initialized storybook
+- Run `npx sb init --builder webpack5` to install gatsby
 
-- Run `npx sb init --builder webpack5`
+### Storybook Configuration with Gatsby
+
 - Add the following code below to main.js file and preview.js inside the .storybook folder created when you initialized storybook on your project.`
 
 * Copy and paste on main.js:
@@ -96,7 +97,13 @@ cd forkfacts-v2 && npm install or npm i
 - To understand more, visit storybook setup with gatsby [Gatsby Storybook Installation Page](https://www.gatsbyjs.com/docs/how-to/testing/visual-testing-with-storybook/).
 - To understand how to setup storybook with React [Storybook Installation Page](https://storybook.js.org/docs/react/get-started/install)
 
-## How you should commit your code
+### Run Gatsby on the Project
+
+#### Development
+
+- Run `npm run storybook` to start storybook. It will run on http://localhost:6006/. in order to run this command).
+
+## How You Should Commit Your Code
 
 1. You can Assign yourself an **unassigned** ticket from the list of `🥑 High` priority.
 2. Create a feature branch based on latest `main` branch. We are using Semantic Release for automated releases. So, please refer to

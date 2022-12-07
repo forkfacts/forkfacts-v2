@@ -5,7 +5,7 @@ import EggAltOutlinedIcon from "@mui/icons-material/EggAltOutlined";
 import EmojiFoodBeverageOutlinedIcon from "@mui/icons-material/EmojiFoodBeverageOutlined";
 import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlined";
 import { SearchCategories } from "@forkfacts/components";
-import { SearchcategoryItemType } from "@forkfacts/models";
+import { SearchCategoryItemType } from "@forkfacts/models";
 
 export default {
   title: "Components/SearchCategories/multiple",
@@ -42,7 +42,7 @@ const categoryOptions = [
 ];
 Mobile.args = {
   ...Mobile.args,
-  onSelectCategory: (item: SearchcategoryItemType) => item,
+  onSelectCategory: (item: SearchCategoryItemType) => item,
   categoryOptions: categoryOptions,
 };
 
@@ -54,6 +54,6 @@ Tablet.parameters = {
 };
 Tablet.args = {
   ...Tablet.args,
-  onSelectCategory: (item: SearchcategoryItemType) => item,
+  onSelectCategory: (item: SearchCategoryItemType) => item,
   categoryOptions: categoryOptions,
 };

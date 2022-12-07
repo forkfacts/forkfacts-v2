@@ -31,12 +31,12 @@ export interface SearchResultItemProps {
   onSelectItem: (item: SearchResultItemType) => item;
 }
 
-export interface SearchcategoryItemType {
+export interface SearchCategoryItemType {
   label: string;
   Icon: SvgIconComponent;
 }
 export interface onSelectCategoryType {
-  onSelectCategory: (item: SearchcategoryItemType) => item;
+  onSelectCategory: (item: SearchCategoryItemType) => item;
 }
 export interface SearchCategoryProps extends onSelectCategoryType {
   label: string;
@@ -46,7 +46,7 @@ export interface SearchCategoryProps extends onSelectCategoryType {
   selectedIndex: number;
 }
 export interface SearchCategoriesProps extends onSelectCategoryType {
-  categoryOptions: Array<SearchcategoryItemType>;
+  categoryOptions: Array<SearchCategoryItemType>;
 }
 
 export interface RecentSearchHeaderProps {

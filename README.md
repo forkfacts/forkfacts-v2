@@ -1,54 +1,63 @@
-<p align="center">
-  <a href="https://www.gatsbyjs.com/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts">
-    <img alt="Gatsby" src="https://www.gatsbyjs.com/Gatsby-Monogram.svg" width="60" />
-  </a>
-</p>
-<h1 align="center">
-  Gatsby minimal TypeScript starter
-</h1>
+# Introduction
 
-## 🚀 Quick start
+This project is home for consumer facing website. In order to create this website, there are other different github projects
+that are responsible for their own thing and generate artifacts used by this project.
 
-1.  **Create a Gatsby site.**
+# Getting Started
 
-    Use the Gatsby CLI to create a new site, specifying the minimal TypeScript starter.
+## Pre-requisites
 
-    ```shell
-    # create a new Gatsby site using the minimal TypeScript starter
-    npm init gatsby
-    ```
+- You must have `npm` installed on your machine. Run `sudo npm install -g npm` on Linux or Mac to install `npm`. To learn more,
+  follow [`npm documentation`](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm).
+- You must have the latest version of the node installed on your machine. To install the latest version visits [`Node documentation`](https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions).
+- If you want to enable search, see [how to enable search section](#enable-search-on-the-project)
 
-2.  **Start developing.**
+## Steps to run the project
 
-    Navigate into your new site’s directory and start it up.
+### Clone project
 
-    ```shell
-    cd my-gatsby-site/
-    npm run develop
-    ```
+```shell
+git clone https://github.com/forkfacts/forkfacts-v2
+```
 
-3.  **Open the code and start customizing!**
+**Note - Do you use multiple Github SSH Keys locally?**  
+Before you run `git clone` command, please do not forget the following
 
-    Your site is now running at http://localhost:8000!
+- Update the github domain in your `git clone command`. For example, based on your `~/.ssh/config`, your clone command may be  
+  `git clone https://github.com/forkfacts/forkfacts-v2`.
+- Ensure that your SSH keys are available to your SSH Agent running locally.
+  - Run `ssh-add -l` to see if keys are listed in the output. If not, follow the next step.
+  - Run `ssh-add ~/.ssh/<path_of_your_ssh_private_key>` to add the keys for your SSH Agent.
+  - Run `ssh-add -l` to see ensure your SSH keys are available to your SSH Agent.
 
-    Edit `src/pages/FactTable.tsx` to see your site update in real-time!
+### Install Dependencies
 
-4.  **Learn more**
+```shell
+cd forkfacts-v2 && npm install or npm i
+```
 
-    - [Documentation](https://www.gatsbyjs.com/docs/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
+### Run the project
 
-    - [Tutorials](https://www.gatsbyjs.com/tutorial/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
+#### Development
 
-    - [Guides](https://www.gatsbyjs.com/tutorial/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
+- Run `npm run develop or npm start` to start gatsby project locally. It internally runs `gatsby develop` command. Your project will start
+  on http://localhost:8000
+- Run `npm run storybook` to start storybook. It will run on http://localhost:6006/. in order to run this command).
 
-    - [API Reference](https://www.gatsbyjs.com/docs/api-reference/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
+#### Production
 
-    - [Plugin Library](https://www.gatsbyjs.com/plugins?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
+- Run `npm run build` to create production build.
+- Run `gatsby serve` to start production build locally. It will start project on http://localhost:9000/
 
-    - [Cheat Sheet](https://www.gatsbyjs.com/docs/cheat-sheet/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
+## How you should commit your code
 
-## 🚀 Quick start (Gatsby Cloud)
-
-Deploy this starter with one click on [Gatsby Cloud](https://www.gatsbyjs.com/cloud/):
-
-[<img src="https://www.gatsbyjs.com/deploynow.svg" alt="Deploy to Gatsby Cloud">](https://www.gatsbyjs.com/dashboard/deploynow?url=https://github.com/gatsbyjs/gatsby-starter-minimal-ts)
+1. You can Assign yourself an **unassigned** ticket from the list of `🥑 High` priority.
+2. Create a feature branch based on latest `develop` branch. We are using Semantic Release for automated releases. So, please refer to
+   [commit message format](https://semantic-release.gitbook.io/semantic-release/#commit-message-format) guidelines to indicate the nature of change.
+   Read [Github Docs](https://docs.github.com/en/github/writing-on-github/working-with-advanced-formatting/autolinked-references-and-urls)
+   on how to reference issues in commits and in pull requests.
+3. The commit format should look like this: `[your name]_[ticket id]_[task title]`.Example (` git commit -m 'ayomiku_#3efhet3_commit_your_change_task'`).
+4. Early on (with your first commit push itself), create a draft pull requests to ensure builds are running and there are no merge
+   conflicts. This can save a lot of time in the integration later. Also, with each PR, chromatic builds are connected to generate
+   updated storybook components. This can be of tremendous help during the code review.
+5. Once you are done with the work, assign your PR to a reviewer.

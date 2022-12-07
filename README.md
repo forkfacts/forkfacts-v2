@@ -37,19 +37,21 @@ cd forkfacts-v2 && npm install or npm i
 
 ### Run the project
 
-#### Development
+##### Development
 
 - Run `npm run develop or npm start` to start gatsby project locally. It internally runs `gatsby develop` command. Your project will start
   on http://localhost:8000
 
-#### Production
+##### Production
 
 - Run `npm run build` to create production build.
 - Run `gatsby serve` to start production build locally. It will start project on http://localhost:9000/
 
-#### How storybook works on the project and with gatsby.
+## How Storybook Works on the Project and with Gatsby.
 
-## How to Install Storybook with Gatsby
+> This setup is not needed in this project, it has already been added to the project.
+
+### How to Install Storybook with Gatsby
 
 - Run `npx sb init --builder webpack5` to install storybook.
 
@@ -98,11 +100,11 @@ cd forkfacts-v2 && npm install or npm i
 
 ### Run storybook on the Project
 
-#### Development
+##### Development
 
 - Run `npm run storybook` to start storybook. It will run on http://localhost:6006/. in order to run this command).
 
-#### Production
+##### Production
 
 - Run `npm run build-storybook` to create production build.
 

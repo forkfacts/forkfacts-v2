@@ -145,13 +145,15 @@ in order to merge to `main`. We prefer to merge to `main` (hence a release) as s
    [commit message format](https://semantic-release.gitbook.io/semantic-release/#commit-message-format) guidelines to indicate the nature of change.
    Read [Github Docs](https://docs.github.com/en/github/writing-on-github/working-with-advanced-formatting/autolinked-references-and-urls)
    on how to reference issues in commits and in pull requests.
-3. The commit format should look like this: `[your name]_[ticket id]_[task title]`.Example (`git commit -m "ayomiku_#3efhet3_commit_your_change_task"`).
+3. The commit format is expected to look like this: `[your name]_[ticket id]_[task title]`. Example (`git commit -m "ayomiku_#3efhet3_commit_your_change_task"`).
 4. Early on (with your first commit push itself),then you can create a draft pull requests to ensure builds are running and there are no merge
    conflicts. This can save a lot of time in the integration later. Also, with each PR, chromatic builds are connected to generate
    updated storybook components. This can be of tremendous help during the code review.
 5. Once you are done with the work, assign your PR to a reviewer.
 
 ## These are basic rules that must be respected in this project.
+
+`
 
 1. There should not be any errors on the console.
 2. No use of @ts-ignore in the .tsx files.

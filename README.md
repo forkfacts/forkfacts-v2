@@ -110,7 +110,7 @@ cd forkfacts-v2 && npm install or npm i
 
 ### How to use Storybook Component Controls Addon.
 
-** Storybook Controls gives you a graphical UI to interact with a component's arguments dynamically without needing to code. It creates an addon panel next to your component examples ("stories"), so you can edit them live. Controls do not require any modification to your components **.
+**Storybook Controls gives you a graphical UI to interact with a component's arguments dynamically without needing to code. It creates an addon panel next to your component examples ("stories"), so you can edit them live. Controls do not require any modification to your components**.
 
 To use the Controls addon, you need to write your stories using args. Storybook will automatically generate UI controls based on your args and what it can infer about your component. Still, you can configure the controls further using argTypes, see below.
 

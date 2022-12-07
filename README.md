@@ -15,7 +15,6 @@ that are responsible for their own thing and generate artifacts used by this pro
 ### Version of NodeJS Required
 
 - You must have `Nodejs 18.0.0 above` installed on your machine. To install the latest version of Nodejs follow this link [`nodejs documentation`](https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions).
-  .
 
 ## Steps to run the project
 

@@ -54,7 +54,7 @@ selectedButton.args = {
   onSelectCategory: (label: SearchCategoryItemType) => label,
 };
 
-selectedButton.storyName = "seleted Button";
+selectedButton.storyName = "selected Button";
 
 export const unSelectedButton: ComponentStory<typeof SearchCategory> = (args) => (
   <SearchCategory {...args} />

@@ -25,14 +25,14 @@ export default {
     onClosePage: {
       name: "onClosePage",
       description:
-        "onClosePage is a functon prop passed into the component that will close the current page the component is being used.",
+        "onClosePage is a function prop passed into the component that will close the current page the component is being used.",
       action: "onClick",
       control: null,
     },
     onClearSearch: {
       name: "onClearSearch",
       description:
-        "onClearSearch is a functon prop passed into the component to  clear the search input field",
+        "onClearSearch is a function prop passed into the component to  clear the search input field",
       action: "onClick",
       control: null,
     },

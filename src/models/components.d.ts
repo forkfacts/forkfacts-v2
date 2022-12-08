@@ -5,7 +5,7 @@ export interface SearchResultItemType {
   path: string;
   image: string;
 }
-export interface collectionsType {
+export interface SearchResultItemCollectionType {
   collection: Array<SearchResultItemType>;
   categoryName: string;
 }
@@ -17,12 +17,12 @@ export type SearchResultsProps = (
   | {
       collectionListsItems?: Array<SearchResultItemType>;
       multiple: boolean;
-      collectionGroupedItems: Array<collectionsType>;
+      collectionGroupedItems: Array<SearchResultItemCollectionType>;
     }
   | {
       collectionListsItems: Array<SearchResultItemType>;
       multiple?: boolean;
-      collectionGroupedItems?: Array<collectionsType>;
+      collectionGroupedItems?: Array<SearchResultItemCollectionType>;
     }
 ) &
   ExtendSearchResultItemsProps;

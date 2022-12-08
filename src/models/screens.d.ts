@@ -2,11 +2,11 @@ import {
   collection,
   SearchCategoryItemType,
   onSelectCategoryType,
-  collectionsType,
+  SearchResultItemCollectionType,
 } from "@forkfacts/models";
 
 export interface TypingSearchScreenProps extends onSelectCategoryType {
-  collectionGroupedItems: collectionsType[];
+  collectionGroupedItems: SearchResultItemCollectionType[];
   categoryOptions: SearchCategoryItemType[];
   onClearSearch: () => void;
   onClosePage: () => void;

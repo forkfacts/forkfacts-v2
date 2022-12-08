@@ -1,18 +1,24 @@
-import * as React from "react";
-import { Box, TextField, Typography } from "@mui/material";
+import React, { CSSProperties, useState, useEffect } from "react";
+import { Box, TextField, Typography, useTheme } from "@mui/material";
 import { SearchOutlined } from "@mui/icons-material";
 import InputAdornment from "@mui/material/InputAdornment";
 import { Layout } from "@forkfacts/components";
 import { useStyles } from "./searchScreenStyles";
 
 export default function HomeScreen() {
-  const classes = useStyles();
+  const theme = useTheme();
+  const [appBarHeight, setAppBarHeight] = useState<CSSProperties>();
+  useEffect(() => {
+    setAppBarHeight(theme.mixins.toolbar);
+  }, [theme.mixins.toolbar]);
+  const classes = useStyles(appBarHeight?.minHeight);
+
   return (
     <Layout>
       <Box className={classes.root}>
         <Box>
           <Box className={classes.spaceBottom}>
-            <Typography variant="subtitle1" className={classes.searchTitle}>
+            <Typography variant="h5" className={classes.searchTitle}>
               Forkfacts, Your Healthy diet search place.
             </Typography>
           </Box>

@@ -12,14 +12,11 @@ export const useStyles = makeStyles(({ spacing, breakpoints, typography }: Theme
       paddingBottom: spacing(1.2),
       paddingRight: spacing(3.9),
     },
-    "@media (max-width:320px)": {
-      fontSize: spacing(1.25),
-    },
   },
   btn: {
     [breakpoints.down("md")]: {
       fontWeight: typography.fontWeightBold,
-      fontSize: spacing(1.4),
+      fontSize: typography.caption.fontSize,
       textTransform: "capitalize",
     },
   },

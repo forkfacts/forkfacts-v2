@@ -21,7 +21,7 @@ export const useStyles = makeStyles(({ typography, spacing, breakpoints, palette
       "&&:after": {
         borderBottom: "none",
       },
-      fontSize: spacing(1.75),
+      fontSize: typography.fontSize,
       lineHeight: spacing(2.5),
       letterSpacing: spacing(0.025),
       color: palette.grey[700],

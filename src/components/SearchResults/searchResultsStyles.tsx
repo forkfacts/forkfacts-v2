@@ -11,13 +11,11 @@ export const useStyles = makeStyles(({ spacing, breakpoints, typography }: Theme
   ListItemText: {
     [breakpoints.down("md")]: {
       marginLeft: spacing(-2),
-      lineHeight: spacing(3),
-      fontSize: spacing(2),
     },
   },
   categoryName: {
     [breakpoints.down("md")]: {
-      fontSize: spacing(1.4),
+      fontSize: typography.fontSize,
       padding: spacing(1.2, 2),
     },
   },

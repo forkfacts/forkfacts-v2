@@ -1,16 +1,20 @@
 import { makeStyles } from "@mui/styles";
 import { Theme } from "@mui/material";
 
-const HeaderHeight = 55.4993;
-
-export const useStyles = makeStyles(({ spacing, breakpoints, typography }: Theme) => ({
+export const useStyles = makeStyles(({ spacing, breakpoints, typography, palette }: Theme) => ({
   root: {
-    width: "100%",
-    flexGrow: 1,
-    minHeight: `calc(100vh - ${HeaderHeight}px)`,
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
+    [breakpoints.down("md")]: {
+      width: "100%",
+      flexGrow: 1,
+      minHeight: (minHeight) => {
+        if (minHeight) {
+          return `calc(100vh - ${minHeight}px)`;
+        }
+      },
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+    },
   },
   spaceBottom: {
     [breakpoints.down("md")]: {
@@ -18,10 +22,12 @@ export const useStyles = makeStyles(({ spacing, breakpoints, typography }: Theme
     },
   },
   searchTitle: {
-    fontSize: spacing(3),
-    fontWeight: typography.fontWeightBold,
-    display: "flex",
-    alignItems: "center",
-    textAlign: "center",
+    [breakpoints.down("md")]: {
+      fontWeight: typography.fontWeightBold,
+      display: "flex",
+      alignItems: "center",
+      textAlign: "center",
+      color: palette.common.black,
+    },
   },
 }));

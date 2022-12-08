@@ -39,7 +39,7 @@ export default function SearchCategory({
       size="small"
       startIcon={
         <Icon
-          fontSize={"medium"}
+          fontSize="medium"
           className={classes.icon}
           sx={{
             width: ({ spacing }) => spacing(1.9),

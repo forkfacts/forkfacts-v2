@@ -16,7 +16,11 @@ export default function SearchResultItem({ item, onSelectItem }: SearchResultIte
           <img src={item.image} alt={item.name} />
         </ListItemIcon>
         <ListItemText
-          primary={<Typography className={styles.ListItemText}>{item.name}</Typography>}
+          primary={
+            <Typography variant="body1" className={styles.ListItemText}>
+              {item.name}
+            </Typography>
+          }
         />
       </ListItemButton>
     </ListItem>

@@ -15,10 +15,6 @@ export const useStyles = makeStyles(({ typography, spacing, breakpoints, palette
     right: spacing(1.5),
   },
   pageTitle: {
-    [breakpoints.down("sm")]: {
-      fontSize: spacing(3),
-    },
-    fontSize: spacing(4),
     lineHeight: spacing(5),
     fontWeight: typography.fontWeightRegular,
   },

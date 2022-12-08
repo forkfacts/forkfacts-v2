@@ -30,7 +30,7 @@ export default function Header({ handleToggleButton }: HeaderProps) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography color="primary.light" className={classes.pageTitle}>
+          <Typography color="primary.light" variant="h5" className={classes.pageTitle}>
             Forkfacts
           </Typography>
           <Box className={classes.rightContent}>

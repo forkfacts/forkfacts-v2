@@ -2,6 +2,7 @@ import React from "react";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { RecentSearchScreen } from "@forkfacts/screens";
+import { SearchResultItemType } from "@forkfacts/models";
 
 export default {
   title: "Screens/SearchScreen/RecentSearchScreen",
@@ -45,4 +46,5 @@ Mobile.parameters = {
 Mobile.args = {
   ...Mobile.args,
   collectionListsItems,
+  onSelectItem: (item: SearchResultItemType) => item,
 };

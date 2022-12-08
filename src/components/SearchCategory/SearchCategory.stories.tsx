@@ -17,7 +17,7 @@ export default {
     index: {
       name: "index",
       description: "Index of the button should be passed down as prop",
-      control: "text",
+      control: false,
     },
     label: {
       name: "Label",
@@ -52,8 +52,8 @@ selectedButton.args = {
   index: 0,
   selectedIndex: 0,
   onSelectCategory: (label: SearchCategoryItemType) => label,
+  setSelectedIndex: (index: number = 1) => index,
 };
-
 selectedButton.storyName = "selected Button";
 
 export const unSelectedButton: ComponentStory<typeof SearchCategory> = (args) => (
@@ -64,7 +64,6 @@ unSelectedButton.parameters = {
     defaultViewport: "iphone6",
   },
 };
-unSelectedButton.storyName = "unSelected Button";
 
 unSelectedButton.args = {
   label: "Food",
@@ -72,4 +71,6 @@ unSelectedButton.args = {
   onSelectCategory: (label: SearchCategoryItemType) => label,
   index: 0,
   selectedIndex: 1,
+  setSelectedIndex: (index: number = 1) => index,
 };
+unSelectedButton.storyName = "unSelected Button";

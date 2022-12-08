@@ -15,7 +15,7 @@ export default {
     showBorderBottom: {
       name: "showBorderBottom",
       description:
-        "A boolean prop that will decide if the SearchHeader should allow border-botton. ",
+        "A boolean prop that will decide if the SearchHeader should allow border-button. ",
       table: {
         defaultValue: {
           summary: true,

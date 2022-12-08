@@ -153,8 +153,6 @@ in order to merge to `main`. We prefer to merge to `main` (hence a release) as s
 
 ## These are basic rules that must be respected in this project.
 
-`
-
 1. There should not be any errors on the console.
 2. No use of @ts-ignore in the .tsx files.
 3. No console.log allowed in the code except in the development mode when you are debugging an issue. No information should be displayed on the browser console.

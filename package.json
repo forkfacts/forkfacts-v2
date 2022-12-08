@@ -1,9 +1,8 @@
 {
-  "name": "forkfacts-v2",
+  "name": "forkfacts",
   "version": "1.0.0",
   "private": true,
-  "description": "forkfacts-v2",
-  "author": "hhimanshu",
+  "description": "forkfacts",
   "keywords": [
     "gatsby"
   ],

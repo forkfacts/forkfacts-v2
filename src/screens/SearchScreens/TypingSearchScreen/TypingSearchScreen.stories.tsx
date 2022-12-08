@@ -34,7 +34,7 @@ const collection = [
   },
   {
     image: "/image4.png",
-    name: "Grape fruit juice unsweentened, Fruit ...",
+    name: "Grape fruit juice unsweetened, Fruit ...",
     path: "/:id",
   },
   {

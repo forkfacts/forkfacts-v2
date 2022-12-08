@@ -17,7 +17,7 @@ export const useStyles = makeStyles(({ typography, palette, spacing, breakpoints
   },
   btn: {
     fontWeight: typography.fontWeightBold,
-    lineHeight: "20px",
+    lineHeight: spacing(2.5),
     "&:hover": {
       color: palette.primary.main,
     },

@@ -5,7 +5,7 @@ import InputAdornment from "@mui/material/InputAdornment";
 import { Layout } from "@forkfacts/components";
 import { useStyles } from "./searchScreenStyles";
 
-export default function SearchScreen() {
+export default function HomeScreen() {
   const classes = useStyles();
   return (
     <Layout>

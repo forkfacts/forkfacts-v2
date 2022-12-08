@@ -87,6 +87,7 @@ SearchResultsItemsMultipleCategories.argTypes = {
     control: false,
   },
 };
+SearchResultsItemsMultipleCategories.storyName = "SearchResultsMultipleCategories";
 
 export const SearchResultsItemsSingleCategory = Template.bind({});
 SearchResultsItemsSingleCategory.parameters = {
@@ -106,3 +107,5 @@ SearchResultsItemsSingleCategory.argTypes = {
     control: false,
   },
 };
+
+SearchResultsItemsSingleCategory.storyName = "SearchResultsSingleCategory";

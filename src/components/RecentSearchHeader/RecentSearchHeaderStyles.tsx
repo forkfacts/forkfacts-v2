@@ -5,7 +5,7 @@ export const useStyles = makeStyles(({ typography, spacing, breakpoints, palette
   root: {
     [breakpoints.down("md")]: {
       display: "flex",
-      flexdDirection: "column",
+      flexDirection: "center",
       alignItems: "center",
       paddingTop: spacing(1.9),
       paddingLeft: spacing(3.5),

@@ -13,7 +13,7 @@ export const useStyles = makeStyles(({ spacing, breakpoints, typography }: Theme
       paddingRight: spacing(3.9),
     },
     "@media (max-width:320px)": {
-      fontSize: "10px",
+      fontSize: spacing(1.25),
     },
   },
   btn: {

@@ -40,7 +40,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({
                       </ForLoops>
                     </Box>
                     {value.collection.length > 3 && (
-                      <ViewMoreButton handleViewMore={handleViewMore!} />
+                      <ViewMoreButton handleViewMore={handleViewMore} />
                     )}
                   </List>
                 );
@@ -60,7 +60,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({
             </List>
           )}
           {collectionListsItems !== undefined && collectionListsItems?.length > 3 && (
-            <ViewMoreButton handleViewMore={handleViewMore!} />
+            <ViewMoreButton handleViewMore={handleViewMore} />
           )}
         </Box>
       )}

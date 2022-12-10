@@ -11,7 +11,7 @@ export interface SearchResultItemCollectionType {
 }
 interface ExtendSearchResultItemsProps {
   onSelectItem: (item: SearchResultItemType) => item;
-  handleViewMore?: () => void;
+  handleViewMore: () => void;
 }
 export type SearchResultsProps = (
   | {

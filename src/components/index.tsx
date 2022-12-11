@@ -1,2 +1,9 @@
 export { default as SEO } from "./Seo/Seo";
-export { default as FactTable } from "./FactTable/FactTable";
+export { default as SearchResults } from "./SearchResults/SearchResults";
+export { default as RecentSearchHeader } from "./RecentSearchHeader/RecentSearchHeader";
+export { default as SearchCategory } from "./SearchCategory/SearchCategory";
+export { default as SearchCategories } from "./SearchCategories/SearchCategories";
+export { default as Header } from "./Header/Header";
+export { default as Layout } from "./Layout/Layout";
+export { default as ViewMoreButton } from "./Buttons/ViewMoreButton/ViewMoreButton";
+export { default as SearchResultItem } from "./SearchResultItem/SearchResultItem";

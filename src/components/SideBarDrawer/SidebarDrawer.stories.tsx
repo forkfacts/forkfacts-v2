@@ -7,7 +7,7 @@ import { SideBarDrawer as Drawer } from "@forkfacts/components";
 import { drawerArrayItem } from "@forkfacts/models";
 
 export default {
-  title: "Components/SideBarDrawer",
+  title: "Components/SideBarDrawer/SideBarDrawer",
   component: Drawer,
 } as ComponentMeta<typeof Drawer>;
 
@@ -24,3 +24,5 @@ export const SideBarDrawer = Template.bind({});
 SideBarDrawer.args = {
   drawerItems: drawerItems,
 };
+
+SideBarDrawer.storyName = "SideBarDrawer";

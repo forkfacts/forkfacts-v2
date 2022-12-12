@@ -52,9 +52,10 @@ export interface SearchResultItemProps {
 interface SideBarDrawerProps {
   drawerWidth: string;
   mobileOpen: boolean;
-  handleDrawerToggle: (bool: string) => void;
+  handleDrawerToggle: () => void;
   drawerItems: Array<drawerArrayItem>;
   window?: window;
+  drawerWidthExpanded: boolean;
 }
 
 interface ExtendSearchResultItemsProps {

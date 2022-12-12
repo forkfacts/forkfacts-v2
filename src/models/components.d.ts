@@ -5,36 +5,20 @@ export interface SearchResultItemType {
   path: string;
   image: string;
 }
-export interface SearchResultItemCollectionType {
-  collection: Array<SearchResultItemType>;
-  categoryName: string;
-}
-interface ExtendSearchResultItemsProps {
-  onSelectItem: (item: SearchResultItemType) => item;
-  handleViewMore: () => void;
-}
-export type SearchResultsProps = (
-  | {
-      collectionListsItems?: Array<SearchResultItemType>;
-      multiple: boolean;
-      collectionGroupedItems: Array<SearchResultItemCollectionType>;
-    }
-  | {
-      collectionListsItems: Array<SearchResultItemType>;
-      multiple?: boolean;
-      collectionGroupedItems?: Array<SearchResultItemCollectionType>;
-    }
-) &
-  ExtendSearchResultItemsProps;
-export interface SearchResultItemProps {
-  item: SearchResultItemType;
-  onSelectItem: (item: SearchResultItemType) => item;
-}
 
 export interface SearchCategoryItemType {
   label: string;
   Icon: SvgIconComponent;
 }
+
+interface drawerArrayItem extends SearchCategoryItemType {
+  link: string;
+}
+export interface SearchResultItemCollectionType {
+  collection: Array<SearchResultItemType>;
+  categoryName: string;
+}
+
 export interface onSelectCategoryType {
   onSelectCategory: (item: SearchCategoryItemType) => item;
 }
@@ -55,3 +39,38 @@ export interface RecentSearchHeaderProps {
   onClosePage: () => void;
   onClearSearch: () => void;
 }
+
+export interface LayoutProps {
+  drawerItems: Array<drawerArrayItem>;
+  children: JSX.Element | JSX.Element[];
+}
+
+export interface SearchResultItemProps {
+  item: SearchResultItemType;
+  onSelectItem: (item: SearchResultItemType) => item;
+}
+interface SideBarDrawerProps {
+  drawerWidth: string;
+  mobileOpen: boolean;
+  handleDrawerToggle: (bool: string) => void;
+  drawerItems: Array<drawerArrayItem>;
+  window?: window;
+}
+
+interface ExtendSearchResultItemsProps {
+  onSelectItem: (item: SearchResultItemType) => item;
+  handleViewMore: () => void;
+}
+export type SearchResultsProps = (
+  | {
+      collectionListsItems?: Array<SearchResultItemType>;
+      multiple: boolean;
+      collectionGroupedItems: Array<SearchResultItemCollectionType>;
+    }
+  | {
+      collectionListsItems: Array<SearchResultItemType>;
+      multiple?: boolean;
+      collectionGroupedItems?: Array<SearchResultItemCollectionType>;
+    }
+) &
+  ExtendSearchResultItemsProps;

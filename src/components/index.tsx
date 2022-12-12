@@ -7,3 +7,4 @@ export { default as Header } from "./Header/Header";
 export { default as Layout } from "./Layout/Layout";
 export { default as ViewMoreButton } from "./Buttons/ViewMoreButton/ViewMoreButton";
 export { default as SearchResultItem } from "./SearchResultItem/SearchResultItem";
+export { default as SideBarDrawer } from "./SideBarDrawer/SideBarDrawer";

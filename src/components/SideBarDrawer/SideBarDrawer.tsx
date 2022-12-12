@@ -109,5 +109,3 @@ const SideBarDrawer: FC<SideBarDrawerProps> = ({
 };
 
 export default SideBarDrawer;
-
-const drawerArrayItems = [];

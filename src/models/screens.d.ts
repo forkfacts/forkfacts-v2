@@ -3,7 +3,7 @@ import {
   SearchCategoryItemType,
   onSelectCategoryType,
   SearchResultItemCollectionType,
-  drawerItem,
+  sidebarItem,
 } from "@forkfacts/models";
 
 export interface TypingSearchScreenProps extends onSelectCategoryType {
@@ -28,6 +28,6 @@ export interface RecentSearchScreenProps {
 }
 
 export interface HomeScreenProps {
-  drawerItems: Array<drawerItem>;
-  onSelectItem: (item: drawerItem) => void;
+  sidebarItems: Array<sidebarItem>;
+  onSelectItem: (item: sidebarItem) => void;
 }

@@ -1,25 +1,24 @@
 import React from "react";
-import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { ComponentStory, ComponentMeta } from "@storybook/react";
 import EggAltOutlinedIcon from "@mui/icons-material/EggAltOutlined";
 import EmojiFoodBeverageOutlinedIcon from "@mui/icons-material/EmojiFoodBeverageOutlined";
 import LibraryBooksOutlinedIcon from "@mui/icons-material/LibraryBooksOutlined";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import AutoStoriesOutlinedIcon from "@mui/icons-material/AutoStoriesOutlined";
+import { SideBar as Drawer } from "@forkfacts/components";
 import { sidebarItem } from "@forkfacts/models";
-import { HomeScreen } from "@forkfacts/screens";
+import { Box } from "@mui/material";
 
 export default {
-  title: "Screens/SearchScreen/HomeScreen",
-  component: HomeScreen,
-  parameters: {
-    viewport: {
-      viewports: INITIAL_VIEWPORTS,
-    },
-  },
-} as ComponentMeta<typeof HomeScreen>;
+  title: "Components/SideBarItem",
+  component: Drawer,
+} as ComponentMeta<typeof Drawer>;
 
-const Template: ComponentStory<typeof HomeScreen> = (args) => <HomeScreen {...args} />;
+const Template: ComponentStory<typeof Drawer> = (args) => (
+  <Box sx={{ p: 4 }}>
+    <Drawer {...args} />
+  </Box>
+);
 
 const sidebarItems: sidebarItem[] = [
   { label: "Food", Icon: EggAltOutlinedIcon },
@@ -29,24 +28,24 @@ const sidebarItems: sidebarItem[] = [
   { label: "Grocery List", Icon: ShoppingCartOutlinedIcon },
 ];
 
-export const Mobile = Template.bind({});
-Mobile.parameters = {
-  viewport: {
-    defaultViewport: "iphone6",
-  },
-};
+export const SideBar = Template.bind({});
 
-Mobile.args = {
+SideBar.args = {
   sidebarItems: sidebarItems,
+  drawerWidthExpanded: false,
+  mobileOpen: false,
+  onSelectItem: (item: sidebarItem) => {},
 };
 
-export const Tablet = Template.bind({});
-Tablet.parameters = {
-  viewport: {
-    defaultViewport: "ipad",
-  },
-};
+SideBar.storyName = "SideBarItem";
 
-Tablet.args = {
+export const expandedSideBar = Template.bind({});
+
+expandedSideBar.args = {
   sidebarItems: sidebarItems,
+  drawerWidthExpanded: true,
+  mobileOpen: false,
+  onSelectItem: (item: sidebarItem) => {},
 };
+
+expandedSideBar.storyName = "expandedSideBar";

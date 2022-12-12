@@ -1,14 +1,14 @@
 import React, { FC, useState } from "react";
 import { Box, List, Drawer, Toolbar, useTheme } from "@mui/material";
-import { SideBarDrawerProps, drawerItem } from "@forkfacts/models";
+import { SideBarProps, sidebarItem } from "@forkfacts/models";
 import { ForLoops } from "@forkfacts/helpers";
-import { SideBarDrawerItem } from "@forkfacts/components";
+import { SideBarItem } from "@forkfacts/components";
 
-const SideBarDrawer: FC<SideBarDrawerProps> = ({
+const SideBar: FC<SideBarProps> = ({
   drawerWidth,
   mobileOpen = false,
   handleDrawerToggle,
-  drawerItems,
+  sidebarItems,
   window,
   drawerWidthExpanded = false,
   onSelectItem,
@@ -17,7 +17,7 @@ const SideBarDrawer: FC<SideBarDrawerProps> = ({
   const { transitions } = useTheme();
   const [selectedIndex, setSelectedIndex] = useState<number>(0);
 
-  const handleSelectedIndex = (index: number, item: drawerItem) => {
+  const handleSelectedIndex = (index: number, item: sidebarItem) => {
     setSelectedIndex(index);
     onSelectItem(item);
   };
@@ -46,10 +46,11 @@ const SideBarDrawer: FC<SideBarDrawerProps> = ({
         <Toolbar />
         <Box sx={{ width: drawerWidth, overflow: "auto" }}>
           <List>
-            <ForLoops each={drawerItems.slice(0, drawerItems ? drawerItems.length : 3)}>
+            <ForLoops each={sidebarItems.slice(0, sidebarItems ? sidebarItems.length : 3)}>
               {(item, index) => {
                 return (
-                  <SideBarDrawerItem
+                  <SideBarItem
+                    key={index}
                     index={index}
                     selectedIndex={selectedIndex}
                     drawerWidthExpanded={drawerWidthExpanded}
@@ -87,10 +88,11 @@ const SideBarDrawer: FC<SideBarDrawerProps> = ({
           }}
         >
           <List>
-            <ForLoops each={drawerItems.slice(0, drawerWidthExpanded ? drawerItems.length : 3)}>
+            <ForLoops each={sidebarItems.slice(0, drawerWidthExpanded ? sidebarItems.length : 3)}>
               {(item, index) => {
                 return (
-                  <SideBarDrawerItem
+                  <SideBarItem
+                    key={index}
                     index={index}
                     selectedIndex={selectedIndex}
                     drawerWidthExpanded={drawerWidthExpanded}
@@ -107,4 +109,4 @@ const SideBarDrawer: FC<SideBarDrawerProps> = ({
   );
 };
 
-export default SideBarDrawer;
+export default SideBar;

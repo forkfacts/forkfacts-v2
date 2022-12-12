@@ -7,7 +7,7 @@ import EmojiFoodBeverageOutlinedIcon from "@mui/icons-material/EmojiFoodBeverage
 import LibraryBooksOutlinedIcon from "@mui/icons-material/LibraryBooksOutlined";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import AutoStoriesOutlinedIcon from "@mui/icons-material/AutoStoriesOutlined";
-import { drawerItem } from "@forkfacts/models";
+import { sidebarItem } from "@forkfacts/models";
 import { Box } from "@mui/material";
 
 export default {
@@ -23,7 +23,7 @@ export default {
   },
 } as ComponentMeta<typeof Layout>;
 
-const drawerItems: drawerItem[] = [
+const sidebarItems: sidebarItem[] = [
   { label: "Food", Icon: EggAltOutlinedIcon },
   { label: "Recipe", Icon: EmojiFoodBeverageOutlinedIcon },
   { label: "Library", Icon: LibraryBooksOutlinedIcon },
@@ -49,7 +49,8 @@ export const Desktop: ComponentStory<typeof Layout> = (args) => (
 );
 
 Desktop.args = {
-  drawerItems: drawerItems,
+  sidebarItems: sidebarItems,
+  onSelectItem: (item: sidebarItem) => {},
 };
 
 export const Mobile: ComponentStory<typeof Layout> = (args) => (
@@ -75,7 +76,8 @@ Mobile.parameters = {
 };
 
 Mobile.args = {
-  drawerItems: drawerItems,
+  sidebarItems: sidebarItems,
+  onSelectItem: (item: sidebarItem) => {},
 };
 
 export const Tablet: ComponentStory<typeof Layout> = (args) => (
@@ -101,5 +103,6 @@ Tablet.parameters = {
 };
 
 Tablet.args = {
-  drawerItems: drawerItems,
+  sidebarItems: sidebarItems,
+  onSelectItem: (item: sidebarItem) => {},
 };

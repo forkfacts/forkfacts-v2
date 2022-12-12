@@ -1,16 +1,16 @@
 import { ListItem, ListItemText, Typography, useTheme, ListItemButton } from "@mui/material";
-import { SideBarDrawerItemProps } from "@forkfacts/models";
+import { SideBarItemProps } from "@forkfacts/models";
 import { blue } from "@mui/material/colors";
 import React from "react";
 
-export default function SideBarDrawerItem({
+export default function SideBarItem({
   index,
   selectedIndex,
   drawerWidthExpanded,
   item: { label, Icon },
   handleSelectedIndex,
-}: SideBarDrawerItemProps) {
-  const { spacing, transitions, palette } = useTheme();
+}: SideBarItemProps) {
+  const { spacing, palette } = useTheme();
   return (
     <ListItem
       onClick={() => handleSelectedIndex(index, { Icon, label })}

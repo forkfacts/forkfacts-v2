@@ -2,7 +2,7 @@ import React, { FC, PropsWithChildren, useState, useEffect } from "react";
 import { ThemeProvider, Theme, Box, CssBaseline, useTheme } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { customTheme } from "../../themes/theme";
-import { Header, SideBarDrawer } from "@forkfacts/components";
+import { Header, SideBar } from "@forkfacts/components";
 import { LayoutProps } from "@forkfacts/models";
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -24,7 +24,7 @@ const LayoutComponent: FC<PropsWithChildren> = ({ children }) => {
   );
 };
 
-const Layout: FC<LayoutProps> = ({ children, drawerItems, onSelectItem }) => {
+const Layout: FC<LayoutProps> = ({ children, sidebarItems, onSelectItem }) => {
   const theme = useTheme();
   const [drawerWidth, setDrawerWidth] = useState(theme.spacing(12.25));
   const [drawerWidthExpanded, setDrawerWidthExpanded] = useState(false);
@@ -49,11 +49,11 @@ const Layout: FC<LayoutProps> = ({ children, drawerItems, onSelectItem }) => {
       <LayoutComponent>
         <Box sx={{ display: { sm: "flex", xs: "block" } }}>
           <CssBaseline />
-          <SideBarDrawer
+          <SideBar
             handleDrawerToggle={handleDrawerToggle}
             mobileOpen={mobileOpen}
             drawerWidth={drawerWidth}
-            drawerItems={drawerItems}
+            sidebarItems={sidebarItems}
             drawerWidthExpanded={drawerWidthExpanded}
             onSelectItem={onSelectItem}
           />

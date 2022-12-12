@@ -10,7 +10,7 @@ import { sidebarItem } from "@forkfacts/models";
 import { Box } from "@mui/material";
 
 export default {
-  title: "Components/SideBarItem",
+  title: "Components/SideBar",
   component: Drawer,
 } as ComponentMeta<typeof Drawer>;
 
@@ -37,7 +37,7 @@ SideBar.args = {
   onSelectItem: (item: sidebarItem) => {},
 };
 
-SideBar.storyName = "SideBarItem";
+SideBar.storyName = "unexpandedSideBar";
 
 export const expandedSideBar = Template.bind({});
 

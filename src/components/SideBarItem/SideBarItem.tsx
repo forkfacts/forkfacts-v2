@@ -7,13 +7,13 @@ export default function SideBarItem({
   index,
   selectedIndex,
   drawerWidthExpanded,
-  item: { label, Icon },
+  item,
   handleSelectedIndex,
 }: SideBarItemProps) {
   const { spacing, palette } = useTheme();
   return (
     <ListItem
-      onClick={() => handleSelectedIndex(index, { Icon, label })}
+      onClick={() => handleSelectedIndex(index, item)}
       key={index}
       divider={drawerWidthExpanded && index === 2 ? true : false}
       disablePadding
@@ -33,11 +33,11 @@ export default function SideBarItem({
           padding: drawerWidthExpanded ? spacing(3) : spacing(2, 0),
         }}
       >
-        <Icon sx={{ width: spacing(2.5), height: spacing(2.5) }} />
+        <item.Icon sx={{ width: spacing(2.5), height: spacing(2.5) }} />
         <ListItemText
           primary={
             <Typography variant="body1" sx={{ ml: drawerWidthExpanded ? spacing(2) : spacing(0) }}>
-              {label}
+              {item.label}
             </Typography>
           }
         />

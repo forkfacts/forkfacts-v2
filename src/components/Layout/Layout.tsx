@@ -60,7 +60,7 @@ const Layout: FC<LayoutProps> = ({ children, sidebarItems, onSelectItem }) => {
           <Box
             sx={{
               width: {
-                sm: `calc(100% - ${drawerWidth}px)`,
+                md: `calc(100% - ${drawerWidth}px)`,
                 xs: "100%",
               },
             }}

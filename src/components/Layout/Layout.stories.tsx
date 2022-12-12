@@ -5,6 +5,8 @@ import { Layout } from "@forkfacts/components";
 import EggAltOutlinedIcon from "@mui/icons-material/EggAltOutlined";
 import EmojiFoodBeverageOutlinedIcon from "@mui/icons-material/EmojiFoodBeverageOutlined";
 import LibraryBooksOutlinedIcon from "@mui/icons-material/LibraryBooksOutlined";
+import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+import AutoStoriesOutlinedIcon from "@mui/icons-material/AutoStoriesOutlined";
 import { drawerItem } from "@forkfacts/models";
 import { Box } from "@mui/material";
 
@@ -22,9 +24,11 @@ export default {
 } as ComponentMeta<typeof Layout>;
 
 const drawerItems: drawerItem[] = [
-  { label: "Food", Icon: EggAltOutlinedIcon, link: "/food" },
-  { label: "Recipe", Icon: EmojiFoodBeverageOutlinedIcon, link: "/recipe" },
-  { label: "Library", Icon: LibraryBooksOutlinedIcon, link: "library" },
+  { label: "Food", Icon: EggAltOutlinedIcon },
+  { label: "Recipe", Icon: EmojiFoodBeverageOutlinedIcon },
+  { label: "Library", Icon: LibraryBooksOutlinedIcon },
+  { label: "Cookbook", Icon: AutoStoriesOutlinedIcon },
+  { label: "Grocery List", Icon: ShoppingCartOutlinedIcon },
 ];
 
 export const Desktop: ComponentStory<typeof Layout> = (args) => (
@@ -70,6 +74,10 @@ Mobile.parameters = {
   },
 };
 
+Mobile.args = {
+  drawerItems: drawerItems,
+};
+
 export const Tablet: ComponentStory<typeof Layout> = (args) => (
   <Layout {...args}>
     <Box
@@ -90,4 +98,8 @@ Tablet.parameters = {
   viewport: {
     defaultViewport: "ipad",
   },
+};
+
+Tablet.args = {
+  drawerItems: drawerItems,
 };

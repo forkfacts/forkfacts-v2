@@ -1,18 +1,8 @@
 import React, { FC, useState } from "react";
-import {
-  Box,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemText,
-  Drawer,
-  Toolbar,
-  useTheme,
-  Typography,
-} from "@mui/material";
-import { blue } from "@mui/material/colors";
-import { SideBarDrawerProps } from "@forkfacts/models";
+import { Box, List, Drawer, Toolbar, useTheme } from "@mui/material";
+import { SideBarDrawerProps, drawerItem } from "@forkfacts/models";
 import { ForLoops } from "@forkfacts/helpers";
+import { SideBarDrawerItem } from "@forkfacts/components";
 
 const SideBarDrawer: FC<SideBarDrawerProps> = ({
   drawerWidth,
@@ -20,13 +10,17 @@ const SideBarDrawer: FC<SideBarDrawerProps> = ({
   handleDrawerToggle,
   drawerItems,
   window,
-  drawerWidthExpanded,
+  drawerWidthExpanded = false,
+  onSelectItem,
 }) => {
   const container = window !== undefined ? () => window().document.body : undefined;
-  const { spacing, transitions, palette } = useTheme();
-  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+  const { transitions } = useTheme();
+  const [selectedIndex, setSelectedIndex] = useState<number>(0);
 
-  const handleSelectedIndex = (index: number) => setSelectedIndex(index);
+  const handleSelectedIndex = (index: number, item: drawerItem) => {
+    setSelectedIndex(index);
+    onSelectItem(item);
+  };
 
   return (
     <Box>
@@ -39,7 +33,7 @@ const SideBarDrawer: FC<SideBarDrawerProps> = ({
           keepMounted: true,
         }}
         sx={{
-          display: { xs: "block", sm: "none" },
+          display: { xs: "block", sm: "block", md: "none" },
           flexShrink: 0,
           overflow: "hidden",
           [`& .MuiDrawer-paper`]: {
@@ -52,22 +46,16 @@ const SideBarDrawer: FC<SideBarDrawerProps> = ({
         <Toolbar />
         <Box sx={{ width: drawerWidth, overflow: "auto" }}>
           <List>
-            <ForLoops each={drawerItems}>
-              {({ Icon, label }, index) => {
+            <ForLoops each={drawerItems.slice(0, drawerItems ? drawerItems.length : 3)}>
+              {(item, index) => {
                 return (
-                  <ListItem key={index} disablePadding>
-                    <ListItemButton
-                      style={{
-                        display: "flex",
-                        justifyContent: "flex-start",
-                        flexDirection: "column",
-                        alignItems: "center",
-                      }}
-                    >
-                      <ListItemText primary={label} />
-                      <Icon />
-                    </ListItemButton>
-                  </ListItem>
+                  <SideBarDrawerItem
+                    index={index}
+                    selectedIndex={selectedIndex}
+                    drawerWidthExpanded={drawerWidthExpanded}
+                    item={item}
+                    handleSelectedIndex={handleSelectedIndex}
+                  />
                 );
               }}
             </ForLoops>
@@ -77,7 +65,7 @@ const SideBarDrawer: FC<SideBarDrawerProps> = ({
       <Drawer
         variant="permanent"
         sx={{
-          display: { xs: "none", sm: "block" },
+          display: { xs: "none", sm: "none", md: "block" },
           "& .MuiDrawer-paper": {
             boxSizing: "border-box",
             width: drawerWidth,
@@ -99,44 +87,16 @@ const SideBarDrawer: FC<SideBarDrawerProps> = ({
           }}
         >
           <List>
-            <ForLoops each={drawerItems}>
-              {({ Icon, label }, index) => {
+            <ForLoops each={drawerItems.slice(0, drawerWidthExpanded ? drawerItems.length : 3)}>
+              {(item, index) => {
                 return (
-                  <ListItem
-                    onClick={() => handleSelectedIndex(index)}
-                    key={index}
-                    disablePadding
-                    sx={{
-                      color: selectedIndex === index ? palette.primary.dark : palette.grey[700],
-                      borderColor:
-                        selectedIndex === index ? palette.primary.dark : palette.grey[700],
-                      backgroundColor:
-                        selectedIndex === index ? blue["50"] : palette.background.default,
-                    }}
-                  >
-                    <ListItemButton
-                      style={{
-                        display: "flex",
-                        justifyContent: drawerWidthExpanded ? "space-evenly" : "center",
-                        flexDirection: drawerWidthExpanded ? "row" : "column",
-                        alignItems: "center",
-                        width: "100%",
-                        padding: drawerWidthExpanded ? spacing(3) : spacing(2, 0),
-                      }}
-                    >
-                      <Icon sx={{ width: spacing(2.5), height: spacing(2.5) }} />
-                      <ListItemText
-                        primary={
-                          <Typography
-                            variant="body1"
-                            sx={{ ml: drawerWidthExpanded ? spacing(2) : spacing(0) }}
-                          >
-                            {label}
-                          </Typography>
-                        }
-                      />
-                    </ListItemButton>
-                  </ListItem>
+                  <SideBarDrawerItem
+                    index={index}
+                    selectedIndex={selectedIndex}
+                    drawerWidthExpanded={drawerWidthExpanded}
+                    item={item}
+                    handleSelectedIndex={handleSelectedIndex}
+                  />
                 );
               }}
             </ForLoops>

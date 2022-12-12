@@ -8,3 +8,4 @@ export { default as Layout } from "./Layout/Layout";
 export { default as ViewMoreButton } from "./Buttons/ViewMoreButton/ViewMoreButton";
 export { default as SearchResultItem } from "./SearchResultItem/SearchResultItem";
 export { default as SideBarDrawer } from "./SideBarDrawer/SideBarDrawer";
+export { default as SideBarDrawerItem } from "./SideBarDrawer/SideBarDrawerItem";

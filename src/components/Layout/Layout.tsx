@@ -4,7 +4,6 @@ import { makeStyles } from "@mui/styles";
 import { customTheme } from "../../themes/theme";
 import { Header, SideBarDrawer } from "@forkfacts/components";
 import { LayoutProps } from "@forkfacts/models";
-import { truncate } from "lodash";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -25,7 +24,7 @@ const LayoutComponent: FC<PropsWithChildren> = ({ children }) => {
   );
 };
 
-const Layout: FC<LayoutProps> = ({ children, drawerItems }) => {
+const Layout: FC<LayoutProps> = ({ children, drawerItems, onSelectItem }) => {
   const theme = useTheme();
   const [drawerWidth, setDrawerWidth] = useState(theme.spacing(12.25));
   const [drawerWidthExpanded, setDrawerWidthExpanded] = useState(false);
@@ -56,6 +55,7 @@ const Layout: FC<LayoutProps> = ({ children, drawerItems }) => {
             drawerWidth={drawerWidth}
             drawerItems={drawerItems}
             drawerWidthExpanded={drawerWidthExpanded}
+            onSelectItem={onSelectItem}
           />
           <Box
             sx={{

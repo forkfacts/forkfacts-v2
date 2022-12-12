@@ -29,4 +29,5 @@ export interface RecentSearchScreenProps {
 
 export interface HomeScreenProps {
   drawerItems: Array<drawerItem>;
+  onSelectItem: (item: drawerItem) => void;
 }

@@ -7,7 +7,7 @@ import { HomeScreenProps } from "@forkfacts/models";
 
 import { useStyles } from "./searchScreenStyles";
 
-export default function HomeScreen({ drawerItems }: HomeScreenProps) {
+export default function HomeScreen({ drawerItems, onSelectItem }: HomeScreenProps) {
   const theme = useTheme();
   const [appBarHeight, setAppBarHeight] = useState<CSSProperties>();
   useEffect(() => {
@@ -16,7 +16,7 @@ export default function HomeScreen({ drawerItems }: HomeScreenProps) {
   const classes = useStyles(appBarHeight?.minHeight);
 
   return (
-    <Layout drawerItems={drawerItems}>
+    <Layout drawerItems={drawerItems} onSelectItem={onSelectItem}>
       <Box className={classes.root}>
         <Box>
           <Box className={classes.spaceBottom}>

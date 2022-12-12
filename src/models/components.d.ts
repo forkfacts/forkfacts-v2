@@ -11,9 +11,7 @@ export interface SearchCategoryItemType {
   Icon: SvgIconComponent;
 }
 
-interface drawerItem extends SearchCategoryItemType {
-  link: string;
-}
+export type drawerItem = SearchCategoryItemType;
 export interface SearchResultItemCollectionType {
   collection: Array<SearchResultItemType>;
   categoryName: string;
@@ -43,6 +41,7 @@ export interface RecentSearchHeaderProps {
 export interface LayoutProps {
   drawerItems: Array<drawerItem>;
   children: JSX.Element | JSX.Element[];
+  onSelectItem: (item: drawerItem) => void;
 }
 
 export interface SearchResultItemProps {
@@ -50,6 +49,7 @@ export interface SearchResultItemProps {
   onSelectItem: (item: SearchResultItemType) => item;
 }
 interface SideBarDrawerProps {
+  onSelectItem: (item: drawerItem) => void;
   drawerWidth: string;
   mobileOpen: boolean;
   handleDrawerToggle: () => void;
@@ -75,3 +75,11 @@ export type SearchResultsProps = (
     }
 ) &
   ExtendSearchResultItemsProps;
+
+export interface SideBarDrawerItemProps {
+  index: number;
+  selectedIndex: number;
+  drawerWidthExpanded: boolean;
+  item: drawerItem;
+  handleSelectedIndex: (index: number, item: drawerItem) => void;
+}

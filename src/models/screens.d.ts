@@ -3,6 +3,7 @@ import {
   SearchCategoryItemType,
   onSelectCategoryType,
   SearchResultItemCollectionType,
+  drawerItem,
 } from "@forkfacts/models";
 
 export interface TypingSearchScreenProps extends onSelectCategoryType {
@@ -24,4 +25,8 @@ export interface RecentSearchScreenProps {
   onSelectItem: (item: SearchResultItemType) => item;
   showClearSearch: boolean;
   multiple: boolean;
+}
+
+export interface HomeScreenProps {
+  drawerItems: Array<drawerItem>;
 }

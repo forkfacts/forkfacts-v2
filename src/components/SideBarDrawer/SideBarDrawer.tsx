@@ -43,7 +43,7 @@ const SideBarDrawer: FC<SideBarDrawerProps> = ({
           flexShrink: 0,
           overflow: "hidden",
           [`& .MuiDrawer-paper`]: {
-            width: mobileOpen ? "100%" : drawerWidth,
+            width: drawerWidth,
             boxSizing: "border-box",
           },
           borderWidth: 0,
@@ -59,7 +59,7 @@ const SideBarDrawer: FC<SideBarDrawerProps> = ({
                     <ListItemButton
                       style={{
                         display: "flex",
-                        justifyContent: "center",
+                        justifyContent: "flex-start",
                         flexDirection: "column",
                         alignItems: "center",
                       }}

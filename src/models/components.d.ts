@@ -11,7 +11,7 @@ export interface SearchCategoryItemType {
   Icon: SvgIconComponent;
 }
 
-interface drawerArrayItem extends SearchCategoryItemType {
+interface drawerItem extends SearchCategoryItemType {
   link: string;
 }
 export interface SearchResultItemCollectionType {
@@ -41,7 +41,7 @@ export interface RecentSearchHeaderProps {
 }
 
 export interface LayoutProps {
-  drawerItems: Array<drawerArrayItem>;
+  drawerItems: Array<drawerItem>;
   children: JSX.Element | JSX.Element[];
 }
 
@@ -53,7 +53,7 @@ interface SideBarDrawerProps {
   drawerWidth: string;
   mobileOpen: boolean;
   handleDrawerToggle: () => void;
-  drawerItems: Array<drawerArrayItem>;
+  drawerItems: Array<drawerItem>;
   window?: window;
   drawerWidthExpanded: boolean;
 }

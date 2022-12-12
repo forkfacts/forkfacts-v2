@@ -5,7 +5,7 @@ import { Layout } from "@forkfacts/components";
 import EggAltOutlinedIcon from "@mui/icons-material/EggAltOutlined";
 import EmojiFoodBeverageOutlinedIcon from "@mui/icons-material/EmojiFoodBeverageOutlined";
 import LibraryBooksOutlinedIcon from "@mui/icons-material/LibraryBooksOutlined";
-import { drawerArrayItem } from "@forkfacts/models";
+import { drawerItem } from "@forkfacts/models";
 import { Box } from "@mui/material";
 
 export default {
@@ -21,7 +21,7 @@ export default {
   },
 } as ComponentMeta<typeof Layout>;
 
-const drawerItems: drawerArrayItem[] = [
+const drawerItems: drawerItem[] = [
   { label: "Food", Icon: EggAltOutlinedIcon, link: "/food" },
   { label: "Recipe", Icon: EmojiFoodBeverageOutlinedIcon, link: "/recipe" },
   { label: "Library", Icon: LibraryBooksOutlinedIcon, link: "library" },

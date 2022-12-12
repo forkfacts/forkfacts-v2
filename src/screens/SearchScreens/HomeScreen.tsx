@@ -3,9 +3,11 @@ import { Box, TextField, Typography, useTheme } from "@mui/material";
 import { SearchOutlined } from "@mui/icons-material";
 import InputAdornment from "@mui/material/InputAdornment";
 import { Layout } from "@forkfacts/components";
+import { HomeScreenProps } from "@forkfacts/models";
+
 import { useStyles } from "./searchScreenStyles";
 
-export default function HomeScreen() {
+export default function HomeScreen({ drawerItems }: HomeScreenProps) {
   const theme = useTheme();
   const [appBarHeight, setAppBarHeight] = useState<CSSProperties>();
   useEffect(() => {
@@ -14,7 +16,7 @@ export default function HomeScreen() {
   const classes = useStyles(appBarHeight?.minHeight);
 
   return (
-    <Layout>
+    <Layout drawerItems={drawerItems}>
       <Box className={classes.root}>
         <Box>
           <Box className={classes.spaceBottom}>

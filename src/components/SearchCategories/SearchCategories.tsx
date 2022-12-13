@@ -19,6 +19,7 @@ export default function SearchCategories({
           {({ label, Icon }, idx) => (
             <Grid key={idx} item>
               <SearchCategory
+                as="category"
                 index={idx}
                 onSelectCategory={onSelectCategory}
                 label={label}

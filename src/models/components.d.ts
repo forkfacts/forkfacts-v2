@@ -26,6 +26,20 @@ interface selectedItemType {
   setSelectedIndex: (value: number) => value;
   selectedIndex: number;
 }
+
+export interface NavbarProps extends onSelectCategoryType {
+  navbarItems: Array<SearchCategoryItemType>;
+}
+
+export type extraInfo = {
+  name: string;
+  weight: string;
+};
+interface PopularFrequentSearchType {
+  searchName: string;
+  searchLabels: string[];
+  extraInfo: extraInfo[];
+}
 export interface SearchCategoryProps extends onSelectCategoryType, selectedItemType {
   label: string;
   Icon: SvgIconComponent;
@@ -88,6 +102,7 @@ export interface SideBarItemProps {
   handleSelectedIndex: (index: number, item: sidebarItem) => void;
 }
 
-export interface NavbarProps extends onSelectCategoryType {
-  navbarItems: Array<SearchCategoryItemType>;
+export interface PopularFrequentSearchProps {
+  PopularFrequentSearchItems: Array<PopularFrequentSearchType>;
+  PopularFrequentSearchTitle: string;
 }

@@ -1,18 +1,9 @@
-import React, { FC, PropsWithChildren, useState, useEffect } from "react";
-import { ThemeProvider, Theme, Box, CssBaseline, useTheme } from "@mui/material";
-import { makeStyles } from "@mui/styles";
+import React, { FC, PropsWithChildren, useState } from "react";
+import { ThemeProvider, Box, CssBaseline, useTheme } from "@mui/material";
 import { customTheme } from "../../themes/theme";
 import { Header, SideBar } from "@forkfacts/components";
 import { LayoutProps } from "@forkfacts/models";
-
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {
-    backgroundColor: theme.palette.background.default,
-  },
-  main: {
-    backgroundColor: theme.palette.background.default,
-  },
-}));
+import { useStyles } from "./layoutStyles";
 
 const LayoutComponent: FC<PropsWithChildren> = ({ children }) => {
   const classes = useStyles();

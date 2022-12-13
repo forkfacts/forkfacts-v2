@@ -74,4 +74,12 @@ export const useStyles = makeStyles(({ spacing, breakpoints, typography, palette
       marginTop: spacing(4),
     },
   },
+  PopularFrequentStyles: {
+    [breakpoints.up("md")]: {
+      marginTop: spacing(15),
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+    },
+  },
 }));

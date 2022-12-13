@@ -1,6 +1,11 @@
 import React, { CSSProperties, useState, useEffect } from "react";
 import { Box, Typography, useTheme } from "@mui/material";
-import { Layout, SearchInputField, NavBar } from "@forkfacts/components";
+import {
+  Layout,
+  SearchInputField,
+  NavBar,
+  PopularFrequentSearchCategories,
+} from "@forkfacts/components";
 import { HomeScreenProps, sidebarItem } from "@forkfacts/models";
 import classNames from "classnames";
 import { useStyles } from "./searchScreenStyles";
@@ -9,6 +14,8 @@ export default function HomeScreen({
   sidebarItems,
   onSelectCategory,
   navbarItems,
+  PopularFrequentSearchItems,
+  PopularFrequentSearchTitle,
 }: HomeScreenProps) {
   const theme = useTheme();
   const [appBarHeight, setAppBarHeight] = useState<CSSProperties>();
@@ -46,6 +53,12 @@ export default function HomeScreen({
             </Box>
             <Box className={classNames(classes.showDesktop, classes.categoriesStyle)}>
               <NavBar onSelectCategory={onSelectSideBarItem} navbarItems={navbarItems} />
+            </Box>
+            <Box className={classNames(classes.showDesktop, classes.PopularFrequentStyles)}>
+              <PopularFrequentSearchCategories
+                PopularFrequentSearchTitle={PopularFrequentSearchTitle}
+                PopularFrequentSearchItems={PopularFrequentSearchItems}
+              />
             </Box>
           </Box>
         </Box>

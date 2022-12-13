@@ -35,7 +35,8 @@ export type extraInfo = {
   name: string;
   weight: string;
 };
-interface PopularFrequentSearchType {
+export interface PopularFrequentSearchType {
+  searchImg: string;
   searchName: string;
   searchLabels: string[];
   extraInfo: extraInfo[];
@@ -105,4 +106,8 @@ export interface SideBarItemProps {
 export interface PopularFrequentSearchProps {
   PopularFrequentSearchItems: Array<PopularFrequentSearchType>;
   PopularFrequentSearchTitle: string;
+}
+
+export interface PopularFrequentSearchCategoryProps {
+  item: PopularFrequentSearchType;
 }

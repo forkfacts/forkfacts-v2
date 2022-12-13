@@ -12,3 +12,4 @@ export { default as SideBarItem } from "./SideBarItem/SideBarItem";
 export { default as SearchInputField } from "./InputFields/SearchInputFields/SearchInputField";
 export { default as NavBar } from "./NavBar/NavBar";
 export { default as PopularFrequentSearchCategories } from "./PopularFrequentSearchCategories/PopularFrequentSearchCategories";
+export { default as PopularFrequentSearchCategory } from "./PopularFrequentSearchCategory/PopularFrequentSearchCategory";

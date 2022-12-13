@@ -3,6 +3,7 @@ import {
   SearchCategoryItemType,
   onSelectCategoryType,
   SearchResultItemCollectionType,
+  PopularFrequentSearchType,
   sidebarItem,
 } from "@forkfacts/models";
 
@@ -30,4 +31,6 @@ export interface RecentSearchScreenProps {
 export interface HomeScreenProps extends onSelectCategoryType {
   sidebarItems: Array<sidebarItem>;
   navbarItems: SearchCategoryItemType[];
+  PopularFrequentSearchItems: Array<PopularFrequentSearchType>;
+  PopularFrequentSearchTitle: string;
 }

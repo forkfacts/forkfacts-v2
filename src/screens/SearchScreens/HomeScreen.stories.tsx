@@ -6,7 +6,11 @@ import EmojiFoodBeverageOutlinedIcon from "@mui/icons-material/EmojiFoodBeverage
 import LibraryBooksOutlinedIcon from "@mui/icons-material/LibraryBooksOutlined";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import AutoStoriesOutlinedIcon from "@mui/icons-material/AutoStoriesOutlined";
-import { sidebarItem, PopularFrequentSearchProps } from "@forkfacts/models";
+import {
+  sidebarItem,
+  PopularFrequentSearchProps,
+  PopularFrequentSearchType,
+} from "@forkfacts/models";
 import { HomeScreen } from "@forkfacts/screens";
 
 export default {
@@ -33,7 +37,11 @@ const navbarItems = [
   { label: "Library", Icon: LibraryBooksOutlinedIcon },
 ];
 
-const { PopularFrequentSearchTitle, PopularFrequentSearchItems }: PopularFrequentSearchProps = {
+const {
+  PopularFrequentSearchTitle,
+  PopularFrequentSearchItems,
+  onSelectPopularItem,
+}: PopularFrequentSearchProps = {
   PopularFrequentSearchTitle: "Popular Foods",
   PopularFrequentSearchItems: [
     {
@@ -47,6 +55,7 @@ const { PopularFrequentSearchTitle, PopularFrequentSearchItems }: PopularFrequen
       ],
     },
   ],
+  onSelectPopularItem: (item: PopularFrequentSearchType) => {},
 };
 
 const Template: ComponentStory<typeof HomeScreen> = (args) => <HomeScreen {...args} />;
@@ -58,6 +67,7 @@ Desktop.args = {
   navbarItems: navbarItems,
   PopularFrequentSearchItems: PopularFrequentSearchItems,
   PopularFrequentSearchTitle: PopularFrequentSearchTitle,
+  onSelectPopularItem: (item: PopularFrequentSearchType) => {},
 };
 
 export const Mobile = Template.bind({});

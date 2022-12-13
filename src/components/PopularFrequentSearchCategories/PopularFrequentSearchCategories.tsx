@@ -9,6 +9,7 @@ import { PopularFrequentSearchCategory } from "@forkfacts/components";
 const PopularFrequentSearchCategories = ({
   PopularFrequentSearchItems,
   PopularFrequentSearchTitle,
+  onSelectPopularItem,
 }: PopularFrequentSearchProps) => {
   const { spacing, palette, typography, shape } = useTheme();
 
@@ -38,7 +39,13 @@ const PopularFrequentSearchCategories = ({
         disablePadding
       >
         <ForLoops each={PopularFrequentSearchItems}>
-          {(item, idx) => <PopularFrequentSearchCategory item={item} key={idx} />}
+          {(item, idx) => (
+            <PopularFrequentSearchCategory
+              item={item}
+              key={idx}
+              onSelectPopularItem={onSelectPopularItem}
+            />
+          )}
         </ForLoops>
       </List>
     </Box>

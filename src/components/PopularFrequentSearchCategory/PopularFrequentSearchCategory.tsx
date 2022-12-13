@@ -5,8 +5,15 @@ import { blue } from "@mui/material/colors";
 import Typography from "@mui/material/Typography";
 import { Box, useTheme } from "@mui/material";
 
-const PopularFrequentSearchCategory = ({ item }: PopularFrequentSearchCategoryProps) => {
+const PopularFrequentSearchCategory = ({
+  item,
+  onSelectPopularItem,
+}: PopularFrequentSearchCategoryProps) => {
   const { spacing, palette, shadows, typography, shape } = useTheme();
+
+  const handleSelectedItem = () => {
+    onSelectPopularItem(item);
+  };
   return (
     <ListItem
       sx={{
@@ -14,8 +21,10 @@ const PopularFrequentSearchCategory = ({ item }: PopularFrequentSearchCategoryPr
         mb: spacing(3),
         boxShadow: shadows[1],
         borderRadius: spacing(1.5),
+        cursor: "pointer",
       }}
       disablePadding
+      onClick={handleSelectedItem}
     >
       <img src={item.searchImg} alt={item.searchName} />
       <Box

@@ -16,6 +16,7 @@ export default function HomeScreen({
   navbarItems,
   PopularFrequentSearchItems,
   PopularFrequentSearchTitle,
+  onSelectPopularItem,
 }: HomeScreenProps) {
   const theme = useTheme();
   const [appBarHeight, setAppBarHeight] = useState<CSSProperties>();
@@ -58,6 +59,7 @@ export default function HomeScreen({
               <PopularFrequentSearchCategories
                 PopularFrequentSearchTitle={PopularFrequentSearchTitle}
                 PopularFrequentSearchItems={PopularFrequentSearchItems}
+                onSelectPopularItem={onSelectPopularItem}
               />
             </Box>
           </Box>

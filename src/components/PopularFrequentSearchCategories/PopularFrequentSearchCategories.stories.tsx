@@ -1,14 +1,18 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { PopularFrequentSearchCategories } from "@forkfacts/components";
-import { PopularFrequentSearchProps } from "@forkfacts/models";
+import { PopularFrequentSearchProps, PopularFrequentSearchType } from "@forkfacts/models";
 
 export default {
   title: "Components/PopularFrequentSearchCategories",
   component: PopularFrequentSearchCategories,
 } as ComponentMeta<typeof PopularFrequentSearchCategories>;
 
-const { PopularFrequentSearchTitle, PopularFrequentSearchItems }: PopularFrequentSearchProps = {
+const {
+  PopularFrequentSearchTitle,
+  PopularFrequentSearchItems,
+  onSelectPopularItem,
+}: PopularFrequentSearchProps = {
   PopularFrequentSearchTitle: "Popular Foods",
   PopularFrequentSearchItems: [
     {
@@ -32,6 +36,7 @@ const { PopularFrequentSearchTitle, PopularFrequentSearchItems }: PopularFrequen
       ],
     },
   ],
+  onSelectPopularItem: (item: PopularFrequentSearchType) => {},
 };
 
 const Template: ComponentStory<typeof PopularFrequentSearchCategories> = (args) => (
@@ -44,6 +49,7 @@ PopularFrequentSearch.args = {
   ...PopularFrequentSearch.args,
   PopularFrequentSearchTitle: PopularFrequentSearchTitle,
   PopularFrequentSearchItems: PopularFrequentSearchItems,
+  onSelectPopularItem: (item: PopularFrequentSearchType) => {},
 };
 
 PopularFrequentSearch.storyName = "PopularFrequentSearchCategories";

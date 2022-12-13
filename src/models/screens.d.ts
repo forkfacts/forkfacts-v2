@@ -33,4 +33,5 @@ export interface HomeScreenProps extends onSelectCategoryType {
   navbarItems: SearchCategoryItemType[];
   PopularFrequentSearchItems: Array<PopularFrequentSearchType>;
   PopularFrequentSearchTitle: string;
+  onSelectPopularItem: (item: PopularFrequentSearchType) => void;
 }

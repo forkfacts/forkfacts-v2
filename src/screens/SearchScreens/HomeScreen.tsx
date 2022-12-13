@@ -1,13 +1,15 @@
 import React, { CSSProperties, useState, useEffect } from "react";
-import { Box, TextField, Typography, useTheme } from "@mui/material";
-import { SearchOutlined } from "@mui/icons-material";
-import InputAdornment from "@mui/material/InputAdornment";
-import { Layout } from "@forkfacts/components";
-import { HomeScreenProps } from "@forkfacts/models";
-
+import { Box, Typography, useTheme } from "@mui/material";
+import { Layout, SearchInputField, SearchCategories } from "@forkfacts/components";
+import { HomeScreenProps, sidebarItem } from "@forkfacts/models";
+import classNames from "classnames";
 import { useStyles } from "./searchScreenStyles";
 
-export default function HomeScreen({ sidebarItems, onSelectItem }: HomeScreenProps) {
+export default function HomeScreen({
+  sidebarItems,
+  onSelectCategory,
+  categoryOptions,
+}: HomeScreenProps) {
   const theme = useTheme();
   const [appBarHeight, setAppBarHeight] = useState<CSSProperties>();
   useEffect(() => {
@@ -15,8 +17,13 @@ export default function HomeScreen({ sidebarItems, onSelectItem }: HomeScreenPro
   }, [theme.mixins.toolbar]);
   const classes = useStyles(appBarHeight?.minHeight);
 
+  const onSelectSideBarItem = (item: sidebarItem) => {
+    console.log(item);
+    onSelectCategory(item);
+  };
+
   return (
-    <Layout sidebarItems={sidebarItems} onSelectItem={onSelectItem}>
+    <Layout sidebarItems={sidebarItems} onSelectItem={onSelectSideBarItem}>
       <Box className={classes.root}>
         <Box>
           <Box className={classes.spaceBottom}>
@@ -24,34 +31,25 @@ export default function HomeScreen({ sidebarItems, onSelectItem }: HomeScreenPro
               Forkfacts, Your Healthy diet search place.
             </Typography>
           </Box>
-          <Box sx={{ width: "100%" }}>
-            <TextField
-              size="small"
-              placeholder="Search"
-              fullWidth
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <SearchOutlined />
-                  </InputAdornment>
-                ),
-              }}
-              sx={{
-                "& fieldset": {
-                  paddingLeft: (theme) => theme.spacing(2.5),
-                  borderRadius: (theme) => theme.spacing(1.25),
-                  width: "100%",
-                  borderColor: "grey[100] !important",
-                  "&:hover": {
-                    borderColor: "grey[100] !important",
-                    outlineColor: "grey[100] !important",
-                  },
-                },
-                "&:focus fieldset": {
-                  borderColor: "grey[100] !important",
-                },
-              }}
-            />
+          <Box className={classes.homeScreenWrapper}>
+            <Box className={classes.showDesktop}>
+              <img src="/homeImg.svg" alt="home page image" className={classes.img} />
+            </Box>
+            <Typography
+              variant="h4"
+              className={classNames(classes.selectedSearchTitle, classes.showDesktop)}
+            >
+              Foods
+            </Typography>
+            <Box className={classes.searchInputStyles}>
+              <SearchInputField />
+            </Box>
+            <Box className={classNames(classes.showDesktop, classes.categoriesStyle)}>
+              <SearchCategories
+                onSelectCategory={onSelectSideBarItem}
+                categoryOptions={categoryOptions}
+              />
+            </Box>
           </Box>
         </Box>
       </Box>

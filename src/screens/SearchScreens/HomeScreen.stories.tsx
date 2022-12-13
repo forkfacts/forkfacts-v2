@@ -19,8 +19,6 @@ export default {
   },
 } as ComponentMeta<typeof HomeScreen>;
 
-const Template: ComponentStory<typeof HomeScreen> = (args) => <HomeScreen {...args} />;
-
 const sidebarItems: sidebarItem[] = [
   { label: "Food", Icon: EggAltOutlinedIcon },
   { label: "Recipe", Icon: EmojiFoodBeverageOutlinedIcon },
@@ -28,6 +26,21 @@ const sidebarItems: sidebarItem[] = [
   { label: "Cookbook", Icon: AutoStoriesOutlinedIcon },
   { label: "Grocery List", Icon: ShoppingCartOutlinedIcon },
 ];
+
+const categoryOptions = [
+  { label: "Food", Icon: EggAltOutlinedIcon },
+  { label: "Recipes", Icon: EmojiFoodBeverageOutlinedIcon },
+  { label: "Library", Icon: LibraryBooksOutlinedIcon },
+];
+
+const Template: ComponentStory<typeof HomeScreen> = (args) => <HomeScreen {...args} />;
+
+export const Desktop = Template.bind({});
+
+Desktop.args = {
+  sidebarItems: sidebarItems,
+  categoryOptions: categoryOptions,
+};
 
 export const Mobile = Template.bind({});
 Mobile.parameters = {

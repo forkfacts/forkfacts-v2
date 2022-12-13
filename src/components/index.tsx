@@ -9,3 +9,4 @@ export { default as ViewMoreButton } from "./Buttons/ViewMoreButton/ViewMoreButt
 export { default as SearchResultItem } from "./SearchResultItem/SearchResultItem";
 export { default as SideBar } from "./SideBar/SideBar";
 export { default as SideBarItem } from "./SideBarItem/SideBarItem";
+export { default as SearchInputField } from "./InputFields/SearchInputFields/SearchInputField";

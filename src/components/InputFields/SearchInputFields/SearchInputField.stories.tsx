@@ -4,7 +4,7 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { SearchInputField } from "@forkfacts/components";
 
 export default {
-  title: "Component/InputFields/SearchInputField",
+  title: "Components/InputFields/SearchInputField",
   component: SearchInputField,
   argTypes: {
     backgroundColor: { control: "color" },

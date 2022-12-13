@@ -11,7 +11,6 @@ const SideBar: FC<SideBarProps> = ({
   sidebarItems,
   window,
   drawerWidthExpanded = false,
-  onSelectItem,
 }) => {
   const container = window !== undefined ? () => window().document.body : undefined;
   const { transitions } = useTheme();
@@ -19,7 +18,6 @@ const SideBar: FC<SideBarProps> = ({
 
   const handleSelectedIndex = (index: number, item: sidebarItem) => {
     setSelectedIndex(index);
-    onSelectItem(item);
   };
 
   return (

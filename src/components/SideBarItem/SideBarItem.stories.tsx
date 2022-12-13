@@ -15,6 +15,7 @@ export const SelectedSideBarSingleItem = Template.bind({});
 
 SelectedSideBarSingleItem.args = {
   item: {
+    link: "/food",
     label: "Food",
     Icon: EggAltOutlinedIcon,
   },
@@ -29,6 +30,7 @@ export const UnSelectedSideBarSingleItem = Template.bind({});
 
 UnSelectedSideBarSingleItem.args = {
   item: {
+    link: "/food",
     label: "Food",
     Icon: EggAltOutlinedIcon,
   },

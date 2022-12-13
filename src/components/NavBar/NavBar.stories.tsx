@@ -14,9 +14,9 @@ export default {
 const Template: ComponentStory<typeof NavBar> = (args) => <NavBar {...args} />;
 
 const navbarItems: sidebarItem[] = [
-  { label: "Food", Icon: EggAltOutlinedIcon },
-  { label: "Recipe", Icon: EmojiFoodBeverageOutlinedIcon },
-  { label: "Library", Icon: LibraryBooksOutlinedIcon },
+  { label: "Food", Icon: EggAltOutlinedIcon, link: "/food" },
+  { label: "Recipe", Icon: EmojiFoodBeverageOutlinedIcon, link: "Recipe" },
+  { label: "Library", Icon: LibraryBooksOutlinedIcon, link: "/library" },
 ];
 
 export const Navbar = Template.bind({});

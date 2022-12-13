@@ -1,5 +1,6 @@
 import { ListItem, ListItemText, Typography, useTheme, ListItemButton } from "@mui/material";
 import { SideBarItemProps } from "@forkfacts/models";
+import { navigate } from "gatsby";
 import { blue } from "@mui/material/colors";
 import React from "react";
 
@@ -11,9 +12,15 @@ export default function SideBarItem({
   handleSelectedIndex,
 }: SideBarItemProps) {
   const { spacing, palette } = useTheme();
+
+  const onRoutePage = () => {
+    navigate(item.link);
+    handleSelectedIndex(index, item);
+  };
+
   return (
     <ListItem
-      onClick={() => handleSelectedIndex(index, item)}
+      onClick={onRoutePage}
       key={index}
       divider={drawerWidthExpanded && index === 2 ? true : false}
       disablePadding

@@ -21,11 +21,11 @@ const Template: ComponentStory<typeof Drawer> = (args) => (
 );
 
 const sidebarItems: sidebarItem[] = [
-  { label: "Food", Icon: EggAltOutlinedIcon },
-  { label: "Recipe", Icon: EmojiFoodBeverageOutlinedIcon },
-  { label: "Library", Icon: LibraryBooksOutlinedIcon },
-  { label: "Cookbook", Icon: AutoStoriesOutlinedIcon },
-  { label: "Grocery List", Icon: ShoppingCartOutlinedIcon },
+  { label: "Food", Icon: EggAltOutlinedIcon, link: "/food" },
+  { label: "Recipe", Icon: EmojiFoodBeverageOutlinedIcon, link: "/recipe" },
+  { label: "Library", Icon: LibraryBooksOutlinedIcon, link: "/library" },
+  { label: "Cookbook", Icon: AutoStoriesOutlinedIcon, link: "/cookbook" },
+  { label: "Grocery List", Icon: ShoppingCartOutlinedIcon, link: "/grocery-List" },
 ];
 
 export const SideBar = Template.bind({});
@@ -34,7 +34,6 @@ SideBar.args = {
   sidebarItems: sidebarItems,
   drawerWidthExpanded: false,
   mobileOpen: false,
-  onSelectItem: (item: sidebarItem) => {},
 };
 
 SideBar.storyName = "unexpandedSideBar";
@@ -45,7 +44,6 @@ expandedSideBar.args = {
   sidebarItems: sidebarItems,
   drawerWidthExpanded: true,
   mobileOpen: false,
-  onSelectItem: (item: sidebarItem) => {},
 };
 
 expandedSideBar.storyName = "expandedSideBar";

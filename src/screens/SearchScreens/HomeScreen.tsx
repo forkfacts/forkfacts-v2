@@ -53,7 +53,7 @@ export default function HomeScreen({
               <SearchInputField />
             </Box>
             <Box className={classNames(classes.showDesktop, classes.categoriesStyle)}>
-              <NavBar onSelectCategory={onSelectSideBarItem} navbarItems={navbarItems} />
+              <NavBar navbarItems={navbarItems} />
             </Box>
             <Box className={classNames(classes.showDesktop, classes.PopularFrequentStyles)}>
               <PopularFrequentSearchCategories

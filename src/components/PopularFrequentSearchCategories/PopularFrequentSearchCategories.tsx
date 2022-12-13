@@ -11,7 +11,7 @@ const PopularFrequentSearchCategories = ({
   PopularFrequentSearchTitle,
   onSelectPopularItem,
 }: PopularFrequentSearchProps) => {
-  const { spacing, palette, typography, shape } = useTheme();
+  const { spacing, palette, typography } = useTheme();
 
   return (
     <Box sx={{ width: spacing(90) }}>

@@ -29,9 +29,9 @@ export interface RecentSearchScreenProps {
 }
 
 export interface HomeScreenProps extends onSelectCategoryType {
-  sidebarItems: Array<sidebarItem>;
-  navbarItems: SearchCategoryItemType[];
-  PopularFrequentSearchItems: Array<PopularFrequentSearchType>;
+  sidebarItems: sidebarItem[];
+  navbarItems: sidebarItem[];
+  PopularFrequentSearchItems: PopularFrequentSearchType[];
   PopularFrequentSearchTitle: string;
   onSelectPopularItem: (item: PopularFrequentSearchType) => void;
 }

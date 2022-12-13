@@ -11,7 +11,9 @@ export interface SearchCategoryItemType {
   Icon: SvgIconComponent;
 }
 
-export type sidebarItem = SearchCategoryItemType;
+export type sidebarItem = SearchCategoryItemType & {
+  link: string;
+};
 export interface SearchResultItemCollectionType {
   collection: Array<SearchResultItemType>;
   categoryName: string;
@@ -27,8 +29,8 @@ interface selectedItemType {
   selectedIndex: number;
 }
 
-export interface NavbarProps extends onSelectCategoryType {
-  navbarItems: Array<SearchCategoryItemType>;
+export interface NavbarProps {
+  navbarItems: Array<sidebarItem>;
 }
 
 export type extraInfo = {
@@ -44,7 +46,6 @@ export interface PopularFrequentSearchType {
 export interface SearchCategoryProps extends onSelectCategoryType, selectedItemType {
   label: string;
   Icon: SvgIconComponent;
-  as: "category" | "navCategory";
 }
 export interface SearchCategoriesProps extends onSelectCategoryType {
   categoryOptions: Array<SearchCategoryItemType>;
@@ -68,7 +69,6 @@ export interface SearchResultItemProps {
   onSelectItem: (item: SearchResultItemType) => item;
 }
 interface SideBarProps {
-  onSelectItem: (item: sidebarItem) => void;
   drawerWidth: string;
   mobileOpen: boolean;
   handleDrawerToggle: () => void;
@@ -112,4 +112,11 @@ export interface PopularFrequentSearchProps {
 export interface PopularFrequentSearchCategoryProps {
   item: PopularFrequentSearchType;
   onSelectPopularItem: (item: PopularFrequentSearchType) => void;
+}
+
+export interface NavBarItemProps {
+  item: sidebarItem;
+  index: number;
+  setSelectedIndex: (item: number) => void;
+  selectedIndex: number;
 }

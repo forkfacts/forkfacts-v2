@@ -24,17 +24,17 @@ export default {
 } as ComponentMeta<typeof HomeScreen>;
 
 const sidebarItems: sidebarItem[] = [
-  { label: "Food", Icon: EggAltOutlinedIcon },
-  { label: "Recipe", Icon: EmojiFoodBeverageOutlinedIcon },
-  { label: "Library", Icon: LibraryBooksOutlinedIcon },
-  { label: "Cookbook", Icon: AutoStoriesOutlinedIcon },
-  { label: "Grocery List", Icon: ShoppingCartOutlinedIcon },
+  { label: "Food", Icon: EggAltOutlinedIcon, link: "/food" },
+  { label: "Recipe", Icon: EmojiFoodBeverageOutlinedIcon, link: "/recipe" },
+  { label: "Library", Icon: LibraryBooksOutlinedIcon, link: "/library" },
+  { label: "Cookbook", Icon: AutoStoriesOutlinedIcon, link: "/Cookbook" },
+  { label: "Grocery List", Icon: ShoppingCartOutlinedIcon, link: "/grocery-list" },
 ];
 
 const navbarItems = [
-  { label: "Food", Icon: EggAltOutlinedIcon },
-  { label: "Recipes", Icon: EmojiFoodBeverageOutlinedIcon },
-  { label: "Library", Icon: LibraryBooksOutlinedIcon },
+  { label: "Food", Icon: EggAltOutlinedIcon, link: "/food" },
+  { label: "Recipes", Icon: EmojiFoodBeverageOutlinedIcon, link: "/recipe" },
+  { label: "Library", Icon: LibraryBooksOutlinedIcon, link: "/library" },
 ];
 
 const {
@@ -67,7 +67,7 @@ Desktop.args = {
   navbarItems: navbarItems,
   PopularFrequentSearchItems: PopularFrequentSearchItems,
   PopularFrequentSearchTitle: PopularFrequentSearchTitle,
-  onSelectPopularItem: (item: PopularFrequentSearchType) => {},
+  onSelectPopularItem: onSelectPopularItem,
 };
 
 export const Mobile = Template.bind({});

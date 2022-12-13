@@ -18,14 +18,18 @@ export interface SearchResultItemCollectionType {
 }
 
 export interface onSelectCategoryType {
-  onSelectCategory: (item: SearchCategoryItemType) => item;
+  onSelectCategory: (item: SearchCategoryItemType) => void;
 }
-export interface SearchCategoryProps extends onSelectCategoryType {
-  label: string;
-  Icon: SvgIconComponent;
+
+interface selectedItemType {
   index: number;
   setSelectedIndex: (value: number) => value;
   selectedIndex: number;
+}
+export interface SearchCategoryProps extends onSelectCategoryType, selectedItemType {
+  label: string;
+  Icon: SvgIconComponent;
+  as: "category" | "navCategory";
 }
 export interface SearchCategoriesProps extends onSelectCategoryType {
   categoryOptions: Array<SearchCategoryItemType>;
@@ -82,4 +86,8 @@ export interface SideBarItemProps {
   drawerWidthExpanded: boolean;
   item: sidebarItem;
   handleSelectedIndex: (index: number, item: sidebarItem) => void;
+}
+
+export interface NavbarProps extends onSelectCategoryType {
+  navbarItems: Array<SearchCategoryItemType>;
 }

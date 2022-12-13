@@ -52,8 +52,10 @@ export const useStyles = makeStyles(({ spacing, breakpoints, typography, palette
     },
   },
   categoriesStyle: {
-    width: spacing(45.625),
     margin: "auto",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
   },
   searchInputStyles: {
     [breakpoints.up("md")]: {

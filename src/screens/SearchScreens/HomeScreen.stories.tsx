@@ -27,7 +27,7 @@ const sidebarItems: sidebarItem[] = [
   { label: "Grocery List", Icon: ShoppingCartOutlinedIcon },
 ];
 
-const categoryOptions = [
+const navbarItems = [
   { label: "Food", Icon: EggAltOutlinedIcon },
   { label: "Recipes", Icon: EmojiFoodBeverageOutlinedIcon },
   { label: "Library", Icon: LibraryBooksOutlinedIcon },
@@ -39,7 +39,7 @@ export const Desktop = Template.bind({});
 
 Desktop.args = {
   sidebarItems: sidebarItems,
-  categoryOptions: categoryOptions,
+  navbarItems: navbarItems,
 };
 
 export const Mobile = Template.bind({});

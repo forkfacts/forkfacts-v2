@@ -17,7 +17,7 @@ export const useStyles = makeStyles(
         alignItems: "center",
       },
     },
-    homeScreenWrapper: {
+    desktopScreenWrapper: {
       [breakpoints.up("md")]: {
         width: spacing(153.125),
         marginLeft: "auto",
@@ -53,6 +53,14 @@ export const useStyles = makeStyles(
       },
       [breakpoints.down("md")]: {
         display: "none",
+      },
+    },
+    showMobile: {
+      [breakpoints.up("md")]: {
+        display: "none",
+      },
+      [breakpoints.down("md")]: {
+        display: "block",
       },
     },
     navbarStyles: {

@@ -15,6 +15,6 @@ const Template: ComponentStory<typeof AutoCompleteSearch> = (args) => (
 export const Primary = Template.bind({});
 
 Primary.args = {
-  placeholder: "Search",
+  placeholder: "Search food, recipes & library",
   openOnFocus: true,
 };

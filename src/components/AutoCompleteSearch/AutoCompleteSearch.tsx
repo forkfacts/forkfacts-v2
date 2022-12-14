@@ -13,6 +13,7 @@ import React from "react";
 import { SearchResults } from "@forkfacts/components";
 import { SearchResultItemType } from "@forkfacts/models";
 import { ForLoops } from "@forkfacts/helpers";
+import { navigate } from "gatsby";
 import { useStyles } from "./autocompleteSearchStyles";
 
 const searchClient = algoliasearch("latency", "6be0576ff61c053d5f9a3225e2a90f76");
@@ -106,11 +107,11 @@ function AutoCompleteSearch(props: Partial<AutocompleteOptions<AutocompleteItem>
     };
   }, [getEnvironmentProps, autocompleteState.isOpen]);
 
-  const onSelectItem = (item: SearchResultItemType) => {};
+  const onSelectItem = (item: SearchResultItemType) => {
+    navigate(item.url);
+  };
 
   const { query, collections, isOpen } = autocompleteState;
-
-  console.log(autocomplete);
 
   return (
     <Box

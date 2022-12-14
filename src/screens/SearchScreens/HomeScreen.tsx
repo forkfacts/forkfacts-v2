@@ -3,6 +3,7 @@ import { Box, Typography, useTheme } from "@mui/material";
 import {
   Layout,
   AutoCompleteSearch,
+  SearchInputField,
   NavBar,
   PopularFrequentSearchCategories,
 } from "@forkfacts/components";
@@ -39,7 +40,10 @@ export default function HomeScreen({
               Forkfacts, Your Healthy diet search place.
             </Typography>
           </Box>
-          <Box className={classes.homeScreenWrapper}>
+          <Box className={classes.showMobile}>
+            <SearchInputField />
+          </Box>
+          <Box className={classes.desktopScreenWrapper}>
             <Box className={classes.showDesktop}>
               <img src="/homeImg.svg" alt="home page image" className={classes.img} />
             </Box>

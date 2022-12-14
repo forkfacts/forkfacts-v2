@@ -14,3 +14,4 @@ export { default as NavBar } from "./NavBar/NavBar";
 export { default as NavBarItem } from "./NavBarItem/NavBarItem";
 export { default as PopularFrequentSearchCategories } from "./PopularFrequentSearchCategories/PopularFrequentSearchCategories";
 export { default as PopularFrequentSearchCategory } from "./PopularFrequentSearchCategory/PopularFrequentSearchCategory";
+export { default as SearchInputField } from "./InputFields/SearchInputField/SearchInputField";

@@ -19,22 +19,22 @@ export const Mobile: ComponentStory<typeof RecentSearchScreen> = (args) => (
 );
 
 const collectionListsItems = [
-  { image: "/recentImg.png", name: "Kidney beans light, Legume", path: "/:id" },
-  { image: "/image3.png", name: "Grape fruit juices", path: "/:id" },
+  { image: "/recentImg.png", name: "Kidney beans light, Legume", url: "/:id" },
+  { image: "/image3.png", name: "Grape fruit juices", url: "/:id" },
   {
     image: "/image2.png",
     name: "Baked white bread, Baked products",
-    path: "/:id",
+    url: "/:id",
   },
   {
     image: "/image4.png",
     name: "Grape fruit juice unsweentened, Fruit ...",
-    path: "/:id",
+    url: "/:id",
   },
   {
     image: "/image5.png",
     name: "Banana dehydrated/ banana powder",
-    path: "/:id",
+    url: "/:id",
   },
 ];
 Mobile.parameters = {

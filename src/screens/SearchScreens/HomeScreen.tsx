@@ -50,7 +50,7 @@ export default function HomeScreen({
               Foods
             </Typography>
             <Box className={classes.searchInputStyles}>
-              <SearchInputField />
+              <SearchInputField placeholder="Search" openOnFocus={true} />
             </Box>
             <Box className={classNames(classes.showDesktop, classes.categoriesStyle)}>
               <NavBar navbarItems={navbarItems} />

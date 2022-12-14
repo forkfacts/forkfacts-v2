@@ -20,27 +20,27 @@ const collection = [
   {
     image: "/recentImg.png",
     name: "Kidney beans light, Legume",
-    path: "/:id",
+    url: "/:id",
   },
   {
     image: "/image3.png",
     name: "Grape fruit juices",
-    path: "/:id",
+    url: "/:id",
   },
   {
     image: "/image2.png",
     name: "Baked white bread, Baked products",
-    path: "/:id",
+    url: "/:id",
   },
   {
     image: "/image4.png",
     name: "Grape fruit juice unsweetened, Fruit ...",
-    path: "/:id",
+    url: "/:id",
   },
   {
     image: "/image5.png",
     name: "Banana dehydrated/ banana powder",
-    path: "/:id",
+    url: "/:id",
   },
 ];
 

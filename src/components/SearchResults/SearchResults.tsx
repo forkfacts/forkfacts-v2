@@ -59,9 +59,9 @@ const SearchResults: React.FC<SearchResultsProps> = ({
               </ForLoops>
             </List>
           )}
-          {collectionListsItems !== undefined && collectionListsItems?.length > 3 && (
-            <ViewMoreButton handleViewMore={handleViewMore} />
-          )}
+          {collectionListsItems !== undefined &&
+            handleViewMore &&
+            collectionListsItems?.length > 3 && <ViewMoreButton handleViewMore={handleViewMore} />}
         </Box>
       )}
     </Box>

@@ -14,3 +14,8 @@ export default {
 const Template: ComponentStory<typeof SearchInputField> = (args) => <SearchInputField {...args} />;
 
 export const Primary = Template.bind({});
+
+Primary.args = {
+  placeholder: "Search",
+  openOnFocus: true,
+};

@@ -21,6 +21,11 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@algolia/autocomplete-core": "1.7.3",
+    "@algolia/autocomplete-preset-algolia": "1.7.3",
+    "@algolia/autocomplete-theme-classic": "1.7.3",
+    "@algolia/client-search": "4.9.1",
+    "algoliasearch": "4.9.1",
     "@emotion/react": "^11.10.5",
     "@emotion/server": "latest",
     "@emotion/styled": "latest",

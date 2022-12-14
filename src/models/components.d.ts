@@ -2,7 +2,7 @@ import { SvgIconComponent } from "@mui/icons-material";
 
 export interface SearchResultItemType {
   name: string;
-  path: string;
+  url: string;
   image: string;
 }
 
@@ -66,7 +66,7 @@ export interface LayoutProps {
 
 export interface SearchResultItemProps {
   item: SearchResultItemType;
-  onSelectItem: (item: SearchResultItemType) => item;
+  onSelectItem: (item: SearchResultItemType) => void;
 }
 interface SideBarProps {
   drawerWidth: string;
@@ -79,7 +79,7 @@ interface SideBarProps {
 
 interface ExtendSearchResultItemsProps {
   onSelectItem: (item: SearchResultItemType) => item;
-  handleViewMore: () => void;
+  handleViewMore?: () => void;
 }
 export type SearchResultsProps = (
   | {

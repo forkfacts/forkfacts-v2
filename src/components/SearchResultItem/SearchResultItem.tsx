@@ -15,7 +15,7 @@ export default function SearchResultItem({ item, onSelectItem }: SearchResultIte
       <ListItemButton>
         <ListItemIcon>
           <img
-            src={item.image}
+            src={item.image || "/recentImg.png"}
             alt={item.name}
             style={{ width: theme.spacing(3.75), height: theme.spacing(3.75) }}
           />

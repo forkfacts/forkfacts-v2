@@ -16,11 +16,9 @@ import { ForLoops } from "@forkfacts/helpers";
 import { navigate } from "gatsby";
 import { useStyles } from "./autocompleteSearchStyles";
 
-const searchClient = algoliasearch("latency", "6be0576ff61c053d5f9a3225e2a90f76");
+const searchClient = algoliasearch("JVO84ADVS3", "7d08c3e6a7bc49e0857cf459b47a6381");
 
 type AutocompleteItem = Hit<{
-  brand: string;
-  categories: string[];
   image: string;
   name: string;
   objectID: string;
@@ -56,13 +54,13 @@ function AutoCompleteSearch(props: Partial<AutocompleteOptions<AutocompleteItem>
         getSources() {
           return [
             {
-              sourceId: "products",
+              sourceId: "test",
               getItems({ query }) {
                 return getAlgoliaResults({
                   searchClient,
                   queries: [
                     {
-                      indexName: "instant_search",
+                      indexName: "sr_index",
                       query,
                       params: {
                         hitsPerPage: 6,

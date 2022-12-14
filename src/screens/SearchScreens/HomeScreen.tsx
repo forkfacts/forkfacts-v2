@@ -2,7 +2,7 @@ import React, { CSSProperties, useState, useEffect } from "react";
 import { Box, Typography, useTheme } from "@mui/material";
 import {
   Layout,
-  SearchInputField,
+  AutoCompleteSearch,
   NavBar,
   PopularFrequentSearchCategories,
 } from "@forkfacts/components";
@@ -49,10 +49,10 @@ export default function HomeScreen({
             >
               Foods
             </Typography>
-            <Box className={classes.searchInputStyles}>
-              <SearchInputField placeholder="Search" openOnFocus={true} />
+            <Box className={classNames(classes.searchInputStyles, classes.showDesktop)}>
+              <AutoCompleteSearch placeholder="Search food, recipes & library" openOnFocus={true} />
             </Box>
-            <Box className={classNames(classes.showDesktop, classes.categoriesStyle)}>
+            <Box className={classNames(classes.showDesktop, classes.navbarStyles)}>
               <NavBar navbarItems={navbarItems} />
             </Box>
             <Box className={classNames(classes.showDesktop, classes.PopularFrequentStyles)}>

@@ -7,7 +7,7 @@ import { NavBarItem } from "@forkfacts/components";
 export default function NavBar({ navbarItems }: NavbarProps) {
   const [selectedIndex, setSelectedIndex] = useState(0);
   return (
-    <Box sx={{ width: ({ spacing }) => spacing(45.625), mt: ({ spacing }) => spacing(1) }}>
+    <Box>
       <Grid container justifyContent="space-between">
         <ForLoops each={navbarItems}>
           {(item, idx) => (

@@ -9,7 +9,7 @@ export { default as ViewMoreButton } from "./Buttons/ViewMoreButton/ViewMoreButt
 export { default as SearchResultItem } from "./SearchResultItem/SearchResultItem";
 export { default as SideBar } from "./SideBar/SideBar";
 export { default as SideBarItem } from "./SideBarItem/SideBarItem";
-export { default as SearchInputField } from "./InputFields/SearchInputFields/SearchInputField";
+export { default as AutoCompleteSearch } from "./AutoCompleteSearch/AutoCompleteSearch";
 export { default as NavBar } from "./NavBar/NavBar";
 export { default as NavBarItem } from "./NavBarItem/NavBarItem";
 export { default as PopularFrequentSearchCategories } from "./PopularFrequentSearchCategories/PopularFrequentSearchCategories";

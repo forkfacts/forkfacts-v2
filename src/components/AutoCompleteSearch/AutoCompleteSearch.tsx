@@ -13,7 +13,7 @@ import React from "react";
 import { SearchResults } from "@forkfacts/components";
 import { SearchResultItemType } from "@forkfacts/models";
 import { ForLoops } from "@forkfacts/helpers";
-import { useStyles } from "./searchInputStyles";
+import { useStyles } from "./autocompleteSearchStyles";
 
 const searchClient = algoliasearch("latency", "6be0576ff61c053d5f9a3225e2a90f76");
 
@@ -26,7 +26,7 @@ type AutocompleteItem = Hit<{
   url: string;
 }>;
 
-function SearchInputField(props: Partial<AutocompleteOptions<AutocompleteItem>>) {
+function AutoCompleteSearch(props: Partial<AutocompleteOptions<AutocompleteItem>>) {
   const [autocompleteState, setAutocompleteState] = React.useState<
     AutocompleteState<AutocompleteItem>
   >({
@@ -38,7 +38,7 @@ function SearchInputField(props: Partial<AutocompleteOptions<AutocompleteItem>>)
     activeItemId: null,
     status: "idle",
   });
-  const { spacing, shadows } = useTheme();
+  const { spacing, shadows, palette, zIndex } = useTheme();
   const classes = useStyles();
   const autocomplete = React.useMemo(
     () =>
@@ -110,6 +110,8 @@ function SearchInputField(props: Partial<AutocompleteOptions<AutocompleteItem>>)
 
   const { query, collections, isOpen } = autocompleteState;
 
+  console.log(autocomplete);
+
   return (
     <Box
       component="div"
@@ -119,13 +121,14 @@ function SearchInputField(props: Partial<AutocompleteOptions<AutocompleteItem>>)
         py: spacing(3),
         px: spacing(1.375),
         borderRadius: autocompleteState.isOpen ? spacing(1.25) : spacing(0),
+        position: "absolute",
+        backgroundColor: palette.common.white,
       }}
       boxShadow={autocompleteState.isOpen ? 2 : 0}
     >
       <Box
         component="form"
         ref={formRef}
-        className="aa-Form"
         {...autocomplete.getFormProps({ inputElement: inputRef.current })}
       >
         <TextField
@@ -140,12 +143,13 @@ function SearchInputField(props: Partial<AutocompleteOptions<AutocompleteItem>>)
           }}
           sx={{
             "& fieldset": {
-              width: "100%",
               border: "none",
             },
             borderRadius: spacing(1.25),
-            py: spacing(1),
             boxShadow: isOpen ? shadows[0] : shadows[2],
+            py: spacing(1.2),
+            paddingLeft: spacing(2),
+            paddingRight: spacing(3.9),
           }}
           ref={inputRef}
           {...autocomplete.getInputProps({ inputElement: inputRef.current })}
@@ -161,9 +165,8 @@ function SearchInputField(props: Partial<AutocompleteOptions<AutocompleteItem>>)
           {query === "" ? (
             <Box
               sx={{
-                mb: spacing(4),
+                mb: spacing(1.5),
                 width: "100%",
-                py: spacing(1.2),
                 paddingLeft: spacing(2),
                 paddingRight: spacing(3.9),
               }}
@@ -176,12 +179,11 @@ function SearchInputField(props: Partial<AutocompleteOptions<AutocompleteItem>>)
           ) : (
             <Box
               sx={{
-                mb: spacing(4),
+                mb: spacing(1.5),
                 width: "100%",
                 display: "flex",
                 justifyContent: "space-between",
                 alignItems: "center",
-                py: spacing(1.2),
                 paddingLeft: spacing(2),
                 paddingRight: spacing(3.9),
               }}
@@ -190,12 +192,7 @@ function SearchInputField(props: Partial<AutocompleteOptions<AutocompleteItem>>)
               <Typography color="text.secondary" variant="subtitle2">
                 Recent search
               </Typography>
-              <Button
-                color="primary"
-                variant="text"
-                className={classes.clearBtn}
-                onClick={() => {}}
-              >
+              <Button color="primary" variant="text" className={classes.clearBtn}>
                 Clear all
               </Button>
             </Box>
@@ -220,4 +217,4 @@ function SearchInputField(props: Partial<AutocompleteOptions<AutocompleteItem>>)
   );
 }
 
-export default SearchInputField;
+export default AutoCompleteSearch;

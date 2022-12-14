@@ -111,6 +111,8 @@ function AutoCompleteSearch(props: Partial<AutocompleteOptions<AutocompleteItem>
 
   const { query, collections, isOpen } = autocompleteState;
 
+  const onClearSearch = () => autocomplete.setQuery("");
+
   return (
     <Box
       component="div"
@@ -191,7 +193,12 @@ function AutoCompleteSearch(props: Partial<AutocompleteOptions<AutocompleteItem>
               <Typography color="text.secondary" variant="subtitle2">
                 Recent search
               </Typography>
-              <Button color="primary" variant="text" className={classes.clearBtn}>
+              <Button
+                color="primary"
+                variant="text"
+                className={classes.clearBtn}
+                onClick={onClearSearch}
+              >
                 Clear all
               </Button>
             </Box>

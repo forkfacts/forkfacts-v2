@@ -39,6 +39,7 @@ function AutoCompleteSearch(props: Partial<AutocompleteOptions<AutocompleteItem>
     status: "idle",
   });
   const { spacing, shadows, palette } = useTheme();
+  const { query, collections, isOpen, status } = autocompleteState;
   const classes = useStyles();
   const autocomplete = useMemo(
     () =>
@@ -61,7 +62,7 @@ function AutoCompleteSearch(props: Partial<AutocompleteOptions<AutocompleteItem>
                   searchClient,
                   queries: [
                     {
-                      indexName: INDEX_NAMES[1],
+                      indexName: query ? INDEX_NAMES[1] : INDEX_NAMES[0],
                       query,
                       params: {
                         hitsPerPage: 6,
@@ -109,8 +110,6 @@ function AutoCompleteSearch(props: Partial<AutocompleteOptions<AutocompleteItem>
   const onSelectItem = (item: SearchResultItemType) => {
     navigate(item.url);
   };
-
-  const { query, collections, isOpen, status } = autocompleteState;
 
   const onClearSearch = () => {
     autocomplete.setQuery("");
@@ -160,6 +159,15 @@ function AutoCompleteSearch(props: Partial<AutocompleteOptions<AutocompleteItem>
           {...autocomplete.getInputProps({ inputElement: inputRef.current })}
         />
       </Box>
+      {isOpen && (
+        <Box
+          style={{
+            backgroundColor: palette.grey[500],
+            width: "100%",
+            height: spacing(0.125),
+          }}
+        />
+      )}
       {isOpen && (
         <Box
           component="div"

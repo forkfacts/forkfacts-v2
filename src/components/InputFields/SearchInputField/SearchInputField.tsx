@@ -9,7 +9,7 @@ export default function SearchInputField({}: SearchInputFieldProps) {
   return (
     <Box sx={{ width: "100%" }}>
       <TextField
-        size="small"
+        size="medium"
         placeholder="Search"
         fullWidth
         InputProps={{

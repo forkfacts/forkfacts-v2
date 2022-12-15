@@ -31,3 +31,5 @@ export default function SearchResultItem({ item, onSelectItem }: SearchResultIte
     </ListItem>
   );
 }
+
+// MESSI IS THE GOAT, AND HE'S WINNING THE WORLD CUP

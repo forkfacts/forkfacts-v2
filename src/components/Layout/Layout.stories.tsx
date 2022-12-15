@@ -50,7 +50,6 @@ export const Desktop: ComponentStory<typeof Layout> = (args) => (
 
 Desktop.args = {
   sidebarItems: sidebarItems,
-  onSelectItem: (item: sidebarItem) => {},
 };
 
 export const Mobile: ComponentStory<typeof Layout> = (args) => (
@@ -77,7 +76,6 @@ Mobile.parameters = {
 
 Mobile.args = {
   sidebarItems: sidebarItems,
-  onSelectItem: (item: sidebarItem) => {},
 };
 
 export const Tablet: ComponentStory<typeof Layout> = (args) => (
@@ -104,5 +102,4 @@ Tablet.parameters = {
 
 Tablet.args = {
   sidebarItems: sidebarItems,
-  onSelectItem: (item: sidebarItem) => {},
 };

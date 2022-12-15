@@ -36,9 +36,7 @@ UnSelectedSideBarSingleItem.args = {
   },
   selectedIndex: 1,
   index: 0,
-  handleSelectedIndex: (index: number = 0, item: sidebarItem) => {
-    console.log(item);
-  },
+  handleSelectedIndex: (index: number = 0, item: sidebarItem) => {},
 };
 
 UnSelectedSideBarSingleItem.storyName = "UnSelectedSideBarSingleItem";

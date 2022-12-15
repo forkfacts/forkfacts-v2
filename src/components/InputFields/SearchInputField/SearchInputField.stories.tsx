@@ -1,12 +1,13 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { SearchInputField } from "@forkfacts/components";
+import { SearchInputField as InputField } from "@forkfacts/components";
 
 export default {
   title: "Components/InputFields/SearchInputField",
-  component: SearchInputField,
-} as ComponentMeta<typeof SearchInputField>;
+  component: InputField,
+} as ComponentMeta<typeof InputField>;
 
-const Template: ComponentStory<typeof SearchInputField> = (args) => <SearchInputField {...args} />;
+const Template: ComponentStory<typeof InputField> = (args) => <InputField {...args} />;
 
-export const Primary = Template.bind({});
+export const SearchInputField = Template.bind({});
+SearchInputField.storyName = "SearchInputField";

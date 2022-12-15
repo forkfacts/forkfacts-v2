@@ -61,7 +61,6 @@ export interface RecentSearchHeaderProps {
 export interface LayoutProps {
   sidebarItems: Array<sidebarItem>;
   children: JSX.Element | JSX.Element[];
-  onSelectItem: (item: sidebarItem) => void;
 }
 
 export interface SearchResultItemProps {

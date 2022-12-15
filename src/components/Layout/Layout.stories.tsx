@@ -24,11 +24,11 @@ export default {
 } as ComponentMeta<typeof Layout>;
 
 const sidebarItems: sidebarItem[] = [
-  { label: "Food", Icon: EggAltOutlinedIcon },
-  { label: "Recipe", Icon: EmojiFoodBeverageOutlinedIcon },
-  { label: "Library", Icon: LibraryBooksOutlinedIcon },
-  { label: "Cookbook", Icon: AutoStoriesOutlinedIcon },
-  { label: "Grocery List", Icon: ShoppingCartOutlinedIcon },
+  { label: "Food", Icon: EggAltOutlinedIcon, link: "/food" },
+  { label: "Recipe", Icon: EmojiFoodBeverageOutlinedIcon, link: "/recipe" },
+  { label: "Library", Icon: LibraryBooksOutlinedIcon, link: "/library" },
+  { label: "Cookbook", Icon: AutoStoriesOutlinedIcon, link: "/cookbook" },
+  { label: "Grocery List", Icon: ShoppingCartOutlinedIcon, link: "grocery list" },
 ];
 
 export const Desktop: ComponentStory<typeof Layout> = (args) => (

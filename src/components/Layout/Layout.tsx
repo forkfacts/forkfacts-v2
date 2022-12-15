@@ -15,7 +15,7 @@ const LayoutComponent: FC<PropsWithChildren> = ({ children }) => {
   );
 };
 
-const Layout: FC<LayoutProps> = ({ children, sidebarItems, onSelectItem }) => {
+const Layout: FC<LayoutProps> = ({ children, sidebarItems }) => {
   const theme = useTheme();
   const [drawerWidth, setDrawerWidth] = useState(theme.spacing(12.25));
   const [drawerWidthExpanded, setDrawerWidthExpanded] = useState(false);
@@ -46,7 +46,6 @@ const Layout: FC<LayoutProps> = ({ children, sidebarItems, onSelectItem }) => {
             drawerWidth={drawerWidth}
             sidebarItems={sidebarItems}
             drawerWidthExpanded={drawerWidthExpanded}
-            onSelectItem={onSelectItem}
           />
           <Box
             sx={{

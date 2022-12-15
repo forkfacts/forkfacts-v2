@@ -13,7 +13,6 @@ import { useStyles } from "./searchScreenStyles";
 
 export default function HomeScreen({
   sidebarItems,
-  onSelectCategory,
   navbarItems,
   PopularFrequentSearchItems,
   PopularFrequentSearchTitle,
@@ -26,13 +25,8 @@ export default function HomeScreen({
   }, [theme.mixins.toolbar]);
   const classes = useStyles(appBarHeight?.minHeight);
 
-  const onSelectSideBarItem = (item: sidebarItem) => {
-    console.log(item);
-    onSelectCategory(item);
-  };
-
   return (
-    <Layout sidebarItems={sidebarItems} onSelectItem={onSelectSideBarItem}>
+    <Layout sidebarItems={sidebarItems}>
       <Box className={classes.root}>
         <Box>
           <Box className={classes.spaceBottom}>

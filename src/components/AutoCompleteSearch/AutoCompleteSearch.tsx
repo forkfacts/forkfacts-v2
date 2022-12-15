@@ -51,7 +51,6 @@ function AutoCompleteSearch(props: Partial<AutocompleteOptions<AutocompleteItem>
       >({
         onStateChange({ state }) {
           setAutocompleteState(state);
-          console.log(state);
         },
         getSources() {
           return [

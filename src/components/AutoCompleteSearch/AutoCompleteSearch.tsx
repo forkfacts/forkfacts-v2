@@ -52,7 +52,7 @@ function AutoCompleteSearch(props: Partial<AutocompleteOptions<AutocompleteItem>
         getSources() {
           return [
             {
-              sourceId: "test",
+              sourceId: "forkfact-v2",
               getItems({ query }) {
                 return getAlgoliaResults({
                   searchClient,

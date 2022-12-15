@@ -3,7 +3,7 @@ import React from "react";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import { SearchResultItemProps } from "@forkfacts/models";
-
+import { Highlight } from "@forkfacts/helpers";
 import { useStyles } from "../SearchResults/searchResultsStyles";
 
 export default function SearchResultItem({ item, onSelectItem }: SearchResultItemProps) {
@@ -23,7 +23,7 @@ export default function SearchResultItem({ item, onSelectItem }: SearchResultIte
         <ListItemText
           primary={
             <Typography variant="body1" className={styles.ListItemText}>
-              {item.name}
+              <Highlight hit={item} attribute="name" />
             </Typography>
           }
         />

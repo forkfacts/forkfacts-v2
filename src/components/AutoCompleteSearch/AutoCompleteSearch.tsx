@@ -1,15 +1,15 @@
+import React, { useState, useEffect, useMemo, useRef } from "react";
 import {
   AutocompleteOptions,
   AutocompleteState,
   createAutocomplete,
 } from "@algolia/autocomplete-core";
-import { Box, Button, TextField, Typography, useTheme } from "@mui/material";
-import { SearchOutlined } from "@mui/icons-material";
-import InputAdornment from "@mui/material/InputAdornment";
 import { getAlgoliaResults } from "@algolia/autocomplete-preset-algolia";
 import { Hit } from "@algolia/client-search";
 import algoliasearch from "algoliasearch/lite";
-import React from "react";
+import { Box, Button, TextField, Typography, useTheme } from "@mui/material";
+import { SearchOutlined } from "@mui/icons-material";
+import InputAdornment from "@mui/material/InputAdornment";
 import { SearchResults } from "@forkfacts/components";
 import { SearchResultItemType } from "@forkfacts/models";
 import { ForLoops } from "@forkfacts/helpers";
@@ -26,9 +26,7 @@ type AutocompleteItem = Hit<{
 }>;
 
 function AutoCompleteSearch(props: Partial<AutocompleteOptions<AutocompleteItem>>) {
-  const [autocompleteState, setAutocompleteState] = React.useState<
-    AutocompleteState<AutocompleteItem>
-  >({
+  const [autocompleteState, setAutocompleteState] = useState<AutocompleteState<AutocompleteItem>>({
     collections: [],
     completion: null,
     context: {},
@@ -39,7 +37,7 @@ function AutoCompleteSearch(props: Partial<AutocompleteOptions<AutocompleteItem>
   });
   const { spacing, shadows, palette, zIndex } = useTheme();
   const classes = useStyles();
-  const autocomplete = React.useMemo(
+  const autocomplete = useMemo(
     () =>
       createAutocomplete<
         AutocompleteItem,
@@ -79,12 +77,12 @@ function AutoCompleteSearch(props: Partial<AutocompleteOptions<AutocompleteItem>
       }),
     [props]
   );
-  const inputRef = React.useRef<HTMLInputElement>(null);
-  const formRef = React.useRef<HTMLFormElement>(null);
-  const panelRef = React.useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const formRef = useRef<HTMLFormElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
   const { getEnvironmentProps } = autocomplete;
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!formRef.current || !panelRef.current || !inputRef.current) {
       return undefined;
     }
@@ -109,9 +107,12 @@ function AutoCompleteSearch(props: Partial<AutocompleteOptions<AutocompleteItem>
     navigate(item.url);
   };
 
-  const { query, collections, isOpen } = autocompleteState;
+  const { query, collections, isOpen, status } = autocompleteState;
 
-  const onClearSearch = () => autocomplete.setQuery("");
+  const onClearSearch = () => {
+    autocomplete.setQuery("");
+    autocomplete.refresh();
+  };
 
   return (
     <Box
@@ -163,7 +164,7 @@ function AutoCompleteSearch(props: Partial<AutocompleteOptions<AutocompleteItem>
           {...autocomplete.getPanelProps({})}
           sx={{ mt: spacing(2), width: "100%" }}
         >
-          {query === "" ? (
+          {query === "" && status === "idle" ? (
             <Box
               sx={{
                 mb: spacing(1.5),
@@ -177,31 +178,36 @@ function AutoCompleteSearch(props: Partial<AutocompleteOptions<AutocompleteItem>
                 I’m searching for
               </Typography>
             </Box>
+          ) : status === "stalled" ? (
+            <Box />
           ) : (
-            <Box
-              sx={{
-                mb: spacing(1.5),
-                width: "100%",
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                paddingLeft: spacing(2),
-                paddingRight: spacing(3.9),
-              }}
-              component="div"
-            >
-              <Typography color="text.secondary" variant="subtitle2">
-                Recent search
-              </Typography>
-              <Button
-                color="primary"
-                variant="text"
-                className={classes.clearBtn}
-                onClick={onClearSearch}
+            query !== "" &&
+            status === "idle" && (
+              <Box
+                sx={{
+                  mb: spacing(1.5),
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  paddingLeft: spacing(2),
+                  paddingRight: spacing(3.9),
+                }}
+                component="div"
               >
-                Clear all
-              </Button>
-            </Box>
+                <Typography color="text.secondary" variant="subtitle2">
+                  Recent search
+                </Typography>
+                <Button
+                  color="primary"
+                  variant="text"
+                  className={classes.clearBtn}
+                  onClick={onClearSearch}
+                >
+                  Clear all
+                </Button>
+              </Box>
+            )
           )}
           <Box>
             <ForLoops each={collections}>

@@ -8,11 +8,6 @@ import "@storybook/addon-actions/register";
 import "@fontsource/poppins"; // Defaults to weight 400.
 import { customTheme } from "../src/themes/theme";
 
-/**
- *
- * Storybook console addons configuration
- *
- */
 const optionsCallback = (options) => ({ panelExclude: [...options.panelExclude, /Warning/] });
 addDecorator((storyFn, context) => withConsole(optionsCallback)(storyFn)(context));
 
@@ -34,11 +29,7 @@ global.__BASE_PATH__ = "/";
 window.___navigate = (pathname) => {
   action("NavigateTo:")(pathname);
 };
-/**
- *
- * Custom parameter for all the  created components stories
- *
- */
+
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
   controls: {

@@ -24,7 +24,6 @@ export function Highlight<THit extends {}>({
       if (isHighlighted) {
         return createElement(tagName, { key: index }, value);
       }
-
       return value;
     })
   );

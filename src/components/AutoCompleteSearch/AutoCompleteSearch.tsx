@@ -16,7 +16,10 @@ import { ForLoops } from "@forkfacts/helpers";
 import { navigate } from "gatsby";
 import { useStyles } from "./autocompleteSearchStyles";
 
-const searchClient = algoliasearch("JVO84ADVS3", "7d08c3e6a7bc49e0857cf459b47a6381");
+const appId = process.env.GATSBY_SEARCH_APP_ID as string;
+const apiKey = process.env.GATSBY_SEARCH_API_KEY as string;
+const searchClient = algoliasearch(apiKey, appId);
+const INDEX_NAMES = ["ff_index", "sr_index"];
 
 type AutocompleteItem = Hit<{
   image: string;
@@ -35,7 +38,7 @@ function AutoCompleteSearch(props: Partial<AutocompleteOptions<AutocompleteItem>
     activeItemId: null,
     status: "idle",
   });
-  const { spacing, shadows, palette, zIndex } = useTheme();
+  const { spacing, shadows, palette } = useTheme();
   const classes = useStyles();
   const autocomplete = useMemo(
     () =>
@@ -58,7 +61,7 @@ function AutoCompleteSearch(props: Partial<AutocompleteOptions<AutocompleteItem>
                   searchClient,
                   queries: [
                     {
-                      indexName: "sr_index",
+                      indexName: INDEX_NAMES[1],
                       query,
                       params: {
                         hitsPerPage: 6,

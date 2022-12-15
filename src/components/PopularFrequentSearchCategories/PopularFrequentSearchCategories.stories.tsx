@@ -49,7 +49,7 @@ PopularFrequentSearch.args = {
   ...PopularFrequentSearch.args,
   PopularFrequentSearchTitle: PopularFrequentSearchTitle,
   PopularFrequentSearchItems: PopularFrequentSearchItems,
-  onSelectPopularItem: (item: PopularFrequentSearchType) => {},
+  onSelectPopularItem: onSelectPopularItem,
 };
 
 PopularFrequentSearch.storyName = "PopularFrequentSearchCategories";

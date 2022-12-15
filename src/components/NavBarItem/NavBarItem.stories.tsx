@@ -12,8 +12,21 @@ const Template: ComponentStory<typeof NavBarItem> = (args) => <NavBarItem {...ar
 
 const item = { label: "Food", Icon: EggAltOutlinedIcon, link: "/food" };
 
-export const NavBarSingleItem = Template.bind({});
-NavBarSingleItem.args = {
+export const SelectedNavBarSingleItem = Template.bind({});
+SelectedNavBarSingleItem.args = {
+  index: 0,
   item: item,
+  selectedIndex: 0,
+  setSelectedIndex: (number: number = 0) => {},
 };
-NavBarSingleItem.storyName = "NavBarItem";
+SelectedNavBarSingleItem.storyName = "SelectedNavBarSingleItem";
+
+export const UnSelectedNavBarSingleItem = Template.bind({});
+UnSelectedNavBarSingleItem.args = {
+  index: 0,
+  item: item,
+  selectedIndex: 1,
+  setSelectedIndex: (number: number = 1) => {},
+};
+
+UnSelectedNavBarSingleItem.storyName = "UnSelectedNavBarSingleItem";

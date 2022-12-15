@@ -17,4 +17,5 @@ export const Primary = Template.bind({});
 Primary.args = {
   placeholder: "Search food, recipes & library",
   openOnFocus: true,
+  sourceId: "forkfact-v2",
 };

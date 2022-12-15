@@ -28,7 +28,14 @@ type AutocompleteItem = Hit<{
   url: string;
 }>;
 
-function AutoCompleteSearch(props: Partial<AutocompleteOptions<AutocompleteItem>>) {
+interface AutoCompleteSearchProps {
+  sourceId: string;
+}
+
+function AutoCompleteSearch({
+  sourceId,
+  ...props
+}: Partial<AutocompleteOptions<AutocompleteItem>> & AutoCompleteSearchProps) {
   const [autocompleteState, setAutocompleteState] = useState<AutocompleteState<AutocompleteItem>>({
     collections: [],
     completion: null,
@@ -55,7 +62,7 @@ function AutoCompleteSearch(props: Partial<AutocompleteOptions<AutocompleteItem>
         getSources() {
           return [
             {
-              sourceId: "forkfact-v2",
+              sourceId: sourceId,
               getItems({ query }) {
                 return getAlgoliaResults({
                   searchClient,
@@ -123,11 +130,11 @@ function AutoCompleteSearch(props: Partial<AutocompleteOptions<AutocompleteItem>
         width: "100%",
         py: spacing(3),
         px: spacing(1.375),
-        borderRadius: autocompleteState.isOpen ? spacing(1.25) : spacing(0),
+        borderRadius: isOpen ? spacing(1.25) : spacing(0),
         position: "absolute",
         backgroundColor: palette.common.white,
       }}
-      boxShadow={autocompleteState.isOpen ? 2 : 0}
+      boxShadow={isOpen ? 2 : 0}
     >
       <Box
         component="form"
@@ -174,7 +181,7 @@ function AutoCompleteSearch(props: Partial<AutocompleteOptions<AutocompleteItem>
           {...autocomplete.getPanelProps({})}
           sx={{ mt: spacing(2), width: "100%" }}
         >
-          {query === "" && status === "idle" ? (
+          {!query && status === "idle" ? (
             <Box
               sx={{
                 mb: spacing(1.5),
@@ -191,7 +198,7 @@ function AutoCompleteSearch(props: Partial<AutocompleteOptions<AutocompleteItem>
           ) : status === "stalled" ? (
             <Box />
           ) : (
-            query !== "" &&
+            !query &&
             status === "idle" && (
               <Box
                 sx={{

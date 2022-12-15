@@ -13,6 +13,7 @@ export default function NavBarItem({
 }: NavBarItemProps) {
   const classes = useStyles();
   const { spacing } = useTheme();
+
   const handleClick = () => {
     setSelectedIndex(index);
     navigate(item.link);

@@ -48,7 +48,11 @@ export default function HomeScreen({
               Foods
             </Typography>
             <Box className={classNames(classes.searchInputStyles, classes.showDesktop)}>
-              <AutoCompleteSearch placeholder="Search food, recipes & library" openOnFocus={true} />
+              <AutoCompleteSearch
+                placeholder="Search food, recipes & library"
+                openOnFocus={true}
+                sourceId="forkfact-v2"
+              />
             </Box>
             <Box className={classNames(classes.showDesktop, classes.navbarStyles)}>
               <NavBar navbarItems={navbarItems} />

@@ -110,6 +110,7 @@ Desktop.args = {
   PopularFrequentSearchItems: PopularFrequentSearchItems,
   PopularFrequentSearchTitle: PopularFrequentSearchTitle,
   onSelectPopularItem: onSelectPopularItem,
+  placeholder: "Search food, recipes & library",
 };
 
 export const Mobile = Template.bind({});
@@ -124,6 +125,7 @@ Mobile.args = {
   categoryOptions: categoryOptions,
   onSelectCategory: (item: SearchCategoryItemType) => {},
   collectionGroupedItems: collectionGroupedItems,
+  placeholder: "Search",
 };
 
 export const Tablet = Template.bind({});

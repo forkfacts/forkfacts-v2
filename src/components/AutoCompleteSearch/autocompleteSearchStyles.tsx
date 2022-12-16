@@ -78,7 +78,6 @@ export function mobileInputOpenStyles<T, U>(spacing: (type: number) => T) {
   return {
     "& fieldset": {
       border: "none",
-      marginTop: "100px",
     },
   };
 }

@@ -1,5 +1,5 @@
 import React, { CSSProperties, useState, useEffect } from "react";
-import { Box, Typography, useTheme } from "@mui/material";
+import { Box, Typography, useTheme, useMediaQuery } from "@mui/material";
 import {
   Layout,
   AutoCompleteSearch,
@@ -19,8 +19,10 @@ export default function HomeScreen({
   onSelectCategory,
   collectionGroupedItems,
   categoryOptions,
+  placeholder,
 }: HomeScreenProps) {
   const theme = useTheme();
+
   const [appBarHeight, setAppBarHeight] = useState<CSSProperties>();
   useEffect(() => {
     setAppBarHeight(theme.mixins.toolbar);
@@ -48,7 +50,7 @@ export default function HomeScreen({
             </Typography>
             <Box className={classNames(classes.searchInputStyles)}>
               <AutoCompleteSearch
-                placeholder="Search food, recipes & library"
+                placeholder={placeholder}
                 openOnFocus={true}
                 sourceId="forkfact-v2"
                 onSelectCategory={onSelectCategory}

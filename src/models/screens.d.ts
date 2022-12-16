@@ -37,4 +37,5 @@ export interface HomeScreenProps extends onSelectCategoryType {
   categoryOptions: SearchCategoryItemType[];
   collectionGroupedItems: Array<SearchResultItemCollectionType>;
   placeholder: string;
+  sourceId: string;
 }

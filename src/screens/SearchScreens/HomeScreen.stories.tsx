@@ -111,6 +111,7 @@ Desktop.args = {
   PopularFrequentSearchTitle: PopularFrequentSearchTitle,
   onSelectPopularItem: onSelectPopularItem,
   placeholder: "Search food, recipes & library",
+  sourceId: "forkfact-v2",
 };
 
 export const Mobile = Template.bind({});

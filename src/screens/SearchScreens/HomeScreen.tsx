@@ -20,6 +20,7 @@ export default function HomeScreen({
   collectionGroupedItems,
   categoryOptions,
   placeholder,
+  sourceId,
 }: HomeScreenProps) {
   const theme = useTheme();
 
@@ -52,7 +53,7 @@ export default function HomeScreen({
               <AutoCompleteSearch
                 placeholder={placeholder}
                 openOnFocus={true}
-                sourceId="forkfact-v2"
+                sourceId={sourceId}
                 onSelectCategory={onSelectCategory}
                 categoryOptions={categoryOptions}
                 collectionGroupedItems={collectionGroupedItems}

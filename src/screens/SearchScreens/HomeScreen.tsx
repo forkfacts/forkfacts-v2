@@ -3,11 +3,10 @@ import { Box, Typography, useTheme } from "@mui/material";
 import {
   Layout,
   AutoCompleteSearch,
-  SearchInputField,
   NavBar,
   PopularFrequentSearchCategories,
 } from "@forkfacts/components";
-import { HomeScreenProps, sidebarItem } from "@forkfacts/models";
+import { HomeScreenProps } from "@forkfacts/models";
 import classNames from "classnames";
 import { useStyles } from "./searchScreenStyles";
 
@@ -17,10 +16,9 @@ export default function HomeScreen({
   PopularFrequentSearchItems,
   PopularFrequentSearchTitle,
   onSelectPopularItem,
+  onSelectCategory,
   collectionGroupedItems,
   categoryOptions,
-  handleViewMore,
-  onSelectCategory,
 }: HomeScreenProps) {
   const theme = useTheme();
   const [appBarHeight, setAppBarHeight] = useState<CSSProperties>();
@@ -53,6 +51,9 @@ export default function HomeScreen({
                 placeholder="Search food, recipes & library"
                 openOnFocus={true}
                 sourceId="forkfact-v2"
+                onSelectCategory={onSelectCategory}
+                categoryOptions={categoryOptions}
+                collectionGroupedItems={collectionGroupedItems}
               />
             </Box>
             <Box className={classNames(classes.showDesktop, classes.navbarStyles)}>

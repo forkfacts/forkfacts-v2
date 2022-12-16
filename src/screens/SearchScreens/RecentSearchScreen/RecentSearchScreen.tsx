@@ -4,38 +4,23 @@ import { RecentSearchScreenProps } from "@forkfacts/models";
 import { SearchResults, RecentSearchHeader } from "@forkfacts/components";
 import { useStyles } from "./recentSearchScreenStyles";
 
-const RecentSearchScreen: React.FC<RecentSearchScreenProps> = ({
+const RecentSearch: React.FC<RecentSearchScreenProps> = ({
   collectionListsItems,
-  handleViewMore,
-  onSelectItem,
   onClearSearch,
   onClosePage,
-  inputRef,
-  autocomplete,
-  formRef,
+  handleViewMore,
+  onSelectItem,
 }) => {
   const classes = useStyles();
-
   return (
-    <Box
-      sx={{
-        position: "fixed",
-        left: 0,
-        right: 0,
-        bottom: 0,
-        top: 0,
-        bgcolor: "white",
-        zIndex: ({ zIndex }) => zIndex.modal,
-      }}
-    >
+    <Box>
       <RecentSearchHeader
         showBorderBottom={false}
+        onClearSearch={onClearSearch}
         onClosePage={onClosePage}
-        inputRef={inputRef}
-        autocomplete={autocomplete}
-        formRef={formRef}
+        showClearSearch={false}
       />
-      <Box>
+      <Box sx={{ mt: ({ spacing }) => spacing(2) }}>
         <Box className={classes.statusWrapper}>
           <Typography color="text.secondary" variant="subtitle2">
             Recent search
@@ -53,4 +38,4 @@ const RecentSearchScreen: React.FC<RecentSearchScreenProps> = ({
     </Box>
   );
 };
-export default RecentSearchScreen;
+export default RecentSearch;

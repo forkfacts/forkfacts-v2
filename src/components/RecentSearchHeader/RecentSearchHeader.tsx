@@ -2,34 +2,31 @@ import React from "react";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { Box, TextField, AppBar } from "@mui/material";
 import InputAdornment from "@mui/material/InputAdornment";
+import CloseIcon from "@mui/icons-material/Close";
 import { RecentSearchHeaderProps } from "@forkfacts/models";
 import { useStyles } from "./RecentSearchHeaderStyles";
 
 const RecentSearchHeader: React.FC<RecentSearchHeaderProps> = ({
+  showClearSearch,
   showBorderBottom = false,
   onClosePage,
-  formRef,
-  inputRef,
-  autocomplete,
+  onClearSearch,
 }) => {
   const classes = useStyles();
 
   return (
     <Box className={classes.root}>
-      <Box
+      <AppBar
         sx={{
           boxShadow: showBorderBottom ? 1 : 0,
           zIndex: ({ zIndex }) => zIndex.appBar,
           bgcolor: "background.paper",
         }}
       >
-        <Box
-          component="form"
-          ref={formRef}
-          {...autocomplete.getFormProps({ inputElement: inputRef.current })}
-        >
+        <Box>
           <TextField
-            ref={inputRef}
+            id="filled-start-adornment"
+            type="text"
             sx={{ width: "100%", borderBottom: "none" }}
             InputProps={{
               startAdornment: (
@@ -37,13 +34,20 @@ const RecentSearchHeader: React.FC<RecentSearchHeaderProps> = ({
                   <ArrowBackIcon className={classes.icon} color="primary" onClick={onClosePage} />
                 </InputAdornment>
               ),
+              endAdornment: (
+                <InputAdornment position="end">
+                  {showClearSearch ? (
+                    <CloseIcon className={classes.icon} color="primary" onClick={onClearSearch} />
+                  ) : null}
+                </InputAdornment>
+              ),
               classes,
             }}
-            {...autocomplete.getInputProps({ inputElement: inputRef.current })}
+            placeholder="Search for food product"
             variant="standard"
           />
         </Box>
-      </Box>
+      </AppBar>
     </Box>
   );
 };

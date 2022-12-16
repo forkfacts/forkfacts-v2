@@ -13,19 +13,19 @@ export interface TypingSearchScreenProps extends onSelectCategoryType {
   onClearSearch: () => void;
   onClosePage: () => void;
   handleViewMore: () => void;
-  onSelectItem: (item: SearchResultItemType) => void;
+  onSelectItem: (item: SearchResultItemType) => item;
+  showClearSearch: boolean;
   multiple: boolean;
 }
 
 export interface RecentSearchScreenProps {
   collectionListsItems: SearchResultItemType[];
   onClearSearch: () => void;
-  handleViewMore?: () => void;
-  onSelectItem: (item: SearchResultItemType) => void;
   onClosePage: () => void;
-  inputRef: any;
-  autocomplete: any;
-  formRef: any;
+  handleViewMore: () => void;
+  onSelectItem: (item: SearchResultItemType) => item;
+  showClearSearch: boolean;
+  multiple: boolean;
 }
 
 export interface HomeScreenProps extends onSelectCategoryType {
@@ -34,8 +34,6 @@ export interface HomeScreenProps extends onSelectCategoryType {
   PopularFrequentSearchItems: PopularFrequentSearchType[];
   PopularFrequentSearchTitle: string;
   onSelectPopularItem: (item: PopularFrequentSearchType) => void;
-  sourceId: string;
-  categoryOptions?: SearchCategoryItemType[];
-  collectionGroupedItems?: SearchResultItemCollectionType[];
-  handleViewMore?: () => void;
+  categoryOptions: SearchCategoryItemType[];
+  collectionGroupedItems: Array<SearchResultItemCollectionType>;
 }

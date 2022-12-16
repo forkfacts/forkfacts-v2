@@ -6,12 +6,13 @@ import EmojiFoodBeverageOutlinedIcon from "@mui/icons-material/EmojiFoodBeverage
 import LibraryBooksOutlinedIcon from "@mui/icons-material/LibraryBooksOutlined";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import AutoStoriesOutlinedIcon from "@mui/icons-material/AutoStoriesOutlined";
+import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlined";
 import {
   sidebarItem,
   PopularFrequentSearchProps,
   PopularFrequentSearchType,
+  SearchCategoryItemType,
 } from "@forkfacts/models";
-import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlined";
 import { HomeScreen } from "@forkfacts/screens";
 
 export default {
@@ -59,7 +60,11 @@ const {
   onSelectPopularItem: (item: PopularFrequentSearchType) => {},
 };
 
-const Template: ComponentStory<typeof HomeScreen> = (args) => <HomeScreen {...args} />;
+const categoryOptions = [
+  { label: "Food", Icon: EggAltOutlinedIcon },
+  { label: "Recipe", Icon: EmojiFoodBeverageOutlinedIcon },
+  { label: "Library", Icon: BookmarkBorderOutlinedIcon },
+];
 
 const collection = [
   {
@@ -89,19 +94,15 @@ const collection = [
   },
 ];
 
-export const Desktop = Template.bind({});
-
 const collectionGroupedItems = [
   { categoryName: "FRUIT AND FRUIT JUICES", collection: collection },
   { categoryName: "BABY FOODS", collection: collection.slice(0, 3) },
   { categoryName: "SWEETS", collection: collection.slice(0, 4) },
 ];
 
-const categoryOptions = [
-  { label: "Food", Icon: EggAltOutlinedIcon },
-  { label: "Recipe", Icon: EmojiFoodBeverageOutlinedIcon },
-  { label: "Library", Icon: BookmarkBorderOutlinedIcon },
-];
+const Template: ComponentStory<typeof HomeScreen> = (args) => <HomeScreen {...args} />;
+
+export const Desktop = Template.bind({});
 
 Desktop.args = {
   sidebarItems: sidebarItems,
@@ -109,9 +110,6 @@ Desktop.args = {
   PopularFrequentSearchItems: PopularFrequentSearchItems,
   PopularFrequentSearchTitle: PopularFrequentSearchTitle,
   onSelectPopularItem: onSelectPopularItem,
-  sourceId: "forkfact-v2",
-  // collectionGroupedItems: collectionGroupedItems,
-  // categoryOptions: categoryOptions,
 };
 
 export const Mobile = Template.bind({});
@@ -123,7 +121,9 @@ Mobile.parameters = {
 
 Mobile.args = {
   sidebarItems: sidebarItems,
-  sourceId: "forkfact-v2",
+  categoryOptions: categoryOptions,
+  onSelectCategory: (item: SearchCategoryItemType) => {},
+  collectionGroupedItems: collectionGroupedItems,
 };
 
 export const Tablet = Template.bind({});
@@ -135,4 +135,7 @@ Tablet.parameters = {
 
 Tablet.args = {
   sidebarItems: sidebarItems,
+  categoryOptions: categoryOptions,
+  onSelectCategory: (item: SearchCategoryItemType) => {},
+  collectionGroupedItems: collectionGroupedItems,
 };

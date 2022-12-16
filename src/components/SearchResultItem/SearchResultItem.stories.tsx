@@ -30,7 +30,7 @@ searchItem.args = {
   item: {
     name: "Banana dehydrated/ banana powder",
     image: "/recentImg.png",
-    url: "/Banana dehydrated/ banana powder",
+    path: "/:",
   },
   onSelectItem: (item: SearchResultItemType) => item,
 };

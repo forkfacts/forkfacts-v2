@@ -3,27 +3,39 @@ import { Box, Typography, Button } from "@mui/material";
 import { RecentSearchScreenProps } from "@forkfacts/models";
 import { SearchResults, RecentSearchHeader } from "@forkfacts/components";
 import { useStyles } from "./recentSearchScreenStyles";
-interface hey {
-  getInputProps: any;
-  inputRef: any;
-}
 
-const RecentSearchScreen: React.FC<RecentSearchScreenProps & hey> = ({
+const RecentSearchScreen: React.FC<RecentSearchScreenProps> = ({
   collectionListsItems,
-  onClearSearch,
-  onClosePage,
   handleViewMore,
   onSelectItem,
-  setIsOpen,
-  getInputProps,
+  onClearSearch,
+  onClosePage,
   inputRef,
+  autocomplete,
+  formRef,
 }) => {
   const classes = useStyles();
-  console.log(collectionListsItems);
 
   return (
-    <Box>
-      <Box sx={{ mt: ({ spacing }) => spacing(2) }}>
+    <Box
+      sx={{
+        position: "fixed",
+        left: 0,
+        right: 0,
+        bottom: 0,
+        top: 0,
+        bgcolor: "white",
+        zIndex: ({ zIndex }) => zIndex.modal,
+      }}
+    >
+      <RecentSearchHeader
+        showBorderBottom={false}
+        onClosePage={onClosePage}
+        inputRef={inputRef}
+        autocomplete={autocomplete}
+        formRef={formRef}
+      />
+      <Box>
         <Box className={classes.statusWrapper}>
           <Typography color="text.secondary" variant="subtitle2">
             Recent search

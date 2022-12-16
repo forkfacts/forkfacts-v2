@@ -110,8 +110,8 @@ Desktop.args = {
   PopularFrequentSearchTitle: PopularFrequentSearchTitle,
   onSelectPopularItem: onSelectPopularItem,
   sourceId: "forkfact-v2",
-  collectionGroupedItems: collectionGroupedItems,
-  categoryOptions: categoryOptions,
+  // collectionGroupedItems: collectionGroupedItems,
+  // categoryOptions: categoryOptions,
 };
 
 export const Mobile = Template.bind({});
@@ -123,6 +123,7 @@ Mobile.parameters = {
 
 Mobile.args = {
   sidebarItems: sidebarItems,
+  sourceId: "forkfact-v2",
 };
 
 export const Tablet = Template.bind({});

@@ -3,7 +3,7 @@ import { Theme } from "@mui/material";
 
 export const useStyles = makeStyles(({ spacing, breakpoints, typography }: Theme) => ({
   statusWrapper: {
-    [breakpoints.down("sm")]: {
+    [breakpoints.down("md")]: {
       paddingTop: spacing(1.2),
       paddingLeft: spacing(2),
       paddingBottom: spacing(1.2),
@@ -15,7 +15,7 @@ export const useStyles = makeStyles(({ spacing, breakpoints, typography }: Theme
     },
   },
   btn: {
-    [breakpoints.down("sm")]: {
+    [breakpoints.down("md")]: {
       fontWeight: typography.fontWeightBold,
       fontSize: typography.caption.fontSize,
       lineHeight: spacing(2),

@@ -8,9 +8,9 @@ export const useStyles = makeStyles(({ typography, spacing, breakpoints, palette
       flexDirection: "center",
       alignItems: "center",
       paddingTop: spacing(1.9),
-      paddingLeft: spacing(3.5),
+      paddingLeft: spacing(1.5),
       paddingBottom: spacing(1.9),
-      paddingRight: spacing(3.5),
+      paddingRight: spacing(2.5),
     },
   },
   underline: {

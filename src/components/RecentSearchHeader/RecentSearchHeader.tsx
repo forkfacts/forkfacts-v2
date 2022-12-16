@@ -2,34 +2,32 @@ import React from "react";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { Box, TextField, AppBar } from "@mui/material";
 import InputAdornment from "@mui/material/InputAdornment";
-import CloseIcon from "@mui/icons-material/Close";
 import { RecentSearchHeaderProps } from "@forkfacts/models";
 import { useStyles } from "./RecentSearchHeaderStyles";
 
-interface hey {
-  getInputProps: any;
-  inputRef: any;
-}
-
-const RecentSearchHeader: React.FC<RecentSearchHeaderProps & hey> = ({
+const RecentSearchHeader: React.FC<RecentSearchHeaderProps> = ({
   showBorderBottom = false,
   onClosePage,
-  onClearSearch,
-  getInputProps,
+  formRef,
   inputRef,
+  autocomplete,
 }) => {
   const classes = useStyles();
 
   return (
     <Box className={classes.root}>
-      <AppBar
+      <Box
         sx={{
           boxShadow: showBorderBottom ? 1 : 0,
           zIndex: ({ zIndex }) => zIndex.appBar,
           bgcolor: "background.paper",
         }}
       >
-        <Box>
+        <Box
+          component="form"
+          ref={formRef}
+          {...autocomplete.getFormProps({ inputElement: inputRef.current })}
+        >
           <TextField
             ref={inputRef}
             sx={{ width: "100%", borderBottom: "none" }}
@@ -41,11 +39,11 @@ const RecentSearchHeader: React.FC<RecentSearchHeaderProps & hey> = ({
               ),
               classes,
             }}
-            {...getInputProps.getInputProps({ inputElement: inputRef.current })}
+            {...autocomplete.getInputProps({ inputElement: inputRef.current })}
             variant="standard"
           />
         </Box>
-      </AppBar>
+      </Box>
     </Box>
   );
 };

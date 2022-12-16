@@ -53,10 +53,6 @@ export default function HomeScreen({
                 placeholder="Search food, recipes & library"
                 openOnFocus={true}
                 sourceId="forkfact-v2"
-                categoryOptions={categoryOptions}
-                collectionGroupedItems={collectionGroupedItems}
-                handleViewMore={handleViewMore}
-                onSelectCategory={onSelectCategory}
               />
             </Box>
             <Box className={classNames(classes.showDesktop, classes.navbarStyles)}>

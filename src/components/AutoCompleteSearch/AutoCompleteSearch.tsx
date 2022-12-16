@@ -61,14 +61,9 @@ function desktopInputStyles<T, U, V>(spacing: (type: number) => T, shadows: U[],
   };
 }
 
-function AutoCompleteSearch({
-  sourceId,
-  categoryOptions,
-  collectionGroupedItems,
-  handleViewMore,
-  onSelectCategory,
-  ...props
-}: Partial<AutocompleteOptions<AutocompleteItem>> & AutoCompleteSearchProps) {
+function AutoCompleteSearch(
+  props: Partial<AutocompleteOptions<AutocompleteItem>> & AutoCompleteSearchProps
+) {
   const [autocompleteState, setAutocompleteState] = useState<AutocompleteState<AutocompleteItem>>({
     collections: [],
     completion: null,
@@ -80,10 +75,11 @@ function AutoCompleteSearch({
   });
   const { spacing, shadows, palette, breakpoints } = useTheme();
   const mobile = useMediaQuery(breakpoints.down("md"));
-  console.log(mobile);
   const desktop = useMediaQuery(breakpoints.up("md"));
+  const [mobileResponseLength, setMobileResponseLength] = useState(false);
   const { query, collections, isOpen, status } = autocompleteState;
   const classes = useStyles();
+
   const autocomplete = useMemo(
     () =>
       createAutocomplete<
@@ -98,7 +94,7 @@ function AutoCompleteSearch({
         getSources() {
           return [
             {
-              sourceId: sourceId,
+              sourceId: props.sourceId,
               getItems({ query }) {
                 return getAlgoliaResults({
                   searchClient,
@@ -111,10 +107,26 @@ function AutoCompleteSearch({
                       },
                     },
                   ],
+                  transformResponse({ results, hits }) {
+                    const responseLength = hits.map((item) => {
+                      return item.length;
+                    });
+                    if (responseLength[0] === 0) {
+                      autocomplete.setIsOpen(true);
+                    }
+                    return hits;
+                  },
                 });
               },
               getItemUrl({ item }) {
                 return item.url;
+              },
+              templates: {
+                // ...
+                noResults() {
+                  console.log("no results");
+                  return "No results.";
+                },
               },
             },
           ];
@@ -123,6 +135,7 @@ function AutoCompleteSearch({
       }),
     [props]
   );
+
   const inputRef = useRef<HTMLInputElement>(null);
   const formRef = useRef<HTMLFormElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
@@ -130,6 +143,7 @@ function AutoCompleteSearch({
 
   useEffect(() => {
     if (!formRef.current || !panelRef.current || !inputRef.current) {
+      if (mobile) autocomplete.setQuery("");
       return undefined;
     }
     const { onTouchStart, onTouchMove, onMouseDown } = getEnvironmentProps({
@@ -143,11 +157,12 @@ function AutoCompleteSearch({
     window.addEventListener("touchmove", onTouchMove);
 
     return () => {
+      if (mobile) autocomplete.setQuery("");
       window.removeEventListener("mousedown", onMouseDown);
       window.removeEventListener("touchstart", onTouchStart);
       window.removeEventListener("touchmove", onTouchMove);
     };
-  }, [getEnvironmentProps, autocompleteState.isOpen]);
+  }, [getEnvironmentProps, isOpen, mobileResponseLength]);
 
   const onSelectItem = (item: SearchResultItemType) => {
     navigate(item.url);
@@ -160,12 +175,12 @@ function AutoCompleteSearch({
 
   const onClosePage = () => {
     autocomplete.setIsOpen(false);
+    autocomplete.setQuery("");
   };
 
   return (
     <Box
       component="div"
-      {...autocomplete.getRootProps({})}
       sx={{
         width: "100%",
         py: desktop ? spacing(3) : spacing(0),
@@ -191,6 +206,11 @@ function AutoCompleteSearch({
               </InputAdornment>
             ),
           }}
+          sx={
+            mobile
+              ? mobileInputStyles(spacing, isOpen)
+              : desktopInputStyles(spacing, shadows, isOpen)
+          }
           ref={inputRef}
           {...autocomplete.getInputProps({ inputElement: inputRef.current })}
         />
@@ -288,47 +308,23 @@ function AutoCompleteSearch({
           )} */}
         </Box>
       )}
-      {/* {isOpen && mobile && (
-        <Box
-          sx={{
-            position: "fixed",
-            top: 100,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            height: "100%",
-            width: "100%",
-            background: "#fff",
-          }}
-        >
-          <TextField
-            size="medium"
-            fullWidth
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <SearchOutlined />
-                </InputAdornment>
-              ),
-            }}
-            ref={inputRef}
-            {...autocomplete.getInputProps({ inputElement: inputRef.current })}
-          />
+      {isOpen && mobile && (
+        <Box>
           <ForLoops each={collections}>
             {(collection, index) => {
-              const { source, items } = collection;
+              const { items } = collection;
               return (
                 <Box component="section" key={`source-${index}`}>
                   {items.length > 0 && (
                     <RecentSearchScreen
                       onClosePage={onClosePage}
-                      handleViewMore={handleViewMore}
+                      handleViewMore={props.handleViewMore}
                       collectionListsItems={items}
                       onClearSearch={onClearSearch}
                       onSelectItem={onSelectItem}
-                      getInputProps={autocomplete}
-                      setIsOpen={autocomplete.setIsOpen}
                       inputRef={inputRef}
+                      autocomplete={autocomplete}
+                      formRef={formRef}
                     />
                   )}
                 </Box>
@@ -336,7 +332,7 @@ function AutoCompleteSearch({
             }}
           </ForLoops>
         </Box>
-      )} */}
+      )}
     </Box>
   );
 }

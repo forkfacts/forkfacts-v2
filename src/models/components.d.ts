@@ -53,7 +53,6 @@ export interface SearchCategoriesProps extends onSelectCategoryType {
 
 export interface RecentSearchHeaderProps {
   showBorderBottom?: boolean;
-  showClearSearch?: boolean;
   onClosePage: () => void;
   onClearSearch: () => void;
 }
@@ -118,4 +117,11 @@ export interface NavBarItemProps {
   index: number;
   setSelectedIndex: (item: number) => void;
   selectedIndex: number;
+}
+
+export interface AutoCompleteSearchProps extends onSelectCategoryType {
+  sourceId: string;
+  categoryOptions: SearchCategoryItemType[];
+  collectionGroupedItems: SearchResultItemCollectionType[];
+  handleViewMore: () => void;
 }

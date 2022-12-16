@@ -17,6 +17,10 @@ export default function HomeScreen({
   PopularFrequentSearchItems,
   PopularFrequentSearchTitle,
   onSelectPopularItem,
+  collectionGroupedItems,
+  categoryOptions,
+  handleViewMore,
+  onSelectCategory,
 }: HomeScreenProps) {
   const theme = useTheme();
   const [appBarHeight, setAppBarHeight] = useState<CSSProperties>();
@@ -34,9 +38,6 @@ export default function HomeScreen({
               Forkfacts, Your Healthy diet search place.
             </Typography>
           </Box>
-          <Box className={classes.showMobile}>
-            <SearchInputField />
-          </Box>
           <Box className={classes.desktopScreenWrapper}>
             <Box className={classes.showDesktop}>
               <img src="/homeImg.svg" alt="home page image" className={classes.img} />
@@ -47,11 +48,15 @@ export default function HomeScreen({
             >
               Foods
             </Typography>
-            <Box className={classNames(classes.searchInputStyles, classes.showDesktop)}>
+            <Box className={classNames(classes.searchInputStyles)}>
               <AutoCompleteSearch
                 placeholder="Search food, recipes & library"
                 openOnFocus={true}
                 sourceId="forkfact-v2"
+                categoryOptions={categoryOptions}
+                collectionGroupedItems={collectionGroupedItems}
+                handleViewMore={handleViewMore}
+                onSelectCategory={onSelectCategory}
               />
             </Box>
             <Box className={classNames(classes.showDesktop, classes.navbarStyles)}>

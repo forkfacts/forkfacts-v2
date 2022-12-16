@@ -11,6 +11,7 @@ import {
   PopularFrequentSearchProps,
   PopularFrequentSearchType,
 } from "@forkfacts/models";
+import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlined";
 import { HomeScreen } from "@forkfacts/screens";
 
 export default {
@@ -60,7 +61,47 @@ const {
 
 const Template: ComponentStory<typeof HomeScreen> = (args) => <HomeScreen {...args} />;
 
+const collection = [
+  {
+    image: "/recentImg.png",
+    name: "Kidney beans light, Legume",
+    url: "/:id",
+  },
+  {
+    image: "/image3.png",
+    name: "Grape fruit juices",
+    url: "/:id",
+  },
+  {
+    image: "/image2.png",
+    name: "Baked white bread, Baked products",
+    url: "/:id",
+  },
+  {
+    image: "/image4.png",
+    name: "Grape fruit juice unsweetened, Fruit ...",
+    url: "/:id",
+  },
+  {
+    image: "/image5.png",
+    name: "Banana dehydrated/ banana powder",
+    url: "/:id",
+  },
+];
+
 export const Desktop = Template.bind({});
+
+const collectionGroupedItems = [
+  { categoryName: "FRUIT AND FRUIT JUICES", collection: collection },
+  { categoryName: "BABY FOODS", collection: collection.slice(0, 3) },
+  { categoryName: "SWEETS", collection: collection.slice(0, 4) },
+];
+
+const categoryOptions = [
+  { label: "Food", Icon: EggAltOutlinedIcon },
+  { label: "Recipe", Icon: EmojiFoodBeverageOutlinedIcon },
+  { label: "Library", Icon: BookmarkBorderOutlinedIcon },
+];
 
 Desktop.args = {
   sidebarItems: sidebarItems,
@@ -68,6 +109,9 @@ Desktop.args = {
   PopularFrequentSearchItems: PopularFrequentSearchItems,
   PopularFrequentSearchTitle: PopularFrequentSearchTitle,
   onSelectPopularItem: onSelectPopularItem,
+  sourceId: "forkfact-v2",
+  collectionGroupedItems: collectionGroupedItems,
+  categoryOptions: categoryOptions,
 };
 
 export const Mobile = Template.bind({});

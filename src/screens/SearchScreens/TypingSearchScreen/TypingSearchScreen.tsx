@@ -13,16 +13,17 @@ const TypingSearchScreen: React.FC<TypingSearchScreenProps> = ({
   onSelectItem,
   onSelectCategory,
   multiple,
+  ...props
 }) => {
   const classes = useStyles();
 
   return (
     <Box>
       <RecentSearchHeader
+        {...props}
         showBorderBottom={false}
         onClearSearch={onClearSearch}
         onClosePage={onClosePage}
-        showClearSearch={true}
       />
       <Box sx={{ mt: ({ spacing }) => spacing(2) }}>
         <Box className={classes.statusWrapper}>

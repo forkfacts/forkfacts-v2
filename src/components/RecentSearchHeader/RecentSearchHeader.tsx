@@ -6,11 +6,17 @@ import CloseIcon from "@mui/icons-material/Close";
 import { RecentSearchHeaderProps } from "@forkfacts/models";
 import { useStyles } from "./RecentSearchHeaderStyles";
 
-const RecentSearchHeader: React.FC<RecentSearchHeaderProps> = ({
-  showClearSearch,
+interface hey {
+  getInputProps: any;
+  inputRef: any;
+}
+
+const RecentSearchHeader: React.FC<RecentSearchHeaderProps & hey> = ({
   showBorderBottom = false,
   onClosePage,
   onClearSearch,
+  getInputProps,
+  inputRef,
 }) => {
   const classes = useStyles();
 
@@ -25,8 +31,7 @@ const RecentSearchHeader: React.FC<RecentSearchHeaderProps> = ({
       >
         <Box>
           <TextField
-            id="filled-start-adornment"
-            type="text"
+            ref={inputRef}
             sx={{ width: "100%", borderBottom: "none" }}
             InputProps={{
               startAdornment: (
@@ -34,16 +39,9 @@ const RecentSearchHeader: React.FC<RecentSearchHeaderProps> = ({
                   <ArrowBackIcon className={classes.icon} color="primary" onClick={onClosePage} />
                 </InputAdornment>
               ),
-              endAdornment: (
-                <InputAdornment position="end">
-                  {showClearSearch ? (
-                    <CloseIcon className={classes.icon} color="primary" onClick={onClearSearch} />
-                  ) : null}
-                </InputAdornment>
-              ),
               classes,
             }}
-            placeholder="Search for food product"
+            {...getInputProps.getInputProps({ inputElement: inputRef.current })}
             variant="standard"
           />
         </Box>

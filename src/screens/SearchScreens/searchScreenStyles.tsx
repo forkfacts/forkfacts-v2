@@ -81,6 +81,9 @@ export const useStyles = makeStyles(
         zIndex: zIndex.mobileStepper,
         height: "auto",
       },
+      [breakpoints.down("md")]: {
+        position: "relative",
+      },
     },
     selectedSearchTitle: {
       [breakpoints.up("md")]: {

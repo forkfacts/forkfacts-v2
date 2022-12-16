@@ -36,16 +36,6 @@ export default {
       action: "onClick",
       control: null,
     },
-    showClearSearch: {
-      name: "showClearSearch",
-      description:
-        "showClearSearch is boolean prop passed into the component and which allows you to trigger onClearSearch",
-      table: {
-        defaultValue: {
-          summary: false,
-        },
-      },
-    },
   },
 } as ComponentMeta<typeof RecentSearchHeader>;
 
@@ -64,5 +54,4 @@ Mobile.parameters = {
 Mobile.args = {
   ...Mobile.args,
   showBorderBottom: true,
-  showClearSearch: false,
 };

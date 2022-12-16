@@ -11,9 +11,11 @@ import { Box, Button, TextField, Typography, useTheme } from "@mui/material";
 import { SearchOutlined } from "@mui/icons-material";
 import InputAdornment from "@mui/material/InputAdornment";
 import { SearchResults } from "@forkfacts/components";
-import { SearchResultItemType } from "@forkfacts/models";
+import { SearchResultItemType, AutoCompleteSearchProps } from "@forkfacts/models";
 import { ForLoops } from "@forkfacts/helpers";
 import { navigate } from "gatsby";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { TypingSearchScreen, RecentSearchScreen } from "@forkfacts/screens";
 import { useStyles } from "./autocompleteSearchStyles";
 
 const appId = process.env.GATSBY_SEARCH_APP_ID as string;
@@ -28,12 +30,43 @@ type AutocompleteItem = Hit<{
   url: string;
 }>;
 
-interface AutoCompleteSearchProps {
-  sourceId: string;
+function mobileInputStyles<T, U>(spacing: (type: number) => T, isOpen: U) {
+  return {
+    "& fieldset": {
+      paddingLeft: spacing(2.5),
+      borderRadius: spacing(1.25),
+      width: "100%",
+      borderColor: "grey[100] !important",
+      "&:hover": {
+        borderColor: "grey[100] !important",
+        outlineColor: "grey[100] !important",
+      },
+    },
+    "&:focus fieldset": {
+      borderColor: "grey[100] !important",
+    },
+  };
+}
+
+function desktopInputStyles<T, U, V>(spacing: (type: number) => T, shadows: U[], isOpen: V) {
+  return {
+    "& fieldset": {
+      border: "none",
+    },
+    borderRadius: spacing(1.25),
+    boxShadow: isOpen ? shadows[0] : shadows[2],
+    py: spacing(1.2),
+    paddingLeft: spacing(2),
+    paddingRight: spacing(3.9),
+  };
 }
 
 function AutoCompleteSearch({
   sourceId,
+  categoryOptions,
+  collectionGroupedItems,
+  handleViewMore,
+  onSelectCategory,
   ...props
 }: Partial<AutocompleteOptions<AutocompleteItem>> & AutoCompleteSearchProps) {
   const [autocompleteState, setAutocompleteState] = useState<AutocompleteState<AutocompleteItem>>({
@@ -45,7 +78,10 @@ function AutoCompleteSearch({
     activeItemId: null,
     status: "idle",
   });
-  const { spacing, shadows, palette } = useTheme();
+  const { spacing, shadows, palette, breakpoints } = useTheme();
+  const mobile = useMediaQuery(breakpoints.down("md"));
+  console.log(mobile);
+  const desktop = useMediaQuery(breakpoints.up("md"));
   const { query, collections, isOpen, status } = autocompleteState;
   const classes = useStyles();
   const autocomplete = useMemo(
@@ -68,7 +104,7 @@ function AutoCompleteSearch({
                   searchClient,
                   queries: [
                     {
-                      indexName: query ? INDEX_NAMES[1] : INDEX_NAMES[0],
+                      indexName: INDEX_NAMES[1],
                       query,
                       params: {
                         hitsPerPage: 6,
@@ -122,19 +158,23 @@ function AutoCompleteSearch({
     autocomplete.refresh();
   };
 
+  const onClosePage = () => {
+    autocomplete.setIsOpen(false);
+  };
+
   return (
     <Box
       component="div"
       {...autocomplete.getRootProps({})}
       sx={{
         width: "100%",
-        py: spacing(3),
-        px: spacing(1.375),
-        borderRadius: isOpen ? spacing(1.25) : spacing(0),
+        py: desktop ? spacing(3) : spacing(0),
+        px: desktop ? spacing(1.375) : spacing(0),
+        borderRadius: isOpen && desktop ? spacing(1.25) : spacing(0),
         position: "absolute",
         backgroundColor: palette.common.white,
       }}
-      boxShadow={isOpen ? 2 : 0}
+      boxShadow={isOpen && desktop ? 2 : 0}
     >
       <Box
         component="form"
@@ -151,16 +191,6 @@ function AutoCompleteSearch({
               </InputAdornment>
             ),
           }}
-          sx={{
-            "& fieldset": {
-              border: "none",
-            },
-            borderRadius: spacing(1.25),
-            boxShadow: isOpen ? shadows[0] : shadows[2],
-            py: spacing(1.2),
-            paddingLeft: spacing(2),
-            paddingRight: spacing(3.9),
-          }}
           ref={inputRef}
           {...autocomplete.getInputProps({ inputElement: inputRef.current })}
         />
@@ -174,14 +204,14 @@ function AutoCompleteSearch({
           }}
         />
       )}
-      {isOpen && (
+      {isOpen && desktop && (
         <Box
           component="div"
           ref={panelRef}
           {...autocomplete.getPanelProps({})}
           sx={{ mt: spacing(2), width: "100%" }}
         >
-          {!query && status === "idle" ? (
+          {!query && desktop && status === "idle" ? (
             <Box
               sx={{
                 mb: spacing(1.5),
@@ -195,11 +225,12 @@ function AutoCompleteSearch({
                 I’m searching for
               </Typography>
             </Box>
-          ) : status === "stalled" ? (
+          ) : status === "stalled" && desktop ? (
             <Box />
           ) : (
             !query &&
-            status === "idle" && (
+            status === "idle" &&
+            desktop && (
               <Box
                 sx={{
                   mb: spacing(1.5),
@@ -226,22 +257,86 @@ function AutoCompleteSearch({
               </Box>
             )
           )}
-          <Box>
-            <ForLoops each={collections}>
-              {(collection, index) => {
-                const { source, items } = collection;
-                return (
-                  <Box component="section" key={`source-${index}`}>
-                    {items.length > 0 && (
-                      <SearchResults collectionListsItems={items} onSelectItem={onSelectItem} />
-                    )}
-                  </Box>
-                );
-              }}
-            </ForLoops>
-          </Box>
+          {desktop && (
+            <Box>
+              <ForLoops each={collections}>
+                {(collection, index) => {
+                  const { source, items } = collection;
+                  return (
+                    <Box component="section" key={`source-${index}`}>
+                      {items.length > 0 && (
+                        <SearchResults collectionListsItems={items} onSelectItem={onSelectItem} />
+                      )}
+                    </Box>
+                  );
+                }}
+              </ForLoops>
+            </Box>
+          )}
+          {/* {desktop && !query && (
+            <TypingSearchScreen
+              onClearSearch={onClearSearch}
+              onSelectItem={onSelectItem}
+              onClosePage={onClosePage}
+              {...autocomplete.getInputProps({ inputElement: inputRef.current })}
+              categoryOptions={categoryOptions}
+              collectionGroupedItems={collectionGroupedItems}
+              handleViewMore={handleViewMore}
+              multiple={true}
+              onSelectCategory={onSelectCategory}
+            />
+          )} */}
         </Box>
       )}
+      {/* {isOpen && mobile && (
+        <Box
+          sx={{
+            position: "fixed",
+            top: 100,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            height: "100%",
+            width: "100%",
+            background: "#fff",
+          }}
+        >
+          <TextField
+            size="medium"
+            fullWidth
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <SearchOutlined />
+                </InputAdornment>
+              ),
+            }}
+            ref={inputRef}
+            {...autocomplete.getInputProps({ inputElement: inputRef.current })}
+          />
+          <ForLoops each={collections}>
+            {(collection, index) => {
+              const { source, items } = collection;
+              return (
+                <Box component="section" key={`source-${index}`}>
+                  {items.length > 0 && (
+                    <RecentSearchScreen
+                      onClosePage={onClosePage}
+                      handleViewMore={handleViewMore}
+                      collectionListsItems={items}
+                      onClearSearch={onClearSearch}
+                      onSelectItem={onSelectItem}
+                      getInputProps={autocomplete}
+                      setIsOpen={autocomplete.setIsOpen}
+                      inputRef={inputRef}
+                    />
+                  )}
+                </Box>
+              );
+            }}
+          </ForLoops>
+        </Box>
+      )} */}
     </Box>
   );
 }

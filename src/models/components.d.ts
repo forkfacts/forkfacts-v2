@@ -83,12 +83,12 @@ interface ExtendSearchResultItemsProps {
 export type SearchResultsProps = (
   | {
       collectionListsItems?: Array<SearchResultItemType>;
-      multiple: boolean;
+      multiple: true;
       collectionGroupedItems: Array<SearchResultItemCollectionType>;
     }
   | {
       collectionListsItems: Array<SearchResultItemType>;
-      multiple?: boolean;
+      multiple?: false;
       collectionGroupedItems?: Array<SearchResultItemCollectionType>;
     }
 ) &

@@ -133,8 +133,6 @@ function AutoCompleteSearch(
     autocomplete.setQuery("");
   };
 
-  console.log(isOpen);
-
   return (
     <Box
       component="div"

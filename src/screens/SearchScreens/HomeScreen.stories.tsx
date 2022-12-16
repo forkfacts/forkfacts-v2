@@ -127,6 +127,7 @@ Mobile.args = {
   onSelectCategory: (item: SearchCategoryItemType) => {},
   collectionGroupedItems: collectionGroupedItems,
   placeholder: "Search",
+  sourceId: "forkfact-v2",
 };
 
 export const Tablet = Template.bind({});
@@ -141,4 +142,5 @@ Tablet.args = {
   categoryOptions: categoryOptions,
   onSelectCategory: (item: SearchCategoryItemType) => {},
   collectionGroupedItems: collectionGroupedItems,
+  sourceId: "forkfact-v2",
 };

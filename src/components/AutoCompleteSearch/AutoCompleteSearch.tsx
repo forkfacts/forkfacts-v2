@@ -28,8 +28,6 @@ const apiKey = process.env.GATSBY_SEARCH_API_KEY as string;
 const searchClient = algoliasearch(apiKey, appId);
 const INDEX_NAMES = ["ff_index", "sr_index"];
 
-console.log(process.env);
-
 type AutocompleteItem = Hit<{
   image: string;
   name: string;

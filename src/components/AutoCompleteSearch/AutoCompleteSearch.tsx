@@ -20,7 +20,7 @@ import {
   useStyles,
   mobileInputStyles,
   desktopInputStyles,
-  mobileInputOpenStyles,
+  inputStyles,
 } from "./autocompleteSearchStyles";
 
 const appId = process.env.GATSBY_SEARCH_APP_ID as string;
@@ -164,9 +164,9 @@ function AutoCompleteSearch(
           sx={
             desktop
               ? desktopInputStyles(spacing, shadows, isOpen)
-              : mobile && !isOpen
+              : mobile && !isOpen && !desktop
               ? mobileInputStyles(spacing, isOpen)
-              : mobileInputOpenStyles(spacing)
+              : inputStyles(spacing)
           }
           ref={inputRef}
           {...autocomplete.getInputProps({ inputElement: inputRef.current })}

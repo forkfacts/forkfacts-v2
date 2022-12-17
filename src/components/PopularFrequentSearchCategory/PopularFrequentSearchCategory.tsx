@@ -1,5 +1,5 @@
 import React from "react";
-import { PopularFrequentSearchCategoryProps, extraInfo } from "@forkfacts/models";
+import { PopularFrequentSearchCategoryProps } from "@forkfacts/models";
 import ListItem from "@mui/material/ListItem";
 import { blue } from "@mui/material/colors";
 import Typography from "@mui/material/Typography";
@@ -67,12 +67,12 @@ const PopularFrequentSearchCategory = ({
         <Box sx={{ display: "flex", alignItems: "center", columnGap: spacing(3) }}>
           <ForLoops each={item.extraInfo}>
             {(extraItem, extraIndex) => (
-              <Box key={extraIndex}>
-                <Typography variant="body1" sx={{ color: palette.grey[500] }}>
+              <Box key={extraIndex} sx={{ display: "flex", flexDirection: "column" }}>
+                <Typography variant="caption" sx={{ color: palette.grey[500] }}>
                   {extraItem.weight}
                 </Typography>
                 <Typography
-                  variant="body1"
+                  variant="caption"
                   sx={{
                     color: palette.common.black,
                     fontWeight: typography.fontWeightMedium,

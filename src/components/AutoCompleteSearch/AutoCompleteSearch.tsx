@@ -21,6 +21,7 @@ import {
   mobileInputStyles,
   desktopInputStyles,
   inputStyles,
+  noResultInputStyles,
 } from "./autocompleteSearchStyles";
 
 const appId = process.env.GATSBY_SEARCH_APP_ID as string;
@@ -130,6 +131,7 @@ function AutoCompleteSearch(
     autocomplete.setIsOpen(false);
     autocomplete.setQuery("");
   };
+  const noResultInput = mobile && !isOpen && query && !desktop;
 
   return (
     <Box
@@ -162,8 +164,8 @@ function AutoCompleteSearch(
             ),
           }}
           sx={
-            mobile && !isOpen && query && !desktop
-              ? inputStyles(spacing)
+            noResultInput
+              ? noResultInputStyles(spacing, shadows, noResultInput)
               : desktop
               ? desktopInputStyles(spacing, shadows, isOpen)
               : mobile && !isOpen && !desktop

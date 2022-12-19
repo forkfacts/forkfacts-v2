@@ -80,6 +80,20 @@ export function inputStyles<T>(spacing: (type: number) => T) {
   };
 }
 
+export function noResultInputStyles<T, U, V>(
+  spacing: (type: number) => T,
+  shadows: U[],
+  noResultInput: boolean
+) {
+  return {
+    "& fieldset": {
+      border: "none",
+      borderRadius: spacing(0),
+      boxShadow: noResultInput ? shadows[1] : shadows[0],
+    },
+  };
+}
+
 export function desktopInputStyles<T, U, V>(spacing: (type: number) => T, shadows: U[], isOpen: V) {
   return {
     "& fieldset": {

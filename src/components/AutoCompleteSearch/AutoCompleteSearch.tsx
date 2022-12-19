@@ -153,7 +153,7 @@ function AutoCompleteSearch(
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
-                {mobile && isOpen ? (
+                {(mobile && isOpen) || (query && mobile) ? (
                   <ArrowBackIcon className={classes.icon} color="primary" onClick={onClosePage} />
                 ) : (
                   <SearchOutlined />
@@ -162,7 +162,9 @@ function AutoCompleteSearch(
             ),
           }}
           sx={
-            desktop
+            mobile && !isOpen && query && !desktop
+              ? inputStyles(spacing)
+              : desktop
               ? desktopInputStyles(spacing, shadows, isOpen)
               : mobile && !isOpen && !desktop
               ? mobileInputStyles(spacing, isOpen)

@@ -142,5 +142,6 @@ Tablet.args = {
   categoryOptions: categoryOptions,
   onSelectCategory: (item: SearchCategoryItemType) => {},
   collectionGroupedItems: collectionGroupedItems,
+  placeholder: "Search",
   sourceId: "forkfact-v2",
 };

@@ -28,9 +28,6 @@ export const useStyles = makeStyles(
         zIndex: zIndex.modal,
       },
     },
-    noBorder: {
-      border: "none",
-    },
     statusWrapper: {
       [breakpoints.down("md")]: {
         paddingTop: spacing(1.2),
@@ -74,10 +71,11 @@ export function mobileInputStyles<T, U>(spacing: (type: number) => T, isOpen: U)
   };
 }
 
-export function inputStyles<T, U>(spacing: (type: number) => T) {
+export function inputStyles<T>(spacing: (type: number) => T) {
   return {
     "& fieldset": {
       border: "none",
+      borderRadius: spacing(0),
     },
   };
 }

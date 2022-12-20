@@ -192,7 +192,7 @@ function AutoCompleteSearch(
       {isOpen && desktop && (
         <Box
           style={{
-            backgroundColor: grey[500],
+            backgroundColor: grey[300],
             width: "100%",
             height: spacing(0.125),
           }}

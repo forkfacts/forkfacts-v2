@@ -53,19 +53,19 @@ export const useStyles = makeStyles(
   })
 );
 
-export function mobileInputStyles<T, U>(spacing: (type: number) => T, isOpen: U) {
+export function mobileInputStyles<T, U, V>(spacing: (type: number) => T, isOpen: U, color: V) {
   return {
     "& fieldset": {
       borderRadius: spacing(1.25),
       width: "100%",
-      borderColor: "grey[100] !important",
+      borderColor: `${color} !important`,
       "&:hover": {
-        borderColor: "grey[100] !important",
-        outlineColor: "grey[100] !important",
+        borderColor: `${color} !important`,
+        outlineColor: `${color} !important`,
       },
     },
     "&:focus fieldset": {
-      borderColor: "grey[100] !important",
+      borderColor: `${color} !important`,
       width: "100%",
     },
   };

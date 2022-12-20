@@ -12,7 +12,7 @@ const SideBar: FC<SideBarProps> = ({
   window,
   drawerWidthExpanded = false,
 }) => {
-  const container = window !== undefined ? () => window().document.body : undefined;
+  const container = window ? () => window().document.body : undefined;
   const { transitions } = useTheme();
   const [selectedIndex, setSelectedIndex] = useState<number>(0);
 

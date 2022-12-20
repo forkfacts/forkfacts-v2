@@ -48,7 +48,9 @@ export default function NavBarItem({
         />
       }
     >
-      <Typography variant="body1">{item.label}</Typography>
+      <Typography variant="body1" sx={{ textTransform: "capitalize" }}>
+        {item.label}
+      </Typography>
     </Button>
   );
 }

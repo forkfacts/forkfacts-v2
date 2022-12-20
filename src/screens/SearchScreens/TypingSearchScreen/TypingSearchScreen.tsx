@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Typography } from "@mui/material";
 import { useStyles } from "./typeSearchScreenStyles";
 import { TypingSearchScreenProps } from "@forkfacts/models";
-import { SearchResults, RecentSearchHeader, SearchCategories } from "@forkfacts/components";
+import { SearchResults, RecentSearchHeader, MobileSearchCategories } from "@forkfacts/components";
 
 const TypingSearchScreen: React.FC<TypingSearchScreenProps> = ({
   collectionGroupedItems,
@@ -30,10 +30,13 @@ const TypingSearchScreen: React.FC<TypingSearchScreenProps> = ({
             I’m searching for
           </Typography>
         </Box>
-        <SearchCategories onSelectCategory={onSelectCategory} categoryOptions={categoryOptions} />
+        <MobileSearchCategories
+          onSelectCategory={onSelectCategory}
+          categoryOptions={categoryOptions}
+        />
         <SearchResults
           collectionGroupedItems={collectionGroupedItems}
-          multiple={multiple}
+          multiple={true}
           onSelectItem={onSelectItem}
           handleViewMore={handleViewMore}
         />

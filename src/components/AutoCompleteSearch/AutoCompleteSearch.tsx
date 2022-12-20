@@ -168,13 +168,6 @@ function AutoCompleteSearch(
                 )}
               </InputAdornment>
             ),
-            endAdornment: (
-              <InputAdornment position="end">
-                {query ? (
-                  <CloseIcon className={classes.icon} color="primary" onClick={onClearSearch} />
-                ) : null}
-              </InputAdornment>
-            ),
           }}
           sx={
             noResultInput

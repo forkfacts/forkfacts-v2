@@ -4,12 +4,12 @@ import { ComponentMeta, ComponentStory } from "@storybook/react";
 import EggAltOutlinedIcon from "@mui/icons-material/EggAltOutlined";
 import EmojiFoodBeverageOutlinedIcon from "@mui/icons-material/EmojiFoodBeverageOutlined";
 import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlined";
-import { SearchCategories } from "@forkfacts/components";
+import { MobileSearchCategories } from "@forkfacts/components";
 import { SearchCategoryItemType } from "@forkfacts/models";
 
 export default {
-  title: "Components/SearchCategories/multiple",
-  component: SearchCategories,
+  title: "Components/MobileSearchCategories/multiple",
+  component: MobileSearchCategories,
   parameters: {
     viewport: {
       viewports: INITIAL_VIEWPORTS,
@@ -25,9 +25,11 @@ export default {
       description: "onSelectCategory function helps to select single button value",
     },
   },
-} as ComponentMeta<typeof SearchCategories>;
+} as ComponentMeta<typeof MobileSearchCategories>;
 
-const Template: ComponentStory<typeof SearchCategories> = (args) => <SearchCategories {...args} />;
+const Template: ComponentStory<typeof MobileSearchCategories> = (args) => (
+  <MobileSearchCategories {...args} />
+);
 
 export const Mobile = Template.bind({});
 Mobile.parameters = {

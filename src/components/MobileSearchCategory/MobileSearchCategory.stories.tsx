@@ -2,12 +2,12 @@ import React from "react";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import EggAltOutlinedIcon from "@mui/icons-material/EggAltOutlined";
-import { SearchCategory } from "@forkfacts/components";
+import { MobileSearchCategory } from "@forkfacts/components";
 import { SearchCategoryItemType } from "@forkfacts/models";
 
 export default {
-  title: "Components/SearchCategories/Single",
-  component: SearchCategory,
+  title: "Components/MobileSearchCategories/Single",
+  component: MobileSearchCategory,
   parameters: {
     viewport: {
       viewports: INITIAL_VIEWPORTS,
@@ -35,10 +35,10 @@ export default {
       description: "setSelectedIndex function get the current clicked button",
     },
   },
-} as ComponentMeta<typeof SearchCategory>;
+} as ComponentMeta<typeof MobileSearchCategory>;
 
-export const selectedButton: ComponentStory<typeof SearchCategory> = (args) => (
-  <SearchCategory {...args} />
+export const selectedButton: ComponentStory<typeof MobileSearchCategory> = (args) => (
+  <MobileSearchCategory {...args} />
 );
 selectedButton.parameters = {
   viewport: {
@@ -56,8 +56,8 @@ selectedButton.args = {
 };
 selectedButton.storyName = "selected Button";
 
-export const unSelectedButton: ComponentStory<typeof SearchCategory> = (args) => (
-  <SearchCategory {...args} />
+export const unSelectedButton: ComponentStory<typeof MobileSearchCategory> = (args) => (
+  <MobileSearchCategory {...args} />
 );
 unSelectedButton.parameters = {
   viewport: {

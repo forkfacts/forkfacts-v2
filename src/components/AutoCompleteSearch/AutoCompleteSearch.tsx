@@ -12,8 +12,9 @@ import classnames from "classnames";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { SearchOutlined } from "@mui/icons-material";
 import InputAdornment from "@mui/material/InputAdornment";
-import { SearchResults, SearchCategories } from "@forkfacts/components";
+import { SearchResults, MobileSearchCategories } from "@forkfacts/components";
 import { SearchResultItemType, AutoCompleteSearchProps } from "@forkfacts/models";
+import CloseIcon from "@mui/icons-material/Close";
 import { ForLoops } from "@forkfacts/helpers";
 import { navigate } from "gatsby";
 import {
@@ -48,7 +49,12 @@ function AutoCompleteSearch(
     activeItemId: null,
     status: "idle",
   });
-  const { spacing, shadows, palette, breakpoints } = useTheme();
+  const {
+    spacing,
+    shadows,
+    palette: { grey },
+    breakpoints,
+  } = useTheme();
   const { query, collections, isOpen, status } = autocompleteState;
   const mobile = useMediaQuery(breakpoints.down("md"));
   const desktop = useMediaQuery(breakpoints.up("md"));
@@ -162,6 +168,13 @@ function AutoCompleteSearch(
                 )}
               </InputAdornment>
             ),
+            endAdornment: (
+              <InputAdornment position="end">
+                {query ? (
+                  <CloseIcon className={classes.icon} color="primary" onClick={onClearSearch} />
+                ) : null}
+              </InputAdornment>
+            ),
           }}
           sx={
             noResultInput
@@ -169,7 +182,7 @@ function AutoCompleteSearch(
               : desktop
               ? desktopInputStyles(spacing, shadows, isOpen)
               : mobile && !isOpen && !desktop
-              ? mobileInputStyles(spacing, isOpen)
+              ? mobileInputStyles(spacing, isOpen, grey[300])
               : inputStyles(spacing)
           }
           ref={inputRef}
@@ -179,7 +192,7 @@ function AutoCompleteSearch(
       {isOpen && desktop && (
         <Box
           style={{
-            backgroundColor: palette.grey[500],
+            backgroundColor: grey[500],
             width: "100%",
             height: spacing(0.125),
           }}
@@ -238,7 +251,7 @@ function AutoCompleteSearch(
             )
           )}
           {!query && mobile && (
-            <SearchCategories
+            <MobileSearchCategories
               onSelectCategory={props.onSelectCategory}
               categoryOptions={props.categoryOptions}
             />

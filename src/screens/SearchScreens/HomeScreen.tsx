@@ -1,5 +1,5 @@
 import React, { CSSProperties, useState, useEffect } from "react";
-import { Box, Typography, useTheme, useMediaQuery } from "@mui/material";
+import { Box, Typography, useTheme } from "@mui/material";
 import {
   Layout,
   AutoCompleteSearch,
@@ -43,6 +43,7 @@ export default function HomeScreen({
             <Box className={classes.showDesktop}>
               <img src="/homeImg.svg" alt="home page image" className={classes.img} />
             </Box>
+
             <Typography
               variant="h4"
               className={classNames(classes.selectedSearchTitle, classes.showDesktop)}

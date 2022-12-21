@@ -1,31 +1,31 @@
 {
-  "setYourPreferences": {
-    "all": [
+  "recipePreferences": {
+    "filterTags": [
       { "name": "Dietary" },
       { "name": "Allergy" },
       { "name": "Meal type" },
       { "name": "Cooking time" }
     ],
-    "preference": [
+    "filters": [
       {
-        "filterName": "Dietary",
-        "items": ["Gluten-free", "Dairy-free", "Vegan"]
+        "name": "Dietary",
+        "values": ["Gluten-free", "Dairy-free", "Vegan"]
       },
       {
-        "filterName": "Dietary",
-        "items": ["Nuts", "Soy", "Wheat", "Milk"]
+        "name": "Allergy",
+        "values": ["Nuts", "Soy", "Wheat", "Milk"]
       },
       {
-        "filterName": "Dietary",
-        "items": ["15 mins", "15-30 mins", "30-45 mins", "45 Years"]
+        "name": " Cooking Time",
+        "values": ["15 mins", "15-30 mins", "30-45 mins", "45 Years"]
       },
       {
-        "filterName": "Dietary",
-        "items": ["Breakfast", "launch", "Dinner", "Snacks"]
+        "name": "Meal Type",
+        "values": ["Breakfast", "launch", "Dinner", "Snacks"]
       },
       {
-        "filterName": "Videos",
-        "items": ["1", "0"]
+        "name": "Videos",
+        "values": ["1", "0"]
       }
     ]
   }

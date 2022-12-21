@@ -1,28 +1,39 @@
 [
   {
     "name": "Banana ripe, slightly ripe, raw",
-    "categoryName": "Fruit and Fruit Juices",
-    "categoryIcon": "EggAltOutlinedIcon",
+    "category": {
+      "name": "Fruit and Fruit Juices",
+      "icon": "EggAltOutlinedIcon"
+    },
     "overview": {
-      "info": "This is a cool food",
-      "NutrientScore": ["A", "B", "C", "D"],
+      "coolFood": {
+        "icon": "IconName",
+        "text": "This is a cool food",
+        "moreInfo": {
+          "description": "Cool Food Meals are a simple and delicious way to help the planet.",
+          "linkText": "Learn More",
+          "link": "https://coolfood.org/consumer/"
+        }
+      },
+      "nutrientScore": "B",
       "climateImpact": {
         "title": "Climate Impact",
-        "weight": "20kg co2",
-        "weightTitleSubscript": "Per serving",
-        "equivalent": "200kg CO2 is equivalent to",
-        "data": [
+        "emissions": "200kg CO2",
+        "emissionsUnit": "per serving",
+        "comparisons": [
           {
-            "name": "0.2 gallons of diesel consumed",
-            "icon": "OilBarrelOutlinedIcon"
+            "title": "0.2 gallons of diesel consumed",
+            "icon": "OilBarrelOutlinedIcon",
+            "order": 0
           },
           {
-            "name": "0.2 gallons of diesel consumed",
-            "icon": "DirectionsCarFilledOutlinedIcon"
+            "title": "0.2 gallons of diesel consumed",
+            "icon": "DirectionsCarFilledOutlinedIcon",
+            "order": 1
           }
         ]
       },
-      "usefulTips": [
+      "tips": [
         {
           "name": "0.2 gallons of diesel consumed",
           "icon": "OilBarrelOutlinedIcon",
@@ -128,8 +139,6 @@
       {
         "name": "Banana Walnut Bread",
         "description": "Flour, baking soda, ripe banana, vanilla extract",
-        "categoryName": "Fruit and Fruit Juices",
-        "categoryIcon": "EggAltOutlinedIcon",
         "duration": {
           "prepTime": {
             "hours": 0,

@@ -24,6 +24,7 @@ import {
   inputStyles,
   noResultInputStyles,
 } from "./autocompleteSearchStyles";
+import "../../styles/styles.css";
 
 const appId = process.env.GATSBY_SEARCH_APP_ID as string;
 const apiKey = process.env.GATSBY_SEARCH_API_KEY as string;
@@ -52,7 +53,7 @@ function AutoCompleteSearch(
   const {
     spacing,
     shadows,
-    palette: { grey },
+    palette: { grey, common, primary },
     breakpoints,
   } = useTheme();
   const { query, collections, isOpen, status } = autocompleteState;
@@ -166,6 +167,27 @@ function AutoCompleteSearch(
                 ) : (
                   <SearchOutlined />
                 )}
+              </InputAdornment>
+            ),
+            endAdornment: (
+              <InputAdornment position="start">
+                <Box
+                  sx={{
+                    position: "absolute",
+                    top: spacing(1.875),
+                    right: spacing(1.25),
+                    width: spacing(4.375),
+                    height: spacing(4.375),
+                    bgcolor: common.white,
+                  }}
+                >
+                  {query && (
+                    <CloseIcon
+                      onClick={onClearSearch}
+                      sx={{ cursor: "pointer", color: !desktop ? primary.dark : grey[600] }}
+                    />
+                  )}
+                </Box>
               </InputAdornment>
             ),
           }}

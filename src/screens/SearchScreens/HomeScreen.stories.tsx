@@ -35,7 +35,7 @@ const sidebarItems: sidebarItem[] = [
 
 const navbarItems = [
   { label: "Food", Icon: EggAltOutlinedIcon, link: "/food" },
-  { label: "Recipes", Icon: EmojiFoodBeverageOutlinedIcon, link: "/recipe" },
+  { label: "Recipe", Icon: EmojiFoodBeverageOutlinedIcon, link: "/recipe" },
   { label: "Library", Icon: LibraryBooksOutlinedIcon, link: "/library" },
 ];
 

@@ -22,7 +22,7 @@ export const useStyles = makeStyles(
         width: spacing(153.125),
         marginLeft: "auto",
         marginRight: "auto",
-        marginTop: spacing(10),
+        marginTop: spacing(6),
         flexDirection: "column",
         justifyContent: "space-between",
         alignItems: "center",
@@ -45,6 +45,8 @@ export const useStyles = makeStyles(
     img: {
       [breakpoints.up("md")]: {
         width: "100%",
+        height: spacing(27.93),
+        margin: "auto",
       },
     },
     showDesktop: {

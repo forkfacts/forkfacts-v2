@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { Box, Grid } from "@mui/material";
-import { SearchCategoriesProps } from "@forkfacts/models";
-import { SearchCategory } from "@forkfacts/components";
+import { MobileSearchCategoriesProps } from "@forkfacts/models";
+import { MobileSearchCategory } from "@forkfacts/components";
 import { ForLoops } from "@forkfacts/helpers";
-import { useStyles } from "./searchCategoriesStyles";
+import { useStyles } from "./mobileSearchCategoriesStyles";
 
-export default function SearchCategories({
+export default function MobileSearchCategories({
   categoryOptions,
   onSelectCategory,
-}: SearchCategoriesProps) {
+}: MobileSearchCategoriesProps) {
   const classes = useStyles();
   const [selectedIndex, setSelectedIndex] = useState(0);
 
@@ -18,7 +18,7 @@ export default function SearchCategories({
         <ForLoops each={categoryOptions}>
           {({ label, Icon }, idx) => (
             <Grid key={idx} item>
-              <SearchCategory
+              <MobileSearchCategory
                 index={idx}
                 onSelectCategory={onSelectCategory}
                 label={label}

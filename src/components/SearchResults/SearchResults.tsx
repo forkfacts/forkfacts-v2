@@ -18,7 +18,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({
     <Box className={classes.root}>
       {multiple ? (
         <Box>
-          {collectionGroupedItems !== undefined && (
+          {collectionGroupedItems && (
             <ForLoops each={collectionGroupedItems}>
               {(value, idx) => {
                 return (
@@ -50,7 +50,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({
         </Box>
       ) : (
         <Box>
-          {collectionListsItems !== undefined && (
+          {collectionListsItems && (
             <List sx={{ padding: 0 }} className={classes.listWrapper}>
               <ForLoops each={collectionListsItems}>
                 {(item, index) => {
@@ -59,7 +59,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({
               </ForLoops>
             </List>
           )}
-          {collectionListsItems !== undefined && collectionListsItems?.length > 3 && (
+          {collectionListsItems && handleViewMore && collectionListsItems?.length > 3 && (
             <ViewMoreButton handleViewMore={handleViewMore} />
           )}
         </Box>

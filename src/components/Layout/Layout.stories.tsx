@@ -2,6 +2,12 @@ import React from "react";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { Layout } from "@forkfacts/components";
+import EggAltOutlinedIcon from "@mui/icons-material/EggAltOutlined";
+import EmojiFoodBeverageOutlinedIcon from "@mui/icons-material/EmojiFoodBeverageOutlined";
+import LibraryBooksOutlinedIcon from "@mui/icons-material/LibraryBooksOutlined";
+import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+import AutoStoriesOutlinedIcon from "@mui/icons-material/AutoStoriesOutlined";
+import { sidebarItem } from "@forkfacts/models";
 import { Box } from "@mui/material";
 
 export default {
@@ -16,6 +22,35 @@ export default {
     handleToggleButton: () => console.log("toggle sidebar"),
   },
 } as ComponentMeta<typeof Layout>;
+
+const sidebarItems: sidebarItem[] = [
+  { label: "Food", Icon: EggAltOutlinedIcon, link: "/food" },
+  { label: "Recipe", Icon: EmojiFoodBeverageOutlinedIcon, link: "/recipe" },
+  { label: "Library", Icon: LibraryBooksOutlinedIcon, link: "/library" },
+  { label: "Cookbook", Icon: AutoStoriesOutlinedIcon, link: "/cookbook" },
+  { label: "Grocery List", Icon: ShoppingCartOutlinedIcon, link: "grocery list" },
+];
+
+export const Desktop: ComponentStory<typeof Layout> = (args) => (
+  <Layout {...args}>
+    <Box
+      sx={{
+        width: "100%",
+        flexGrow: 1,
+        minHeight: "92vh",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      Page content
+    </Box>
+  </Layout>
+);
+
+Desktop.args = {
+  sidebarItems: sidebarItems,
+};
 
 export const Mobile: ComponentStory<typeof Layout> = (args) => (
   <Layout {...args}>
@@ -39,6 +74,10 @@ Mobile.parameters = {
   },
 };
 
+Mobile.args = {
+  sidebarItems: sidebarItems,
+};
+
 export const Tablet: ComponentStory<typeof Layout> = (args) => (
   <Layout {...args}>
     <Box
@@ -59,4 +98,8 @@ Tablet.parameters = {
   viewport: {
     defaultViewport: "ipad",
   },
+};
+
+Tablet.args = {
+  sidebarItems: sidebarItems,
 };

@@ -4,7 +4,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { useStyles } from "./viewMoreStyles";
 
 type ViewMoreButtonProps = {
-  handleViewMore: () => void;
+  handleViewMore?: () => void;
 };
 
 export default function ViewMoreButton({ handleViewMore }: ViewMoreButtonProps) {

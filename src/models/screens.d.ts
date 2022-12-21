@@ -3,6 +3,8 @@ import {
   SearchCategoryItemType,
   onSelectCategoryType,
   SearchResultItemCollectionType,
+  PopularFrequentSearchType,
+  sidebarItem,
 } from "@forkfacts/models";
 
 export interface TypingSearchScreenProps extends onSelectCategoryType {
@@ -24,4 +26,16 @@ export interface RecentSearchScreenProps {
   onSelectItem: (item: SearchResultItemType) => item;
   showClearSearch: boolean;
   multiple: boolean;
+}
+
+export interface HomeScreenProps extends onSelectCategoryType {
+  sidebarItems: sidebarItem[];
+  navbarItems: sidebarItem[];
+  PopularFrequentSearchItems: PopularFrequentSearchType[];
+  PopularFrequentSearchTitle: string;
+  onSelectPopularItem: (item: PopularFrequentSearchType) => void;
+  categoryOptions: SearchCategoryItemType[];
+  collectionGroupedItems: Array<SearchResultItemCollectionType>;
+  placeholder: string;
+  sourceId: string;
 }

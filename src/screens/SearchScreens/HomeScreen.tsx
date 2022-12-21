@@ -1,12 +1,29 @@
 import React, { CSSProperties, useState, useEffect } from "react";
-import { Box, TextField, Typography, useTheme } from "@mui/material";
-import { SearchOutlined } from "@mui/icons-material";
-import InputAdornment from "@mui/material/InputAdornment";
-import { Layout } from "@forkfacts/components";
+import { Box, Typography, useTheme } from "@mui/material";
+import {
+  Layout,
+  AutoCompleteSearch,
+  NavBar,
+  PopularFrequentSearchCategories,
+} from "@forkfacts/components";
+import { HomeScreenProps } from "@forkfacts/models";
+import classNames from "classnames";
 import { useStyles } from "./searchScreenStyles";
 
-export default function HomeScreen() {
+export default function HomeScreen({
+  sidebarItems,
+  navbarItems,
+  PopularFrequentSearchItems,
+  PopularFrequentSearchTitle,
+  onSelectPopularItem,
+  onSelectCategory,
+  collectionGroupedItems,
+  categoryOptions,
+  placeholder,
+  sourceId,
+}: HomeScreenProps) {
   const theme = useTheme();
+
   const [appBarHeight, setAppBarHeight] = useState<CSSProperties>();
   useEffect(() => {
     setAppBarHeight(theme.mixins.toolbar);
@@ -14,7 +31,7 @@ export default function HomeScreen() {
   const classes = useStyles(appBarHeight?.minHeight);
 
   return (
-    <Layout>
+    <Layout sidebarItems={sidebarItems}>
       <Box className={classes.root}>
         <Box>
           <Box className={classes.spaceBottom}>
@@ -22,34 +39,37 @@ export default function HomeScreen() {
               Forkfacts, Your Healthy diet search place.
             </Typography>
           </Box>
-          <Box sx={{ width: "100%" }}>
-            <TextField
-              size="small"
-              placeholder="Search"
-              fullWidth
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <SearchOutlined />
-                  </InputAdornment>
-                ),
-              }}
-              sx={{
-                "& fieldset": {
-                  paddingLeft: (theme) => theme.spacing(2.5),
-                  borderRadius: (theme) => theme.spacing(1.25),
-                  width: "100%",
-                  borderColor: "grey[100] !important",
-                  "&:hover": {
-                    borderColor: "grey[100] !important",
-                    outlineColor: "grey[100] !important",
-                  },
-                },
-                "&:focus fieldset": {
-                  borderColor: "grey[100] !important",
-                },
-              }}
-            />
+          <Box className={classes.desktopScreenWrapper}>
+            <Box className={classes.showDesktop}>
+              <img src="/homeImg.svg" alt="home page image" className={classes.img} />
+            </Box>
+
+            <Typography
+              variant="h4"
+              className={classNames(classes.selectedSearchTitle, classes.showDesktop)}
+            >
+              Foods
+            </Typography>
+            <Box className={classNames(classes.searchInputStyles)}>
+              <AutoCompleteSearch
+                placeholder={placeholder}
+                openOnFocus={true}
+                sourceId={sourceId}
+                onSelectCategory={onSelectCategory}
+                categoryOptions={categoryOptions}
+                collectionGroupedItems={collectionGroupedItems}
+              />
+            </Box>
+            <Box className={classNames(classes.showDesktop, classes.navbarStyles)}>
+              <NavBar navbarItems={navbarItems} />
+            </Box>
+            <Box className={classNames(classes.showDesktop, classes.PopularFrequentStyles)}>
+              <PopularFrequentSearchCategories
+                PopularFrequentSearchTitle={PopularFrequentSearchTitle}
+                PopularFrequentSearchItems={PopularFrequentSearchItems}
+                onSelectPopularItem={onSelectPopularItem}
+              />
+            </Box>
           </Box>
         </Box>
       </Box>

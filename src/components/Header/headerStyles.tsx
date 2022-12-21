@@ -27,8 +27,5 @@ export const useStyles = makeStyles(({ typography, spacing, breakpoints, palette
     paddingLeft: spacing(2),
     paddingBottom: spacing(1),
     paddingRight: spacing(2),
-    flex: "none",
-    order: 1,
-    flexGrow: 0,
   },
 }));

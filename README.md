@@ -151,6 +151,20 @@ in order to merge to `main`. We prefer to merge to `main` (hence a release) as s
    updated storybook components. This can be of tremendous help during the code review.
 5. Once you are done with the work, assign your PR to a reviewer.
 
+## Environment variables needed in the project.
+
+### Follow these steps to add environment variables before you run the project.
+
+1. Create .env file in project root directory.
+2. Add the following environment variables inside .env file
+
+```
+GATSBY_SEARCH_APP_ID =Algolia APP ID value
+GATSBY_SEARCH_API_KEY =Algolia APP KEY value
+```
+
+**After you done that successfully, reach out to the project owner for the key values**
+
 ## These are basic rules that must be respected in this project.
 
 1. There should not be any errors on the console.

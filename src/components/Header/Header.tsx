@@ -18,7 +18,14 @@ export default function Header({ handleToggleButton }: HeaderProps) {
   const classes = useStyles();
   return (
     <Box>
-      <AppBar position="fixed" color="transparent" sx={{ boxShadow: "none" }}>
+      <AppBar
+        position="fixed"
+        sx={{
+          boxShadow: "none",
+          zIndex: (theme) => theme.zIndex.drawer + 1,
+          backgroundColor: ({ palette }) => palette.common.white,
+        }}
+      >
         <Toolbar sx={{ position: "relative" }}>
           <IconButton
             size="large"

@@ -68,18 +68,17 @@
     },
     "images": ["/img1", "/img2", "/img3"],
     "nutrition": {
-      "nutrientName": "Banana ripe, slightly ripe, raw",
-      "nutrientAmount": ["1 tablespoon", "1cup", "100g"],
-      "nutrientSource": "Source: USDA",
-      "nutrientGauges": [
+      "availableAmounts": ["1 tablespoon", "1cup", "100g"],
+      "source": "USDA",
+      "dashboard": [
         { "name": "Protein", "percentage": "10%", "weight": "120g" },
         { "name": "Carbs", "percentage": "20%", "weight": "120g" },
         { "name": "Fats", "percentage": "30%", "weight": "120g" },
         { "name": "Fiber", "percentage": "40%", "weight": "120g" }
       ],
-      "nutrients": ["Protein", "carbohydrate", "water", "vitamin", "Fats", "Fiber", "Minerals"],
+      "nutrients": ["Protein", "Carbohydrate", "Water", "Vitamins", "Fats", "Fiber", "Minerals"],
       "allFilters": {
-        "Life Stage": [
+        "lifeStages": [
           {
             "name": "Infant",
             "icon": "OilBarrelOutlinedIcon"
@@ -105,9 +104,40 @@
             "icon": "DirectionsCarFilledOutlinedIcon"
           }
         ],
-        "age": ["9-13 Years", "14-18 Years", "19-30 Years", "31-50 Years", "51-70 Years"]
+        "ages": [
+          {
+            "start": 9,
+            "startUnit": "years",
+            "end": 13,
+            "endUnit": "years"
+          },
+          {
+            "start": 14,
+            "startUnit": "years",
+            "end": 18,
+            "endUnit": "years"
+          },
+          {
+            "start": 19,
+            "startUnit": "years",
+            "end": 30,
+            "endUnit": "years"
+          },
+          {
+            "start": 31,
+            "startUnit": "years",
+            "end": 50,
+            "endUnit": "years"
+          },
+          {
+            "start": 51,
+            "startUnit": "years",
+            "end": 70,
+            "endUnit": "years"
+          }
+        ]
       },
-      "nutrientTableHeaders": {
+      "tableHeaders": {
         "allNutrients": [
           "Protein",
           "carbohydrate",
@@ -117,21 +147,46 @@
           "Fiber",
           "Minerals"
         ],
-        "value": "% Daily Value",
-        "rdi": "RDI"
+        "valuePercent": "% Daily Value",
+        "rdi": {
+          "amount": 130,
+          "unit": "g"
+        }
       },
-      "nutrientTableContent": [
+      "tableContent": [
         {
-          "contentName": "Total carbohydrate  4g",
-          "data": [
-            { "mineral": "Carbohydrate  2g", "value": "17.67%", "rdi": "130g" },
-            { "mineral": "Sugar  2g", "value": "17.67%", "rdi": "15.8g" },
-            { "mineral": "Starch  2g", "value": "17.67%", "rdi": "12.6g" }
+          "title": "Total Carbohydrate",
+          "amount": 4,
+          "amountUnit": "g",
+          "content": [
+            {
+              "nutrient": "Carbohydrate  2g",
+              "value": "17.67%",
+              "rdi": {
+                "amount": "130",
+                "unit": "g"
+              }
+            },
+            {
+              "nutrient": "Sugar  2g",
+              "valuePercent": "17.67%",
+              "rdi": { "amount": "15", "unit": "g" }
+            },
+            {
+              "nutrient": "Starch  2g",
+              "value": "17.67%",
+              "rdi": {
+                "amount": "12.6",
+                "unit": "g"
+              }
+            }
           ]
         },
         {
-          "contentName": "Protein  11g",
-          "data": [{ "mineral": "Protein 2g", "value": "1.61%", "rdi": "46g" }]
+          "title": "Protein",
+          "amount": 11,
+          "amountUnit": "g",
+          "content": [{ "nutrient": "Protein 2g", "value": "1.61%", "rdi": "46g" }]
         }
       ]
     },
@@ -155,12 +210,12 @@
         },
         "instructions": [
           {
-            "stepNumber": 1,
+            "step": 1,
             "description": "Wash and cut your banana inside a neat bowl and mix thoroughly till it’s smoothly combined",
             "videoUrl": ""
           },
           {
-            "stepNumber": 2,
+            "step": 2,
             "description": "Dice the spinach into smaller pieces and pour inside your mixed banana and stir thoroughly.",
             "waitTime": {
               "hours": 0,
@@ -168,21 +223,26 @@
             }
           }
         ],
-        "reviews": ["5", "5", "5", "4"],
+        "reviews": [{ "1": 5, "2": 5, "3": 5, "4": 5, "5": 4 }],
         "ingredients": [
           {
             "name": "Banana",
-            "quantity": 1,
-            "unit": "10g"
-          },
-          {
-            "name": "Spinach",
-            "quantity": 1,
+            "quantity": 250,
             "unit": "g"
           },
           {
+            "name": "Spinach",
+            "quantity": 100,
+            "unit": "ml"
+          },
+          {
             "name": "Almond milk ",
-            "quantity": 1,
+            "quantity": 120,
+            "unit": "ml"
+          },
+          {
+            "name": "Cocoa powder",
+            "quantity": 10,
             "unit": "g"
           }
         ],
@@ -190,25 +250,22 @@
         "tags": ["gluten-free", "vegan"]
       }
     ],
-    "GroceryLists": [
+    "groceryLists": [
       {
         "name": "Banana Smoothie",
         "image": "/grocery-img",
         "ingredients": [
           {
             "name": "Banana",
-            "quantity": 1,
-            "unit": "10g"
+            "quantity": "1"
           },
           {
             "name": "Spinach",
-            "quantity": 1,
-            "unit": "g"
+            "quantity": "1/2"
           },
           {
             "name": "Almond milk ",
-            "quantity": 1,
-            "unit": "g"
+            "quantity": 1
           }
         ]
       },
@@ -218,18 +275,15 @@
         "ingredients": [
           {
             "name": "Banana",
-            "quantity": 1,
-            "unit": "10g"
+            "quantity": "1"
           },
           {
             "name": "Spinach",
-            "quantity": 1,
-            "unit": "g"
+            "quantity": "1/2"
           },
           {
             "name": "Almond milk ",
-            "quantity": 1,
-            "unit": "g"
+            "quantity": 1
           }
         ]
       },
@@ -239,18 +293,15 @@
         "ingredients": [
           {
             "name": "Banana",
-            "quantity": 1,
-            "unit": "10g"
+            "quantity": "1"
           },
           {
             "name": "Spinach",
-            "quantity": 1,
-            "unit": "g"
+            "quantity": "1/2"
           },
           {
             "name": "Almond milk ",
-            "quantity": 1,
-            "unit": "g"
+            "quantity": 1
           }
         ]
       }

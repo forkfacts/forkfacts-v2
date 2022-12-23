@@ -25,8 +25,10 @@ const NutritionFilters: React.FC<NutritionFiltersProps> = ({ buttonItems, setSel
   };
 
   const onSelectButtonItem = (name: string, index: number) => {
-    if (selectedItemArrays.includes(name) || index === 0) return;
-    else {
+    if (selectedItemArrays.includes(name) || index === 0) {
+      setSelectedItemArray(selectedItemArrays.filter((item) => item !== name));
+      return;
+    } else {
       setSelectedItemArray((prev) => [...prev, name]);
     }
   };

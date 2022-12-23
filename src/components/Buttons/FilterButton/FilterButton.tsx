@@ -20,19 +20,21 @@ const FilterButton: React.FC<FilterButtonProps> = ({
 }) => {
   const theme = useTheme();
   const [selectedName, setSelectedName] = useState<string>();
+
   const onSelectButtonItem = () => {
     onSelectItem(name, index);
     setSelectedName(name);
+    if (selectedName === name) {
+      setSelectedName("");
+    }
   };
+
   return (
     <Button
-      variant={selectedItemArrays[index] !== selectedName ? "text" : "outlined"}
+      variant={name == selectedName ? "text" : "outlined"}
       onClick={onSelectButtonItem}
       sx={{
-        color:
-          selectedItemArrays[index] !== selectedName
-            ? theme.palette.primary.dark
-            : theme.palette.grey[700],
+        color: theme.palette.grey[700],
         fontSize: theme.typography.caption.fontSize,
         fontWeight: theme.typography.fontWeightBold,
         lineHeight: theme.spacing(2),
@@ -42,14 +44,8 @@ const FilterButton: React.FC<FilterButtonProps> = ({
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        borderColor:
-          selectedItemArrays[index] !== selectedName
-            ? theme.palette.primary.dark
-            : theme.palette.grey[700],
-        backgroundColor:
-          selectedItemArrays[index] !== selectedName
-            ? blue["50"]
-            : theme.palette.background.default,
+        borderColor: name == selectedName ? theme.palette.primary.dark : theme.palette.grey[700],
+        backgroundColor: name == selectedName ? blue["50"] : theme.palette.background.default,
       }}
     >
       {index === 0 && (

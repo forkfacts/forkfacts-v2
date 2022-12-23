@@ -73,6 +73,11 @@ export interface SearchResultItemProps {
   item: SearchResultItemType;
   onSelectItem: (item: SearchResultItemType) => void;
 }
+
+export interface filterButtonItem {
+  name: string;
+}
+
 interface SideBarProps {
   drawerWidth: string;
   mobileOpen: boolean;
@@ -139,10 +144,6 @@ export interface NutritionRatesProps {
 export interface NutritionRateProps {
   weight: string;
   percentage: string;
-  name: string;
-}
-
-export interface filterButtonItem {
   name: string;
 }
 

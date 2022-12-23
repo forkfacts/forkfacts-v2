@@ -16,11 +16,11 @@
         "values": ["Nuts", "Soy", "Wheat", "Milk"]
       },
       {
-        "name": " Cooking Time",
+        "name": " CookingTime",
         "values": ["15 mins", "15-30 mins", "30-45 mins", "45 Years"]
       },
       {
-        "name": "Meal Type",
+        "name": "MealType",
         "values": ["Breakfast", "launch", "Dinner", "Snacks"]
       },
       {

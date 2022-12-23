@@ -140,9 +140,9 @@
       "tableHeaders": {
         "allNutrients": [
           "Protein",
-          "carbohydrate",
-          "water",
-          "vitamin",
+          "Carbohydrate",
+          "Water",
+          "Vitamin",
           "Fats",
           "Fiber",
           "Minerals"
@@ -161,7 +161,7 @@
           "content": [
             {
               "nutrient": "Carbohydrate  2g",
-              "value": "17.67%",
+              "valuePercent": "17.67%",
               "rdi": {
                 "amount": "130",
                 "unit": "g"
@@ -174,7 +174,7 @@
             },
             {
               "nutrient": "Starch  2g",
-              "value": "17.67%",
+              "valuePercent": "17.67%",
               "rdi": {
                 "amount": "12.6",
                 "unit": "g"
@@ -186,7 +186,7 @@
           "title": "Protein",
           "amount": 11,
           "amountUnit": "g",
-          "content": [{ "nutrient": "Protein 2g", "value": "1.61%", "rdi": "46g" }]
+          "content": [{ "nutrient": "Protein 2g", "valuePercent": "1.61%", "rdi": "46g" }]
         }
       ]
     },
@@ -223,7 +223,11 @@
             }
           }
         ],
-        "reviews": [{ "1": 5, "2": 5, "3": 5, "4": 5, "5": 4 }],
+        "reviews": {
+          "total": 19,
+
+          "rating": "4.5"
+        },
         "ingredients": [
           {
             "name": "Banana",
@@ -233,7 +237,7 @@
           {
             "name": "Spinach",
             "quantity": 100,
-            "unit": "ml"
+            "unit": "g"
           },
           {
             "name": "Almond milk ",
@@ -257,15 +261,18 @@
         "ingredients": [
           {
             "name": "Banana",
-            "quantity": "1"
+            "quantity": "1",
+            "unit": "count"
           },
           {
             "name": "Spinach",
-            "quantity": "1/2"
+            "quantity": "1/2",
+            "unit": "cup"
           },
           {
             "name": "Almond milk ",
-            "quantity": 1
+            "quantity": 1,
+            "unit": "cup"
           }
         ]
       },
@@ -275,15 +282,18 @@
         "ingredients": [
           {
             "name": "Banana",
-            "quantity": "1"
+            "quantity": "1",
+            "unit": "count"
           },
           {
             "name": "Spinach",
-            "quantity": "1/2"
+            "quantity": "1/2",
+            "unit": "cup"
           },
           {
             "name": "Almond milk ",
-            "quantity": 1
+            "quantity": 1,
+            "unit": "cup"
           }
         ]
       },
@@ -293,15 +303,18 @@
         "ingredients": [
           {
             "name": "Banana",
-            "quantity": "1"
+            "quantity": "1",
+            "unit": "count"
           },
           {
             "name": "Spinach",
-            "quantity": "1/2"
+            "quantity": "1/2",
+            "unit": "cup"
           },
           {
             "name": "Almond milk ",
-            "quantity": 1
+            "quantity": 1,
+            "unit": "cup"
           }
         ]
       }

@@ -132,7 +132,7 @@ const AllNutrientSelects: React.FC<AllNutrientSelectsProps> = ({}) => {
                   mr: theme.spacing(-7),
                 }}
               >
-                <Typography color="primary.dark" onClick={onDoneFilter}>
+                <Typography color="primary" onClick={onDoneFilter}>
                   Done
                 </Typography>
               </Box>

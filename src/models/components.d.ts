@@ -29,6 +29,12 @@ interface selectedItemType {
   selectedIndex: number;
 }
 
+export interface rateItem {
+  name: string;
+  percentage: string;
+  weight: string;
+}
+
 export interface NavbarProps {
   navbarItems: Array<sidebarItem>;
 }
@@ -124,4 +130,23 @@ interface AutoCompleteSearchProps extends onSelectCategoryType {
   sourceId: string;
   categoryOptions: Array<SearchCategoryItemType>;
   collectionGroupedItems: Array<SearchResultItemCollectionType>;
+}
+
+export interface NutritionRatesProps {
+  nutritionRatesItems: Array<rateItem>;
+}
+
+export interface NutritionRateProps {
+  weight: string;
+  percentage: string;
+  name: string;
+}
+
+export interface filterButtonItem {
+  name: string;
+}
+
+export interface NutritionFiltersProps {
+  buttonItems: Array<filterButtonItem>;
+  setSelectedItems: (item: string[]) => void;
 }

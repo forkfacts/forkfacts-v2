@@ -2,13 +2,8 @@ import { Box, useTheme } from "@mui/material";
 import { spacing } from "@mui/system";
 import React from "react";
 import { CircularProgressbarWithChildren, buildStyles } from "react-circular-progressbar";
+import { NutritionRateProps } from "@forkfacts/models";
 import "react-circular-progressbar/dist/styles.css";
-
-interface NutritionRateProps {
-  weight: string;
-  percentage: string;
-  name: string;
-}
 
 const NutritionRate: React.FC<NutritionRateProps> = ({ percentage, weight, name }) => {
   const theme = useTheme();

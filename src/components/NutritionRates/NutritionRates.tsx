@@ -1,21 +1,10 @@
 import { Box, Grid } from "@mui/material";
 import React from "react";
-import { useStyles } from "./nutritionRatesStyles";
 import { ForLoops } from "@forkfacts/helpers";
 import { NutritionRate } from "@forkfacts/components";
-
-interface rateItem {
-  name: string;
-  percentage: string;
-  weight: string;
-}
-
-interface NutritionRatesProps {
-  nutritionRatesItems: Array<rateItem>;
-}
+import { NutritionRatesProps } from "@forkfacts/models";
 
 const NutritionRates: React.FC<NutritionRatesProps> = ({ nutritionRatesItems }) => {
-  const classes = useStyles();
   return (
     <Box sx={{ width: "100%", mt: ({ spacing }) => spacing(1) }}>
       <Grid container justifyContent="space-between">

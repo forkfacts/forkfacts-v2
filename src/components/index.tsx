@@ -18,3 +18,5 @@ export { default as PopularFrequentSearchCategory } from "./PopularFrequentSearc
 export { default as NutritionRates } from "./NutritionRates/NutritionRates";
 export { default as NutritionRate } from "./NutritionRate/NutritionRate";
 export { default as NutritionFilters } from "./NutritionFilters/NutritionFilters";
+export { default as NutrientHeader } from "./NutritionHeader/NutrientHeader";
+export { default as NutrientAvailableAmounts } from "./NutritionAvailableAmounts/NutrienAvailableAmounts";

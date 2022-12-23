@@ -23,16 +23,16 @@ const buttonItems = [
 
 const Template: ComponentStory<typeof Sliders> = (args) => <Sliders {...args} />;
 
-export const FilterSliders = Template.bind({});
+export const Mobile = Template.bind({});
 
-FilterSliders.args = {
+Mobile.args = {
   buttonItems: buttonItems,
   setSelectedItems: (item: string[]) => {
     console.log(item);
   },
 };
 
-FilterSliders.parameters = {
+Mobile.parameters = {
   viewport: {
     defaultViewport: "iphone6",
   },

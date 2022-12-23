@@ -1,20 +1,22 @@
 import React from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
-import { NutritionTable } from "@forkfacts/components";
+import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { NutritionTableContent } from "@forkfacts/components";
 import { NutritionTableItem } from "@forkfacts/models";
 
 export default {
-  title: "Components/Nutrition/NutritionTable",
-  component: NutritionTable,
+  title: "Components/Nutrition/NutritionTableContent",
+  component: NutritionTableContent,
   parameters: {
     viewport: {
       viewports: INITIAL_VIEWPORTS,
     },
   },
-} as ComponentMeta<typeof NutritionTable>;
+} as ComponentMeta<typeof NutritionTableContent>;
 
-const Template: ComponentStory<typeof NutritionTable> = (args) => <NutritionTable {...args} />;
+const Template: ComponentStory<typeof NutritionTableContent> = (args) => (
+  <NutritionTableContent {...args} />
+);
 
 const nutritionTableItems: NutritionTableItem[] = [
   {

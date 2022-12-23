@@ -6,6 +6,21 @@ export interface SearchResultItemType {
   image: string;
 }
 
+export interface content {
+  nutrient: string;
+  valuePercent: string;
+  rdi: {
+    amount: string;
+    unit: string;
+  };
+}
+export interface NutritionTableItem {
+  title: string;
+  amount: number;
+  amountUnit: string;
+  content: Array<content>;
+}
+
 export interface SearchCategoryItemType {
   label: string;
   Icon: SvgIconComponent;
@@ -150,4 +165,12 @@ export interface NutritionRateProps {
 export interface NutritionFiltersProps {
   buttonItems: Array<filterButtonItem>;
   setSelectedItems: (item: string[]) => void;
+}
+
+export interface NutritionTableContentProps {
+  nutritionTableItems: Array<NutritionTableItem>;
+}
+
+interface NutritionTableProps {
+  nutritionTableItems: Array<NutritionTableItem>;
 }

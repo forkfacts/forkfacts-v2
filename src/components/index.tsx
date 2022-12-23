@@ -22,3 +22,4 @@ export { default as NutrientHeader } from "./NutritionHeader/NutrientHeader";
 export { default as NutrientAvailableAmounts } from "./NutritionAvailableAmounts/NutrientAvailableAmounts";
 export { default as NutritionTable } from "./NutritionTable/NutritionTable";
 export { default as AllNutrientSelects } from "./AllNutrientSelects/AllNutrientSelects";
+export { default as NutritionTableContent } from "./NutrientTableContent/NutrientTableContent";

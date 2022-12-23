@@ -54,7 +54,7 @@ const AllNutrientSelects: React.FC<AllNutrientSelectsProps> = ({}) => {
         >
           All nutrients
         </Typography>
-        {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+        {open ? <KeyboardArrowUpIcon color="primary" /> : <KeyboardArrowDownIcon color="primary" />}
       </Typography>
       {open && (
         <Box

@@ -38,12 +38,12 @@ const data: NutritionTableItem[] = [
       },
       {
         nutrient: "Sugar  2g",
-        valuePercent: "17.67%",
+        valuePercent: "",
         rdi: { amount: "15", unit: "g" },
       },
       {
         nutrient: "Starch  2g",
-        valuePercent: "17.67%",
+        valuePercent: "",
         rdi: {
           amount: "12.6",
           unit: "g",
@@ -94,27 +94,58 @@ const NutritionTable: React.FC<NutritionTableProps> = ({}) => {
                   display: "flex",
                   justifyContent: "space-between",
                   alignItems: "center",
+                  mt: theme.spacing(3),
                 }}
               >
-                <Box>
-                  <Typography color="primary">Select All</Typography>
-                </Box>
-                <Box color="primary">
+                <Box sx={{ mb: theme.spacing(2) }}>
                   <Typography
-                    color="primary"
+                    variant="subtitle2"
+                    sx={{
+                      color: theme.palette.common.black,
+                      fontWeight: theme.typography.fontWeightBold,
+                    }}
+                  >
+                    {item.title} {item.amount}
+                    {item.amountUnit}
+                  </Typography>
+                </Box>
+                <Box>
+                  <Box
                     onClick={() => {
                       handleClick(index);
                       setIndex(index);
                     }}
                   >
-                    {isOpen ? <ExpandLess /> : <ExpandMore />}
-                  </Typography>
+                    {item.content.length > 2 && (
+                      <Typography>
+                        {isOpen || Index !== index ? (
+                          <ExpandLess sx={{ cursor: "pointer" }} />
+                        ) : (
+                          <ExpandMore sx={{ cursor: "pointer" }} />
+                        )}
+                      </Typography>
+                    )}
+                  </Box>
                 </Box>
               </Box>
               {(isOpen || Index !== index) && (
-                <Box>
+                <Box sx={{ ml: "auto", width: "95%" }}>
                   {item.content.map((item2, index2) => {
-                    return <Box key={index2}></Box>;
+                    return (
+                      <Box
+                        key={index2}
+                        sx={{
+                          width: "100%",
+                          display: "flex",
+                          justifyContent: "space-between",
+                          alignItems: "center",
+                        }}
+                      >
+                        <Box>{item2.nutrient}</Box>
+                        <Box>{item2.valuePercent}</Box>
+                        <Box>{item2.rdi.amount}</Box>
+                      </Box>
+                    );
                   })}
                 </Box>
               )}

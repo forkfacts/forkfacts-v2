@@ -47,7 +47,11 @@ const AllNutrientSelects: React.FC<AllNutrientSelectsProps> = ({}) => {
         sx={{ display: "flex", justifyContent: "flex-end", alignItems: "center" }}
         onClick={() => setIsOpen(!open)}
       >
-        <Typography component="span" sx={{ fontSize: theme.typography.caption.fontSize }}>
+        <Typography
+          component="span"
+          color="primary"
+          sx={{ fontSize: theme.typography.caption.fontSize }}
+        >
           All nutrients
         </Typography>
         {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
@@ -64,6 +68,8 @@ const AllNutrientSelects: React.FC<AllNutrientSelectsProps> = ({}) => {
             paddingTop: theme.spacing(1.25),
             paddingLeft: theme.spacing(1.25),
             paddingRight: theme.spacing(4.375),
+            zIndex: theme.zIndex.modal,
+            backgroundColor: theme.palette.common.white,
           }}
           boxShadow={1}
         >

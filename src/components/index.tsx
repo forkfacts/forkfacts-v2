@@ -19,4 +19,6 @@ export { default as NutritionRates } from "./NutritionRates/NutritionRates";
 export { default as NutritionRate } from "./NutritionRate/NutritionRate";
 export { default as NutritionFilters } from "./NutritionFilters/NutritionFilters";
 export { default as NutrientHeader } from "./NutritionHeader/NutrientHeader";
-export { default as NutrientAvailableAmounts } from "./NutritionAvailableAmounts/NutrienAvailableAmounts";
+export { default as NutrientAvailableAmounts } from "./NutritionAvailableAmounts/NutrientAvailableAmounts";
+export { default as NutritionTable } from "./NutritionTable/NutritionTable";
+export { default as AllNutrientSelects } from "./AllNutrientSelects/AllNutrientSelects";

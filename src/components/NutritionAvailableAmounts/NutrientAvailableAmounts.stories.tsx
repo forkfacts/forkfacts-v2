@@ -5,7 +5,7 @@ import { NutrientAvailableAmounts } from "@forkfacts/components";
 import { Box } from "@mui/material";
 
 export default {
-  title: "Components/NutrientAvailableAmounts",
+  title: "Components/Nutrition/NutrientAvailableAmounts",
   component: NutrientAvailableAmounts,
   parameters: {
     viewport: {
@@ -14,7 +14,7 @@ export default {
   },
 } as ComponentMeta<typeof NutrientAvailableAmounts>;
 
-const availableAmounts = ["1 tablespoon", "1cup", "100g"];
+const availableAmounts = ["1 tablespoon", "1 cup", "100g"];
 
 const Template: ComponentStory<typeof NutrientAvailableAmounts> = (args) => (
   <Box style={{ width: "10%" }}>

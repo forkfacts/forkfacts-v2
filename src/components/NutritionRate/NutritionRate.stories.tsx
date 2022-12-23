@@ -4,7 +4,7 @@ import { NutritionRate } from "@forkfacts/components";
 import { Box } from "@mui/material";
 
 export default {
-  title: "Components/NutritionRates",
+  title: "Components/Nutrition/NutritionRates",
   component: NutritionRate,
 } as ComponentMeta<typeof NutritionRate>;
 

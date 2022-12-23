@@ -20,7 +20,7 @@ const NutrientAvailableAmounts: React.FC<NutrientAvailableAmountsProps> = ({
   const theme = useTheme();
   const [open, setIsOpen] = useState(false);
 
-  const handleChange = (index: number, name: string) => {
+  const handleClick = (index: number, name: string) => {
     if (availableAmounts[index] === name) {
       setSelectedAvailableAmounts(name);
       setIsOpen(false);
@@ -80,7 +80,7 @@ const NutrientAvailableAmounts: React.FC<NutrientAvailableAmountsProps> = ({
                   alignItems: "center",
                   mr: theme.spacing(11),
                 }}
-                onClick={() => handleChange(index, item)}
+                onClick={() => handleClick(index, item)}
               >
                 <Checkbox
                   icon={<RadioButtonUncheckedIcon />}

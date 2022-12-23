@@ -4,7 +4,7 @@ import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import { NutrientHeader } from "@forkfacts/components";
 
 export default {
-  title: "Components/NutrientHeader",
+  title: "Components/Nutrition/NutrientHeader",
   component: NutrientHeader,
   parameters: {
     viewport: {

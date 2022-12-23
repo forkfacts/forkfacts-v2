@@ -4,7 +4,7 @@ import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import { NutritionRates } from "@forkfacts/components";
 
 export default {
-  title: "Components/NutritionRates",
+  title: "Components/Nutrition/NutritionRates",
   component: NutritionRates,
   parameters: {
     viewport: {

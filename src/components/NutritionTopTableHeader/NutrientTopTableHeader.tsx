@@ -1,15 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import { Box, Typography, useTheme } from "@mui/material";
+import { NutrientHeaderProps } from "@forkfacts/models";
 import { NutrientAvailableAmounts } from "@forkfacts/components";
 
-interface NutrientHeaderProps {
-  availableAmounts: Array<string>;
-  source: string;
-}
-
-const NutrientHeader: React.FC<NutrientHeaderProps> = ({ availableAmounts, source }) => {
+const NutrientTopTableHeader: React.FC<NutrientHeaderProps> = ({
+  availableAmounts,
+  source,
+  onSelectAvailableAmounts,
+}) => {
   const theme = useTheme();
-  const [selectedAvailableAmounts, setSelectedAvailableAmounts] = useState<string>("");
 
   return (
     <Box>
@@ -24,8 +23,7 @@ const NutrientHeader: React.FC<NutrientHeaderProps> = ({ availableAmounts, sourc
           <Typography variant="caption">Source:{source}</Typography>
         </Box>
         <NutrientAvailableAmounts
-          selectedAvailableAmounts={selectedAvailableAmounts}
-          setSelectedAvailableAmounts={setSelectedAvailableAmounts}
+          onSelectAvailableAmounts={onSelectAvailableAmounts}
           availableAmounts={availableAmounts}
         />
       </Box>
@@ -40,4 +38,4 @@ const NutrientHeader: React.FC<NutrientHeaderProps> = ({ availableAmounts, sourc
   );
 };
 
-export default NutrientHeader;
+export default NutrientTopTableHeader;

@@ -27,8 +27,8 @@ const NutritionRate: React.FC<NutritionRateProps> = ({ percentage, weight, name 
         value={parseInt(percentage.split("%")[0])}
         styles={buildStyles({
           textColor: theme.palette.grey[800],
-          pathColor: "#3E4A36",
-          trailColor: " #CDFFB1",
+          pathColor: theme.palette.primary.dark,
+          trailColor: theme.palette.primary.light,
           textSize: theme.typography.fontSize,
         })}
       >

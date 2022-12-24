@@ -3,18 +3,25 @@ import { AllNutrientSelects, NutritionTableContent } from "@forkfacts/components
 import { NutritionTableProps } from "@forkfacts/models";
 import { Box, useTheme } from "@mui/material";
 
-const NutritionTable: React.FC<NutritionTableProps> = ({ nutritionTableItems }) => {
+const NutritionTable: React.FC<NutritionTableProps> = ({
+  nutritionTableItems,
+  allNutrients,
+  getSelectedNutrients,
+}) => {
   return (
-    <Box>
+    <>
       <Box style={{ display: "flex", justifyContent: "space-between", width: "100%" }}>
         <Box>
-          <AllNutrientSelects />
+          <AllNutrientSelects
+            allNutrients={allNutrients}
+            getSelectedNutrients={getSelectedNutrients}
+          />
         </Box>
         <Box>%value</Box>
         <Box>RDI</Box>
       </Box>
       <NutritionTableContent nutritionTableItems={nutritionTableItems} />
-    </Box>
+    </>
   );
 };
 

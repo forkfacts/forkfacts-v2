@@ -15,7 +15,7 @@ export default {
 
 const Template: ComponentStory<typeof NutritionRates> = (args) => <NutritionRates {...args} />;
 
-const NutritionRatesData = [
+const nutritionRatesItems = [
   { name: "Protein", percentage: "10%", weight: "120g" },
   { name: "Carbs", percentage: "20%", weight: "120g" },
   { name: "Fats", percentage: "30%", weight: "120g" },
@@ -25,7 +25,7 @@ const NutritionRatesData = [
 export const Mobile = Template.bind({});
 
 Mobile.args = {
-  nutritionRatesItems: NutritionRatesData,
+  nutritionRatesItems: nutritionRatesItems,
 };
 
 Mobile.parameters = {
@@ -37,7 +37,7 @@ Mobile.parameters = {
 export const Tablet = Template.bind({});
 
 Tablet.args = {
-  nutritionRatesItems: NutritionRatesData,
+  nutritionRatesItems: nutritionRatesItems,
 };
 
 Tablet.parameters = {

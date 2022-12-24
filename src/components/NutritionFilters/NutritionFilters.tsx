@@ -6,7 +6,7 @@ import { FilterButton } from "@forkfacts/components";
 import "./carousel.css";
 import { NutritionFiltersProps } from "@forkfacts/models";
 
-const NutritionFilters: React.FC<NutritionFiltersProps> = ({ buttonItems, setSelectedItems }) => {
+const NutritionFilters: React.FC<NutritionFiltersProps> = ({ filters, onSelectFilterItems }) => {
   const theme = useTheme();
   const [selectedItemArrays, setSelectedItemArray] = useState<string[]>([]);
   const responsive = {
@@ -34,7 +34,7 @@ const NutritionFilters: React.FC<NutritionFiltersProps> = ({ buttonItems, setSel
   };
 
   useEffect(() => {
-    setSelectedItems(selectedItemArrays);
+    onSelectFilterItems(selectedItemArrays);
   }, [selectedItemArrays]);
 
   return (
@@ -45,7 +45,7 @@ const NutritionFilters: React.FC<NutritionFiltersProps> = ({ buttonItems, setSel
         partialVisible={true}
         arrows={false}
       >
-        {buttonItems.map((item, index) => {
+        {filters.map((item, index) => {
           return (
             <FilterButton
               name={item.name}

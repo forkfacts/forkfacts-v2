@@ -1,48 +1,80 @@
-import React, { useCallback, useState } from "react";
+import React, { useState } from "react";
 import Checkbox from "@mui/material/Checkbox";
 import { Box, Typography, useTheme } from "@mui/material";
+import { AllNutrientSelectsProps } from "@forkfacts/models";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
-const names: string[] = [
-  "Protein",
-  "Carbohydrate",
-  "Water",
-  "Vitamin",
-  "Fats",
-  "Fiber",
-  "Minerals",
-];
-
-interface AllNutrientSelectsProps {}
-
-const AllNutrientSelects: React.FC<AllNutrientSelectsProps> = ({}) => {
+const AllNutrientSelects: React.FC<AllNutrientSelectsProps> = ({
+  allNutrients,
+  getSelectedNutrients,
+}) => {
   const theme = useTheme();
   const [open, setIsOpen] = useState(false);
-  const [selectedNutrients, setSelectNutrients] = useState<string[]>([]);
-  const [selectedAll, setSelectedAll] = useState(false);
+
+  const newNutrients: { name: string; checked: boolean }[] = [...allNutrients].map((item) => {
+    return {
+      name: item,
+      checked: false,
+    };
+  });
+  const [selectedNutrients, setSelectNutrients] = useState<{ name: string; checked: boolean }[]>([
+    ...newNutrients,
+  ]);
 
   const onSelectButtonItem = (name: string, index: number) => {
-    if (selectedNutrients.includes(name)) {
-      setSelectNutrients(selectedNutrients.filter((item) => item !== name));
-    } else {
-      setSelectNutrients((prev) => [...prev, name]);
-    }
+    let checked;
+    let results = selectedNutrients.map((item, index) => {
+      if (item.name === name) {
+        checked = true;
+        if (item.checked === false) {
+          let newItem = { ...item, name, checked: checked };
+          return newItem;
+        } else {
+          checked = false;
+          let newItem = { ...item, name, checked: checked };
+          return newItem;
+        }
+      } else {
+        return item;
+      }
+    });
+    return setSelectNutrients(results);
   };
 
   const onSelectAll = () => {
-    setSelectedAll(true);
-    setSelectNutrients([...names]);
+    const checkedAll = selectedNutrients.map((school) => {
+      return {
+        ...school,
+        checked: true,
+      };
+    });
+    setSelectNutrients(checkedAll);
   };
 
-  console.log(selectedNutrients);
-
   const onDoneFilter = () => {
+    const checkedAll = selectedNutrients.filter((school) => {
+      if (school.checked === true) {
+        return {
+          ...school,
+          checked: true,
+        };
+      }
+    });
+    if (checkedAll.length) {
+      getSelectedNutrients(
+        checkedAll.map((item) => {
+          return item?.name as string;
+        })
+      );
+    } else {
+      getSelectedNutrients([]);
+    }
     setIsOpen(false);
   };
 
   return (
-    <Box sx={{ cursor: "pointer", position: "relative" }}>
+    <Box sx={{ cursor: "pointer", position: "relative", zIndex: theme.zIndex.modal }}>
       <Typography
         sx={{ display: "flex", justifyContent: "flex-end", alignItems: "center" }}
         onClick={() => setIsOpen(!open)}
@@ -87,7 +119,7 @@ const AllNutrientSelects: React.FC<AllNutrientSelectsProps> = ({}) => {
               flexDirection: "column",
             }}
           >
-            {names.map((item, index) => (
+            {selectedNutrients.map((item, index) => (
               <Box
                 component="li"
                 key={index}
@@ -98,13 +130,12 @@ const AllNutrientSelects: React.FC<AllNutrientSelectsProps> = ({}) => {
                   alignItems: "center",
                   mr: theme.spacing(12),
                 }}
-                onClick={() => onSelectButtonItem(item, index)}
+                onClick={() => onSelectButtonItem(item.name, index)}
               >
                 <Box>
-                  {selectedAll && <Checkbox defaultChecked />}
-                  {!selectedAll && <Checkbox />}
+                  <Checkbox checked={item.checked} color="success" />
                   <Typography component="span" sx={{ fontSize: theme.typography.caption.fontSize }}>
-                    {item}
+                    {item.name}
                   </Typography>
                 </Box>
                 <Typography

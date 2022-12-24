@@ -8,17 +8,16 @@ import RadioButtonCheckedIcon from "@mui/icons-material/RadioButtonChecked";
 
 interface NutrientAvailableAmountsProps {
   availableAmounts: Array<string>;
-  setSelectedAvailableAmounts: (name: string) => void;
-  selectedAvailableAmounts: string;
+  onSelectAvailableAmounts: (item: string) => void;
 }
 
 const NutrientAvailableAmounts: React.FC<NutrientAvailableAmountsProps> = ({
   availableAmounts,
-  setSelectedAvailableAmounts,
-  selectedAvailableAmounts,
+  onSelectAvailableAmounts,
 }) => {
   const theme = useTheme();
   const [open, setIsOpen] = useState(false);
+  const [selectedAvailableAmounts, setSelectedAvailableAmounts] = useState("");
 
   const handleClick = (index: number, name: string) => {
     if (availableAmounts[index] === name) {
@@ -28,8 +27,8 @@ const NutrientAvailableAmounts: React.FC<NutrientAvailableAmountsProps> = ({
   };
 
   useEffect(() => {
-    setSelectedAvailableAmounts(availableAmounts[1]);
-  }, []);
+    onSelectAvailableAmounts(selectedAvailableAmounts);
+  }, [selectedAvailableAmounts]);
 
   return (
     <Box sx={{ minWidth: 210, cursor: "pointer", position: "relative" }}>
@@ -53,6 +52,8 @@ const NutrientAvailableAmounts: React.FC<NutrientAvailableAmountsProps> = ({
             paddingTop: theme.spacing(1.25),
             paddingLeft: theme.spacing(1.25),
             paddingRight: theme.spacing(4.375),
+            zIndex: theme.zIndex.modal,
+            backgroundColor: theme.palette.common.white,
           }}
           boxShadow={1}
         >

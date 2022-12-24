@@ -14,7 +14,7 @@ export interface content {
     unit: string;
   };
 }
-export interface NutritionTableItem {
+export interface nutritionTableItem {
   title: string;
   amount: number;
   amountUnit: string;
@@ -163,14 +163,27 @@ export interface NutritionRateProps {
 }
 
 export interface NutritionFiltersProps {
-  buttonItems: Array<filterButtonItem>;
-  setSelectedItems: (item: string[]) => void;
+  filters: Array<filterButtonItem>;
+  onSelectFilterItems: (item: string[]) => void;
 }
 
 export interface NutritionTableContentProps {
-  nutritionTableItems: Array<NutritionTableItem>;
+  nutritionTableItems: Array<nutritionTableItem>;
 }
 
-interface NutritionTableProps {
-  nutritionTableItems: Array<NutritionTableItem>;
+export interface NutritionTableProps {
+  nutritionTableItems: Array<nutritionTableItem>;
+  allNutrients: Array<string>;
+  getSelectedNutrients: (items: string[]) => void;
+}
+
+export interface AllNutrientSelectsProps {
+  allNutrients: string[];
+  getSelectedNutrients: (items: string[]) => void;
+}
+
+export interface NutrientHeaderProps {
+  availableAmounts: Array<string>;
+  source: string;
+  onSelectAvailableAmounts: (item: string) => void;
 }

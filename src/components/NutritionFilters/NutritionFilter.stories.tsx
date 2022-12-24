@@ -13,7 +13,7 @@ export default {
   },
 } as ComponentMeta<typeof Sliders>;
 
-const buttonItems = [
+const filters = [
   { name: "All filters" },
   { name: "Life state" },
   { name: "Age" },
@@ -26,8 +26,8 @@ const Template: ComponentStory<typeof Sliders> = (args) => <Sliders {...args} />
 export const Mobile = Template.bind({});
 
 Mobile.args = {
-  buttonItems: buttonItems,
-  setSelectedItems: (item: string[]) => {
+  filters: filters,
+  onSelectFilterItems: (item: string[]) => {
     console.log(item);
   },
 };

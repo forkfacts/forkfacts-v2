@@ -43,9 +43,9 @@ const AllNutrientSelects: React.FC<AllNutrientSelectsProps> = ({
   };
 
   const onSelectAll = () => {
-    const checkedAll = selectedNutrients.map((school) => {
+    const checkedAll = selectedNutrients.map((item) => {
       return {
-        ...school,
+        ...item,
         checked: true,
       };
     });

@@ -23,3 +23,5 @@ export { default as NutrientAvailableAmounts } from "./NutritionAvailableAmounts
 export { default as NutritionTable } from "./NutritionTable/NutritionTable";
 export { default as AllNutrientSelects } from "./AllNutrientSelects/AllNutrientSelects";
 export { default as NutritionTableContent } from "./NutrientTableContent/NutrientTableContent";
+export { default as FilterPage } from "./FilterPage/FilterPage";
+export { default as LifeStage } from "./LifeStage/LifeStage";

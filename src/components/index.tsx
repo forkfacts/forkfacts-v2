@@ -25,3 +25,4 @@ export { default as AllNutrientSelects } from "./AllNutrientSelects/AllNutrientS
 export { default as NutritionTableContent } from "./NutrientTableContent/NutrientTableContent";
 export { default as FilterPage } from "./FilterPage/FilterPage";
 export { default as LifeStage } from "./LifeStage/LifeStage";
+export { default as LifeStageItem } from "./LifeStageItem/LifeStageItem";

@@ -11,6 +11,11 @@ export interface filterItem {
   amount: number;
 }
 
+export type lifeStageItem = {
+  name: string;
+  icon: SvgIconComponent;
+};
+
 export interface content {
   nutrient: string;
   valuePercent: string;
@@ -203,4 +208,9 @@ export interface FilterButtonProps {
 export interface NutrientAvailableAmountsProps {
   availableAmounts: Array<string>;
   onSelectAvailableAmounts: (item: string) => void;
+}
+
+export interface LifeStageProps {
+  lifeStageItems: Array<lifeStageItem>;
+  onSelectLifeStageItem: (name: string) => void;
 }

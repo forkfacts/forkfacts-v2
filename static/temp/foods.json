@@ -186,7 +186,16 @@
           "title": "Protein",
           "amount": 11,
           "amountUnit": "g",
-          "content": [{ "nutrient": "Protein 2g", "valuePercent": "1.61%", "rdi": "46g" }]
+          "content": [
+            {
+              "nutrient": "Protein 2g",
+              "valuePercent": "1.61%",
+              "rdi": {
+                "amount": "46",
+                "unit": "g"
+              }
+            }
+          ]
         }
       ]
     },

@@ -1,15 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Checkbox from "@mui/material/Checkbox";
 import { Box, Typography, useTheme } from "@mui/material";
+import { NutrientAvailableAmountsProps } from "@forkfacts/models";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
 import RadioButtonCheckedIcon from "@mui/icons-material/RadioButtonChecked";
-
-interface NutrientAvailableAmountsProps {
-  availableAmounts: Array<string>;
-  onSelectAvailableAmounts: (item: string) => void;
-}
 
 const NutrientAvailableAmounts: React.FC<NutrientAvailableAmountsProps> = ({
   availableAmounts,
@@ -19,7 +15,7 @@ const NutrientAvailableAmounts: React.FC<NutrientAvailableAmountsProps> = ({
   const [open, setIsOpen] = useState(false);
   const [selectedAvailableAmounts, setSelectedAvailableAmounts] = useState("");
 
-  const handleClick = (index: number, name: string) => {
+  const handleSelectItem = (index: number, name: string) => {
     if (availableAmounts[index] === name) {
       setSelectedAvailableAmounts(name);
       setIsOpen(false);
@@ -54,6 +50,7 @@ const NutrientAvailableAmounts: React.FC<NutrientAvailableAmountsProps> = ({
             paddingRight: theme.spacing(4.375),
             zIndex: theme.zIndex.modal,
             backgroundColor: theme.palette.common.white,
+            marginTop: theme.spacing(2),
           }}
           boxShadow={1}
         >
@@ -81,7 +78,7 @@ const NutrientAvailableAmounts: React.FC<NutrientAvailableAmountsProps> = ({
                   alignItems: "center",
                   mr: theme.spacing(11),
                 }}
-                onClick={() => handleClick(index, item)}
+                onClick={() => handleSelectItem(index, item)}
               >
                 <Checkbox
                   icon={<RadioButtonUncheckedIcon />}

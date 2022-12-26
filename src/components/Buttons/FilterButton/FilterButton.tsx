@@ -4,13 +4,7 @@ import TuneIcon from "@mui/icons-material/Tune";
 import { blue } from "@mui/material/colors";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import { Typography, useTheme } from "@mui/material";
-
-interface FilterButtonProps {
-  name: string;
-  onSelectItem: (item: string, index: number) => void;
-  index: number;
-  selectedItemArrays: string[];
-}
+import { FilterButtonProps } from "@forkfacts/models";
 
 const FilterButton: React.FC<FilterButtonProps> = ({
   name,
@@ -34,7 +28,7 @@ const FilterButton: React.FC<FilterButtonProps> = ({
       variant={name == selectedName ? "text" : index === 0 ? undefined : "outlined"}
       onClick={handleSelectItem}
       sx={{
-        color: theme.palette.grey[700],
+        color: index === 0 ? theme.palette.primary.dark : theme.palette.grey[700],
         fontSize: theme.typography.caption.fontSize,
         fontWeight: theme.typography.fontWeightBold,
         lineHeight: theme.spacing(2),

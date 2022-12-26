@@ -187,3 +187,15 @@ export interface NutrientHeaderProps {
   source: string;
   onSelectAvailableAmounts: (item: string) => void;
 }
+
+export interface FilterButtonProps {
+  name: string;
+  onSelectItem: (item: string, index: number) => void;
+  index: number;
+  selectedItemArrays: string[];
+}
+
+export interface NutrientAvailableAmountsProps {
+  availableAmounts: Array<string>;
+  onSelectAvailableAmounts: (item: string) => void;
+}

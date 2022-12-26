@@ -26,6 +26,5 @@ export const Main = Template.bind({});
 
 Main.args = {
   availableAmounts: availableAmounts,
-  setSelectedAvailableAmounts: (name: string) => {},
-  selectedAvailableAmounts: availableAmounts[0],
+  onSelectAvailableAmounts: (name: string) => {},
 };

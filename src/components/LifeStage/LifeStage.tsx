@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Box, Typography, useTheme } from "@mui/material";
-import { LifeStageProps, lifeStageItem } from "@forkfacts/models";
+import { LifeStageProps } from "@forkfacts/models";
 import { LifeStageItem } from "@forkfacts/components";
 
 const LifeStage: React.FC<LifeStageProps> = ({ lifeStageItems, onSelectLifeStageItem }) => {

@@ -26,3 +26,4 @@ export { default as NutritionTableContent } from "./NutrientTableContent/Nutrien
 export { default as FilterPage } from "./FilterPage/FilterPage";
 export { default as LifeStage } from "./LifeStage/LifeStage";
 export { default as LifeStageItem } from "./LifeStageItem/LifeStageItem";
+export { default as FilterAge } from "./FilterAge/FilterAge";

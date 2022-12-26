@@ -11,6 +11,12 @@ export interface filterItem {
   amount: number;
 }
 
+export interface ageItem {
+  start: number;
+  end: number;
+  unit: string;
+}
+
 export type lifeStageItem = {
   name: string;
   icon: SvgIconComponent;
@@ -213,4 +219,9 @@ export interface NutrientAvailableAmountsProps {
 export interface LifeStageProps {
   lifeStageItems: Array<lifeStageItem>;
   onSelectLifeStageItem: (name: string) => void;
+}
+
+export interface AgeItemsProps {
+  ageItems: Array<ageItem>;
+  onSelectAgeItem: (item: ageItem) => void;
 }

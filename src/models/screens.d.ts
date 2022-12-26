@@ -7,6 +7,7 @@ import {
   sidebarItem,
   rateItem,
   nutritionTableItem,
+  filterItem,
 } from "@forkfacts/models";
 
 export interface TypingSearchScreenProps extends onSelectCategoryType {
@@ -50,6 +51,6 @@ export interface NutritionScreenProps {
   source: string;
   nutritionRatesItems: Array<rateItem>;
   nutritionTableItems: Array<nutritionTableItem>;
-  allNutrients: Array<string>;
+  allNutrients: Array<filterItem>;
   getSelectedNutrients: (items: string[]) => void;
 }

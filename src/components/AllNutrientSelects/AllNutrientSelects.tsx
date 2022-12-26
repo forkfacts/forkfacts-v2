@@ -1,9 +1,14 @@
 import React, { useState } from "react";
 import Checkbox from "@mui/material/Checkbox";
+import { ForLoops } from "@forkfacts/helpers";
 import { Box, Typography, useTheme } from "@mui/material";
-import { AllNutrientSelectsProps } from "@forkfacts/models";
+import { AllNutrientSelectsProps, filterItem } from "@forkfacts/models";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+
+type internalNutrientType = {
+  checked: boolean;
+} & filterItem;
 
 const AllNutrientSelects: React.FC<AllNutrientSelectsProps> = ({
   allNutrients,
@@ -12,13 +17,14 @@ const AllNutrientSelects: React.FC<AllNutrientSelectsProps> = ({
   const theme = useTheme();
   const [open, setIsOpen] = useState(false);
 
-  const newNutrients: { name: string; checked: boolean }[] = [...allNutrients].map((item) => {
+  const newNutrients: internalNutrientType[] = [...allNutrients].map((item) => {
     return {
-      name: item,
+      name: item.name,
       checked: false,
+      amount: item.amount,
     };
   });
-  const [selectedNutrients, setSelectNutrients] = useState<{ name: string; checked: boolean }[]>([
+  const [selectedNutrients, setSelectNutrients] = useState<internalNutrientType[]>([
     ...newNutrients,
   ]);
 
@@ -119,35 +125,40 @@ const AllNutrientSelects: React.FC<AllNutrientSelectsProps> = ({
               flexDirection: "column",
             }}
           >
-            {selectedNutrients.map((item, index) => (
-              <Box
-                component="li"
-                key={index}
-                sx={{
-                  width: "100%",
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  mr: theme.spacing(12),
-                }}
-                onClick={() => onSelectButtonItem(item.name, index)}
-              >
-                <Box>
-                  <Checkbox checked={item.checked} color="success" />
-                  <Typography component="span" sx={{ fontSize: theme.typography.caption.fontSize }}>
-                    {item.name}
+            <ForLoops each={selectedNutrients}>
+              {(item, index) => (
+                <Box
+                  component="li"
+                  key={index}
+                  sx={{
+                    width: "100%",
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    mr: theme.spacing(12),
+                  }}
+                  onClick={() => onSelectButtonItem(item.name, index)}
+                >
+                  <Box>
+                    <Checkbox checked={item.checked} color="success" />
+                    <Typography
+                      component="span"
+                      sx={{ fontSize: theme.typography.caption.fontSize }}
+                    >
+                      {item.name}
+                    </Typography>
+                  </Box>
+                  <Typography
+                    component="span"
+                    sx={{
+                      mr: theme.spacing(-7),
+                    }}
+                  >
+                    {item.amount > 0 ? item.amount : null}
                   </Typography>
                 </Box>
-                <Typography
-                  component="span"
-                  sx={{
-                    mr: theme.spacing(-7),
-                  }}
-                >
-                  {index > 3 ? index : null}
-                </Typography>
-              </Box>
-            ))}
+              )}
+            </ForLoops>
             <Box
               sx={{
                 width: "100%",

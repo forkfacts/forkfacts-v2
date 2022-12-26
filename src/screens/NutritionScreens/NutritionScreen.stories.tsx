@@ -2,7 +2,7 @@ import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import { NutritionScreen } from "@forkfacts/screens";
-import { nutritionTableItem } from "@forkfacts/models";
+import { nutritionTableItem, filterItem } from "@forkfacts/models";
 
 export default {
   title: "Screens/NutritionScreen",
@@ -67,15 +67,16 @@ const nutritionTableItems: nutritionTableItem[] = [
   },
 ];
 
-const allNutrients: string[] = [
-  "Protein",
-  "Carbohydrate",
-  "Water",
-  "Vitamin",
-  "Fats",
-  "Fiber",
-  "Minerals",
+const allNutrients: filterItem[] = [
+  { name: "Protein", amount: 0 },
+  { name: "Fiber", amount: 0 },
+  { name: "Carbohydrate", amount: 2 },
+  { name: "Minerals", amount: 16 },
+  { name: "Vitamin", amount: 15 },
+  { name: "Fats", amount: 4 },
+  { name: "Water", amount: 0 },
 ];
+
 const availableAmounts = ["1 tablespoon", "1cup", "100g"];
 
 export const Mobile = Template.bind({});

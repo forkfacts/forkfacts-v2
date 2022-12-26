@@ -3,8 +3,8 @@ import { Box, useTheme } from "@mui/material";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { FilterButton } from "@forkfacts/components";
-import "./carousel.css";
 import { NutritionFiltersProps } from "@forkfacts/models";
+import "./carousel.css";
 
 const NutritionFilters: React.FC<NutritionFiltersProps> = ({ filters, onSelectFilterItems }) => {
   const theme = useTheme();
@@ -24,7 +24,7 @@ const NutritionFilters: React.FC<NutritionFiltersProps> = ({ filters, onSelectFi
     },
   };
 
-  const onSelectButtonItem = (name: string, index: number) => {
+  const handleSelectItem = (name: string, index: number) => {
     if (selectedItemArrays.includes(name) || index === 0) {
       setSelectedItemArray(selectedItemArrays.filter((item) => item !== name));
       return;
@@ -50,7 +50,7 @@ const NutritionFilters: React.FC<NutritionFiltersProps> = ({ filters, onSelectFi
             <FilterButton
               name={item.name}
               key={index}
-              onSelectItem={onSelectButtonItem}
+              onSelectItem={handleSelectItem}
               index={index}
               selectedItemArrays={selectedItemArrays}
             />

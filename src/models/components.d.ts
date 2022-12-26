@@ -6,6 +6,11 @@ export interface SearchResultItemType {
   image: string;
 }
 
+export interface filterItem {
+  name: string;
+  amount: number;
+}
+
 export interface content {
   nutrient: string;
   valuePercent: string;
@@ -178,7 +183,7 @@ export interface NutritionTableProps {
 }
 
 export interface AllNutrientSelectsProps {
-  allNutrients: string[];
+  allNutrients: filterItem[];
   getSelectedNutrients: (items: string[]) => void;
 }
 

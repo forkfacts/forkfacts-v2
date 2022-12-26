@@ -178,7 +178,7 @@ export interface NutritionTableContentProps {
 
 export interface NutritionTableProps {
   nutritionTableItems: Array<nutritionTableItem>;
-  allNutrients: Array<string>;
+  allNutrients: Array<filterItem>;
   getSelectedNutrients: (items: string[]) => void;
 }
 

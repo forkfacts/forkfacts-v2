@@ -86,7 +86,11 @@ const AllNutrientSelects: React.FC<AllNutrientSelectsProps> = ({
         <Typography
           component="span"
           color="primary"
-          sx={{ fontSize: theme.typography.caption.fontSize }}
+          sx={{
+            fontSize: theme.typography.htmlFontSize,
+            fontWeight: theme.typography.fontWeightBold,
+            lineHeight: theme.spacing(3),
+          }}
         >
           All nutrients
         </Typography>

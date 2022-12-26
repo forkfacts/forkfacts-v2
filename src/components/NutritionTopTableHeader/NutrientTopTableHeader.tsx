@@ -20,7 +20,7 @@ const NutrientTopTableHeader: React.FC<NutrientHeaderProps> = ({
         }}
       >
         <Box>
-          <Typography variant="caption">Source:{source}</Typography>
+          <Typography variant="caption">Source: {source}</Typography>
         </Box>
         <NutrientAvailableAmounts
           onSelectAvailableAmounts={onSelectAvailableAmounts}

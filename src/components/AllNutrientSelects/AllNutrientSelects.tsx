@@ -6,7 +6,7 @@ import { AllNutrientSelectsProps, filterItem } from "@forkfacts/models";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
-type internalNutrientType = {
+type NutrientType = {
   checked: boolean;
 } & filterItem;
 
@@ -17,16 +17,14 @@ const AllNutrientSelects: React.FC<AllNutrientSelectsProps> = ({
   const theme = useTheme();
   const [open, setIsOpen] = useState(false);
 
-  const newNutrients: internalNutrientType[] = [...allNutrients].map((item) => {
+  const newNutrients: NutrientType[] = [...allNutrients].map((item) => {
     return {
       name: item.name,
       checked: false,
       amount: item.amount,
     };
   });
-  const [selectedNutrients, setSelectNutrients] = useState<internalNutrientType[]>([
-    ...newNutrients,
-  ]);
+  const [selectedNutrients, setSelectNutrients] = useState<NutrientType[]>([...newNutrients]);
 
   const onSelectButtonItem = (name: string, index: number) => {
     let checked;

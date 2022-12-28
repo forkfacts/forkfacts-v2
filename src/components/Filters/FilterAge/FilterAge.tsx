@@ -4,7 +4,7 @@ import { Box, Typography, useTheme } from "@mui/material";
 import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
 import RadioButtonCheckedIcon from "@mui/icons-material/RadioButtonChecked";
 import { AgeItemsProps, ageItem } from "@forkfacts/models";
-
+import { ForLoops } from "@forkfacts/helpers";
 const FilterAge: React.FC<AgeItemsProps> = ({ ageItems, onSelectAgeItem }) => {
   const theme = useTheme();
   const [selectedAgeIndex, setSelectedAgeIndex] = useState<number | null>(null);
@@ -36,27 +36,29 @@ const FilterAge: React.FC<AgeItemsProps> = ({ ageItems, onSelectAgeItem }) => {
           marginTop: theme.spacing(1.7),
         }}
       >
-        {ageItems.map((item, index) => (
-          <Box
-            key={index}
-            sx={{
-              width: "100%",
-              display: "flex",
-              justifyContent: "flex-start",
-              alignItems: "center",
-            }}
-            onClick={() => handleSelectAge(item, index)}
-          >
-            <Checkbox
-              icon={<RadioButtonUncheckedIcon />}
-              checkedIcon={<RadioButtonCheckedIcon />}
-              checked={selectedAgeIndex === index ? true : false}
-            />
-            <Typography variant="body1">
-              {item.start + "-" + item.end} {item.unit}
-            </Typography>
-          </Box>
-        ))}
+        <ForLoops each={ageItems}>
+          {(item, index) => (
+            <Box
+              key={index}
+              sx={{
+                width: "100%",
+                display: "flex",
+                justifyContent: "flex-start",
+                alignItems: "center",
+              }}
+              onClick={() => handleSelectAge(item, index)}
+            >
+              <Checkbox
+                icon={<RadioButtonUncheckedIcon />}
+                checkedIcon={<RadioButtonCheckedIcon />}
+                checked={selectedAgeIndex === index ? true : false}
+              />
+              <Typography variant="body1">
+                {item.start + "-" + item.end} {item.unit}
+              </Typography>
+            </Box>
+          )}
+        </ForLoops>
       </Box>
     </Box>
   );

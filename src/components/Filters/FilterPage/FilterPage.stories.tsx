@@ -115,6 +115,10 @@ Mobile.args = {
   onSelectNutritionFilterItem: (items: SearchNutritionFilterItem[]) => {
     console.log(items);
   },
+  measurementFilterItems: ["US", "Metric"],
+  onSelectMeasurementItem: (item: string) => {
+    console.log(item);
+  },
 };
 
 Mobile.parameters = {

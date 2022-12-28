@@ -244,4 +244,11 @@ interface FilterPageProps {
   onSelectAgeItem: (item: ageItem) => void;
   nutritionFilterItems: Array<SearchNutritionFilterItem>;
   onSelectNutritionFilterItem: (item: SearchNutritionFilterItem[]) => void;
+  measurementFilterItems: string[];
+  onSelectMeasurementItem: (item: string) => void;
+}
+
+export interface MeasurementFilterProps {
+  measurementFilterItems: string[];
+  onSelectMeasurementItem: (item: string) => void;
 }

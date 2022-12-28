@@ -3,6 +3,7 @@ import {
   NutrientTopTableHeader,
   NutritionRates,
   NutritionTable,
+  FilterPage,
 } from "@forkfacts/components";
 import { NutritionScreenProps } from "@forkfacts/models";
 import { Box, useTheme } from "@mui/material";
@@ -18,6 +19,14 @@ const NutritionScreen: React.FC<NutritionScreenProps> = ({
   allNutrients,
   getSelectedNutrients,
   onSelectAvailableAmounts,
+  lifeStageItems,
+  onSelectLifeStageItem,
+  ageItems,
+  onSelectAgeItem,
+  nutritionFilterItems,
+  onSelectNutritionFilterItem,
+  onSelectMeasurementItem,
+  measurementFilterItems,
 }) => {
   const theme = useTheme();
   return (
@@ -40,6 +49,16 @@ const NutritionScreen: React.FC<NutritionScreenProps> = ({
           getSelectedNutrients={getSelectedNutrients}
         />
       </Box>
+      <FilterPage
+        lifeStageItems={lifeStageItems}
+        onSelectLifeStageItem={onSelectLifeStageItem}
+        ageItems={ageItems}
+        onSelectAgeItem={onSelectAgeItem}
+        nutritionFilterItems={nutritionFilterItems}
+        onSelectNutritionFilterItem={onSelectNutritionFilterItem}
+        onSelectMeasurementItem={onSelectMeasurementItem}
+        measurementFilterItems={measurementFilterItems}
+      />
     </Box>
   );
 };

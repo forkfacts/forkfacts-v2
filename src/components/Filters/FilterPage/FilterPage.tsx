@@ -1,7 +1,12 @@
 import React from "react";
 import { Box, Typography, useTheme } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import { LifeStage, FilterAge, SearchNutritionFilter } from "@forkfacts/components";
+import {
+  LifeStage,
+  FilterAge,
+  SearchNutritionFilter,
+  MeasurementFilter,
+} from "@forkfacts/components";
 import { FilterPageProps } from "@forkfacts/models";
 import { useStyles } from "./filterPageStyles";
 
@@ -12,6 +17,8 @@ const FilterPage: React.FC<FilterPageProps> = ({
   onSelectAgeItem,
   nutritionFilterItems,
   onSelectNutritionFilterItem,
+  onSelectMeasurementItem,
+  measurementFilterItems,
 }) => {
   const theme = useTheme();
   const classes = useStyles();
@@ -29,6 +36,12 @@ const FilterPage: React.FC<FilterPageProps> = ({
       </Box>
       <Box className={classes.boxWrapper}>
         <FilterAge ageItems={ageItems} onSelectAgeItem={onSelectAgeItem} />
+      </Box>
+      <Box className={classes.boxWrapper}>
+        <MeasurementFilter
+          measurementFilterItems={measurementFilterItems}
+          onSelectMeasurementItem={onSelectMeasurementItem}
+        />
       </Box>
       <Box className={classes.boxWrapper}>
         <SearchNutritionFilter

@@ -128,9 +128,8 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
   useEffect(() => {
     let results = renderFilterNutrients.map((item, index) => {
       if (renderFilterNutrients[index].name === selectedNutrient.name) {
-        const el = item.subItems.some((i) => i.checked === true);
-        console.log("el", el);
-        let newItem = { ...item, checked: el };
+        const checked = item.subItems.some((i) => i.checked === true);
+        let newItem = { ...item, checked: checked };
         return newItem;
       } else {
         return item;
@@ -196,7 +195,7 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
             ),
             endAdornment: (
               <InputAdornment position="end">
-                <Box>{name ? <CloseIcon /> : null}</Box>
+                <Box>{name ? <CloseIcon sx={{ cursor: "pointer" }} /> : null}</Box>
               </InputAdornment>
             ),
           }}

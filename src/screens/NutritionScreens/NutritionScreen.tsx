@@ -7,7 +7,7 @@ import {
 } from "@forkfacts/components";
 import { NutritionScreenProps } from "@forkfacts/models";
 import { Box, useTheme } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 
 const NutritionScreen: React.FC<NutritionScreenProps> = ({
   filters,
@@ -29,9 +29,14 @@ const NutritionScreen: React.FC<NutritionScreenProps> = ({
   measurementFilterItems,
 }) => {
   const theme = useTheme();
+  const [openMobilePage, setOpenMobilePage] = useState(false);
   return (
     <Box>
-      <NutritionFilters onSelectFilterItems={onSelectFilterItems} filters={filters} />
+      <NutritionFilters
+        onSelectFilterItems={onSelectFilterItems}
+        filters={filters}
+        setOpenMobilePage={setOpenMobilePage}
+      />
       <Box sx={{ mt: theme.spacing(4) }}>
         <NutrientTopTableHeader
           availableAmounts={availableAmounts}
@@ -58,6 +63,8 @@ const NutritionScreen: React.FC<NutritionScreenProps> = ({
         onSelectNutritionFilterItem={onSelectNutritionFilterItem}
         onSelectMeasurementItem={onSelectMeasurementItem}
         measurementFilterItems={measurementFilterItems}
+        openMobilePage={openMobilePage}
+        setOpenMobilePage={setOpenMobilePage}
       />
     </Box>
   );

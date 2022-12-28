@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box, Typography, useTheme } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import {
@@ -19,35 +19,42 @@ const FilterPage: React.FC<FilterPageProps> = ({
   onSelectNutritionFilterItem,
   onSelectMeasurementItem,
   measurementFilterItems,
+  openMobilePage,
+  setOpenMobilePage,
 }) => {
   const theme = useTheme();
-  const classes = useStyles();
+  const classes = useStyles({ openMobilePage });
   return (
     <Box className={classes.root}>
-      <Box className={classes.headerStyles}>
-        <ArrowBackIcon sx={{ cursor: "pointer" }} />
-        <Typography sx={{ color: theme.palette.common.black }} variant="h5">
-          Filter
-        </Typography>
-        <Box />
-      </Box>
-      <Box className={classes.boxWrapper}>
-        <LifeStage lifeStageItems={lifeStageItems} onSelectLifeStageItem={onSelectLifeStageItem} />
-      </Box>
-      <Box className={classes.boxWrapper}>
-        <FilterAge ageItems={ageItems} onSelectAgeItem={onSelectAgeItem} />
-      </Box>
-      <Box className={classes.boxWrapper}>
-        <MeasurementFilter
-          measurementFilterItems={measurementFilterItems}
-          onSelectMeasurementItem={onSelectMeasurementItem}
-        />
-      </Box>
-      <Box className={classes.boxWrapper}>
-        <SearchNutritionFilter
-          onSelectNutritionFilterItem={onSelectNutritionFilterItem}
-          nutritionFilterItems={nutritionFilterItems}
-        />
+      <Box sx={{ display: "flex", flexDirection: "column" }}>
+        <Box className={classes.headerStyles} onClick={() => setOpenMobilePage(false)}>
+          <ArrowBackIcon sx={{ cursor: "pointer" }} />
+          <Typography sx={{ color: theme.palette.common.black }} variant="h5">
+            Filter
+          </Typography>
+          <Box />
+        </Box>
+        <Box className={classes.boxWrapper}>
+          <LifeStage
+            lifeStageItems={lifeStageItems}
+            onSelectLifeStageItem={onSelectLifeStageItem}
+          />
+        </Box>
+        <Box className={classes.boxWrapper}>
+          <FilterAge ageItems={ageItems} onSelectAgeItem={onSelectAgeItem} />
+        </Box>
+        <Box className={classes.boxWrapper}>
+          <MeasurementFilter
+            measurementFilterItems={measurementFilterItems}
+            onSelectMeasurementItem={onSelectMeasurementItem}
+          />
+        </Box>
+        <Box className={classes.boxWrapper}>
+          <SearchNutritionFilter
+            onSelectNutritionFilterItem={onSelectNutritionFilterItem}
+            nutritionFilterItems={nutritionFilterItems}
+          />
+        </Box>
       </Box>
     </Box>
   );

@@ -11,6 +11,7 @@ const FilterButton: React.FC<FilterButtonProps> = ({
   onSelectItem,
   index,
   selectedItemArrays,
+  setOpenMobilePage,
 }) => {
   const theme = useTheme();
   const [selectedName, setSelectedName] = useState<string>();
@@ -23,10 +24,15 @@ const FilterButton: React.FC<FilterButtonProps> = ({
     }
   };
 
+  const onClick = (index: number) => {
+    if (index === 0) setOpenMobilePage(true);
+    else handleSelectItem;
+  };
+
   return (
     <Button
       variant={name == selectedName ? "text" : index === 0 ? undefined : "outlined"}
-      onClick={handleSelectItem}
+      onClick={() => onClick(index)}
       sx={{
         color: index === 0 ? theme.palette.primary.dark : theme.palette.grey[700],
         fontSize: theme.typography.caption.fontSize,

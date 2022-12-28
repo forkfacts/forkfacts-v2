@@ -181,6 +181,7 @@ export interface NutritionRateProps {
 export interface NutritionFiltersProps {
   filters: Array<filterButtonItem>;
   onSelectFilterItems: (item: string[]) => void;
+  setOpenMobilePage: (item: boolean) => void;
 }
 
 export interface NutritionTableContentProps {
@@ -209,6 +210,7 @@ export interface FilterButtonProps {
   onSelectItem: (item: string, index: number) => void;
   index: number;
   selectedItemArrays: string[];
+  setOpenMobilePage: (item: boolean) => void;
 }
 
 export interface NutrientAvailableAmountsProps {
@@ -246,6 +248,8 @@ interface FilterPageProps {
   onSelectNutritionFilterItem: (item: SearchNutritionFilterItem[]) => void;
   measurementFilterItems: string[];
   onSelectMeasurementItem: (item: string) => void;
+  openMobilePage: boolean;
+  setOpenMobilePage: (item: boolean) => void;
 }
 
 export interface MeasurementFilterProps {

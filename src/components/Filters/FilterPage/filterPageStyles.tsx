@@ -6,13 +6,21 @@ export const useStyles = makeStyles(({ spacing, breakpoints, palette, zIndex }: 
     [breakpoints.down("md")]: {
       width: "100%",
       position: "fixed",
-      height: "100%",
+      display: (prop: { openMobilePage: boolean }) => {
+        if (prop.openMobilePage) {
+          return "block";
+        }
+        return "none";
+      },
+      height: "100",
       top: 0,
       right: 0,
       bottom: 0,
       left: 0,
+      padding: "20px",
       backgroundColor: palette.common.white,
       zIndex: zIndex.modal,
+      overflow: "scroll",
     },
   },
   headerStyles: {

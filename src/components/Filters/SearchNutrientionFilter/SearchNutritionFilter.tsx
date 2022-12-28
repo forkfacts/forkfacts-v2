@@ -37,9 +37,7 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
   const [filteredNutrient, setFilterNutrient] = useState(newNutrients);
   const [selectedNutrient, setSelectedNutrient] = useState({
     name: "",
-    sel: false,
   });
-
   const [name, setName] = useState<string>("");
   const handleAccordion =
     (panel: string, item: SearchNutritionFilterItem) =>
@@ -90,7 +88,6 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
   const onSelectSubItem = (name1: string, name2: string) => {
     setSelectedNutrient({
       name: name1,
-      sel: true,
     });
     let results = renderFilterNutrients.map((item, index) => {
       if (item.name === name1) {
@@ -116,10 +113,14 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
     });
     return setFilterNutrient(results);
   };
-  
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => setName(e.target.value);
 
-  const handleSelectItem = (e: React.MouseEvent<HTMLDivElement>, name: string, index: number) => {
+  const handleSelectItem = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    name: string,
+    index: number
+  ) => {
     e.stopPropagation();
     onHandleSelectedItem(name, index);
   };
@@ -160,26 +161,47 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
 
   return (
     <Box>
-      <TextField
-        size="medium"
-        fullWidth
-        name="name"
-        value={name}
-        placeholder="Search for nutrients"
-        onChange={handleChange}
-        InputProps={{
-          startAdornment: (
-            <InputAdornment position="start">
-              <SearchOutlined />
-            </InputAdornment>
-          ),
-          endAdornment: (
-            <InputAdornment position="end">
-              <Box>{name ? <CloseIcon /> : null}</Box>
-            </InputAdornment>
-          ),
+      <Box
+        sx={{
+          paddingLeft: theme.spacing(1.5),
+          paddingRight: theme.spacing(2.4),
         }}
-      />
+      >
+        <Typography
+          component="span"
+          sx={{
+            fontSize: theme.typography.htmlFontSize,
+            fontWeight: theme.typography.fontWeightBold,
+            lineHeight: theme.spacing(3),
+          }}
+        >
+          Nutrients
+        </Typography>
+        <TextField
+          size="small"
+          sx={{
+            width: "100%",
+            marginTop: theme.spacing(1.7),
+          }}
+          fullWidth
+          name="name"
+          value={name}
+          placeholder="Search for nutrients"
+          onChange={handleChange}
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <SearchOutlined />
+              </InputAdornment>
+            ),
+            endAdornment: (
+              <InputAdornment position="end">
+                <Box>{name ? <CloseIcon /> : null}</Box>
+              </InputAdornment>
+            ),
+          }}
+        />
+      </Box>
       <Box sx={{ mt: theme.spacing(5) }}>
         <ForLoops each={renderFilterNutrients}>
           {(item, index) => {
@@ -211,7 +233,7 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
                     <Checkbox
                       color="success"
                       checked={item.checked}
-                      onClick={(e) => onHandleSelectedItem(item.name, index)}
+                      onClick={(event) => handleSelectItem(event, item.name, index)}
                     />
                     <Typography variant="body1">{item.name}</Typography>
                   </Box>

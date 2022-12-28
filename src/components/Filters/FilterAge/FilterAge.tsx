@@ -15,7 +15,7 @@ const FilterAge: React.FC<AgeItemsProps> = ({ ageItems, onSelectAgeItem }) => {
   };
 
   return (
-    <Box sx={{ cursor: "pointer", position: "relative" }}>
+    <Box>
       <Typography
         component="span"
         sx={{

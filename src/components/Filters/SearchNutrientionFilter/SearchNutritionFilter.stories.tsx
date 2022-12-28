@@ -5,7 +5,7 @@ import { SearchNutritionFilter } from "@forkfacts/components";
 import { SearchNutritionFilterItem } from "@forkfacts/models";
 
 export default {
-  title: "Components/SearchNutritionFilter",
+  title: "Components/Filters/SearchNutritionFilter",
   component: SearchNutritionFilter,
   parameters: {
     viewport: {

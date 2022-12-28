@@ -4,7 +4,7 @@ import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import { NutritionFilters as Sliders } from "@forkfacts/components";
 
 export default {
-  title: "Components/Nutrition/NutritionFilters",
+  title: "Components/Filters/NutritionFilters",
   component: Sliders,
   parameters: {
     viewport: {

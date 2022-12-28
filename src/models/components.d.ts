@@ -236,3 +236,12 @@ export interface SearchNutritionFilterItem {
   subItems: { name: string; checked: boolean }[];
   checked: boolean;
 }
+
+interface FilterPageProps {
+  lifeStageItems: Array<lifeStageItem>;
+  onSelectLifeStageItem: (name: string) => void;
+  ageItems: Array<ageItem>;
+  onSelectAgeItem: (item: ageItem) => void;
+  nutritionFilterItems: Array<SearchNutritionFilterItem>;
+  onSelectNutritionFilterItem: (item: SearchNutritionFilterItem[]) => void;
+}

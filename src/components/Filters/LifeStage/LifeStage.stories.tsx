@@ -9,7 +9,7 @@ import PregnantWomanOutlinedIcon from "@mui/icons-material/PregnantWomanOutlined
 import { lifeStageItem } from "@forkfacts/models";
 
 export default {
-  title: "Components/LifeStage",
+  title: "Components/Filters/LifeStage",
   component: LifeStage,
   parameters: {
     viewport: {

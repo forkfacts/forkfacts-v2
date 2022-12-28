@@ -4,7 +4,7 @@ import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import { FilterAge } from "@forkfacts/components";
 import { ageItem } from "@forkfacts/models";
 export default {
-  title: "Components/FilterAge",
+  title: "Components/Filters/FilterAge",
   component: FilterAge,
   parameters: {
     viewport: {

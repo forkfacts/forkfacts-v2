@@ -106,7 +106,7 @@ export interface SearchResultItemProps {
 }
 
 export interface filterButtonItem {
-  name: string;
+  name: "All filters" | "Life stage" | "Age" | "Nutrients" | "Measure Units";
 }
 
 interface SideBarProps {
@@ -247,6 +247,7 @@ interface FilterPageProps {
   openMobilePage: boolean;
   setOpenMobilePage: (item: boolean) => void;
   onSelectFilterPageData: (item: any) => void;
+  filtersTotal: number;
 }
 
 export interface MeasurementFilterProps {

@@ -6,6 +6,8 @@ import ChildCareOutlinedIcon from "@mui/icons-material/ChildCareOutlined";
 import EscalatorWarningOutlinedIcon from "@mui/icons-material/EscalatorWarningOutlined";
 import Person2OutlinedIcon from "@mui/icons-material/Person2Outlined";
 import PregnantWomanOutlinedIcon from "@mui/icons-material/PregnantWomanOutlined";
+import { filterButtonItem } from "@forkfacts/models";
+
 import {
   nutritionTableItem,
   filterItem,
@@ -26,7 +28,7 @@ export default {
 
 const Template: ComponentStory<typeof NutritionScreen> = (args) => <NutritionScreen {...args} />;
 
-const filters = [
+const filters: filterButtonItem[] = [
   { name: "All filters" },
   { name: "Life stage" },
   { name: "Age" },

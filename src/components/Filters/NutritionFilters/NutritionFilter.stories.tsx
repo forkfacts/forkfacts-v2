@@ -2,6 +2,7 @@ import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import { NutritionFilters as Sliders } from "@forkfacts/components";
+import { filterButtonItem } from "@forkfacts/models";
 
 export default {
   title: "Components/Filters/NutritionFilters",
@@ -13,7 +14,7 @@ export default {
   },
 } as ComponentMeta<typeof Sliders>;
 
-const filters = [
+const filters: filterButtonItem[] = [
   { name: "All filters" },
   { name: "Life stage" },
   { name: "Age" },

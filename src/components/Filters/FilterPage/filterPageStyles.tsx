@@ -17,7 +17,6 @@ export const useStyles = makeStyles(({ spacing, breakpoints, palette, zIndex }: 
       right: 0,
       bottom: 0,
       left: 0,
-      padding: spacing(2.5),
       backgroundColor: palette.common.white,
       zIndex: zIndex.modal,
       overflow: "scroll",
@@ -29,11 +28,22 @@ export const useStyles = makeStyles(({ spacing, breakpoints, palette, zIndex }: 
       display: "flex",
       alignItems: "center",
       justifyContent: "space-between",
+      padding: spacing(2.5),
     },
   },
   boxWrapper: {
     [breakpoints.down("md")]: {
-      marginTop: spacing(5),
+      marginTop: spacing(2.5),
+      position: "relative",
+      paddingLeft: spacing(2.5),
+      paddingRight: spacing(2.5),
+      paddingBottom: spacing(4.5),
+      paddingTop: spacing(4.5),
+    },
+  },
+  borderLine: {
+    [breakpoints.down("md")]: {
+      border: `${spacing(0.125)} solid ${palette.grey[200]}`,
     },
   },
   footerStyles: {

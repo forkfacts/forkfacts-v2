@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Box, Button, Typography, useTheme } from "@mui/material";
+import classname from "classnames";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import {
   LifeStage,
@@ -11,6 +12,7 @@ import { FilterPageProps, ageItem, SearchNutritionFilterItem } from "@forkfacts/
 import { useStyles } from "./filterPageStyles";
 
 const FilterPage: React.FC<FilterPageProps> = ({
+  filtersTotal,
   selectedFilters,
   lifeStageItems,
   ageItems,
@@ -51,7 +53,11 @@ const FilterPage: React.FC<FilterPageProps> = ({
       selectedNutritionFilterItems: selectedNutritionFilterItems,
     };
     onSelectFilterPageData(item);
+    setOpenMobilePage(false);
   };
+
+  const onClearFilter = () => {};
+  console.log(selectedFilters);
 
   return (
     <Box className={classes.root}>
@@ -64,7 +70,7 @@ const FilterPage: React.FC<FilterPageProps> = ({
           <Box />
         </Box>
         {selectedFilters.includes("Life stage") || selectedFilters[0] === "All filters" ? (
-          <Box className={classes.boxWrapper}>
+          <Box sx={{ padding: { xs: theme.spacing(2.5) } }}>
             <LifeStage
               lifeStageItems={lifeStageItems}
               onSelectLifeStageItem={onSelectLifeStageItem}
@@ -72,12 +78,12 @@ const FilterPage: React.FC<FilterPageProps> = ({
           </Box>
         ) : null}
         {selectedFilters.includes("Age") || selectedFilters[0] === "All filters" ? (
-          <Box className={classes.boxWrapper}>
+          <Box className={classname(classes.boxWrapper, classes.borderLine)}>
             <FilterAge ageItems={ageItems} onSelectAgeItem={onSelectAgeItem} />
           </Box>
         ) : null}
         {selectedFilters.includes("Measure Units") || selectedFilters[0] === "All filters" ? (
-          <Box className={classes.boxWrapper}>
+          <Box className={classname(classes.boxWrapper, classes.borderLine)}>
             <MeasurementFilter
               measurementFilterItems={measurementFilterItems}
               onSelectMeasurementItem={onSelectMeasurementItem}
@@ -102,9 +108,14 @@ const FilterPage: React.FC<FilterPageProps> = ({
               padding: theme.spacing(2.5),
             }}
           >
-            <Typography>{selectedFilters.length} results</Typography>
+            <Typography>
+              {selectedFilters.includes("All filters") ? filtersTotal : selectedFilters.length}{" "}
+              results
+            </Typography>
             <Box>
-              <Button variant="text">Clear all</Button>
+              <Button variant="text" onClick={onClearFilter}>
+                Clear all
+              </Button>
               <Button variant="contained" onClick={() => getAllFilterPageData()}>
                 Done
               </Button>

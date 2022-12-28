@@ -189,6 +189,9 @@ Mobile.args = {
   ageItems: ageItems,
   nutritionFilterItems: nutritionFilterItems,
   measurementFilterItems: ["US", "Metric"],
+  onSelectFilterPageData: (item) => {
+    console.log(item);
+  },
 };
 
 Mobile.parameters = {

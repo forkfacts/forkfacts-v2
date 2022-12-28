@@ -22,6 +22,7 @@ const NutritionScreen: React.FC<NutritionScreenProps> = ({
   ageItems,
   nutritionFilterItems,
   measurementFilterItems,
+  onSelectFilterPageData,
 }) => {
   const theme = useTheme();
   const [openMobilePage, setOpenMobilePage] = useState(false);
@@ -63,6 +64,7 @@ const NutritionScreen: React.FC<NutritionScreenProps> = ({
         measurementFilterItems={measurementFilterItems}
         openMobilePage={openMobilePage}
         setOpenMobilePage={setOpenMobilePage}
+        onSelectFilterPageData={onSelectFilterPageData}
       />
     </Box>
   );

@@ -57,4 +57,5 @@ export interface NutritionScreenProps {
   ageItems: Array<ageItem>;
   nutritionFilterItems: Array<SearchNutritionFilterItem>;
   measurementFilterItems: string[];
+  onSelectFilterPageData: (item: T) => void;
 }

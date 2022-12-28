@@ -238,7 +238,6 @@ export interface SearchNutritionFilterItem {
   subItems: { name: string; checked: boolean }[];
   checked: boolean;
 }
-
 interface FilterPageProps {
   selectedFilters: string[];
   lifeStageItems: Array<lifeStageItem>;
@@ -247,6 +246,7 @@ interface FilterPageProps {
   measurementFilterItems: string[];
   openMobilePage: boolean;
   setOpenMobilePage: (item: boolean) => void;
+  onSelectFilterPageData: (item: any) => void;
 }
 
 export interface MeasurementFilterProps {

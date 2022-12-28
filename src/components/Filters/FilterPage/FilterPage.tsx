@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Button, Typography, useTheme } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import {
@@ -18,18 +18,19 @@ const FilterPage: React.FC<FilterPageProps> = ({
   measurementFilterItems,
   openMobilePage,
   setOpenMobilePage,
+  onSelectFilterPageData,
 }) => {
   const theme = useTheme();
   const classes = useStyles({ openMobilePage });
-  const [selectAge, setSelectAge] = useState<ageItem>({} as ageItem);
+  const [selectedAge, setSelectedAge] = useState<ageItem>({} as ageItem);
   const [selectedLifeStage, setSelectedLifeStage] = useState("");
   const [selectedMeasurementItem, setSelectedMeasurement] = useState("");
-  const [selectNutritionFilterItems, setSelectNutritionFilterItems] = useState<
+  const [selectedNutritionFilterItems, setSelectedNutritionFilterItems] = useState<
     SearchNutritionFilterItem[]
   >([]);
 
   const onSelectAgeItem = (item: ageItem) => {
-    setSelectAge(item);
+    setSelectedAge(item);
   };
   const onSelectLifeStageItem = (item: string) => {
     setSelectedLifeStage(item);
@@ -39,13 +40,18 @@ const FilterPage: React.FC<FilterPageProps> = ({
   };
 
   const onSelectNutritionFilterItem = (items: SearchNutritionFilterItem[]) => {
-    setSelectNutritionFilterItems(items);
+    setSelectedNutritionFilterItems(items);
   };
 
-  // console.log("selectAge", selectAge);
-  // console.log("selectedLifeStage",selectedLifeStage)
-  // console.log("selectedMeasurementItem",selectedMeasurementItem)
-  console.log("selectNutritionFilterItems", selectNutritionFilterItems);
+  const getAllFilterPageData = () => {
+    const item = {
+      selectedAge: selectedAge,
+      selectedLifeStage: selectedLifeStage,
+      selectedMeasurementItem: selectedMeasurementItem,
+      selectedNutritionFilterItems: selectedNutritionFilterItems,
+    };
+    onSelectFilterPageData(item);
+  };
 
   return (
     <Box className={classes.root}>
@@ -99,7 +105,9 @@ const FilterPage: React.FC<FilterPageProps> = ({
             <Typography>{selectedFilters.length} results</Typography>
             <Box>
               <Button variant="text">Clear all</Button>
-              <Button variant="contained">Done</Button>
+              <Button variant="contained" onClick={() => getAllFilterPageData()}>
+                Done
+              </Button>
             </Box>
           </Box>
         </Box>

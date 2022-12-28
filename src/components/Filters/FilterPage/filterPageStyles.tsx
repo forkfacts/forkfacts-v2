@@ -38,9 +38,12 @@ export const useStyles = makeStyles(({ spacing, breakpoints, palette, zIndex }: 
   },
   footerStyles: {
     [breakpoints.down("md")]: {
+      backgroundColor: palette.common.white,
+      display: "flex",
+      alignItems: "center",
       position: "fixed",
-      height: spacing(12.5),
       width: "100%",
+      height: spacing(10.5),
       right: 0,
       bottom: 0,
       left: 0,

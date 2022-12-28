@@ -162,8 +162,8 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
     <Box>
       <Box
         sx={{
-          paddingLeft: theme.spacing(1.5),
-          paddingRight: theme.spacing(2.4),
+          paddingLeft: theme.spacing(1),
+          paddingRight: theme.spacing(1.4),
         }}
       >
         <Typography

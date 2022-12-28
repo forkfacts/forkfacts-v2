@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Typography, useTheme } from "@mui/material";
+import { Box, Button, Typography, useTheme } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import {
   LifeStage,
@@ -30,7 +30,7 @@ const FilterPage: React.FC<FilterPageProps> = ({
 
   return (
     <Box className={classes.root}>
-      <Box sx={{ display: "flex", flexDirection: "column" }}>
+      <Box sx={{ display: "flex", flexDirection: "column", position: "relative" }}>
         <Box className={classes.headerStyles}>
           <ArrowBackIcon sx={{ cursor: "pointer" }} onClick={() => setOpenMobilePage(false)} />
           <Typography sx={{ color: theme.palette.common.black }} variant="h5">
@@ -67,8 +67,24 @@ const FilterPage: React.FC<FilterPageProps> = ({
             />
           </Box>
         ) : null}
+        <Box boxShadow={1} className={classes.footerStyles}>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              width: "100%",
+              padding: theme.spacing(2.5),
+            }}
+          >
+            <Typography>{selectedFilters.length} results</Typography>
+            <Box>
+              <Button variant="text">Clear all</Button>
+              <Button variant="contained">Done</Button>
+            </Box>
+          </Box>
+        </Box>
       </Box>
-      <Box className={classes.footerStyles}></Box>
     </Box>
   );
 };

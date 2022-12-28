@@ -28,7 +28,7 @@ const Template: ComponentStory<typeof NutritionScreen> = (args) => <NutritionScr
 
 const filters = [
   { name: "All filters" },
-  { name: "Life state" },
+  { name: "Life stage" },
   { name: "Age" },
   { name: "Nutrients" },
   { name: "Measure Units" },
@@ -174,9 +174,6 @@ export const Mobile = Template.bind({});
 
 Mobile.args = {
   filters: filters,
-  onSelectFilterItems: (item: string[]) => {
-    console.log(item);
-  },
   availableAmounts: availableAmounts,
   source: "USDA",
   nutritionRatesItems: nutritionRatesItems,

@@ -240,6 +240,7 @@ export interface SearchNutritionFilterItem {
 }
 
 interface FilterPageProps {
+  selectedFilters: string[];
   lifeStageItems: Array<lifeStageItem>;
   onSelectLifeStageItem: (name: string) => void;
   ageItems: Array<ageItem>;

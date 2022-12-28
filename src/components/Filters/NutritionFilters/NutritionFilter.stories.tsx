@@ -15,7 +15,7 @@ export default {
 
 const filters = [
   { name: "All filters" },
-  { name: "Life state" },
+  { name: "Life stage" },
   { name: "Age" },
   { name: "Nutrients" },
   { name: "Measure Units" },

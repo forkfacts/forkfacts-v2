@@ -17,7 +17,7 @@ export const useStyles = makeStyles(({ spacing, breakpoints, palette, zIndex }: 
       right: 0,
       bottom: 0,
       left: 0,
-      padding: "20px",
+      padding: spacing(2.5),
       backgroundColor: palette.common.white,
       zIndex: zIndex.modal,
       overflow: "scroll",
@@ -34,6 +34,16 @@ export const useStyles = makeStyles(({ spacing, breakpoints, palette, zIndex }: 
   boxWrapper: {
     [breakpoints.down("md")]: {
       marginTop: spacing(5),
+    },
+  },
+  footerStyles: {
+    [breakpoints.down("md")]: {
+      position: "fixed",
+      height: spacing(12.5),
+      width: "100%",
+      right: 0,
+      bottom: 0,
+      left: 0,
     },
   },
 }));

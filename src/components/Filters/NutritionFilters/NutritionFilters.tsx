@@ -38,7 +38,7 @@ const NutritionFilters: React.FC<NutritionFiltersProps> = ({
   };
 
   useEffect(() => {
-    onSelectFilterItems(selectedItemArrays);
+    onSelectFilterItems(selectedItemArrays.length ? selectedItemArrays : ["All filters"]);
   }, [selectedItemArrays]);
 
   return (

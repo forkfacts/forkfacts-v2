@@ -46,7 +46,6 @@ export interface HomeScreenProps extends onSelectCategoryType {
 
 export interface NutritionScreenProps {
   filters: Array<filterButtonItem>;
-  onSelectFilterItems: (item: string[]) => void;
   availableAmounts: Array<string>;
   onSelectAvailableAmounts: (item: string) => void;
   source: string;

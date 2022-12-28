@@ -24,15 +24,15 @@ const FilterButton: React.FC<FilterButtonProps> = ({
     }
   };
 
-  const onClick = (index: number) => {
+  const handleClick = (index: number) => {
     if (index === 0) setOpenMobilePage(true);
-    else handleSelectItem;
+    else handleSelectItem();
   };
 
   return (
     <Button
       variant={name == selectedName ? "text" : index === 0 ? undefined : "outlined"}
-      onClick={() => onClick(index)}
+      onClick={() => handleClick(index)}
       sx={{
         color: index === 0 ? theme.palette.primary.dark : theme.palette.grey[700],
         fontSize: theme.typography.caption.fontSize,

@@ -16,6 +16,14 @@ export default {
       viewports: INITIAL_VIEWPORTS,
     },
   },
+  argTypes: {
+    selectedFilters: {
+      control: {
+        type: "select",
+        options: ["All filters", "Life stage", "Age", "Nutrients", "Measure Units"],
+      },
+    },
+  },
 } as ComponentMeta<typeof FilterPage>;
 
 const lifeStageItems: lifeStageItem[] = [
@@ -103,6 +111,7 @@ const Template: ComponentStory<typeof FilterPage> = (args) => <FilterPage {...ar
 export const Mobile = Template.bind({});
 
 Mobile.args = {
+  selectedFilters: ["All filters", "Life stage", "Age", "Nutrients", "Measure Units"],
   onSelectLifeStageItem: (name: string) => {
     console.log(name);
   },
@@ -119,6 +128,7 @@ Mobile.args = {
   onSelectMeasurementItem: (item: string) => {
     console.log(item);
   },
+  openMobilePage: true,
 };
 
 Mobile.parameters = {

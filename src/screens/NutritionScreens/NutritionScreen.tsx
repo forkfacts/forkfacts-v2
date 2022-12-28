@@ -11,7 +11,6 @@ import React, { useState } from "react";
 
 const NutritionScreen: React.FC<NutritionScreenProps> = ({
   filters,
-  onSelectFilterItems,
   availableAmounts,
   source,
   nutritionRatesItems,
@@ -30,10 +29,16 @@ const NutritionScreen: React.FC<NutritionScreenProps> = ({
 }) => {
   const theme = useTheme();
   const [openMobilePage, setOpenMobilePage] = useState(false);
+  const [selectedFilters, setSelectedFilters] = useState<string[]>([...filters]);
+
+  const handleFilterItems = (items: string[]) => {
+    setSelectedFilters(items);
+  };
+
   return (
     <Box>
       <NutritionFilters
-        onSelectFilterItems={onSelectFilterItems}
+        onSelectFilterItems={handleFilterItems}
         filters={filters}
         setOpenMobilePage={setOpenMobilePage}
       />
@@ -55,6 +60,7 @@ const NutritionScreen: React.FC<NutritionScreenProps> = ({
         />
       </Box>
       <FilterPage
+        selectedFilters={selectedFilters}
         lifeStageItems={lifeStageItems}
         onSelectLifeStageItem={onSelectLifeStageItem}
         ageItems={ageItems}

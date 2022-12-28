@@ -16,8 +16,8 @@ const FilterPage: React.FC<FilterPageProps> = ({
   const theme = useTheme();
   const classes = useStyles();
   return (
-    <Box className={classes.root} component="div">
-      <Box className={classes.headerStyles} component="div">
+    <Box className={classes.root}>
+      <Box className={classes.headerStyles}>
         <ArrowBackIcon sx={{ cursor: "pointer" }} />
         <Typography sx={{ color: theme.palette.common.black }} variant="h5">
           Filter

@@ -11,4 +11,11 @@ export default {
 const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
 
 export const FilterButton = Template.bind({});
-FilterButton.args = {};
+
+FilterButton.args = {
+  name: "Life stage",
+  index: 1,
+  selectedItemArrays: [],
+  setOpenMobilePage: (item: boolean) => {},
+  onSelectItem: (item: string, index: number) => {},
+};

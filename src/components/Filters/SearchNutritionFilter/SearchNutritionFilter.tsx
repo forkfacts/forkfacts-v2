@@ -159,7 +159,7 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
   }, [filteredNutrient]);
 
   return (
-    <Box>
+    <Box sx={{ mb: theme.spacing(3) }}>
       <Box
         sx={{
           paddingLeft: theme.spacing(1),

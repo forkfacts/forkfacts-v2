@@ -19,12 +19,8 @@ const NutritionScreen: React.FC<NutritionScreenProps> = ({
   getSelectedNutrients,
   onSelectAvailableAmounts,
   lifeStageItems,
-  onSelectLifeStageItem,
   ageItems,
-  onSelectAgeItem,
   nutritionFilterItems,
-  onSelectNutritionFilterItem,
-  onSelectMeasurementItem,
   measurementFilterItems,
 }) => {
   const theme = useTheme();
@@ -62,12 +58,8 @@ const NutritionScreen: React.FC<NutritionScreenProps> = ({
       <FilterPage
         selectedFilters={selectedFilters}
         lifeStageItems={lifeStageItems}
-        onSelectLifeStageItem={onSelectLifeStageItem}
         ageItems={ageItems}
-        onSelectAgeItem={onSelectAgeItem}
         nutritionFilterItems={nutritionFilterItems}
-        onSelectNutritionFilterItem={onSelectNutritionFilterItem}
-        onSelectMeasurementItem={onSelectMeasurementItem}
         measurementFilterItems={measurementFilterItems}
         openMobilePage={openMobilePage}
         setOpenMobilePage={setOpenMobilePage}

@@ -112,22 +112,10 @@ export const Mobile = Template.bind({});
 
 Mobile.args = {
   selectedFilters: ["All filters", "Life stage", "Age", "Nutrients", "Measure Units"],
-  onSelectLifeStageItem: (name: string) => {
-    console.log(name);
-  },
   lifeStageItems: lifeStageItems,
   ageItems: ageItems,
-  onSelectAgeItem: (item: ageItem) => {
-    console.log(item);
-  },
   nutritionFilterItems: nutritionFilterItems,
-  onSelectNutritionFilterItem: (items: SearchNutritionFilterItem[]) => {
-    console.log(items);
-  },
   measurementFilterItems: ["US", "Metric"],
-  onSelectMeasurementItem: (item: string) => {
-    console.log(item);
-  },
   openMobilePage: true,
 };
 

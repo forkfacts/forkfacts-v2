@@ -7,26 +7,45 @@ import {
   SearchNutritionFilter,
   MeasurementFilter,
 } from "@forkfacts/components";
-import { FilterPageProps } from "@forkfacts/models";
+import { FilterPageProps, ageItem, SearchNutritionFilterItem } from "@forkfacts/models";
 import { useStyles } from "./filterPageStyles";
 
 const FilterPage: React.FC<FilterPageProps> = ({
   selectedFilters,
   lifeStageItems,
-  onSelectLifeStageItem,
   ageItems,
-  onSelectAgeItem,
   nutritionFilterItems,
-  onSelectNutritionFilterItem,
-  onSelectMeasurementItem,
   measurementFilterItems,
   openMobilePage,
   setOpenMobilePage,
 }) => {
   const theme = useTheme();
   const classes = useStyles({ openMobilePage });
+  const [selectAge, setSelectAge] = useState<ageItem>({} as ageItem);
+  const [selectedLifeStage, setSelectedLifeStage] = useState("");
+  const [selectedMeasurementItem, setSelectedMeasurement] = useState("");
+  const [selectNutritionFilterItems, setSelectNutritionFilterItems] = useState<
+    SearchNutritionFilterItem[]
+  >([]);
 
-  console.log("selectedFilters", selectedFilters);
+  const onSelectAgeItem = (item: ageItem) => {
+    setSelectAge(item);
+  };
+  const onSelectLifeStageItem = (item: string) => {
+    setSelectedLifeStage(item);
+  };
+  const onSelectMeasurementItem = (item: string) => {
+    setSelectedMeasurement(item);
+  };
+
+  const onSelectNutritionFilterItem = (items: SearchNutritionFilterItem[]) => {
+    setSelectNutritionFilterItems(items);
+  };
+
+  // console.log("selectAge", selectAge);
+  // console.log("selectedLifeStage",selectedLifeStage)
+  // console.log("selectedMeasurementItem",selectedMeasurementItem)
+  console.log("selectNutritionFilterItems", selectNutritionFilterItems);
 
   return (
     <Box className={classes.root}>

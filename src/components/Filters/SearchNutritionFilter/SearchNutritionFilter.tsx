@@ -156,7 +156,7 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
       .filter((item) => item !== undefined) as SearchNutritionFilterItem[];
 
     onSelectNutritionFilterItem(checkedNutrients);
-  }, [renderFilterNutrients]);
+  }, [filteredNutrient]);
 
   return (
     <Box>

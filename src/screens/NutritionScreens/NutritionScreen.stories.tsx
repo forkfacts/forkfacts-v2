@@ -185,22 +185,10 @@ Mobile.args = {
   onSelectAvailableAmounts(item: string) {
     console.log(item);
   },
-  onSelectLifeStageItem: (name: string) => {
-    console.log(name);
-  },
   lifeStageItems: lifeStageItems,
   ageItems: ageItems,
-  onSelectAgeItem: (item: ageItem) => {
-    console.log(item);
-  },
   nutritionFilterItems: nutritionFilterItems,
-  onSelectNutritionFilterItem: (items: SearchNutritionFilterItem[]) => {
-    console.log(items);
-  },
   measurementFilterItems: ["US", "Metric"],
-  onSelectMeasurementItem: (item: string) => {
-    console.log(item);
-  },
 };
 
 Mobile.parameters = {

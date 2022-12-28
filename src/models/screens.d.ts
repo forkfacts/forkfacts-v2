@@ -54,11 +54,7 @@ export interface NutritionScreenProps {
   allNutrients: Array<filterItem>;
   getSelectedNutrients: (items: string[]) => void;
   lifeStageItems: Array<lifeStageItem>;
-  onSelectLifeStageItem: (name: string) => void;
   ageItems: Array<ageItem>;
-  onSelectAgeItem: (item: ageItem) => void;
   nutritionFilterItems: Array<SearchNutritionFilterItem>;
-  onSelectNutritionFilterItem: (item: SearchNutritionFilterItem[]) => void;
   measurementFilterItems: string[];
-  onSelectMeasurementItem: (item: string) => void;
 }

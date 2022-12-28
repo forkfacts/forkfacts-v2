@@ -225,3 +225,14 @@ export interface AgeItemsProps {
   ageItems: Array<ageItem>;
   onSelectAgeItem: (item: ageItem) => void;
 }
+
+export interface SearchNutritionFilterProps {
+  nutritionFilterItems: Array<SearchNutritionFilterItem>;
+  onSelectNutritionFilterItem: (item: SearchNutritionFilterItem[]) => void;
+}
+
+export interface SearchNutritionFilterItem {
+  name: string;
+  subItems: { name: string; checked: boolean }[];
+  checked: boolean;
+}

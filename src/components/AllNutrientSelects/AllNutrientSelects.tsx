@@ -27,16 +27,13 @@ const AllNutrientSelects: React.FC<AllNutrientSelectsProps> = ({
   const [selectedNutrients, setSelectNutrients] = useState<NutrientType[]>([...newNutrients]);
 
   const onSelectButtonItem = (name: string, index: number) => {
-    let checked;
     let results = selectedNutrients.map((item, index) => {
       if (item.name === name) {
-        checked = true;
-        if (item.checked === false) {
-          let newItem = { ...item, name, checked: checked };
+        if (!item.checked) {
+          let newItem = { ...item, name, checked: true };
           return newItem;
         } else {
-          checked = false;
-          let newItem = { ...item, name, checked: checked };
+          let newItem = { ...item, name, checked: false };
           return newItem;
         }
       } else {
@@ -47,27 +44,27 @@ const AllNutrientSelects: React.FC<AllNutrientSelectsProps> = ({
   };
 
   const onSelectAll = () => {
-    const checkedAll = selectedNutrients.map((item) => {
+    const checkedNutrients = selectedNutrients.map((item) => {
       return {
         ...item,
         checked: true,
       };
     });
-    setSelectNutrients(checkedAll);
+    setSelectNutrients(checkedNutrients);
   };
 
   const onDoneFilter = () => {
-    const checkedAll = selectedNutrients.filter((school) => {
-      if (school.checked === true) {
+    const checkedNutrients = selectedNutrients.filter((item) => {
+      if (item.checked) {
         return {
-          ...school,
+          ...item,
           checked: true,
         };
       }
     });
-    if (checkedAll.length) {
+    if (checkedNutrients.length) {
       getSelectedNutrients(
-        checkedAll.map((item) => {
+        checkedNutrients.map((item) => {
           return item?.name as string;
         })
       );

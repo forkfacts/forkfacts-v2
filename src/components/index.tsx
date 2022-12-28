@@ -27,3 +27,4 @@ export { default as FilterPage } from "./FilterPage/FilterPage";
 export { default as LifeStage } from "./LifeStage/LifeStage";
 export { default as LifeStageItem } from "./LifeStageItem/LifeStageItem";
 export { default as FilterAge } from "./FilterAge/FilterAge";
+export { default as SearchNutritionFilter } from "./SearchNutrientionFilter/SearchNutritionFilter";

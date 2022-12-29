@@ -155,7 +155,7 @@
       },
       "tableContent": [
         {
-          "nutrient": "Total Carbohydrate",
+          "title": "Total Carbohydrate",
           "amount": 4,
           "amountUnit": "g",
           "content": [
@@ -181,7 +181,7 @@
               "rdi": { "amount": 15, "unit": "g" }
             },
             {
-              "nutrient": "Starch  2g",
+              "nutrient": "Starch",
               "value": {
                 "amount": 2,
                 "unit": "g"
@@ -195,12 +195,12 @@
           ]
         },
         {
-          "nutrient": "Protein",
+          "title": "Protein",
           "amount": 11,
           "amountUnit": "g",
           "content": [
             {
-              "nutrient": "Protein 2g",
+              "nutrient": "Protein",
               "value": {
                 "amount": 2,
                 "unit": "g"

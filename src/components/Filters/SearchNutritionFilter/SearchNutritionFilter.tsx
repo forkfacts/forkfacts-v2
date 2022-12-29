@@ -234,7 +234,7 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
                 >
                   <Box sx={{ display: "flex", alignItems: "center" }}>
                     <Checkbox
-                      color="success"
+                      color="primary"
                       checked={item.checked}
                       onClick={(event) => handleSelectItem(event, item.name, index)}
                     />

@@ -6,8 +6,3 @@ export type SeoProps = {
   pathname?: string;
   children?: JSX.Element | JSX.Element[];
 };
-export type seoDataProps = {
-  site: {
-    siteMetadata: siteMetadata;
-  };
-};

@@ -2,10 +2,10 @@ import { Box, useTheme } from "@mui/material";
 import { spacing } from "@mui/system";
 import React from "react";
 import { CircularProgressbarWithChildren, buildStyles } from "react-circular-progressbar";
-import { NutritionRateProps } from "@forkfacts/models";
+import { NutrientSummaryItemProps } from "@forkfacts/models";
 import "react-circular-progressbar/dist/styles.css";
 
-const NutritionRate: React.FC<NutritionRateProps> = ({ percentage, weight, name }) => {
+const NutrientSummaryItem: React.FC<NutrientSummaryItemProps> = ({ percentage, weight, name }) => {
   const theme = useTheme();
   return (
     <Box sx={{ width: theme.spacing(8.25), height: theme.spacing(8.25) }}>
@@ -57,4 +57,4 @@ const NutritionRate: React.FC<NutritionRateProps> = ({ percentage, weight, name 
   );
 };
 
-export default NutritionRate;
+export default NutrientSummaryItem;

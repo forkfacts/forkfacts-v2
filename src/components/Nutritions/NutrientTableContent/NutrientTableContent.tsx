@@ -45,7 +45,7 @@ const NutritionTableContent: React.FC<NutritionTableContentProps> = ({ nutrition
                       fontWeight: theme.typography.fontWeightBold,
                     }}
                   >
-                    {item.title} {item.amount}
+                    {item.nutrient} {item.amount}
                     {item.amountUnit}
                   </Typography>
                 </Box>
@@ -59,9 +59,9 @@ const NutritionTableContent: React.FC<NutritionTableContentProps> = ({ nutrition
                     {item.content.length > 2 && (
                       <Typography>
                         {isOpen || Index !== index ? (
-                          <ExpandLess sx={{ cursor: "pointer" }} />
+                          <ExpandLess sx={{ color: theme.palette.grey[800], cursor: "pointer" }} />
                         ) : (
-                          <ExpandMore sx={{ cursor: "pointer" }} />
+                          <ExpandMore sx={{ color: theme.palette.grey[800], cursor: "pointer" }} />
                         )}
                       </Typography>
                     )}
@@ -83,8 +83,11 @@ const NutritionTableContent: React.FC<NutritionTableContentProps> = ({ nutrition
                           }}
                         >
                           <Box>{item2.nutrient}</Box>
-                          <Box>{item2.valuePercent}</Box>
-                          <Box>{item2.rdi.amount}</Box>
+                          {item2.valuePercent && <Box>{item2.valuePercent}%</Box>}
+                          <Box>
+                            {item2.rdi.amount}
+                            {item2.rdi.unit}
+                          </Box>
                         </Box>
                       );
                     }}

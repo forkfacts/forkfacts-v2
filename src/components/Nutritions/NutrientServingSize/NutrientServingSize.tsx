@@ -1,19 +1,21 @@
 import React, { useEffect, useState } from "react";
 import Checkbox from "@mui/material/Checkbox";
 import { Box, Typography, useTheme } from "@mui/material";
-import { NutrientAvailableAmountsProps } from "@forkfacts/models";
+import { NutrientServingSizeProps } from "@forkfacts/models";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
 import RadioButtonCheckedIcon from "@mui/icons-material/RadioButtonChecked";
 
-const NutrientAvailableAmounts: React.FC<NutrientAvailableAmountsProps> = ({
+const NutrientServingSize: React.FC<NutrientServingSizeProps> = ({
   availableAmounts,
   onSelectAvailableAmounts,
 }) => {
   const theme = useTheme();
   const [open, setIsOpen] = useState(false);
-  const [selectedAvailableAmounts, setSelectedAvailableAmounts] = useState("");
+  const [selectedAvailableAmounts, setSelectedAvailableAmounts] = useState(
+    availableAmounts[availableAmounts.length - 1]
+  );
 
   const handleSelectItem = (index: number, name: string) => {
     if (availableAmounts[index] === name) {
@@ -32,7 +34,15 @@ const NutrientAvailableAmounts: React.FC<NutrientAvailableAmountsProps> = ({
         sx={{ display: "flex", justifyContent: "flex-end", alignItems: "center" }}
         onClick={() => setIsOpen(!open)}
       >
-        <Typography component="span" sx={{ fontSize: theme.typography.caption.fontSize }}>
+        <Typography
+          variant="caption"
+          sx={{
+            color: theme.palette.grey[600],
+            fontWeight: theme.typography.fontWeightRegular,
+            lineHeight: theme.spacing(2),
+            letterSpacing: theme.spacing(0.05),
+          }}
+        >
           Amount per {selectedAvailableAmounts}
         </Typography>
         {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
@@ -50,12 +60,22 @@ const NutrientAvailableAmounts: React.FC<NutrientAvailableAmountsProps> = ({
             paddingRight: theme.spacing(4.375),
             zIndex: theme.zIndex.modal,
             backgroundColor: theme.palette.common.white,
-            marginTop: theme.spacing(2),
+            marginTop: theme.spacing(1.5),
           }}
           boxShadow={1}
         >
           <Box>
-            <Typography variant="caption">SERVING SIZES</Typography>
+            <Typography
+              variant="caption"
+              sx={{
+                color: theme.palette.grey[600],
+                fontWeight: theme.typography.fontWeightRegular,
+                lineHeight: theme.spacing(2),
+                letterSpacing: theme.spacing(0.05),
+              }}
+            >
+              SERVING SIZES
+            </Typography>
           </Box>
           <Box
             component="ul"
@@ -85,7 +105,13 @@ const NutrientAvailableAmounts: React.FC<NutrientAvailableAmountsProps> = ({
                   checkedIcon={<RadioButtonCheckedIcon />}
                   checked={selectedAvailableAmounts === item ? true : false}
                 />
-                <Typography component="span" sx={{ fontSize: theme.typography.caption.fontSize }}>
+                <Typography
+                  sx={{
+                    fontSize: theme.typography.caption.fontSize,
+                    color: theme.palette.common.black,
+                    fontWeight: theme.typography.fontWeightBold,
+                  }}
+                >
                   {item}
                 </Typography>
               </Box>
@@ -97,4 +123,4 @@ const NutrientAvailableAmounts: React.FC<NutrientAvailableAmountsProps> = ({
   );
 };
 
-export default NutrientAvailableAmounts;
+export default NutrientServingSize;

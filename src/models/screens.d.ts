@@ -49,7 +49,7 @@ export interface NutritionScreenProps {
   availableAmounts: Array<string>;
   onSelectAvailableAmounts: (item: string) => void;
   source: string;
-  nutritionRatesItems: Array<rateItem>;
+  nutritionSummaryItems: Array<rateItem>;
   nutritionTableItems: Array<nutritionTableItem>;
   allNutrients: Array<filterItem>;
   getSelectedNutrients: (items: string[]) => void;

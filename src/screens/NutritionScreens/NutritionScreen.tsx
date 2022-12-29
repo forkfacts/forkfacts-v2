@@ -1,7 +1,7 @@
 import {
   NutritionFilters,
   NutrientTopTableHeader,
-  NutritionRates,
+  NutritionSummary,
   NutritionTable,
   FilterPage,
 } from "@forkfacts/components";
@@ -13,7 +13,7 @@ const NutritionScreen: React.FC<NutritionScreenProps> = ({
   filters,
   availableAmounts,
   source,
-  nutritionRatesItems,
+  nutritionSummaryItems,
   nutritionTableItems,
   allNutrients,
   getSelectedNutrients,
@@ -47,7 +47,7 @@ const NutritionScreen: React.FC<NutritionScreenProps> = ({
         />
       </Box>
       <Box sx={{ mt: theme.spacing(4) }}>
-        <NutritionRates nutritionRatesItems={nutritionRatesItems} />
+        <NutritionSummary nutritionSummaryItems={nutritionSummaryItems} />
       </Box>
       <Box sx={{ mt: theme.spacing(11) }}>
         <NutritionTable

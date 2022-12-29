@@ -18,38 +18,63 @@ const Template: ComponentStory<typeof NutritionTable> = (args) => <NutritionTabl
 
 const nutritionTableItems: nutritionTableItem[] = [
   {
-    title: "Total Carbohydrate",
+    nutrient: "Total Carbohydrate",
     amount: 4,
     amountUnit: "g",
     content: [
       {
-        nutrient: "Carbohydrate  2g",
-        valuePercent: "17.67%",
+        nutrient: "Carbohydrate",
+        value: {
+          amount: 2,
+          unit: "g",
+        },
+        valuePercent: 17.67,
         rdi: {
-          amount: "130",
+          amount: 130,
           unit: "g",
         },
       },
       {
-        nutrient: "Sugar  2g",
-        valuePercent: "",
-        rdi: { amount: "15", unit: "g" },
+        nutrient: "Sugar",
+        value: {
+          amount: 2,
+          unit: "g",
+        },
+        valuePercent: null,
+        rdi: { amount: 15, unit: "g" },
       },
       {
         nutrient: "Starch  2g",
-        valuePercent: "",
+        value: {
+          amount: 2,
+          unit: "g",
+        },
+        valuePercent: null,
         rdi: {
-          amount: "12.6",
+          amount: 12.6,
           unit: "g",
         },
       },
     ],
   },
   {
-    title: "Protein",
+    nutrient: "Protein",
     amount: 11,
     amountUnit: "g",
-    content: [{ nutrient: "Protein 2g", valuePercent: "1.61%", rdi: { amount: "46", unit: "g" } }],
+    content: [
+      {
+        nutrient: "Protein 2g",
+        value: {
+          amount: 2,
+          unit: "g",
+        },
+        valuePercent: 1.61,
+        rdi: {
+          amount: 46,
+          unit: "g",
+        },
+      },
+    ],
   },
 ];
 const allNutrients: filterItem[] = [

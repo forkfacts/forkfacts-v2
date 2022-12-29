@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Checkbox from "@mui/material/Checkbox";
 import { ForLoops } from "@forkfacts/helpers";
 import { Box, Typography, useTheme } from "@mui/material";
-import { AllNutrientSelectsProps, filterItem } from "@forkfacts/models";
+import { SelectNutrientsProps, filterItem } from "@forkfacts/models";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
@@ -10,7 +10,7 @@ type NutrientType = {
   checked: boolean;
 } & filterItem;
 
-const AllNutrientSelects: React.FC<AllNutrientSelectsProps> = ({
+const SelectNutrients: React.FC<SelectNutrientsProps> = ({
   allNutrients,
   getSelectedNutrients,
 }) => {
@@ -87,9 +87,10 @@ const AllNutrientSelects: React.FC<AllNutrientSelectsProps> = ({
             fontSize: theme.typography.htmlFontSize,
             fontWeight: theme.typography.fontWeightBold,
             lineHeight: theme.spacing(3),
+            letterSpacing: theme.spacing(0.05),
           }}
         >
-          All nutrients
+          All Nutrients
         </Typography>
         {open ? <KeyboardArrowUpIcon color="primary" /> : <KeyboardArrowDownIcon color="primary" />}
       </Typography>
@@ -111,7 +112,17 @@ const AllNutrientSelects: React.FC<AllNutrientSelectsProps> = ({
           boxShadow={1}
         >
           <Box>
-            <Typography variant="caption">NUTRIENTS</Typography>
+            <Typography
+              variant="caption"
+              sx={{
+                color: theme.palette.grey[600],
+                fontWeight: theme.typography.fontWeightRegular,
+                lineHeight: theme.spacing(2),
+                letterSpacing: theme.spacing(0.05),
+              }}
+            >
+              NUTRIENTS
+            </Typography>
           </Box>
           <Box
             component="ul"
@@ -139,10 +150,16 @@ const AllNutrientSelects: React.FC<AllNutrientSelectsProps> = ({
                   onClick={() => onSelectButtonItem(item.name, index)}
                 >
                   <Box>
-                    <Checkbox checked={item.checked} color="success" />
+                    <Checkbox checked={item.checked} color="primary" />
                     <Typography
                       component="span"
-                      sx={{ fontSize: theme.typography.caption.fontSize }}
+                      sx={{
+                        fontSize: theme.typography.caption.fontSize,
+                        color: theme.palette.common.black,
+                        fontWeight: theme.typography.fontWeightBold,
+                        lineHeight: theme.spacing(2),
+                        letterSpacing: theme.spacing(0.05),
+                      }}
                     >
                       {item.name}
                     </Typography>
@@ -164,7 +181,7 @@ const AllNutrientSelects: React.FC<AllNutrientSelectsProps> = ({
                 display: "flex",
                 justifyContent: "space-between",
                 alignItems: "center",
-                mr: theme.spacing(10),
+                mr: theme.spacing(9),
                 mt: theme.spacing(5),
               }}
             >
@@ -191,4 +208,4 @@ const AllNutrientSelects: React.FC<AllNutrientSelectsProps> = ({
   );
 };
 
-export default AllNutrientSelects;
+export default SelectNutrients;

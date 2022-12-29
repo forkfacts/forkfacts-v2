@@ -1,13 +1,13 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import { AllNutrientSelects } from "@forkfacts/components";
+import { SelectNutrients } from "@forkfacts/components";
 import { filterItem } from "@forkfacts/models";
 
 export default {
-  title: "Components/Nutrition/AllNutrientSelects",
-  component: AllNutrientSelects,
-} as ComponentMeta<typeof AllNutrientSelects>;
+  title: "Components/Nutrition/SelectNutrients",
+  component: SelectNutrients,
+} as ComponentMeta<typeof SelectNutrients>;
 
 const allNutrients: filterItem[] = [
   { name: "Protein", amount: 0 },
@@ -19,9 +19,7 @@ const allNutrients: filterItem[] = [
   { name: "Water", amount: 0 },
 ];
 
-const Template: ComponentStory<typeof AllNutrientSelects> = (args) => (
-  <AllNutrientSelects {...args} />
-);
+const Template: ComponentStory<typeof SelectNutrients> = (args) => <SelectNutrients {...args} />;
 
 export const Main = Template.bind({});
 Main.args = {

@@ -35,7 +35,7 @@ const filters: filterButtonItem[] = [
   { name: "Nutrients" },
   { name: "Measure Units" },
 ];
-const nutritionRatesItems = [
+const nutritionSummaryItems = [
   { name: "Protein", percentage: "10%", weight: "120g" },
   { name: "Carbs", percentage: "20%", weight: "120g" },
   { name: "Fats", percentage: "30%", weight: "120g" },
@@ -44,41 +44,65 @@ const nutritionRatesItems = [
 
 const nutritionTableItems: nutritionTableItem[] = [
   {
-    title: "Total Carbohydrate",
+    nutrient: "Total Carbohydrate",
     amount: 4,
     amountUnit: "g",
     content: [
       {
-        nutrient: "Carbohydrate  2g",
-        valuePercent: "17.67%",
+        nutrient: "Carbohydrate",
+        value: {
+          amount: 2,
+          unit: "g",
+        },
+        valuePercent: 17.67,
         rdi: {
-          amount: "130",
+          amount: 130,
           unit: "g",
         },
       },
       {
-        nutrient: "Sugar  2g",
-        valuePercent: "",
-        rdi: { amount: "15", unit: "g" },
+        nutrient: "Sugar",
+        value: {
+          amount: 2,
+          unit: "g",
+        },
+        valuePercent: null,
+        rdi: { amount: 15, unit: "g" },
       },
       {
         nutrient: "Starch  2g",
-        valuePercent: "",
+        value: {
+          amount: 2,
+          unit: "g",
+        },
+        valuePercent: null,
         rdi: {
-          amount: "12.6",
+          amount: 12.6,
           unit: "g",
         },
       },
     ],
   },
   {
-    title: "Protein",
+    nutrient: "Protein",
     amount: 11,
     amountUnit: "g",
-    content: [{ nutrient: "Protein 2g", valuePercent: "1.61%", rdi: { amount: "46", unit: "g" } }],
+    content: [
+      {
+        nutrient: "Protein 2g",
+        value: {
+          amount: 2,
+          unit: "g",
+        },
+        valuePercent: 1.61,
+        rdi: {
+          amount: 46,
+          unit: "g",
+        },
+      },
+    ],
   },
 ];
-
 const allNutrients: filterItem[] = [
   { name: "Protein", amount: 0 },
   { name: "Fiber", amount: 0 },
@@ -89,7 +113,7 @@ const allNutrients: filterItem[] = [
   { name: "Water", amount: 0 },
 ];
 
-const availableAmounts = ["1 tablespoon", "1cup", "100g"];
+const availableAmounts = ["1 tablespoon", "1 cup", "100 g"];
 
 const lifeStageItems: lifeStageItem[] = [
   {
@@ -178,7 +202,7 @@ Mobile.args = {
   filters: filters,
   availableAmounts: availableAmounts,
   source: "USDA",
-  nutritionRatesItems: nutritionRatesItems,
+  nutritionSummaryItems: nutritionSummaryItems,
   nutritionTableItems: nutritionTableItems,
   allNutrients: allNutrients,
   getSelectedNutrients: (items: string[]) => {

@@ -1,21 +1,21 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
-import { NutritionRates } from "@forkfacts/components";
+import { NutritionSummary } from "@forkfacts/components";
 
 export default {
-  title: "Components/Nutrition/NutritionRates",
-  component: NutritionRates,
+  title: "Components/Nutrition/NutritionSummary",
+  component: NutritionSummary,
   parameters: {
     viewport: {
       viewports: INITIAL_VIEWPORTS,
     },
   },
-} as ComponentMeta<typeof NutritionRates>;
+} as ComponentMeta<typeof NutritionSummary>;
 
-const Template: ComponentStory<typeof NutritionRates> = (args) => <NutritionRates {...args} />;
+const Template: ComponentStory<typeof NutritionSummary> = (args) => <NutritionSummary {...args} />;
 
-const nutritionRatesItems = [
+const nutritionSummaryItems = [
   { name: "Protein", percentage: "10%", weight: "120g" },
   { name: "Carbs", percentage: "20%", weight: "120g" },
   { name: "Fats", percentage: "30%", weight: "120g" },
@@ -25,7 +25,7 @@ const nutritionRatesItems = [
 export const Mobile = Template.bind({});
 
 Mobile.args = {
-  nutritionRatesItems: nutritionRatesItems,
+  nutritionSummaryItems: nutritionSummaryItems,
 };
 
 Mobile.parameters = {
@@ -37,7 +37,7 @@ Mobile.parameters = {
 export const Tablet = Template.bind({});
 
 Tablet.args = {
-  nutritionRatesItems: nutritionRatesItems,
+  nutritionSummaryItems: nutritionSummaryItems,
 };
 
 Tablet.parameters = {

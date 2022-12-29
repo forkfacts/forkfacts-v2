@@ -195,7 +195,11 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
             ),
             endAdornment: (
               <InputAdornment position="end">
-                <Box>{name ? <CloseIcon sx={{ cursor: "pointer" }} /> : null}</Box>
+                <Box>
+                  {name ? (
+                    <CloseIcon sx={{ cursor: "pointer" }} onClick={() => setName("")} />
+                  ) : null}
+                </Box>
               </InputAdornment>
             ),
           }}

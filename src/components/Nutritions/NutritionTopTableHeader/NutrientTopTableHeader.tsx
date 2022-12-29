@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Typography, useTheme } from "@mui/material";
 import { NutrientHeaderProps } from "@forkfacts/models";
-import { NutrientAvailableAmounts } from "@forkfacts/components";
+import { NutrientServingSize } from "@forkfacts/components";
 
 const NutrientTopTableHeader: React.FC<NutrientHeaderProps> = ({
   availableAmounts,
@@ -20,9 +20,19 @@ const NutrientTopTableHeader: React.FC<NutrientHeaderProps> = ({
         }}
       >
         <Box>
-          <Typography variant="caption">Source: {source}</Typography>
+          <Typography
+            variant="caption"
+            sx={{
+              color: theme.palette.grey[600],
+              fontWeight: theme.typography.fontWeightRegular,
+              lineHeight: theme.spacing(2),
+              letterSpacing: theme.spacing(0.05),
+            }}
+          >
+            Source: {source}
+          </Typography>
         </Box>
-        <NutrientAvailableAmounts
+        <NutrientServingSize
           onSelectAvailableAmounts={onSelectAvailableAmounts}
           availableAmounts={availableAmounts}
         />

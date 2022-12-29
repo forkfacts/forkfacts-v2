@@ -13,7 +13,7 @@ export default {
   },
 } as ComponentMeta<typeof NutrientTopTableHeader>;
 
-const availableAmounts = ["1 tablespoon", "1cup", "100g"];
+const availableAmounts = ["1 tablespoon", "1 cup", "100 g"];
 
 const Template: ComponentStory<typeof NutrientTopTableHeader> = (args) => (
   <NutrientTopTableHeader {...args} />
@@ -24,7 +24,9 @@ export const Mobile = Template.bind({});
 Mobile.args = {
   availableAmounts: availableAmounts,
   source: "USDA",
-  onSelectAvailableAmounts: (item: string) => {},
+  onSelectAvailableAmounts: (item: string) => {
+    console.log(item);
+  },
 };
 
 Mobile.parameters = {

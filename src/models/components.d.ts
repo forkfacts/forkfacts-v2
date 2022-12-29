@@ -24,16 +24,21 @@ export type lifeStageItem = {
 
 export interface content {
   nutrient: string;
-  valuePercent: string;
+  valuePercent: number | null;
+  value: {
+    amount: number;
+    unit: string;
+  };
   rdi: {
-    amount: string;
+    amount: number;
     unit: string;
   };
 }
 export interface nutritionTableItem {
-  title: string;
+  nutrient: string;
   amount: number;
   amountUnit: string;
+
   content: Array<content>;
 }
 
@@ -168,11 +173,11 @@ interface AutoCompleteSearchProps extends onSelectCategoryType {
   collectionGroupedItems: Array<SearchResultItemCollectionType>;
 }
 
-export interface NutritionRatesProps {
-  nutritionRatesItems: Array<rateItem>;
+export interface NutritionSummaryProps {
+  nutritionSummaryItems: Array<rateItem>;
 }
 
-export interface NutritionRateProps {
+export interface NutrientSummaryItemProps {
   weight: string;
   percentage: string;
   name: string;
@@ -194,7 +199,7 @@ export interface NutritionTableProps {
   getSelectedNutrients: (items: string[]) => void;
 }
 
-export interface AllNutrientSelectsProps {
+export interface SelectNutrientsProps {
   allNutrients: filterItem[];
   getSelectedNutrients: (items: string[]) => void;
 }
@@ -213,7 +218,7 @@ export interface FilterButtonProps {
   setOpenMobilePage: (item: boolean) => void;
 }
 
-export interface NutrientAvailableAmountsProps {
+export interface NutrientServingSizeProps {
   availableAmounts: Array<string>;
   onSelectAvailableAmounts: (item: string) => void;
 }

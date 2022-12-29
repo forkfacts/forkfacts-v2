@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { AllNutrientSelects, NutritionTableContent } from "@forkfacts/components";
+import { SelectNutrients, NutritionTableContent } from "@forkfacts/components";
 import { NutritionTableProps } from "@forkfacts/models";
 import { Box, useTheme } from "@mui/material";
 import { useStyles } from "./nutritionTableStyles";
@@ -15,7 +15,7 @@ const NutritionTable: React.FC<NutritionTableProps> = ({
     <>
       <Box style={{ display: "flex", justifyContent: "space-between", width: "100%" }}>
         <Box>
-          <AllNutrientSelects
+          <SelectNutrients
             allNutrients={allNutrients}
             getSelectedNutrients={getSelectedNutrients}
           />

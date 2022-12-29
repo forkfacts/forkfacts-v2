@@ -165,7 +165,7 @@
                 "amount": 2,
                 "unit": "g"
               },
-              "valuePercent": 17.67,
+              "valuePercent": null,
               "rdi": {
                 "amount": 130,
                 "unit": "g"
@@ -186,7 +186,7 @@
                 "amount": 2,
                 "unit": "g"
               },
-              "valuePercent": 17.67,
+              "valuePercent": null,
               "rdi": {
                 "amount": 12.6,
                 "unit": "g"
@@ -195,15 +195,19 @@
           ]
         },
         {
-          "title": "Protein",
+          "nutrient": "Protein",
           "amount": 11,
           "amountUnit": "g",
           "content": [
             {
               "nutrient": "Protein 2g",
-              "valuePercent": "1.61%",
+              "value": {
+                "amount": 2,
+                "unit": "g"
+              },
+              "valuePercent": 1.61,
               "rdi": {
-                "amount": "46",
+                "amount": 46,
                 "unit": "g"
               }
             }

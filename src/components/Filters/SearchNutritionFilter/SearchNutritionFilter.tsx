@@ -216,7 +216,6 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
                 sx={{
                   boxShadow: "none",
                   boxSizing: "border-box",
-                  borderBo: "none !important",
                   "&:before": {
                     display: "none",
                   },

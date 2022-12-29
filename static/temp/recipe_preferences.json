@@ -1,0 +1,32 @@
+{
+  "recipePreferences": {
+    "filterTags": [
+      { "name": "Dietary" },
+      { "name": "Allergy" },
+      { "name": "Meal type" },
+      { "name": "Cooking time" }
+    ],
+    "filters": [
+      {
+        "name": "Dietary",
+        "values": ["Gluten-free", "Dairy-free", "Vegan"]
+      },
+      {
+        "name": "Allergy",
+        "values": ["Nuts", "Soy", "Wheat", "Milk"]
+      },
+      {
+        "name": " CookingTime",
+        "values": ["15 mins", "15-30 mins", "30-45 mins", "45 Years"]
+      },
+      {
+        "name": "MealType",
+        "values": ["Breakfast", "launch", "Dinner", "Snacks"]
+      },
+      {
+        "name": "Videos",
+        "values": [0, 1]
+      }
+    ]
+  }
+}

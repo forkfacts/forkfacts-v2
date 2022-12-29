@@ -25,7 +25,7 @@
       },
       {
         "name": "Videos",
-        "values": ["1", "0"]
+        "values": [0, 1]
       }
     ]
   }

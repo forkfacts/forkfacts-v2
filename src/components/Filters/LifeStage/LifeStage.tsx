@@ -5,7 +5,7 @@ import { LifeStageItem } from "@forkfacts/components";
 
 const LifeStage: React.FC<LifeStageProps> = ({ lifeStageItems, onSelectLifeStageItem }) => {
   const theme = useTheme();
-  const [selectedItem, setSelectedItem] = useState<string>("");
+  const [selectedItem, setSelectedItem] = useState<string>("Female");
 
   const handleSelectedItem = (name: string, index: number) => {
     setSelectedItem(name);

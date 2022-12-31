@@ -20,7 +20,7 @@ const NutritionTable: React.FC<NutritionTableProps> = ({
             getSelectedNutrients={getSelectedNutrients}
           />
         </Box>
-        <Box className={classes.tableTitle}>%value</Box>
+        <Box className={classes.tableTitle}>%Daily value</Box>
         <Box className={classes.tableTitle}>RDI</Box>
       </Box>
       <NutritionTableContent nutritionTableItems={nutritionTableItems} />

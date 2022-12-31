@@ -14,7 +14,7 @@ export default {
   },
 } as ComponentMeta<typeof NutrientServingSize>;
 
-const availableAmounts = ["1 tablespoon", "1 cup", "100 g"];
+const servingSizeAmounts = ["1 tablespoon", "1 cup", "100 g"];
 
 const Template: ComponentStory<typeof NutrientServingSize> = (args) => (
   <Box style={{ width: "10%" }}>
@@ -25,6 +25,6 @@ const Template: ComponentStory<typeof NutrientServingSize> = (args) => (
 export const Main = Template.bind({});
 
 Main.args = {
-  availableAmounts: availableAmounts,
-  onSelectAvailableAmounts: (name: string) => {},
+  servingSizeAmounts: servingSizeAmounts,
+  onSelectServingSizeAmount: (name: string) => {},
 };

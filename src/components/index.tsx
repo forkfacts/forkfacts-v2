@@ -23,7 +23,7 @@ export { default as NutrientServingSize } from "./Nutritions/NutrientServingSize
 export { default as NutritionTable } from "./Nutritions/NutritionTable/NutritionTable";
 export { default as SelectNutrients } from "./Nutritions/SelectNutrients/SelectNutrients";
 export { default as NutritionTableContent } from "./Nutritions/NutrientTableContent/NutrientTableContent";
-export { default as FilterPage } from "./Filters/FilterPage/FilterPage";
+export { default as AllFilters } from "./Filters/AllFilters/AllFilters";
 export { default as LifeStage } from "./Filters/LifeStage/LifeStage";
 export { default as LifeStageItem } from "./LifeStageItem/LifeStageItem";
 export { default as FilterAge } from "./Filters/FilterAge/FilterAge";

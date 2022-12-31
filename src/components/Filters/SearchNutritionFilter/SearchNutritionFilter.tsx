@@ -10,6 +10,7 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
+import { ViewMoreButton } from "@forkfacts/components";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import CloseIcon from "@mui/icons-material/Close";
 import React, { useEffect, useState } from "react";
@@ -39,6 +40,10 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
     name: "",
   });
   const [name, setName] = useState<string>("");
+  const [viewMore, setViewMore] = useState({
+    main: 5,
+    sub: 4,
+  });
   const handleAccordion =
     (panel: string, item: SearchNutritionFilterItem) =>
     (event: React.SyntheticEvent, isExpanded: boolean) => {
@@ -158,6 +163,12 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
     onSelectNutritionFilterItem(checkedNutrients);
   }, [filteredNutrient]);
 
+  const handleMainViewMore = () => {
+    setViewMore({ ...viewMore, main: renderFilterNutrients.length });
+  };
+  const handleSubViewMore = (sub: SearchNutritionFilterItem) => {
+    setViewMore({ ...viewMore, sub: sub.subItems.length });
+  };
   return (
     <Box sx={{ mb: theme.spacing(3) }}>
       <Box
@@ -206,7 +217,7 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
         />
       </Box>
       <Box sx={{ mt: theme.spacing(5) }}>
-        <ForLoops each={renderFilterNutrients}>
+        <ForLoops each={renderFilterNutrients.slice(0, viewMore.main)}>
           {(item, index) => {
             return (
               <Accordion
@@ -227,7 +238,7 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
                 key={index}
               >
                 <AccordionSummary
-                  expandIcon={<ExpandMoreIcon />}
+                  expandIcon={item.subItems.length ? <ExpandMoreIcon /> : null}
                   aria-controls="panel1a-content"
                   id="panel1a-header"
                 >
@@ -241,7 +252,7 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
                   </Box>
                 </AccordionSummary>
                 <AccordionDetails sx={{ mt: theme.spacing(-2) }}>
-                  <ForLoops each={item.subItems}>
+                  <ForLoops each={item.subItems.slice(0, viewMore.sub)}>
                     {(item2, index2) => {
                       return (
                         <Box
@@ -249,17 +260,27 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
                           key={index2}
                           onClick={() => onSelectSubItem(item.name, item2.name)}
                         >
-                          <Checkbox color="success" checked={item2.checked} />
+                          <Checkbox color="primary" checked={item2.checked} />
                           <Typography variant="body1">{item2.name}</Typography>
                         </Box>
                       );
                     }}
                   </ForLoops>
+                  <Box sx={{ ml: theme.spacing(-1) }}>
+                    {item.subItems.length > 4 && (
+                      <ViewMoreButton handleViewMore={() => handleSubViewMore(item)} />
+                    )}
+                  </Box>
                 </AccordionDetails>
               </Accordion>
             );
           }}
         </ForLoops>
+        <Box sx={{ mt: theme.spacing(-2.5), ml: theme.spacing(-1) }}>
+          {renderFilterNutrients.length > 5 && (
+            <ViewMoreButton handleViewMore={handleMainViewMore} />
+          )}
+        </Box>
       </Box>
     </Box>
   );

@@ -26,7 +26,7 @@ const FilterAge: React.FC<AgeItemsProps> = ({ ageItems, onSelectAgeItem }) => {
           paddingRight: theme.spacing(2.4),
         }}
       >
-        Ages
+        Age
       </Typography>
       <Box
         component="div"

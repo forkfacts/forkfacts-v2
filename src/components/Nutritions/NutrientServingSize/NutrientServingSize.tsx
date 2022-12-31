@@ -8,24 +8,24 @@ import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
 import RadioButtonCheckedIcon from "@mui/icons-material/RadioButtonChecked";
 
 const NutrientServingSize: React.FC<NutrientServingSizeProps> = ({
-  availableAmounts,
-  onSelectAvailableAmounts,
+  servingSizeAmounts,
+  onSelectServingSizeAmount,
 }) => {
   const theme = useTheme();
   const [open, setIsOpen] = useState(false);
   const [selectedAvailableAmounts, setSelectedAvailableAmounts] = useState(
-    availableAmounts[availableAmounts.length - 1]
+    servingSizeAmounts[servingSizeAmounts.length - 1]
   );
 
   const handleSelectItem = (index: number, name: string) => {
-    if (availableAmounts[index] === name) {
+    if (servingSizeAmounts[index] === name) {
       setSelectedAvailableAmounts(name);
       setIsOpen(false);
     }
   };
 
   useEffect(() => {
-    onSelectAvailableAmounts(selectedAvailableAmounts);
+    onSelectServingSizeAmount(selectedAvailableAmounts);
   }, [selectedAvailableAmounts]);
 
   return (
@@ -87,7 +87,7 @@ const NutrientServingSize: React.FC<NutrientServingSizeProps> = ({
               flexDirection: "column",
             }}
           >
-            {availableAmounts.map((item, index) => (
+            {servingSizeAmounts.map((item, index) => (
               <Box
                 component="li"
                 key={index}

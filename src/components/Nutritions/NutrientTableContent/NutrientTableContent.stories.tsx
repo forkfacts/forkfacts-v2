@@ -46,7 +46,7 @@ const nutritionTableItems: nutritionTableItem[] = [
         rdi: { amount: 15, unit: "g" },
       },
       {
-        nutrient: "Starch  2g",
+        nutrient: "Starch",
         value: {
           amount: 2,
           unit: "g",

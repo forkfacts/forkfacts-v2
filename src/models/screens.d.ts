@@ -5,7 +5,7 @@ import {
   SearchResultItemCollectionType,
   PopularFrequentSearchType,
   sidebarItem,
-  rateItem,
+  SummaryItem,
   nutritionTableItem,
   filterItem,
   SearchNutritionFilterItem,
@@ -46,10 +46,10 @@ export interface HomeScreenProps extends onSelectCategoryType {
 
 export interface NutritionScreenProps {
   filters: Array<filterButtonItem>;
-  availableAmounts: Array<string>;
-  onSelectAvailableAmounts: (item: string) => void;
+  servingSizeAmounts: Array<string>;
+  onSelectServingSizeAmount: (item: string) => void;
   source: string;
-  nutritionSummaryItems: Array<rateItem>;
+  nutritionSummaryItems: Array<SummaryItem>;
   nutritionTableItems: Array<nutritionTableItem>;
   allNutrients: Array<filterItem>;
   getSelectedNutrients: (items: string[]) => void;

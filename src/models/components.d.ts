@@ -36,9 +36,8 @@ export interface content {
 }
 export interface nutritionTableItem {
   nutrient: string;
-  amount: number;
-  amountUnit: string;
-
+  amount?: number;
+  amountUnit?: string;
   content: Array<content>;
 }
 
@@ -65,14 +64,10 @@ interface selectedItemType {
   selectedIndex: number;
 }
 
-export interface rateItem {
+export interface summaryItem {
   name: string;
-  percentage: string;
+  percentage: number;
   weight: string;
-}
-
-export interface NavbarProps {
-  navbarItems: Array<sidebarItem>;
 }
 
 export type extraInfo = {
@@ -85,6 +80,14 @@ export interface PopularFrequentSearchType {
   searchLabels: string[];
   extraInfo: extraInfo[];
 }
+export interface filterButtonItem {
+  name: "All filters" | "Life stage" | "Age" | "Nutrients" | "Measure Units";
+}
+
+export interface NavbarProps {
+  navbarItems: Array<sidebarItem>;
+}
+
 export interface MobileSearchCategoryProps extends onSelectCategoryType, selectedItemType {
   label: string;
   Icon: SvgIconComponent;
@@ -108,10 +111,6 @@ export interface LayoutProps {
 export interface SearchResultItemProps {
   item: SearchResultItemType;
   onSelectItem: (item: SearchResultItemType) => void;
-}
-
-export interface filterButtonItem {
-  name: "All filters" | "Life stage" | "Age" | "Nutrients" | "Measure Units";
 }
 
 interface SideBarProps {
@@ -174,12 +173,12 @@ interface AutoCompleteSearchProps extends onSelectCategoryType {
 }
 
 export interface NutritionSummaryProps {
-  nutritionSummaryItems: Array<rateItem>;
+  nutritionSummaryItems: Array<summaryItem>;
 }
 
 export interface NutrientSummaryItemProps {
   weight: string;
-  percentage: string;
+  percentage: number;
   name: string;
 }
 
@@ -205,9 +204,9 @@ export interface SelectNutrientsProps {
 }
 
 export interface NutrientHeaderProps {
-  availableAmounts: Array<string>;
+  servingSizeAmounts: Array<string>;
   source: string;
-  onSelectAvailableAmounts: (item: string) => void;
+  onSelectServingSizeAmount: (item: string) => void;
 }
 
 export interface FilterButtonProps {
@@ -219,8 +218,8 @@ export interface FilterButtonProps {
 }
 
 export interface NutrientServingSizeProps {
-  availableAmounts: Array<string>;
-  onSelectAvailableAmounts: (item: string) => void;
+  servingSizeAmounts: Array<string>;
+  onSelectServingSizeAmount: (item: string) => void;
 }
 
 export interface LifeStageProps {
@@ -243,7 +242,7 @@ export interface SearchNutritionFilterItem {
   subItems: { name: string; checked: boolean }[];
   checked: boolean;
 }
-interface FilterPageProps {
+export interface AllFiltersProps {
   selectedFilters: string[];
   lifeStageItems: Array<lifeStageItem>;
   ageItems: Array<ageItem>;

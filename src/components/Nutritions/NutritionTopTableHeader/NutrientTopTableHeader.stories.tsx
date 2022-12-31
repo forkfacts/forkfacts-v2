@@ -22,9 +22,9 @@ const Template: ComponentStory<typeof NutrientTopTableHeader> = (args) => (
 export const Mobile = Template.bind({});
 
 Mobile.args = {
-  availableAmounts: availableAmounts,
+  servingSizeAmounts: availableAmounts,
   source: "USDA",
-  onSelectAvailableAmounts: (item: string) => {
+  onSelectServingSizeAmount: (item: string) => {
     console.log(item);
   },
 };

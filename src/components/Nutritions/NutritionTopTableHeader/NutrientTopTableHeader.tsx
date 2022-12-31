@@ -4,9 +4,9 @@ import { NutrientHeaderProps } from "@forkfacts/models";
 import { NutrientServingSize } from "@forkfacts/components";
 
 const NutrientTopTableHeader: React.FC<NutrientHeaderProps> = ({
-  availableAmounts,
+  servingSizeAmounts,
   source,
-  onSelectAvailableAmounts,
+  onSelectServingSizeAmount,
 }) => {
   const theme = useTheme();
 
@@ -33,8 +33,8 @@ const NutrientTopTableHeader: React.FC<NutrientHeaderProps> = ({
           </Typography>
         </Box>
         <NutrientServingSize
-          onSelectAvailableAmounts={onSelectAvailableAmounts}
-          availableAmounts={availableAmounts}
+          onSelectServingSizeAmount={onSelectServingSizeAmount}
+          servingSizeAmounts={servingSizeAmounts}
         />
       </Box>
       <Box

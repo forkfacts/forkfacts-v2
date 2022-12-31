@@ -59,9 +59,9 @@ const NutritionTableContent: React.FC<NutritionTableContentProps> = ({ nutrition
                     {item.content.length > 2 && (
                       <Typography>
                         {isOpen || Index !== index ? (
-                          <ExpandLess sx={{ color: theme.palette.grey[800], cursor: "pointer" }} />
+                          <ExpandLess sx={{ color: theme.palette.grey[500], cursor: "pointer" }} />
                         ) : (
-                          <ExpandMore sx={{ color: theme.palette.grey[800], cursor: "pointer" }} />
+                          <ExpandMore sx={{ color: theme.palette.grey[500], cursor: "pointer" }} />
                         )}
                       </Typography>
                     )}
@@ -82,12 +82,12 @@ const NutritionTableContent: React.FC<NutritionTableContentProps> = ({ nutrition
                             alignItems: "center",
                           }}
                         >
-                          <Box>{item2.nutrient}</Box>
-                          {item2.valuePercent && <Box>{item2.valuePercent}%</Box>}
-                          <Box>
+                          <Typography>{item2.nutrient}</Typography>
+                          {item2.valuePercent && <Typography>{item2.valuePercent}%</Typography>}
+                          <Typography>
                             {item2.rdi.amount}
                             {item2.rdi.unit}
-                          </Box>
+                          </Typography>
                         </Box>
                       );
                     }}

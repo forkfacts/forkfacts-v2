@@ -3,7 +3,7 @@ import {
   NutrientTopTableHeader,
   NutritionSummary,
   NutritionTable,
-  FilterPage,
+  AllFilters,
 } from "@forkfacts/components";
 import { NutritionScreenProps } from "@forkfacts/models";
 import { Box, useTheme } from "@mui/material";
@@ -11,13 +11,13 @@ import React, { useState } from "react";
 
 const NutritionScreen: React.FC<NutritionScreenProps> = ({
   filters,
-  availableAmounts,
+  servingSizeAmounts,
   source,
   nutritionSummaryItems,
   nutritionTableItems,
   allNutrients,
   getSelectedNutrients,
-  onSelectAvailableAmounts,
+  onSelectServingSizeAmount,
   lifeStageItems,
   ageItems,
   nutritionFilterItems,
@@ -41,9 +41,9 @@ const NutritionScreen: React.FC<NutritionScreenProps> = ({
       />
       <Box sx={{ mt: theme.spacing(4) }}>
         <NutrientTopTableHeader
-          availableAmounts={availableAmounts}
+          servingSizeAmounts={servingSizeAmounts}
           source={source}
-          onSelectAvailableAmounts={onSelectAvailableAmounts}
+          onSelectServingSizeAmount={onSelectServingSizeAmount}
         />
       </Box>
       <Box sx={{ mt: theme.spacing(4) }}>
@@ -56,7 +56,7 @@ const NutritionScreen: React.FC<NutritionScreenProps> = ({
           getSelectedNutrients={getSelectedNutrients}
         />
       </Box>
-      <FilterPage
+      <AllFilters
         filtersTotal={filters.length}
         selectedFilters={selectedFilters}
         lifeStageItems={lifeStageItems}

@@ -8,10 +8,10 @@ import {
   SearchNutritionFilter,
   MeasurementFilter,
 } from "@forkfacts/components";
-import { FilterPageProps, ageItem, SearchNutritionFilterItem } from "@forkfacts/models";
-import { useStyles } from "./filterPageStyles";
+import { AllFiltersProps, ageItem, SearchNutritionFilterItem } from "@forkfacts/models";
+import { useStyles } from "./allFiltersStyles";
 
-const FilterPage: React.FC<FilterPageProps> = ({
+const AllFilters: React.FC<AllFiltersProps> = ({
   filtersTotal,
   selectedFilters,
   lifeStageItems,
@@ -57,7 +57,6 @@ const FilterPage: React.FC<FilterPageProps> = ({
   };
 
   const onClearFilter = () => {};
-  console.log(selectedFilters);
 
   return (
     <Box className={classes.root}>
@@ -65,7 +64,7 @@ const FilterPage: React.FC<FilterPageProps> = ({
         <Box className={classes.headerStyles}>
           <ArrowBackIcon sx={{ cursor: "pointer" }} onClick={() => setOpenMobilePage(false)} />
           <Typography sx={{ color: theme.palette.common.black }} variant="h5">
-            Filter
+            All filters
           </Typography>
           <Box />
         </Box>
@@ -127,4 +126,4 @@ const FilterPage: React.FC<FilterPageProps> = ({
   );
 };
 
-export default FilterPage;
+export default AllFilters;

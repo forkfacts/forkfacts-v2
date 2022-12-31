@@ -1,5 +1,4 @@
-import { Box, useTheme } from "@mui/material";
-import { spacing } from "@mui/system";
+import { Box, useTheme, Typography } from "@mui/material";
 import React from "react";
 import { CircularProgressbarWithChildren, buildStyles } from "react-circular-progressbar";
 import { NutrientSummaryItemProps } from "@forkfacts/models";
@@ -24,7 +23,7 @@ const NutrientSummaryItem: React.FC<NutrientSummaryItemProps> = ({ percentage, w
         {name}
       </Box>
       <CircularProgressbarWithChildren
-        value={parseInt(percentage.split("%")[0])}
+        value={percentage}
         styles={buildStyles({
           textColor: theme.palette.grey[800],
           pathColor: theme.palette.primary.dark,
@@ -32,7 +31,7 @@ const NutrientSummaryItem: React.FC<NutrientSummaryItemProps> = ({ percentage, w
           textSize: theme.typography.fontSize,
         })}
       >
-        <Box
+        <Typography
           sx={{
             lineHeight: theme.spacing(2.5),
             color: theme.palette.common.black,
@@ -40,7 +39,7 @@ const NutrientSummaryItem: React.FC<NutrientSummaryItemProps> = ({ percentage, w
           }}
         >
           {weight}
-        </Box>
+        </Typography>
       </CircularProgressbarWithChildren>
       <Box
         sx={{

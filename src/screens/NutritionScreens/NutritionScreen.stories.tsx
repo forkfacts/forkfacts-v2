@@ -36,10 +36,10 @@ const filters: filterButtonItem[] = [
   { name: "Measure Units" },
 ];
 const nutritionSummaryItems = [
-  { name: "Protein", percentage: "10%", weight: "120g" },
-  { name: "Carbs", percentage: "20%", weight: "120g" },
-  { name: "Fats", percentage: "30%", weight: "120g" },
-  { name: "Fiber", percentage: "40%", weight: "120g" },
+  { name: "Protein", percentage: 10, weight: "120g" },
+  { name: "Carbs", percentage: 20, weight: "120g" },
+  { name: "Fats", percentage: 30, weight: "120g" },
+  { name: "Fiber", percentage: 40, weight: "120g" },
 ];
 
 const nutritionTableItems: nutritionTableItem[] = [
@@ -200,7 +200,7 @@ export const Mobile = Template.bind({});
 
 Mobile.args = {
   filters: filters,
-  availableAmounts: availableAmounts,
+  servingSizeAmounts: availableAmounts,
   source: "USDA",
   nutritionSummaryItems: nutritionSummaryItems,
   nutritionTableItems: nutritionTableItems,
@@ -208,7 +208,7 @@ Mobile.args = {
   getSelectedNutrients: (items: string[]) => {
     console.log(items);
   },
-  onSelectAvailableAmounts(item: string) {
+  onSelectServingSizeAmount: (item: string) => {
     console.log(item);
   },
   lifeStageItems: lifeStageItems,

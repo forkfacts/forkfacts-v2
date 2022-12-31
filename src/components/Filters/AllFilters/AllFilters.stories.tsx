@@ -1,7 +1,7 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
-import { FilterPage } from "@forkfacts/components";
+import { AllFilters } from "@forkfacts/components";
 import { ageItem, lifeStageItem, SearchNutritionFilterItem } from "@forkfacts/models";
 import ChildCareOutlinedIcon from "@mui/icons-material/ChildCareOutlined";
 import EscalatorWarningOutlinedIcon from "@mui/icons-material/EscalatorWarningOutlined";
@@ -9,8 +9,8 @@ import Person2OutlinedIcon from "@mui/icons-material/Person2Outlined";
 import PregnantWomanOutlinedIcon from "@mui/icons-material/PregnantWomanOutlined";
 
 export default {
-  title: "Components/Filters/FilterPage",
-  component: FilterPage,
+  title: "Components/Filters/AllFilters",
+  component: AllFilters,
   parameters: {
     viewport: {
       viewports: INITIAL_VIEWPORTS,
@@ -24,7 +24,7 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof FilterPage>;
+} as ComponentMeta<typeof AllFilters>;
 
 const lifeStageItems: lifeStageItem[] = [
   {
@@ -106,7 +106,7 @@ const nutritionFilterItems: SearchNutritionFilterItem[] = [
   { name: "Fiber", subItems: [], checked: false },
   { name: "Minerals", subItems: [], checked: false },
 ];
-const Template: ComponentStory<typeof FilterPage> = (args) => <FilterPage {...args} />;
+const Template: ComponentStory<typeof AllFilters> = (args) => <AllFilters {...args} />;
 
 export const Mobile = Template.bind({});
 

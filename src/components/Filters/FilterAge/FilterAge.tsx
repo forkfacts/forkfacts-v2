@@ -7,7 +7,7 @@ import { AgeItemsProps, ageItem } from "@forkfacts/models";
 import { ForLoops } from "@forkfacts/helpers";
 const FilterAge: React.FC<AgeItemsProps> = ({ ageItems, onSelectAgeItem }) => {
   const theme = useTheme();
-  const [selectedAgeIndex, setSelectedAgeIndex] = useState<number | null>(null);
+  const [selectedAgeIndex, setSelectedAgeIndex] = useState<number | null>(2);
 
   const handleSelectAge = (item: ageItem, index: number) => {
     setSelectedAgeIndex(index);

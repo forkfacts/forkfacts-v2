@@ -25,7 +25,7 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
   const newNutrients: SearchNutritionFilterItem[] = [...nutritionFilterItems].map((item) => {
     return {
       name: item.name,
-      checked: false,
+      checked: item.checked,
       subItems: item.subItems.map((item2) => {
         return {
           name: item2.name,

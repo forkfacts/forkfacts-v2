@@ -39,7 +39,7 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
   });
   const [expanded, setExpanded] = React.useState<string | false>(false);
   const [filteredNutrient, setFilterNutrient] = useState(newNutrients);
-  const [renderFilterNutrients, SetRenderFilterNutrients] = useState([...filteredNutrient]);
+  const [renderFilterNutrients, setRenderFilterNutrients] = useState([...filteredNutrient]);
   const [selectedNutrient, setSelectedNutrient] = useState({
     name: "",
   });
@@ -61,7 +61,7 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
         return item;
       }
     });
-    SetRenderFilterNutrients(filterNutrients);
+    setRenderFilterNutrients(filterNutrients);
   }, [name]);
 
   const onHandleSelectedItem = (name: string, index: number) => {

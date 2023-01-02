@@ -29,11 +29,9 @@ const MeasurementFilter: React.FC<MeasurementFilterProps> = ({
         Measure Units
       </Typography>
       <Box
-        boxShadow={1}
         sx={{
           display: "flex",
           alignItems: "center",
-          borderRadius: theme.shape,
           mt: theme.spacing(3),
         }}
       >
@@ -43,6 +41,7 @@ const MeasurementFilter: React.FC<MeasurementFilterProps> = ({
               <Box
                 onClick={() => handleSelectedItem(name, index)}
                 key={index}
+                boxShadow={1}
                 sx={{
                   width: "50%",
                   height: theme.spacing(5.75),
@@ -52,6 +51,10 @@ const MeasurementFilter: React.FC<MeasurementFilterProps> = ({
                   alignItems: "center",
                   textAlign: "center",
                   cursor: "pointer",
+                  borderTopLeftRadius: index === 0 ? theme.spacing(1.25) : 0,
+                  borderBottomLeftRadius: index === 0 ? theme.spacing(1.25) : 0,
+                  borderTopRightRadius: index === 1 ? theme.spacing(1.25) : 0,
+                  borderBottomRightRadius: index === 1 ? theme.spacing(1.25) : 0,
                   backgroundColor: selectedItem === name ? blue[100] : "none",
                   color:
                     selectedItem === name ? theme.palette.primary.dark : theme.palette.common.black,

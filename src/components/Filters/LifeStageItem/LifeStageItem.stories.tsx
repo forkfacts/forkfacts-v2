@@ -4,7 +4,7 @@ import ChildCareOutlinedIcon from "@mui/icons-material/ChildCareOutlined";
 import { LifeStageItem } from "@forkfacts/components";
 
 export default {
-  title: "Components/LifeStage",
+  title: "Components/Filters/LifeStage",
   component: LifeStageItem,
 } as ComponentMeta<typeof LifeStageItem>;
 

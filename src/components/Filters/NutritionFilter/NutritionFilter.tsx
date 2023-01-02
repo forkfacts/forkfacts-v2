@@ -3,10 +3,10 @@ import { Box, useTheme } from "@mui/material";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { FilterButton } from "@forkfacts/components";
-import { NutritionFiltersProps } from "@forkfacts/models";
+import { NutritionFilterProps } from "@forkfacts/models";
 import "./carousel.css";
 
-const NutritionFilters: React.FC<NutritionFiltersProps> = ({
+const NutritionFilters: React.FC<NutritionFilterProps> = ({
   filters,
   onSelectFilterItems,
   setOpenMobilePage,

@@ -19,12 +19,12 @@ const LifeStageItem: React.FC<LifeStageItemProps> = ({
   const theme = useTheme();
   return (
     <Box
-      boxShadow={2}
+      boxShadow={1}
       onClick={() => handleSelectedItem(item.name, index)}
       sx={{
         width: "50%",
         height: theme.spacing(14.25),
-        borderColor: theme.palette.grey[400],
+        borderColor: theme.palette.grey[200],
         display: "flex",
         justifyContent: "center",
         alignItems: "center",

@@ -19,14 +19,14 @@ const Template: ComponentStory<typeof SearchNutritionFilter> = (args) => (
 );
 
 const nutritionFilterItems: SearchNutritionFilterItem[] = [
-  { name: "Carbohydrate", subItems: [], checked: true },
+  { name: "Carbohydrate", subItems: [], checked: false },
   {
     name: "Protein",
     subItems: [
       { name: "Protein B1", checked: false },
       { name: "Protein B2", checked: false },
     ],
-    checked: true,
+    checked: false,
   },
   {
     name: "Vitamin",
@@ -42,7 +42,7 @@ const nutritionFilterItems: SearchNutritionFilterItem[] = [
     ],
     checked: false,
   },
-  { name: "Fats", subItems: [], checked: true },
+  { name: "Fats", subItems: [], checked: false },
   { name: "Minerals", subItems: [], checked: false },
   { name: "Water", subItems: [], checked: false },
   { name: "Fiber", subItems: [], checked: false },

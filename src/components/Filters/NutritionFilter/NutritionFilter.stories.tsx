@@ -1,18 +1,18 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
-import { NutritionFilters as Sliders } from "@forkfacts/components";
+import { NutritionFilter } from "@forkfacts/components";
 import { filterButtonItem } from "@forkfacts/models";
 
 export default {
-  title: "Components/Filters/NutritionFilters",
-  component: Sliders,
+  title: "Components/Filters/NutritionFilter",
+  component: NutritionFilter,
   parameters: {
     viewport: {
       viewports: INITIAL_VIEWPORTS,
     },
   },
-} as ComponentMeta<typeof Sliders>;
+} as ComponentMeta<typeof NutritionFilter>;
 
 const filters: filterButtonItem[] = [
   { name: "All filters" },
@@ -22,7 +22,7 @@ const filters: filterButtonItem[] = [
   { name: "Measure Units" },
 ];
 
-const Template: ComponentStory<typeof Sliders> = (args) => <Sliders {...args} />;
+const Template: ComponentStory<typeof NutritionFilter> = (args) => <NutritionFilter {...args} />;
 
 export const Mobile = Template.bind({});
 

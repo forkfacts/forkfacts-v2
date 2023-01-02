@@ -107,15 +107,40 @@ const AllFilters: React.FC<AllFiltersProps> = ({
               padding: theme.spacing(2.5),
             }}
           >
-            <Typography>
+            <Typography
+              sx={{
+                textTransform: "capitalize",
+                color: theme.palette.grey[600],
+                letterSpacing: theme.spacing(0.0125),
+              }}
+            >
               {selectedFilters.includes("All filters") ? filtersTotal : selectedFilters.length}{" "}
               results
             </Typography>
             <Box>
-              <Button variant="text" onClick={onClearFilter}>
+              <Button
+                variant="text"
+                color="primary"
+                onClick={onClearFilter}
+                sx={{
+                  textTransform: "capitalize",
+                  mr: theme.spacing(3),
+                  fontSize: theme.typography.fontSize,
+                  fontWeight: theme.typography.fontWeightBold,
+                }}
+              >
                 Clear all
               </Button>
-              <Button variant="contained" onClick={() => getAllFilterPageData()}>
+              <Button
+                variant="contained"
+                onClick={() => getAllFilterPageData()}
+                sx={{
+                  textTransform: "capitalize",
+                  borderRadius: theme.spacing(12.5),
+                  px: theme.spacing(3),
+                  py: theme.spacing(0.75),
+                }}
+              >
                 Done
               </Button>
             </Box>

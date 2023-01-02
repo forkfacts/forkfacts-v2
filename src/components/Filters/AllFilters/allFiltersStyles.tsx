@@ -33,7 +33,7 @@ export const useStyles = makeStyles(({ spacing, breakpoints, palette, zIndex }: 
   },
   boxWrapper: {
     [breakpoints.down("md")]: {
-      marginTop: spacing(2.5),
+      marginTop: spacing(0.5),
       position: "relative",
       paddingLeft: spacing(2.5),
       paddingRight: spacing(2.5),
@@ -43,7 +43,7 @@ export const useStyles = makeStyles(({ spacing, breakpoints, palette, zIndex }: 
   },
   borderLine: {
     [breakpoints.down("md")]: {
-      border: `${spacing(0.125)} solid ${palette.grey[200]}`,
+      borderBottom: `${spacing(0.125)} solid ${palette.grey[200]}`,
     },
   },
   footerStyles: {

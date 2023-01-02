@@ -48,7 +48,7 @@ const lifeStageItems: lifeStageItem[] = [
     icon: PregnantWomanOutlinedIcon,
   },
   {
-    name: "Location",
+    name: "Lactation",
     icon: Person2OutlinedIcon,
   },
 ];

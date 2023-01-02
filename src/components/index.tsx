@@ -17,7 +17,7 @@ export { default as PopularFrequentSearchCategories } from "./PopularFrequentSea
 export { default as PopularFrequentSearchCategory } from "./PopularFrequentSearchCategory/PopularFrequentSearchCategory";
 export { default as NutritionSummary } from "./Nutritions/NutrientSummary/NutrientSummary";
 export { default as NutrientSummaryItem } from "./Nutritions/NutrientSummaryItem/NutrientSummaryItem";
-export { default as NutritionFilters } from "./Filters/NutritionFilters/NutritionFilters";
+export { default as NutritionFilter } from "./Filters/NutritionFilter/NutritionFilter";
 export { default as NutrientTopTableHeader } from "./Nutritions/NutritionTopTableHeader/NutrientTopTableHeader";
 export { default as NutrientServingSize } from "./Nutritions/NutrientServingSize/NutrientServingSize";
 export { default as NutritionTable } from "./Nutritions/NutritionTable/NutritionTable";
@@ -25,7 +25,7 @@ export { default as SelectNutrients } from "./Nutritions/SelectNutrients/SelectN
 export { default as NutritionTableContent } from "./Nutritions/NutrientTableContent/NutrientTableContent";
 export { default as AllFilters } from "./Filters/AllFilters/AllFilters";
 export { default as LifeStage } from "./Filters/LifeStage/LifeStage";
-export { default as LifeStageItem } from "./LifeStageItem/LifeStageItem";
+export { default as LifeStageItem } from "./Filters/LifeStageItem/LifeStageItem";
 export { default as FilterAge } from "./Filters/FilterAge/FilterAge";
 export { default as SearchNutritionFilter } from "./Filters/SearchNutritionFilter/SearchNutritionFilter";
 export { default as MeasurementFilter } from "./Filters/MeasurementFilter/MeasurementFilter";

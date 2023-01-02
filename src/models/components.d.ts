@@ -182,7 +182,7 @@ export interface NutrientSummaryItemProps {
   name: string;
 }
 
-export interface NutritionFiltersProps {
+export interface NutritionFilterProps {
   filters: Array<filterButtonItem>;
   onSelectFilterItems: (item: string[]) => void;
   setOpenMobilePage: (item: boolean) => void;

@@ -39,6 +39,7 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
   });
   const [expanded, setExpanded] = React.useState<string | false>(false);
   const [filteredNutrient, setFilterNutrient] = useState(newNutrients);
+  const [renderFilterNutrients, SetRenderFilterNutrients] = useState([...filteredNutrient]);
   const [selectedNutrient, setSelectedNutrient] = useState({
     name: "",
   });
@@ -53,13 +54,15 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
       setExpanded(isExpanded && item.subItems?.length ? panel : false);
     };
 
-  const renderFilterNutrients: SearchNutritionFilterItem[] = filteredNutrient.filter((item) => {
-    if (!name) return filteredNutrient;
-    else if (item.name.toLowerCase().includes(name.toLowerCase())) {
-      return item;
-    }
-    return null;
-  });
+  useEffect(() => {
+    const filterNutrients: SearchNutritionFilterItem[] = filteredNutrient.filter((item) => {
+      if (!name) return filteredNutrient;
+      else if (item.name.toLowerCase().includes(name.toLowerCase())) {
+        return item;
+      }
+    });
+    SetRenderFilterNutrients(filterNutrients);
+  }, [name]);
 
   const onHandleSelectedItem = (name: string, index: number) => {
     let results = renderFilterNutrients.map((item) => {

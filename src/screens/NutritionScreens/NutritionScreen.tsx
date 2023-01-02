@@ -1,5 +1,5 @@
 import {
-  NutritionFilters,
+  NutritionFilter,
   NutrientTopTableHeader,
   NutritionSummary,
   NutritionTable,
@@ -34,7 +34,7 @@ const NutritionScreen: React.FC<NutritionScreenProps> = ({
 
   return (
     <Box>
-      <NutritionFilters
+      <NutritionFilter
         onSelectFilterItems={handleFilterItems}
         filters={filters}
         setOpenMobilePage={setOpenMobilePage}

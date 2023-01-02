@@ -65,7 +65,7 @@ const nutritionTableItems: nutritionTableItem[] = [
     amountUnit: "g",
     content: [
       {
-        nutrient: "Protein 2g",
+        nutrient: "Protein",
         value: {
           amount: 2,
           unit: "g",

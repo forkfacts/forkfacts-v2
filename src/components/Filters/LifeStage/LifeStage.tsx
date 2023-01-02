@@ -9,7 +9,7 @@ const LifeStage: React.FC<LifeStageProps> = ({ lifeStageItems, onSelectLifeStage
 
   const handleSelectedItem = (name: string, index: number) => {
     setSelectedItem(name);
-    onSelectLifeStageItem(name);
+    onSelectLifeStageItem(selectedItem);
   };
 
   return (

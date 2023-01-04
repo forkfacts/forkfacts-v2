@@ -25,7 +25,7 @@ const AllFilters: React.FC<AllFiltersProps> = ({
   const theme = useTheme();
   const classes = useStyles({ openMobilePage });
   const [selectedAge, setSelectedAge] = useState<ageItem>({} as ageItem);
-  const [selectedLifeStage, setSelectedLifeStage] = useState(lifeStageItems[0]);
+  const [selectedLifeStage, setSelectedLifeStage] = useState("");
   const [selectedMeasurementItem, setSelectedMeasurement] = useState("");
   const [selectedNutritionFilterItems, setSelectedNutritionFilterItems] = useState<
     SearchNutritionFilterItem[]

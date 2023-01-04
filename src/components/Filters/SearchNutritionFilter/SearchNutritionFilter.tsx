@@ -272,7 +272,11 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
                     </ForLoops>
                     <Box sx={{ ml: theme.spacing(-1) }}>
                       {item.subItems.length > 4 && (
-                        <ViewMoreButton handleViewMore={() => handleSubViewMore(item)} />
+                        <Box>
+                          {viewMore.sub === item.subItems.length ? null : (
+                            <ViewMoreButton handleViewMore={() => handleSubViewMore(item)} />
+                          )}
+                        </Box>
                       )}
                     </Box>
                   </AccordionDetails>
@@ -281,11 +285,25 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
             }}
           </ForLoops>
         ) : (
-          <Box>No matching nutrient found</Box>
+          <Box sx={{ textAlign: "center" }}>
+            <Typography
+              sx={{
+                textTransform: "capitalize",
+                color: theme.palette.grey[600],
+                letterSpacing: theme.spacing(0.0125),
+              }}
+            >
+              No matching nutrient found
+            </Typography>
+          </Box>
         )}
         <Box sx={{ mt: theme.spacing(-2.5), ml: theme.spacing(-1) }}>
           {renderFilterNutrients.length > 5 && (
-            <ViewMoreButton handleViewMore={handleMainViewMore} />
+            <Box>
+              {viewMore.main === renderFilterNutrients.length ? null : (
+                <ViewMoreButton handleViewMore={handleMainViewMore} />
+              )}
+            </Box>
           )}
         </Box>
       </Box>

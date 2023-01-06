@@ -37,7 +37,7 @@ const NutritionTableContent: React.FC<NutritionTableContentProps> = ({ nutrition
                   mt: theme.spacing(3),
                 }}
               >
-                <Box sx={{ mb: theme.spacing(2) }}>
+                <Box sx={{ mb: theme.spacing(2), display: "flex", alignItems: "center" }}>
                   <Typography
                     variant="subtitle2"
                     sx={{
@@ -45,7 +45,17 @@ const NutritionTableContent: React.FC<NutritionTableContentProps> = ({ nutrition
                       fontWeight: theme.typography.fontWeightBold,
                     }}
                   >
-                    {item.nutrient} {item.amount}
+                    {item.nutrient}
+                  </Typography>
+                  <Typography
+                    variant="subtitle2"
+                    sx={{
+                      color: theme.palette.common.black,
+                      fontWeight: theme.typography.fontWeightRegular,
+                      ml: theme.spacing(1),
+                    }}
+                  >
+                    {item.amount}
                     {item.amountUnit}
                   </Typography>
                 </Box>
@@ -80,6 +90,7 @@ const NutritionTableContent: React.FC<NutritionTableContentProps> = ({ nutrition
                             display: "flex",
                             justifyContent: "space-between",
                             alignItems: "center",
+                            fontSize: theme.typography.caption.fontSize,
                           }}
                         >
                           <Typography>{item2.nutrient}</Typography>

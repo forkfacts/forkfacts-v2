@@ -38,7 +38,7 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
     };
   });
   const [expanded, setExpanded] = React.useState<string | false>(false);
-  const [filteredNutrient, setFilterNutrient] = useState(newNutrients);
+  const [filteredNutrient, setFilterNutrient] = useState([...newNutrients]);
   const [selectedNutrient, setSelectedNutrient] = useState({
     name: "",
   });
@@ -55,7 +55,7 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
 
   const renderFilterNutrients: SearchNutritionFilterItem[] = filteredNutrient.filter((item) => {
     if (!name) return filteredNutrient;
-    else if (item.name.toLowerCase().includes(name.toLowerCase())) {
+    if (item.name.toLowerCase().includes(name.toLowerCase())) {
       return item;
     }
   });
@@ -167,10 +167,14 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
   }, [filteredNutrient]);
 
   const handleMainViewMore = () => {
-    setViewMore({ ...viewMore, main: renderFilterNutrients.length });
+    if (viewMore.main === renderFilterNutrients.length) {
+      setViewMore({ ...viewMore, main: 5 });
+    } else setViewMore({ ...viewMore, main: renderFilterNutrients.length });
   };
   const handleSubViewMore = (sub: SearchNutritionFilterItem) => {
-    setViewMore({ ...viewMore, sub: sub.subItems.length });
+    if (viewMore.sub === sub.subItems.length) {
+      setViewMore({ ...viewMore, sub: 4 });
+    } else setViewMore({ ...viewMore, sub: sub.subItems.length });
   };
   return (
     <Box sx={{ mb: theme.spacing(3) }}>
@@ -219,7 +223,7 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
           }}
         />
       </Box>
-      <Box sx={{ mt: theme.spacing(5) }}>
+      <Box sx={{ my: theme.spacing(5) }}>
         {renderFilterNutrients.length ? (
           <ForLoops each={renderFilterNutrients.slice(0, viewMore.main)}>
             {(item, index) => {
@@ -273,7 +277,12 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
                     <Box sx={{ ml: theme.spacing(-1) }}>
                       {item.subItems.length > 4 && (
                         <Box>
-                          {viewMore.sub === item.subItems.length ? null : (
+                          {viewMore.sub === item.subItems.length ? (
+                            <ViewMoreButton
+                              handleViewMore={() => handleSubViewMore(item)}
+                              text="View less"
+                            />
+                          ) : (
                             <ViewMoreButton handleViewMore={() => handleSubViewMore(item)} />
                           )}
                         </Box>
@@ -300,7 +309,9 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
         <Box sx={{ mt: theme.spacing(-2.5), ml: theme.spacing(-1) }}>
           {renderFilterNutrients.length > 5 && (
             <Box>
-              {viewMore.main === renderFilterNutrients.length ? null : (
+              {viewMore.main === renderFilterNutrients.length ? (
+                <ViewMoreButton handleViewMore={handleMainViewMore} text="View less" />
+              ) : (
                 <ViewMoreButton handleViewMore={handleMainViewMore} />
               )}
             </Box>

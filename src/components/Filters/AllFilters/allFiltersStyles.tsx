@@ -57,6 +57,7 @@ export const useStyles = makeStyles(({ spacing, breakpoints, palette, zIndex }: 
       right: 0,
       bottom: 0,
       left: 0,
+      marginTop: spacing(25),
     },
   },
 }));

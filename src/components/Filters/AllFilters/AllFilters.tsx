@@ -97,6 +97,7 @@ const AllFilters: React.FC<AllFiltersProps> = ({
             />
           </Box>
         ) : null}
+
         <Box boxShadow={1} className={classes.footerStyles}>
           <Box
             sx={{

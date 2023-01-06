@@ -6,6 +6,41 @@ export interface SearchResultItemType {
   image: string;
 }
 
+export interface filterItem {
+  name: string;
+  amount: number;
+}
+
+export interface ageItem {
+  start: number;
+  end: number;
+  unit: string;
+}
+
+export type lifeStageItem = {
+  name: string;
+  icon: SvgIconComponent;
+};
+
+export interface content {
+  nutrient: string;
+  valuePercent: number | null;
+  value: {
+    amount: number;
+    unit: string;
+  };
+  rdi: {
+    amount: number;
+    unit: string;
+  };
+}
+export interface nutritionTableItem {
+  nutrient: string;
+  amount?: number;
+  amountUnit?: string;
+  content: Array<content>;
+}
+
 export interface SearchCategoryItemType {
   label: string;
   Icon: SvgIconComponent;
@@ -29,8 +64,10 @@ interface selectedItemType {
   selectedIndex: number;
 }
 
-export interface NavbarProps {
-  navbarItems: Array<sidebarItem>;
+export interface summaryItem {
+  name: string;
+  percentage: number;
+  weight: string;
 }
 
 export type extraInfo = {
@@ -43,6 +80,14 @@ export interface PopularFrequentSearchType {
   searchLabels: string[];
   extraInfo: extraInfo[];
 }
+export interface filterButtonItem {
+  name: "All filters" | "Life stage" | "Age" | "Nutrients" | "Measure Units";
+}
+
+export interface NavbarProps {
+  navbarItems: Array<sidebarItem>;
+}
+
 export interface MobileSearchCategoryProps extends onSelectCategoryType, selectedItemType {
   label: string;
   Icon: SvgIconComponent;
@@ -67,6 +112,7 @@ export interface SearchResultItemProps {
   item: SearchResultItemType;
   onSelectItem: (item: SearchResultItemType) => void;
 }
+
 interface SideBarProps {
   drawerWidth: string;
   mobileOpen: boolean;
@@ -124,4 +170,91 @@ interface AutoCompleteSearchProps extends onSelectCategoryType {
   sourceId: string;
   categoryOptions: Array<SearchCategoryItemType>;
   collectionGroupedItems: Array<SearchResultItemCollectionType>;
+}
+
+export interface NutritionSummaryProps {
+  nutritionSummaryItems: Array<summaryItem>;
+}
+
+export interface NutrientSummaryItemProps {
+  weight: string;
+  percentage: number;
+  name: string;
+}
+
+export interface NutritionFilterProps {
+  filters: Array<filterButtonItem>;
+  onSelectFilterItems: (item: string[]) => void;
+  setOpenMobilePage: (item: boolean) => void;
+}
+
+export interface NutritionTableContentProps {
+  nutritionTableItems: Array<nutritionTableItem>;
+}
+
+export interface NutritionTableProps {
+  nutritionTableItems: Array<nutritionTableItem>;
+  allNutrients: Array<filterItem>;
+  getSelectedNutrients: (items: string[]) => void;
+}
+
+export interface SelectNutrientsProps {
+  allNutrients: filterItem[];
+  getSelectedNutrients: (items: string[]) => void;
+}
+
+export interface NutrientHeaderProps {
+  servingSizeAmounts: Array<string>;
+  source: string;
+  onSelectServingSizeAmount: (item: string) => void;
+}
+
+export interface FilterButtonProps {
+  name: string;
+  onSelectItem: (item: string, index: number) => void;
+  index: number;
+  selectedItemArrays: string[];
+  setOpenMobilePage: (item: boolean) => void;
+}
+
+export interface NutrientServingSizeProps {
+  servingSizeAmounts: Array<string>;
+  onSelectServingSizeAmount: (item: string) => void;
+}
+
+export interface LifeStageProps {
+  lifeStageItems: Array<lifeStageItem>;
+  onSelectLifeStageItem: (name: string) => void;
+}
+
+export interface AgeItemsProps {
+  ageItems: Array<ageItem>;
+  onSelectAgeItem: (item: ageItem) => void;
+}
+
+export interface SearchNutritionFilterProps {
+  nutritionFilterItems: Array<SearchNutritionFilterItem>;
+  onSelectNutritionFilterItem: (item: SearchNutritionFilterItem[]) => void;
+}
+
+export interface SearchNutritionFilterItem {
+  name: string;
+  subItems: { name: string; checked: boolean }[];
+  checked: boolean;
+}
+export interface AllFiltersProps {
+  selectedFilters: string[];
+  lifeStageItems: Array<lifeStageItem>;
+  ageItems: Array<ageItem>;
+  nutritionFilterItems: Array<SearchNutritionFilterItem>;
+  measurementFilterItems: string[];
+  openMobilePage: boolean;
+  setOpenMobilePage: (item: boolean) => void;
+  onSelectFilterPageData: (item: any) => void;
+  filtersTotal: number;
+}
+
+export interface MeasurementFilterProps {
+  measurementFilterItems: string[];
+  onSelectMeasurementItem: (item: string) => void;
 }

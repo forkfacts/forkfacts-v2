@@ -5,6 +5,10 @@ import {
   SearchResultItemCollectionType,
   PopularFrequentSearchType,
   sidebarItem,
+  SummaryItem,
+  nutritionTableItem,
+  filterItem,
+  SearchNutritionFilterItem,
 } from "@forkfacts/models";
 
 export interface TypingSearchScreenProps extends onSelectCategoryType {
@@ -38,4 +42,20 @@ export interface HomeScreenProps extends onSelectCategoryType {
   collectionGroupedItems: Array<SearchResultItemCollectionType>;
   placeholder: string;
   sourceId: string;
+}
+
+export interface NutritionScreenProps {
+  filters: Array<filterButtonItem>;
+  servingSizeAmounts: Array<string>;
+  onSelectServingSizeAmount: (item: string) => void;
+  source: string;
+  nutritionSummaryItems: Array<SummaryItem>;
+  nutritionTableItems: Array<nutritionTableItem>;
+  allNutrients: Array<filterItem>;
+  getSelectedNutrients: (items: string[]) => void;
+  lifeStageItems: Array<lifeStageItem>;
+  ageItems: Array<ageItem>;
+  nutritionFilterItems: Array<SearchNutritionFilterItem>;
+  measurementFilterItems: string[];
+  onSelectFilterPageData: (item: T) => void;
 }

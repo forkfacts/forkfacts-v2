@@ -14,7 +14,7 @@ const PopularFrequentSearchCategories = ({
   const { spacing, palette, typography } = useTheme();
 
   return (
-    <Box sx={{ width: spacing(90) }}>
+    <Box>
       <Box sx={{ mb: spacing(5) }}>
         <Typography
           variant="h5"
@@ -27,16 +27,15 @@ const PopularFrequentSearchCategories = ({
         >
           {PopularFrequentSearchTitle}
         </Typography>
-        <Typography variant="body1" sx={{ color: palette.grey[500] }}>
-          By frequently searched
-        </Typography>
       </Box>
-      <List
+      <Box
         sx={{
           width: "100%",
           bgcolor: "background.paper",
+          display: "flex",
+          flexWrap: "wrap",
+          gap: "60px",
         }}
-        disablePadding
       >
         <ForLoops each={PopularFrequentSearchItems}>
           {(item, idx) => (
@@ -47,7 +46,7 @@ const PopularFrequentSearchCategories = ({
             />
           )}
         </ForLoops>
-      </List>
+      </Box>
     </Box>
   );
 };

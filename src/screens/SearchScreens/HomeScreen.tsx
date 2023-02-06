@@ -57,7 +57,7 @@ export default function HomeScreen({
               />
             </Box>
           </Box>
-          <Box className={classNames(classes.showDesktop, classes.PopularFrequentStyles)}>
+          <Box className={classNames(classes.PopularFrequentStyles)}>
             <PopularFrequentSearchCategories
               PopularFrequentSearchTitle={PopularFrequentSearchTitle}
               PopularFrequentSearchItems={PopularFrequentSearchItems}

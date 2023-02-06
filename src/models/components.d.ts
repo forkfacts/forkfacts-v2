@@ -42,7 +42,6 @@ export type extraInfo = {
 export interface PopularFrequentSearchType {
   searchImg: string;
   searchName: string;
-  searchLabels: string[];
   extraInfo: extraInfo[];
 }
 export interface MobileSearchCategoryProps extends onSelectCategoryType, selectedItemType {

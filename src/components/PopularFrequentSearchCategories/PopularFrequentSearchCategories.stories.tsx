@@ -18,17 +18,6 @@ const {
     {
       searchImg: "/popular.png",
       searchName: "Flax seeds",
-      searchLabels: ["Gluten-free", "Dairy-free"],
-      extraInfo: [
-        { name: "Calories", weight: "23g" },
-        { name: "Fats", weight: "10g" },
-        { name: "Proteins", weight: "5g" },
-      ],
-    },
-    {
-      searchImg: "/popular.png",
-      searchName: "Flax seeds",
-      searchLabels: ["Gluten-free", "Dairy-free"],
       extraInfo: [
         { name: "Calories", weight: "23g" },
         { name: "Fats", weight: "10g" },

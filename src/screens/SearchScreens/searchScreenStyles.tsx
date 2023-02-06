@@ -97,7 +97,10 @@ export const useStyles = makeStyles(
         marginTop: spacing(20),
         display: "flex",
         justifyContent: "center",
-        alignItems: "center",
+        flexDirection: "column",
+        width: "70%",
+        marginLeft: "auto",
+        marginRight: "auto",
       },
     },
   })

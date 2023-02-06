@@ -3,7 +3,7 @@ import { PopularFrequentSearchCategoryProps } from "@forkfacts/models";
 import ListItem from "@mui/material/ListItem";
 import { blue } from "@mui/material/colors";
 import Typography from "@mui/material/Typography";
-import { Box, useTheme } from "@mui/material";
+import { Box, Card, useTheme } from "@mui/material";
 import { ForLoops } from "@forkfacts/helpers";
 
 const PopularFrequentSearchCategory = ({
@@ -16,76 +16,56 @@ const PopularFrequentSearchCategory = ({
     onSelectPopularItem(item);
   };
   return (
-    <ListItem
+    <Card
       sx={{
-        display: "flex",
-        mb: spacing(3),
-        boxShadow: shadows[1],
-        borderRadius: spacing(1.5),
+        borderRadius: spacing(1),
         cursor: "pointer",
+        display: "flex",
+        flexDirection: "column",
+        backgroundColor: palette.background.default,
+        width: spacing(26.5),
       }}
-      disablePadding
       onClick={handleSelectedItem}
     >
-      <img src={item.searchImg} alt={item.searchName} />
       <Box
+        component="img"
+        src={item.searchImg}
+        alt={item.searchName}
+        sx={{ objectFit: "contain" }}
+      />
+      <Typography
         sx={{
-          ml: spacing(5),
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-between",
-          rowGap: spacing(2),
+          color: palette.common.black,
+          fontWeight: typography.fontWeightMedium,
+          py: spacing(2),
+          ml: "18px",
         }}
+        variant="body2"
       >
-        <Typography
-          sx={{
-            color: palette.common.black,
-            fontWeight: typography.fontWeightBold,
-          }}
-          variant="body2"
-        >
-          {item.searchName}
-        </Typography>
-        <Box sx={{ display: "flex", justifyContent: "flex-start", columnGap: spacing(3) }}>
-          <ForLoops each={item.searchLabels}>
-            {(labelItem, labelIndex) => (
+        {item.searchName}
+      </Typography>
+      <Box
+        sx={{ display: "flex", alignItems: "center", columnGap: "30px", justifyContent: "center" }}
+      >
+        <ForLoops each={item.extraInfo}>
+          {(extraItem, extraIndex) => (
+            <Box key={extraIndex} sx={{ display: "flex", flexDirection: "column" }}>
+              <Typography variant="caption" sx={{ color: palette.common.black }}>
+                {extraItem.weight}
+              </Typography>
               <Typography
-                key={labelIndex}
-                color="primary"
+                variant="caption"
                 sx={{
-                  backgroundColor: blue["50"],
-                  padding: spacing(0.75, 1.25),
-                  fontSize: typography.caption.fontSize,
-                  borderRadius: shape.borderRadius,
+                  color: palette.grey[500],
                 }}
               >
-                {labelItem}
+                {extraItem.name}
               </Typography>
-            )}
-          </ForLoops>
-        </Box>
-        <Box sx={{ display: "flex", alignItems: "center", columnGap: spacing(3) }}>
-          <ForLoops each={item.extraInfo}>
-            {(extraItem, extraIndex) => (
-              <Box key={extraIndex} sx={{ display: "flex", flexDirection: "column" }}>
-                <Typography variant="caption" sx={{ color: palette.grey[500] }}>
-                  {extraItem.weight}
-                </Typography>
-                <Typography
-                  variant="caption"
-                  sx={{
-                    color: palette.common.black,
-                    fontWeight: typography.fontWeightMedium,
-                  }}
-                >
-                  {extraItem.name}
-                </Typography>
-              </Box>
-            )}
-          </ForLoops>
-        </Box>
+            </Box>
+          )}
+        </ForLoops>
       </Box>
-    </ListItem>
+    </Card>
   );
 };
 

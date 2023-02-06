@@ -157,7 +157,7 @@ function AutoCompleteSearch(
         {...autocomplete.getFormProps({ inputElement: inputRef.current })}
       >
         <TextField
-          size="medium"
+          size="small"
           fullWidth
           InputProps={{
             startAdornment: (

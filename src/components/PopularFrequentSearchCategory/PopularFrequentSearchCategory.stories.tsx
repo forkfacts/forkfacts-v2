@@ -14,7 +14,6 @@ const Template: ComponentStory<typeof PopularFrequentSearchCategory> = (args) =>
 const PopularFrequentSearchItems: PopularFrequentSearchType = {
   searchImg: "/popular.png",
   searchName: "Flax seeds",
-  searchLabels: ["Gluten-free", "Dairy-free"],
   extraInfo: [
     { name: "Calories", weight: "23g" },
     { name: "Fats", weight: "10g" },

@@ -18,7 +18,6 @@ const PopularFrequentSearchCategory = ({
   return (
     <Card
       sx={{
-        borderRadius: spacing(1),
         cursor: "pointer",
         display: "flex",
         flexDirection: "column",
@@ -38,14 +37,20 @@ const PopularFrequentSearchCategory = ({
           color: palette.common.black,
           fontWeight: typography.fontWeightMedium,
           py: spacing(2),
-          ml: "18px",
+          ml: spacing(2.15),
         }}
         variant="body2"
       >
         {item.searchName}
       </Typography>
       <Box
-        sx={{ display: "flex", alignItems: "center", columnGap: "30px", justifyContent: "center" }}
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          columnGap: spacing(3.75),
+          justifyContent: "center",
+          mb: spacing(2),
+        }}
       >
         <ForLoops each={item.extraInfo}>
           {(extraItem, extraIndex) => (

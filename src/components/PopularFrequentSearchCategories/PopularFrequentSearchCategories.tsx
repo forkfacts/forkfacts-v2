@@ -34,7 +34,7 @@ const PopularFrequentSearchCategories = ({
           bgcolor: "background.paper",
           display: "flex",
           flexWrap: "wrap",
-          gap: "60px",
+          gap: spacing(7.5),
         }}
       >
         <ForLoops each={PopularFrequentSearchItems}>

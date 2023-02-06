@@ -11,7 +11,7 @@ export default function NavBar({ navbarItems, onselectNavbarItem }: NavbarProps)
       <Grid container>
         <ForLoops each={navbarItems}>
           {(item, idx) => (
-            <Grid key={idx} item lg={4}>
+            <Grid key={idx} item lg={4} xs={4} sm={4}>
               <NavBarItem
                 index={idx}
                 item={item}

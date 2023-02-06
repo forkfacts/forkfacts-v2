@@ -23,7 +23,7 @@ export default function HomeScreen({
   sourceId,
 }: HomeScreenProps) {
   const theme = useTheme();
-
+  const [selectedNavbarItem, setSelectedNavbarItem] = useState("food");
   const [appBarHeight, setAppBarHeight] = useState<CSSProperties>();
   useEffect(() => {
     setAppBarHeight(theme.mixins.toolbar);
@@ -43,16 +43,12 @@ export default function HomeScreen({
             <Box className={classes.showDesktop}>
               <img src="/homeImg.svg" alt="home page image" className={classes.img} />
             </Box>
-
-            <Typography
-              variant="h4"
-              className={classNames(classes.selectedSearchTitle, classes.showDesktop)}
-            >
-              Foods
-            </Typography>
+            <Box className={classNames(classes.showDesktop, classes.navbarStyles)}>
+              <NavBar navbarItems={navbarItems} onselectNavbarItem={setSelectedNavbarItem} />
+            </Box>
             <Box className={classNames(classes.searchInputStyles)}>
               <AutoCompleteSearch
-                placeholder={placeholder}
+                placeholder={`Search ${selectedNavbarItem}`}
                 openOnFocus={true}
                 sourceId={sourceId}
                 onSelectCategory={onSelectCategory}
@@ -60,16 +56,13 @@ export default function HomeScreen({
                 collectionGroupedItems={collectionGroupedItems}
               />
             </Box>
-            <Box className={classNames(classes.showDesktop, classes.navbarStyles)}>
-              <NavBar navbarItems={navbarItems} />
-            </Box>
-            <Box className={classNames(classes.showDesktop, classes.PopularFrequentStyles)}>
-              <PopularFrequentSearchCategories
-                PopularFrequentSearchTitle={PopularFrequentSearchTitle}
-                PopularFrequentSearchItems={PopularFrequentSearchItems}
-                onSelectPopularItem={onSelectPopularItem}
-              />
-            </Box>
+          </Box>
+          <Box className={classNames(classes.showDesktop, classes.PopularFrequentStyles)}>
+            <PopularFrequentSearchCategories
+              PopularFrequentSearchTitle={PopularFrequentSearchTitle}
+              PopularFrequentSearchItems={PopularFrequentSearchItems}
+              onSelectPopularItem={onSelectPopularItem}
+            />
           </Box>
         </Box>
       </Box>

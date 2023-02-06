@@ -22,6 +22,6 @@ export const useStyles = makeStyles(({ typography, spacing, breakpoints, palette
     paddingBottom: spacing(1.25),
     paddingLeft: spacing(3),
     paddingRight: spacing(3),
-    textTransformation: "capitalize",
+    textTransform: "capitalize",
   },
 }));

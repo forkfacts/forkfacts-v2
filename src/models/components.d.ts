@@ -1,4 +1,5 @@
 import { SvgIconComponent } from "@mui/icons-material";
+import { Dispatch, SetStateAction } from "react";
 
 export interface SearchResultItemType {
   name: string;
@@ -31,6 +32,7 @@ interface selectedItemType {
 
 export interface NavbarProps {
   navbarItems: Array<sidebarItem>;
+  onselectNavbarItem: Dispatch<SetStateAction<string>>;
 }
 
 export type extraInfo = {
@@ -118,6 +120,7 @@ export interface NavBarItemProps {
   index: number;
   setSelectedIndex: (item: number) => void;
   selectedIndex: number;
+  onselectNavbarItem: Dispatch<SetStateAction<string>>;
 }
 
 interface AutoCompleteSearchProps extends onSelectCategoryType {

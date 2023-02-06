@@ -15,7 +15,7 @@ const Template: ComponentStory<typeof NavBar> = (args) => <NavBar {...args} />;
 
 const navbarItems: sidebarItem[] = [
   { label: "Food", Icon: EggAltOutlinedIcon, link: "/food" },
-  { label: "Recipe", Icon: EmojiFoodBeverageOutlinedIcon, link: "/Recipe" },
+  { label: "Recipes", Icon: EmojiFoodBeverageOutlinedIcon, link: "/Recipe" },
   { label: "Library", Icon: LibraryBooksOutlinedIcon, link: "/library" },
 ];
 

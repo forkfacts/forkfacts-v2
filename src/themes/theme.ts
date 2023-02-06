@@ -37,5 +37,9 @@ export const customTheme = createTheme({
     background: {
       default: "#FFFFFF",
     },
+    customGray: {
+      light: "#E5E1E6",
+      main: "#1C1B1F",
+    },
   },
 });

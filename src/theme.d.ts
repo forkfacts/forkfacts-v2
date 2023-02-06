@@ -17,6 +17,10 @@ declare module "@mui/material/styles/createPalette" {
       surface4: string;
       surface5: string;
     };
+    customGray: {
+      light: string;
+      main: string;
+    };
   }
   interface PaletteOptions {
     tertiary: {
@@ -32,6 +36,10 @@ declare module "@mui/material/styles/createPalette" {
       surface3: string;
       surface4: string;
       surface5: string;
+    };
+    customGray: {
+      light: string;
+      main: string;
     };
   }
 }

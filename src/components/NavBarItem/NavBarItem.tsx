@@ -1,7 +1,5 @@
 import React from "react";
 import { Button, Typography, useTheme } from "@mui/material";
-import { blue } from "@mui/material/colors";
-import { navigate } from "gatsby";
 import { NavBarItemProps } from "@forkfacts/models";
 import { useStyles } from "./navbarStyles";
 
@@ -10,13 +8,14 @@ export default function NavBarItem({
   item,
   setSelectedIndex,
   selectedIndex,
+  onselectNavbarItem,
 }: NavBarItemProps) {
   const classes = useStyles();
-  const { spacing } = useTheme();
+  const { spacing, palette, typography } = useTheme();
 
   const handleClick = () => {
     setSelectedIndex(index);
-    navigate(item.link);
+    onselectNavbarItem(item.label);
   };
 
   return (
@@ -25,14 +24,23 @@ export default function NavBarItem({
       variant="text"
       sx={{
         color: ({ palette }) =>
-          selectedIndex === index ? palette.primary.dark : palette.grey[700],
-        borderColor: ({ palette }) =>
-          selectedIndex === index ? palette.primary.dark : palette.grey[700],
+          selectedIndex === index ? palette.primary.main : palette.customGray.main,
         backgroundColor: ({ palette }) =>
-          selectedIndex === index ? blue["50"] : palette.background.default,
+          selectedIndex === index ? palette.primary.light : palette.background.default,
         display: "flex",
-        flexDirection: "column",
+        flexDirection: "row",
         alignItems: "center",
+        width: "100%",
+        paddingTop: spacing(1.25),
+        paddingBottom: spacing(1.25),
+        paddingLeft: spacing(3),
+        paddingRight: spacing(3),
+        border: `1px solid ${palette.customGray.light}`,
+        borderTopRightRadius: index === 2 ? spacing(1) : 0,
+        borderBottomRightRadius: index === 2 ? spacing(1) : 0,
+        borderTopLeftRadius: index === 0 ? spacing(1) : 0,
+        borderBottomLeftRadius: index === 0 ? spacing(1) : 0,
+        fontWeight: typography.fontWeightBold,
       }}
       onClick={handleClick}
       size="small"
@@ -43,7 +51,6 @@ export default function NavBarItem({
           sx={{
             width: spacing(1.9),
             height: spacing(1.9),
-            marginBottom: spacing(1.25),
           }}
         />
       }

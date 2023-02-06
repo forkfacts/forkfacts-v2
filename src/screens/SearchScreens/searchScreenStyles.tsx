@@ -19,7 +19,7 @@ export const useStyles = makeStyles(
     },
     desktopScreenWrapper: {
       [breakpoints.up("md")]: {
-        width: spacing(153.125),
+        width: spacing(159.125),
         marginLeft: "auto",
         marginRight: "auto",
         marginTop: spacing(6),
@@ -66,11 +66,11 @@ export const useStyles = makeStyles(
       },
     },
     navbarStyles: {
-      marginTop: spacing(20),
+      marginTop: spacing(5),
       marginBottom: spacing(5),
       marginLeft: "auto",
       marginRight: "auto",
-      width: spacing(45.625),
+      width: spacing(91.25),
     },
     searchInputStyles: {
       [breakpoints.up("md")]: {
@@ -94,7 +94,7 @@ export const useStyles = makeStyles(
     },
     PopularFrequentStyles: {
       [breakpoints.up("md")]: {
-        marginTop: spacing(13),
+        marginTop: spacing(20),
         display: "flex",
         justifyContent: "center",
         alignItems: "center",

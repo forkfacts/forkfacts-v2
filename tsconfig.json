@@ -112,6 +112,7 @@
     "src/pages/projects/gatsby-node.ts",
     "./gatsby-node.ts",
     "./gatsby-config.ts",
-    "./plugins/**/*"
+    "./plugins/**/*",
+    "src/theme.d.ts"
   ]
 }

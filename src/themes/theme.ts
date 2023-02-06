@@ -1,42 +1,55 @@
-import { createTheme } from "@mui/material/styles";
+import { createTheme } from "@mui/material";
 
 export const customTheme = createTheme({
-  typography: {
-    fontFamily: "Poppins",
-  },
-  shape: {
-    borderRadius: 8,
-  },
-  components: {
-    MuiTextField: {
-      styleOverrides: {
-        root: {
-          "& label": {
-            color: "#8D9287",
-          },
-          "& label.Mui-focused": {
-            color: "#8D9287",
-          },
-          "& .MuiInput-underline:after": {
-            borderBottomColor: "#8D9287",
-            borderWidth: "1px",
-          },
-          "& .MuiOutlinedInput-root": {
-            "& fieldset": {
-              borderColor: "#8D9287",
-              borderWidth: "1px",
-            },
-            "&:hover fieldset": {
-              borderColor: "#8D9287",
-              borderWidth: "1px",
-            },
-            "&.Mui-focused fieldset": {
-              borderColor: "#8D9287",
-              borderWidth: "1px",
-            },
-          },
-        },
-      },
+  spacing: 0,
+  palette: {
+    primary: {
+      main: "#4C42E8",
+      light: "#E2DFFF",
+      dark: "#0E006A",
+      contrastText: "#FFFFFF",
+    },
+    secondary: {
+      main: "#5D5C71",
+      light: "#E3E0F9",
+      dark: "#1A1A2C",
+      contrastText: "#FFFFFF",
+    },
+    error: {
+      main: "#BA1A1A",
+      light: "#FFDAD6",
+      dark: "#410002",
+      contrastText: "#FFFFFF",
+    },
+    tertiary: {
+      main: "#006874",
+      light: "#97F0FF",
+      dark: "#001F24",
+      contrastText: "#FFFFFF",
+    },
+    surface: {
+      main: "#FFFBFF",
+      surface1: " linear-gradient(0deg, rgba(76, 66, 232, 0.05), rgba(76, 66, 232, 0.05)), #FFFBFF",
+      surface2: "linear-gradient(0deg, rgba(76, 66, 232, 0.08), rgba(76, 66, 232, 0.08)), #FFFBFF",
+      surface3: "linear-gradient(0deg, rgba(76, 66, 232, 0.11), rgba(76, 66, 232, 0.11)), #FFFBFF",
+      surface4: "linear-gradient(0deg, rgba(76, 66, 232, 0.12), rgba(76, 66, 232, 0.12)), #FFFBFF",
+      surface5: "linear-gradient(0deg, rgba(76, 66, 232, 0.14), rgba(76, 66, 232, 0.14)), #FFFBFF",
+    },
+    background: {
+      default: "#FFFFFF",
     },
   },
+  typography: {
+    fontFamily: "Poppins",
+    htmlFontSize: 12,
+    h1: {},
+    h2: {},
+    h3: {},
+    subtitle1: {},
+    body1: {},
+    body2: {},
+    subtitle2: {},
+  },
+  components: {},
+  breakpoints: {},
 });

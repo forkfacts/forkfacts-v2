@@ -2,14 +2,9 @@ import { Theme } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 
 export const useStyles = makeStyles(({ typography, spacing, breakpoints, palette }: Theme) => ({
-  root: {
-    width: "100%",
-    flexGrow: 1,
-    background: "red",
-  },
   rightContent: {
     [breakpoints.down("sm")]: {
-      display: "none",
+      right: spacing(1),
     },
     position: "absolute",
     right: spacing(1.5),
@@ -27,5 +22,12 @@ export const useStyles = makeStyles(({ typography, spacing, breakpoints, palette
     paddingLeft: spacing(2),
     paddingBottom: spacing(1),
     paddingRight: spacing(2),
+    textTransformation: "capitalize",
+    [breakpoints.down("sm")]: {
+      paddingTop: spacing(1.25),
+      paddingBottom: spacing(1.25),
+      paddingLeft: spacing(3),
+      paddingRight: spacing(3),
+    },
   },
 }));

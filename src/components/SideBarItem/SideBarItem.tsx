@@ -1,7 +1,6 @@
 import { ListItem, ListItemText, Typography, useTheme, ListItemButton } from "@mui/material";
 import { SideBarItemProps } from "@forkfacts/models";
 import { navigate } from "gatsby";
-import { blue } from "@mui/material/colors";
 import React from "react";
 
 export default function SideBarItem({
@@ -25,9 +24,10 @@ export default function SideBarItem({
       divider={drawerWidthExpanded && index === 2 ? true : false}
       disablePadding
       sx={{
-        color: selectedIndex === index ? palette.primary.dark : palette.grey[700],
         backgroundColor:
-          selectedIndex === index && drawerWidthExpanded ? blue["50"] : palette.background.default,
+          selectedIndex === index && drawerWidthExpanded
+            ? palette.primary.light
+            : palette.background.default,
       }}
     >
       <ListItemButton
@@ -40,10 +40,21 @@ export default function SideBarItem({
           padding: drawerWidthExpanded ? spacing(3) : spacing(2, 0),
         }}
       >
-        <item.Icon sx={{ width: spacing(2.5), height: spacing(2.5) }} />
+        <item.Icon
+          color={selectedIndex === index ? "primary" : "inherit"}
+          sx={{
+            width: spacing(2.5),
+            height: spacing(2.5),
+            fontWeight: 500,
+          }}
+        />
         <ListItemText
           primary={
-            <Typography variant="body1" sx={{ ml: drawerWidthExpanded ? spacing(2) : spacing(0) }}>
+            <Typography
+              variant="body1"
+              color={selectedIndex === index ? "primary" : palette.grey[700]}
+              sx={{ ml: drawerWidthExpanded ? spacing(2) : spacing(0) }}
+            >
               {item.label}
             </Typography>
           }

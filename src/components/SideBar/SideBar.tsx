@@ -13,7 +13,7 @@ const SideBar: FC<SideBarProps> = ({
   drawerWidthExpanded = false,
 }) => {
   const container = window ? () => window().document.body : undefined;
-  const { transitions } = useTheme();
+  const { transitions, spacing } = useTheme();
   const [selectedIndex, setSelectedIndex] = useState<number>(0);
 
   const handleSelectedIndex = (index: number, item: sidebarItem) => {
@@ -42,7 +42,7 @@ const SideBar: FC<SideBarProps> = ({
         }}
       >
         <Toolbar />
-        <Box sx={{ width: drawerWidth, overflow: "auto" }}>
+        <Box sx={{ width: drawerWidth, overflow: "auto", mt: spacing(3) }}>
           <List>
             <ForLoops each={sidebarItems.slice(0, sidebarItems ? sidebarItems.length : 3)}>
               {(item, index) => {
@@ -70,6 +70,7 @@ const SideBar: FC<SideBarProps> = ({
             width: drawerWidth,
             borderWidth: drawerWidthExpanded ? 1 : 0,
             overflow: "hidden",
+            mr: drawerWidth ? spacing(2) : spacing(2),
           },
         }}
         open

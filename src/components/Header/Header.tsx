@@ -26,7 +26,7 @@ export default function Header({ handleToggleButton }: HeaderProps) {
           boxShadow: "none",
           zIndex: (theme) => theme.zIndex.drawer + 1,
           backgroundColor: ({ palette }) => palette.common.white,
-          paddingY: mobile ? theme.spacing(3) : theme.spacing(1),
+          paddingY: mobile ? theme.spacing(2) : theme.spacing(1),
           paddingX: theme.spacing(1),
         }}
       >

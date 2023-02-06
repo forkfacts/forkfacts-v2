@@ -16,6 +16,7 @@ interface HeaderProps {
 
 export default function Header({ handleToggleButton }: HeaderProps) {
   const classes = useStyles();
+
   return (
     <Box>
       <AppBar
@@ -30,14 +31,13 @@ export default function Header({ handleToggleButton }: HeaderProps) {
           <IconButton
             size="large"
             edge="start"
-            color="primary"
             aria-label="menu"
             sx={{ mr: 0.5 }}
             onClick={handleToggleButton}
           >
             <MenuIcon />
           </IconButton>
-          <Typography color="primary.light" variant="h5" className={classes.pageTitle}>
+          <Typography color="primary" variant="h5" className={classes.pageTitle}>
             Forkfacts
           </Typography>
           <Box className={classes.rightContent}>

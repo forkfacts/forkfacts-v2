@@ -44,11 +44,11 @@ export interface PopularFrequentSearchType {
   searchName: string;
   extraInfo: extraInfo[];
 }
-export interface MobileSearchCategoryProps extends onSelectCategoryType, selectedItemType {
+export interface SearchCategoryProps extends onSelectCategoryType, selectedItemType {
   label: string;
   Icon: SvgIconComponent;
 }
-export interface MobileSearchCategoriesProps extends onSelectCategoryType {
+export interface SearchCategoriesProps extends onSelectCategoryType {
   categoryOptions: Array<SearchCategoryItemType>;
 }
 

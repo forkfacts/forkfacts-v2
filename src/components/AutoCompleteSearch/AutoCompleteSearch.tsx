@@ -12,7 +12,7 @@ import classnames from "classnames";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { SearchOutlined } from "@mui/icons-material";
 import InputAdornment from "@mui/material/InputAdornment";
-import { SearchResults, MobileSearchCategories } from "@forkfacts/components";
+import { SearchResults, SearchCategories } from "@forkfacts/components";
 import { SearchResultItemType, AutoCompleteSearchProps } from "@forkfacts/models";
 import CloseIcon from "@mui/icons-material/Close";
 import { ForLoops } from "@forkfacts/helpers";
@@ -266,7 +266,7 @@ function AutoCompleteSearch(
             )
           )}
           {!query && mobile && (
-            <MobileSearchCategories
+            <SearchCategories
               onSelectCategory={props.onSelectCategory}
               categoryOptions={props.categoryOptions}
             />

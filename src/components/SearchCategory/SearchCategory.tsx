@@ -1,17 +1,17 @@
 import React from "react";
 import { Button } from "@mui/material";
 import { blue } from "@mui/material/colors";
-import { MobileSearchCategoryProps } from "@forkfacts/models";
-import { useStyles } from "./mobilesearchCategoryStyles";
+import { SearchCategoryProps } from "@forkfacts/models";
+import { useStyles } from "./searchCategoryStyles";
 
-export default function MobileSearchCategory({
+export default function SearchCategory({
   index,
   label,
   Icon,
   onSelectCategory,
   setSelectedIndex,
   selectedIndex,
-}: MobileSearchCategoryProps) {
+}: SearchCategoryProps) {
   const classes = useStyles();
   const item = {
     label,
@@ -29,9 +29,9 @@ export default function MobileSearchCategory({
       variant="outlined"
       sx={{
         color: ({ palette }) =>
-          selectedIndex === index ? palette.primary.dark : palette.grey[700],
+          selectedIndex === index ? palette.primary.main : palette.grey[700],
         borderColor: ({ palette }) =>
-          selectedIndex === index ? palette.primary.dark : palette.grey[700],
+          selectedIndex === index ? palette.primary.main : palette.grey[700],
         backgroundColor: ({ palette }) =>
           selectedIndex === index ? blue["50"] : palette.background.default,
         textTransform: "capitalize",

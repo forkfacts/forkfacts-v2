@@ -7,7 +7,7 @@ import {
 import { getAlgoliaResults } from "@algolia/autocomplete-preset-algolia";
 import { Hit } from "@algolia/client-search";
 import algoliasearch from "algoliasearch/lite";
-import { Box, Button, TextField, Typography, useTheme, useMediaQuery } from "@mui/material";
+import { Box, TextField, useTheme, useMediaQuery } from "@mui/material";
 import classnames from "classnames";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { SearchOutlined } from "@mui/icons-material";
@@ -50,15 +50,10 @@ function AutoCompleteSearch(
     activeItemId: null,
     status: "idle",
   });
-  const {
-    spacing,
-    shadows,
-    palette: { grey, common, primary },
-    breakpoints,
-  } = useTheme();
+  const theme = useTheme();
   const { query, collections, isOpen, status } = autocompleteState;
-  const mobile = useMediaQuery(breakpoints.down("md"));
-  const desktop = useMediaQuery(breakpoints.up("md"));
+  const mobile = useMediaQuery(theme.breakpoints.down("md"));
+  const desktop = useMediaQuery(theme.breakpoints.up("md"));
   const classes = useStyles({ isOpen });
   const autocomplete = useMemo(
     () =>
@@ -174,17 +169,17 @@ function AutoCompleteSearch(
                 <Box
                   sx={{
                     position: "absolute",
-                    top: spacing(1.875),
-                    right: spacing(1.25),
-                    width: spacing(4.375),
-                    height: spacing(4.375),
-                    bgcolor: common.white,
+                    top: theme.spacing(1.175),
+                    right: theme.spacing(0.25),
+                    width: theme.spacing(4.375),
+                    height: theme.spacing(4.375),
+                    bgcolor: theme.palette.common.white,
                   }}
                 >
                   {query && (
                     <CloseIcon
                       onClick={onClearSearch}
-                      sx={{ cursor: "pointer", color: !desktop ? primary.dark : grey[600] }}
+                      sx={{ cursor: "pointer", color: theme.palette.common.black }}
                     />
                   )}
                 </Box>
@@ -193,12 +188,18 @@ function AutoCompleteSearch(
           }}
           sx={
             noResultInput
-              ? noResultInputStyles(spacing, shadows, noResultInput)
+              ? noResultInputStyles(theme.spacing, theme.shadows, noResultInput)
               : desktop
-              ? desktopInputStyles(spacing, shadows, isOpen)
+              ? desktopInputStyles(
+                  theme.spacing,
+                  theme.shadows,
+                  isOpen,
+                  theme.palette.primary,
+                  theme.palette.customGray
+                )
               : mobile && !isOpen && !desktop
-              ? mobileInputStyles(spacing, isOpen, grey[300])
-              : inputStyles(spacing)
+              ? mobileInputStyles(theme.spacing, isOpen, theme.palette.grey[50])
+              : inputStyles(theme.spacing)
           }
           ref={inputRef}
           {...autocomplete.getInputProps({ inputElement: inputRef.current })}
@@ -207,9 +208,9 @@ function AutoCompleteSearch(
       {isOpen && desktop && (
         <Box
           style={{
-            backgroundColor: grey[300],
+            backgroundColor: theme.palette.grey[300],
             width: "100%",
-            height: spacing(0.125),
+            height: theme.spacing(0.125),
           }}
         />
       )}
@@ -218,61 +219,23 @@ function AutoCompleteSearch(
           component="div"
           ref={panelRef}
           {...autocomplete.getPanelProps({})}
-          sx={{ mt: spacing(2), width: "100%" }}
+          sx={{ mt: theme.spacing(2), width: "100%" }}
         >
-          {!query && status === "idle" ? (
-            <Box
-              sx={{
-                mb: spacing(1.5),
-                width: "100%",
-                paddingLeft: spacing(2),
-                paddingRight: spacing(3.9),
-              }}
-              component="div"
-            >
-              <Typography color="text.secondary" variant="body2">
-                I’m searching for
-              </Typography>
-            </Box>
-          ) : status === "stalled" ? (
-            <Box />
-          ) : (
-            query &&
-            status === "idle" && (
-              <Box
-                sx={{
-                  mb: spacing(1.5),
-                  width: "100%",
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  paddingLeft: spacing(2),
-                  paddingRight: spacing(3.9),
-                }}
-                component="div"
-              >
-                <Typography color="text.secondary" variant="subtitle2">
-                  Recent search
-                </Typography>
-                <Button
-                  color="primary"
-                  variant="text"
-                  className={classes.clearBtn}
-                  onClick={onClearSearch}
-                >
-                  Clear all
-                </Button>
-              </Box>
-            )
-          )}
           {!query && mobile && (
             <SearchCategories
               onSelectCategory={props.onSelectCategory}
               categoryOptions={props.categoryOptions}
             />
           )}
-          {query || (desktop && !query) ? (
-            <Box>
+          {query || (mobile && !query) ? (
+            <Box
+              sx={{
+                mb: theme.spacing(1.5),
+                width: "100%",
+                paddingLeft: theme.spacing(2),
+                paddingRight: theme.spacing(3.9),
+              }}
+            >
               <ForLoops each={collections}>
                 {(collection, index) => {
                   const { source, items } = collection;
@@ -286,8 +249,15 @@ function AutoCompleteSearch(
                 }}
               </ForLoops>
             </Box>
-          ) : (
-            <Box>
+          ) : query || desktop || !query ? (
+            <Box
+              sx={{
+                mb: theme.spacing(1.5),
+                width: "100%",
+                paddingLeft: theme.spacing(2),
+                paddingRight: theme.spacing(3.9),
+              }}
+            >
               <ForLoops each={collections}>
                 {(collection, index) => {
                   const { source, items } = collection;
@@ -305,7 +275,7 @@ function AutoCompleteSearch(
                 }}
               </ForLoops>
             </Box>
-          )}
+          ) : null}
         </Box>
       )}
     </Box>

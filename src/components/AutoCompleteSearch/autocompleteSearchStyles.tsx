@@ -94,15 +94,22 @@ export function noResultInputStyles<T, U, V>(
   };
 }
 
-export function desktopInputStyles<T, U, V>(spacing: (type: number) => T, shadows: U[], isOpen: V) {
+export function desktopInputStyles<
+  T,
+  U,
+  V,
+  W extends { main: string },
+  X extends { light: string }
+>(spacing: (type: number) => T, shadows: U[], isOpen: V, primary: W, customGray: X) {
   return {
     "& fieldset": {
       border: "none",
     },
-    borderRadius: spacing(1.25),
-    boxShadow: isOpen ? shadows[0] : shadows[2],
+    borderRadius: isOpen ? `${spacing(1)} ${spacing(1)} 0px 0px` : spacing(1),
     py: spacing(1.2),
     paddingLeft: spacing(2),
     paddingRight: spacing(3.9),
+    border: isOpen ? `2px solid ${primary.main}` : `1.5px solid ${customGray.light}`,
+    boxShadow: "0px 1px 4px rgba(0, 0, 0, 0.25)",
   };
 }

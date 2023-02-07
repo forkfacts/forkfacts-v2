@@ -6,6 +6,7 @@ export const useStyles = makeStyles(({ spacing, breakpoints, typography }: Theme
     [breakpoints.down("md")]: {
       maxWidth: "100%",
       width: "100%",
+      boxSizing: "border-box",
     },
   },
   ListItemText: {
@@ -15,7 +16,7 @@ export const useStyles = makeStyles(({ spacing, breakpoints, typography }: Theme
   },
   categoryName: {
     [breakpoints.down("md")]: {
-      fontSize: typography.fontSize,
+      fontSize: typography.caption.fontSize,
       padding: spacing(1.2, 2),
     },
   },

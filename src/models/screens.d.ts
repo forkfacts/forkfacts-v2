@@ -36,6 +36,5 @@ export interface HomeScreenProps extends onSelectCategoryType {
   onSelectPopularItem: (item: PopularFrequentSearchType) => void;
   categoryOptions: SearchCategoryItemType[];
   collectionGroupedItems: Array<SearchResultItemCollectionType>;
-  placeholder: string;
   sourceId: string;
 }

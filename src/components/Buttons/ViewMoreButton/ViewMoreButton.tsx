@@ -5,15 +5,21 @@ import { useStyles } from "./viewMoreStyles";
 
 type ViewMoreButtonProps = {
   handleViewMore?: () => void;
+  text?: string;
+  icon?: boolean;
 };
 
-export default function ViewMoreButton({ handleViewMore }: ViewMoreButtonProps) {
+export default function ViewMoreButton({
+  handleViewMore,
+  text = "See more",
+  icon = false,
+}: ViewMoreButtonProps) {
   const styles = useStyles();
   return (
     <Box className={styles.btnWrapper}>
       <Button variant="text" color="primary" className={styles.btn} onClick={handleViewMore}>
-        View More
-        <ExpandMoreIcon className={styles.icon} />
+        {text}
+        {icon && <ExpandMoreIcon className={styles.icon} />}
       </Button>
     </Box>
   );

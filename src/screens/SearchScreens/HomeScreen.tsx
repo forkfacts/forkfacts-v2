@@ -19,7 +19,6 @@ export default function HomeScreen({
   onSelectCategory,
   collectionGroupedItems,
   categoryOptions,
-  placeholder,
   sourceId,
 }: HomeScreenProps) {
   const theme = useTheme();

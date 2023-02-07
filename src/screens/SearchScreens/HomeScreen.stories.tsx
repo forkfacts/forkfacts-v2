@@ -172,8 +172,10 @@ Desktop.args = {
   PopularFrequentSearchItems: PopularFrequentSearchItems,
   PopularFrequentSearchTitle: PopularFrequentSearchTitle,
   onSelectPopularItem: onSelectPopularItem,
-  placeholder: "Search food, recipes & library",
   sourceId: "forkfact-v2",
+  categoryOptions: categoryOptions,
+  onSelectCategory: (item: SearchCategoryItemType) => {},
+  collectionGroupedItems: collectionGroupedItems,
 };
 
 export const Mobile = Template.bind({});
@@ -188,7 +190,6 @@ Mobile.args = {
   categoryOptions: categoryOptions,
   onSelectCategory: (item: SearchCategoryItemType) => {},
   collectionGroupedItems: collectionGroupedItems,
-  placeholder: "Search",
   sourceId: "forkfact-v2",
 };
 
@@ -204,6 +205,5 @@ Tablet.args = {
   categoryOptions: categoryOptions,
   onSelectCategory: (item: SearchCategoryItemType) => {},
   collectionGroupedItems: collectionGroupedItems,
-  placeholder: "Search",
   sourceId: "forkfact-v2",
 };

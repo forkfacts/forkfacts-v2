@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import EggAltOutlinedIcon from "@mui/icons-material/EggAltOutlined";
 import EmojiFoodBeverageOutlinedIcon from "@mui/icons-material/EmojiFoodBeverageOutlined";
@@ -17,9 +17,10 @@ export default {
   },
 } as ComponentMeta<typeof AutoCompleteSearch>;
 
-const Template: ComponentStory<typeof AutoCompleteSearch> = (args) => (
-  <AutoCompleteSearch {...args} />
-);
+const Template: ComponentStory<typeof AutoCompleteSearch> = (args) => {
+  const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false);
+  return <AutoCompleteSearch {...args} setIsMobileSearchOpen={setIsMobileSearchOpen} />;
+};
 
 export const Desktop = Template.bind({});
 
@@ -107,21 +108,25 @@ const collectionGroupedItems = [
 ];
 
 Desktop.args = {
+  ...Desktop.args,
   placeholder: "Search food, recipes & library",
   openOnFocus: true,
   sourceId: "forkfact-v2",
   collectionGroupedItems: collectionGroupedItems,
   categoryOptions: categoryOptions,
+  recommendations,
 };
 
 export const Mobile = Template.bind({});
 
 Mobile.args = {
+  ...Mobile.args,
   openOnFocus: true,
   sourceId: "forkfact-v2",
   collectionGroupedItems: collectionGroupedItems,
   placeholder: "Search",
   categoryOptions: categoryOptions,
+  recommendations,
 };
 
 Mobile.parameters = {
@@ -133,11 +138,13 @@ Mobile.parameters = {
 export const Tablet = Template.bind({});
 
 Tablet.args = {
+  ...Tablet.args,
   openOnFocus: true,
   sourceId: "forkfact-v2",
   collectionGroupedItems: collectionGroupedItems,
   placeholder: "Search",
   categoryOptions: categoryOptions,
+  recommendations,
 };
 
 Tablet.parameters = {

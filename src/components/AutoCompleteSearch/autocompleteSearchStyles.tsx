@@ -2,11 +2,6 @@ import { makeStyles } from "@mui/styles";
 import { Theme } from "@mui/material";
 
 export const useStyles = makeStyles(({ breakpoints, spacing, palette, zIndex }: Theme) => ({
-  root: {
-    borderRadius: (props: { isOpen: boolean }) => {
-      return props.isOpen ? "hidden" : "auto";
-    },
-  },
   closedSearchContainer: {
     [breakpoints.up("md")]: {
       width: "100%",

@@ -12,7 +12,7 @@ const NoSearchResults: React.FC<NoSearchResultsProps> = ({}) => {
       <Box
         sx={{
           width: "100%",
-          height: desktop ? "100vh" : "468px",
+          height: desktop ? "468px" : "100vh",
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",

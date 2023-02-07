@@ -145,7 +145,7 @@ function AutoCompleteSearch(
   const noResultInput = mobile && !isOpen && query && !desktop;
 
   return (
-    <div className={classes.root}>
+    <Box component="div" sx={{ overflow: "hidden !important" }}>
       <Box
         component="div"
         className={classnames(
@@ -319,6 +319,7 @@ function AutoCompleteSearch(
                   width: "100%",
                   paddingLeft: theme.spacing(1),
                   paddingRight: theme.spacing(1),
+                  mb: theme.spacing(3),
                 }}
               >
                 <ForLoops each={collections}>
@@ -345,7 +346,7 @@ function AutoCompleteSearch(
           <NoSearchResults />
         ) : null}
       </Box>
-    </div>
+    </Box>
   );
 }
 

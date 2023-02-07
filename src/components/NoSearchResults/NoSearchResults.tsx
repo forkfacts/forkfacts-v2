@@ -1,4 +1,4 @@
-import { Box, Button, Typography, useTheme } from "@mui/material";
+import { Box, Button, Typography, useMediaQuery, useTheme } from "@mui/material";
 
 import React from "react";
 
@@ -6,13 +6,13 @@ interface NoSearchResultsProps {}
 
 const NoSearchResults: React.FC<NoSearchResultsProps> = ({}) => {
   const theme = useTheme();
+  const desktop = useMediaQuery(theme.breakpoints.up("md"));
   return (
     <Box>
       <Box
         sx={{
           width: "100%",
-          maxWidth: "100%",
-          height: "468px",
+          height: desktop ? "100vh" : "468px",
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",

@@ -9,14 +9,13 @@ const SearchRecommendations: React.FC<SearchRecommendationsProps> = ({ recommend
   const theme = useTheme();
 
   return (
-    <Box sx={{ width: "100%" }}>
+    <Box component="div" sx={{ overflow: "hidden" }}>
       <Box sx={{ mb: theme.spacing(2) }}>
         <Typography
-          variant="h6"
+          variant="subtitle2"
           sx={{
-            color: theme.palette.common.black,
-            fontWeight: theme.typography.fontWeightMedium,
-            lineHeight: theme.spacing(4),
+            fontWeight: theme.typography.fontWeightBold,
+            fontSize: theme.typography.subtitle2.fontSize,
           }}
         >
           Recommendations

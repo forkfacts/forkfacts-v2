@@ -45,7 +45,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({
                           justifyContent: "center",
                           alignItems: "center",
                           borderRadius: "50%",
-                          ml: theme.spacing(2),
+                          // ml: theme.spacing(0.5),
                         }}
                       >
                         {value.collection.length}

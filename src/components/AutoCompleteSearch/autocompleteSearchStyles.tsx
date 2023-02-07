@@ -1,38 +1,40 @@
 import { makeStyles } from "@mui/styles";
 import { Theme } from "@mui/material";
 
-export const useStyles = makeStyles(
-  ({ breakpoints, spacing, typography, palette, zIndex }: Theme) => ({
-    root: {
-      [breakpoints.up("md")]: {
-        width: "100%",
-        py: spacing(3),
-        px: spacing(1.375),
-        borderRadius: (props: { isOpen: boolean }) => {
-          return props.isOpen ? spacing(1.25) : spacing(0);
-        },
-        position: "absolute",
-        backgroundColor: palette.common.white,
+export const useStyles = makeStyles(({ breakpoints, spacing, palette, zIndex }: Theme) => ({
+  root: {
+    borderRadius: (props: { isOpen: boolean }) => {
+      return props.isOpen ? "hidden" : "auto";
+    },
+  },
+  closedSearchContainer: {
+    [breakpoints.up("md")]: {
+      width: "100%",
+      py: spacing(3),
+      px: spacing(1.375),
+      borderRadius: (props: { isOpen: boolean }) => {
+        return props.isOpen ? spacing(1.25) : spacing(0);
       },
+      position: "absolute",
+      backgroundColor: palette.common.white,
     },
-    rootOpen: {
-      [breakpoints.down("md")]: {
-        width: "100%",
-        position: "fixed",
-        height: "100%",
-        top: 0,
-        right: 0,
-        bottom: 0,
-        left: 0,
-        backgroundColor: palette.common.white,
-        zIndex: zIndex.modal,
-      },
+  },
+  openedSearchContainer: {
+    [breakpoints.down("md")]: {
+      width: "100%",
+      position: "fixed",
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0,
+      backgroundColor: palette.common.white,
+      zIndex: zIndex.modal,
     },
-    icon: {
-      cursor: "pointer",
-    },
-  })
-);
+  },
+  icon: {
+    cursor: "pointer",
+  },
+}));
 
 export function mobileInputStyles<T, U, V extends { main: string }, W extends { light: string }>(
   spacing: (type: number) => T,

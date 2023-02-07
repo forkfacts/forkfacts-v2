@@ -11,7 +11,12 @@ import { Box, TextField, useTheme, useMediaQuery, Button, Typography } from "@mu
 import classnames from "classnames";
 import { SearchOutlined } from "@mui/icons-material";
 import InputAdornment from "@mui/material/InputAdornment";
-import { SearchResults, SearchCategories, SearchRecommendations } from "@forkfacts/components";
+import {
+  SearchResults,
+  SearchCategories,
+  SearchRecommendations,
+  NoSearchResults,
+} from "@forkfacts/components";
 import { SearchResultItemType, AutoCompleteSearchProps } from "@forkfacts/models";
 import CloseIcon from "@mui/icons-material/Close";
 import { ForLoops } from "@forkfacts/helpers";
@@ -52,7 +57,9 @@ function AutoCompleteSearch(
   const { query, collections, isOpen, status } = autocompleteState;
   const mobile = useMediaQuery(theme.breakpoints.down("md"));
   const desktop = useMediaQuery(theme.breakpoints.up("md"));
+  const [isSearchFound, setIsSearchFound] = useState<any>([]);
   const classes = useStyles({ isOpen });
+  console.log("isSearchFound", isSearchFound);
   const autocomplete = useMemo(
     () =>
       createAutocomplete<
@@ -80,6 +87,10 @@ function AutoCompleteSearch(
                       },
                     },
                   ],
+                  transformResponse: ({ hits }) => {
+                    setIsSearchFound(hits[0]?.length);
+                    return hits;
+                  },
                 });
               },
               getItemUrl({ item }) {
@@ -106,11 +117,11 @@ function AutoCompleteSearch(
       inputElement: inputRef.current,
       panelElement: panelRef.current,
     });
-
-    window.addEventListener("mousedown", onMouseDown);
-    window.addEventListener("touchstart", onTouchStart);
-    window.addEventListener("touchmove", onTouchMove);
-
+    if (desktop) {
+      window.addEventListener("mousedown", onMouseDown);
+      window.addEventListener("touchstart", onTouchStart);
+      window.addEventListener("touchmove", onTouchMove);
+    }
     return () => {
       window.removeEventListener("mousedown", onMouseDown);
       window.removeEventListener("touchstart", onTouchStart);
@@ -124,7 +135,6 @@ function AutoCompleteSearch(
 
   const onClearSearch = () => {
     autocomplete.setQuery("");
-    autocomplete.refresh();
   };
 
   const onClosePage = () => {
@@ -135,201 +145,207 @@ function AutoCompleteSearch(
   const noResultInput = mobile && !isOpen && query && !desktop;
 
   return (
-    <Box
-      component="div"
-      className={classnames(
-        desktop ? classes.root : isOpen || (query && mobile) ? classes.rootOpen : ""
-      )}
-      boxShadow={isOpen ? 2 : 0}
-      onClick={(e) => {
-        e.stopPropagation();
-      }}
-    >
+    <div className={classes.root}>
       <Box
-        component="form"
-        ref={formRef}
-        {...autocomplete.getFormProps({ inputElement: inputRef.current })}
-        sx={{ display: "flex", p: mobile && isOpen ? "10px" : 0 }}
+        component="div"
+        className={classnames(
+          desktop
+            ? classes.closedSearchContainer
+            : (isOpen && !query) || (query && mobile && isOpen) || noResultInput
+            ? classes.openedSearchContainer
+            : ""
+        )}
+        boxShadow={isOpen ? 2 : 0}
+        onClick={(e) => {
+          e.stopPropagation();
+        }}
       >
-        <TextField
-          size="small"
-          fullWidth
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <SearchOutlined />
-              </InputAdornment>
-            ),
-            endAdornment: (
-              <InputAdornment position="start">
-                <Box
-                  sx={{
-                    position: "absolute",
-                    top: theme.spacing(1.175),
-                    right: theme.spacing(0.25),
-                    width: theme.spacing(4.375),
-                    height: theme.spacing(4.375),
-                    bgcolor: theme.palette.common.white,
-                  }}
-                >
-                  {query && (
-                    <CloseIcon
-                      onClick={onClearSearch}
-                      sx={{ cursor: "pointer", color: theme.palette.common.black }}
-                    />
-                  )}
-                </Box>
-              </InputAdornment>
-            ),
-          }}
-          sx={
-            desktop
-              ? desktopInputStyles(
-                  theme.spacing,
-                  theme.shadows,
-                  isOpen,
-                  theme.palette.primary,
-                  theme.palette.customGray
-                )
-              : mobile && !isOpen && !desktop
-              ? mobileInputStyles(
-                  theme.spacing,
-                  isOpen,
-                  theme.palette.primary,
-                  theme.palette.customGray
-                )
-              : inputStyles(isOpen, theme.palette.primary, theme.spacing)
-          }
-          ref={inputRef}
-          {...autocomplete.getInputProps({ inputElement: inputRef.current })}
-        />
-        {(isOpen && mobile) || noResultInput ? (
-          <Button
-            onClick={onClosePage}
-            sx={{
-              fontWeight: theme.typography.fontWeightBold,
-              fontSize: theme.typography.subtitle2.fontSize,
-              textTransform: "lowercase",
-            }}
-          >
-            Close
-          </Button>
-        ) : null}
-      </Box>
-      {isOpen && desktop && (
         <Box
-          style={{
-            backgroundColor: theme.palette.grey[300],
-            width: "100%",
-            height: theme.spacing(0.125),
-          }}
-        />
-      )}
-
-      {isOpen && (
-        <Box
-          component="div"
-          ref={panelRef}
-          {...autocomplete.getPanelProps({})}
-          sx={{ mt: theme.spacing(1), width: "100%" }}
+          component="form"
+          ref={formRef}
+          {...autocomplete.getFormProps({ inputElement: inputRef.current })}
+          sx={{ display: "flex", p: (mobile && isOpen) || (mobile && noResultInput) ? "10px" : 0 }}
         >
-          {!query && mobile && (
-            <Box sx={{ mb: theme.spacing(2), width: "100%" }}>
-              <SearchCategories
-                onSelectCategory={props.onSelectCategory}
-                categoryOptions={props.categoryOptions}
-              />
-            </Box>
-          )}
-          {!query && status === "idle" && mobile && (
-            <Box
+          <TextField
+            size="small"
+            fullWidth
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <SearchOutlined />
+                </InputAdornment>
+              ),
+              endAdornment: (
+                <InputAdornment position="start">
+                  <Box
+                    sx={{
+                      position: "absolute",
+                      top: theme.spacing(1.175),
+                      right: theme.spacing(0.25),
+                      width: theme.spacing(4.375),
+                      height: theme.spacing(4.375),
+                      bgcolor: theme.palette.common.white,
+                    }}
+                  >
+                    {query && (
+                      <CloseIcon
+                        onClick={onClearSearch}
+                        sx={{ cursor: "pointer", color: theme.palette.common.black }}
+                      />
+                    )}
+                  </Box>
+                </InputAdornment>
+              ),
+            }}
+            sx={
+              desktop
+                ? desktopInputStyles(
+                    theme.spacing,
+                    theme.shadows,
+                    isOpen,
+                    theme.palette.primary,
+                    theme.palette.customGray
+                  )
+                : mobile && !isOpen && !desktop
+                ? mobileInputStyles(
+                    theme.spacing,
+                    isOpen,
+                    theme.palette.primary,
+                    theme.palette.customGray
+                  )
+                : inputStyles(isOpen, theme.palette.primary, theme.spacing)
+            }
+            ref={inputRef}
+            {...autocomplete.getInputProps({ inputElement: inputRef.current })}
+          />
+          {(isOpen && mobile) || noResultInput ? (
+            <Button
+              onClick={onClosePage}
               sx={{
-                mb: theme.spacing(1.5),
-                width: "100%",
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                paddingLeft: theme.spacing(2),
-                paddingRight: theme.spacing(2),
-              }}
-              component="div"
-            >
-              <Typography
-                variant="subtitle2"
-                sx={{
-                  fontWeight: theme.typography.fontWeightBold,
-                  fontSize: theme.typography.subtitle2.fontSize,
-                }}
-              >
-                Recently viewed
-              </Typography>
-              <Button
-                color="primary"
-                variant="text"
-                sx={{
-                  fontWeight: theme.typography.fontWeightBold,
-                  fontSize: theme.typography.subtitle2.fontSize,
-                  textTransform: "lowercase",
-                }}
-                onClick={onClearSearch}
-              >
-                Clear
-              </Button>
-            </Box>
-          )}
-          {query || (mobile && !query) ? (
-            <Box
-              sx={{
-                mb: theme.spacing(1.5),
-                width: "100%",
-                paddingLeft: theme.spacing(1),
-                paddingRight: theme.spacing(1),
-              }}
-            >
-              <ForLoops each={collections}>
-                {(collection, index) => {
-                  const { source, items } = collection;
-                  return (
-                    <Box component="section" key={`source-${index}`}>
-                      {items.length > 0 && (
-                        <SearchResults collectionListsItems={items} onSelectItem={onSelectItem} />
-                      )}
-                    </Box>
-                  );
-                }}
-              </ForLoops>
-              <SearchRecommendations recommendations={props.recommendations} />
-            </Box>
-          ) : query || desktop || !query ? (
-            <Box
-              sx={{
-                mb: theme.spacing(1.5),
-                width: "100%",
-                paddingLeft: theme.spacing(1),
-                paddingRight: theme.spacing(1),
+                fontWeight: theme.typography.fontWeightBold,
+                fontSize: theme.typography.subtitle2.fontSize,
+                textTransform: "lowercase",
               }}
             >
-              <ForLoops each={collections}>
-                {(collection, index) => {
-                  const { source, items } = collection;
-                  return (
-                    <Box component="section" key={`source-${index}`}>
-                      {items.length > 0 && (
-                        <SearchResults
-                          collectionGroupedItems={props.collectionGroupedItems}
-                          onSelectItem={onSelectItem}
-                          multiple={true}
-                        />
-                      )}
-                    </Box>
-                  );
-                }}
-              </ForLoops>
-            </Box>
+              Close
+            </Button>
           ) : null}
         </Box>
-      )}
-    </Box>
+        {isOpen && desktop && (
+          <Box
+            style={{
+              backgroundColor: theme.palette.grey[300],
+              width: "100%",
+              height: theme.spacing(0.125),
+            }}
+          />
+        )}
+
+        {isOpen && (desktop || mobile) ? (
+          <Box
+            component="div"
+            ref={panelRef}
+            {...autocomplete.getPanelProps({})}
+            sx={{ width: "100%" }}
+          >
+            {!query && mobile && (
+              <Box sx={{ mb: theme.spacing(2), width: "100%" }}>
+                <SearchCategories
+                  onSelectCategory={props.onSelectCategory}
+                  categoryOptions={props.categoryOptions}
+                />
+              </Box>
+            )}
+            {!query && status === "idle" && (mobile || desktop) && (
+              <Box
+                sx={{
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  paddingLeft: theme.spacing(2),
+                  paddingRight: theme.spacing(2),
+                }}
+                component="div"
+              >
+                <Typography
+                  variant="subtitle2"
+                  sx={{
+                    fontWeight: theme.typography.fontWeightBold,
+                    fontSize: theme.typography.subtitle2.fontSize,
+                  }}
+                >
+                  Recently viewed
+                </Typography>
+                <Button
+                  color="primary"
+                  variant="text"
+                  sx={{
+                    fontWeight: theme.typography.fontWeightBold,
+                    fontSize: theme.typography.subtitle2.fontSize,
+                    textTransform: "lowercase",
+                  }}
+                  onClick={onClearSearch}
+                >
+                  Clear
+                </Button>
+              </Box>
+            )}
+            {!query && (mobile || desktop) ? (
+              <Box
+                sx={{
+                  width: "100%",
+                  paddingLeft: theme.spacing(1),
+                  paddingRight: theme.spacing(1),
+                }}
+              >
+                <ForLoops each={collections}>
+                  {(collection, index) => {
+                    const { source, items } = collection;
+                    return (
+                      <Box component="section" key={`source-${index}`}>
+                        {items.length > 0 && (
+                          <SearchResults collectionListsItems={items} onSelectItem={onSelectItem} />
+                        )}
+                      </Box>
+                    );
+                  }}
+                </ForLoops>
+                <SearchRecommendations recommendations={props.recommendations} />
+              </Box>
+            ) : query && (desktop || mobile) ? (
+              <Box
+                sx={{
+                  width: "100%",
+                  paddingLeft: theme.spacing(1),
+                  paddingRight: theme.spacing(1),
+                }}
+              >
+                <ForLoops each={collections}>
+                  {(collection, index) => {
+                    const { items } = collection;
+                    return (
+                      <Box component="section" key={`source-${index}`}>
+                        {items.length > 0 && (
+                          <SearchResults
+                            collectionGroupedItems={props.collectionGroupedItems}
+                            onSelectItem={onSelectItem}
+                            multiple={true}
+                          />
+                        )}
+                      </Box>
+                    );
+                  }}
+                </ForLoops>
+              </Box>
+            ) : null}
+          </Box>
+        ) : (noResultInput && !isSearchFound && mobile && query) ||
+          (desktop && !isSearchFound && query) ? (
+          <NoSearchResults />
+        ) : null}
+      </Box>
+    </div>
   );
 }
 

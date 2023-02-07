@@ -9,8 +9,8 @@ const SearchRecommendations: React.FC<SearchRecommendationsProps> = ({ recommend
   const theme = useTheme();
 
   return (
-    <Box sx={{ width: "100%", mt: ({ spacing }) => spacing(1) }}>
-      <Box sx={{ mb: desktop ? theme.spacing(5) : theme.spacing(2) }}>
+    <Box sx={{ width: "100%" }}>
+      <Box sx={{ mb: theme.spacing(2) }}>
         <Typography
           variant="h6"
           sx={{
@@ -19,7 +19,7 @@ const SearchRecommendations: React.FC<SearchRecommendationsProps> = ({ recommend
             lineHeight: theme.spacing(4),
           }}
         >
-          recommendations
+          Recommendations
         </Typography>
       </Box>
       <ForLoops each={recommendations}>

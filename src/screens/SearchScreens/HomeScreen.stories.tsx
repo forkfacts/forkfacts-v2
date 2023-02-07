@@ -219,6 +219,7 @@ Desktop.args = {
   sourceId: "forkfact-v2",
   categoryOptions: categoryOptions,
   collectionGroupedItems: collectionGroupedItems,
+  recommendations: recommendations,
 };
 
 export const Mobile = Template.bind({});
@@ -256,4 +257,5 @@ Tablet.args = {
   onSelectPopularItem: onSelectPopularItem,
   navbarItems: navbarItems,
   sourceId: "forkfact-v2",
+  recommendations: recommendations,
 };

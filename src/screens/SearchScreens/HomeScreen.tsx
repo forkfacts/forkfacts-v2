@@ -43,7 +43,9 @@ export default function HomeScreen({
         <Box className={classNames(classes.searchInputStyles)}>
           <AutoCompleteSearch
             recommendations={recommendations}
-            placeholder={`Search ${mobile ? selectedMobileItem : selectedNavbarItem}`}
+            placeholder={`Search ${
+              mobile ? selectedMobileItem.toLowerCase() : selectedNavbarItem.toLowerCase()
+            }`}
             openOnFocus={true}
             sourceId={sourceId}
             onSelectCategory={setSelectedMobileItem}

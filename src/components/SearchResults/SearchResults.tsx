@@ -24,7 +24,14 @@ const SearchResults: React.FC<SearchResultsProps> = ({
               {(value, idx) => {
                 return (
                   <List key={idx} className={classes.listWrapper}>
-                    <Box sx={{ display: "flex", alignItems: "center", width: "100%" }}>
+                    <Box
+                      sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        width: "100%",
+                        mb: theme.spacing(1.5),
+                      }}
+                    >
                       <Typography variant="caption" className={classes.categoryName}>
                         {value.categoryName}
                       </Typography>

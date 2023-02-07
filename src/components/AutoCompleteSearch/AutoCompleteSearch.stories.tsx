@@ -3,9 +3,6 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import EggAltOutlinedIcon from "@mui/icons-material/EggAltOutlined";
 import EmojiFoodBeverageOutlinedIcon from "@mui/icons-material/EmojiFoodBeverageOutlined";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
-import LibraryBooksOutlinedIcon from "@mui/icons-material/LibraryBooksOutlined";
-import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
-import AutoStoriesOutlinedIcon from "@mui/icons-material/AutoStoriesOutlined";
 import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlined";
 import { SearchCategoryItemType } from "@forkfacts/models";
 import { AutoCompleteSearch } from "@forkfacts/components";
@@ -70,6 +67,8 @@ Desktop.args = {
   placeholder: "Search food, recipes & library",
   openOnFocus: true,
   sourceId: "forkfact-v2",
+  collectionGroupedItems: collectionGroupedItems,
+  categoryOptions: categoryOptions,
 };
 
 export const Mobile = Template.bind({});

@@ -3,26 +3,20 @@ import { Theme } from "@mui/material";
 
 export const useStyles = makeStyles(
   ({ spacing, breakpoints, typography, palette, zIndex }: Theme) => ({
-    root: {
-      [breakpoints.down("md")]: {
-        width: "100%",
-        flexGrow: 1,
-        minHeight: (minHeight) => {
-          if (minHeight) {
-            return `calc(100vh - ${minHeight}px)`;
-          }
-        },
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-      },
-    },
+    root: {},
     desktopScreenWrapper: {
       [breakpoints.up("md")]: {
         width: spacing(159.125),
         marginLeft: "auto",
         marginRight: "auto",
         marginTop: spacing(6),
+        flexDirection: "column",
+        justifyContent: "space-between",
+        alignItems: "center",
+      },
+      [breakpoints.down("md")]: {
+        maxWidth: "100%",
+        marginTop: spacing(7),
         flexDirection: "column",
         justifyContent: "space-between",
         alignItems: "center",
@@ -49,28 +43,18 @@ export const useStyles = makeStyles(
         margin: "auto",
       },
     },
-    showDesktop: {
-      [breakpoints.up("md")]: {
-        display: "block",
-      },
-      [breakpoints.down("md")]: {
-        display: "none",
-      },
-    },
-    showMobile: {
-      [breakpoints.up("md")]: {
-        display: "none",
-      },
-      [breakpoints.down("md")]: {
-        display: "block",
-      },
-    },
     navbarStyles: {
-      marginTop: spacing(5),
-      marginBottom: spacing(5),
-      marginLeft: "auto",
-      marginRight: "auto",
-      width: spacing(91.25),
+      [breakpoints.up("md")]: {
+        marginTop: spacing(5),
+        marginBottom: spacing(5),
+        marginLeft: "auto",
+        marginRight: "auto",
+        width: spacing(91.25),
+      },
+      [breakpoints.down("md")]: {
+        width: "100%",
+        marginTop: spacing(4),
+      },
     },
     searchInputStyles: {
       [breakpoints.up("md")]: {
@@ -82,6 +66,10 @@ export const useStyles = makeStyles(
         position: "relative",
         zIndex: zIndex.mobileStepper,
         height: "auto",
+      },
+      [breakpoints.down("md")]: {
+        width: "100%",
+        marginTop: spacing(3),
       },
     },
     selectedSearchTitle: {
@@ -98,9 +86,16 @@ export const useStyles = makeStyles(
         display: "flex",
         justifyContent: "center",
         flexDirection: "column",
-        width: "70%",
+        width: "85%",
         marginLeft: "auto",
         marginRight: "auto",
+      },
+      [breakpoints.down("md")]: {
+        marginTop: spacing(4),
+        display: "flex",
+        justifyContent: "center",
+        flexDirection: "column",
+        width: "100%",
       },
     },
   })

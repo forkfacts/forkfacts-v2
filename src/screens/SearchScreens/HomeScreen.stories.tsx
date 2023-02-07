@@ -27,7 +27,7 @@ export default {
 
 const sidebarItems: sidebarItem[] = [
   { label: "Food", Icon: EggAltOutlinedIcon, link: "/food" },
-  { label: "Recipe", Icon: EmojiFoodBeverageOutlinedIcon, link: "/recipe" },
+  { label: "Recipes", Icon: EmojiFoodBeverageOutlinedIcon, link: "/recipe" },
   { label: "Library", Icon: LibraryBooksOutlinedIcon, link: "/library" },
   { label: "Cookbook", Icon: AutoStoriesOutlinedIcon, link: "/Cookbook" },
   { label: "Grocery List", Icon: ShoppingCartOutlinedIcon, link: "/grocery-list" },
@@ -35,7 +35,7 @@ const sidebarItems: sidebarItem[] = [
 
 const navbarItems = [
   { label: "Food", Icon: EggAltOutlinedIcon, link: "/food" },
-  { label: "Recipe", Icon: EmojiFoodBeverageOutlinedIcon, link: "/recipe" },
+  { label: "Recipes", Icon: EmojiFoodBeverageOutlinedIcon, link: "/recipe" },
   { label: "Library", Icon: LibraryBooksOutlinedIcon, link: "/library" },
 ];
 
@@ -124,7 +124,7 @@ const {
 
 const categoryOptions = [
   { label: "Food", Icon: EggAltOutlinedIcon },
-  { label: "Recipe", Icon: EmojiFoodBeverageOutlinedIcon },
+  { label: "Recipes", Icon: EmojiFoodBeverageOutlinedIcon },
   { label: "Library", Icon: BookmarkBorderOutlinedIcon },
 ];
 
@@ -190,7 +190,11 @@ Mobile.args = {
   categoryOptions: categoryOptions,
   onSelectCategory: (item: SearchCategoryItemType) => {},
   collectionGroupedItems: collectionGroupedItems,
+  PopularFrequentSearchItems: PopularFrequentSearchItems,
+  PopularFrequentSearchTitle: PopularFrequentSearchTitle,
+  onSelectPopularItem: onSelectPopularItem,
   sourceId: "forkfact-v2",
+  navbarItems: navbarItems,
 };
 
 export const Tablet = Template.bind({});
@@ -205,5 +209,9 @@ Tablet.args = {
   categoryOptions: categoryOptions,
   onSelectCategory: (item: SearchCategoryItemType) => {},
   collectionGroupedItems: collectionGroupedItems,
+  PopularFrequentSearchItems: PopularFrequentSearchItems,
+  PopularFrequentSearchTitle: PopularFrequentSearchTitle,
+  onSelectPopularItem: onSelectPopularItem,
+  navbarItems: navbarItems,
   sourceId: "forkfact-v2",
 };

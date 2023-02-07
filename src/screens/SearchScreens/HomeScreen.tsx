@@ -23,38 +23,31 @@ export default function HomeScreen({
 }: HomeScreenProps) {
   const theme = useTheme();
   const [selectedNavbarItem, setSelectedNavbarItem] = useState("food");
-  const [appBarHeight, setAppBarHeight] = useState<CSSProperties>();
-  useEffect(() => {
-    setAppBarHeight(theme.mixins.toolbar);
-  }, [theme.mixins.toolbar]);
-  const classes = useStyles(appBarHeight?.minHeight);
+  const classes = useStyles();
 
   return (
     <Layout sidebarItems={sidebarItems}>
       <Box className={classes.root}>
-        <Box>
-          <Box className={classes.spaceBottom}>
-            <Typography variant="h5" className={classes.searchTitle}>
-              Forkfacts, Your Healthy diet search place.
-            </Typography>
+        <Box className={classes.desktopScreenWrapper}>
+          <Box
+            component="img"
+            src="/homeImg.svg"
+            alt="home page image"
+            className={classes.img}
+            sx={{ maxWidth: "100%" }}
+          />
+          <Box className={classNames(classes.navbarStyles)}>
+            <NavBar navbarItems={navbarItems} onselectNavbarItem={setSelectedNavbarItem} />
           </Box>
-          <Box className={classes.desktopScreenWrapper}>
-            <Box className={classes.showDesktop}>
-              <img src="/homeImg.svg" alt="home page image" className={classes.img} />
-            </Box>
-            <Box className={classNames(classes.showDesktop, classes.navbarStyles)}>
-              <NavBar navbarItems={navbarItems} onselectNavbarItem={setSelectedNavbarItem} />
-            </Box>
-            <Box className={classNames(classes.searchInputStyles)}>
-              <AutoCompleteSearch
-                placeholder={`Search ${selectedNavbarItem}`}
-                openOnFocus={true}
-                sourceId={sourceId}
-                onSelectCategory={onSelectCategory}
-                categoryOptions={categoryOptions}
-                collectionGroupedItems={collectionGroupedItems}
-              />
-            </Box>
+          <Box className={classNames(classes.searchInputStyles)}>
+            <AutoCompleteSearch
+              placeholder={`Search ${selectedNavbarItem}`}
+              openOnFocus={true}
+              sourceId={sourceId}
+              onSelectCategory={onSelectCategory}
+              categoryOptions={categoryOptions}
+              collectionGroupedItems={collectionGroupedItems}
+            />
           </Box>
           <Box className={classNames(classes.PopularFrequentStyles)}>
             <PopularFrequentSearchCategories

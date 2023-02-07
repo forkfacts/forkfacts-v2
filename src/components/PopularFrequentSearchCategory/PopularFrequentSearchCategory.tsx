@@ -1,17 +1,17 @@
 import React from "react";
 import { PopularFrequentSearchCategoryProps } from "@forkfacts/models";
-import ListItem from "@mui/material/ListItem";
-import { blue } from "@mui/material/colors";
 import Typography from "@mui/material/Typography";
-import { Box, Card, useTheme } from "@mui/material";
+import { Box, Card, useMediaQuery, useTheme } from "@mui/material";
 import { ForLoops } from "@forkfacts/helpers";
 
 const PopularFrequentSearchCategory = ({
   item,
   onSelectPopularItem,
 }: PopularFrequentSearchCategoryProps) => {
-  const { spacing, palette, shadows, typography, shape } = useTheme();
-
+  const theme = useTheme();
+  const mobile = useMediaQuery(theme.breakpoints.between("xs", "sm"));
+  const tablet = useMediaQuery(theme.breakpoints.only("md"));
+  const desktop = useMediaQuery(theme.breakpoints.up("md"));
   const handleSelectedItem = () => {
     onSelectPopularItem(item);
   };
@@ -21,8 +21,8 @@ const PopularFrequentSearchCategory = ({
         cursor: "pointer",
         display: "flex",
         flexDirection: "column",
-        backgroundColor: palette.background.default,
-        width: spacing(26.5),
+        backgroundColor: theme.palette.background.default,
+        width: mobile ? "47%" : tablet ? "50%" : theme.spacing(26.5),
       }}
       onClick={handleSelectedItem}
     >
@@ -34,10 +34,10 @@ const PopularFrequentSearchCategory = ({
       />
       <Typography
         sx={{
-          color: palette.common.black,
-          fontWeight: typography.fontWeightMedium,
-          py: spacing(2),
-          ml: spacing(2.15),
+          color: theme.palette.common.black,
+          fontWeight: theme.typography.fontWeightMedium,
+          py: theme.spacing(2),
+          ml: mobile ? theme.spacing(1.15) : theme.spacing(2.15),
         }}
         variant="body2"
       >
@@ -47,21 +47,21 @@ const PopularFrequentSearchCategory = ({
         sx={{
           display: "flex",
           alignItems: "center",
-          columnGap: spacing(3.75),
+          columnGap: mobile ? theme.spacing(1) : theme.spacing(3.75),
           justifyContent: "center",
-          mb: spacing(2),
+          mb: theme.spacing(2),
         }}
       >
         <ForLoops each={item.extraInfo}>
           {(extraItem, extraIndex) => (
             <Box key={extraIndex} sx={{ display: "flex", flexDirection: "column" }}>
-              <Typography variant="caption" sx={{ color: palette.common.black }}>
+              <Typography variant="caption" sx={{ color: theme.palette.common.black }}>
                 {extraItem.weight}
               </Typography>
               <Typography
                 variant="caption"
                 sx={{
-                  color: palette.grey[500],
+                  color: theme.palette.grey[500],
                 }}
               >
                 {extraItem.name}

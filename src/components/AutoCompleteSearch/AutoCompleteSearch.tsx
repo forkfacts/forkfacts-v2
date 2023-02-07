@@ -7,9 +7,8 @@ import {
 import { getAlgoliaResults } from "@algolia/autocomplete-preset-algolia";
 import { Hit } from "@algolia/client-search";
 import algoliasearch from "algoliasearch/lite";
-import { Box, TextField, useTheme, useMediaQuery } from "@mui/material";
+import { Box, TextField, useTheme, useMediaQuery, Button } from "@mui/material";
 import classnames from "classnames";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { SearchOutlined } from "@mui/icons-material";
 import InputAdornment from "@mui/material/InputAdornment";
 import { SearchResults, SearchCategories } from "@forkfacts/components";
@@ -22,7 +21,6 @@ import {
   mobileInputStyles,
   desktopInputStyles,
   inputStyles,
-  noResultInputStyles,
 } from "./autocompleteSearchStyles";
 import "../../styles/styles.css";
 
@@ -133,7 +131,6 @@ function AutoCompleteSearch(
     autocomplete.setIsOpen(false);
     autocomplete.setQuery("");
   };
-  const noResultInput = mobile && !isOpen && query && !desktop;
 
   return (
     <Box
@@ -150,6 +147,7 @@ function AutoCompleteSearch(
         component="form"
         ref={formRef}
         {...autocomplete.getFormProps({ inputElement: inputRef.current })}
+        sx={{ display: "flex", p: "10px" }}
       >
         <TextField
           size="small"
@@ -157,11 +155,7 @@ function AutoCompleteSearch(
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
-                {(mobile && isOpen) || (query && mobile) ? (
-                  <ArrowBackIcon className={classes.icon} color="primary" onClick={onClosePage} />
-                ) : (
-                  <SearchOutlined />
-                )}
+                <SearchOutlined />
               </InputAdornment>
             ),
             endAdornment: (
@@ -187,9 +181,7 @@ function AutoCompleteSearch(
             ),
           }}
           sx={
-            noResultInput
-              ? noResultInputStyles(theme.spacing, theme.shadows, noResultInput)
-              : desktop
+            desktop
               ? desktopInputStyles(
                   theme.spacing,
                   theme.shadows,
@@ -198,12 +190,28 @@ function AutoCompleteSearch(
                   theme.palette.customGray
                 )
               : mobile && !isOpen && !desktop
-              ? mobileInputStyles(theme.spacing, isOpen, theme.palette.grey[50])
-              : inputStyles(theme.spacing)
+              ? mobileInputStyles(
+                  theme.spacing,
+                  isOpen,
+                  theme.palette.primary,
+                  theme.palette.customGray
+                )
+              : inputStyles(isOpen, theme.palette.primary, theme.spacing)
           }
           ref={inputRef}
           {...autocomplete.getInputProps({ inputElement: inputRef.current })}
         />
+        {isOpen && mobile && (
+          <Button
+            onClick={onClosePage}
+            sx={{
+              fontWeight: theme.typography.fontWeightBold,
+              fontSize: theme.typography.caption.fontSize,
+            }}
+          >
+            Close
+          </Button>
+        )}
       </Box>
       {isOpen && desktop && (
         <Box

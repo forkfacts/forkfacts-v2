@@ -53,43 +53,35 @@ export const useStyles = makeStyles(
   })
 );
 
-export function mobileInputStyles<T, U, V>(spacing: (type: number) => T, isOpen: U, color: V) {
+export function mobileInputStyles<T, U, V extends { main: string }, W extends { light: string }>(
+  spacing: (type: number) => T,
+  isOpen: U,
+  primary: V,
+  customGray: W
+) {
   return {
     "& fieldset": {
       borderRadius: spacing(1.25),
       width: "100%",
-      borderColor: `${color} !important`,
-      "&:hover": {
-        borderColor: `${color} !important`,
-        outlineColor: `${color} !important`,
-      },
+      boxShadow: "0px 1px 4px rgba(0, 0, 0, 0.25)",
+      border: isOpen ? `2px solid ${primary.main}` : `1.5px solid ${customGray.light}`,
     },
     "&:focus fieldset": {
-      borderColor: `${color} !important`,
+      boxShadow: "0px 1px 4px rgba(0, 0, 0, 0.25)",
       width: "100%",
     },
   };
 }
 
-export function inputStyles<T>(spacing: (type: number) => T) {
-  return {
-    "& fieldset": {
-      border: "none",
-      borderRadius: spacing(0),
-    },
-  };
-}
-
-export function noResultInputStyles<T, U, V>(
-  spacing: (type: number) => T,
-  shadows: U[],
-  noResultInput: boolean
+export function inputStyles<T, W extends { main: string }, X>(
+  isOpen: T,
+  primary: W,
+  spacing: (type: number) => X
 ) {
   return {
     "& fieldset": {
-      border: "none",
-      borderRadius: spacing(0),
-      boxShadow: noResultInput ? shadows[1] : shadows[0],
+      border: isOpen && `2px solid ${primary.main}`,
+      borderRadius: spacing(1),
     },
   };
 }

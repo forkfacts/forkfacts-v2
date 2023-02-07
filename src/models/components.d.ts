@@ -137,8 +137,8 @@ interface AutoCompleteSearchProps extends onSelectCategoryType {
   categoryOptions: Array<SearchCategoryItemType>;
   collectionGroupedItems: Array<SearchResultItemCollectionType>;
   recommendations: Array<recommendationType>;
+  setIsMobileSearchOpen: Dispatch<SetStateAction<boolean>>;
 }
-
 interface SearchRecommendationItemProps {
   item: recommendationItem;
 }

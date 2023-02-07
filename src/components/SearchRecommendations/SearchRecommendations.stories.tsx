@@ -50,10 +50,7 @@ const recommendations: recommendationType[] = [
   },
   {
     recommendationName: "Recipes",
-    recommendationItems: [
-      { name: "Creamy broccoli pasta", icon: "/tag1.png" },
-      { name: "Broccoli pasta salad", icon: "/tag2.png" },
-    ],
+    recommendationItems: [{ name: "Creamy broccoli pasta", icon: "/tag1.png" }],
   },
 ];
 

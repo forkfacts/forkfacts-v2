@@ -3,17 +3,6 @@ import { ThemeProvider, Box, CssBaseline, useTheme } from "@mui/material";
 import { customTheme } from "../../themes/theme";
 import { Header, SideBar } from "@forkfacts/components";
 import { LayoutProps } from "@forkfacts/models";
-import { useStyles } from "./layoutStyles";
-
-const LayoutComponent: FC<PropsWithChildren> = ({ children }) => {
-  const classes = useStyles();
-
-  return (
-    <Box className={classes.root}>
-      <Box className={classes.main}>{children}</Box>
-    </Box>
-  );
-};
 
 const Layout: FC<LayoutProps> = ({ children, sidebarItems }) => {
   const theme = useTheme();
@@ -37,28 +26,26 @@ const Layout: FC<LayoutProps> = ({ children, sidebarItems }) => {
       <Box>
         <Header handleToggleButton={handleDrawerToggle} />
       </Box>
-      <LayoutComponent>
-        <Box sx={{ display: { sm: "flex", xs: "block" } }}>
-          <CssBaseline />
-          <SideBar
-            handleDrawerToggle={handleDrawerToggle}
-            mobileOpen={mobileOpen}
-            drawerWidth={drawerWidth}
-            sidebarItems={sidebarItems}
-            drawerWidthExpanded={drawerWidthExpanded}
-          />
-          <Box
-            sx={{
-              width: {
-                md: `calc(100% - ${drawerWidth})px`,
-                xs: "100%",
-              },
-            }}
-          >
-            {children}
-          </Box>
+      <Box sx={{ display: { sm: "flex", xs: "block" } }}>
+        <CssBaseline />
+        <SideBar
+          handleDrawerToggle={handleDrawerToggle}
+          mobileOpen={mobileOpen}
+          drawerWidth={drawerWidth}
+          sidebarItems={sidebarItems}
+          drawerWidthExpanded={drawerWidthExpanded}
+        />
+        <Box
+          sx={{
+            width: {
+              md: `calc(100% - ${drawerWidth})`,
+              xs: "100%",
+            },
+          }}
+        >
+          {children}
         </Box>
-      </LayoutComponent>
+      </Box>
     </ThemeProvider>
   );
 };

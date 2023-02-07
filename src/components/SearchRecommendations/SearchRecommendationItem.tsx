@@ -5,7 +5,16 @@ import React from "react";
 const SearchRecommendationItem: React.FC<SearchRecommendationItemProps> = ({ item }) => {
   const theme = useTheme();
   return (
-    <Button variant="outlined" color="primary" sx={{ fontSize: "12px" }}>
+    <Button
+      variant="outlined"
+      color="primary"
+      sx={{
+        fontSize: theme.typography.caption.fontSize,
+        whiteSpace: "nowrap",
+        overflow: "hidden",
+        textOverflow: "ellipsis",
+      }}
+    >
       {item.icon && (
         <Box
           component="img"

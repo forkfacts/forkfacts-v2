@@ -59,7 +59,6 @@ function AutoCompleteSearch(
   const desktop = useMediaQuery(theme.breakpoints.up("md"));
   const [isSearchFound, setIsSearchFound] = useState<any>([]);
   const classes = useStyles({ isOpen });
-  console.log("isSearchFound", isSearchFound);
   const autocomplete = useMemo(
     () =>
       createAutocomplete<
@@ -141,6 +140,12 @@ function AutoCompleteSearch(
     autocomplete.setIsOpen(false);
     autocomplete.setQuery("");
   };
+
+  useEffect(() => {
+    if (isOpen) {
+      props.setIsMobileSearchOpen(true);
+    }
+  }, [isOpen]);
 
   const noResultInput = mobile && !isOpen && query && !desktop;
 

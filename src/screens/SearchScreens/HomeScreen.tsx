@@ -23,9 +23,12 @@ export default function HomeScreen({
 }: HomeScreenProps) {
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.down("md"));
-  const [selectedNavbarItem, setSelectedNavbarItem] = useState("food");
+  const [selectedNavbarItem, setSelectedNavbarItem] = useState("Food");
+  const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false);
   const [selectedMobileItem, setSelectedMobileItem] = useState("food");
   const classes = useStyles();
+
+  console.log(selectedNavbarItem);
 
   return (
     <Layout sidebarItems={sidebarItems}>
@@ -44,13 +47,16 @@ export default function HomeScreen({
           <AutoCompleteSearch
             recommendations={recommendations}
             placeholder={`Search ${
-              mobile ? selectedMobileItem.toLowerCase() : selectedNavbarItem.toLowerCase()
+              isMobileSearchOpen
+                ? selectedMobileItem.toLowerCase()
+                : selectedNavbarItem.toLowerCase()
             }`}
             openOnFocus={true}
             sourceId={sourceId}
             onSelectCategory={setSelectedMobileItem}
             categoryOptions={categoryOptions}
             collectionGroupedItems={collectionGroupedItems}
+            setIsMobileSearchOpen={setIsMobileSearchOpen}
           />
         </Box>
         <Box className={classNames(classes.PopularFrequentStyles)}>

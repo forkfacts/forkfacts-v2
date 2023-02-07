@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import EggAltOutlinedIcon from "@mui/icons-material/EggAltOutlined";
@@ -51,7 +51,6 @@ selectedButton.args = {
   Icon: EggAltOutlinedIcon,
   index: 0,
   selectedIndex: 0,
-  onSelectCategory: (label: SearchCategoryItemType) => label,
   setSelectedIndex: (index: number = 1) => index,
 };
 selectedButton.storyName = "selected Button";
@@ -68,7 +67,6 @@ unSelectedButton.parameters = {
 unSelectedButton.args = {
   label: "Food",
   Icon: EggAltOutlinedIcon,
-  onSelectCategory: (label: SearchCategoryItemType) => label,
   index: 0,
   selectedIndex: 1,
   setSelectedIndex: (index: number = 1) => index,

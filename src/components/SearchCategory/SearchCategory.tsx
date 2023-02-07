@@ -1,6 +1,5 @@
 import React from "react";
-import { Button } from "@mui/material";
-import { blue } from "@mui/material/colors";
+import { Box, Button, Typography, useTheme } from "@mui/material";
 import { SearchCategoryProps } from "@forkfacts/models";
 import { useStyles } from "./searchCategoryStyles";
 
@@ -13,43 +12,48 @@ export default function SearchCategory({
   selectedIndex,
 }: SearchCategoryProps) {
   const classes = useStyles();
+  const theme = useTheme();
   const item = {
     label,
     index,
     Icon,
   };
   const handleClick = () => {
-    onSelectCategory(item);
+    onSelectCategory(item.label);
     setSelectedIndex(index);
   };
 
   return (
-    <Button
+    <Box
       className={classes.btn}
-      variant="outlined"
       sx={{
-        color: ({ palette }) =>
-          selectedIndex === index ? palette.primary.main : palette.grey[700],
-        borderColor: ({ palette }) =>
-          selectedIndex === index ? palette.primary.main : palette.grey[700],
-        backgroundColor: ({ palette }) =>
-          selectedIndex === index ? blue["50"] : palette.background.default,
+        color: selectedIndex === index ? theme.palette.primary.main : theme.palette.grey[700],
+        borderBottom:
+          selectedIndex === index
+            ? `2px solid ${theme.palette.primary.main}`
+            : theme.palette.grey[700],
         textTransform: "capitalize",
+        borderTop: 0,
+        borderLeft: 0,
+        borderRight: 0,
+        width: "132px",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        cursor: "pointer",
       }}
       onClick={handleClick}
-      size="small"
-      startIcon={
-        <Icon
-          fontSize="medium"
-          className={classes.icon}
-          sx={{
-            width: ({ spacing }) => spacing(1.9),
-            height: ({ spacing }) => spacing(1.9),
-          }}
-        />
-      }
     >
-      {label}
-    </Button>
+      <Icon
+        fontSize="medium"
+        className={classes.icon}
+        sx={{
+          width: ({ spacing }) => spacing(1.9),
+          height: ({ spacing }) => spacing(1.9),
+          mr: theme.spacing(1),
+        }}
+      />
+      <Typography> {label}</Typography>
+    </Box>
   );
 }

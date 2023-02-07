@@ -1,5 +1,4 @@
 import React from "react";
-import List from "@mui/material/List";
 import Typography from "@mui/material/Typography";
 import { Box, useMediaQuery, useTheme } from "@mui/material";
 import { ForLoops } from "@forkfacts/helpers";

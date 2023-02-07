@@ -12,6 +12,7 @@ import {
   PopularFrequentSearchProps,
   PopularFrequentSearchType,
   SearchCategoryItemType,
+  recommendationType,
 } from "@forkfacts/models";
 import { HomeScreen } from "@forkfacts/screens";
 
@@ -37,6 +38,49 @@ const navbarItems = [
   { label: "Food", Icon: EggAltOutlinedIcon, link: "/food" },
   { label: "Recipes", Icon: EmojiFoodBeverageOutlinedIcon, link: "/recipe" },
   { label: "Library", Icon: LibraryBooksOutlinedIcon, link: "/library" },
+];
+
+const recommendations: recommendationType[] = [
+  {
+    recommendationName: "Tags",
+    recommendationItems: [
+      {
+        name: "SUPERFOODS",
+        icon: "/tag1.png",
+      },
+      {
+        name: "Kosher",
+        icon: "/tag2.png",
+      },
+      {
+        name: "Flax seeds",
+        icon: "/tag3.png",
+      },
+    ],
+  },
+  {
+    recommendationName: "COMPARE FOODS",
+    recommendationItems: [
+      { name: "Nuts and seeds", icon: "/tag4.png" },
+      { name: "Legumes", icon: "/tag5.png" },
+      { name: "Fruits", icon: "/tag3.png" },
+    ],
+  },
+  {
+    recommendationName: "Vitamins and minerals",
+    recommendationItems: [
+      { name: "Vitamin A", icon: "/tag4.png" },
+      { name: "Zinc", icon: "/tag4.png" },
+      { name: "Vitamin B12", icon: "/tag5.png" },
+    ],
+  },
+  {
+    recommendationName: "Recipes",
+    recommendationItems: [
+      { name: "Creamy broccoli pasta", icon: "/tag1.png" },
+      { name: "Broccoli pasta salad", icon: "/tag2.png" },
+    ],
+  },
 ];
 
 const {
@@ -174,7 +218,6 @@ Desktop.args = {
   onSelectPopularItem: onSelectPopularItem,
   sourceId: "forkfact-v2",
   categoryOptions: categoryOptions,
-  onSelectCategory: (item: SearchCategoryItemType) => {},
   collectionGroupedItems: collectionGroupedItems,
 };
 
@@ -188,13 +231,13 @@ Mobile.parameters = {
 Mobile.args = {
   sidebarItems: sidebarItems,
   categoryOptions: categoryOptions,
-  onSelectCategory: (item: SearchCategoryItemType) => {},
   collectionGroupedItems: collectionGroupedItems,
   PopularFrequentSearchItems: PopularFrequentSearchItems,
   PopularFrequentSearchTitle: PopularFrequentSearchTitle,
   onSelectPopularItem: onSelectPopularItem,
   sourceId: "forkfact-v2",
   navbarItems: navbarItems,
+  recommendations: recommendations,
 };
 
 export const Tablet = Template.bind({});
@@ -207,7 +250,6 @@ Tablet.parameters = {
 Tablet.args = {
   sidebarItems: sidebarItems,
   categoryOptions: categoryOptions,
-  onSelectCategory: (item: SearchCategoryItemType) => {},
   collectionGroupedItems: collectionGroupedItems,
   PopularFrequentSearchItems: PopularFrequentSearchItems,
   PopularFrequentSearchTitle: PopularFrequentSearchTitle,

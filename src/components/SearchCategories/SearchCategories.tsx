@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Grid } from "@mui/material";
+import { Box, Grid, Stack } from "@mui/material";
 import { SearchCategoriesProps } from "@forkfacts/models";
 import { SearchCategory } from "@forkfacts/components";
 import { ForLoops } from "@forkfacts/helpers";
@@ -14,22 +14,20 @@ export default function SearchCategories({
 
   return (
     <Box sx={{ width: "100%", mt: ({ spacing }) => spacing(1) }} className={classes.root}>
-      <Grid container justifyContent="space-between">
+      <Stack direction="row">
         <ForLoops each={categoryOptions}>
           {({ label, Icon }, idx) => (
-            <Grid key={idx} item>
-              <SearchCategory
-                index={idx}
-                onSelectCategory={onSelectCategory}
-                label={label}
-                Icon={Icon}
-                setSelectedIndex={setSelectedIndex}
-                selectedIndex={selectedIndex}
-              />
-            </Grid>
+            <SearchCategory
+              index={idx}
+              onSelectCategory={onSelectCategory}
+              label={label}
+              Icon={Icon}
+              setSelectedIndex={setSelectedIndex}
+              selectedIndex={selectedIndex}
+            />
           )}
         </ForLoops>
-      </Grid>
+      </Stack>
     </Box>
   );
 }

@@ -15,8 +15,8 @@ export const useStyles = makeStyles(({ spacing, breakpoints, typography }: Theme
   },
   btn: {
     [breakpoints.down("md")]: {
-      fontWeight: typography.fontWeightMedium,
-      fontSize: typography.caption.fontSize,
+      fontWeight: typography.fontWeightBold,
+      fontSize: typography.subtitle2.fontSize,
       textTransform: "capitalize",
       letterSpacing: spacing(0.0625),
     },

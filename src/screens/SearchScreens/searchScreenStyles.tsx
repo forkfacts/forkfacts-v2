@@ -3,7 +3,6 @@ import { Theme } from "@mui/material";
 
 export const useStyles = makeStyles(
   ({ spacing, breakpoints, typography, palette, zIndex }: Theme) => ({
-    root: {},
     desktopScreenWrapper: {
       [breakpoints.up("md")]: {
         width: spacing(159.125),

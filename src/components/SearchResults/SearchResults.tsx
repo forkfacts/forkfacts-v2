@@ -80,8 +80,8 @@ const SearchResults: React.FC<SearchResultsProps> = ({
               </ForLoops>
             </List>
           )}
-          {collectionListsItems && handleViewMore && collectionListsItems?.length > 3 && (
-            <ViewMoreButton handleViewMore={handleViewMore} text="See more" />
+          {collectionListsItems && collectionListsItems?.length > 3 && (
+            <ViewMoreButton handleViewMore={handleViewMore} text="View all" />
           )}
         </Box>
       )}

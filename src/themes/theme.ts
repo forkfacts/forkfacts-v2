@@ -40,6 +40,7 @@ export const customTheme = createTheme({
     customGray: {
       light: "#E5E1E6",
       main: "#1C1B1F",
+      dark: "#78767A",
     },
   },
 });

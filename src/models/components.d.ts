@@ -7,6 +7,16 @@ export interface SearchResultItemType {
   image: string;
 }
 
+export interface recommendationItem {
+  name: string;
+  icon?: string;
+}
+
+export interface recommendationType {
+  recommendationName: string;
+  recommendationItems: Array<recommendationItem>;
+}
+
 export interface SearchCategoryItemType {
   label: string;
   Icon: SvgIconComponent;
@@ -21,7 +31,7 @@ export interface SearchResultItemCollectionType {
 }
 
 export interface onSelectCategoryType {
-  onSelectCategory: (item: SearchCategoryItemType) => void;
+  onSelectCategory: Dispatch<SetStateAction<string>>;
 }
 
 interface selectedItemType {
@@ -126,4 +136,13 @@ interface AutoCompleteSearchProps extends onSelectCategoryType {
   sourceId: string;
   categoryOptions: Array<SearchCategoryItemType>;
   collectionGroupedItems: Array<SearchResultItemCollectionType>;
+  recommendations: Array<recommendationType>;
+}
+
+interface SearchRecommendationItemProps {
+  item: recommendationItem;
+}
+
+export interface SearchRecommendationsProps {
+  recommendations: Array<recommendationType>;
 }

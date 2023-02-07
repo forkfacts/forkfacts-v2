@@ -4,8 +4,8 @@ import EggAltOutlinedIcon from "@mui/icons-material/EggAltOutlined";
 import EmojiFoodBeverageOutlinedIcon from "@mui/icons-material/EmojiFoodBeverageOutlined";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlined";
-import { SearchCategoryItemType } from "@forkfacts/models";
 import { AutoCompleteSearch } from "@forkfacts/components";
+import { recommendationType } from "models/components";
 
 export default {
   title: "Components/AutoCompleteSearch",
@@ -57,6 +57,49 @@ const collection = [
   },
 ];
 
+const recommendations: recommendationType[] = [
+  {
+    recommendationName: "Tags",
+    recommendationItems: [
+      {
+        name: "SUPERFOODS",
+        icon: "/tag1.png",
+      },
+      {
+        name: "Kosher",
+        icon: "/tag2.png",
+      },
+      {
+        name: "Flax seeds",
+        icon: "/tag3.png",
+      },
+    ],
+  },
+  {
+    recommendationName: "COMPARE FOODS",
+    recommendationItems: [
+      { name: "Nuts and seeds", icon: "/tag4.png" },
+      { name: "Legumes", icon: "/tag5.png" },
+      { name: "Fruits", icon: "/tag3.png" },
+    ],
+  },
+  {
+    recommendationName: "Vitamins and minerals",
+    recommendationItems: [
+      { name: "Vitamin A", icon: "/tag4.png" },
+      { name: "Zinc", icon: "/tag4.png" },
+      { name: "Vitamin B12", icon: "/tag5.png" },
+    ],
+  },
+  {
+    recommendationName: "Recipes",
+    recommendationItems: [
+      { name: "Creamy broccoli pasta", icon: "/tag1.png" },
+      { name: "Broccoli pasta salad", icon: "/tag2.png" },
+    ],
+  },
+];
+
 const collectionGroupedItems = [
   { categoryName: "FRUIT AND FRUIT JUICES", collection: collection },
   { categoryName: "BABY FOODS", collection: collection.slice(0, 3) },
@@ -76,7 +119,6 @@ export const Mobile = Template.bind({});
 Mobile.args = {
   openOnFocus: true,
   sourceId: "forkfact-v2",
-  onSelectCategory: (item: SearchCategoryItemType) => {},
   collectionGroupedItems: collectionGroupedItems,
   placeholder: "Search",
   categoryOptions: categoryOptions,
@@ -93,7 +135,6 @@ export const Tablet = Template.bind({});
 Tablet.args = {
   openOnFocus: true,
   sourceId: "forkfact-v2",
-  onSelectCategory: (item: SearchCategoryItemType) => {},
   collectionGroupedItems: collectionGroupedItems,
   placeholder: "Search",
   categoryOptions: categoryOptions,

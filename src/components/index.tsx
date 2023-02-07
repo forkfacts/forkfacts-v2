@@ -14,3 +14,4 @@ export { default as NavBarItem } from "./NavBarItem/NavBarItem";
 export { default as PopularFrequentSearchCategories } from "./PopularFrequentSearchCategories/PopularFrequentSearchCategories";
 export { default as PopularFrequentSearchCategory } from "./PopularFrequentSearchCategory/PopularFrequentSearchCategory";
 export { default as NoSearchResults } from "./NoSearchResults/NoSearchResults";
+export { default as SearchRecommendations } from "./SearchRecommendations/SearchRecommendations";

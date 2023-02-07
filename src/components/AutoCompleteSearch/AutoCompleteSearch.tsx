@@ -7,11 +7,11 @@ import {
 import { getAlgoliaResults } from "@algolia/autocomplete-preset-algolia";
 import { Hit } from "@algolia/client-search";
 import algoliasearch from "algoliasearch/lite";
-import { Box, TextField, useTheme, useMediaQuery, Button } from "@mui/material";
+import { Box, TextField, useTheme, useMediaQuery, Button, Typography } from "@mui/material";
 import classnames from "classnames";
 import { SearchOutlined } from "@mui/icons-material";
 import InputAdornment from "@mui/material/InputAdornment";
-import { SearchResults, SearchCategories } from "@forkfacts/components";
+import { SearchResults, SearchCategories, SearchRecommendations } from "@forkfacts/components";
 import { SearchResultItemType, AutoCompleteSearchProps } from "@forkfacts/models";
 import CloseIcon from "@mui/icons-material/Close";
 import { ForLoops } from "@forkfacts/helpers";
@@ -76,7 +76,7 @@ function AutoCompleteSearch(
                       indexName: query ? INDEX_NAMES[1] : INDEX_NAMES[0],
                       query,
                       params: {
-                        hitsPerPage: 6,
+                        hitsPerPage: 4,
                       },
                     },
                   ],
@@ -132,6 +132,8 @@ function AutoCompleteSearch(
     autocomplete.setQuery("");
   };
 
+  const noResultInput = mobile && !isOpen && query && !desktop;
+
   return (
     <Box
       component="div"
@@ -147,7 +149,7 @@ function AutoCompleteSearch(
         component="form"
         ref={formRef}
         {...autocomplete.getFormProps({ inputElement: inputRef.current })}
-        sx={{ display: "flex", p: "10px" }}
+        sx={{ display: "flex", p: mobile && isOpen ? "10px" : 0 }}
       >
         <TextField
           size="small"
@@ -201,17 +203,18 @@ function AutoCompleteSearch(
           ref={inputRef}
           {...autocomplete.getInputProps({ inputElement: inputRef.current })}
         />
-        {isOpen && mobile && (
+        {(isOpen && mobile) || noResultInput ? (
           <Button
             onClick={onClosePage}
             sx={{
               fontWeight: theme.typography.fontWeightBold,
-              fontSize: theme.typography.caption.fontSize,
+              fontSize: theme.typography.subtitle2.fontSize,
+              textTransform: "lowercase",
             }}
           >
             Close
           </Button>
-        )}
+        ) : null}
       </Box>
       {isOpen && desktop && (
         <Box
@@ -222,26 +225,65 @@ function AutoCompleteSearch(
           }}
         />
       )}
+
       {isOpen && (
         <Box
           component="div"
           ref={panelRef}
           {...autocomplete.getPanelProps({})}
-          sx={{ mt: theme.spacing(2), width: "100%" }}
+          sx={{ mt: theme.spacing(1), width: "100%" }}
         >
           {!query && mobile && (
-            <SearchCategories
-              onSelectCategory={props.onSelectCategory}
-              categoryOptions={props.categoryOptions}
-            />
+            <Box sx={{ mb: theme.spacing(2), width: "100%" }}>
+              <SearchCategories
+                onSelectCategory={props.onSelectCategory}
+                categoryOptions={props.categoryOptions}
+              />
+            </Box>
+          )}
+          {!query && status === "idle" && mobile && (
+            <Box
+              sx={{
+                mb: theme.spacing(1.5),
+                width: "100%",
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                paddingLeft: theme.spacing(2),
+                paddingRight: theme.spacing(2),
+              }}
+              component="div"
+            >
+              <Typography
+                variant="subtitle2"
+                sx={{
+                  fontWeight: theme.typography.fontWeightBold,
+                  fontSize: theme.typography.subtitle2.fontSize,
+                }}
+              >
+                Recently viewed
+              </Typography>
+              <Button
+                color="primary"
+                variant="text"
+                sx={{
+                  fontWeight: theme.typography.fontWeightBold,
+                  fontSize: theme.typography.subtitle2.fontSize,
+                  textTransform: "lowercase",
+                }}
+                onClick={onClearSearch}
+              >
+                Clear
+              </Button>
+            </Box>
           )}
           {query || (mobile && !query) ? (
             <Box
               sx={{
                 mb: theme.spacing(1.5),
                 width: "100%",
-                paddingLeft: theme.spacing(2),
-                paddingRight: theme.spacing(3.9),
+                paddingLeft: theme.spacing(1),
+                paddingRight: theme.spacing(1),
               }}
             >
               <ForLoops each={collections}>
@@ -256,14 +298,15 @@ function AutoCompleteSearch(
                   );
                 }}
               </ForLoops>
+              <SearchRecommendations recommendations={props.recommendations} />
             </Box>
           ) : query || desktop || !query ? (
             <Box
               sx={{
                 mb: theme.spacing(1.5),
                 width: "100%",
-                paddingLeft: theme.spacing(2),
-                paddingRight: theme.spacing(3.9),
+                paddingLeft: theme.spacing(1),
+                paddingRight: theme.spacing(1),
               }}
             >
               <ForLoops each={collections}>

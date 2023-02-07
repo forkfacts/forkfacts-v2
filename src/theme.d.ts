@@ -20,6 +20,7 @@ declare module "@mui/material/styles/createPalette" {
     customGray: {
       light: string;
       main: string;
+      dark: string;
     };
   }
   interface PaletteOptions {
@@ -40,6 +41,7 @@ declare module "@mui/material/styles/createPalette" {
     customGray: {
       light: string;
       main: string;
+      dark: string;
     };
   }
 }

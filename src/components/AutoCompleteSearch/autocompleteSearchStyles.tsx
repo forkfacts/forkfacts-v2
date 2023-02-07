@@ -28,25 +28,6 @@ export const useStyles = makeStyles(
         zIndex: zIndex.modal,
       },
     },
-    statusWrapper: {
-      [breakpoints.down("md")]: {
-        paddingTop: spacing(1.2),
-        paddingLeft: spacing(2),
-        paddingBottom: spacing(1.2),
-        paddingRight: spacing(3.9),
-      },
-    },
-    clearBtn: {
-      [breakpoints.down("sm")]: {
-        fontWeight: typography.fontWeightBold,
-        fontSize: typography.caption.fontSize,
-        lineHeight: spacing(2),
-        textTransform: "capitalize",
-        textAlign: "center",
-        letterSpacing: spacing(0.005),
-        cursor: "pointer",
-      },
-    },
     icon: {
       cursor: "pointer",
     },
@@ -61,14 +42,10 @@ export function mobileInputStyles<T, U, V extends { main: string }, W extends { 
 ) {
   return {
     "& fieldset": {
-      borderRadius: spacing(1.25),
+      borderRadius: spacing(1),
       width: "100%",
       boxShadow: "0px 1px 4px rgba(0, 0, 0, 0.25)",
       border: isOpen ? `2px solid ${primary.main}` : `1.5px solid ${customGray.light}`,
-    },
-    "&:focus fieldset": {
-      boxShadow: "0px 1px 4px rgba(0, 0, 0, 0.25)",
-      width: "100%",
     },
   };
 }

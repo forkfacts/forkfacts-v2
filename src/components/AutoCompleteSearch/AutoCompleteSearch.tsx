@@ -9,7 +9,7 @@ import { Hit } from "@algolia/client-search";
 import algoliasearch from "algoliasearch/lite";
 import { Box, TextField, useTheme, useMediaQuery, Button, Typography } from "@mui/material";
 import classnames from "classnames";
-import { SearchOutlined } from "@mui/icons-material";
+import { QueuePlayNextRounded, SearchOutlined } from "@mui/icons-material";
 import InputAdornment from "@mui/material/InputAdornment";
 import {
   SearchResults,
@@ -70,6 +70,7 @@ function AutoCompleteSearch(
         onStateChange({ state }) {
           setAutocompleteState(state);
         },
+        shouldPanelOpen: () => true,
         getSources() {
           return [
             {
@@ -246,14 +247,14 @@ function AutoCompleteSearch(
           />
         )}
 
-        {isOpen && (desktop || mobile) ? (
+        {isOpen && (desktop || mobile) && (
           <Box
             component="div"
             ref={panelRef}
             {...autocomplete.getPanelProps({})}
             sx={{ width: "100%" }}
           >
-            {!query && mobile && (
+            {(query || !query) && mobile && (
               <Box sx={{ mb: theme.spacing(2), width: "100%" }}>
                 <SearchCategories
                   onSelectCategory={props.onSelectCategory}
@@ -269,7 +270,7 @@ function AutoCompleteSearch(
                   justifyContent: "space-between",
                   alignItems: "center",
                   paddingLeft: theme.spacing(2),
-                  paddingRight: theme.spacing(2),
+                  paddingRight: theme.spacing(0.5),
                 }}
                 component="div"
               >
@@ -297,27 +298,40 @@ function AutoCompleteSearch(
               </Box>
             )}
             {!query && (mobile || desktop) ? (
-              <Box
-                sx={{
-                  width: "100%",
-                  paddingLeft: theme.spacing(1),
-                  paddingRight: theme.spacing(1),
-                }}
-              >
-                <ForLoops each={collections}>
-                  {(collection, index) => {
-                    const { source, items } = collection;
-                    return (
-                      <Box component="section" key={`source-${index}`}>
-                        {items.length > 0 && (
-                          <SearchResults collectionListsItems={items} onSelectItem={onSelectItem} />
-                        )}
-                      </Box>
-                    );
+              <>
+                <Box
+                  sx={{
+                    width: "100%",
+                    paddingLeft: theme.spacing(1),
+                    paddingRight: theme.spacing(1),
                   }}
-                </ForLoops>
-                <SearchRecommendations recommendations={props.recommendations} />
-              </Box>
+                >
+                  <ForLoops each={collections}>
+                    {(collection, index) => {
+                      const { source, items } = collection;
+                      return (
+                        <Box component="section" key={`source-${index}`}>
+                          {items.length > 0 && (
+                            <SearchResults
+                              collectionListsItems={items}
+                              onSelectItem={onSelectItem}
+                            />
+                          )}
+                        </Box>
+                      );
+                    }}
+                  </ForLoops>
+                </Box>
+                <Box
+                  sx={{
+                    width: "100%",
+                    px: theme.spacing(1.7),
+                    pb: theme.spacing(2.7),
+                  }}
+                >
+                  <SearchRecommendations recommendations={props.recommendations} />
+                </Box>
+              </>
             ) : query && (desktop || mobile) ? (
               <Box
                 sx={{
@@ -330,26 +344,27 @@ function AutoCompleteSearch(
                 <ForLoops each={collections}>
                   {(collection, index) => {
                     const { items } = collection;
-                    return (
-                      <Box component="section" key={`source-${index}`}>
-                        {items.length > 0 && (
-                          <SearchResults
-                            collectionGroupedItems={props.collectionGroupedItems}
-                            onSelectItem={onSelectItem}
-                            multiple={true}
-                          />
-                        )}
-                      </Box>
-                    );
+                    if (items.length === 0) {
+                      return <NoSearchResults />;
+                    } else {
+                      return (
+                        <Box component="section" key={`source-${index}`}>
+                          {items.length > 0 && (
+                            <SearchResults
+                              collectionGroupedItems={props.collectionGroupedItems}
+                              onSelectItem={onSelectItem}
+                              multiple={true}
+                            />
+                          )}
+                        </Box>
+                      );
+                    }
                   }}
                 </ForLoops>
               </Box>
             ) : null}
           </Box>
-        ) : (noResultInput && !isSearchFound && mobile && query) ||
-          (desktop && !isSearchFound && query) ? (
-          <NoSearchResults />
-        ) : null}
+        )}
       </Box>
     </Box>
   );

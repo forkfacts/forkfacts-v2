@@ -41,11 +41,13 @@ export const customTheme = createTheme({
       light: "#E5E1E6",
       main: "#1C1B1F",
       dark: "#78767A",
+      textLight: "#78767A",
     },
   },
   typography: {
     button: {
       textTransform: "none",
     },
+    fontWeightMedium: 500,
   },
 });

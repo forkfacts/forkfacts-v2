@@ -12,21 +12,39 @@ const NoSearchResults: React.FC<NoSearchResultsProps> = ({}) => {
       <Box
         sx={{
           width: "100%",
-          height: desktop ? "468px" : "100vh",
+          height: desktop ? theme.spacing(58.5) : "70vh",
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
-          padding: "100px 18px",
-          gap: "24px",
+          px: theme.spacing(2.25),
+          py: theme.spacing(12.5),
+          gap: theme.spacing(3),
         }}
       >
         <Box
-          component="img"
-          src="/noresult-img.png"
-          alt="no-result-img"
-          sx={{ mb: theme.spacing(7) }}
-        />
+          sx={{
+            mb: theme.spacing(5),
+            backgroundColor: "#FCFCFC",
+            p: theme.spacing(4),
+            borderRadius: "50%",
+            width: theme.spacing(19.75),
+            height: theme.spacing(19.75),
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Box
+            component="img"
+            src="/Layer_1_5_.svg"
+            alt="no-result-img"
+            sx={{
+              width: theme.spacing(10.5),
+              height: theme.spacing(10.5),
+            }}
+          />
+        </Box>
         <Box sx={{ textAlign: "center" }}>
           <Box sx={{ display: "flex", alignItems: "center", gap: theme.spacing(0.5) }}>
             <Typography variant="body2">We found 5 results for “Vitamin C” in</Typography>

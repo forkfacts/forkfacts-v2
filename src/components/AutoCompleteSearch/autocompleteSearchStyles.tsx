@@ -24,6 +24,8 @@ export const useStyles = makeStyles(({ breakpoints, spacing, palette, zIndex }: 
       left: 0,
       backgroundColor: palette.common.white,
       zIndex: zIndex.modal,
+      minHeight: "100vh",
+      overflow: "auto",
     },
   },
   icon: {

@@ -25,10 +25,8 @@ export default function HomeScreen({
   const mobile = useMediaQuery(theme.breakpoints.down("md"));
   const [selectedNavbarItem, setSelectedNavbarItem] = useState("Food");
   const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false);
-  const [selectedMobileItem, setSelectedMobileItem] = useState("food");
+  const [selectedMobileItem, setSelectedMobileItem] = useState("Food");
   const classes = useStyles();
-
-  console.log(selectedNavbarItem);
 
   return (
     <Layout sidebarItems={sidebarItems}>

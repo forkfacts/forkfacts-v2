@@ -2,14 +2,14 @@ import React from "react";
 import { ForLoops } from "@forkfacts/helpers";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { SearchRecommendationsProps } from "@forkfacts/models";
-import { Box, Button, Stack, Typography, useTheme } from "@mui/material";
+import { Box, Stack, Typography, useTheme } from "@mui/material";
 import SearchRecommendationItem from "./SearchRecommendationItem";
 
 const SearchRecommendations: React.FC<SearchRecommendationsProps> = ({ recommendations }) => {
   const theme = useTheme();
 
   return (
-    <Box component="div" sx={{ overflow: "hidden" }}>
+    <Box>
       <Box sx={{ mb: theme.spacing(2) }}>
         <Typography
           variant="subtitle2"
@@ -29,8 +29,9 @@ const SearchRecommendations: React.FC<SearchRecommendationsProps> = ({ recommend
                 sx={{
                   mb: theme.spacing(1),
                   fontSize: theme.typography.caption.fontSize,
-                  fontWeight: theme.typography.fontWeightBold,
-                  color: theme.palette.customGray.dark,
+                  fontWeight: theme.typography.fontWeightMedium,
+                  color: theme.palette.customGray.textLight,
+                  textTransform: "uppercase",
                 }}
               >
                 {value.recommendationName}
@@ -40,7 +41,7 @@ const SearchRecommendations: React.FC<SearchRecommendationsProps> = ({ recommend
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "space-between",
-                  gap: theme.spacing(1),
+                  gap: theme.spacing(1.5),
                 }}
               >
                 <Stack direction="row" gap={1}>

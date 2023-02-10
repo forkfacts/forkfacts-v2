@@ -12,6 +12,10 @@ export interface recommendationItem {
   icon?: string;
 }
 
+export interface DetailsPageTitlesItem {
+  title: string;
+}
+
 export interface recommendationType {
   recommendationName: string;
   recommendationItems: Array<recommendationItem>;
@@ -145,4 +149,9 @@ interface SearchRecommendationItemProps {
 
 export interface SearchRecommendationsProps {
   recommendations: Array<recommendationType>;
+}
+
+export interface DetailsPageTitlesProps {
+  DetailsPageTitlesItems: Array<DetailsPageTitlesItem>;
+  onDetailsPageTitleItem: Dispatch<SetStateAction<string>>;
 }

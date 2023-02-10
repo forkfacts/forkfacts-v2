@@ -15,3 +15,4 @@ export { default as PopularFrequentSearchCategories } from "./PopularFrequentSea
 export { default as PopularFrequentSearchCategory } from "./PopularFrequentSearchCategory/PopularFrequentSearchCategory";
 export { default as NoSearchResults } from "./NoSearchResults/NoSearchResults";
 export { default as SearchRecommendations } from "./SearchRecommendations/SearchRecommendations";
+export { default as DetailsPageTitles } from "./DetailPageComponents/DetailsPageTitles/DetailsPageTitles";

@@ -19,3 +19,7 @@ export interface HomeScreenProps {
   sourceId: string;
   recommendations: Array<recommendationType>;
 }
+
+export interface DetailsPageScreenProps {
+  sidebarItems: sidebarItem[];
+}

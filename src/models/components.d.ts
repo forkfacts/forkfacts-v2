@@ -21,6 +21,15 @@ export interface recommendationType {
   recommendationItems: Array<recommendationItem>;
 }
 
+export interface compareTableItem {
+  foodName: string;
+  calories: number;
+  betaCarotene: number;
+  vitamin: number;
+  calcium: number;
+  iron: number;
+}
+
 export interface SearchCategoryItemType {
   label: string;
   Icon: SvgIconComponent;
@@ -150,8 +159,34 @@ interface SearchRecommendationItemProps {
 export interface SearchRecommendationsProps {
   recommendations: Array<recommendationType>;
 }
+export interface DetailsPageHeaderProps {
+  detailsHeaderValues: {
+    img: string;
+    name: string;
+    subTitle: string;
+    nutritionValues: Array<{ name: string; icon: string }>;
+    tag: string;
+  };
+}
 
 export interface DetailsPageTitlesProps {
   DetailsPageTitlesItems: Array<DetailsPageTitlesItem>;
-  onDetailsPageTitleItem: Dispatch<SetStateAction<string>>;
+  onSelectDetailsPageTitleItem: Dispatch<SetStateAction<string>>;
+}
+
+export interface DetailsPageTabItemsProps {
+  tabItems: Array<sidebarItem>;
+  onselectTabItem: Dispatch<SetStateAction<string>>;
+}
+
+export interface DetailsPageTabItemProps {
+  item: sidebarItem;
+  index: number;
+  setSelectedIndex: (item: number) => void;
+  selectedIndex: number;
+  onSelectDetailsPageTabItem: Dispatch<SetStateAction<string>>;
+}
+
+export interface ComparingDetailsTabProps {
+  compareTableItems: Array<compareTableItem>;
 }

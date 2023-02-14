@@ -15,14 +15,29 @@ export default {
 
 const Template: ComponentStory<typeof DetailsPageTitles> = (args) => {
   const [SelectedTitle, setSelectedTitle] = useState("");
-  return <DetailsPageTitles {...args} onDetailsPageTitleItem={setSelectedTitle} />;
+  return <DetailsPageTitles {...args} onSelectDetailsPageTitleItem={setSelectedTitle} />;
 };
 
 const DetailsPageTitlesItems: DetailsPageTitlesItem[] = [
   {
-    title: "",
+    title: "Banana, overripe, raw",
+  },
+  {
+    title: "Banana, ripe and slightly ripe, raw",
+  },
+  {
+    title: "Banana, raw",
+  },
+  {
+    title: "Banana, raw",
   },
 ];
+
+export const Desktop = Template.bind({});
+
+Desktop.args = {
+  DetailsPageTitlesItems: DetailsPageTitlesItems,
+};
 
 export const Mobile = Template.bind({});
 

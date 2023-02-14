@@ -40,6 +40,7 @@ module.exports = {
     config.resolve.alias["@forkfacts/screens"] = path.resolve(__dirname, "../src/screens");
     config.resolve.alias["@forkfacts/models"] = path.resolve(__dirname, "../src/models");
     config.resolve.alias["@forkfacts/styles"] = path.resolve(__dirname, "../src/styles/");
+    config.resolve.alias["@forkfacts/icons"] = path.resolve(__dirname, "../src/DesignIcons");
     config.resolve.mainFields = ["browser", "module", "main"];
     return config;
   },

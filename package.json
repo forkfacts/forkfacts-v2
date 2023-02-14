@@ -18,7 +18,8 @@
     "typecheck": "tsc --noEmit",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "generate-icon": "npx @svgr/cli --out-dir src/DesignIcons  --typescript --ignore-existing -- src/images/icons"
   },
   "dependencies": {
     "@algolia/autocomplete-core": "1.7.3",
@@ -65,6 +66,7 @@
     "@storybook/manager-webpack5": "^6.5.13",
     "@storybook/react": "^6.5.13",
     "@storybook/testing-library": "^0.0.13",
+    "@svgr/cli": "^6.5.1",
     "@types/node": "^18.11.9",
     "@types/react": "^18.0.25",
     "@types/react-dom": "^18.0.8",

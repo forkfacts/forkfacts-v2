@@ -6,7 +6,10 @@ import {
   PopularFrequentSearchType,
   sidebarItem,
   recommendationType,
+  DetailsPageTitlesItem,
+  compareTableItem,
 } from "@forkfacts/models";
+import { Dispatch, SetStateAction } from "react";
 
 export interface HomeScreenProps {
   sidebarItems: sidebarItem[];
@@ -22,4 +25,14 @@ export interface HomeScreenProps {
 
 export interface DetailsPageScreenProps {
   sidebarItems: sidebarItem[];
+  DetailsPageTitlesItems: Array<DetailsPageTitlesItem>;
+  detailsHeaderValues: {
+    img: string;
+    name: string;
+    subTitle: string;
+    nutritionValues: Array<{ name: string; icon: string }>;
+    tag: string;
+  };
+  tabItems: sidebarItem[];
+  compareTableItems: Array<compareTableItem>;
 }

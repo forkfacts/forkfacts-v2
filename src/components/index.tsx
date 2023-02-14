@@ -16,3 +16,7 @@ export { default as PopularFrequentSearchCategory } from "./PopularFrequentSearc
 export { default as NoSearchResults } from "./NoSearchResults/NoSearchResults";
 export { default as SearchRecommendations } from "./SearchRecommendations/SearchRecommendations";
 export { default as DetailsPageTitles } from "./DetailPageComponents/DetailsPageTitles/DetailsPageTitles";
+export { default as DetailsPageHeader } from "./DetailPageComponents/DetailsPageHeader/DetailsPageHeader";
+export { default as DetailsPageTabItems } from "./DetailPageComponents/DetailsPageTabItems/DetailsPageTabItems";
+export { default as DetailsPageTabItem } from "./DetailPageComponents/DetailsPageTabItems/DetailsPageTabItem";
+export { default as ComparingDetailsTab } from "./DetailPageComponents/ComparingDetailsTab/ComparingDetailsTab";

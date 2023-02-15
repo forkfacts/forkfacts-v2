@@ -19,6 +19,7 @@ const NutritionDetailsTab: React.FC<NutritionDetailsTabProps> = ({
 
   return (
     <Box>
+      {/* <NutritionFilters /> */}
       <AllFilters
         selectedFilters={selectedFilters}
         lifeStageItems={lifeStageItems}

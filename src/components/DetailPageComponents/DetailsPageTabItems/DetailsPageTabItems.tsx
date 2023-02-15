@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { DetailsPageTabItemsProps } from "@forkfacts/models";
 import { ForLoops } from "@forkfacts/helpers";
-import { Box } from "@mui/material";
+import { Box, useMediaQuery, useTheme } from "@mui/material";
 import { DetailsPageTabItem } from "@forkfacts/components";
 
 export default function DetailsPageTabItems({
@@ -9,9 +9,21 @@ export default function DetailsPageTabItems({
   onselectTabItem,
 }: DetailsPageTabItemsProps) {
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const theme = useTheme();
+  const mobile = useMediaQuery(theme.breakpoints.down("md"));
   return (
     <Box sx={{ width: "100%" }}>
-      <Box sx={{ display: "flex" }}>
+      <Box
+        sx={{
+          display: "flex",
+          overflowX: "auto",
+          scrollbarWidth: "none",
+          "&::-webkit-scrollbar": {
+            width: "0px",
+            background: "transparent",
+          },
+        }}
+      >
         <ForLoops each={tabItems}>
           {(item, idx) => (
             <DetailsPageTabItem

@@ -47,6 +47,18 @@ Mobile.args = {
 
 Mobile.parameters = {
   viewport: {
-    defaultViewport: "iphone6",
+    defaultViewport: "iphonexr",
+  },
+};
+
+export const Tablet = Template.bind({});
+
+Tablet.args = {
+  DetailsPageTitlesItems: DetailsPageTitlesItems,
+};
+
+Tablet.parameters = {
+  viewport: {
+    defaultViewport: "ipad",
   },
 };

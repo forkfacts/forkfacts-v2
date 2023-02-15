@@ -42,7 +42,7 @@ export const selectedButton: ComponentStory<typeof SearchCategory> = (args) => (
 );
 selectedButton.parameters = {
   viewport: {
-    defaultViewport: "iphone6",
+    defaultViewport: "iphonexr",
   },
 };
 
@@ -60,7 +60,7 @@ export const unSelectedButton: ComponentStory<typeof SearchCategory> = (args) =>
 );
 unSelectedButton.parameters = {
   viewport: {
-    defaultViewport: "iphone6",
+    defaultViewport: "iphonexr",
   },
 };
 

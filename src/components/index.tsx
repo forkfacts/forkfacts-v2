@@ -18,5 +18,6 @@ export { default as SearchRecommendations } from "./SearchRecommendations/Search
 export { default as DetailsPageTitles } from "./DetailPageComponents/DetailsPageTitles/DetailsPageTitles";
 export { default as DetailsPageHeader } from "./DetailPageComponents/DetailsPageHeader/DetailsPageHeader";
 export { default as DetailsPageTabItems } from "./DetailPageComponents/DetailsPageTabItems/DetailsPageTabItems";
-export { default as DetailsPageTabItem } from "./DetailPageComponents/DetailsPageTabItems/DetailsPageTabItem";
+export { default as DetailsPageTabItem } from "./DetailPageComponents/DetailsPageTabItems/DetailsPageTabItem/DetailsPageTabItem";
 export { default as ComparingDetailsTab } from "./DetailPageComponents/ComparingDetailsTab/ComparingDetailsTab";
+export { default as SharedSocialMedia } from "./SharedSocialMedia/SharedSocialMedia";

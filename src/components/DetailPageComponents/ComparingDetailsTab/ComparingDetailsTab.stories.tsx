@@ -1,12 +1,17 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-
+import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import { ComparingDetailsTab } from "@forkfacts/components";
 import { compareTableItem } from "@forkfacts/models";
 
 export default {
   title: "Components/DetailsPageComponents/ComparingDetailsTab",
   component: ComparingDetailsTab,
+  parameters: {
+    viewport: {
+      viewports: INITIAL_VIEWPORTS,
+    },
+  },
 } as ComponentMeta<typeof ComparingDetailsTab>;
 
 const compareTableItemRows: compareTableItem[] = [
@@ -76,4 +81,40 @@ export const Desktop = Template.bind({});
 
 Desktop.args = {
   compareTableItems: compareTableItemRows,
+  compareTableDetails: {
+    name: "Comparing Greens",
+    quantityAmount: "3 1/2 OUNCES RAW (2 TO 3 CUPS)",
+  },
+};
+
+export const Mobile = Template.bind({});
+
+Mobile.args = {
+  compareTableItems: compareTableItemRows,
+  compareTableDetails: {
+    name: "Comparing Greens",
+    quantityAmount: "3 1/2 OUNCES RAW (2 TO 3 CUPS)",
+  },
+};
+
+Mobile.parameters = {
+  viewport: {
+    defaultViewport: "iphonexr",
+  },
+};
+
+export const Tablet = Template.bind({});
+
+Tablet.args = {
+  compareTableItems: compareTableItemRows,
+  compareTableDetails: {
+    name: "Comparing Greens",
+    quantityAmount: "3 1/2 OUNCES RAW (2 TO 3 CUPS)",
+  },
+};
+
+Tablet.parameters = {
+  viewport: {
+    defaultViewport: "ipad",
+  },
 };

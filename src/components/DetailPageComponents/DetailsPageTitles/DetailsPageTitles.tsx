@@ -28,7 +28,8 @@ const DetailsPageTitles: React.FC<DetailsPageTitlesProps> = ({
           width: "80%",
           mt: theme.spacing(2),
         }}
-        justifyContent={"space-between"}
+        justifyContent="space-between"
+        flexDirection={mobile ? "column" : "row"}
         gap={1}
       >
         <ForLoops each={DetailsPageTitlesItems}>
@@ -50,11 +51,13 @@ const DetailsPageTitles: React.FC<DetailsPageTitlesProps> = ({
                   checked={selectedAgeIndex === index ? true : false}
                 />
                 <Typography
-                  variant="body1"
                   sx={{
                     lineHeight: theme.spacing(3),
                     fontWeight: theme.typography.fontWeightMedium,
                     color: theme.palette.customGray.textDark,
+                    fontSize: mobile
+                      ? theme.typography.caption.fontSize
+                      : theme.typography.body2.fontSize,
                   }}
                 >
                   {item.title}
@@ -63,7 +66,7 @@ const DetailsPageTitles: React.FC<DetailsPageTitlesProps> = ({
             </Grid>
           )}
         </ForLoops>
-        <Grid item sx={{ ml: theme.spacing(1) }}>
+        <Grid item sx={{ ml: theme.spacing(-1.7), mt: mobile ? theme.spacing(-3) : 0 }}>
           <ViewMoreButton text="View more" />
         </Grid>
       </Grid>

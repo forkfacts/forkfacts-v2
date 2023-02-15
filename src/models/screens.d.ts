@@ -35,4 +35,8 @@ export interface DetailsPageScreenProps {
   };
   tabItems: sidebarItem[];
   compareTableItems: Array<compareTableItem>;
+  compareTableDetails: {
+    name: string;
+    quantityAmount: string;
+  };
 }

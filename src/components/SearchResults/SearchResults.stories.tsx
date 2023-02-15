@@ -72,7 +72,7 @@ const Template: ComponentStory<typeof SearchResults> = (args) => <SearchResults 
 export const SearchResultsItemsMultipleCategories = Template.bind({});
 SearchResultsItemsMultipleCategories.parameters = {
   viewport: {
-    defaultViewport: "iphone6",
+    defaultViewport: "iphonexr",
   },
 };
 SearchResultsItemsMultipleCategories.args = {
@@ -92,7 +92,7 @@ SearchResultsItemsMultipleCategories.storyName = "SearchResultsMultipleCategorie
 export const SearchResultsItemsSingleCategory = Template.bind({});
 SearchResultsItemsSingleCategory.parameters = {
   viewport: {
-    defaultViewport: "iphone6",
+    defaultViewport: "iphonexr",
   },
 };
 SearchResultsItemsSingleCategory.args = {

@@ -7,7 +7,7 @@ import {
 } from "@forkfacts/components";
 import { DetailsPageScreenProps } from "@forkfacts/models";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-import { Box, Button, useTheme } from "@mui/material";
+import { Box, Button, useMediaQuery, useTheme } from "@mui/material";
 import React, { useState } from "react";
 import { useStyles } from "./detailspageStyles";
 
@@ -17,32 +17,53 @@ const DetailsPageScreen: React.FC<DetailsPageScreenProps> = ({
   detailsHeaderValues,
   tabItems,
   compareTableItems,
+  compareTableDetails,
 }) => {
   const classes = useStyles();
   const theme = useTheme();
-  const [selectedTitle, setSelectedTitle] = useState("");
+  const mobile = useMediaQuery(theme.breakpoints.down("md"));
+  const [_, setSelectedTitle] = useState("");
   const [selectedTabItem, setSelectedTabItem] = useState("Compare foods");
 
   return (
     <Layout sidebarItems={sidebarItems}>
       <Box className={classes.desktopScreenWrapper}>
-        <Box sx={{ px: theme.spacing(1.5) }}>
+        <Box sx={{ px: mobile ? 0 : theme.spacing(1.5) }}>
           <Button startIcon={<ArrowBackIosIcon />}>Go back</Button>
         </Box>
         <Box>
-          <Box sx={{ mt: theme.spacing(3) }}>
-            <DetailsPageTitles
-              onSelectDetailsPageTitleItem={setSelectedTitle}
-              DetailsPageTitlesItems={DetailsPageTitlesItems}
-            />
+          <Box sx={{ display: "flex", flexDirection: mobile ? "column-reverse" : "column" }}>
+            <Box sx={{ mt: mobile ? theme.spacing(1) : theme.spacing(3) }}>
+              <DetailsPageTitles
+                onSelectDetailsPageTitleItem={setSelectedTitle}
+                DetailsPageTitlesItems={DetailsPageTitlesItems}
+              />
+            </Box>
+            <Box
+              sx={{
+                px: mobile ? 0 : theme.spacing(1.5),
+                mt: mobile ? theme.spacing(3) : theme.spacing(5),
+              }}
+            >
+              <DetailsPageHeader detailsHeaderValues={detailsHeaderValues} />
+            </Box>
           </Box>
-          <Box sx={{ px: theme.spacing(1.5), mt: theme.spacing(5) }}>
-            <DetailsPageHeader detailsHeaderValues={detailsHeaderValues} />
-          </Box>
-          <Box sx={{ px: theme.spacing(1.5), mt: theme.spacing(5), width: "100%" }}>
+          <Box
+            sx={{
+              px: mobile ? 0 : theme.spacing(1.5),
+              mt: mobile ? theme.spacing(1) : theme.spacing(5),
+              width: "100%",
+            }}
+          >
             <DetailsPageTabItems tabItems={tabItems} onselectTabItem={setSelectedTabItem} />
           </Box>
-          <Box sx={{ px: theme.spacing(1.5), mt: theme.spacing(5), width: "100%" }}>
+          <Box
+            sx={{
+              px: mobile ? 0 : theme.spacing(1.5),
+              mt: mobile ? theme.spacing(3) : theme.spacing(5),
+              width: "100%",
+            }}
+          >
             {selectedTabItem === "Nutrition" ? (
               <Box>Nutrition</Box>
             ) : selectedTabItem === "Recipes" ? (
@@ -53,7 +74,10 @@ const DetailsPageScreen: React.FC<DetailsPageScreenProps> = ({
               <Box>Tips</Box>
             ) : selectedTabItem === "Compare foods" ? (
               <Box>
-                <ComparingDetailsTab compareTableItems={compareTableItems} />
+                <ComparingDetailsTab
+                  compareTableItems={compareTableItems}
+                  compareTableDetails={compareTableDetails}
+                />
               </Box>
             ) : null}
           </Box>

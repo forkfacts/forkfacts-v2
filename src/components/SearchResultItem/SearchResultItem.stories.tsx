@@ -36,7 +36,7 @@ searchItem.args = {
 };
 searchItem.parameters = {
   viewport: {
-    defaultViewport: "iphone6",
+    defaultViewport: "iphonexr",
   },
 };
 

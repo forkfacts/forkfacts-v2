@@ -36,6 +36,7 @@
     "@mui/material": "latest",
     "@mui/styles": "^5.10.15",
     "@mui/x-data-grid": "^5.17.12",
+    "@storybook/addon-viewport": "^6.5.16",
     "algoliasearch": "4.9.1",
     "classnames": "^2.3.2",
     "dotenv": "^16.0.3",
@@ -52,7 +53,10 @@
     "gatsby-transformer-sharp": "^5.1.0",
     "install": "^0.13.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-copy-to-clipboard": "^5.1.0",
+    "react-dom": "^18.2.0",
+    "react-share": "^4.4.1",
+    "recharts": "^2.4.1"
   },
   "devDependencies": {
     "@babel/core": "^7.20.2",
@@ -69,6 +73,7 @@
     "@svgr/cli": "^6.5.1",
     "@types/node": "^18.11.9",
     "@types/react": "^18.0.25",
+    "@types/react-copy-to-clipboard": "^5.0.4",
     "@types/react-dom": "^18.0.8",
     "babel-loader": "^8.3.0",
     "husky": "^8.0.0",

@@ -32,7 +32,7 @@ const Template: ComponentStory<typeof SearchCategories> = (args) => <SearchCateg
 export const Mobile = Template.bind({});
 Mobile.parameters = {
   viewport: {
-    defaultViewport: "iphone6",
+    defaultViewport: "iphonexr",
   },
 };
 const categoryOptions = [

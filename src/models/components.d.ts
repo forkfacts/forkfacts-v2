@@ -168,17 +168,14 @@ export interface DetailsPageHeaderProps {
     tag: string;
   };
 }
-
 export interface DetailsPageTitlesProps {
   DetailsPageTitlesItems: Array<DetailsPageTitlesItem>;
   onSelectDetailsPageTitleItem: Dispatch<SetStateAction<string>>;
 }
-
 export interface DetailsPageTabItemsProps {
   tabItems: Array<sidebarItem>;
   onselectTabItem: Dispatch<SetStateAction<string>>;
 }
-
 export interface DetailsPageTabItemProps {
   item: sidebarItem;
   index: number;
@@ -186,7 +183,15 @@ export interface DetailsPageTabItemProps {
   selectedIndex: number;
   onSelectDetailsPageTabItem: Dispatch<SetStateAction<string>>;
 }
-
 export interface ComparingDetailsTabProps {
   compareTableItems: Array<compareTableItem>;
+  compareTableDetails: {
+    name: string;
+    quantityAmount: string;
+  };
+}
+export interface SharedSocialMediaProps {
+  isSharedMediaOpen: boolean;
+  setIsSharedMediaOpen: Dispatch<SetStateAction<boolean>>;
+  link: string;
 }

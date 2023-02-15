@@ -70,7 +70,7 @@ export const Mobile: ComponentStory<typeof Layout> = (args) => (
 );
 Mobile.parameters = {
   viewport: {
-    defaultViewport: "iphone6",
+    defaultViewport: "iphonexr",
   },
 };
 

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import EggAltOutlinedIcon from "@mui/icons-material/EggAltOutlined";
 import EmojiFoodBeverageOutlinedIcon from "@mui/icons-material/EmojiFoodBeverageOutlined";
@@ -15,6 +16,11 @@ import { compareTableItem, DetailsPageTitlesItem, sidebarItem } from "@forkfacts
 export default {
   title: "Screens/DetailsPageScreen",
   component: DetailsPageScreen,
+  parameters: {
+    viewport: {
+      viewports: INITIAL_VIEWPORTS,
+    },
+  },
 } as ComponentMeta<typeof DetailsPageScreen>;
 
 const sidebarItems: sidebarItem[] = [
@@ -62,7 +68,7 @@ const detailsHeaderValues = {
 
 const compareTableItemRows: compareTableItem[] = [
   {
-    foodName: "Beta Carotene (mg)",
+    foodName: "Beta ",
     calories: 19,
     betaCarotene: 4,
     vitamin: 30,
@@ -78,7 +84,7 @@ const compareTableItemRows: compareTableItem[] = [
     iron: 0.6,
   },
   {
-    foodName: "Dandelion greens",
+    foodName: "Dandelion",
     calories: 45,
     betaCarotene: 0,
     vitamin: 35,
@@ -94,7 +100,7 @@ const compareTableItemRows: compareTableItem[] = [
     iron: 2,
   },
   {
-    foodName: "Mustard greens",
+    foodName: "Mustard",
     calories: 26,
     betaCarotene: 3,
     vitamin: 70,
@@ -102,7 +108,7 @@ const compareTableItemRows: compareTableItem[] = [
     iron: 1,
   },
   {
-    foodName: "Swiss chard",
+    foodName: "Swiss",
     calories: 19,
     betaCarotene: 2,
     vitamin: 30,
@@ -120,7 +126,6 @@ const compareTableItemRows: compareTableItem[] = [
 ];
 
 const Template: ComponentStory<typeof DetailsPageScreen> = (args) => {
-  const [SelectedTitle, setSelectedTitle] = useState("");
   return <DetailsPageScreen {...args} />;
 };
 
@@ -132,4 +137,28 @@ Desktop.args = {
   detailsHeaderValues: detailsHeaderValues,
   tabItems: tabItems,
   compareTableItems: compareTableItemRows,
+  compareTableDetails: {
+    name: "Comparing Greens",
+    quantityAmount: "3 1/2 OUNCES RAW (2 TO 3 CUPS)",
+  },
+};
+
+export const Mobile = Template.bind({});
+
+Mobile.args = {
+  sidebarItems,
+  DetailsPageTitlesItems: DetailsPageTitlesItems,
+  detailsHeaderValues: detailsHeaderValues,
+  tabItems: tabItems,
+  compareTableItems: compareTableItemRows,
+  compareTableDetails: {
+    name: "Comparing Greens",
+    quantityAmount: "3 1/2 OUNCES RAW (2 TO 3 CUPS)",
+  },
+};
+
+Mobile.parameters = {
+  viewport: {
+    defaultViewport: "iphonexr",
+  },
 };

@@ -1,7 +1,7 @@
 import React from "react";
-import { Button, Typography, useTheme } from "@mui/material";
+import { Button, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { DetailsPageTabItemProps, NavBarItemProps } from "@forkfacts/models";
-import { useStyles } from "./detailsPageTabItemStyles";
+import { useStyles } from "../detailsPageTabItemStyles";
 
 export default function DetailsPageTabItem({
   index,
@@ -11,7 +11,8 @@ export default function DetailsPageTabItem({
   onSelectDetailsPageTabItem,
 }: DetailsPageTabItemProps) {
   const classes = useStyles();
-  const { spacing, palette, typography } = useTheme();
+  const { spacing, palette, typography, breakpoints } = useTheme();
+  const mobile = useMediaQuery(breakpoints.down("md"));
 
   const handleClick = () => {
     setSelectedIndex(index);
@@ -38,8 +39,10 @@ export default function DetailsPageTabItem({
         borderTopLeftRadius: index === 0 ? spacing(1) : 0,
         borderBottomLeftRadius: index === 0 ? spacing(1) : 0,
         fontWeight: typography.fontWeightBold,
-        width: spacing(28.2),
-        height: spacing(7),
+        width: mobile ? "auto" : spacing(29.2),
+        height: spacing(5),
+        flexShrink: 0,
+        mr: mobile ? 1 : 0,
       }}
       onClick={handleClick}
       size="small"

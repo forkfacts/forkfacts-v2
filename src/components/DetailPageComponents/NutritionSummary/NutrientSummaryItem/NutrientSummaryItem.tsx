@@ -7,7 +7,7 @@ import "react-circular-progressbar/dist/styles.css";
 const NutrientSummaryItem: React.FC<NutrientSummaryItemProps> = ({ percentage, weight, name }) => {
   const theme = useTheme();
   return (
-    <Box sx={{ width: theme.spacing(8.25), height: theme.spacing(8.25) }}>
+    <Box sx={{ width: theme.spacing(16.25), height: theme.spacing(16.25) }}>
       <Box
         sx={{
           textAlign: "center",
@@ -27,7 +27,7 @@ const NutrientSummaryItem: React.FC<NutrientSummaryItemProps> = ({ percentage, w
         styles={buildStyles({
           textColor: theme.palette.grey[800],
           pathColor: theme.palette.primary.main,
-          trailColor: theme.palette.primary.light,
+          trailColor: "#C9C5CA",
           textSize: theme.typography.fontSize,
         })}
       >
@@ -50,7 +50,7 @@ const NutrientSummaryItem: React.FC<NutrientSummaryItemProps> = ({ percentage, w
           fontWeight: theme.typography.fontWeightBold,
         }}
       >
-        {percentage}
+        {percentage}%
       </Box>
     </Box>
   );

@@ -19,12 +19,19 @@ const DetailsPageScreen: React.FC<DetailsPageScreenProps> = ({
   tabItems,
   compareTableItems,
   compareTableDetails,
+  nutritionSummaryItems,
+  selectedFilters,
+  lifeStageItems,
+  ageItems,
+  nutritionFilterItems,
+  measurementFilterItems,
+  onSelectFilterPageData,
 }) => {
   const classes = useStyles();
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.down("md"));
   const [_, setSelectedTitle] = useState("");
-  const [selectedTabItem, setSelectedTabItem] = useState("Compare foods");
+  const [selectedTabItem, setSelectedTabItem] = useState("Nutrition");
 
   return (
     <Layout sidebarItems={sidebarItems}>
@@ -66,7 +73,15 @@ const DetailsPageScreen: React.FC<DetailsPageScreenProps> = ({
             }}
           >
             {selectedTabItem === "Nutrition" ? (
-              <NutritionDetailsTab />
+              <NutritionDetailsTab
+                nutritionSummaryItems={nutritionSummaryItems}
+                selectedFilters={selectedFilters}
+                lifeStageItems={lifeStageItems}
+                ageItems={ageItems}
+                nutritionFilterItems={nutritionFilterItems}
+                measurementFilterItems={measurementFilterItems}
+                onSelectFilterPageData={onSelectFilterPageData}
+              />
             ) : selectedTabItem === "Recipes" ? (
               <Box>Recipes</Box>
             ) : selectedTabItem === "Emissions" ? (

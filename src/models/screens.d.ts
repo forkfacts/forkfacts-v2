@@ -8,6 +8,8 @@ import {
   recommendationType,
   DetailsPageTitlesItem,
   compareTableItem,
+  summaryItem,
+  SearchNutritionFilterItem,
 } from "@forkfacts/models";
 import { Dispatch, SetStateAction } from "react";
 
@@ -39,4 +41,11 @@ export interface DetailsPageScreenProps {
     name: string;
     quantityAmount: string;
   };
+  nutritionSummaryItems: Array<summaryItem>;
+  selectedFilters: string[];
+  lifeStageItems: Array<lifeStageItem>;
+  ageItems: Array<ageItem>;
+  nutritionFilterItems: Array<SearchNutritionFilterItem>;
+  measurementFilterItems: string[];
+  onSelectFilterPageData: Dispatch<SetStateAction<any>>;
 }

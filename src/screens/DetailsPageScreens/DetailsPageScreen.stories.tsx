@@ -5,13 +5,23 @@ import EggAltOutlinedIcon from "@mui/icons-material/EggAltOutlined";
 import EmojiFoodBeverageOutlinedIcon from "@mui/icons-material/EmojiFoodBeverageOutlined";
 import TipsAndUpdatesOutlinedIcon from "@mui/icons-material/TipsAndUpdatesOutlined";
 import CompareArrowsOutlinedIcon from "@mui/icons-material/CompareArrowsOutlined";
+import ChildCareOutlinedIcon from "@mui/icons-material/ChildCareOutlined";
+import EscalatorWarningOutlinedIcon from "@mui/icons-material/EscalatorWarningOutlined";
+import Person2OutlinedIcon from "@mui/icons-material/Person2Outlined";
+import PregnantWomanOutlinedIcon from "@mui/icons-material/PregnantWomanOutlined";
 import FastfoodOutlinedIcon from "@mui/icons-material/FastfoodOutlined";
 import SmokingRoomsOutlinedIcon from "@mui/icons-material/SmokingRoomsOutlined";
 import LibraryBooksOutlinedIcon from "@mui/icons-material/LibraryBooksOutlined";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import AutoStoriesOutlinedIcon from "@mui/icons-material/AutoStoriesOutlined";
 import { DetailsPageScreen } from "@forkfacts/screens";
-import { compareTableItem, DetailsPageTitlesItem, sidebarItem } from "@forkfacts/models";
+import {
+  ageItem,
+  compareTableItem,
+  DetailsPageTitlesItem,
+  SearchNutritionFilterItem,
+  sidebarItem,
+} from "@forkfacts/models";
 
 export default {
   title: "Screens/DetailsPageScreen",
@@ -125,9 +135,96 @@ const compareTableItemRows: compareTableItem[] = [
   },
 ];
 
+const nutritionSummaryItems = [
+  { name: "Calories", percentage: 20, weight: "450g" },
+  { name: "Protein", percentage: 10, weight: "120g" },
+  { name: "Carbs", percentage: 20, weight: "120g" },
+  { name: "Fats", percentage: 30, weight: "120g" },
+  { name: "Fiber", percentage: 40, weight: "120g" },
+];
 const Template: ComponentStory<typeof DetailsPageScreen> = (args) => {
   return <DetailsPageScreen {...args} />;
 };
+
+const nutritionFilterItems: SearchNutritionFilterItem[] = [
+  {
+    name: "Vitamin",
+    subItems: [
+      { name: "Vitamin B1", checked: false },
+      { name: "Vitamin B2", checked: false },
+      { name: "Vitamin B3", checked: false },
+      { name: "Vitamin B4", checked: false },
+    ],
+    checked: false,
+  },
+  {
+    name: "Protein",
+    subItems: [
+      { name: "Protein B1", checked: false },
+      { name: "Protein B2", checked: false },
+    ],
+    checked: false,
+  },
+  { name: "Carbohydrate", subItems: [], checked: false },
+  { name: "Water", subItems: [], checked: false },
+  { name: "Fats", subItems: [], checked: false },
+  { name: "Fiber", subItems: [], checked: false },
+  { name: "Minerals", subItems: [], checked: false },
+];
+const lifeStageItems: lifeStageItem[] = [
+  {
+    name: "Infant",
+    icon: ChildCareOutlinedIcon,
+  },
+  {
+    name: "Children",
+    icon: EscalatorWarningOutlinedIcon,
+  },
+  {
+    name: "Male",
+    icon: PregnantWomanOutlinedIcon,
+  },
+  {
+    name: "Female",
+    icon: EscalatorWarningOutlinedIcon,
+  },
+  {
+    name: "Pregnant",
+    icon: PregnantWomanOutlinedIcon,
+  },
+  {
+    name: "Lactation",
+    icon: Person2OutlinedIcon,
+  },
+];
+
+const ageItems: ageItem[] = [
+  {
+    start: 9,
+    end: 13,
+    unit: "years",
+  },
+  {
+    start: 14,
+    end: 18,
+    unit: "years",
+  },
+  {
+    start: 19,
+    end: 30,
+    unit: "years",
+  },
+  {
+    start: 31,
+    end: 50,
+    unit: "years",
+  },
+  {
+    start: 51,
+    end: 70,
+    unit: "years",
+  },
+];
 
 export const Desktop = Template.bind({});
 
@@ -141,6 +238,12 @@ Desktop.args = {
     name: "Comparing Greens",
     quantityAmount: "3 1/2 OUNCES RAW (2 TO 3 CUPS)",
   },
+  nutritionSummaryItems: nutritionSummaryItems,
+  selectedFilters: ["All filters", "Life stage", "Age", "Nutrients", "Measure Units"],
+  lifeStageItems: lifeStageItems,
+  ageItems: ageItems,
+  nutritionFilterItems: nutritionFilterItems,
+  measurementFilterItems: ["US", "Metric"],
 };
 
 export const Mobile = Template.bind({});
@@ -155,6 +258,7 @@ Mobile.args = {
     name: "Comparing Greens",
     quantityAmount: "3 1/2 OUNCES RAW (2 TO 3 CUPS)",
   },
+  nutritionSummaryItems: nutritionSummaryItems,
 };
 
 Mobile.parameters = {

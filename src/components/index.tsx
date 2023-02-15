@@ -21,3 +21,6 @@ export { default as DetailsPageTabItems } from "./DetailPageComponents/DetailsPa
 export { default as DetailsPageTabItem } from "./DetailPageComponents/DetailsPageTabItems/DetailsPageTabItem/DetailsPageTabItem";
 export { default as ComparingDetailsTab } from "./DetailPageComponents/ComparingDetailsTab/ComparingDetailsTab";
 export { default as SharedSocialMedia } from "./SharedSocialMedia/SharedSocialMedia";
+export { default as NutrientSummaryItem } from "./DetailPageComponents/NutritionSummary/NutrientSummaryItem/NutrientSummaryItem";
+export { default as NutritionSummary } from "./DetailPageComponents/NutritionSummary/NutritionSummary";
+export { default as NutritionDetailsTab } from "./DetailPageComponents/NutritionDetailsTab/NutritionDetailsTab";

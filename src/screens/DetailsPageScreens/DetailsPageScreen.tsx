@@ -4,6 +4,7 @@ import {
   Layout,
   DetailsPageTabItems,
   ComparingDetailsTab,
+  NutritionDetailsTab,
 } from "@forkfacts/components";
 import { DetailsPageScreenProps } from "@forkfacts/models";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
@@ -65,7 +66,7 @@ const DetailsPageScreen: React.FC<DetailsPageScreenProps> = ({
             }}
           >
             {selectedTabItem === "Nutrition" ? (
-              <Box>Nutrition</Box>
+              <NutritionDetailsTab />
             ) : selectedTabItem === "Recipes" ? (
               <Box>Recipes</Box>
             ) : selectedTabItem === "Emissions" ? (
@@ -73,12 +74,10 @@ const DetailsPageScreen: React.FC<DetailsPageScreenProps> = ({
             ) : selectedTabItem === "Tips" ? (
               <Box>Tips</Box>
             ) : selectedTabItem === "Compare foods" ? (
-              <Box>
-                <ComparingDetailsTab
-                  compareTableItems={compareTableItems}
-                  compareTableDetails={compareTableDetails}
-                />
-              </Box>
+              <ComparingDetailsTab
+                compareTableItems={compareTableItems}
+                compareTableDetails={compareTableDetails}
+              />
             ) : null}
           </Box>
         </Box>

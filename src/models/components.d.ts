@@ -16,6 +16,11 @@ export interface DetailsPageTitlesItem {
   title: string;
 }
 
+export interface summaryItem {
+  name: string;
+  percentage: number;
+  weight: string;
+}
 export interface recommendationType {
   recommendationName: string;
   recommendationItems: Array<recommendationItem>;
@@ -194,4 +199,13 @@ export interface SharedSocialMediaProps {
   isSharedMediaOpen: boolean;
   setIsSharedMediaOpen: Dispatch<SetStateAction<boolean>>;
   link: string;
+}
+
+export interface NutritionSummaryProps {
+  nutritionSummaryItems: Array<summaryItem>;
+}
+export interface NutrientSummaryItemProps {
+  weight: string;
+  percentage: number;
+  name: string;
 }

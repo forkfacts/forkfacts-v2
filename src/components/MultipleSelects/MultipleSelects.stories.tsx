@@ -6,7 +6,7 @@ import { filterItem } from "@forkfacts/models";
 import { Button } from "@mui/material";
 
 export default {
-  title: "Components/MultipleSelects",
+  title: "Components/MultipleSelects/MultipleSelects",
   component: MultipleSelects,
 } as ComponentMeta<typeof MultipleSelects>;
 

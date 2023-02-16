@@ -13,15 +13,4 @@ export const useStyles = makeStyles(({ typography, spacing, breakpoints, palette
     lineHeight: spacing(5),
     fontWeight: typography.fontWeightRegular,
   },
-  authBtn: {
-    borderRadius: spacing(12.5),
-    color: palette.common.white,
-    width: spacing(14),
-    height: spacing(6),
-    paddingTop: spacing(1.25),
-    paddingBottom: spacing(1.25),
-    paddingLeft: spacing(3),
-    paddingRight: spacing(3),
-    textTransform: "capitalize",
-  },
 }));

@@ -28,13 +28,13 @@ const DetailsPageTitles: React.FC<DetailsPageTitlesProps> = ({
           width: "80%",
           mt: theme.spacing(2),
         }}
-        justifyContent="space-between"
         flexDirection={mobile ? "column" : "row"}
         gap={1}
+        alignItems={mobile ? "flex-start" : "center"}
       >
         <ForLoops each={DetailsPageTitlesItems}>
           {(item, index) => (
-            <Grid item key={index}>
+            <Grid item key={index} sx={{ mt: mobile ? theme.spacing(-2) : 0 }}>
               <Box
                 key={index}
                 sx={{
@@ -53,11 +53,11 @@ const DetailsPageTitles: React.FC<DetailsPageTitlesProps> = ({
                 <Typography
                   sx={{
                     lineHeight: theme.spacing(3),
-                    fontWeight: theme.typography.fontWeightMedium,
+                    fontWeight: mobile
+                      ? theme.typography.fontWeightRegular
+                      : theme.typography.fontWeightMedium,
                     color: theme.palette.customGray.textDark,
-                    fontSize: mobile
-                      ? theme.typography.caption.fontSize
-                      : theme.typography.body2.fontSize,
+                    fontSize: mobile ? theme.spacing(1.5) : theme.typography.body2.fontSize,
                   }}
                 >
                   {item.title}
@@ -66,7 +66,13 @@ const DetailsPageTitles: React.FC<DetailsPageTitlesProps> = ({
             </Grid>
           )}
         </ForLoops>
-        <Grid item sx={{ ml: theme.spacing(-1.7), mt: mobile ? theme.spacing(-3) : 0 }}>
+        <Grid
+          item
+          sx={{
+            ml: mobile ? theme.spacing(-2) : theme.spacing(5),
+            mt: mobile ? theme.spacing(-3) : 0,
+          }}
+        >
           <ViewMoreButton text="View more" />
         </Grid>
       </Grid>

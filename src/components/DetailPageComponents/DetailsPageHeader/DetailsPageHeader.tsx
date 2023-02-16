@@ -75,7 +75,10 @@ const DetailsPageHeader: React.FC<DetailsPageHeaderProps> = ({ detailsHeaderValu
                             height: theme.spacing(2.25),
                           }}
                         />
-                        <Typography variant="caption" sx={{ color: "#1C1B1F" }}>
+                        <Typography
+                          variant="caption"
+                          sx={{ color: "#1C1B1F", fontWeight: theme.typography.fontWeightBold }}
+                        >
                           {item.name}
                         </Typography>
                       </Box>
@@ -183,7 +186,10 @@ const DetailsPageHeader: React.FC<DetailsPageHeaderProps> = ({ detailsHeaderValu
                         height: theme.spacing(2.25),
                       }}
                     />
-                    <Typography variant="caption" sx={{ color: "#1C1B1F" }}>
+                    <Typography
+                      variant="caption"
+                      sx={{ color: "#1C1B1F", fontWeight: theme.typography.fontWeightBold }}
+                    >
                       {item.name}
                     </Typography>
                   </Box>

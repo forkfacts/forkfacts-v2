@@ -68,7 +68,7 @@ const detailsHeaderValues = {
 
 const compareTableItemRows: compareTableItem[] = [
   {
-    foodName: "Beta ",
+    foodName: "Beta Carotene (mg)",
     calories: 19,
     betaCarotene: 4,
     vitamin: 30,
@@ -84,7 +84,7 @@ const compareTableItemRows: compareTableItem[] = [
     iron: 0.6,
   },
   {
-    foodName: "Dandelion",
+    foodName: "Dandelion greens",
     calories: 45,
     betaCarotene: 0,
     vitamin: 35,
@@ -100,7 +100,7 @@ const compareTableItemRows: compareTableItem[] = [
     iron: 2,
   },
   {
-    foodName: "Mustard",
+    foodName: "Mustard greens",
     calories: 26,
     betaCarotene: 3,
     vitamin: 70,
@@ -108,7 +108,7 @@ const compareTableItemRows: compareTableItem[] = [
     iron: 1,
   },
   {
-    foodName: "Swiss",
+    foodName: "Swiss chard",
     calories: 19,
     betaCarotene: 2,
     vitamin: 30,

@@ -46,9 +46,12 @@ export const customTheme = createTheme({
     },
   },
   typography: {
+    fontFamily: "Poppins",
     button: {
       textTransform: "none",
     },
-    fontWeightMedium: 500,
+    fontWeightMedium: 600,
+    fontWeightRegular: 500,
+    fontWeightLight: 400,
   },
 });

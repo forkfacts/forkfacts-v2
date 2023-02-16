@@ -42,7 +42,6 @@ export default function DetailsPageTabItem({
         width: mobile ? "auto" : spacing(29.2),
         height: spacing(5),
         flexShrink: 0,
-        mr: mobile ? 1 : 0,
       }}
       onClick={handleClick}
       size="small"
@@ -57,9 +56,7 @@ export default function DetailsPageTabItem({
         />
       }
     >
-      <Typography variant="body1" sx={{ textTransform: "capitalize" }}>
-        {item.label}
-      </Typography>
+      <Typography variant="body1">{item.label}</Typography>
     </Button>
   );
 }

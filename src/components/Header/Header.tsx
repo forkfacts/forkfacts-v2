@@ -44,7 +44,12 @@ export default function Header({ handleToggleButton }: HeaderProps) {
             Forkfacts
           </Typography>
           <Box className={classes.rightContent}>
-            <Button color="primary" variant="contained" className={classnames(classes.authBtn)}>
+            <Button
+              size={mobile ? "medium" : "large"}
+              color="primary"
+              variant="contained"
+              sx={{ py: theme.spacing(1), px: theme.spacing(3) }}
+            >
               Sign in
             </Button>
           </Box>

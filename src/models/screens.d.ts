@@ -48,4 +48,6 @@ export interface DetailsPageScreenProps {
   nutritionFilterItems: Array<SearchNutritionFilterItem>;
   measurementFilterItems: string[];
   onSelectFilterPageData: Dispatch<SetStateAction<any>>;
+  multipleSelectItems: filterItem[];
+  getSelectedNutrients: Dispatch<SetStateAction<string[]>>;
 }

@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import { ComparingDetailsTab } from "@forkfacts/components";
-import { compareTableItem } from "@forkfacts/models";
+import { compareTableItem, filterItem } from "@forkfacts/models";
 
 export default {
   title: "Components/DetailsPageComponents/ComparingDetailsTab",
@@ -16,66 +16,90 @@ export default {
 
 const compareTableItemRows: compareTableItem[] = [
   {
-    foodName: "Beta Carotene (mg)",
-    calories: 19,
-    betaCarotene: 4,
-    vitamin: 30,
-    calcium: 119,
-    iron: 3,
+    foodName: "Beet greens",
+    Calories: 19,
+    "Beta carotene": 4,
+    Vitamin: 30,
+    Calcium: 119,
+    Iron: 3,
   },
   {
     foodName: "Collards",
-    calories: 19,
-    betaCarotene: 2,
-    vitamin: 23,
-    calcium: 117,
-    iron: 0.6,
+    Calories: 19,
+    "Beta carotene": 2,
+    Vitamin: 23,
+    Calcium: 117,
+    Iron: 0.6,
   },
   {
     foodName: "Dandelion greens",
-    calories: 45,
-    betaCarotene: 0,
-    vitamin: 35,
-    calcium: 187,
-    iron: 3,
+    Calories: 45,
+    "Beta carotene": 0,
+    Vitamin: 35,
+    Calcium: 187,
+    Iron: 3,
   },
   {
     foodName: "Kale",
-    calories: 50,
-    betaCarotene: 5,
-    vitamin: 120,
-    calcium: 135,
-    iron: 2,
+    Calories: 50,
+    "Beta carotene": 5,
+    Vitamin: 120,
+    Calcium: 135,
+    Iron: 2,
   },
   {
     foodName: "Mustard greens",
-    calories: 26,
-    betaCarotene: 3,
-    vitamin: 70,
-    calcium: 103,
-    iron: 1,
+    Calories: 26,
+    "Beta carotene": 3,
+    Vitamin: 70,
+    Calcium: 103,
+    Iron: 1,
   },
   {
     foodName: "Swiss chard",
-    calories: 19,
-    betaCarotene: 2,
-    vitamin: 30,
-    calcium: 51,
-    iron: 2,
+    Calories: 19,
+    "Beta carotene": 2,
+    Vitamin: 30,
+    Calcium: 51,
+    Iron: 2,
   },
   {
     foodName: "Tumip greens",
-    calories: 27,
-    betaCarotene: 6,
-    vitamin: 60,
-    calcium: 190,
-    iron: 1,
+    Calories: 27,
+    "Beta carotene": 6,
+    Vitamin: 60,
+    Calcium: 190,
+    Iron: 1,
+  },
+];
+const multipleSelectItems: filterItem[] = [
+  {
+    name: "Beta Carotene (mg)",
+  },
+  {
+    name: "Collards",
+  },
+  {
+    name: "Dandelion greens",
+  },
+  {
+    name: "Kale",
+  },
+  {
+    name: "Mustard greens",
+  },
+  {
+    name: "Swiss chard",
+  },
+  {
+    name: "Tumip greens",
   },
 ];
 
-const Template: ComponentStory<typeof ComparingDetailsTab> = (args) => (
-  <ComparingDetailsTab {...args} />
-);
+const Template: ComponentStory<typeof ComparingDetailsTab> = (args) => {
+  const [_, setSelectedNutrients] = useState<string[]>([]);
+  return <ComparingDetailsTab {...args} getSelectedNutrients={setSelectedNutrients} />;
+};
 
 export const Desktop = Template.bind({});
 
@@ -85,6 +109,7 @@ Desktop.args = {
     name: "Comparing Greens",
     quantityAmount: "3 1/2 OUNCES RAW (2 TO 3 CUPS)",
   },
+  multipleSelectItems: multipleSelectItems,
 };
 
 export const Mobile = Template.bind({});
@@ -95,6 +120,7 @@ Mobile.args = {
     name: "Comparing Greens",
     quantityAmount: "3 1/2 OUNCES RAW (2 TO 3 CUPS)",
   },
+  multipleSelectItems: multipleSelectItems,
 };
 
 Mobile.parameters = {
@@ -111,6 +137,7 @@ Tablet.args = {
     name: "Comparing Greens",
     quantityAmount: "3 1/2 OUNCES RAW (2 TO 3 CUPS)",
   },
+  multipleSelectItems: multipleSelectItems,
 };
 
 Tablet.parameters = {

@@ -41,7 +41,10 @@ const DetailsPageHeader: React.FC<DetailsPageHeaderProps> = ({ detailsHeaderValu
                   onClick={() => setIsSharedMediaOpen(true)}
                 />
               </Box>
-              <Typography variant="caption" sx={{ color: "#47464A" }}>
+              <Typography
+                variant="subtitle2"
+                sx={{ color: "#47464A", fontWeight: theme.typography.fontWeightRegular }}
+              >
                 {detailsHeaderValues.subTitle}
               </Typography>
               <Box
@@ -75,7 +78,10 @@ const DetailsPageHeader: React.FC<DetailsPageHeaderProps> = ({ detailsHeaderValu
                             height: theme.spacing(2.25),
                           }}
                         />
-                        <Typography variant="caption" sx={{ color: "#1C1B1F" }}>
+                        <Typography
+                          variant="caption"
+                          sx={{ color: "#1C1B1F", fontWeight: theme.typography.fontWeightBold }}
+                        >
                           {item.name}
                         </Typography>
                       </Box>
@@ -183,7 +189,10 @@ const DetailsPageHeader: React.FC<DetailsPageHeaderProps> = ({ detailsHeaderValu
                         height: theme.spacing(2.25),
                       }}
                     />
-                    <Typography variant="caption" sx={{ color: "#1C1B1F" }}>
+                    <Typography
+                      variant="caption"
+                      sx={{ color: "#1C1B1F", fontWeight: theme.typography.fontWeightBold }}
+                    >
                       {item.name}
                     </Typography>
                   </Box>

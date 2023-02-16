@@ -26,6 +26,8 @@ const DetailsPageScreen: React.FC<DetailsPageScreenProps> = ({
   nutritionFilterItems,
   measurementFilterItems,
   onSelectFilterPageData,
+  multipleSelectItems,
+  getSelectedNutrients,
 }) => {
   const classes = useStyles();
   const theme = useTheme();
@@ -37,11 +39,20 @@ const DetailsPageScreen: React.FC<DetailsPageScreenProps> = ({
     <Layout sidebarItems={sidebarItems}>
       <Box className={classes.desktopScreenWrapper}>
         <Box sx={{ px: mobile ? 0 : theme.spacing(1.5) }}>
-          <Button startIcon={<ArrowBackIosIcon />}>Go back</Button>
+          <Button
+            startIcon={<ArrowBackIosIcon />}
+            sx={{
+              fontWeight: theme.typography.fontWeightMedium,
+              fontSize: theme.spacing(1.75),
+              lineHeight: theme.spacing(2.5),
+            }}
+          >
+            Go back
+          </Button>
         </Box>
         <Box>
           <Box sx={{ display: "flex", flexDirection: mobile ? "column-reverse" : "column" }}>
-            <Box sx={{ mt: mobile ? theme.spacing(1) : theme.spacing(3) }}>
+            <Box sx={{ mt: mobile ? theme.spacing(1) : theme.spacing(0) }}>
               <DetailsPageTitles
                 onSelectDetailsPageTitleItem={setSelectedTitle}
                 DetailsPageTitlesItems={DetailsPageTitlesItems}
@@ -89,10 +100,14 @@ const DetailsPageScreen: React.FC<DetailsPageScreenProps> = ({
             ) : selectedTabItem === "Tips" ? (
               <Box>Tips</Box>
             ) : selectedTabItem === "Compare foods" ? (
-              <ComparingDetailsTab
-                compareTableItems={compareTableItems}
-                compareTableDetails={compareTableDetails}
-              />
+              <Box>
+                <ComparingDetailsTab
+                  compareTableItems={compareTableItems}
+                  compareTableDetails={compareTableDetails}
+                  multipleSelectItems={multipleSelectItems}
+                  getSelectedNutrients={getSelectedNutrients}
+                />
+              </Box>
             ) : null}
           </Box>
         </Box>

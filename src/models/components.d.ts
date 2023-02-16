@@ -1,26 +1,25 @@
 import { SvgIconComponent } from "@mui/icons-material";
-import { Dispatch, SetStateAction } from "react";
+import React, { Dispatch, SetStateAction } from "react";
 
 export interface SearchResultItemType {
   name: string;
   url: string;
   image: string;
 }
-
 export interface recommendationItem {
   name: string;
   icon?: string;
 }
-
 export interface DetailsPageTitlesItem {
   title: string;
 }
-
+export interface filterItem {
+  name: string;
+}
 export interface recommendationType {
   recommendationName: string;
   recommendationItems: Array<recommendationItem>;
 }
-
 export interface compareTableItem {
   foodName: string;
   calories: number;
@@ -29,7 +28,6 @@ export interface compareTableItem {
   calcium: number;
   iron: number;
 }
-
 export interface SearchCategoryItemType {
   label: string;
   Icon: SvgIconComponent;
@@ -42,17 +40,14 @@ export interface SearchResultItemCollectionType {
   collection: Array<SearchResultItemType>;
   categoryName: string;
 }
-
 export interface onSelectCategoryType {
   onSelectCategory: Dispatch<SetStateAction<string>>;
 }
-
 interface selectedItemType {
   index: number;
   setSelectedIndex: (value: number) => value;
   selectedIndex: number;
 }
-
 export interface NavbarProps {
   navbarItems: Array<sidebarItem>;
   onselectNavbarItem: Dispatch<SetStateAction<string>>;
@@ -81,7 +76,6 @@ export interface RecentSearchHeaderProps {
   onClosePage: () => void;
   onClearSearch: () => void;
 }
-
 export interface LayoutProps {
   sidebarItems: Array<sidebarItem>;
   children: JSX.Element | JSX.Element[];
@@ -189,9 +183,18 @@ export interface ComparingDetailsTabProps {
     name: string;
     quantityAmount: string;
   };
+  multipleSelectItems: filterItem[];
+  getSelectedNutrients: Dispatch<SetStateAction<string[]>>;
 }
 export interface SharedSocialMediaProps {
   isSharedMediaOpen: boolean;
   setIsSharedMediaOpen: Dispatch<SetStateAction<boolean>>;
   link: string;
+}
+export interface MultipleSelectsProps {
+  multipleSelectItems: filterItem[];
+  getSelectedNutrients: Dispatch<SetStateAction<string[]>>;
+  renderSelectButton: React.ReactNode;
+  open: boolean;
+  setIsOpen: Dispatch<SetStateAction<boolean>>;
 }

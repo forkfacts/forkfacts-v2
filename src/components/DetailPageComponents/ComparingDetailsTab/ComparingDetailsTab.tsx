@@ -14,19 +14,24 @@ import {
   useTheme,
 } from "@mui/material";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
-import FilterListOutlinedIcon from "@mui/icons-material/FilterListOutlined";
 import { ForLoops } from "@forkfacts/helpers";
 import { CompareSorting } from "@forkfacts/icons";
 import React, { useState } from "react";
 import { ComparingDetailsTabProps } from "@forkfacts/models";
+import FilterListOutlinedIcon from "@mui/icons-material/FilterListOutlined";
+import { MultipleSelects } from "@forkfacts/components";
 
 const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
   compareTableItems,
   compareTableDetails,
+  multipleSelectItems,
+  getSelectedNutrients,
 }) => {
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.down("md"));
   const [selectNutrient, setSelectedNutrient] = useState("vitamin");
+  const [open, setIsOpen] = useState(false);
+  const [isShowHideOpen, setShowHideOpen] = useState(false);
   const data = ["calories", "betaCarotene", "vitamin", "calcium", "iron"];
 
   const nutrientData = compareTableItems.map((item: any) => {
@@ -36,8 +41,6 @@ const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
     };
   });
 
-  const maxNutrientValue = Math.max(...nutrientData.map((d: any) => d.value));
-
   return (
     <Box>
       <Box
@@ -46,6 +49,7 @@ const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
           width: "100%",
           justifyContent: "space-between",
           alignItems: "center",
+          position: "relative",
         }}
       >
         <Box
@@ -76,32 +80,52 @@ const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
             {compareTableDetails.quantityAmount}
           </Typography>
         </Box>
-        <Box sx={{ display: "flex", columnGap: theme.spacing(3) }}>
-          <Button
-            startIcon={<FilterListOutlinedIcon />}
-            variant="outlined"
-            sx={{
-              whiteSpace: "nowrap",
-              overflow: "hidden",
-              textOverflow: "ellipsis",
-              borderRadius: theme.spacing(1),
-            }}
-          >
-            Filter foods
-          </Button>
+        <Box sx={{ mr: mobile ? 0 : theme.spacing(2), position: "relative" }}>
+          <MultipleSelects
+            multipleSelectItems={multipleSelectItems}
+            getSelectedNutrients={getSelectedNutrients}
+            open={open}
+            setIsOpen={setIsOpen}
+            renderSelectButton={
+              <Button
+                startIcon={<FilterListOutlinedIcon />}
+                variant="outlined"
+                sx={{
+                  whiteSpace: "nowrap",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                  borderRadius: theme.spacing(1),
+                }}
+                onClick={() => setIsOpen(!open)}
+              >
+                Filter foods
+              </Button>
+            }
+          />
+        </Box>
+        <Box sx={{ display: "flex", columnGap: theme.spacing(3), position: "relative" }}>
           {mobile || (
-            <Button
-              startIcon={<VisibilityOutlinedIcon />}
-              variant="outlined"
-              sx={{
-                whiteSpace: "nowrap",
-                overflow: "hidden",
-                textOverflow: "ellipsis",
-                borderRadius: theme.spacing(1),
-              }}
-            >
-              Show/Hide
-            </Button>
+            <MultipleSelects
+              multipleSelectItems={multipleSelectItems}
+              getSelectedNutrients={getSelectedNutrients}
+              open={isShowHideOpen}
+              setIsOpen={setShowHideOpen}
+              renderSelectButton={
+                <Button
+                  startIcon={<VisibilityOutlinedIcon />}
+                  variant="outlined"
+                  onClick={() => setShowHideOpen(!isShowHideOpen)}
+                  sx={{
+                    whiteSpace: "nowrap",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                    borderRadius: theme.spacing(1),
+                  }}
+                >
+                  Show/Hide
+                </Button>
+              }
+            />
           )}
         </Box>
       </Box>

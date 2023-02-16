@@ -21,3 +21,4 @@ export { default as DetailsPageTabItems } from "./DetailPageComponents/DetailsPa
 export { default as DetailsPageTabItem } from "./DetailPageComponents/DetailsPageTabItems/DetailsPageTabItem/DetailsPageTabItem";
 export { default as ComparingDetailsTab } from "./DetailPageComponents/ComparingDetailsTab/ComparingDetailsTab";
 export { default as SharedSocialMedia } from "./SharedSocialMedia/SharedSocialMedia";
+export { default as MultipleSelects } from "./MultipleSelects/MultipleSelects";

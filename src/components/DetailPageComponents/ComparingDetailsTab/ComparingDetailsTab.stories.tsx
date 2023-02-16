@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import { ComparingDetailsTab } from "@forkfacts/components";
-import { compareTableItem } from "@forkfacts/models";
+import { compareTableItem, filterItem } from "@forkfacts/models";
 
 export default {
   title: "Components/DetailsPageComponents/ComparingDetailsTab",
@@ -73,9 +73,34 @@ const compareTableItemRows: compareTableItem[] = [
   },
 ];
 
-const Template: ComponentStory<typeof ComparingDetailsTab> = (args) => (
-  <ComparingDetailsTab {...args} />
-);
+const multipleSelectItems: filterItem[] = [
+  {
+    name: "Beta Carotene (mg)",
+  },
+  {
+    name: "Collards",
+  },
+  {
+    name: "Dandelion greens",
+  },
+  {
+    name: "Kale",
+  },
+  {
+    name: "Mustard greens",
+  },
+  {
+    name: "Swiss chard",
+  },
+  {
+    name: "Tumip greens",
+  },
+];
+
+const Template: ComponentStory<typeof ComparingDetailsTab> = (args) => {
+  const [_, setSelectedNutrients] = useState<string[]>([]);
+  return <ComparingDetailsTab {...args} getSelectedNutrients={setSelectedNutrients} />;
+};
 
 export const Desktop = Template.bind({});
 
@@ -85,6 +110,7 @@ Desktop.args = {
     name: "Comparing Greens",
     quantityAmount: "3 1/2 OUNCES RAW (2 TO 3 CUPS)",
   },
+  multipleSelectItems: multipleSelectItems,
 };
 
 export const Mobile = Template.bind({});
@@ -95,6 +121,7 @@ Mobile.args = {
     name: "Comparing Greens",
     quantityAmount: "3 1/2 OUNCES RAW (2 TO 3 CUPS)",
   },
+  multipleSelectItems: multipleSelectItems,
 };
 
 Mobile.parameters = {
@@ -111,6 +138,7 @@ Tablet.args = {
     name: "Comparing Greens",
     quantityAmount: "3 1/2 OUNCES RAW (2 TO 3 CUPS)",
   },
+  multipleSelectItems: multipleSelectItems,
 };
 
 Tablet.parameters = {

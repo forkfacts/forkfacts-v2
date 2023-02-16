@@ -11,7 +11,12 @@ import LibraryBooksOutlinedIcon from "@mui/icons-material/LibraryBooksOutlined";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import AutoStoriesOutlinedIcon from "@mui/icons-material/AutoStoriesOutlined";
 import { DetailsPageScreen } from "@forkfacts/screens";
-import { compareTableItem, DetailsPageTitlesItem, sidebarItem } from "@forkfacts/models";
+import {
+  compareTableItem,
+  DetailsPageTitlesItem,
+  filterItem,
+  sidebarItem,
+} from "@forkfacts/models";
 
 export default {
   title: "Screens/DetailsPageScreen",
@@ -125,8 +130,33 @@ const compareTableItemRows: compareTableItem[] = [
   },
 ];
 
+const multipleSelectItems: filterItem[] = [
+  {
+    name: "Beta Carotene (mg)",
+  },
+  {
+    name: "Collards",
+  },
+  {
+    name: "Dandelion greens",
+  },
+  {
+    name: "Kale",
+  },
+  {
+    name: "Mustard greens",
+  },
+  {
+    name: "Swiss chard",
+  },
+  {
+    name: "Tumip greens",
+  },
+];
+
 const Template: ComponentStory<typeof DetailsPageScreen> = (args) => {
-  return <DetailsPageScreen {...args} />;
+  const [_, setSelectedNutrients] = useState<string[]>([]);
+  return <DetailsPageScreen {...args} getSelectedNutrients={setSelectedNutrients} />;
 };
 
 export const Desktop = Template.bind({});
@@ -141,6 +171,7 @@ Desktop.args = {
     name: "Comparing Greens",
     quantityAmount: "3 1/2 OUNCES RAW (2 TO 3 CUPS)",
   },
+  multipleSelectItems: multipleSelectItems,
 };
 
 export const Mobile = Template.bind({});
@@ -155,6 +186,7 @@ Mobile.args = {
     name: "Comparing Greens",
     quantityAmount: "3 1/2 OUNCES RAW (2 TO 3 CUPS)",
   },
+  multipleSelectItems: multipleSelectItems,
 };
 
 Mobile.parameters = {

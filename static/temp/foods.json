@@ -138,7 +138,7 @@
         ]
       },
       "tableHeaders": {
-        "allNutrients": [
+        "multipleSelectItems": [
           "Protein",
           "Carbohydrate",
           "Water",

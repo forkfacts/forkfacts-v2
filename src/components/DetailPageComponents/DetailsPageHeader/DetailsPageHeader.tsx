@@ -41,7 +41,10 @@ const DetailsPageHeader: React.FC<DetailsPageHeaderProps> = ({ detailsHeaderValu
                   onClick={() => setIsSharedMediaOpen(true)}
                 />
               </Box>
-              <Typography variant="caption" sx={{ color: "#47464A" }}>
+              <Typography
+                variant="subtitle2"
+                sx={{ color: "#47464A", fontWeight: theme.typography.fontWeightRegular }}
+              >
                 {detailsHeaderValues.subTitle}
               </Typography>
               <Box

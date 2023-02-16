@@ -22,11 +22,11 @@ export interface recommendationType {
 }
 export interface compareTableItem {
   foodName: string;
-  calories: number;
-  betaCarotene: number;
-  vitamin: number;
-  calcium: number;
-  iron: number;
+  Calories: number;
+  "Beta carotene": number;
+  Vitamin: number;
+  Calcium: number;
+  Iron: number;
 }
 export interface SearchCategoryItemType {
   label: string;
@@ -194,7 +194,9 @@ export interface SharedSocialMediaProps {
 export interface MultipleSelectsProps {
   multipleSelectItems: filterItem[];
   getSelectedNutrients: Dispatch<SetStateAction<string[]>>;
-  renderSelectButton: React.ReactNode;
+  renderSelectButton?: String | React.ReactNode;
   open: boolean;
   setIsOpen: Dispatch<SetStateAction<boolean>>;
+  multiselectTitle: string;
+  margin: any;
 }

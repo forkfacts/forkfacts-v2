@@ -29,10 +29,13 @@ const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
 }) => {
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.down("md"));
-  const [selectNutrient, setSelectedNutrient] = useState("vitamin");
+  const [selectNutrient, setSelectedNutrient] = useState("Vitamin");
   const [open, setIsOpen] = useState(false);
   const [isShowHideOpen, setShowHideOpen] = useState(false);
-  const data = ["calories", "betaCarotene", "vitamin", "calcium", "iron"];
+
+  const tableHeaderItems = Object.keys(compareTableItems[0])
+    .filter((key) => key !== "foodName")
+    .map((item) => ({ name: item }));
 
   const nutrientData = compareTableItems.map((item: any) => {
     return {
@@ -65,16 +68,18 @@ const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
               color: theme.palette.customGray.textDark,
               textTransform: "uppercase",
               fontSize: mobile ? theme.typography.caption.fontSize : theme.typography.h6.fontSize,
-              fontWeight: theme.typography.fontWeightBold,
+              fontWeight: theme.typography.fontWeightMedium,
             }}
           >
             {compareTableDetails.name}
           </Typography>
           <Typography
             sx={{
-              ml: mobile ? 0 : theme.spacing(2),
+              ml: mobile ? 0 : theme.spacing(1),
+              color: theme.palette.customGray.textLight,
               fontSize: mobile ? "10px" : theme.typography.caption.fontSize,
               mt: mobile ? theme.spacing(2) : 0,
+              fontWeight: theme.typography.fontWeightMedium,
             }}
           >
             {compareTableDetails.quantityAmount}
@@ -82,48 +87,56 @@ const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
         </Box>
         <Box sx={{ mr: mobile ? 0 : theme.spacing(2), position: "relative" }}>
           <MultipleSelects
+            margin={theme.spacing(-15.5)}
             multipleSelectItems={multipleSelectItems}
             getSelectedNutrients={getSelectedNutrients}
             open={open}
             setIsOpen={setIsOpen}
+            multiselectTitle="Filter foods"
             renderSelectButton={
-              <Button
-                startIcon={<FilterListOutlinedIcon />}
-                variant="outlined"
-                sx={{
-                  whiteSpace: "nowrap",
-                  overflow: "hidden",
-                  textOverflow: "ellipsis",
-                  borderRadius: theme.spacing(1),
-                }}
-                onClick={() => setIsOpen(!open)}
-              >
-                Filter foods
-              </Button>
-            }
-          />
-        </Box>
-        <Box sx={{ display: "flex", columnGap: theme.spacing(3), position: "relative" }}>
-          {mobile || (
-            <MultipleSelects
-              multipleSelectItems={multipleSelectItems}
-              getSelectedNutrients={getSelectedNutrients}
-              open={isShowHideOpen}
-              setIsOpen={setShowHideOpen}
-              renderSelectButton={
+              <>
                 <Button
-                  startIcon={<VisibilityOutlinedIcon />}
+                  startIcon={<FilterListOutlinedIcon />}
                   variant="outlined"
-                  onClick={() => setShowHideOpen(!isShowHideOpen)}
                   sx={{
                     whiteSpace: "nowrap",
                     overflow: "hidden",
                     textOverflow: "ellipsis",
                     borderRadius: theme.spacing(1),
                   }}
+                  onClick={() => setIsOpen(!open)}
                 >
-                  Show/Hide
+                  Filter foods
                 </Button>
+              </>
+            }
+          />
+        </Box>
+        <Box sx={{ display: "flex", columnGap: theme.spacing(3), position: "relative" }}>
+          {mobile || (
+            <MultipleSelects
+              margin={theme.spacing(-15.5)}
+              multipleSelectItems={tableHeaderItems}
+              getSelectedNutrients={getSelectedNutrients}
+              open={isShowHideOpen}
+              setIsOpen={setShowHideOpen}
+              multiselectTitle="Show/Hide nutrients"
+              renderSelectButton={
+                <>
+                  <Button
+                    startIcon={<VisibilityOutlinedIcon />}
+                    variant="outlined"
+                    onClick={() => setShowHideOpen(!isShowHideOpen)}
+                    sx={{
+                      whiteSpace: "nowrap",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                      borderRadius: theme.spacing(1),
+                    }}
+                  >
+                    Show/Hide
+                  </Button>
+                </>
               }
             />
           )}
@@ -143,7 +156,7 @@ const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
                       cursor: "pointer",
                     }}
                   >
-                    <Typography>Food name</Typography>{" "}
+                    <Typography sx={{ color: "#78767A" }}>Food name</Typography>
                     <CompareSorting width={theme.spacing(2.75)} height={theme.spacing(2.75)} />
                   </Box>
                 </TableCell>
@@ -156,7 +169,7 @@ const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
                       cursor: "pointer",
                     }}
                   >
-                    <Typography> Calories</Typography>{" "}
+                    <Typography sx={{ color: "#78767A" }}>Calories</Typography>
                     <CompareSorting width={theme.spacing(2.75)} height={theme.spacing(2.75)} />
                   </Box>
                 </TableCell>
@@ -169,7 +182,7 @@ const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
                       cursor: "pointer",
                     }}
                   >
-                    <Typography>Beta Carotene (mg)</Typography>{" "}
+                    <Typography sx={{ color: "#78767A" }}>Beta Carotene (mg)</Typography>
                     <CompareSorting width={theme.spacing(2.75)} height={theme.spacing(2.75)} />
                   </Box>
                 </TableCell>
@@ -182,7 +195,7 @@ const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
                       cursor: "pointer",
                     }}
                   >
-                    <Typography>Vitamin C (mg)</Typography>{" "}
+                    <Typography sx={{ color: "#78767A" }}>Vitamin C (mg)</Typography>
                     <CompareSorting width={theme.spacing(2.75)} height={theme.spacing(2.75)} />
                   </Box>
                 </TableCell>
@@ -195,7 +208,7 @@ const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
                       cursor: "pointer",
                     }}
                   >
-                    <Typography>Calcium (mg)</Typography>{" "}
+                    <Typography sx={{ color: "#78767A" }}>Calcium (mg)</Typography>
                     <CompareSorting width={theme.spacing(2.75)} height={theme.spacing(2.75)} />
                   </Box>
                 </TableCell>
@@ -208,7 +221,7 @@ const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
                       cursor: "pointer",
                     }}
                   >
-                    <Typography>Iron (mg)</Typography>{" "}
+                    <Typography sx={{ color: "#78767A" }}>Iron (mg)</Typography>
                     <CompareSorting width={theme.spacing(2.75)} height={theme.spacing(2.75)} />
                   </Box>
                 </TableCell>
@@ -219,27 +232,47 @@ const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
                 {(row, index) => {
                   return (
                     <TableRow key={index}>
+                      <TableCell style={{ borderBottom: "none" }} component="th" scope="row">
+                        <Typography
+                          sx={{ color: "#1C1B1F", fontWeight: theme.typography.fontWeightBold }}
+                        >
+                          {row.foodName}
+                        </Typography>
+                      </TableCell>
                       <TableCell
-                        style={{ borderBottom: "none", fontWeight: 600 }}
-                        component="th"
-                        scope="row"
+                        style={{ borderBottom: "none", marginRight: theme.spacing(4) }}
+                        align="right"
                       >
-                        {row.foodName}
+                        <Typography sx={{ marginRight: theme.spacing(7) }}>
+                          {row.Calories}
+                        </Typography>
                       </TableCell>
-                      <TableCell style={{ borderBottom: "none" }} align="center">
-                        {row.calories}
+                      <TableCell
+                        style={{ borderBottom: "none", marginRight: theme.spacing(4) }}
+                        align="right"
+                      >
+                        <Typography sx={{ marginRight: theme.spacing(8) }}>
+                          {row["Beta carotene"]}
+                        </Typography>
                       </TableCell>
-                      <TableCell style={{ borderBottom: "none" }} align="center">
-                        {row.betaCarotene}
+                      <TableCell
+                        style={{ borderBottom: "none", marginRight: theme.spacing(4) }}
+                        align="right"
+                      >
+                        <Typography sx={{ marginRight: theme.spacing(8) }}>
+                          {row.Vitamin}
+                        </Typography>
                       </TableCell>
-                      <TableCell style={{ borderBottom: "none" }} align="center">
-                        {row.vitamin}
+                      <TableCell style={{ borderBottom: "none" }} align="right">
+                        <Typography sx={{ marginRight: theme.spacing(8) }}>
+                          {row.Calcium}
+                        </Typography>
                       </TableCell>
-                      <TableCell style={{ borderBottom: "none" }} align="center">
-                        {row.calcium}
-                      </TableCell>
-                      <TableCell style={{ borderBottom: "none" }} align="center">
-                        {row.iron}
+                      <TableCell
+                        style={{ borderBottom: "none", marginRight: theme.spacing(4) }}
+                        align="right"
+                      >
+                        <Typography sx={{ marginRight: theme.spacing(7) }}>{row.Iron}</Typography>
                       </TableCell>
                     </TableRow>
                   );
@@ -264,29 +297,29 @@ const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
               }}
             >
               <List sx={{ display: "flex" }}>
-                {data.map((item, idx) => (
+                {tableHeaderItems?.map((item: { name: string }, idx) => (
                   <ListItem
                     key={idx}
                     sx={{
                       width: "auto",
                       flexShrink: 0,
                       backgroundColor:
-                        item === selectNutrient ? theme.palette.primary.light : "#FFFBFF",
+                        item.name === selectNutrient ? theme.palette.primary.light : "#FFFBFF",
                       p: theme.spacing(0.25),
                       borderRadius: theme.spacing(12.5),
                     }}
-                    onClick={() => setSelectedNutrient(item)}
+                    onClick={() => setSelectedNutrient(item.name)}
                   >
                     <Button
                       sx={{
                         color:
-                          item === selectNutrient
+                          item.name === selectNutrient
                             ? theme.palette.primary.main
                             : theme.palette.customGray.dark,
                         fontWeight: theme.typography.fontWeightMedium,
                       }}
                     >
-                      {item}
+                      {item.name}
                     </Button>
                   </ListItem>
                 ))}

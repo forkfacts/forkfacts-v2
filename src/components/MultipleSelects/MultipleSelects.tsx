@@ -15,6 +15,8 @@ const MultipleSelects: React.FC<MultipleSelectsProps> = ({
   renderSelectButton,
   open,
   setIsOpen,
+  multiselectTitle,
+  margin = 0,
 }) => {
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.down("md"));
@@ -77,7 +79,7 @@ const MultipleSelects: React.FC<MultipleSelectsProps> = ({
 
   return (
     <Box sx={{ cursor: "pointer", zIndex: theme.zIndex.modal, position: "relative" }}>
-      {renderSelectButton}
+      <Box>{renderSelectButton}</Box>
       {open && (
         <Box
           component="div"
@@ -85,15 +87,15 @@ const MultipleSelects: React.FC<MultipleSelectsProps> = ({
             position: "absolute",
             width: "100%",
             display: "block",
-            minWidth: 260,
+            minWidth: 270,
             maxWidth: "100%",
             mt: theme.spacing(1.1),
-            paddingTop: theme.spacing(1.25),
-            paddingLeft: theme.spacing(1.25),
-            paddingRight: theme.spacing(1.25),
+            paddingTop: theme.spacing(2),
+            paddingLeft: theme.spacing(2),
+            paddingRight: theme.spacing(2),
             zIndex: theme.zIndex.modal,
             backgroundColor: theme.palette.common.white,
-            ml: mobile ? theme.spacing(-17.5) : theme.spacing(-15.5),
+            ml: mobile ? theme.spacing(-17.5) : margin,
           }}
           boxShadow={1}
         >
@@ -103,7 +105,7 @@ const MultipleSelects: React.FC<MultipleSelectsProps> = ({
               justifyContent: "space-between",
               width: "100%",
               alignItems: "center",
-              p: theme.spacing(1),
+              mt: theme.spacing(3),
             }}
           >
             <Typography
@@ -116,7 +118,7 @@ const MultipleSelects: React.FC<MultipleSelectsProps> = ({
                 textTransform: "uppercase",
               }}
             >
-              Filter foods
+              {multiselectTitle}
             </Typography>
             <CloseIcon
               sx={{ width: theme.spacing(2), height: theme.spacing(2) }}
@@ -172,7 +174,7 @@ const MultipleSelects: React.FC<MultipleSelectsProps> = ({
                 display: "flex",
                 justifyContent: "flex-end",
                 alignItems: "center",
-                mt: theme.spacing(3),
+                mt: theme.spacing(2),
               }}
             >
               <Typography color="primary" onClick={onSelectAll}>

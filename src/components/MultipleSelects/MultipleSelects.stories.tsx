@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import FilterListOutlinedIcon from "@mui/icons-material/FilterListOutlined";
 import { MultipleSelects } from "@forkfacts/components";
 import { filterItem } from "@forkfacts/models";
-import { Button } from "@mui/material";
+import { Box, Button } from "@mui/material";
 
 export default {
   title: "Components/MultipleSelects/MultipleSelects",
@@ -38,27 +38,30 @@ const Template: ComponentStory<typeof MultipleSelects> = (args) => {
   const [_, setSelectedNutrients] = useState<string[]>([]);
   const [open, setIsOpen] = useState(false);
   return (
-    <MultipleSelects
-      {...args}
-      getSelectedNutrients={setSelectedNutrients}
-      open={open}
-      setIsOpen={setIsOpen}
-      renderSelectButton={
-        <Button
-          startIcon={<FilterListOutlinedIcon />}
-          variant="outlined"
-          sx={{
-            whiteSpace: "nowrap",
-            overflow: "hidden",
-            textOverflow: "ellipsis",
-            borderRadius: "10px",
-          }}
-          onClick={() => setIsOpen(!open)}
-        >
-          Filter foods
-        </Button>
-      }
-    />
+    <Box sx={{ width: "70%", m: "auto" }}>
+      <MultipleSelects
+        {...args}
+        getSelectedNutrients={setSelectedNutrients}
+        open={open}
+        setIsOpen={setIsOpen}
+        multiselectTitle="Filter foods"
+        renderSelectButton={
+          <Button
+            startIcon={<FilterListOutlinedIcon />}
+            variant="outlined"
+            sx={{
+              whiteSpace: "nowrap",
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+              borderRadius: "10px",
+            }}
+            onClick={() => setIsOpen(!open)}
+          >
+            Filter foods
+          </Button>
+        }
+      />
+    </Box>
   );
 };
 

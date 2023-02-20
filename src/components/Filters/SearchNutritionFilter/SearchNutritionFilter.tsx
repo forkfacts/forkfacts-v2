@@ -15,7 +15,7 @@ import { ViewMoreButton } from "@forkfacts/components";
 import CloseIcon from "@mui/icons-material/Close";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { ForLoops } from "@forkfacts/helpers";
 import { SearchNutritionFilterProps, SearchNutritionFilterItem } from "@forkfacts/models";
 
@@ -24,6 +24,7 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
   onSelectNutritionFilterItem,
 }) => {
   const theme = useTheme();
+  const ref = useRef<HTMLDivElement>(null);
   const newNutrients: SearchNutritionFilterItem[] = [...nutritionFilterItems].map((item) => {
     return {
       name: item.name,
@@ -197,8 +198,21 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
     setFilterNutrient(clearNutrients);
   };
 
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (ref.current && !ref.current.contains(event.target as Node)) {
+        setOpen(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [ref]);
+
   return (
-    <Box sx={{ position: "relative" }}>
+    <Box sx={{ position: "relative" }} ref={ref}>
       <Button
         variant={firstSelectedItem.name ? "text" : "outlined"}
         onClick={() => setOpen(!open)}

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Checkbox from "@mui/material/Checkbox";
 import { Box, Button, Typography, useTheme } from "@mui/material";
 import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
@@ -14,7 +14,7 @@ const FilterAge: React.FC<AgeItemsProps> = ({ ageItems, onSelectAgeItem }) => {
   const [selectedAgeIndex, setSelectedAgeIndex] = useState<number | null>(2);
   const [selectedItem, setSelectedItem] = useState("");
   const [open, setOpen] = useState(false);
-
+  const ref = useRef<HTMLDivElement>(null);
   const handleSelectAge = (item: ageItem, index: number) => {
     const age = `${item.start + "-" + item.end} ${item.unit}`;
     setSelectedAgeIndex(index);
@@ -32,8 +32,20 @@ const FilterAge: React.FC<AgeItemsProps> = ({ ageItems, onSelectAgeItem }) => {
     onSelectAgeItem(selectedItem);
   }, [selectedItem]);
 
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (ref.current && !ref.current.contains(event.target as Node)) {
+        setOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [ref]);
+
   return (
-    <Box sx={{ position: "relative" }}>
+    <Box sx={{ position: "relative" }} ref={ref}>
       <Button
         variant={selectedItem ? "text" : "outlined"}
         onClick={() => setOpen(!open)}

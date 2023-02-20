@@ -115,7 +115,6 @@ export interface SideBarItemProps {
 
 export interface PopularFrequentSearchProps {
   PopularFrequentSearchItems: Array<PopularFrequentSearchType>;
-  PopularFrequentSearchTitle: string;
   onSelectPopularItem: (item: PopularFrequentSearchType) => void;
 }
 

@@ -3,6 +3,7 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import { SearchRecommendations } from "@forkfacts/components";
 import { recommendationType } from "@forkfacts/models";
+import { Box } from "@mui/material";
 
 export default {
   title: "Components/SearchRecommendations",
@@ -19,44 +20,64 @@ const recommendations: recommendationType[] = [
     recommendationName: "Tags",
     recommendationItems: [
       {
-        name: "SUPERFOODS",
-        icon: "/tag1.png",
+        name: "Chia seeds",
+        icon: "/tag1.svg",
       },
       {
         name: "Kosher",
-        icon: "/tag2.png",
+        icon: "/tag2.svg",
       },
       {
         name: "Flax seeds",
-        icon: "/tag3.png",
+        icon: "/tag3.svg",
       },
     ],
   },
   {
     recommendationName: "COMPARE FOODS",
     recommendationItems: [
-      { name: "Nuts and seeds", icon: "/tag4.png" },
-      { name: "Legumes", icon: "/tag5.png" },
-      { name: "Fruits", icon: "/tag3.png" },
+      { name: "Nuts and seeds", icon: "/tag4.svg" },
+      { name: "Legumes", icon: "/tag5.svg" },
+      { name: "Fruits", icon: "/tag3.svg" },
     ],
   },
   {
     recommendationName: "Vitamins and minerals",
     recommendationItems: [
-      { name: "Vitamin A", icon: "/tag4.png" },
-      { name: "Zinc", icon: "/tag4.png" },
-      { name: "Vitamin B12", icon: "/tag5.png" },
+      { name: "Vitamin A", icon: "/tag4.svg" },
+      { name: "Zinc", icon: "/tag4.svg" },
+      { name: "Vitamin B12", icon: "/tag5.svg" },
     ],
   },
   {
     recommendationName: "Recipes",
-    recommendationItems: [{ name: "Creamy broccoli pasta", icon: "/tag1.png" }],
+    recommendationItems: [{ name: "Creamy broccoli pasta" }],
   },
 ];
 
-const Template: ComponentStory<typeof SearchRecommendations> = (args) => (
-  <SearchRecommendations {...args} />
-);
+const Template: ComponentStory<typeof SearchRecommendations> = (args) => {
+  return (
+    <Box
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+        flexDirection: "column",
+        width: { sm: "100%", md: "60%" },
+        marginLeft: "auto",
+        marginRight: "auto",
+      }}
+    >
+      {" "}
+      <SearchRecommendations {...args} />
+    </Box>
+  );
+};
+
+export const Desktop = Template.bind({});
+
+Desktop.args = {
+  recommendations,
+};
 
 export const Mobile = Template.bind({});
 
@@ -67,5 +88,17 @@ Mobile.args = {
 Mobile.parameters = {
   viewport: {
     defaultViewport: "iphone6",
+  },
+};
+
+export const Tablet = Template.bind({});
+
+Tablet.args = {
+  recommendations,
+};
+
+Tablet.parameters = {
+  viewport: {
+    defaultViewport: "ipad",
   },
 };

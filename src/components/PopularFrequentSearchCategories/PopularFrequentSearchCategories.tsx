@@ -7,7 +7,6 @@ import { PopularFrequentSearchCategory } from "@forkfacts/components";
 
 const PopularFrequentSearchCategories = ({
   PopularFrequentSearchItems,
-  PopularFrequentSearchTitle,
   onSelectPopularItem,
 }: PopularFrequentSearchProps) => {
   const theme = useTheme();
@@ -25,7 +24,7 @@ const PopularFrequentSearchCategories = ({
             lineHeight: theme.spacing(4),
           }}
         >
-          {PopularFrequentSearchTitle}
+          Popular Foods
         </Typography>
       </Box>
       <Box

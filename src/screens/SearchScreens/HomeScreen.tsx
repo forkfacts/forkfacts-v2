@@ -14,7 +14,6 @@ export default function HomeScreen({
   sidebarItems,
   navbarItems,
   PopularFrequentSearchItems,
-  PopularFrequentSearchTitle,
   onSelectPopularItem,
   collectionGroupedItems,
   categoryOptions,
@@ -59,7 +58,6 @@ export default function HomeScreen({
         </Box>
         <Box className={classNames(classes.PopularFrequentStyles)}>
           <PopularFrequentSearchCategories
-            PopularFrequentSearchTitle={PopularFrequentSearchTitle}
             PopularFrequentSearchItems={PopularFrequentSearchItems}
             onSelectPopularItem={onSelectPopularItem}
           />

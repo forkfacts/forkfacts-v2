@@ -23,6 +23,7 @@ const PopularFrequentSearchCategory = ({
         flexDirection: "column",
         backgroundColor: theme.palette.background.default,
         width: mobile ? "47%" : tablet ? "50%" : theme.spacing(26.5),
+        borderRadius: theme.spacing(1),
       }}
       onClick={handleSelectedItem}
     >
@@ -35,11 +36,11 @@ const PopularFrequentSearchCategory = ({
       <Typography
         sx={{
           color: theme.palette.common.black,
-          fontWeight: theme.typography.fontWeightMedium,
+          fontWeight: theme.typography.fontWeightBold,
           py: theme.spacing(2),
           ml: mobile ? theme.spacing(1.15) : theme.spacing(2.15),
         }}
-        variant="body2"
+        variant={mobile ? "body1" : "body1"}
       >
         {item.searchName}
       </Typography>
@@ -55,13 +56,19 @@ const PopularFrequentSearchCategory = ({
         <ForLoops each={item.extraInfo}>
           {(extraItem, extraIndex) => (
             <Box key={extraIndex} sx={{ display: "flex", flexDirection: "column" }}>
-              <Typography variant="caption" sx={{ color: theme.palette.common.black }}>
+              <Typography
+                variant="caption"
+                sx={{
+                  color: theme.palette.customGray.main,
+                  fontWeight: theme.typography.fontWeightBold,
+                }}
+              >
                 {extraItem.weight}
               </Typography>
               <Typography
                 variant="caption"
                 sx={{
-                  color: theme.palette.grey[500],
+                  color: theme.palette.customGray.main,
                 }}
               >
                 {extraItem.name}

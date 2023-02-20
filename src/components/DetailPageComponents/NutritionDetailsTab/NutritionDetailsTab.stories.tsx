@@ -116,7 +116,12 @@ const Template: ComponentStory<typeof NutritionDetailsTab> = (args) => {
   );
   const [unit, setUnit] = React.useState("Cups");
   return (
-    <Box>
+    <Box
+      sx={{
+        width: { sm: "100%", md: "80%" },
+        m: "auto",
+      }}
+    >
       <NutritionDetailsTab
         {...args}
         onSelectLifeStageItem={setSelectedLifeStage}

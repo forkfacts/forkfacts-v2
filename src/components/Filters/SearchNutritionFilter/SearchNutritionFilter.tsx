@@ -182,6 +182,19 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
   const onClearSelectedItem = () => {
     onSelectNutritionFilterItem([]);
     setFirstSelectedItem({ name: "", length: 0 });
+    const clearNutrients: SearchNutritionFilterItem[] = [...nutritionFilterItems].map((item) => {
+      return {
+        name: item.name,
+        checked: false,
+        subItems: item.subItems.map((item2) => {
+          return {
+            name: item2.name,
+            checked: false,
+          };
+        }),
+      };
+    });
+    setFilterNutrient(clearNutrients);
   };
 
   return (

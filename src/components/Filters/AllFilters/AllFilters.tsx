@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Box, Button, Typography, useTheme } from "@mui/material";
-import classname from "classnames";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import { useStyles } from "./allFiltersStyles";
@@ -41,23 +40,26 @@ const AllFilters = ({ selectedAge, selectedLifeStage, selectedNutritionFilterIte
   }
 
   return (
-    <Button
-      color="primary"
-      sx={{
-        fontSize: theme.typography.caption.fontSize,
-        fontWeight: theme.typography.fontWeightBold,
-        lineHeight: theme.spacing(2),
-        letterSpacing: theme.spacing(0.05),
-        textTransform: "capitalize",
-        whiteSpace: "nowrap",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-      startIcon={<FilterListIcon />}
-    >
-      All filters {filterStatus !== 0 ? filterStatus : null}
-    </Button>
+    <Box>
+      <Button
+        color="primary"
+        sx={{
+          fontSize: theme.typography.caption.fontSize,
+          fontWeight: theme.typography.fontWeightBold,
+          lineHeight: theme.spacing(2),
+          letterSpacing: theme.spacing(0.05),
+          textTransform: "capitalize",
+          whiteSpace: "nowrap",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+        startIcon={<FilterListIcon />}
+      >
+        All filters {filterStatus !== 0 ? filterStatus : null}
+      </Button>
+      <Box></Box>
+    </Box>
   );
 };
 

@@ -8,8 +8,9 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import RadioButtonCheckedIcon from "@mui/icons-material/RadioButtonChecked";
 import { AgeItemsProps, ageItem } from "@forkfacts/models";
 import { ForLoops } from "@forkfacts/helpers";
+import { withDropdown, withoutDropdown } from "./filterAgeStyles";
 
-const FilterAge: React.FC<AgeItemsProps> = ({ ageItems, onSelectAgeItem }) => {
+const FilterAge: React.FC<AgeItemsProps> = ({ ageItems, onSelectAgeItem, isDropdown }) => {
   const theme = useTheme();
   const [selectedAgeIndex, setSelectedAgeIndex] = useState<number | null>(2);
   const [selectedItem, setSelectedItem] = useState("");
@@ -46,43 +47,36 @@ const FilterAge: React.FC<AgeItemsProps> = ({ ageItems, onSelectAgeItem }) => {
 
   return (
     <Box sx={{ position: "relative" }} ref={ref}>
-      <Button
-        variant={selectedItem ? "text" : "outlined"}
-        onClick={() => setOpen(!open)}
-        sx={{
-          color: theme.palette.grey[900],
-          backgroundColor: selectedItem
-            ? theme.palette.primary.light
-            : theme.palette.background.default,
-          borderColor: selectedItem ? theme.palette.primary.main : theme.palette.grey[700],
-          fontSize: theme.typography.caption.fontSize,
-          fontWeight: theme.typography.fontWeightBold,
-          lineHeight: theme.spacing(2),
-          letterSpacing: theme.spacing(0.05),
-          textTransform: "capitalize",
-          whiteSpace: "nowrap",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <Typography>{selectedItem ? selectedItem : "Age"}</Typography>
-        {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
-      </Button>
-      {open && (
+      {isDropdown && (
+        <Button
+          variant={selectedItem ? "text" : "outlined"}
+          onClick={() => setOpen(!open)}
+          sx={{
+            color: theme.palette.grey[900],
+            backgroundColor: selectedItem
+              ? theme.palette.primary.light
+              : theme.palette.background.default,
+            borderColor: selectedItem ? theme.palette.primary.main : theme.palette.grey[700],
+            fontSize: theme.typography.caption.fontSize,
+            fontWeight: theme.typography.fontWeightBold,
+            lineHeight: theme.spacing(2),
+            letterSpacing: theme.spacing(0.05),
+            textTransform: "capitalize",
+            whiteSpace: "nowrap",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Typography>{selectedItem ? selectedItem : "Age"}</Typography>
+          {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+        </Button>
+      )}
+      {(open || !isDropdown) && (
         <Box
           component="div"
-          sx={{
-            position: "absolute",
-            display: "block",
-            width: 300,
-            mt: theme.spacing(1.1),
-            py: theme.spacing(2),
-            px: theme.spacing(1),
-            zIndex: theme.zIndex.modal,
-            backgroundColor: theme.palette.common.white,
-          }}
-          boxShadow={1}
+          sx={isDropdown ? withoutDropdown(theme) : withDropdown(theme)}
+          boxShadow={isDropdown ? 1 : 0}
         >
           <Box
             sx={{
@@ -105,10 +99,12 @@ const FilterAge: React.FC<AgeItemsProps> = ({ ageItems, onSelectAgeItem }) => {
             >
               LIFE STAGE
             </Typography>
-            <CloseIcon
-              sx={{ width: theme.spacing(2), height: theme.spacing(2), cursor: "pointer" }}
-              onClick={() => setOpen(false)}
-            />
+            {isDropdown && (
+              <CloseIcon
+                sx={{ width: theme.spacing(2), height: theme.spacing(2), cursor: "pointer" }}
+                onClick={() => setOpen(false)}
+              />
+            )}
           </Box>
           <Box
             component="div"

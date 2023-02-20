@@ -3,7 +3,7 @@ import {
   NutritionSummary,
   NutritionFilters,
   MeasurementFilter,
-  AllFilters,
+  DetailsNutritionTable,
 } from "@forkfacts/components";
 import { ageItem, NutritionDetailsTabProps, SearchNutritionFilterItem } from "@forkfacts/models";
 import {
@@ -35,6 +35,7 @@ const NutritionDetailsTab: React.FC<NutritionDetailsTabProps> = ({
   measurementFilterItems,
   onSelectMeasurementItem,
   onSelectUnit,
+  nutritionTableItems,
   units,
 }) => {
   const theme = useTheme();
@@ -48,21 +49,6 @@ const NutritionDetailsTab: React.FC<NutritionDetailsTabProps> = ({
 
   const handleChange = (event: SelectChangeEvent) => {
     setUnit(event.target.value as string);
-  };
-
-  const handleSelectedAge = (value: ageItem) => {
-    setSelectedAge(value);
-    onSelectAgeItem(value);
-  };
-
-  const handleLifeStage = (value: string) => {
-    setLifeStage(value);
-    onSelectLifeStageItem(value);
-  };
-
-  const handleSelectNutritionFilterItem = (value: SearchNutritionFilterItem[] | any[]) => {
-    onSelectNutritionFilterItem(value);
-    setSelectedNutritionFilterItems(value);
   };
 
   useEffect(() => {
@@ -88,18 +74,13 @@ const NutritionDetailsTab: React.FC<NutritionDetailsTabProps> = ({
             columnGap: theme.spacing(3),
           }}
         >
-          <AllFilters
-            selectedAge={selectedAge}
-            selectedLifeStage={selectedLifeStage}
-            selectedNutritionFilterItems={selectedNutritionFilterItems}
-          />
           <NutritionFilters
             lifeStageItems={lifeStageItems}
-            onSelectAgeItem={handleSelectedAge}
+            onSelectAgeItem={onSelectAgeItem}
             ageItems={ageItems}
-            onSelectLifeStageItem={handleLifeStage}
+            onSelectLifeStageItem={onSelectLifeStageItem}
             nutritionFilterItems={nutritionFilterItems}
-            onSelectNutritionFilterItem={handleSelectNutritionFilterItem}
+            onSelectNutritionFilterItem={onSelectNutritionFilterItem}
           />
         </Box>
 
@@ -147,7 +128,12 @@ const NutritionDetailsTab: React.FC<NutritionDetailsTabProps> = ({
           />
         </Box>
       </Box>
-      <NutritionSummary nutritionSummaryItems={nutritionSummaryItems} />
+      <Box>
+        <NutritionSummary nutritionSummaryItems={nutritionSummaryItems} />
+      </Box>
+      <Box sx={{ mt: theme.spacing(12) }}>
+        <DetailsNutritionTable nutritionTableItems={nutritionTableItems} />
+      </Box>
     </Box>
   );
 };

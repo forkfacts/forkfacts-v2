@@ -18,10 +18,12 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import React, { useEffect, useRef, useState } from "react";
 import { ForLoops } from "@forkfacts/helpers";
 import { SearchNutritionFilterProps, SearchNutritionFilterItem } from "@forkfacts/models";
+import { withDropdown, withoutDropdown } from "./searchNutrientStyles";
 
 const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
   nutritionFilterItems,
   onSelectNutritionFilterItem,
+  isDropdown,
 }) => {
   const theme = useTheme();
   const ref = useRef<HTMLDivElement>(null);
@@ -213,49 +215,42 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
 
   return (
     <Box sx={{ position: "relative" }} ref={ref}>
-      <Button
-        variant={firstSelectedItem.name ? "text" : "outlined"}
-        onClick={() => setOpen(!open)}
-        sx={{
-          color: theme.palette.grey[900],
-          backgroundColor: firstSelectedItem.name
-            ? theme.palette.primary.light
-            : theme.palette.background.default,
-          borderColor: firstSelectedItem.name
-            ? theme.palette.primary.main
-            : theme.palette.grey[700],
-          fontSize: theme.typography.caption.fontSize,
-          fontWeight: theme.typography.fontWeightBold,
-          lineHeight: theme.spacing(2),
-          letterSpacing: theme.spacing(0.05),
-          textTransform: "capitalize",
-          whiteSpace: "nowrap",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <Typography>
-          {firstSelectedItem.name
-            ? `${firstSelectedItem.name} ${firstSelectedItem.length <= 1 ? "" : "+1"} `
-            : "Life stage"}
-        </Typography>
-        {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
-      </Button>
-      {open && (
+      {isDropdown && (
+        <Button
+          variant={firstSelectedItem.name ? "text" : "outlined"}
+          onClick={() => setOpen(!open)}
+          sx={{
+            color: theme.palette.grey[900],
+            backgroundColor: firstSelectedItem.name
+              ? theme.palette.primary.light
+              : theme.palette.background.default,
+            borderColor: firstSelectedItem.name
+              ? theme.palette.primary.main
+              : theme.palette.grey[700],
+            fontSize: theme.typography.caption.fontSize,
+            fontWeight: theme.typography.fontWeightBold,
+            lineHeight: theme.spacing(2),
+            letterSpacing: theme.spacing(0.05),
+            textTransform: "capitalize",
+            whiteSpace: "nowrap",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Typography>
+            {firstSelectedItem.name
+              ? `${firstSelectedItem.name} ${firstSelectedItem.length <= 1 ? "" : "+1"} `
+              : "Life stage"}
+          </Typography>
+          {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+        </Button>
+      )}
+      {(open || !isDropdown) && (
         <Box
           component="div"
-          sx={{
-            position: "absolute",
-            display: "block",
-            width: 300,
-            mt: theme.spacing(1.1),
-            py: theme.spacing(2),
-            px: theme.spacing(1),
-            zIndex: theme.zIndex.modal,
-            backgroundColor: theme.palette.common.white,
-          }}
-          boxShadow={1}
+          sx={isDropdown ? withoutDropdown(theme) : withDropdown(theme)}
+          boxShadow={isDropdown ? 1 : 0}
         >
           <Box
             sx={{
@@ -284,10 +279,12 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
               >
                 NUTRIENTS
               </Typography>
-              <CloseIcon
-                sx={{ width: theme.spacing(2), height: theme.spacing(2), cursor: "pointer" }}
-                onClick={() => setOpen(false)}
-              />
+              {isDropdown && (
+                <CloseIcon
+                  sx={{ width: theme.spacing(2), height: theme.spacing(2), cursor: "pointer" }}
+                  onClick={() => setOpen(false)}
+                />
+              )}
             </Box>
             <TextField
               size="small"
@@ -418,8 +415,11 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
             }}
           >
             <Typography
-              color="primary"
-              sx={{ fontWeight: theme.typography.fontWeightRegular, cursor: "pointer" }}
+              sx={{
+                fontWeight: theme.typography.fontWeightRegular,
+                cursor: "pointer",
+                color: isDropdown ? theme.palette.primary.main : theme.palette.customGray.textDark,
+              }}
               onClick={onClearSelectedItem}
             >
               Clear selection

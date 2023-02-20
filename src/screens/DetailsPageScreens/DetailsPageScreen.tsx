@@ -20,17 +20,19 @@ const DetailsPageScreen: React.FC<DetailsPageScreenProps> = ({
   compareTableItems,
   compareTableDetails,
   nutritionSummaryItems,
-  selectedFilters,
   lifeStageItems,
   ageItems,
   nutritionFilterItems,
   measurementFilterItems,
-  onSelectFilterPageData,
   multipleSelectItems,
   getSelectedNutrients,
-  onSelectFilterItems,
   onSelectMeasurementItem,
-  filters,
+  onSelectLifeStageItem,
+  onSelectAgeItem,
+  onSelectUnit,
+  units,
+  nutritionTableItems,
+  onSelectNutritionFilterItem,
 }) => {
   const classes = useStyles();
   const theme = useTheme();
@@ -89,13 +91,17 @@ const DetailsPageScreen: React.FC<DetailsPageScreenProps> = ({
             {selectedTabItem === "Nutrition" ? (
               <NutritionDetailsTab
                 nutritionSummaryItems={nutritionSummaryItems}
-                selectedFilters={selectedFilters}
                 lifeStageItems={lifeStageItems}
+                onSelectLifeStageItem={onSelectLifeStageItem}
                 ageItems={ageItems}
+                onSelectAgeItem={onSelectAgeItem}
                 nutritionFilterItems={nutritionFilterItems}
                 measurementFilterItems={measurementFilterItems}
                 onSelectMeasurementItem={onSelectMeasurementItem}
-                onSelectFilterItems={onSelectFilterItems}
+                onSelectUnit={onSelectUnit}
+                units={units}
+                nutritionTableItems={nutritionTableItems}
+                onSelectNutritionFilterItem={onSelectNutritionFilterItem}
               />
             ) : selectedTabItem === "Recipes" ? (
               <Box>Recipes</Box>

@@ -228,7 +228,6 @@ export interface NutrientSummaryItemProps {
 
 export interface NutritionDetailsTabProps {
   nutritionSummaryItems: Array<summaryItem>;
-  selectedFilters: string[];
   lifeStageItems: Array<lifeStageItem>;
   onSelectLifeStageItem: Dispatch<SetStateAction<any | string>>;
   ageItems: Array<ageItem>;
@@ -239,6 +238,7 @@ export interface NutritionDetailsTabProps {
   onSelectAgeItem: dispatch<SetStateAction<ageItem>>;
   onSelectUnit: Dispatch<SetStateAction<string>>;
   units: string[];
+  nutritionTableItems: DetailsNutritionTableItem[];
 }
 
 export interface NutritionFilterProps {
@@ -269,16 +269,19 @@ export interface NutrientServingSizeProps {
 export interface LifeStageProps {
   lifeStageItems: Array<lifeStageItem>;
   onSelectLifeStageItem: Dispatch<SetStateAction<string | any>>;
+  isDropdown: boolean;
 }
 
 export interface AgeItemsProps {
   ageItems: Array<ageItem>;
   onSelectAgeItem: dispatch<SetStateAction<ageItem>>;
+  isDropdown: boolean;
 }
 
 export interface SearchNutritionFilterProps {
   nutritionFilterItems: Array<SearchNutritionFilterItem>;
   onSelectNutritionFilterItem: Dispatch<SetStateAction<SearchNutritionFilterItem[] | any>>;
+  isDropdown: boolean;
 }
 
 export interface SearchNutritionFilterItem {
@@ -304,4 +307,24 @@ export interface MultipleSelectsProps {
 
 export interface filterButtonItem {
   name: "All filters" | "Life stage" | "Age" | "Nutrients" | "Measure Units";
+}
+
+export interface DetailsNutritionTableItem {
+  nutrient: string;
+  dailyValue: number;
+  amount: string;
+  rdi: {
+    value: number;
+    weight: string;
+  };
+  nutrientContents: Array<{
+    nutrient: string;
+    dailyValue: number;
+    amount: string;
+    rdi: { value: number; weight: string };
+  }>;
+}
+
+export interface DetailsNutritionTableProps {
+  nutritionTableItems: DetailsNutritionTableItem[];
 }

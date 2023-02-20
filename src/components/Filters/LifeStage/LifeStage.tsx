@@ -5,8 +5,13 @@ import CloseIcon from "@mui/icons-material/Close";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { LifeStageItem } from "@forkfacts/components";
+import { withDropdown, withoutDropdown } from "./lifeStageStyles";
 
-const LifeStage: React.FC<LifeStageProps> = ({ lifeStageItems, onSelectLifeStageItem }) => {
+const LifeStage: React.FC<LifeStageProps> = ({
+  lifeStageItems,
+  onSelectLifeStageItem,
+  isDropdown,
+}) => {
   const theme = useTheme();
   const [selectedItem, setSelectedItem] = useState<string>("");
   const [open, setOpen] = useState(false);
@@ -40,42 +45,36 @@ const LifeStage: React.FC<LifeStageProps> = ({ lifeStageItems, onSelectLifeStage
 
   return (
     <Box sx={{ position: "relative" }} ref={ref}>
-      <Button
-        variant={selectedItem ? "text" : "outlined"}
-        onClick={() => setOpen(!open)}
-        sx={{
-          color: theme.palette.grey[900],
-          backgroundColor: selectedItem
-            ? theme.palette.primary.light
-            : theme.palette.background.default,
-          borderColor: selectedItem ? theme.palette.primary.main : theme.palette.grey[700],
-          fontSize: theme.typography.caption.fontSize,
-          fontWeight: theme.typography.fontWeightBold,
-          lineHeight: theme.spacing(2),
-          letterSpacing: theme.spacing(0.05),
-          textTransform: "capitalize",
-          whiteSpace: "nowrap",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <Typography> {selectedItem ? selectedItem : "Life stage"}</Typography>
-        {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
-      </Button>
-      {open && (
+      {isDropdown && (
+        <Button
+          variant={selectedItem ? "text" : "outlined"}
+          onClick={() => setOpen(!open)}
+          sx={{
+            color: theme.palette.grey[900],
+            backgroundColor: selectedItem
+              ? theme.palette.primary.light
+              : theme.palette.background.default,
+            borderColor: selectedItem ? theme.palette.primary.main : theme.palette.grey[700],
+            fontSize: theme.typography.caption.fontSize,
+            fontWeight: theme.typography.fontWeightBold,
+            lineHeight: theme.spacing(2),
+            letterSpacing: theme.spacing(0.05),
+            textTransform: "capitalize",
+            whiteSpace: "nowrap",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Typography> {selectedItem ? selectedItem : "Life stage"}</Typography>
+          {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+        </Button>
+      )}
+      {(open || !isDropdown) && (
         <Box
           component="div"
-          sx={{
-            position: "absolute",
-            display: "block",
-            width: 300,
-            py: theme.spacing(2),
-            px: theme.spacing(1),
-            zIndex: theme.zIndex.modal,
-            backgroundColor: theme.palette.common.white,
-          }}
-          boxShadow={1}
+          sx={isDropdown ? withoutDropdown(theme) : withDropdown(theme)}
+          boxShadow={isDropdown ? 1 : 0}
         >
           <Box
             sx={{
@@ -98,11 +97,14 @@ const LifeStage: React.FC<LifeStageProps> = ({ lifeStageItems, onSelectLifeStage
             >
               LIFE STAGE
             </Typography>
-            <CloseIcon
-              sx={{ width: theme.spacing(2), height: theme.spacing(2), cursor: "pointer" }}
-              onClick={() => setOpen(false)}
-            />
+            {isDropdown && (
+              <CloseIcon
+                sx={{ width: theme.spacing(2), height: theme.spacing(2), cursor: "pointer" }}
+                onClick={() => setOpen(false)}
+              />
+            )}
           </Box>
+
           <Box
             sx={{
               width: "100%",

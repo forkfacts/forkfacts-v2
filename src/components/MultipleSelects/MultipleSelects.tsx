@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Checkbox from "@mui/material/Checkbox";
 import { ForLoops } from "@forkfacts/helpers";
 import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
@@ -20,7 +20,7 @@ const MultipleSelects: React.FC<MultipleSelectsProps> = ({
 }) => {
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.down("md"));
-
+  const ref = useRef<HTMLDivElement>(null);
   const newNutrients: NutrientType[] = [...multipleSelectItems].map((item) => {
     return {
       name: item.name,
@@ -77,8 +77,21 @@ const MultipleSelects: React.FC<MultipleSelectsProps> = ({
     setIsOpen(false);
   };
 
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (ref.current && !ref.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [ref]);
+
   return (
-    <Box sx={{ cursor: "pointer", zIndex: theme.zIndex.modal, position: "relative" }}>
+    <Box sx={{ cursor: "pointer", zIndex: theme.zIndex.modal, position: "relative" }} ref={ref}>
       <Box>{renderSelectButton}</Box>
       {open && (
         <Box

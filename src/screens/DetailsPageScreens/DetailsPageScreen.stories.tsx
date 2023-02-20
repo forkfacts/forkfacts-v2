@@ -551,9 +551,8 @@ Mobile.args = {
     console.log(item);
   },
   measurementFilterItems: ["US", "Metric"],
-  onSelectMeasurementItem: (item: string) => {
-    console.log(item);
-  },
+  nutritionTableItems: nutritionTableItems,
+  units,
 };
 
 Mobile.parameters = {

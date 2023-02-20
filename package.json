@@ -58,7 +58,8 @@
     "react-dom": "^18.2.0",
     "react-multi-carousel": "^2.8.2",
     "react-share": "^4.4.1",
-    "recharts": "^2.4.1"
+    "recharts": "^2.4.1",
+    "uninstall": "^0.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.2",

@@ -16,10 +16,11 @@ export default {
 const Template: ComponentStory<typeof NutritionSummary> = (args) => <NutritionSummary {...args} />;
 
 const nutritionSummaryItems = [
-  { name: "Protein", percentage: 10, weight: "120g" },
-  { name: "Carbs", percentage: 20, weight: "120g" },
-  { name: "Fats", percentage: 30, weight: "120g" },
-  { name: "Fiber", percentage: 40, weight: "120g" },
+  { name: "CALORIES", percentage: 20, weight: "450g" },
+  { name: "CARBS", percentage: 20, weight: "120g" },
+  { name: "PROTEINS", percentage: 20, weight: "50g" },
+  { name: "FATS", percentage: 20, weight: "112g" },
+  { name: "SUGARS", percentage: 20, weight: "9g" },
 ];
 
 export const Mobile = Template.bind({});

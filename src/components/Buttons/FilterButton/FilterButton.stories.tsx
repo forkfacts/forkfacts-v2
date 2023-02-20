@@ -16,6 +16,5 @@ FilterButton.args = {
   name: "Life stage",
   index: 1,
   selectedItemArrays: [],
-  setOpenMobilePage: (item: boolean) => {},
   onSelectItem: (item: string, index: number) => {},
 };

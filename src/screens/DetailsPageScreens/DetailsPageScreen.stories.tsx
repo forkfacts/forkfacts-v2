@@ -19,6 +19,7 @@ import {
   ageItem,
   compareTableItem,
   DetailsPageTitlesItem,
+  filterButtonItem,
   filterItem,
   lifeStageItem,
   SearchNutritionFilterItem,
@@ -161,12 +162,13 @@ const multipleSelectItems: filterItem[] = [
 ];
 
 const nutritionSummaryItems = [
-  { name: "Calories", percentage: 20, weight: "450g" },
-  { name: "Protein", percentage: 10, weight: "120g" },
-  { name: "Carbs", percentage: 20, weight: "120g" },
-  { name: "Fats", percentage: 30, weight: "120g" },
-  { name: "Fiber", percentage: 40, weight: "120g" },
+  { name: "CALORIES", percentage: 20, weight: "450g" },
+  { name: "CARBS", percentage: 20, weight: "120g" },
+  { name: "PROTEINS", percentage: 20, weight: "50g" },
+  { name: "FATS", percentage: 20, weight: "112g" },
+  { name: "SUGARS", percentage: 20, weight: "9g" },
 ];
+
 const Template: ComponentStory<typeof DetailsPageScreen> = (args) => {
   const [_, setSelectedNutrients] = useState<string[]>([]);
   return <DetailsPageScreen {...args} getSelectedNutrients={setSelectedNutrients} />;
@@ -224,6 +226,13 @@ const lifeStageItems: lifeStageItem[] = [
   },
 ];
 
+const filters: filterButtonItem[] = [
+  { name: "All filters" },
+  { name: "Life stage" },
+  { name: "Age" },
+  { name: "Nutrients" },
+];
+
 const ageItems: ageItem[] = [
   {
     start: 9,
@@ -269,6 +278,14 @@ Desktop.args = {
   lifeStageItems,
   nutritionFilterItems,
   nutritionSummaryItems,
+  filters: filters,
+  onSelectFilterItems: (item: string[]) => {
+    console.log(item);
+  },
+  measurementFilterItems: ["US", "Metric"],
+  onSelectMeasurementItem: (item: string) => {
+    console.log(item);
+  },
 };
 
 export const Mobile = Template.bind({});
@@ -288,6 +305,14 @@ Mobile.args = {
   lifeStageItems,
   nutritionFilterItems,
   nutritionSummaryItems,
+  filters: filters,
+  onSelectFilterItems: (item: string[]) => {
+    console.log(item);
+  },
+  measurementFilterItems: ["US", "Metric"],
+  onSelectMeasurementItem: (item: string) => {
+    console.log(item);
+  },
 };
 
 Mobile.parameters = {

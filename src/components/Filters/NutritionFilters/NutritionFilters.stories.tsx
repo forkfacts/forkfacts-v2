@@ -1,24 +1,22 @@
 import React, { useState } from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
+import { NutritionFilters } from "@forkfacts/components";
 import ChildCareOutlinedIcon from "@mui/icons-material/ChildCareOutlined";
 import EscalatorWarningOutlinedIcon from "@mui/icons-material/EscalatorWarningOutlined";
 import Person2OutlinedIcon from "@mui/icons-material/Person2Outlined";
 import PregnantWomanOutlinedIcon from "@mui/icons-material/PregnantWomanOutlined";
-import { NutritionDetailsTab } from "@forkfacts/components";
 import { ageItem, lifeStageItem, SearchNutritionFilterItem } from "@forkfacts/models";
 
 export default {
-  title: "Components/DetailsPageComponents/NutritionDetailsTab",
-  component: NutritionDetailsTab,
-} as ComponentMeta<typeof NutritionDetailsTab>;
-
-const nutritionSummaryItems = [
-  { name: "CALORIES", percentage: 20, weight: "450g" },
-  { name: "CARBS", percentage: 20, weight: "120g" },
-  { name: "PROTEINS", percentage: 20, weight: "50g" },
-  { name: "FATS", percentage: 20, weight: "112g" },
-  { name: "SUGARS", percentage: 20, weight: "9g" },
-];
+  title: "Components/Filters/NutritionFilters",
+  component: NutritionFilters,
+  parameters: {
+    viewport: {
+      viewports: INITIAL_VIEWPORTS,
+    },
+  },
+} as ComponentMeta<typeof NutritionFilters>;
 
 const lifeStageItems: lifeStageItem[] = [
   {
@@ -105,14 +103,14 @@ const nutritionFilterItems: SearchNutritionFilterItem[] = [
   { name: "Fiber", subItems: [], checked: false },
 ];
 
-const Template: ComponentStory<typeof NutritionDetailsTab> = (args) => {
+const Template: ComponentStory<typeof NutritionFilters> = (args) => {
   const [selectLifeStage, setSelectedLifeStage] = useState("");
   const [selectAge, setSelectedAge] = useState<ageItem>({} as ageItem);
   const [selectSearchNutrition, seSelectedSearchNutrition] = useState(
     [] as SearchNutritionFilterItem[]
   );
   return (
-    <NutritionDetailsTab
+    <NutritionFilters
       {...args}
       onSelectLifeStageItem={setSelectedLifeStage}
       onSelectAgeItem={setSelectedAge}
@@ -124,8 +122,6 @@ const Template: ComponentStory<typeof NutritionDetailsTab> = (args) => {
 export const Desktop = Template.bind({});
 
 Desktop.args = {
-  nutritionSummaryItems: nutritionSummaryItems,
-  measurementFilterItems: ["US", "Metric"],
   lifeStageItems,
   ageItems,
   nutritionFilterItems,

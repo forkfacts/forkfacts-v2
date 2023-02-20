@@ -47,7 +47,10 @@ export interface DetailsPageScreenProps {
   ageItems: Array<ageItem>;
   nutritionFilterItems: Array<SearchNutritionFilterItem>;
   measurementFilterItems: string[];
+  onSelectMeasurementItem: (item: string) => void;
   onSelectFilterPageData: Dispatch<SetStateAction<any>>;
   multipleSelectItems: filterItem[];
   getSelectedNutrients: Dispatch<SetStateAction<string[]>>;
+  filters: Array<filterButtonItem>;
+  onSelectFilterItems: (item: string[]) => void;
 }

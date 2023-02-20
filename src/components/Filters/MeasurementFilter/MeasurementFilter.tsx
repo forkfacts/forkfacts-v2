@@ -18,21 +18,11 @@ const MeasurementFilter: React.FC<MeasurementFilterProps> = ({
 
   return (
     <Box>
-      <Typography
-        component="span"
-        sx={{
-          fontSize: theme.typography.htmlFontSize,
-          fontWeight: theme.typography.fontWeightBold,
-          lineHeight: theme.spacing(3),
-        }}
-      >
-        Measure Units
-      </Typography>
       <Box
         sx={{
           display: "flex",
           alignItems: "center",
-          mt: theme.spacing(3),
+          width: theme.spacing(19.875),
         }}
       >
         <ForLoops each={measurementFilterItems}>
@@ -44,20 +34,19 @@ const MeasurementFilter: React.FC<MeasurementFilterProps> = ({
                 boxShadow={1}
                 sx={{
                   width: "50%",
-                  height: theme.spacing(5.75),
+                  height: theme.spacing(5),
                   borderColor: theme.palette.grey[400],
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center",
                   textAlign: "center",
                   cursor: "pointer",
-                  borderTopLeftRadius: index === 0 ? theme.spacing(1.25) : 0,
-                  borderBottomLeftRadius: index === 0 ? theme.spacing(1.25) : 0,
-                  borderTopRightRadius: index === 1 ? theme.spacing(1.25) : 0,
-                  borderBottomRightRadius: index === 1 ? theme.spacing(1.25) : 0,
-                  backgroundColor: selectedItem === name ? blue[100] : "none",
-                  color:
-                    selectedItem === name ? theme.palette.primary.dark : theme.palette.common.black,
+                  borderTopLeftRadius: index === 0 ? theme.spacing(0.5) : 0,
+                  borderBottomLeftRadius: index === 0 ? theme.spacing(0.5) : 0,
+                  borderTopRightRadius: index === 1 ? theme.spacing(0.5) : 0,
+                  borderBottomRightRadius: index === 1 ? theme.spacing(0.5) : 0,
+                  backgroundColor: selectedItem === name ? theme.palette.primary.main : "none",
+                  color: selectedItem === name ? "#fff" : theme.palette.common.black,
                 }}
               >
                 {name}

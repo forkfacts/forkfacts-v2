@@ -11,7 +11,6 @@ const FilterButton: React.FC<FilterButtonProps> = ({
   onSelectItem,
   index,
   selectedItemArrays,
-  setOpenMobilePage,
 }) => {
   const theme = useTheme();
   const [selectedName, setSelectedName] = useState<string>();
@@ -25,8 +24,7 @@ const FilterButton: React.FC<FilterButtonProps> = ({
   };
 
   const handleClick = (index: number) => {
-    if (index === 0) setOpenMobilePage(true);
-    else handleSelectItem();
+    handleSelectItem();
   };
 
   return (
@@ -66,7 +64,7 @@ const FilterButton: React.FC<FilterButtonProps> = ({
           "All filters"
         ) : (
           <Typography variant="subtitle2" sx={{ ml: theme.spacing(1) }}>
-            {selectedItemArrays.length}
+            All filters ({selectedItemArrays.length})
           </Typography>
         )
       ) : (

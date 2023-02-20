@@ -32,10 +32,6 @@ const LifeStageItem: React.FC<LifeStageItemProps> = ({
         cursor: "pointer",
         backgroundColor: selectedItem === item.name ? blue[100] : "none",
         color: selectedItem === item.name ? theme.palette.primary.dark : theme.palette.common.black,
-        borderTopLeftRadius: index === 0 ? theme.spacing(2.5) : theme.spacing(0),
-        borderBottomLeftRadius: index === 4 ? theme.spacing(2.5) : theme.spacing(0),
-        borderTopRightRadius: index === 1 ? theme.spacing(2.5) : theme.spacing(0),
-        borderBottomRightRadius: index === 5 ? theme.spacing(2.5) : theme.spacing(0),
       }}
     >
       <Box>
@@ -43,7 +39,7 @@ const LifeStageItem: React.FC<LifeStageItemProps> = ({
         <Typography
           sx={{
             fontSize: theme.typography.htmlFontSize,
-            fontWeight: theme.typography.fontWeightMedium,
+            fontWeight: theme.typography.fontWeightLight,
             lineHeight: theme.spacing(3),
           }}
         >

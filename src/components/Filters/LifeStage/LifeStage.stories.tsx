@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import { LifeStage } from "@forkfacts/components";
@@ -18,8 +18,10 @@ export default {
   },
 } as ComponentMeta<typeof LifeStage>;
 
-const Template: ComponentStory<typeof LifeStage> = (args) => <LifeStage {...args} />;
-
+const Template: ComponentStory<typeof LifeStage> = (args) => {
+  const [_, setSelectedLifeStage] = useState("");
+  return <LifeStage {...args} onSelectLifeStageItem={setSelectedLifeStage} />;
+};
 const lifeStageItems: lifeStageItem[] = [
   {
     name: "Infant",
@@ -47,17 +49,8 @@ const lifeStageItems: lifeStageItem[] = [
   },
 ];
 
-export const Mobile = Template.bind({});
+export const Desktop = Template.bind({});
 
-Mobile.args = {
-  onSelectLifeStageItem: (name: string) => {
-    console.log(name);
-  },
+Desktop.args = {
   lifeStageItems: lifeStageItems,
-};
-
-Mobile.parameters = {
-  viewport: {
-    defaultViewport: "iphone6",
-  },
 };

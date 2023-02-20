@@ -7,7 +7,9 @@ import "react-circular-progressbar/dist/styles.css";
 const NutrientSummaryItem: React.FC<NutrientSummaryItemProps> = ({ percentage, weight, name }) => {
   const theme = useTheme();
   return (
-    <Box sx={{ width: theme.spacing(16.25), height: theme.spacing(16.25) }}>
+    <Box
+      sx={{ width: theme.spacing(16.25), height: theme.spacing(16.25), transform: "rotate(1deg)" }}
+    >
       <Box
         sx={{
           textAlign: "center",

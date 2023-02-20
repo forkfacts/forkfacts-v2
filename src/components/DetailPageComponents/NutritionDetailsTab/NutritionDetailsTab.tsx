@@ -1,16 +1,20 @@
 import React, { useState } from "react";
-import { AllFilters, NutritionSummary } from "@forkfacts/components";
+import { NutritionSummary, NutritionFilters, MeasurementFilter } from "@forkfacts/components";
 import { NutritionDetailsTabProps } from "@forkfacts/models";
-import { Box } from "@mui/material";
+import { Box, useTheme } from "@mui/material";
 
 const NutritionDetailsTab: React.FC<NutritionDetailsTabProps> = ({
   nutritionSummaryItems,
   lifeStageItems,
+  onSelectLifeStageItem,
+  onSelectAgeItem,
   ageItems,
   nutritionFilterItems,
+  onSelectNutritionFilterItem,
   measurementFilterItems,
-  onSelectFilterPageData,
+  onSelectMeasurementItem,
 }) => {
+  const theme = useTheme();
   const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
 
   const handleFilterItems = (items: string[]) => {
@@ -19,15 +23,28 @@ const NutritionDetailsTab: React.FC<NutritionDetailsTabProps> = ({
 
   return (
     <Box>
-      {/* <NutritionFilters /> */}
-      <AllFilters
-        selectedFilters={selectedFilters}
-        lifeStageItems={lifeStageItems}
-        ageItems={ageItems}
-        nutritionFilterItems={nutritionFilterItems}
-        measurementFilterItems={measurementFilterItems}
-        onSelectFilterPageData={onSelectFilterPageData}
-      />
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          mb: theme.spacing(7),
+          flexWrap: "wrap",
+        }}
+      >
+        <NutritionFilters
+          lifeStageItems={lifeStageItems}
+          onSelectLifeStageItem={onSelectLifeStageItem}
+          ageItems={ageItems}
+          onSelectAgeItem={onSelectAgeItem}
+          nutritionFilterItems={nutritionFilterItems}
+          onSelectNutritionFilterItem={onSelectNutritionFilterItem}
+        />
+        <MeasurementFilter
+          measurementFilterItems={measurementFilterItems}
+          onSelectMeasurementItem={onSelectMeasurementItem}
+        />
+      </Box>
       <NutritionSummary nutritionSummaryItems={nutritionSummaryItems} />
     </Box>
   );

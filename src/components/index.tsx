@@ -32,3 +32,4 @@ export { default as SearchNutritionFilter } from "./Filters/SearchNutritionFilte
 export { default as MeasurementFilter } from "./Filters/MeasurementFilter/MeasurementFilter";
 export { default as FilterButton } from "./Buttons/FilterButton/FilterButton";
 export { default as MultipleSelects } from "./MultipleSelects/MultipleSelects";
+export { default as NutritionFilters } from "./Filters/NutritionFilters/NutritionFilters";

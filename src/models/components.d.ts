@@ -230,26 +230,22 @@ export interface NutritionDetailsTabProps {
   nutritionSummaryItems: Array<summaryItem>;
   selectedFilters: string[];
   lifeStageItems: Array<lifeStageItem>;
+  onSelectLifeStageItem: Dispatch<SetStateAction<string>>;
   ageItems: Array<ageItem>;
   nutritionFilterItems: Array<SearchNutritionFilterItem>;
   measurementFilterItems: string[];
-  onSelectFilterPageData: Dispatch<SetStateAction<any>>;
+  onSelectMeasurementItem: (item: string) => void;
+  onSelectNutritionFilterItem: Dispatch<SetStateAction<SearchNutritionFilterItem[]>>;
+  onSelectAgeItem: dispatch<SetStateAction<ageItem>>;
 }
 
 export interface NutritionFilterProps {
-  filters: Array<filterButtonItem>;
-  onSelectFilterItems: (item: string[]) => void;
-  setOpenMobilePage: (item: boolean) => void;
-}
-
-export interface NutritionTableContentProps {
-  nutritionTableItems: Array<nutritionTableItem>;
-}
-
-export interface NutritionTableProps {
-  nutritionTableItems: Array<nutritionTableItem>;
-  allNutrients: Array<filterItem>;
-  getSelectedNutrients: (items: string[]) => void;
+  lifeStageItems: Array<lifeStageItem>;
+  onSelectLifeStageItem: Dispatch<SetStateAction<string>>;
+  ageItems: Array<ageItem>;
+  onSelectAgeItem: dispatch<SetStateAction<ageItem>>;
+  nutritionFilterItems: Array<SearchNutritionFilterItem>;
+  onSelectNutritionFilterItem: Dispatch<SetStateAction<SearchNutritionFilterItem[]>>;
 }
 
 export interface SelectNutrientsProps {
@@ -268,7 +264,6 @@ export interface FilterButtonProps {
   onSelectItem: (item: string, index: number) => void;
   index: number;
   selectedItemArrays: string[];
-  setOpenMobilePage: (item: boolean) => void;
 }
 
 export interface NutrientServingSizeProps {
@@ -278,17 +273,17 @@ export interface NutrientServingSizeProps {
 
 export interface LifeStageProps {
   lifeStageItems: Array<lifeStageItem>;
-  onSelectLifeStageItem: (name: string) => void;
+  onSelectLifeStageItem: Dispatch<SetStateAction<string>>;
 }
 
 export interface AgeItemsProps {
   ageItems: Array<ageItem>;
-  onSelectAgeItem: (item: ageItem) => void;
+  onSelectAgeItem: dispatch<SetStateAction<ageItem>>;
 }
 
 export interface SearchNutritionFilterProps {
   nutritionFilterItems: Array<SearchNutritionFilterItem>;
-  onSelectNutritionFilterItem: (item: SearchNutritionFilterItem[]) => void;
+  onSelectNutritionFilterItem: Dispatch<SetStateAction<SearchNutritionFilterItem[]>>;
 }
 
 export interface SearchNutritionFilterItem {
@@ -317,4 +312,8 @@ export interface MultipleSelectsProps {
   setIsOpen: Dispatch<SetStateAction<boolean>>;
   multiselectTitle: string;
   margin: any;
+}
+
+export interface filterButtonItem {
+  name: "All filters" | "Life stage" | "Age" | "Nutrients" | "Measure Units";
 }

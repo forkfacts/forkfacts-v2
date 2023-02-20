@@ -4,6 +4,7 @@ import {
   AccordionDetails,
   AccordionSummary,
   Box,
+  Button,
   Checkbox,
   InputAdornment,
   TextField,
@@ -11,8 +12,9 @@ import {
   useTheme,
 } from "@mui/material";
 import { ViewMoreButton } from "@forkfacts/components";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import CloseIcon from "@mui/icons-material/Close";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import React, { useEffect, useState } from "react";
 import { ForLoops } from "@forkfacts/helpers";
 import { SearchNutritionFilterProps, SearchNutritionFilterItem } from "@forkfacts/models";
@@ -25,10 +27,7 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
   const newNutrients: SearchNutritionFilterItem[] = [...nutritionFilterItems].map((item) => {
     return {
       name: item.name,
-      checked:
-        item.name === "Protein" || item.name === "Fats" || item.name === "Carbohydrate"
-          ? true
-          : false,
+      checked: item.checked,
       subItems: item.subItems.map((item2) => {
         return {
           name: item2.name,
@@ -37,22 +36,20 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
       }),
     };
   });
-  const [expanded, setExpanded] = React.useState<string | false>(false);
   const [filteredNutrient, setFilterNutrient] = useState([...newNutrients]);
   const [selectedNutrient, setSelectedNutrient] = useState({
     name: "",
   });
+  const [open, setOpen] = useState(false);
   const [name, setName] = useState<string>("");
   const [viewMore, setViewMore] = useState({
     main: 5,
     sub: 4,
   });
-  const handleAccordion =
-    (panel: string, item: SearchNutritionFilterItem) =>
-    (event: React.SyntheticEvent, isExpanded: boolean) => {
-      setExpanded(isExpanded && item.subItems?.length ? panel : false);
-    };
-
+  const [firstSelectedItem, setFirstSelectedItem] = useState({
+    name: "",
+    length: 0,
+  });
   const renderFilterNutrients: SearchNutritionFilterItem[] = filteredNutrient.filter((item) => {
     if (!name) return filteredNutrient;
     if (item.name.toLowerCase().includes(name.toLowerCase())) {
@@ -162,7 +159,12 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
         }
       })
       .filter((item) => item !== undefined) as SearchNutritionFilterItem[];
-
+    if (checkedNutrients) {
+      setFirstSelectedItem({
+        name: checkedNutrients[0]?.name,
+        length: checkedNutrients.length,
+      });
+    }
     onSelectNutritionFilterItem(checkedNutrients);
   }, [filteredNutrient]);
 
@@ -176,148 +178,226 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
       setViewMore({ ...viewMore, sub: 4 });
     } else setViewMore({ ...viewMore, sub: sub.subItems.length });
   };
+
+  const onClearSelectedItem = () => {
+    onSelectNutritionFilterItem([]);
+  };
+
   return (
-    <Box sx={{ mb: theme.spacing(3) }}>
-      <Box
+    <Box sx={{ position: "relative" }}>
+      <Button
+        variant={firstSelectedItem.name ? "text" : "outlined"}
+        onClick={() => setOpen(!open)}
         sx={{
-          paddingLeft: theme.spacing(1),
-          paddingRight: theme.spacing(1.4),
+          color: theme.palette.grey[900],
+          backgroundColor: firstSelectedItem.name
+            ? theme.palette.primary.light
+            : theme.palette.background.default,
+          borderColor: firstSelectedItem.name
+            ? theme.palette.primary.main
+            : theme.palette.grey[700],
+          fontSize: theme.typography.caption.fontSize,
+          fontWeight: theme.typography.fontWeightBold,
+          lineHeight: theme.spacing(2),
+          letterSpacing: theme.spacing(0.05),
+          textTransform: "capitalize",
+          whiteSpace: "nowrap",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
         }}
       >
-        <Typography
-          component="span"
-          sx={{
-            fontSize: theme.typography.htmlFontSize,
-            fontWeight: theme.typography.fontWeightBold,
-            lineHeight: theme.spacing(3),
-          }}
-        >
-          Nutrients
+        <Typography>
+          {firstSelectedItem.name
+            ? `${firstSelectedItem.name} ${firstSelectedItem.length <= 1 ? "" : "+1"} `
+            : "Life stage"}
         </Typography>
-        <TextField
-          size="small"
+        {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+      </Button>
+      {open && (
+        <Box
+          component="div"
           sx={{
-            width: "100%",
-            marginTop: theme.spacing(1.7),
+            position: "absolute",
+            display: "block",
+            width: 300,
+            mt: theme.spacing(1.1),
+            py: theme.spacing(2),
+            px: theme.spacing(1),
+            zIndex: theme.zIndex.modal,
+            backgroundColor: theme.palette.common.white,
           }}
-          fullWidth
-          name="name"
-          value={name}
-          placeholder="Search for nutrients"
-          onChange={handleChange}
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <SearchOutlined />
-              </InputAdornment>
-            ),
-            endAdornment: (
-              <InputAdornment position="end">
-                <Box>
-                  {name ? (
-                    <CloseIcon sx={{ cursor: "pointer" }} onClick={() => setName("")} />
-                  ) : null}
-                </Box>
-              </InputAdornment>
-            ),
-          }}
-        />
-      </Box>
-      <Box sx={{ my: theme.spacing(5) }}>
-        {renderFilterNutrients.length ? (
-          <ForLoops each={renderFilterNutrients.slice(0, viewMore.main)}>
-            {(item, index) => {
-              return (
-                <Accordion
-                  expanded={expanded === `panel${index + 1}`}
-                  onChange={handleAccordion(`panel${index + 1}`, item)}
-                  disableGutters={true}
-                  sx={{
-                    boxShadow: "none",
-                    boxSizing: "border-box",
-                    "&:before": {
-                      display: "none",
-                    },
-                    "& > .MuiAccordionSummary-root": {
-                      padding: 0,
-                    },
-                    mt: theme.spacing(-2),
-                  }}
-                  key={index}
-                >
-                  <AccordionSummary
-                    expandIcon={item.subItems.length ? <ExpandMoreIcon /> : null}
-                    aria-controls="panel1a-content"
-                    id="panel1a-header"
-                  >
-                    <Box sx={{ display: "flex", alignItems: "center" }}>
-                      <Checkbox
-                        color="primary"
-                        checked={item.checked}
-                        onClick={(event) => handleSelectItem(event, item.name, index)}
-                      />
-                      <Typography variant="body1">{item.name}</Typography>
-                    </Box>
-                  </AccordionSummary>
-                  <AccordionDetails sx={{ mt: theme.spacing(-2) }}>
-                    <ForLoops each={item.subItems.slice(0, viewMore.sub)}>
-                      {(item2, index2) => {
-                        return (
-                          <Box
-                            sx={{ display: "flex", alignItems: "center" }}
-                            key={index2}
-                            onClick={() => onSelectSubItem(item.name, item2.name)}
-                          >
-                            <Checkbox color="primary" checked={item2.checked} />
-                            <Typography variant="body1">{item2.name}</Typography>
-                          </Box>
-                        );
-                      }}
-                    </ForLoops>
-                    <Box sx={{ ml: theme.spacing(-1) }}>
-                      {item.subItems.length > 4 && (
-                        <Box>
-                          {viewMore.sub === item.subItems.length ? (
-                            <ViewMoreButton
-                              handleViewMore={() => handleSubViewMore(item)}
-                              text="View less"
-                            />
-                          ) : (
-                            <ViewMoreButton handleViewMore={() => handleSubViewMore(item)} />
-                          )}
-                        </Box>
-                      )}
-                    </Box>
-                  </AccordionDetails>
-                </Accordion>
-              );
+          boxShadow={1}
+        >
+          <Box
+            sx={{
+              paddingLeft: theme.spacing(1),
+              paddingRight: theme.spacing(1.4),
             }}
-          </ForLoops>
-        ) : (
-          <Box sx={{ textAlign: "center" }}>
-            <Typography
+          >
+            <Box
               sx={{
-                textTransform: "capitalize",
-                color: theme.palette.grey[600],
-                letterSpacing: theme.spacing(0.0125),
+                display: "flex",
+                justifyContent: "space-between",
+                width: "100%",
+                alignItems: "center",
+                mt: theme.spacing(3),
               }}
             >
-              No matching nutrient found
-            </Typography>
+              <Typography
+                variant="caption"
+                sx={{
+                  color: theme.palette.grey[600],
+                  fontWeight: theme.typography.fontWeightMedium,
+                  lineHeight: theme.spacing(2),
+                  letterSpacing: theme.spacing(0.05),
+                  textTransform: "uppercase",
+                }}
+              >
+                NUTRIENTS
+              </Typography>
+              <CloseIcon
+                sx={{ width: theme.spacing(2), height: theme.spacing(2), cursor: "pointer" }}
+                onClick={() => setOpen(false)}
+              />
+            </Box>
+            <TextField
+              size="small"
+              sx={{
+                width: "100%",
+                marginTop: theme.spacing(1.7),
+              }}
+              fullWidth
+              name="name"
+              value={name}
+              placeholder="Search for nutrients"
+              onChange={handleChange}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <SearchOutlined />
+                  </InputAdornment>
+                ),
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <Box>
+                      {name ? (
+                        <CloseIcon sx={{ cursor: "pointer" }} onClick={() => setName("")} />
+                      ) : null}
+                    </Box>
+                  </InputAdornment>
+                ),
+              }}
+            />
           </Box>
-        )}
-        <Box sx={{ mt: theme.spacing(-2.5), ml: theme.spacing(-1) }}>
-          {renderFilterNutrients.length > 5 && (
-            <Box>
-              {viewMore.main === renderFilterNutrients.length ? (
-                <ViewMoreButton handleViewMore={handleMainViewMore} text="View less" />
-              ) : (
-                <ViewMoreButton handleViewMore={handleMainViewMore} />
+          <Box>
+            {renderFilterNutrients.length ? (
+              <ForLoops each={renderFilterNutrients.slice(0, viewMore.main)}>
+                {(item, index) => {
+                  return (
+                    <Accordion
+                      expanded={true}
+                      disableGutters={true}
+                      sx={{
+                        boxShadow: "none",
+                        boxSizing: "border-box",
+                        "&:before": {
+                          display: "none",
+                        },
+                        "& > .MuiAccordionSummary-root": {
+                          padding: 0,
+                        },
+                        mt: theme.spacing(-3),
+                      }}
+                      key={index}
+                    >
+                      <AccordionSummary aria-controls="panel1a-content" id="panel1a-header">
+                        <Box sx={{ display: "flex", alignItems: "center" }}>
+                          <Checkbox
+                            color="primary"
+                            checked={item.checked}
+                            onClick={(event) => handleSelectItem(event, item.name, index)}
+                          />
+                          <Typography variant="body1">{item.name}</Typography>
+                        </Box>
+                      </AccordionSummary>
+                      <AccordionDetails sx={{ mt: theme.spacing(-2) }}>
+                        <ForLoops each={item.subItems.slice(0, viewMore.sub)}>
+                          {(item2, index2) => {
+                            return (
+                              <Box
+                                sx={{ display: "flex", alignItems: "center" }}
+                                key={index2}
+                                onClick={() => onSelectSubItem(item.name, item2.name)}
+                              >
+                                <Checkbox color="primary" checked={item2.checked} />
+                                <Typography variant="body1">{item2.name}</Typography>
+                              </Box>
+                            );
+                          }}
+                        </ForLoops>
+                        <Box sx={{ ml: theme.spacing(-1), display: "none" }}>
+                          {item.subItems.length > 4 && (
+                            <Box>
+                              {viewMore.sub === item.subItems.length ? (
+                                <ViewMoreButton
+                                  handleViewMore={() => handleSubViewMore(item)}
+                                  text="View less"
+                                />
+                              ) : (
+                                <ViewMoreButton handleViewMore={() => handleSubViewMore(item)} />
+                              )}
+                            </Box>
+                          )}
+                        </Box>
+                      </AccordionDetails>
+                    </Accordion>
+                  );
+                }}
+              </ForLoops>
+            ) : (
+              <Box sx={{ textAlign: "center" }}>
+                <Typography
+                  sx={{
+                    textTransform: "capitalize",
+                    color: theme.palette.grey[600],
+                    letterSpacing: theme.spacing(0.0125),
+                  }}
+                >
+                  No matching nutrient found
+                </Typography>
+              </Box>
+            )}
+            <Box sx={{ mt: theme.spacing(-2.5), ml: theme.spacing(-1), display: "none" }}>
+              {renderFilterNutrients.length > 5 && (
+                <Box>
+                  {viewMore.main === renderFilterNutrients.length ? (
+                    <ViewMoreButton handleViewMore={handleMainViewMore} text="View less" />
+                  ) : (
+                    <ViewMoreButton handleViewMore={handleMainViewMore} />
+                  )}
+                </Box>
               )}
             </Box>
-          )}
+          </Box>
+          <Box
+            sx={{
+              width: "100%",
+              display: "flex",
+              justifyContent: "flex-end",
+              alignItems: "center",
+              my: theme.spacing(2),
+            }}
+          >
+            <Typography
+              sx={{ fontWeight: theme.typography.fontWeightRegular, cursor: "pointer" }}
+              onClick={onClearSelectedItem}
+            >
+              Clear selection
+            </Typography>
+          </Box>
         </Box>
-      </Box>
+      )}
     </Box>
   );
 };

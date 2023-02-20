@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import { SearchNutritionFilter } from "@forkfacts/components";
@@ -14,9 +14,14 @@ export default {
   },
 } as ComponentMeta<typeof SearchNutritionFilter>;
 
-const Template: ComponentStory<typeof SearchNutritionFilter> = (args) => (
-  <SearchNutritionFilter {...args} />
-);
+const Template: ComponentStory<typeof SearchNutritionFilter> = (args) => {
+  const [selectSearchNutrition, seSelectedSearchNutrition] = useState(
+    [] as SearchNutritionFilterItem[]
+  );
+  return (
+    <SearchNutritionFilter {...args} onSelectNutritionFilterItem={seSelectedSearchNutrition} />
+  );
+};
 
 const nutritionFilterItems: SearchNutritionFilterItem[] = [
   { name: "Carbohydrate", subItems: [], checked: false },
@@ -48,17 +53,8 @@ const nutritionFilterItems: SearchNutritionFilterItem[] = [
   { name: "Fiber", subItems: [], checked: false },
 ];
 
-export const Mobile = Template.bind({});
+export const Desktop = Template.bind({});
 
-Mobile.args = {
+Desktop.args = {
   nutritionFilterItems: nutritionFilterItems,
-  onSelectNutritionFilterItem: (items: SearchNutritionFilterItem[]) => {
-    console.log(items);
-  },
-};
-
-Mobile.parameters = {
-  viewport: {
-    defaultViewport: "iphone6",
-  },
 };

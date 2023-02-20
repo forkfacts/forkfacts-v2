@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import { FilterAge } from "@forkfacts/components";
@@ -13,8 +13,10 @@ export default {
   },
 } as ComponentMeta<typeof FilterAge>;
 
-const Template: ComponentStory<typeof FilterAge> = (args) => <FilterAge {...args} />;
-
+const Template: ComponentStory<typeof FilterAge> = (args) => {
+  const [selectAge, setSelectedAge] = useState<ageItem>({} as ageItem);
+  return <FilterAge {...args} onSelectAgeItem={setSelectedAge} />;
+};
 const ageItems: ageItem[] = [
   {
     start: 9,
@@ -47,9 +49,6 @@ export const Mobile = Template.bind({});
 
 Mobile.args = {
   ageItems: ageItems,
-  onSelectAgeItem: (item: ageItem) => {
-    console.log(item);
-  },
 };
 
 Mobile.parameters = {

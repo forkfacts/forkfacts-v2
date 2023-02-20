@@ -28,6 +28,9 @@ const DetailsPageScreen: React.FC<DetailsPageScreenProps> = ({
   onSelectFilterPageData,
   multipleSelectItems,
   getSelectedNutrients,
+  onSelectFilterItems,
+  onSelectMeasurementItem,
+  filters,
 }) => {
   const classes = useStyles();
   const theme = useTheme();
@@ -91,7 +94,8 @@ const DetailsPageScreen: React.FC<DetailsPageScreenProps> = ({
                 ageItems={ageItems}
                 nutritionFilterItems={nutritionFilterItems}
                 measurementFilterItems={measurementFilterItems}
-                onSelectFilterPageData={onSelectFilterPageData}
+                onSelectMeasurementItem={onSelectMeasurementItem}
+                onSelectFilterItems={onSelectFilterItems}
               />
             ) : selectedTabItem === "Recipes" ? (
               <Box>Recipes</Box>

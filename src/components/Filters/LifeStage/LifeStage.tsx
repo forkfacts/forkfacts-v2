@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Box, Button, Typography, useTheme } from "@mui/material";
 import { LifeStageProps } from "@forkfacts/models";
 import CloseIcon from "@mui/icons-material/Close";
@@ -10,7 +10,7 @@ const LifeStage: React.FC<LifeStageProps> = ({ lifeStageItems, onSelectLifeStage
   const theme = useTheme();
   const [selectedItem, setSelectedItem] = useState<string>("");
   const [open, setOpen] = useState(false);
-
+  const ref = useRef<HTMLDivElement>(null);
   const handleSelectedItem = (name: string, index: number) => {
     setSelectedItem(name);
   };
@@ -25,8 +25,21 @@ const LifeStage: React.FC<LifeStageProps> = ({ lifeStageItems, onSelectLifeStage
     onSelectLifeStageItem(selectedItem);
   }, [selectedItem]);
 
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (ref.current && !ref.current.contains(event.target as Node)) {
+        setOpen(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [ref]);
+
   return (
-    <Box sx={{ position: "relative" }}>
+    <Box sx={{ position: "relative" }} ref={ref}>
       <Button
         variant={selectedItem ? "text" : "outlined"}
         onClick={() => setOpen(!open)}

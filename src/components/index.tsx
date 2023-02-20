@@ -30,6 +30,5 @@ export { default as LifeStageItem } from "./Filters/LifeStageItem/LifeStageItem"
 export { default as FilterAge } from "./Filters/FilterAge/FilterAge";
 export { default as SearchNutritionFilter } from "./Filters/SearchNutritionFilter/SearchNutritionFilter";
 export { default as MeasurementFilter } from "./Filters/MeasurementFilter/MeasurementFilter";
-export { default as FilterButton } from "./Buttons/FilterButton/FilterButton";
 export { default as MultipleSelects } from "./MultipleSelects/MultipleSelects";
 export { default as NutritionFilters } from "./Filters/NutritionFilters/NutritionFilters";

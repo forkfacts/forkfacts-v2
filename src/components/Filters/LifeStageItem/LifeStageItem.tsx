@@ -19,7 +19,6 @@ const LifeStageItem: React.FC<LifeStageItemProps> = ({
   const theme = useTheme();
   return (
     <Box
-      boxShadow={1}
       onClick={() => handleSelectedItem(item.name, index)}
       sx={{
         width: "50%",
@@ -32,6 +31,7 @@ const LifeStageItem: React.FC<LifeStageItemProps> = ({
         cursor: "pointer",
         backgroundColor: selectedItem === item.name ? blue[100] : "none",
         color: selectedItem === item.name ? theme.palette.primary.dark : theme.palette.common.black,
+        border: "1px solid #F2EFFF",
       }}
     >
       <Box>

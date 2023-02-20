@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Box, useTheme } from "@mui/material";
 import "react-multi-carousel/lib/styles.css";
-import { FilterAge, SearchNutritionFilter, LifeStage } from "@forkfacts/components";
+import { FilterAge, SearchNutritionFilter, LifeStage, AllFilters } from "@forkfacts/components";
 import { NutritionFilterProps } from "@forkfacts/models";
-import "./carousel.css";
 
 const NutritionFilters: React.FC<NutritionFilterProps> = ({
   lifeStageItems,

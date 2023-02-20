@@ -2,84 +2,62 @@ import React, { useState } from "react";
 import { Box, Button, Typography, useTheme } from "@mui/material";
 import classname from "classnames";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import {
-  LifeStage,
-  FilterAge,
-  SearchNutritionFilter,
-  MeasurementFilter,
-} from "@forkfacts/components";
-import { AllFiltersProps, ageItem, SearchNutritionFilterItem } from "@forkfacts/models";
+import FilterListIcon from "@mui/icons-material/FilterList";
 import { useStyles } from "./allFiltersStyles";
 
-const AllFilters: React.FC<AllFiltersProps> = ({
-  selectedFilters,
-  lifeStageItems,
-  ageItems,
-  nutritionFilterItems,
-  measurementFilterItems,
-  onSelectFilterPageData,
-}) => {
+const AllFilters = ({ selectedAge, selectedLifeStage, selectedNutritionFilterItems }: any) => {
   const theme = useTheme();
   const classes = useStyles();
-  const [selectedAge, setSelectedAge] = useState<ageItem>({} as ageItem);
-  const [selectedLifeStage, setSelectedLifeStage] = useState("");
-  const [selectedMeasurementItem, setSelectedMeasurement] = useState("");
-  const [selectedNutritionFilterItems, setSelectedNutritionFilterItems] = useState<
-    SearchNutritionFilterItem[]
-  >([]);
-
-  const onSelectAgeItem = (item: ageItem) => {
-    setSelectedAge(item);
-  };
-  const onSelectLifeStageItem = (item: string) => {
-    setSelectedLifeStage(item);
-  };
-  const onSelectMeasurementItem = (item: string) => {
-    setSelectedMeasurement(item);
-  };
-
-  const onSelectNutritionFilterItem = (items: SearchNutritionFilterItem[]) => {
-    setSelectedNutritionFilterItems(items);
-  };
 
   const getAllFilterPageData = () => {
     const item = {
       selectedAge: selectedAge,
       selectedLifeStage: selectedLifeStage,
-      selectedMeasurementItem: selectedMeasurementItem,
       selectedNutritionFilterItems: selectedNutritionFilterItems,
     };
-    onSelectFilterPageData(item);
   };
 
-  const onClearFilter = () => {};
+  let filterStatus = 0;
+  if (
+    Object.keys(selectedAge).length > 0 ||
+    selectedLifeStage ||
+    selectedNutritionFilterItems.length > 0
+  ) {
+    if (
+      (Object.keys(selectedAge).length === 0 && !selectedLifeStage) ||
+      (Object.keys(selectedAge).length === 0 && selectedNutritionFilterItems.length === 0) ||
+      (!selectedLifeStage && selectedNutritionFilterItems.length === 0)
+    ) {
+      filterStatus = 1;
+    } else if (
+      Object.keys(selectedAge).length > 0 &&
+      selectedLifeStage &&
+      selectedNutritionFilterItems.length > 0
+    ) {
+      filterStatus = 3;
+    } else {
+      filterStatus = 2;
+    }
+  }
 
   return (
-    <Box>
-      {/* <Box sx={{ display: "flex", flexDirection: "column", position: "relative" }}>
-        <Box sx={{ padding: { xs: theme.spacing(2.5) } }}>
-          <LifeStage
-            lifeStageItems={lifeStageItems}
-            onSelectLifeStageItem={onSelectLifeStageItem}
-          />
-        </Box>
-        <Box>
-          <FilterAge ageItems={ageItems} onSelectAgeItem={onSelectAgeItem} />
-        </Box>
-        <Box>
-          <MeasurementFilter
-            measurementFilterItems={measurementFilterItems}
-            onSelectMeasurementItem={onSelectMeasurementItem}
-          />
-        </Box>
-        <Box className={classes.boxWrapper}>
-          <SearchNutritionFilter
-            onSelectNutritionFilterItem={onSelectNutritionFilterItem}
-            nutritionFilterItems={nutritionFilterItems}
-          />
-        </Box>
-      </Box> */}
-    </Box>
+    <Button
+      color="primary"
+      sx={{
+        fontSize: theme.typography.caption.fontSize,
+        fontWeight: theme.typography.fontWeightBold,
+        lineHeight: theme.spacing(2),
+        letterSpacing: theme.spacing(0.05),
+        textTransform: "capitalize",
+        whiteSpace: "nowrap",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+      startIcon={<FilterListIcon />}
+    >
+      All filters {filterStatus !== 0 ? filterStatus : null}
+    </Button>
   );
 };
 

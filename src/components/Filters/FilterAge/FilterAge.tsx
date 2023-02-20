@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Checkbox from "@mui/material/Checkbox";
 import { Box, Button, Typography, useTheme } from "@mui/material";
 import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
@@ -18,7 +18,6 @@ const FilterAge: React.FC<AgeItemsProps> = ({ ageItems, onSelectAgeItem }) => {
   const handleSelectAge = (item: ageItem, index: number) => {
     const age = `${item.start + "-" + item.end} ${item.unit}`;
     setSelectedAgeIndex(index);
-    onSelectAgeItem(item);
     setSelectedItem(age);
   };
 
@@ -28,6 +27,10 @@ const FilterAge: React.FC<AgeItemsProps> = ({ ageItems, onSelectAgeItem }) => {
     setSelectedItem("");
     setOpen(false);
   };
+
+  useEffect(() => {
+    onSelectAgeItem(selectedItem);
+  }, [selectedItem]);
 
   return (
     <Box sx={{ position: "relative" }}>

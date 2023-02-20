@@ -6,6 +6,7 @@ import Person2OutlinedIcon from "@mui/icons-material/Person2Outlined";
 import PregnantWomanOutlinedIcon from "@mui/icons-material/PregnantWomanOutlined";
 import { NutritionDetailsTab } from "@forkfacts/components";
 import { ageItem, lifeStageItem, SearchNutritionFilterItem } from "@forkfacts/models";
+import { Box } from "@mui/material";
 
 export default {
   title: "Components/DetailsPageComponents/NutritionDetailsTab",
@@ -105,19 +106,25 @@ const nutritionFilterItems: SearchNutritionFilterItem[] = [
   { name: "Fiber", subItems: [], checked: false },
 ];
 
+const units = ["Plates", "Cups", "Tea spoon"];
+
 const Template: ComponentStory<typeof NutritionDetailsTab> = (args) => {
   const [selectLifeStage, setSelectedLifeStage] = useState("");
   const [selectAge, setSelectedAge] = useState<ageItem>({} as ageItem);
   const [selectSearchNutrition, seSelectedSearchNutrition] = useState(
     [] as SearchNutritionFilterItem[]
   );
+  const [unit, setUnit] = React.useState("Cups");
   return (
-    <NutritionDetailsTab
-      {...args}
-      onSelectLifeStageItem={setSelectedLifeStage}
-      onSelectAgeItem={setSelectedAge}
-      onSelectNutritionFilterItem={seSelectedSearchNutrition}
-    />
+    <Box>
+      <NutritionDetailsTab
+        {...args}
+        onSelectLifeStageItem={setSelectedLifeStage}
+        onSelectAgeItem={setSelectedAge}
+        onSelectNutritionFilterItem={seSelectedSearchNutrition}
+        onSelectUnit={setUnit}
+      />
+    </Box>
   );
 };
 
@@ -129,4 +136,5 @@ Desktop.args = {
   lifeStageItems,
   ageItems,
   nutritionFilterItems,
+  units,
 };

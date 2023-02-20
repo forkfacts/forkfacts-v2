@@ -17,7 +17,7 @@ const MeasurementFilter: React.FC<MeasurementFilterProps> = ({
   };
 
   return (
-    <Box>
+    <>
       <Box
         sx={{
           display: "flex",
@@ -55,7 +55,7 @@ const MeasurementFilter: React.FC<MeasurementFilterProps> = ({
           }}
         </ForLoops>
       </Box>
-    </Box>
+    </>
   );
 };
 

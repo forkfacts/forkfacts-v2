@@ -181,6 +181,7 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
 
   const onClearSelectedItem = () => {
     onSelectNutritionFilterItem([]);
+    setFirstSelectedItem({ name: "", length: 0 });
   };
 
   return (
@@ -390,6 +391,7 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
             }}
           >
             <Typography
+              color="primary"
               sx={{ fontWeight: theme.typography.fontWeightRegular, cursor: "pointer" }}
               onClick={onClearSelectedItem}
             >

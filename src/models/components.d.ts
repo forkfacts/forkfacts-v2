@@ -230,22 +230,24 @@ export interface NutritionDetailsTabProps {
   nutritionSummaryItems: Array<summaryItem>;
   selectedFilters: string[];
   lifeStageItems: Array<lifeStageItem>;
-  onSelectLifeStageItem: Dispatch<SetStateAction<string>>;
+  onSelectLifeStageItem: Dispatch<SetStateAction<any | string>>;
   ageItems: Array<ageItem>;
   nutritionFilterItems: Array<SearchNutritionFilterItem>;
   measurementFilterItems: string[];
   onSelectMeasurementItem: (item: string) => void;
-  onSelectNutritionFilterItem: Dispatch<SetStateAction<SearchNutritionFilterItem[]>>;
+  onSelectNutritionFilterItem: Dispatch<SetStateAction<SearchNutritionFilterItem[] | any>>;
   onSelectAgeItem: dispatch<SetStateAction<ageItem>>;
+  onSelectUnit: Dispatch<SetStateAction<string>>;
+  units: string[];
 }
 
 export interface NutritionFilterProps {
   lifeStageItems: Array<lifeStageItem>;
-  onSelectLifeStageItem: Dispatch<SetStateAction<string>>;
+  onSelectLifeStageItem: Dispatch<SetStateAction<any | string>>;
   ageItems: Array<ageItem>;
   onSelectAgeItem: dispatch<SetStateAction<ageItem>>;
   nutritionFilterItems: Array<SearchNutritionFilterItem>;
-  onSelectNutritionFilterItem: Dispatch<SetStateAction<SearchNutritionFilterItem[]>>;
+  onSelectNutritionFilterItem: Dispatch<SetStateAction<SearchNutritionFilterItem[] | any>>;
 }
 
 export interface SelectNutrientsProps {
@@ -259,13 +261,6 @@ export interface NutrientHeaderProps {
   onSelectServingSizeAmount: (item: string) => void;
 }
 
-export interface FilterButtonProps {
-  name: string;
-  onSelectItem: (item: string, index: number) => void;
-  index: number;
-  selectedItemArrays: string[];
-}
-
 export interface NutrientServingSizeProps {
   servingSizeAmounts: Array<string>;
   onSelectServingSizeAmount: (item: string) => void;
@@ -273,7 +268,7 @@ export interface NutrientServingSizeProps {
 
 export interface LifeStageProps {
   lifeStageItems: Array<lifeStageItem>;
-  onSelectLifeStageItem: Dispatch<SetStateAction<string>>;
+  onSelectLifeStageItem: Dispatch<SetStateAction<string | any>>;
 }
 
 export interface AgeItemsProps {
@@ -283,7 +278,7 @@ export interface AgeItemsProps {
 
 export interface SearchNutritionFilterProps {
   nutritionFilterItems: Array<SearchNutritionFilterItem>;
-  onSelectNutritionFilterItem: Dispatch<SetStateAction<SearchNutritionFilterItem[]>>;
+  onSelectNutritionFilterItem: Dispatch<SetStateAction<SearchNutritionFilterItem[] | any>>;
 }
 
 export interface SearchNutritionFilterItem {
@@ -291,14 +286,7 @@ export interface SearchNutritionFilterItem {
   subItems: { name: string; checked: boolean }[];
   checked: boolean;
 }
-export interface AllFiltersProps {
-  selectedFilters: string[];
-  lifeStageItems: Array<lifeStageItem>;
-  ageItems: Array<ageItem>;
-  nutritionFilterItems: Array<SearchNutritionFilterItem>;
-  measurementFilterItems: string[];
-  onSelectFilterPageData: Dispatch<SetStateAction<any>>;
-}
+export interface AllFiltersProps {}
 
 export interface MeasurementFilterProps {
   measurementFilterItems: string[];

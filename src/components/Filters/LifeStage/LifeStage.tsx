@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Button, Typography, useTheme } from "@mui/material";
 import { LifeStageProps } from "@forkfacts/models";
 import CloseIcon from "@mui/icons-material/Close";
@@ -13,7 +13,6 @@ const LifeStage: React.FC<LifeStageProps> = ({ lifeStageItems, onSelectLifeStage
 
   const handleSelectedItem = (name: string, index: number) => {
     setSelectedItem(name);
-    onSelectLifeStageItem(selectedItem);
   };
 
   const onClearSelectedItem = () => {
@@ -21,6 +20,10 @@ const LifeStage: React.FC<LifeStageProps> = ({ lifeStageItems, onSelectLifeStage
     onSelectLifeStageItem("");
     setOpen(false);
   };
+
+  useEffect(() => {
+    onSelectLifeStageItem(selectedItem);
+  }, [selectedItem]);
 
   return (
     <Box sx={{ position: "relative" }}>
@@ -54,7 +57,6 @@ const LifeStage: React.FC<LifeStageProps> = ({ lifeStageItems, onSelectLifeStage
             position: "absolute",
             display: "block",
             width: 300,
-            mt: theme.spacing(1.1),
             py: theme.spacing(2),
             px: theme.spacing(1),
             zIndex: theme.zIndex.modal,

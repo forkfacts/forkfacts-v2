@@ -49,6 +49,7 @@ export const customTheme = createTheme({
       textTransform: "none",
     },
     fontWeightMedium: 500,
+    fontFamily: "Poppins",
     labelSmall: {
       fontSize: "11px",
       lineHeight: "16px",

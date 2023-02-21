@@ -7,7 +7,7 @@ import PregnantWomanOutlinedIcon from "@mui/icons-material/PregnantWomanOutlined
 import { NutritionDetailsTab } from "@forkfacts/components";
 import {
   ageItem,
-  DetailsNutritionTableItem,
+  NutritionTableItem,
   lifeStageItem,
   SearchNutritionFilterItem,
 } from "@forkfacts/models";
@@ -113,7 +113,7 @@ const nutritionFilterItems: SearchNutritionFilterItem[] = [
 
 const units = ["Plates", "Cups", "Tea spoon"];
 
-const nutritionTableItems: DetailsNutritionTableItem[] = [
+const nutritionTableItems: NutritionTableItem[] = [
   {
     nutrient: "Fats",
     dailyValue: 12.9,

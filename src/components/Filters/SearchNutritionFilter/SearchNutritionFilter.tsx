@@ -9,13 +9,14 @@ import {
   InputAdornment,
   TextField,
   Typography,
+  useMediaQuery,
   useTheme,
 } from "@mui/material";
 import { ViewMoreButton } from "@forkfacts/components";
 import CloseIcon from "@mui/icons-material/Close";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import React, { useEffect, useRef, useState } from "react";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
+import React, { useEffect, useState } from "react";
 import { ForLoops } from "@forkfacts/helpers";
 import { SearchNutritionFilterProps, SearchNutritionFilterItem } from "@forkfacts/models";
 import { withDropdown, withoutDropdown } from "./searchNutrientStyles";
@@ -24,9 +25,10 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
   nutritionFilterItems,
   onSelectNutritionFilterItem,
   isDropdown,
+  margin = 0,
 }) => {
   const theme = useTheme();
-  const ref = useRef<HTMLDivElement>(null);
+  const mobile = useMediaQuery(theme.breakpoints.down("md"));
   const newNutrients: SearchNutritionFilterItem[] = [...nutritionFilterItems].map((item) => {
     return {
       name: item.name,
@@ -200,21 +202,8 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
     setFilterNutrient(clearNutrients);
   };
 
-  useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (ref.current && !ref.current.contains(event.target as Node)) {
-        setOpen(false);
-      }
-    }
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [ref]);
-
   return (
-    <Box sx={{ position: "relative" }} ref={ref}>
+    <Box sx={{ position: "relative" }}>
       {isDropdown && (
         <Button
           variant={firstSelectedItem.name ? "text" : "outlined"}
@@ -238,18 +227,18 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
             alignItems: "center",
           }}
         >
-          <Typography>
+          <Typography sx={{ fontSize: theme.typography.labelMedium.fontSize }}>
             {firstSelectedItem.name
               ? `${firstSelectedItem.name} ${firstSelectedItem.length <= 1 ? "" : "+1"} `
-              : "Life stage"}
+              : "Nutrients"}
           </Typography>
-          {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+          {open ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}
         </Button>
       )}
       {(open || !isDropdown) && (
         <Box
           component="div"
-          sx={isDropdown ? withoutDropdown(theme) : withDropdown(theme)}
+          sx={isDropdown ? withDropdown(theme, { mobile, margin }) : withoutDropdown(theme)}
           boxShadow={isDropdown ? 1 : 0}
         >
           <Box

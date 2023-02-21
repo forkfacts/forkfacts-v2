@@ -11,7 +11,7 @@ import {
   summaryItem,
   SearchNutritionFilterItem,
   ageItem,
-  DetailsNutritionTableItem,
+  NutritionTableItem,
 } from "@forkfacts/models";
 import { Dispatch, SetStateAction } from "react";
 
@@ -57,6 +57,6 @@ export interface DetailsPageScreenProps {
   onSelectAgeItem: dispatch<SetStateAction<ageItem>>;
   onSelectUnit: Dispatch<SetStateAction<string>>;
   units: string[];
-  nutritionTableItems: DetailsNutritionTableItem[];
+  nutritionTableItems: NutritionTableItem[];
   onSelectNutritionFilterItem: Dispatch<SetStateAction<SearchNutritionFilterItem[] | any>>;
 }

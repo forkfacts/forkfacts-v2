@@ -1,12 +1,15 @@
 import { Theme } from "@mui/material";
 
-export function withDropdown<T extends Theme>(theme: T) {
+export function withoutDropdown<T extends Theme>(theme: T) {
   return {
     position: "relative",
   };
 }
 
-export function withoutDropdown<T extends Theme>(theme: T) {
+export function withDropdown<
+  T extends Theme,
+  W extends { mobile: boolean; margin: string | number }
+>(theme: T, prop: W) {
   return {
     position: "absolute",
     display: "block",
@@ -16,5 +19,6 @@ export function withoutDropdown<T extends Theme>(theme: T) {
     zIndex: theme.zIndex.modal,
     backgroundColor: theme.palette.common.white,
     borderRadius: theme.spacing(1),
+    ml: prop.mobile ? theme.spacing(-25.5) : prop.margin,
   };
 }

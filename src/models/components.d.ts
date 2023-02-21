@@ -53,6 +53,23 @@ export interface compareTableItem {
   Calcium: number;
   Iron: number;
 }
+
+export interface NutritionTableItem {
+  nutrient: string;
+  dailyValue: number;
+  amount: string;
+  rdi: {
+    value: number;
+    weight: string;
+  };
+  nutrientContents: Array<{
+    nutrient: string;
+    dailyValue: number;
+    amount: string;
+    rdi: { value: number; weight: string };
+  }>;
+}
+
 export interface SearchCategoryItemType {
   label: string;
   Icon: SvgIconComponent;
@@ -237,7 +254,7 @@ export interface NutritionDetailsTabProps {
   onSelectAgeItem: dispatch<SetStateAction<ageItem>>;
   onSelectUnit: Dispatch<SetStateAction<string>>;
   units: string[];
-  nutritionTableItems: DetailsNutritionTableItem[];
+  nutritionTableItems: NutritionTableItem[];
 }
 
 export interface NutritionFilterProps {
@@ -275,12 +292,14 @@ export interface AgeItemsProps {
   ageItems: Array<ageItem>;
   onSelectAgeItem: dispatch<SetStateAction<ageItem>>;
   isDropdown: boolean;
+  margin?: string | number;
 }
 
 export interface SearchNutritionFilterProps {
   nutritionFilterItems: Array<SearchNutritionFilterItem>;
   onSelectNutritionFilterItem: Dispatch<SetStateAction<SearchNutritionFilterItem[] | any>>;
   isDropdown: boolean;
+  margin?: string | number;
 }
 
 export interface SearchNutritionFilterItem {
@@ -304,26 +323,6 @@ export interface MultipleSelectsProps {
   margin: any;
 }
 
-export interface filterButtonItem {
-  name: "All filters" | "Life stage" | "Age" | "Nutrients" | "Measure Units";
-}
-
-export interface DetailsNutritionTableItem {
-  nutrient: string;
-  dailyValue: number;
-  amount: string;
-  rdi: {
-    value: number;
-    weight: string;
-  };
-  nutrientContents: Array<{
-    nutrient: string;
-    dailyValue: number;
-    amount: string;
-    rdi: { value: number; weight: string };
-  }>;
-}
-
-export interface DetailsNutritionTableProps {
-  nutritionTableItems: DetailsNutritionTableItem[];
+export interface NutritionDesktopTableProps {
+  nutritionTableItems: NutritionTableItem[];
 }

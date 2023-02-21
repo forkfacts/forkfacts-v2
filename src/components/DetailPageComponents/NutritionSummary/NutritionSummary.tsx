@@ -6,20 +6,30 @@ import { NutritionSummaryProps } from "@forkfacts/models";
 
 const NutritionSummary: React.FC<NutritionSummaryProps> = ({ nutritionSummaryItems }) => {
   return (
-    <Box sx={{ width: "100%", mt: ({ spacing }) => spacing(1) }}>
-      <Grid container justifyContent="space-between">
+    <Box
+      sx={{
+        width: "100%",
+        overflowX: "auto",
+        scrollbarWidth: "none",
+        "&::-webkit-scrollbar": {
+          width: "0px",
+          background: "transparent",
+        },
+      }}
+    >
+      <Box sx={{ display: "flex", justifyContent: "space-between" }}>
         <ForLoops each={nutritionSummaryItems}>
           {(item, idx) => (
-            <Grid key={idx} item>
+            <Box key={idx}>
               <NutrientSummaryItem
                 percentage={item.percentage}
                 weight={item.weight}
                 name={item.name}
               />
-            </Grid>
+            </Box>
           )}
         </ForLoops>
-      </Grid>
+      </Box>
     </Box>
   );
 };

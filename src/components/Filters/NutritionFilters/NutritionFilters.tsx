@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Box, useTheme } from "@mui/material";
+import { Box, useMediaQuery, useTheme } from "@mui/material";
 import "react-multi-carousel/lib/styles.css";
 import { FilterAge, SearchNutritionFilter, LifeStage, AllFilters } from "@forkfacts/components";
 import { ageItem, NutritionFilterProps, SearchNutritionFilterItem } from "@forkfacts/models";
@@ -13,6 +13,7 @@ const NutritionFilters: React.FC<NutritionFilterProps> = ({
   onSelectNutritionFilterItem,
 }) => {
   const theme = useTheme();
+  const mobile = useMediaQuery(theme.breakpoints.down("md"));
   const [selectedAge, setSelectedAge] = useState<ageItem>({} as ageItem);
   const [selectedLifeStage, setLifeStage] = useState("");
   const [selectedNutritionFilterItems, setSelectedNutritionFilterItems] = useState<
@@ -34,7 +35,15 @@ const NutritionFilters: React.FC<NutritionFilterProps> = ({
   };
 
   return (
-    <Box sx={{ display: "flex", alignItems: "center", columnGap: "10px" }}>
+    <Box
+      sx={{
+        display: "flex",
+        alignItems: "center",
+        width: "100%",
+        columnGap: mobile ? 0 : theme.spacing(2),
+        justifyContent: mobile ? "space-between" : "normal",
+      }}
+    >
       <AllFilters
         selectedAge={selectedAge}
         selectedLifeStage={selectedLifeStage}
@@ -51,11 +60,17 @@ const NutritionFilters: React.FC<NutritionFilterProps> = ({
         onSelectLifeStageItem={handleLifeStage}
         isDropdown
       />
-      <FilterAge ageItems={ageItems} onSelectAgeItem={handleSelectedAge} isDropdown />
+      <FilterAge
+        ageItems={ageItems}
+        onSelectAgeItem={handleSelectedAge}
+        isDropdown
+        margin={theme.spacing(-15.5)}
+      />
       <SearchNutritionFilter
         onSelectNutritionFilterItem={handleSelectNutritionFilterItem}
         nutritionFilterItems={nutritionFilterItems}
         isDropdown
+        margin={theme.spacing(-23.5)}
       />
     </Box>
   );

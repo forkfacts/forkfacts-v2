@@ -18,9 +18,8 @@ import { DetailsPageScreen } from "@forkfacts/screens";
 import {
   ageItem,
   compareTableItem,
-  DetailsNutritionTableItem,
+  NutritionTableItem,
   DetailsPageTitlesItem,
-  filterButtonItem,
   filterItem,
   lifeStageItem,
   SearchNutritionFilterItem,
@@ -271,7 +270,7 @@ const ageItems: ageItem[] = [
     unit: "years",
   },
 ];
-const nutritionTableItems: DetailsNutritionTableItem[] = [
+const nutritionTableItems: NutritionTableItem[] = [
   {
     nutrient: "Fats",
     dailyValue: 12.9,

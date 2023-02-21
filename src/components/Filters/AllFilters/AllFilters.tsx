@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Button, Typography, useTheme } from "@mui/material";
+import { Box, Button, Typography, useMediaQuery, useTheme } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { FilterAge, LifeStage, SearchNutritionFilter } from "@forkfacts/components";
 import FilterListIcon from "@mui/icons-material/FilterList";
@@ -16,8 +16,8 @@ const AllFilters = ({
   handleSelectNutritionFilterItem,
 }: any) => {
   const theme = useTheme();
+  const mobile = useMediaQuery(theme.breakpoints.down("md"));
   const [open, setOpen] = useState(false);
-
   let filterStatus = 0;
   if (
     Object.keys(selectedAge).length > 0 ||
@@ -42,7 +42,7 @@ const AllFilters = ({
   }
 
   return (
-    <Box>
+    <Box sx={{ display: mobile ? "none" : "block" }}>
       <Button
         color="primary"
         sx={{

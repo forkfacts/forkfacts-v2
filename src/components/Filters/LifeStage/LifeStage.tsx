@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Box, Button, Typography, useTheme } from "@mui/material";
+import { Box, Button, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { LifeStageProps } from "@forkfacts/models";
 import CloseIcon from "@mui/icons-material/Close";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import { LifeStageItem } from "@forkfacts/components";
 import { withDropdown, withoutDropdown } from "./lifeStageStyles";
 
@@ -13,6 +13,7 @@ const LifeStage: React.FC<LifeStageProps> = ({
   isDropdown,
 }) => {
   const theme = useTheme();
+  const mobile = useMediaQuery(theme.breakpoints.down("md"));
   const [selectedItem, setSelectedItem] = useState<string>("");
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -66,8 +67,10 @@ const LifeStage: React.FC<LifeStageProps> = ({
             alignItems: "center",
           }}
         >
-          <Typography> {selectedItem ? selectedItem : "Life stage"}</Typography>
-          {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+          <Typography sx={{ fontSize: theme.typography.labelMedium.fontSize }}>
+            {selectedItem ? selectedItem : "Life stage"}
+          </Typography>
+          {open ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}
         </Button>
       )}
       {(open || !isDropdown) && (

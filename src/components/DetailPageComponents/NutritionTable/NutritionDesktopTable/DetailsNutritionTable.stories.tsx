@@ -1,15 +1,15 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { DetailsNutritionTableItem } from "@forkfacts/models";
-import { DetailsNutritionTable } from "@forkfacts/components";
+import { NutritionTableItem } from "@forkfacts/models";
+import { NutritionDesktopTable } from "@forkfacts/components";
 import { Box } from "@mui/material";
 
 export default {
-  title: "Components/DetailsPageComponents/DetailsNutritionTable",
-  component: DetailsNutritionTable,
-} as ComponentMeta<typeof DetailsNutritionTable>;
+  title: "Components/DetailsPageComponents/NutritionTable",
+  component: NutritionDesktopTable,
+} as ComponentMeta<typeof NutritionDesktopTable>;
 
-const nutritionTableItems: DetailsNutritionTableItem[] = [
+const nutritionTableItems: NutritionTableItem[] = [
   {
     nutrient: "Fats",
     dailyValue: 12.9,
@@ -243,10 +243,10 @@ const nutritionTableItems: DetailsNutritionTableItem[] = [
   },
 ];
 
-const Template: ComponentStory<typeof DetailsNutritionTable> = (args) => {
+const Template: ComponentStory<typeof NutritionDesktopTable> = (args) => {
   return (
     <Box sx={{ width: { sm: "100%", md: "70%" }, mx: "auto" }}>
-      <DetailsNutritionTable {...args} />
+      <NutritionDesktopTable {...args} />
     </Box>
   );
 };

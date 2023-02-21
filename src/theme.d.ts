@@ -72,6 +72,10 @@ declare module "@mui/material/styles/createTypography" {
       fontSize: string;
       lineHeight: string;
     };
+    titleLarge: {
+      fontSize: string;
+      lineHeight: string;
+    };
   }
 
   interface TypographyOptions {
@@ -92,6 +96,10 @@ declare module "@mui/material/styles/createTypography" {
       lineHeight: string;
     };
     headline4: {
+      fontSize: string;
+      lineHeight: string;
+    };
+    titleLarge: {
       fontSize: string;
       lineHeight: string;
     };

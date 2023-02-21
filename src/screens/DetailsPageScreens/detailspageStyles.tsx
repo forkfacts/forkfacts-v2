@@ -12,6 +12,7 @@ export const useStyles = makeStyles(
         flexDirection: "column",
         justifyContent: "space-between",
         alignItems: "center",
+        overflow: "hidden",
       },
       [breakpoints.down("md")]: {
         maxWidth: "100%",
@@ -19,6 +20,7 @@ export const useStyles = makeStyles(
         flexDirection: "column",
         justifyContent: "space-between",
         alignItems: "center",
+        overflow: "hidden",
       },
     },
   })

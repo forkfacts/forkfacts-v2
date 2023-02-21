@@ -65,6 +65,10 @@ export const customTheme = createTheme({
       fontSize: "16px",
       lineHeight: "24px",
     },
+    titleLarge: {
+      fontSize: "22px",
+      lineHeight: "28px",
+    },
     titleSmall: {
       fontSize: "14px",
       lineHeight: "20px",

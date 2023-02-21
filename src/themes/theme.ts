@@ -46,13 +46,13 @@ export const customTheme = createTheme({
     },
   },
   typography: {
-    fontFamily: "Poppins",
     button: {
       textTransform: "none",
     },
     fontWeightMedium: 600,
     fontWeightRegular: 500,
     fontWeightLight: 400,
+    fontFamily: "Poppins",
     labelSmall: {
       fontSize: "11px",
       lineHeight: "16px",

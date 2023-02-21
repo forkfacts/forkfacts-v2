@@ -3,6 +3,8 @@ import { ThemeProvider, Box, CssBaseline, useTheme } from "@mui/material";
 import { customTheme } from "../../themes/theme";
 import { Header, SideBar } from "@forkfacts/components";
 import { LayoutProps } from "@forkfacts/models";
+import "@fontsource/open-sans";
+import "@fontsource/open-sans/500.css";
 
 const Layout: FC<LayoutProps> = ({ children, sidebarItems }) => {
   const theme = useTheme();

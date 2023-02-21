@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Typography, useTheme } from "@mui/material";
+import { Button, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { NavBarItemProps } from "@forkfacts/models";
 import { useStyles } from "./navbarStyles";
 
@@ -12,6 +12,7 @@ export default function NavBarItem({
 }: NavBarItemProps) {
   const classes = useStyles();
   const theme = useTheme();
+  const mobile = useMediaQuery(theme.breakpoints.down("md"));
 
   const handleClick = () => {
     setSelectedIndex(index);
@@ -41,6 +42,7 @@ export default function NavBarItem({
         borderTopLeftRadius: index === 0 ? theme.spacing(1) : 0,
         borderBottomLeftRadius: index === 0 ? theme.spacing(1) : 0,
         fontWeight: theme.typography.fontWeightBold,
+        fontSize: mobile ? theme.typography.titleSmall : theme.typography.titleMedium,
       }}
       onClick={handleClick}
       size="small"
@@ -58,9 +60,8 @@ export default function NavBarItem({
       <Typography
         sx={{
           textTransform: "capitalize",
-          fontSize: theme.typography.labelSmall,
           color: theme.palette.customGray.dark,
-          fontWeight: theme.typography.fontWeightBold,
+          fontSize: mobile ? theme.typography.titleSmall : theme.typography.titleMedium,
         }}
       >
         {item.label}

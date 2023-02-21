@@ -40,7 +40,7 @@ const PopularFrequentSearchCategory = ({
           py: theme.spacing(2),
           ml: mobile ? theme.spacing(1.15) : theme.spacing(2.15),
         }}
-        variant={mobile ? "body1" : "body1"}
+        variant="subtitle1"
       >
         {item.searchName}
       </Typography>
@@ -57,18 +57,19 @@ const PopularFrequentSearchCategory = ({
           {(extraItem, extraIndex) => (
             <Box key={extraIndex} sx={{ display: "flex", flexDirection: "column" }}>
               <Typography
-                variant="caption"
                 sx={{
                   color: theme.palette.customGray.main,
                   fontWeight: theme.typography.fontWeightBold,
+                  fontSize: theme.typography.labelSmall,
                 }}
               >
                 {extraItem.weight}
               </Typography>
               <Typography
-                variant="caption"
                 sx={{
-                  color: theme.palette.customGray.main,
+                  color: theme.palette.customGray.dark,
+                  fontSize: theme.typography.labelMedium,
+                  mt: theme.spacing(0.4),
                 }}
               >
                 {extraItem.name}

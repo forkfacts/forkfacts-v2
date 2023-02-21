@@ -15,16 +15,16 @@ const PopularFrequentSearchCategories = ({
   const desktop = useMediaQuery(theme.breakpoints.up("md"));
   return (
     <Box>
-      <Box sx={{ mb: desktop ? theme.spacing(5) : theme.spacing(2) }}>
+      <Box sx={{ mb: desktop ? theme.spacing(3) : theme.spacing(2) }}>
         <Typography
-          variant="h6"
           sx={{
             color: theme.palette.common.black,
             fontWeight: theme.typography.fontWeightMedium,
             lineHeight: theme.spacing(4),
+            fontSize: theme.typography.headline4,
           }}
         >
-          Popular Foods
+          Popular foods
         </Typography>
       </Box>
       <Box

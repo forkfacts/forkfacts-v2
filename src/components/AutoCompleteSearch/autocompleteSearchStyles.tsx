@@ -33,51 +33,40 @@ export const useStyles = makeStyles(({ breakpoints, spacing, palette, zIndex }: 
   },
 }));
 
-export function mobileInputStyles<T, U, V extends { main: string }, W extends { light: string }>(
-  spacing: (type: number) => T,
-  isOpen: U,
-  primary: V,
-  customGray: W
-) {
+export function mobileInputStyles<T extends Theme, W>(theme: T, isOpen: W) {
   return {
     "& fieldset": {
-      borderRadius: spacing(1),
+      borderRadius: theme.spacing(1),
       width: "100%",
       boxShadow: "0px 1px 4px rgba(0, 0, 0, 0.25)",
-      border: isOpen ? `2px solid ${primary.main}` : `1.5px solid ${customGray.light}`,
+      border: isOpen
+        ? `2px solid ${theme.palette.primary.main}`
+        : `1.5px solid ${theme.palette.customGray.light}`,
     },
   };
 }
 
-export function inputStyles<T, W extends { main: string }, X>(
-  isOpen: T,
-  primary: W,
-  spacing: (type: number) => X
-) {
+export function inputStyles<T extends Theme, W>(theme: T, isOpen: W) {
   return {
     "& fieldset": {
-      border: isOpen && `2px solid ${primary.main}`,
-      borderRadius: spacing(1),
+      border: isOpen && `2px solid ${theme.palette.primary.main}`,
+      borderRadius: theme.spacing(1),
     },
   };
 }
 
-export function desktopInputStyles<
-  T,
-  U,
-  V,
-  W extends { main: string },
-  X extends { light: string }
->(spacing: (type: number) => T, shadows: U[], isOpen: V, primary: W, customGray: X) {
+export function desktopInputStyles<T extends Theme, W>(theme: T, isOpen: W) {
   return {
     "& fieldset": {
       border: "none",
     },
-    borderRadius: isOpen ? `${spacing(1)} ${spacing(1)} 0px 0px` : spacing(1),
-    py: spacing(1.2),
-    paddingLeft: spacing(2),
-    paddingRight: spacing(3.9),
-    border: isOpen ? `2px solid ${primary.main}` : `1.5px solid ${customGray.light}`,
+    borderRadius: isOpen ? `${theme.spacing(1)} ${theme.spacing(1)} 0px 0px` : theme.spacing(1),
+    py: theme.spacing(1.2),
+    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(3.9),
+    border: isOpen
+      ? `2px solid ${theme.palette.primary.main}`
+      : `1.5px solid ${theme.palette.customGray.light}`,
     boxShadow: "0px 1px 4px rgba(0, 0, 0, 0.25)",
   };
 }

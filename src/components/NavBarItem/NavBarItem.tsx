@@ -11,7 +11,7 @@ export default function NavBarItem({
   onselectNavbarItem,
 }: NavBarItemProps) {
   const classes = useStyles();
-  const { spacing, palette, typography } = useTheme();
+  const theme = useTheme();
 
   const handleClick = () => {
     setSelectedIndex(index);
@@ -24,23 +24,23 @@ export default function NavBarItem({
       variant="text"
       sx={{
         color: ({ palette }) =>
-          selectedIndex === index ? palette.primary.main : palette.customGray.main,
+          selectedIndex === index ? theme.palette.primary.main : palette.customGray.main,
         backgroundColor: ({ palette }) =>
           selectedIndex === index ? palette.primary.light : palette.background.default,
         display: "flex",
         flexDirection: "row",
         alignItems: "center",
         width: "100%",
-        paddingTop: spacing(1.25),
-        paddingBottom: spacing(1.25),
-        paddingLeft: spacing(3),
-        paddingRight: spacing(3),
-        border: `1px solid ${palette.customGray.light}`,
-        borderTopRightRadius: index === 2 ? spacing(1) : 0,
-        borderBottomRightRadius: index === 2 ? spacing(1) : 0,
-        borderTopLeftRadius: index === 0 ? spacing(1) : 0,
-        borderBottomLeftRadius: index === 0 ? spacing(1) : 0,
-        fontWeight: typography.fontWeightBold,
+        paddingTop: theme.spacing(1.25),
+        paddingBottom: theme.spacing(1.25),
+        paddingLeft: theme.spacing(3),
+        paddingRight: theme.spacing(3),
+        border: `1px solid ${theme.palette.customGray.light}`,
+        borderTopRightRadius: index === 2 ? theme.spacing(1) : 0,
+        borderBottomRightRadius: index === 2 ? theme.spacing(1) : 0,
+        borderTopLeftRadius: index === 0 ? theme.spacing(1) : 0,
+        borderBottomLeftRadius: index === 0 ? theme.spacing(1) : 0,
+        fontWeight: theme.typography.fontWeightBold,
       }}
       onClick={handleClick}
       size="small"
@@ -49,13 +49,20 @@ export default function NavBarItem({
           fontSize="medium"
           className={classes.icon}
           sx={{
-            width: spacing(1.9),
-            height: spacing(1.9),
+            width: theme.spacing(1.9),
+            height: theme.spacing(1.9),
           }}
         />
       }
     >
-      <Typography variant="body1" sx={{ textTransform: "capitalize" }}>
+      <Typography
+        sx={{
+          textTransform: "capitalize",
+          fontSize: theme.typography.labelSmall,
+          color: theme.palette.customGray.dark,
+          fontWeight: theme.typography.fontWeightBold,
+        }}
+      >
         {item.label}
       </Typography>
     </Button>

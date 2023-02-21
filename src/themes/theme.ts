@@ -53,5 +53,21 @@ export const customTheme = createTheme({
     fontWeightMedium: 600,
     fontWeightRegular: 500,
     fontWeightLight: 400,
+    labelSmall: {
+      fontSize: "11px",
+      lineHeight: "16px",
+    },
+    labelMedium: {
+      fontSize: "12px",
+      lineHeight: "16px",
+    },
+    titleMedium: {
+      fontSize: "16px",
+      lineHeight: "24px",
+    },
+    headline4: {
+      fontSize: "24px",
+      lineHeight: "32px",
+    },
   },
 });

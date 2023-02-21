@@ -1,4 +1,5 @@
 import { createTheme } from "@mui/material";
+import { TypographyOptions } from "@mui/material/styles/createTypography";
 
 declare module "@mui/material/styles/createPalette" {
   // allow configuration using `createTheme`
@@ -46,6 +47,45 @@ declare module "@mui/material/styles/createPalette" {
       dark: string;
       textLight: string;
       textDark: string;
+    };
+  }
+}
+declare module "@mui/material/styles/createTypography" {
+  interface Typography {
+    labelSmall: {
+      fontSize: string;
+      lineHeight: string;
+    };
+    labelMedium: {
+      fontSize: string;
+      lineHeight: string;
+    };
+    titleMedium: {
+      fontSize: string;
+      lineHeight: string;
+    };
+    headline4: {
+      fontSize: string;
+      lineHeight: string;
+    };
+  }
+
+  interface TypographyOptions {
+    labelSmall: {
+      fontSize: string;
+      lineHeight: string;
+    };
+    labelMedium: {
+      fontSize: string;
+      lineHeight: string;
+    };
+    titleMedium: {
+      fontSize: string;
+      lineHeight: string;
+    };
+    headline4: {
+      fontSize: string;
+      lineHeight: string;
     };
   }
 }

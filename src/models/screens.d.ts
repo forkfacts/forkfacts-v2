@@ -19,7 +19,6 @@ export interface HomeScreenProps {
   sidebarItems: sidebarItem[];
   navbarItems: sidebarItem[];
   PopularFrequentSearchItems: PopularFrequentSearchType[];
-  PopularFrequentSearchTitle: string;
   onSelectPopularItem: (item: PopularFrequentSearchType) => void;
   categoryOptions: SearchCategoryItemType[];
   collectionGroupedItems: Array<SearchResultItemCollectionType>;

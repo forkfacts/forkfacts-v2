@@ -35,7 +35,7 @@ const PopularFrequentSearchCategory = ({
       />
       <Typography
         sx={{
-          color: theme.palette.common.black,
+          color: theme.palette.customGray.main,
           fontWeight: theme.typography.fontWeightBold,
           py: theme.spacing(2),
           ml: mobile ? theme.spacing(1.15) : theme.spacing(2.15),
@@ -60,7 +60,7 @@ const PopularFrequentSearchCategory = ({
                 sx={{
                   color: theme.palette.customGray.main,
                   fontWeight: theme.typography.fontWeightBold,
-                  fontSize: theme.typography.labelSmall,
+                  fontSize: theme.typography.labelSmall.fontSize,
                 }}
               >
                 {extraItem.weight}
@@ -68,7 +68,7 @@ const PopularFrequentSearchCategory = ({
               <Typography
                 sx={{
                   color: theme.palette.customGray.dark,
-                  fontSize: theme.typography.labelMedium,
+                  fontSize: theme.typography.labelMedium.fontSize,
                   mt: theme.spacing(0.4),
                 }}
               >

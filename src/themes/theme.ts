@@ -46,13 +46,13 @@ export const customTheme = createTheme({
     },
   },
   typography: {
-    fontFamily: "Poppins",
     button: {
       textTransform: "none",
     },
     fontWeightMedium: 600,
     fontWeightRegular: 500,
     fontWeightLight: 400,
+    fontFamily: "Poppins",
     labelSmall: {
       fontSize: "11px",
       lineHeight: "16px",
@@ -64,6 +64,10 @@ export const customTheme = createTheme({
     titleMedium: {
       fontSize: "16px",
       lineHeight: "24px",
+    },
+    titleSmall: {
+      fontSize: "14px",
+      lineHeight: "20px",
     },
     headline4: {
       fontSize: "24px",

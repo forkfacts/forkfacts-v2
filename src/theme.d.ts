@@ -64,6 +64,10 @@ declare module "@mui/material/styles/createTypography" {
       fontSize: string;
       lineHeight: string;
     };
+    titleSmall: {
+      fontSize: string;
+      lineHeight: string;
+    };
     headline4: {
       fontSize: string;
       lineHeight: string;
@@ -80,6 +84,10 @@ declare module "@mui/material/styles/createTypography" {
       lineHeight: string;
     };
     titleMedium: {
+      fontSize: string;
+      lineHeight: string;
+    };
+    titleSmall: {
       fontSize: string;
       lineHeight: string;
     };

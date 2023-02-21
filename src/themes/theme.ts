@@ -48,7 +48,9 @@ export const customTheme = createTheme({
     button: {
       textTransform: "none",
     },
-    fontWeightMedium: 500,
+    fontWeightMedium: 600,
+    fontWeightRegular: 500,
+    fontWeightLight: 400,
     fontFamily: "Poppins",
     labelSmall: {
       fontSize: "11px",

@@ -76,16 +76,11 @@ const recommendations: recommendationType[] = [
   },
   {
     recommendationName: "Recipes",
-    recommendationItems: [{ name: "Creamy broccoli pasta" }, { name: "Broccoli pasta salad" }],
+    recommendationItems: [{ name: "Creamy broccoli pasta" }],
   },
 ];
 
-const {
-  PopularFrequentSearchTitle,
-  PopularFrequentSearchItems,
-  onSelectPopularItem,
-}: PopularFrequentSearchProps = {
-  PopularFrequentSearchTitle: "Popular Foods",
+const { PopularFrequentSearchItems, onSelectPopularItem }: PopularFrequentSearchProps = {
   PopularFrequentSearchItems: [
     {
       searchImg: "/popular.png",
@@ -211,7 +206,6 @@ Desktop.args = {
   sidebarItems: sidebarItems,
   navbarItems: navbarItems,
   PopularFrequentSearchItems: PopularFrequentSearchItems,
-  PopularFrequentSearchTitle: PopularFrequentSearchTitle,
   onSelectPopularItem: onSelectPopularItem,
   sourceId: "forkfact-v2",
   categoryOptions: categoryOptions,
@@ -231,7 +225,6 @@ Mobile.args = {
   categoryOptions: categoryOptions,
   collectionGroupedItems: collectionGroupedItems,
   PopularFrequentSearchItems: PopularFrequentSearchItems,
-  PopularFrequentSearchTitle: PopularFrequentSearchTitle,
   onSelectPopularItem: onSelectPopularItem,
   sourceId: "forkfact-v2",
   navbarItems: navbarItems,
@@ -250,7 +243,6 @@ Tablet.args = {
   categoryOptions: categoryOptions,
   collectionGroupedItems: collectionGroupedItems,
   PopularFrequentSearchItems: PopularFrequentSearchItems,
-  PopularFrequentSearchTitle: PopularFrequentSearchTitle,
   onSelectPopularItem: onSelectPopularItem,
   navbarItems: navbarItems,
   sourceId: "forkfact-v2",

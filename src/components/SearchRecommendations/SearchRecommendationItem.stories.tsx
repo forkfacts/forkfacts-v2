@@ -19,10 +19,7 @@ const Template: ComponentStory<typeof SearchRecommendationItem> = (args) => (
 export const Item = Template.bind({});
 
 Item.args = {
-  item: {
-    name: "SUPERFOODS",
-    icon: "/tag1.png",
-  },
+  item: { name: "Nuts and seeds", icon: "/tag4.svg" },
 };
 
 Item.storyName = "SearchRecommendationItem";

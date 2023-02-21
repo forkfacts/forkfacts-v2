@@ -45,7 +45,7 @@ export interface onSelectCategoryType {
 }
 interface selectedItemType {
   index: number;
-  setSelectedIndex: (value: number) => value;
+  setSelectedIndex: (value: number) => void;
   selectedIndex: number;
 }
 export interface NavbarProps {
@@ -90,12 +90,12 @@ interface SideBarProps {
   mobileOpen: boolean;
   handleDrawerToggle: () => void;
   sidebarItems: Array<sidebarItem>;
-  window?: window;
+  window?: any;
   drawerWidthExpanded: boolean;
 }
 
 interface ExtendSearchResultItemsProps {
-  onSelectItem: (item: SearchResultItemType) => item;
+  onSelectItem: (item: SearchResultItemType) => void;
   handleViewMore?: () => void;
 }
 export type SearchResultsProps = (
@@ -122,7 +122,6 @@ export interface SideBarItemProps {
 
 export interface PopularFrequentSearchProps {
   PopularFrequentSearchItems: Array<PopularFrequentSearchType>;
-  PopularFrequentSearchTitle: string;
   onSelectPopularItem: (item: PopularFrequentSearchType) => void;
 }
 

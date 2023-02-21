@@ -16,3 +16,18 @@ export default {
 const Template: ComponentStory<typeof NoSearchResults> = (args) => <NoSearchResults {...args} />;
 
 export const Desktop = Template.bind({});
+
+export const Mobile = Template.bind({});
+
+Mobile.parameters = {
+  viewport: {
+    defaultViewport: "iphone6",
+  },
+};
+
+export const Tablet = Template.bind({});
+Tablet.parameters = {
+  viewport: {
+    defaultViewport: "ipad",
+  },
+};

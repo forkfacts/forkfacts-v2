@@ -205,21 +205,10 @@ function AutoCompleteSearch(
             }}
             sx={
               desktop
-                ? desktopInputStyles(
-                    theme.spacing,
-                    theme.shadows,
-                    isOpen,
-                    theme.palette.primary,
-                    theme.palette.customGray
-                  )
+                ? desktopInputStyles(theme, isOpen)
                 : mobile && !isOpen && !desktop
-                ? mobileInputStyles(
-                    theme.spacing,
-                    isOpen,
-                    theme.palette.primary,
-                    theme.palette.customGray
-                  )
-                : inputStyles(isOpen, theme.palette.primary, theme.spacing)
+                ? mobileInputStyles(theme, isOpen)
+                : inputStyles(theme, isOpen)
             }
             ref={inputRef}
             {...autocomplete.getInputProps({ inputElement: inputRef.current })}

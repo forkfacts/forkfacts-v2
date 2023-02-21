@@ -1,5 +1,6 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import { PopularFrequentSearchCategories } from "@forkfacts/components";
 import { PopularFrequentSearchProps, PopularFrequentSearchType } from "@forkfacts/models";
 import { Box } from "@mui/material";
@@ -7,14 +8,14 @@ import { Box } from "@mui/material";
 export default {
   title: "Components/PopularFrequentSearchCategories",
   component: PopularFrequentSearchCategories,
+  parameters: {
+    viewport: {
+      viewports: INITIAL_VIEWPORTS,
+    },
+  },
 } as ComponentMeta<typeof PopularFrequentSearchCategories>;
 
-const {
-  PopularFrequentSearchTitle,
-  PopularFrequentSearchItems,
-  onSelectPopularItem,
-}: PopularFrequentSearchProps = {
-  PopularFrequentSearchTitle: "Popular Foods",
+const { PopularFrequentSearchItems, onSelectPopularItem }: PopularFrequentSearchProps = {
   PopularFrequentSearchItems: [
     {
       searchImg: "/popular.png",
@@ -98,7 +99,7 @@ const Template: ComponentStory<typeof PopularFrequentSearchCategories> = (args) 
       display: "flex",
       justifyContent: "center",
       flexDirection: "column",
-      width: "70%",
+      width: { sm: "100%", md: "60%" },
       marginLeft: "auto",
       marginRight: "auto",
     }}
@@ -107,13 +108,35 @@ const Template: ComponentStory<typeof PopularFrequentSearchCategories> = (args) 
   </Box>
 );
 
-export const PopularFrequentSearch = Template.bind({});
+export const Desktop = Template.bind({});
 
-PopularFrequentSearch.args = {
-  ...PopularFrequentSearch.args,
-  PopularFrequentSearchTitle: PopularFrequentSearchTitle,
+Desktop.args = {
+  ...Desktop.args,
   PopularFrequentSearchItems: PopularFrequentSearchItems,
   onSelectPopularItem: onSelectPopularItem,
 };
 
-PopularFrequentSearch.storyName = "PopularFrequentSearchCategories";
+export const Mobile = Template.bind({});
+
+Mobile.args = {
+  ...Mobile.args,
+  PopularFrequentSearchItems: PopularFrequentSearchItems,
+  onSelectPopularItem: onSelectPopularItem,
+};
+Mobile.parameters = {
+  viewport: {
+    defaultViewport: "iphone6",
+  },
+};
+
+export const Tablet = Template.bind({});
+Tablet.args = {
+  ...Tablet.args,
+  PopularFrequentSearchItems: PopularFrequentSearchItems,
+  onSelectPopularItem: onSelectPopularItem,
+};
+Tablet.parameters = {
+  viewport: {
+    defaultViewport: "ipad",
+  },
+};

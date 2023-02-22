@@ -12,6 +12,7 @@ export const useStyles = makeStyles(({ spacing, breakpoints, typography, palette
     display: "flex",
     alignItems: "center",
     flexWrap: "wrap",
+    columnGap: spacing(1),
   },
   listWrapper: {
     marginTop: spacing(-1),

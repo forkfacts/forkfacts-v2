@@ -180,13 +180,14 @@ function AutoCompleteSearch(
             backgroundColor:
               (mobile && isOpen) || (mobile && noResultInput) ? theme.palette.common.white : "none",
             zIndex: theme.zIndex.modal,
+            mt: (mobile && isOpen) || (mobile && noResultInput) ? theme.spacing(3.35) : 0,
           }}
         >
-          <Box sx={{}}>
+          <Box>
             <Box
               sx={{
                 display: "flex",
-                p: (mobile && isOpen) || (mobile && noResultInput) ? "10px" : 0,
+                p: (mobile && isOpen) || (mobile && noResultInput) ? theme.spacing(1.35) : 0,
               }}
             >
               <TextField

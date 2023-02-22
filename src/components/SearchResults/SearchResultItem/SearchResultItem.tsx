@@ -4,7 +4,6 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { SearchResultItemProps } from "@forkfacts/models";
-import { Highlight } from "@forkfacts/helpers";
 import { useStyles } from "../../SearchResults/searchResultsStyles";
 
 export default function SearchResultItem({ item, onSelectItem }: SearchResultItemProps) {

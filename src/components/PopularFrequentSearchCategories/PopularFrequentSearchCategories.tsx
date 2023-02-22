@@ -17,13 +17,11 @@ const PopularFrequentSearchCategories = ({
     <Box>
       <Box sx={{ mb: desktop ? theme.spacing(3) : theme.spacing(2) }}>
         <Typography
+          variant="headline4"
           sx={{
-            color: theme.palette.common.black,
-            fontWeight: theme.typography.fontWeightMedium,
+            color: theme.palette.customGray.main,
+            fontWeight: theme.typography.fontWeightLight,
             lineHeight: theme.spacing(4),
-            fontSize: mobile
-              ? theme.typography.headlineLarge.fontSize
-              : theme.typography.headlineMedium.fontSize,
           }}
         >
           Popular foods

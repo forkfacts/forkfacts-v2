@@ -76,19 +76,24 @@ export const customTheme = createTheme({
         letterSpacing: "0.15px",
       },
     },
-    headlineSmall: {
-      fontSize: "24px",
-      lineHeight: "32px",
+    headline6: {
+      fontSize: theme.spacing(2.25),
+      lineHeight: "24px",
       fontStyle: "normal",
       letterSpacing: "0.1px",
     },
-    headlineMedium: {
-      fontSize: "24px",
-      lineHeight: "32px",
+    headline4: {
+      fontSize: theme.spacing(3),
+      lineHeight: "24px",
       fontStyle: "normal",
       letterSpacing: "0.1px",
+      [theme.breakpoints.between("xs", "md")]: {
+        fontSize: theme.spacing(2.25),
+        letterSpacing: "0.15px",
+        lineHeight: "24px",
+      },
     },
-    headlineLarge: {
+    headline3: {
       fontSize: "24px",
       lineHeight: "32px",
       fontStyle: "normal",

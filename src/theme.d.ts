@@ -50,19 +50,19 @@ declare module "@mui/material/styles/createPalette" {
 }
 declare module "@mui/material/styles/createTypography" {
   interface Typography {
-    headlineSmall: {
+    headline6: {
       fontSize: string;
       lineHeight: string;
       fontStyle: string;
       letterSpacing: string;
     };
-    headlineMedium: {
+    headline4: {
       fontSize: string;
       lineHeight: string;
       fontStyle: string;
       letterSpacing: string;
     };
-    headlineLarge: {
+    headline3: {
       fontSize: string;
       lineHeight: string;
       fontStyle: string;
@@ -144,19 +144,19 @@ declare module "@mui/material/styles/createTypography" {
   }
 
   interface TypographyOptions {
-    headlineSmall: {
+    headline6: {
       fontSize: string;
       lineHeight: string;
       fontStyle: string;
       letterSpacing: string;
     };
-    headlineMedium: {
+    headline4: {
       fontSize: string;
       lineHeight: string;
       fontStyle: string;
       letterSpacing: string;
     };
-    headlineLarge: {
+    headline3: {
       fontSize: string;
       lineHeight: string;
       fontStyle: string;
@@ -245,9 +245,9 @@ declare module "@mui/material/Typography" {
     titleMedium: true;
     titleSmall: true;
     titleLarge: true;
-    headlineSmall: true;
-    headlineMedium: true;
-    headlineLarge: true;
+    headline6: true;
+    headline4: true;
+    headline3: true;
     labelSmall: true;
     labelMedium: true;
     labelLarge: true;

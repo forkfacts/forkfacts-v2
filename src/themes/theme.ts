@@ -71,10 +71,6 @@ export const customTheme = createTheme({
       lineHeight: "24px",
       fontStyle: "normal",
       letterSpacing: "0.1px",
-      [theme.breakpoints.between("xs", "md")]: {
-        fontSize: theme.spacing(3),
-        letterSpacing: "0.15px",
-      },
     },
     headline6: {
       fontSize: theme.spacing(2.25),
@@ -87,11 +83,6 @@ export const customTheme = createTheme({
       lineHeight: "24px",
       fontStyle: "normal",
       letterSpacing: "0.1px",
-      [theme.breakpoints.between("xs", "md")]: {
-        fontSize: theme.spacing(2.25),
-        letterSpacing: "0.15px",
-        lineHeight: "24px",
-      },
     },
     headline3: {
       fontSize: "24px",
@@ -128,21 +119,12 @@ export const customTheme = createTheme({
       lineHeight: "16px",
       letterSpacing: "0.5px",
       fontStyle: "normal",
-      [theme.breakpoints.down("md")]: {
-        fontSize: theme.spacing(1.375),
-        letterSpacing: "0.15px",
-        lineHeight: "16px",
-      },
     },
     labelLarge: {
       fontSize: theme.spacing(1.75),
       lineHeight: "20px",
       letterSpacing: "0.25px",
       fontStyle: "normal",
-      [theme.breakpoints.down("md")]: {
-        fontSize: theme.spacing(1.5),
-        letterSpacing: "0.15px",
-      },
     },
     bodyMedium: {
       fontSize: theme.spacing(1.75),

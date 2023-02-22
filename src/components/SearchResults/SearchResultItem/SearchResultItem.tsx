@@ -25,7 +25,7 @@ export default function SearchResultItem({ item, onSelectItem }: SearchResultIte
           primary={
             <Box className={styles.ListItemText}>
               <Typography
-                variant="bodySmall"
+                variant="bodyMedium"
                 sx={{
                   whiteSpace: "nowrap",
                   color: theme.palette.customGray.textLight,
@@ -36,11 +36,15 @@ export default function SearchResultItem({ item, onSelectItem }: SearchResultIte
               </Typography>
               {item.category && (
                 <ArrowForwardIosIcon
-                  sx={{ width: theme.spacing(1.5), height: theme.spacing(1.5) }}
+                  sx={{
+                    width: theme.spacing(1.3),
+                    height: theme.spacing(1.3),
+                    color: theme.palette.customGray.textLight,
+                  }}
                 />
               )}
               <Typography
-                variant="bodySmall"
+                variant="bodyMedium"
                 sx={{
                   whiteSpace: "nowrap",
                   color: theme.palette.customGray.main,

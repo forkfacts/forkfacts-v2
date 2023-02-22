@@ -13,6 +13,7 @@ const SearchRecommendationItem: React.FC<SearchRecommendationItemProps> = ({ ite
         whiteSpace: "nowrap",
         overflow: "hidden",
         textOverflow: "ellipsis",
+        py: theme.spacing(1.3),
       }}
     >
       {item.icon && (

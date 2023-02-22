@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Typography, List, useTheme } from "@mui/material";
+import { Box, Typography, List, useTheme, useMediaQuery } from "@mui/material";
 import { ForLoops } from "@forkfacts/helpers";
 import { SearchResultsProps } from "@forkfacts/models";
 import { ViewMoreButton, SearchResultItem } from "@forkfacts/components";
@@ -14,6 +14,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({
 }) => {
   const classes = useStyles();
   const theme = useTheme();
+  const mobile = useMediaQuery(theme.breakpoints.down("md"));
 
   return (
     <Box className={classes.root}>
@@ -85,9 +86,11 @@ const SearchResults: React.FC<SearchResultsProps> = ({
               </ForLoops>
             </List>
           )}
-          {collectionListsItems && collectionListsItems?.length > 3 && (
-            <ViewMoreButton handleViewMore={handleViewMore} text="View all" />
-          )}
+          <Box sx={{ ml: mobile ? theme.spacing(-1) : theme.spacing(1) }}>
+            {collectionListsItems && collectionListsItems?.length > 3 && (
+              <ViewMoreButton handleViewMore={handleViewMore} text="View all" />
+            )}
+          </Box>
         </Box>
       )}
     </Box>

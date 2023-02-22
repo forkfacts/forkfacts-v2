@@ -172,7 +172,6 @@ function AutoCompleteSearch(
           ref={formRef}
           {...autocomplete.getFormProps({ inputElement: inputRef.current })}
           sx={{
-            p: (mobile && isOpen) || (mobile && noResultInput) ? "10px" : 0,
             position: (mobile && isOpen) || (mobile && noResultInput) ? "sticky" : "static",
             top: 0,
             left: 0,
@@ -183,8 +182,13 @@ function AutoCompleteSearch(
             zIndex: theme.zIndex.modal,
           }}
         >
-          <Box>
-            <Box sx={{ display: "flex" }}>
+          <Box sx={{}}>
+            <Box
+              sx={{
+                display: "flex",
+                p: (mobile && isOpen) || (mobile && noResultInput) ? "10px" : 0,
+              }}
+            >
               <TextField
                 size="small"
                 fullWidth
@@ -275,30 +279,29 @@ function AutoCompleteSearch(
                   alignItems: "center",
                   paddingLeft: theme.spacing(2),
                   paddingRight: theme.spacing(0.5),
+                  mt: mobile ? theme.spacing(2) : theme.spacing(3),
                 }}
                 component="div"
               >
                 <Typography
                   variant="labelLarge"
                   sx={{
-                    fontWeight: theme.typography.fontWeightMedium,
-                    fontSize: theme.typography.labelLarge.fontSize,
+                    fontWeight: theme.typography.fontWeightRegular,
                   }}
                 >
                   Recently viewed
                 </Typography>
-                <Button
+                <Typography
                   color="primary"
-                  variant="text"
+                  variant="labelLarge"
                   sx={{
-                    fontWeight: theme.typography.fontWeightMedium,
-                    fontSize: theme.typography.labelLarge.fontSize,
-                    textTransform: "lowercase",
+                    fontWeight: theme.typography.fontWeightRegular,
+                    pr: theme.spacing(1.5),
                   }}
                   onClick={onClearSearch}
                 >
                   Clear
-                </Button>
+                </Typography>
               </Box>
             )}
             {!query && (mobile || desktop) ? (
@@ -308,6 +311,8 @@ function AutoCompleteSearch(
                     width: "100%",
                     paddingLeft: theme.spacing(1),
                     paddingRight: theme.spacing(1),
+                    mt: mobile ? theme.spacing(1.3) : theme.spacing(2),
+                    ml: theme.spacing(-0.7),
                   }}
                 >
                   <ForLoops each={collections}>
@@ -331,6 +336,7 @@ function AutoCompleteSearch(
                     width: "100%",
                     px: theme.spacing(1.7),
                     pb: theme.spacing(2.7),
+                    mt: mobile ? theme.spacing(0.5) : theme.spacing(1.5),
                   }}
                 >
                   <SearchRecommendations recommendations={props.recommendations} />

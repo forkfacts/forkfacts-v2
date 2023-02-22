@@ -17,7 +17,7 @@ const PopularFrequentSearchCategories = ({
     <Box>
       <Box sx={{ mb: desktop ? theme.spacing(3) : theme.spacing(2) }}>
         <Typography
-          variant="headline4"
+          variant={mobile ? "headline6" : "headline4"}
           sx={{
             color: theme.palette.customGray.main,
             fontWeight: theme.typography.fontWeightLight,

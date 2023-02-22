@@ -27,7 +27,7 @@ export const useStyles = makeStyles(({ typography, spacing, breakpoints, palette
       fontSize: typography.labelLarge.fontSize,
     },
     [breakpoints.down("md")]: {
-      fontSize: typography.labelSmall.fontSize,
+      fontSize: typography.labelMedium.fontSize,
     },
   },
 }));

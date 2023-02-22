@@ -24,10 +24,9 @@ export default function NavBarItem({
       className={classes.btn}
       variant="text"
       sx={{
-        color: ({ palette }) =>
-          selectedIndex === index ? theme.palette.primary.main : palette.customGray.main,
-        backgroundColor: ({ palette }) =>
-          selectedIndex === index ? palette.primary.light : palette.background.default,
+        color: selectedIndex === index ? theme.palette.primary.main : theme.palette.customGray.main,
+        backgroundColor:
+          selectedIndex === index ? theme.palette.primary.light : theme.palette.background.default,
         display: "flex",
         flexDirection: "row",
         alignItems: "center",
@@ -56,11 +55,12 @@ export default function NavBarItem({
       }
     >
       <Typography
-        variant="titleMedium"
+        variant={mobile ? "titleSmall" : "titleMedium"}
         sx={{
           textTransform: "capitalize",
-          color: theme.palette.customGray.main,
           fontWeight: theme.typography.fontWeightRegular,
+          color:
+            selectedIndex === index ? theme.palette.primary.main : theme.palette.customGray.main,
         }}
       >
         {item.label}

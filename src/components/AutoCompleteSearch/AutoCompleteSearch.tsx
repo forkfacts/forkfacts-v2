@@ -281,7 +281,7 @@ function AutoCompleteSearch(
                 <Typography
                   variant="labelLarge"
                   sx={{
-                    fontWeight: theme.typography.fontWeightBold,
+                    fontWeight: theme.typography.fontWeightMedium,
                     fontSize: theme.typography.labelLarge.fontSize,
                   }}
                 >
@@ -291,7 +291,7 @@ function AutoCompleteSearch(
                   color="primary"
                   variant="text"
                   sx={{
-                    fontWeight: theme.typography.fontWeightBold,
+                    fontWeight: theme.typography.fontWeightMedium,
                     fontSize: theme.typography.labelLarge.fontSize,
                     textTransform: "lowercase",
                   }}

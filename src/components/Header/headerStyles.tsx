@@ -23,5 +23,11 @@ export const useStyles = makeStyles(({ typography, spacing, breakpoints, palette
     paddingLeft: spacing(3),
     paddingRight: spacing(3),
     textTransform: "capitalize",
+    [breakpoints.up("md")]: {
+      fontSize: typography.labelLarge.fontSize,
+    },
+    [breakpoints.down("md")]: {
+      fontSize: typography.labelSmall.fontSize,
+    },
   },
 }));

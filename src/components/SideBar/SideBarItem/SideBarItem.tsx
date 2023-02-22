@@ -10,7 +10,7 @@ export default function SideBarItem({
   item,
   handleSelectedIndex,
 }: SideBarItemProps) {
-  const { spacing, palette } = useTheme();
+  const theme = useTheme();
 
   const onRoutePage = () => {
     navigate(item.link);
@@ -26,8 +26,8 @@ export default function SideBarItem({
       sx={{
         backgroundColor:
           selectedIndex === index && drawerWidthExpanded
-            ? palette.primary.light
-            : palette.background.default,
+            ? theme.palette.primary.light
+            : theme.palette.background.default,
       }}
     >
       <ListItemButton
@@ -37,23 +37,26 @@ export default function SideBarItem({
           flexDirection: drawerWidthExpanded ? "row" : "column",
           alignItems: "center",
           width: "100%",
-          padding: drawerWidthExpanded ? spacing(3) : spacing(2, 0),
+          padding: drawerWidthExpanded ? theme.spacing(3) : theme.spacing(2, 0),
         }}
       >
         <item.Icon
           color={selectedIndex === index ? "primary" : "inherit"}
           sx={{
-            width: spacing(2.5),
-            height: spacing(2.5),
+            width: theme.spacing(2.5),
+            height: theme.spacing(2.5),
             fontWeight: 500,
           }}
         />
         <ListItemText
           primary={
             <Typography
-              variant="body1"
-              color={selectedIndex === index ? "primary" : palette.grey[700]}
-              sx={{ ml: drawerWidthExpanded ? spacing(2) : spacing(0) }}
+              variant="titleSmall"
+              color={selectedIndex === index ? "primary" : theme.palette.customGray.dark}
+              sx={{
+                ml: drawerWidthExpanded ? theme.spacing(2) : theme.spacing(0),
+                fontWeight: theme.typography.fontWeightRegular,
+              }}
             >
               {item.label}
             </Typography>

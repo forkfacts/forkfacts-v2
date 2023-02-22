@@ -5,6 +5,7 @@ export interface SearchResultItemType {
   name: string;
   url: string;
   image: string;
+  category?: string;
 }
 
 export interface recommendationItem {

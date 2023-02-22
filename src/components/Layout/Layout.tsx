@@ -1,5 +1,6 @@
 import React, { FC, PropsWithChildren, useState } from "react";
-import { ThemeProvider, Box, CssBaseline, useTheme } from "@mui/material";
+import { Box, CssBaseline, useTheme } from "@mui/material";
+import { ThemeProvider } from "@mui/material/styles";
 import { customTheme } from "../../themes/theme";
 import { Header, SideBar } from "@forkfacts/components";
 import { LayoutProps } from "@forkfacts/models";
@@ -40,7 +41,7 @@ const Layout: FC<LayoutProps> = ({ children, sidebarItems }) => {
         <Box
           sx={{
             width: {
-              md: `calc(100% - ${drawerWidth})`,
+              md: `calc(100% - ${drawerWidth}px)`,
               xs: "100%",
             },
           }}

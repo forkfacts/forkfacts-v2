@@ -21,7 +21,9 @@ const PopularFrequentSearchCategories = ({
             color: theme.palette.common.black,
             fontWeight: theme.typography.fontWeightMedium,
             lineHeight: theme.spacing(4),
-            fontSize: theme.typography.headline4,
+            fontSize: mobile
+              ? theme.typography.headlineLarge.fontSize
+              : theme.typography.headlineMedium.fontSize,
           }}
         >
           Popular foods

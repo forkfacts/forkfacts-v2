@@ -19,6 +19,7 @@ export default function SearchCategories({
           {({ label, Icon }, idx) => (
             <SearchCategory
               index={idx}
+              key={idx}
               onSelectCategory={onSelectCategory}
               label={label}
               Icon={Icon}

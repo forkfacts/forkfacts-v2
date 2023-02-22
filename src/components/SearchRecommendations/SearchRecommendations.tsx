@@ -30,7 +30,7 @@ const SearchRecommendations: React.FC<SearchRecommendationsProps> = ({ recommend
                   mb: theme.spacing(1),
                   fontSize: theme.typography.caption.fontSize,
                   fontWeight: theme.typography.fontWeightMedium,
-                  color: theme.palette.customGray.textLight,
+                  color: theme.palette.customGray.dark,
                   textTransform: "uppercase",
                 }}
               >

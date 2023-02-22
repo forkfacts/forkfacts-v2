@@ -47,8 +47,14 @@ const NoSearchResults: React.FC<NoSearchResultsProps> = ({}) => {
         </Box>
         <Box sx={{ textAlign: "center" }}>
           <Box sx={{ display: "flex", alignItems: "center", gap: theme.spacing(0.5) }}>
-            <Typography variant="body2">We found 5 results for “Vitamin C” in</Typography>
-            <Typography color="primary" variant="body2">
+            <Typography variant="bodySmall" sx={{ color: theme.palette.customGray.main }}>
+              We found 5 results for “Vitamin C” in
+            </Typography>
+            <Typography
+              color="primary"
+              variant="bodySmall"
+              sx={{ color: theme.palette.customGray.main }}
+            >
               library
             </Typography>
           </Box>

@@ -32,7 +32,13 @@ const SearchResults: React.FC<SearchResultsProps> = ({
                         mb: theme.spacing(1.5),
                       }}
                     >
-                      <Typography variant="caption" className={classes.categoryName}>
+                      <Typography
+                        variant="labelMedium"
+                        sx={{
+                          padding: theme.spacing(1.2, 2),
+                          color: theme.palette.customGray.main,
+                        }}
+                      >
                         {value.categoryName}
                       </Typography>
                       <Typography
@@ -45,7 +51,6 @@ const SearchResults: React.FC<SearchResultsProps> = ({
                           justifyContent: "center",
                           alignItems: "center",
                           borderRadius: "50%",
-                          // ml: theme.spacing(0.5),
                         }}
                       >
                         {value.collection.length}

@@ -41,8 +41,6 @@ export default function NavBarItem({
         borderBottomRightRadius: index === 2 ? theme.spacing(1) : 0,
         borderTopLeftRadius: index === 0 ? theme.spacing(1) : 0,
         borderBottomLeftRadius: index === 0 ? theme.spacing(1) : 0,
-        fontWeight: theme.typography.fontWeightBold,
-        fontSize: mobile ? theme.typography.titleSmall : theme.typography.titleMedium,
       }}
       onClick={handleClick}
       size="small"
@@ -58,10 +56,11 @@ export default function NavBarItem({
       }
     >
       <Typography
+        variant="titleMedium"
         sx={{
           textTransform: "capitalize",
-          color: theme.palette.customGray.dark,
-          fontSize: mobile ? theme.typography.titleSmall : theme.typography.titleMedium,
+          color: theme.palette.customGray.main,
+          fontWeight: theme.typography.fontWeightRegular,
         }}
       >
         {item.label}

@@ -64,48 +64,72 @@ const collectionListsItems = [
 const collectionGroupedItems = [
   { categoryName: "FRUIT AND FRUIT JUICES", collection: collectionListsItems },
   { categoryName: "BABY FOODS", collection: collectionListsItems.slice(0, 3) },
-  { categoryName: "SWEETS", collection: collectionListsItems.slice(0, 4) },
 ];
 
-const Template: ComponentStory<typeof SearchResults> = (args) => <SearchResults {...args} />;
-
-export const SearchResultsItemsMultipleCategories = Template.bind({});
-SearchResultsItemsMultipleCategories.parameters = {
-  viewport: {
-    defaultViewport: "iphone6",
-  },
+const Template: ComponentStory<typeof SearchResults> = (args) => {
+  return <SearchResults {...args} />;
 };
-SearchResultsItemsMultipleCategories.args = {
-  ...SearchResultsItemsMultipleCategories.args,
+
+export const SearchResultsItemsMultipleDesktopCategories = Template.bind({});
+
+SearchResultsItemsMultipleDesktopCategories.args = {
+  ...SearchResultsItemsMultipleDesktopCategories.args,
   collectionGroupedItems,
   multiple: true,
   onSelectItem: (item: SearchResultItemType) => item,
 };
-SearchResultsItemsMultipleCategories.argTypes = {
+
+SearchResultsItemsMultipleDesktopCategories.storyName =
+  "SearchResultsItemsMultipleDesktopCategories";
+
+export const SearchResultsItemsSingleDesktopCategory = Template.bind({});
+
+SearchResultsItemsSingleDesktopCategory.args = {
+  ...SearchResultsItemsSingleDesktopCategory.args,
+  collectionListsItems,
+  multiple: false,
+  onSelectItem: (item: SearchResultItemType) => item,
+};
+
+SearchResultsItemsSingleDesktopCategory.storyName = "SearchResultsItemsSingleDesktopCategory";
+
+export const SearchResultsItemsMultipleMobileCategories = Template.bind({});
+SearchResultsItemsMultipleMobileCategories.parameters = {
+  viewport: {
+    defaultViewport: "iphonexr",
+  },
+};
+SearchResultsItemsMultipleMobileCategories.args = {
+  ...SearchResultsItemsMultipleMobileCategories.args,
+  collectionGroupedItems,
+  multiple: true,
+  onSelectItem: (item: SearchResultItemType) => item,
+};
+SearchResultsItemsMultipleMobileCategories.argTypes = {
   multiple: {
     table: { defaultValue: { summary: true } },
     control: false,
   },
 };
-SearchResultsItemsMultipleCategories.storyName = "SearchResultsMultipleCategories";
+SearchResultsItemsMultipleMobileCategories.storyName = "SearchResultsItemsMultipleMobileCategories";
 
-export const SearchResultsItemsSingleCategory = Template.bind({});
-SearchResultsItemsSingleCategory.parameters = {
+export const SearchResultsItemsSingleMobileCategory = Template.bind({});
+SearchResultsItemsSingleMobileCategory.parameters = {
   viewport: {
-    defaultViewport: "iphone6",
+    defaultViewport: "iphonexr",
   },
 };
-SearchResultsItemsSingleCategory.args = {
-  ...SearchResultsItemsSingleCategory.args,
+SearchResultsItemsSingleMobileCategory.args = {
+  ...SearchResultsItemsSingleMobileCategory.args,
   collectionListsItems,
   multiple: false,
   onSelectItem: (item: SearchResultItemType) => item,
 };
-SearchResultsItemsSingleCategory.argTypes = {
+SearchResultsItemsSingleMobileCategory.argTypes = {
   multiple: {
     table: { defaultValue: { summary: false } },
     control: false,
   },
 };
 
-SearchResultsItemsSingleCategory.storyName = "SearchResultsSingleCategory";
+SearchResultsItemsSingleMobileCategory.storyName = "SearchResultsItemsSingleMobileCategory";

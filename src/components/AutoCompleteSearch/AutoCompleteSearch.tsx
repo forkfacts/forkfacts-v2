@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo, useRef } from "react";
+import React, { useState, useEffect, useMemo, useRef, useLayoutEffect } from "react";
 import {
   AutocompleteOptions,
   AutocompleteState,
@@ -9,7 +9,7 @@ import { Hit } from "@algolia/client-search";
 import algoliasearch from "algoliasearch/lite";
 import { Box, TextField, useTheme, useMediaQuery, Button, Typography } from "@mui/material";
 import classnames from "classnames";
-import { QueuePlayNextRounded, SearchOutlined } from "@mui/icons-material";
+import { SearchOutlined } from "@mui/icons-material";
 import InputAdornment from "@mui/material/InputAdornment";
 import {
   SearchResults,
@@ -35,6 +35,7 @@ const searchClient = algoliasearch(apiKey, appId);
 const INDEX_NAMES = ["ff_index", "sr_index"];
 
 type AutocompleteItem = Hit<{
+  category: any;
   image: string;
   name: string;
   objectID: string;
@@ -57,7 +58,6 @@ function AutoCompleteSearch(
   const { query, collections, isOpen, status } = autocompleteState;
   const mobile = useMediaQuery(theme.breakpoints.down("md"));
   const desktop = useMediaQuery(theme.breakpoints.up("md"));
-  const [isSearchFound, setIsSearchFound] = useState<any>([]);
   const classes = useStyles({ isOpen });
   const autocomplete = useMemo(
     () =>
@@ -87,10 +87,6 @@ function AutoCompleteSearch(
                       },
                     },
                   ],
-                  transformResponse: ({ hits }) => {
-                    setIsSearchFound(hits[0]?.length);
-                    return hits;
-                  },
                 });
               },
               getItemUrl({ item }) {
@@ -142,13 +138,15 @@ function AutoCompleteSearch(
     autocomplete.setQuery("");
   };
 
-  useEffect(() => {
-    if (isOpen) {
+  const noResultInput = mobile && !isOpen && query && !desktop;
+
+  useLayoutEffect(() => {
+    if ((isOpen && !query) || (query && mobile && isOpen) || noResultInput) {
       props.setIsMobileSearchOpen(true);
+    } else if ((!isOpen && query) || (!query && mobile && !isOpen) || !noResultInput) {
+      props.setIsMobileSearchOpen(false);
     }
   }, [isOpen]);
-
-  const noResultInput = mobile && !isOpen && query && !desktop;
 
   return (
     <Box component="div" sx={{ overflow: "hidden !important" }}>
@@ -170,61 +168,83 @@ function AutoCompleteSearch(
           component="form"
           ref={formRef}
           {...autocomplete.getFormProps({ inputElement: inputRef.current })}
-          sx={{ display: "flex", p: (mobile && isOpen) || (mobile && noResultInput) ? "10px" : 0 }}
+          sx={{
+            p: (mobile && isOpen) || (mobile && noResultInput) ? "10px" : 0,
+            position: (mobile && isOpen) || (mobile && noResultInput) ? "sticky" : "static",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor:
+              (mobile && isOpen) || (mobile && noResultInput) ? theme.palette.common.white : "none",
+            zIndex: theme.zIndex.modal,
+          }}
         >
-          <TextField
-            size="small"
-            fullWidth
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <SearchOutlined />
-                </InputAdornment>
-              ),
-              endAdornment: (
-                <InputAdornment position="start">
-                  <Box
-                    sx={{
-                      position: "absolute",
-                      top: theme.spacing(1.175),
-                      right: theme.spacing(0.25),
-                      width: theme.spacing(4.375),
-                      height: theme.spacing(4.375),
-                      bgcolor: theme.palette.common.white,
-                    }}
-                  >
-                    {query && (
-                      <CloseIcon
-                        onClick={onClearSearch}
-                        sx={{ cursor: "pointer", color: theme.palette.common.black }}
-                      />
-                    )}
-                  </Box>
-                </InputAdornment>
-              ),
-            }}
-            sx={
-              desktop
-                ? desktopInputStyles(theme, isOpen)
-                : mobile && !isOpen && !desktop
-                ? mobileInputStyles(theme, isOpen)
-                : inputStyles(theme, isOpen)
-            }
-            ref={inputRef}
-            {...autocomplete.getInputProps({ inputElement: inputRef.current })}
-          />
-          {(isOpen && mobile) || noResultInput ? (
-            <Button
-              onClick={onClosePage}
-              sx={{
-                fontWeight: theme.typography.fontWeightBold,
-                fontSize: theme.typography.subtitle2.fontSize,
-                textTransform: "lowercase",
-              }}
-            >
-              Close
-            </Button>
-          ) : null}
+          <Box>
+            <Box sx={{ display: "flex" }}>
+              <TextField
+                size="small"
+                fullWidth
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <SearchOutlined />
+                    </InputAdornment>
+                  ),
+                  endAdornment: (
+                    <InputAdornment position="start">
+                      <Box
+                        sx={{
+                          position: "absolute",
+                          top: theme.spacing(1.175),
+                          right: theme.spacing(0.25),
+                          width: theme.spacing(4.375),
+                          height: theme.spacing(4.375),
+                          bgcolor: theme.palette.common.white,
+                        }}
+                      >
+                        {query && (
+                          <CloseIcon
+                            onClick={onClearSearch}
+                            sx={{ cursor: "pointer", color: theme.palette.common.black }}
+                          />
+                        )}
+                      </Box>
+                    </InputAdornment>
+                  ),
+                }}
+                sx={
+                  desktop
+                    ? desktopInputStyles(theme, isOpen)
+                    : mobile && !isOpen && !desktop
+                    ? mobileInputStyles(theme, isOpen)
+                    : inputStyles(theme, isOpen)
+                }
+                ref={inputRef}
+                {...autocomplete.getInputProps({ inputElement: inputRef.current })}
+              />
+              {(isOpen && mobile) || noResultInput ? (
+                <Button
+                  onClick={onClosePage}
+                  sx={{
+                    fontWeight: theme.typography.fontWeightBold,
+                    fontSize: theme.typography.subtitle2.fontSize,
+                    textTransform: "lowercase",
+                  }}
+                >
+                  Close
+                </Button>
+              ) : null}
+            </Box>
+            {((mobile && isOpen) || (mobile && noResultInput)) && (
+              <Box sx={{ width: "100%" }}>
+                <SearchCategories
+                  onSelectCategory={props.onSelectCategory}
+                  categoryOptions={props.categoryOptions}
+                />
+              </Box>
+            )}
+          </Box>
         </Box>
         {isOpen && desktop && (
           <Box
@@ -243,14 +263,6 @@ function AutoCompleteSearch(
             {...autocomplete.getPanelProps({})}
             sx={{ width: "100%" }}
           >
-            {(query || !query) && mobile && (
-              <Box sx={{ mb: theme.spacing(2), width: "100%" }}>
-                <SearchCategories
-                  onSelectCategory={props.onSelectCategory}
-                  categoryOptions={props.categoryOptions}
-                />
-              </Box>
-            )}
             {!query && status === "idle" && (mobile || desktop) && (
               <Box
                 sx={{
@@ -264,10 +276,10 @@ function AutoCompleteSearch(
                 component="div"
               >
                 <Typography
-                  variant="subtitle2"
+                  variant="labelLarge"
                   sx={{
                     fontWeight: theme.typography.fontWeightBold,
-                    fontSize: theme.typography.subtitle2.fontSize,
+                    fontSize: theme.typography.labelLarge.fontSize,
                   }}
                 >
                   Recently viewed
@@ -277,7 +289,7 @@ function AutoCompleteSearch(
                   variant="text"
                   sx={{
                     fontWeight: theme.typography.fontWeightBold,
-                    fontSize: theme.typography.subtitle2.fontSize,
+                    fontSize: theme.typography.labelLarge.fontSize,
                     textTransform: "lowercase",
                   }}
                   onClick={onClearSearch}
@@ -334,7 +346,7 @@ function AutoCompleteSearch(
                   {(collection, index) => {
                     const { items } = collection;
                     if (items.length === 0) {
-                      return <NoSearchResults />;
+                      return <NoSearchResults key={`source-${index}`} />;
                     } else {
                       return (
                         <Box component="section" key={`source-${index}`}>

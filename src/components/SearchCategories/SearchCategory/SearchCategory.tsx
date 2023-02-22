@@ -53,7 +53,15 @@ export default function SearchCategory({
           mr: theme.spacing(1),
         }}
       />
-      <Typography> {label}</Typography>
+      <Typography
+        variant="titleSmall"
+        sx={{
+          color: theme.palette.customGray.main,
+          fontWeight: theme.typography.fontWeightRegular,
+        }}
+      >
+        {label}
+      </Typography>
     </Box>
   );
 }

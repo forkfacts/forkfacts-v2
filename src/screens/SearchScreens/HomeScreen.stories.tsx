@@ -195,7 +195,6 @@ const collection = [
 const collectionGroupedItems = [
   { categoryName: "FRUIT AND FRUIT JUICES", collection: collection },
   { categoryName: "BABY FOODS", collection: collection.slice(0, 3) },
-  { categoryName: "SWEETS", collection: collection.slice(0, 4) },
 ];
 
 const Template: ComponentStory<typeof HomeScreen> = (args) => <HomeScreen {...args} />;
@@ -216,7 +215,7 @@ Desktop.args = {
 export const Mobile = Template.bind({});
 Mobile.parameters = {
   viewport: {
-    defaultViewport: "iphone6",
+    defaultViewport: "iphonexr",
   },
 };
 

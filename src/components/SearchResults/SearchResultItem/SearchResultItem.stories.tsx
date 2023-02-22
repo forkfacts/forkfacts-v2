@@ -28,15 +28,17 @@ export const searchItem = Template.bind({});
 searchItem.args = {
   ...searchItem.args,
   item: {
+    category: "Food",
     name: "Banana dehydrated/ banana powder",
     image: "/recentImg.png",
-    path: "/:",
+    url: "/:",
   },
   onSelectItem: (item: SearchResultItemType) => item,
 };
+
 searchItem.parameters = {
   viewport: {
-    defaultViewport: "iphone6",
+    defaultViewport: "iphonexr",
   },
 };
 

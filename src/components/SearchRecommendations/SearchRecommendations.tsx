@@ -12,9 +12,9 @@ const SearchRecommendations: React.FC<SearchRecommendationsProps> = ({ recommend
     <Box>
       <Box sx={{ mb: theme.spacing(2) }}>
         <Typography
-          variant="subtitle2"
+          variant="labelLarge"
           sx={{
-            fontWeight: theme.typography.fontWeightBold,
+            fontWeight: theme.typography.fontWeightMedium,
             fontSize: theme.typography.subtitle2.fontSize,
           }}
         >
@@ -26,10 +26,10 @@ const SearchRecommendations: React.FC<SearchRecommendationsProps> = ({ recommend
           return (
             <Box key={idx} sx={{ mb: theme.spacing(2) }}>
               <Typography
+                variant="labelMedium"
                 sx={{
                   mb: theme.spacing(1),
-                  fontSize: theme.typography.caption.fontSize,
-                  fontWeight: theme.typography.fontWeightMedium,
+                  fontWeight: theme.typography.fontWeightRegular,
                   color: theme.palette.customGray.dark,
                   textTransform: "uppercase",
                 }}
@@ -41,7 +41,7 @@ const SearchRecommendations: React.FC<SearchRecommendationsProps> = ({ recommend
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "space-between",
-                  gap: theme.spacing(1.5),
+                  gap: theme.spacing(2),
                 }}
               >
                 <Stack direction="row" gap={1}>

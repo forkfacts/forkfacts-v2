@@ -1,4 +1,4 @@
-import { Box, Button, useTheme } from "@mui/material";
+import { Box, Button, Typography, useTheme } from "@mui/material";
 import { SearchRecommendationItemProps } from "@forkfacts/models";
 import React from "react";
 
@@ -24,11 +24,17 @@ const SearchRecommendationItem: React.FC<SearchRecommendationItemProps> = ({ ite
             width: theme.spacing(2.5),
             height: theme.spacing(2.5),
             mr: theme.spacing(1.5),
-            fontWeight: theme.typography.fontWeightLight,
           }}
         />
       )}
-      {item.name}
+      <Typography
+        variant="bodySmall"
+        sx={{
+          fontWeight: theme.typography.fontWeightLight,
+        }}
+      >
+        {item.name}
+      </Typography>
     </Button>
   );
 };

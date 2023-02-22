@@ -12,7 +12,7 @@ export default function SearchResultItem({ item, onSelectItem }: SearchResultIte
   const styles = useStyles();
 
   return (
-    <ListItem disablePadding onClick={() => onSelectItem(item)}>
+    <ListItem disablePadding onClick={() => onSelectItem(item)} sx={{ mb: theme.spacing(0.5) }}>
       <ListItemButton>
         <ListItemIcon>
           <img

@@ -41,7 +41,7 @@ export default {
   },
 } as ComponentMeta<typeof SearchResults>;
 
-const collectionListsItems = [
+const collectionMultipleListsItems = [
   { image: "/recentImg.png", name: "Kidney beans light, Legume", url: "/:id" },
   { image: "/image3.png", name: "Grape fruit juices", url: "/:id" },
   {
@@ -61,9 +61,32 @@ const collectionListsItems = [
   },
 ];
 
+const collectionListsItems = [
+  { image: "/recentImg.png", name: "Kidney beans light, Legume", url: "/:id", category: "Food" },
+  { image: "/image3.png", name: "Grape fruit juices", url: "/:id", category: "Food" },
+  {
+    image: "/image2.png",
+    name: "Baked white bread, Baked products",
+    url: "/:id",
+    category: "Food",
+  },
+  {
+    image: "/image4.png",
+    name: "Grape fruit juice unsweentened, Fruit ...",
+    url: "/:id",
+    category: "Recipes",
+  },
+  {
+    image: "/image5.png",
+    name: "Banana dehydrated/ banana powder",
+    url: "/:id",
+    category: "Library",
+  },
+];
+
 const collectionGroupedItems = [
-  { categoryName: "FRUIT AND FRUIT JUICES", collection: collectionListsItems },
-  { categoryName: "BABY FOODS", collection: collectionListsItems.slice(0, 3) },
+  { categoryName: "FRUIT AND FRUIT JUICES", collection: collectionMultipleListsItems },
+  { categoryName: "BABY FOODS", collection: collectionMultipleListsItems.slice(0, 3) },
 ];
 
 const Template: ComponentStory<typeof SearchResults> = (args) => {

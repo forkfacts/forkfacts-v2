@@ -141,9 +141,12 @@ function AutoCompleteSearch(
   const noResultInput = mobile && !isOpen && query && !desktop;
 
   useLayoutEffect(() => {
-    if ((isOpen && !query) || (query && mobile && isOpen) || noResultInput) {
+    if ((isOpen && !query) || (query && mobile && isOpen) || (noResultInput && !desktop)) {
       props.setIsMobileSearchOpen(true);
     } else if ((!isOpen && query) || (!query && mobile && !isOpen) || !noResultInput) {
+      props.setIsMobileSearchOpen(false);
+    }
+    if (desktop && !query) {
       props.setIsMobileSearchOpen(false);
     }
   }, [isOpen]);

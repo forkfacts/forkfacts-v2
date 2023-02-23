@@ -66,9 +66,11 @@ const SearchResults: React.FC<SearchResultsProps> = ({
                         }}
                       </ForLoops>
                     </Box>
-                    {value.collection.length > 3 && (
-                      <ViewMoreButton handleViewMore={handleViewMore} text="See more" />
-                    )}
+                    <Box sx={{ ml: mobile ? theme.spacing(-1) : theme.spacing(1) }}>
+                      {value.collection.length > 3 && (
+                        <ViewMoreButton handleViewMore={handleViewMore} text="See more" />
+                      )}
+                    </Box>
                   </List>
                 );
               }}

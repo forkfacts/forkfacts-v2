@@ -3,7 +3,7 @@ import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import EggAltOutlinedIcon from "@mui/icons-material/EggAltOutlined";
 import EmojiFoodBeverageOutlinedIcon from "@mui/icons-material/EmojiFoodBeverageOutlined";
-import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlined";
+import LibraryBooksOutlinedIcon from "@mui/icons-material/LibraryBooksOutlined";
 import { SearchCategories } from "@forkfacts/components";
 import { SearchCategoryItemType } from "@forkfacts/models";
 
@@ -38,11 +38,10 @@ Mobile.parameters = {
 const categoryOptions = [
   { label: "Food", Icon: EggAltOutlinedIcon },
   { label: "Recipe", Icon: EmojiFoodBeverageOutlinedIcon },
-  { label: "Library", Icon: BookmarkBorderOutlinedIcon },
+  { label: "Library", Icon: LibraryBooksOutlinedIcon },
 ];
 Mobile.args = {
   ...Mobile.args,
-  onSelectCategory: (item: SearchCategoryItemType) => item,
   categoryOptions: categoryOptions,
 };
 
@@ -54,6 +53,5 @@ Tablet.parameters = {
 };
 Tablet.args = {
   ...Tablet.args,
-  onSelectCategory: (item: SearchCategoryItemType) => item,
   categoryOptions: categoryOptions,
 };

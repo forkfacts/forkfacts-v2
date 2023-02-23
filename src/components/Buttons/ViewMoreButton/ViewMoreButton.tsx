@@ -21,8 +21,9 @@ export default function ViewMoreButton({
       <Button variant="text" color="primary" onClick={handleViewMore}>
         <Typography
           variant="labelSmall"
+          color="primary"
           sx={{
-            fontWeight: theme.typography.fontWeightRegular,
+            fontWeight: theme.typography.fontWeightMedium,
             textTransform: "capitalize",
           }}
         >

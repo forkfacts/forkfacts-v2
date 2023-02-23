@@ -160,8 +160,8 @@ const { PopularFrequentSearchItems, onSelectPopularItem }: PopularFrequentSearch
 
 const categoryOptions = [
   { label: "Food", Icon: EggAltOutlinedIcon },
-  { label: "Recipes", Icon: EmojiFoodBeverageOutlinedIcon },
-  { label: "Library", Icon: BookmarkBorderOutlinedIcon },
+  { label: "Recipe", Icon: EmojiFoodBeverageOutlinedIcon },
+  { label: "Library", Icon: LibraryBooksOutlinedIcon },
 ];
 
 const collection = [

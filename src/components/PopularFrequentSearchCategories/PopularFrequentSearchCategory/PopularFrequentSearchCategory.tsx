@@ -25,9 +25,9 @@ const PopularFrequentSearchCategory = ({
         borderRadius: theme.spacing(1),
         transition: "all 0.4s ease-out",
         "&:hover": {
-          border: `1px solid ${theme.palette.primary.main}`,
+          border: `2px solid ${theme.palette.primary.main}`,
           transform: "scale(1.05)",
-          boxShadow: `0px 2px 4px 0px rgba(0,0,0,0.3)`,
+          boxShadow: `0px 2px 16px rgba(0, 0, 0, 0.1)`,
         },
       }}
       onClick={handleSelectedItem}
@@ -46,14 +46,7 @@ const PopularFrequentSearchCategory = ({
           sx={{ objectFit: "contain", width: "100%" }}
         />
       </Box>
-      <Box
-        sx={{
-          "&:hover": {
-            border: `1px solid ${theme.palette.primary.main}`,
-            borderTop: 0,
-          },
-        }}
-      >
+      <Box>
         <Typography
           sx={{
             color: theme.palette.customGray.main,

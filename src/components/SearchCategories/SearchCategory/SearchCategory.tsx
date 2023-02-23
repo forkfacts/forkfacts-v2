@@ -41,6 +41,7 @@ export default function SearchCategory({
         alignItems: "center",
         justifyContent: "center",
         cursor: "pointer",
+        pb: theme.spacing(1),
       }}
       onClick={handleClick}
     >

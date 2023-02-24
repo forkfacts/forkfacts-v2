@@ -277,7 +277,7 @@ const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
                         <Typography
                           variant="bodyLarge"
                           sx={{
-                            marginRight: theme.spacing(8),
+                            marginRight: theme.spacing(10),
                             fontWeight: theme.typography.fontWeightLight,
                             color: theme.palette.customGray.main,
                           }}

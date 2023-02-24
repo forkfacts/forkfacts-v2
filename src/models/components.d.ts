@@ -1,5 +1,6 @@
 import { SvgIconComponent } from "@mui/icons-material";
 import React, { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction } from "react";
 
 export interface SearchResultItemType {
   name: string;
@@ -7,6 +8,7 @@ export interface SearchResultItemType {
   image: string;
   category?: string;
 }
+
 export interface recommendationItem {
   name: string;
   icon?: string;
@@ -71,6 +73,10 @@ export interface NutritionTableItem {
   }>;
 }
 
+export interface recommendationType {
+  recommendationName: string;
+  recommendationItems: Array<recommendationItem>;
+}
 export interface SearchCategoryItemType {
   label: string;
   Icon: SvgIconComponent;

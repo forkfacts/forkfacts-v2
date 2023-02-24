@@ -64,22 +64,22 @@ const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
           }}
         >
           <Typography
+            variant="titleLarge"
             sx={{
               color: theme.palette.customGray.textDark,
               textTransform: "uppercase",
-              fontSize: mobile ? theme.typography.caption.fontSize : theme.typography.h6.fontSize,
-              fontWeight: theme.typography.fontWeightMedium,
+              fontWeight: theme.typography.fontWeightRegular,
             }}
           >
             {compareTableDetails.name}
           </Typography>
           <Typography
+            variant="labelLarge"
             sx={{
               ml: mobile ? 0 : theme.spacing(1),
-              color: theme.palette.customGray.textLight,
-              fontSize: mobile ? "10px" : theme.typography.caption.fontSize,
+              color: theme.palette.customGray.textDark,
               mt: mobile ? theme.spacing(2) : 0,
-              fontWeight: theme.typography.fontWeightMedium,
+              fontWeight: theme.typography.fontWeightRegular,
             }}
           >
             {compareTableDetails.quantityAmount}

@@ -11,8 +11,8 @@ export default function DetailsPageTabItem({
   onSelectDetailsPageTabItem,
 }: DetailsPageTabItemProps) {
   const classes = useStyles();
-  const { spacing, palette, typography, breakpoints } = useTheme();
-  const mobile = useMediaQuery(breakpoints.down("md"));
+  const theme = useTheme();
+  const mobile = useMediaQuery(theme.breakpoints.down("md"));
 
   const handleClick = () => {
     setSelectedIndex(index);
@@ -31,16 +31,16 @@ export default function DetailsPageTabItem({
         display: "flex",
         flexDirection: "row",
         alignItems: "center",
-        paddingLeft: spacing(3),
-        paddingRight: spacing(3),
-        border: `1px solid ${palette.customGray.light}`,
-        borderTopRightRadius: index === 4 ? spacing(1) : 0,
-        borderBottomRightRadius: index === 4 ? spacing(1) : 0,
-        borderTopLeftRadius: index === 0 ? spacing(1) : 0,
-        borderBottomLeftRadius: index === 0 ? spacing(1) : 0,
-        fontWeight: typography.fontWeightBold,
-        width: mobile ? "auto" : spacing(29.2),
-        height: spacing(5),
+        paddingLeft: theme.spacing(3),
+        paddingRight: theme.spacing(3),
+        border: `1px solid ${theme.palette.customGray.light}`,
+        borderTopRightRadius: index === 4 ? theme.spacing(1) : 0,
+        borderBottomRightRadius: index === 4 ? theme.spacing(1) : 0,
+        borderTopLeftRadius: index === 0 ? theme.spacing(1) : 0,
+        borderBottomLeftRadius: index === 0 ? theme.spacing(1) : 0,
+        fontWeight: theme.typography.fontWeightBold,
+        width: mobile ? "auto" : theme.spacing(29.2),
+        height: theme.spacing(5),
         flexShrink: 0,
       }}
       onClick={handleClick}
@@ -50,13 +50,18 @@ export default function DetailsPageTabItem({
           fontSize="medium"
           className={classes.icon}
           sx={{
-            width: spacing(1.9),
-            height: spacing(1.9),
+            width: theme.spacing(1.9),
+            height: theme.spacing(1.9),
           }}
         />
       }
     >
-      <Typography variant="body1">{item.label}</Typography>
+      <Typography
+        variant={mobile ? "labelMedium" : "titleMedium"}
+        sx={{ fontWeight: theme.typography.fontWeightRegular }}
+      >
+        {item.label}
+      </Typography>
     </Button>
   );
 }

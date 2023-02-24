@@ -104,8 +104,8 @@ export const customTheme = createTheme({
       fontStyle: "normal",
     },
     titleLarge: {
-      fontSize: "14px",
-      lineHeight: "20px",
+      fontSize: theme.spacing(2.75),
+      lineHeight: "28px",
       fontStyle: "normal",
       letterSpacing: "0.1px",
     },

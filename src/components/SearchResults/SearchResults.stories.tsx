@@ -41,7 +41,7 @@ export default {
   },
 } as ComponentMeta<typeof SearchResults>;
 
-const collectionListsItems = [
+const collectionMultipleListsItems = [
   { image: "/recentImg.png", name: "Kidney beans light, Legume", url: "/:id" },
   { image: "/image3.png", name: "Grape fruit juices", url: "/:id" },
   {
@@ -61,51 +61,98 @@ const collectionListsItems = [
   },
 ];
 
-const collectionGroupedItems = [
-  { categoryName: "FRUIT AND FRUIT JUICES", collection: collectionListsItems },
-  { categoryName: "BABY FOODS", collection: collectionListsItems.slice(0, 3) },
-  { categoryName: "SWEETS", collection: collectionListsItems.slice(0, 4) },
+const collectionListsItems = [
+  { image: "/recentImg.png", name: "Kidney beans light, Legume", url: "/:id", category: "Food" },
+  { image: "/image3.png", name: "Grape fruit juices", url: "/:id", category: "Food" },
+  {
+    image: "/image2.png",
+    name: "Baked white bread, Baked products",
+    url: "/:id",
+    category: "Food",
+  },
+  {
+    image: "/image4.png",
+    name: "Grape fruit juice unsweentened, Fruit ...",
+    url: "/:id",
+    category: "Recipes",
+  },
+  {
+    image: "/image5.png",
+    name: "Banana dehydrated/ banana powder",
+    url: "/:id",
+    category: "Library",
+  },
 ];
 
-const Template: ComponentStory<typeof SearchResults> = (args) => <SearchResults {...args} />;
+const collectionGroupedItems = [
+  { categoryName: "FRUIT AND FRUIT JUICES", collection: collectionMultipleListsItems },
+  { categoryName: "BABY FOODS", collection: collectionMultipleListsItems.slice(0, 3) },
+];
 
-export const SearchResultsItemsMultipleCategories = Template.bind({});
-SearchResultsItemsMultipleCategories.parameters = {
-  viewport: {
-    defaultViewport: "iphonexr",
-  },
+const Template: ComponentStory<typeof SearchResults> = (args) => {
+  return <SearchResults {...args} />;
 };
-SearchResultsItemsMultipleCategories.args = {
-  ...SearchResultsItemsMultipleCategories.args,
+
+export const SearchResultsItemsMultipleDesktopCategories = Template.bind({});
+
+SearchResultsItemsMultipleDesktopCategories.args = {
+  ...SearchResultsItemsMultipleDesktopCategories.args,
   collectionGroupedItems,
   multiple: true,
   onSelectItem: (item: SearchResultItemType) => item,
 };
-SearchResultsItemsMultipleCategories.argTypes = {
+
+SearchResultsItemsMultipleDesktopCategories.storyName =
+  "SearchResultsItemsMultipleDesktopCategories";
+
+export const SearchResultsItemsSingleDesktopCategory = Template.bind({});
+
+SearchResultsItemsSingleDesktopCategory.args = {
+  ...SearchResultsItemsSingleDesktopCategory.args,
+  collectionListsItems,
+  multiple: false,
+  onSelectItem: (item: SearchResultItemType) => item,
+};
+
+SearchResultsItemsSingleDesktopCategory.storyName = "SearchResultsItemsSingleDesktopCategory";
+
+export const SearchResultsItemsMultipleMobileCategories = Template.bind({});
+SearchResultsItemsMultipleMobileCategories.parameters = {
+  viewport: {
+    defaultViewport: "iphonexr",
+  },
+};
+SearchResultsItemsMultipleMobileCategories.args = {
+  ...SearchResultsItemsMultipleMobileCategories.args,
+  collectionGroupedItems,
+  multiple: true,
+  onSelectItem: (item: SearchResultItemType) => item,
+};
+SearchResultsItemsMultipleMobileCategories.argTypes = {
   multiple: {
     table: { defaultValue: { summary: true } },
     control: false,
   },
 };
-SearchResultsItemsMultipleCategories.storyName = "SearchResultsMultipleCategories";
+SearchResultsItemsMultipleMobileCategories.storyName = "SearchResultsItemsMultipleMobileCategories";
 
-export const SearchResultsItemsSingleCategory = Template.bind({});
-SearchResultsItemsSingleCategory.parameters = {
+export const SearchResultsItemsSingleMobileCategory = Template.bind({});
+SearchResultsItemsSingleMobileCategory.parameters = {
   viewport: {
     defaultViewport: "iphonexr",
   },
 };
-SearchResultsItemsSingleCategory.args = {
-  ...SearchResultsItemsSingleCategory.args,
+SearchResultsItemsSingleMobileCategory.args = {
+  ...SearchResultsItemsSingleMobileCategory.args,
   collectionListsItems,
   multiple: false,
   onSelectItem: (item: SearchResultItemType) => item,
 };
-SearchResultsItemsSingleCategory.argTypes = {
+SearchResultsItemsSingleMobileCategory.argTypes = {
   multiple: {
     table: { defaultValue: { summary: false } },
     control: false,
   },
 };
 
-SearchResultsItemsSingleCategory.storyName = "SearchResultsSingleCategory";
+SearchResultsItemsSingleMobileCategory.storyName = "SearchResultsItemsSingleMobileCategory";

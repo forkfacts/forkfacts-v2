@@ -21,7 +21,7 @@ export const Mobile = Template.bind({});
 
 Mobile.parameters = {
   viewport: {
-    defaultViewport: "iphone6",
+    defaultViewport: "iphonexr",
   },
 };
 

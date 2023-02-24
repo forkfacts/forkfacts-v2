@@ -13,14 +13,6 @@ export const useStyles = makeStyles(({ spacing, breakpoints, typography }: Theme
       paddingRight: spacing(3.9),
     },
   },
-  btn: {
-    [breakpoints.down("md")]: {
-      fontWeight: typography.fontWeightBold,
-      fontSize: typography.subtitle2.fontSize,
-      textTransform: "capitalize",
-      letterSpacing: spacing(0.0625),
-    },
-  },
   icon: {
     fontWeight: typography.fontWeightBold,
   },

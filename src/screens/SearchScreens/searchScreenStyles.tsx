@@ -91,9 +91,11 @@ export const useStyles = makeStyles(
       },
       [breakpoints.down("md")]: {
         marginTop: spacing(4),
+        marginBottom: spacing(4),
         display: "flex",
         justifyContent: "center",
         flexDirection: "column",
+        alignItems: "center",
         width: "100%",
       },
     },

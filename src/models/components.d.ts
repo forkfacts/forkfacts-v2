@@ -1,9 +1,21 @@
 import { SvgIconComponent } from "@mui/icons-material";
+import { Dispatch, SetStateAction } from "react";
 
 export interface SearchResultItemType {
   name: string;
   url: string;
   image: string;
+  category?: string;
+}
+
+export interface recommendationItem {
+  name: string;
+  icon?: string;
+}
+
+export interface recommendationType {
+  recommendationName: string;
+  recommendationItems: Array<recommendationItem>;
 }
 
 export interface SearchCategoryItemType {
@@ -20,7 +32,7 @@ export interface SearchResultItemCollectionType {
 }
 
 export interface onSelectCategoryType {
-  onSelectCategory: (item: SearchCategoryItemType) => void;
+  onSelectCategory: Dispatch<SetStateAction<string>>;
 }
 
 interface selectedItemType {
@@ -31,6 +43,7 @@ interface selectedItemType {
 
 export interface NavbarProps {
   navbarItems: Array<sidebarItem>;
+  onselectNavbarItem: Dispatch<SetStateAction<string>>;
 }
 
 export type extraInfo = {
@@ -40,14 +53,13 @@ export type extraInfo = {
 export interface PopularFrequentSearchType {
   searchImg: string;
   searchName: string;
-  searchLabels: string[];
   extraInfo: extraInfo[];
 }
-export interface MobileSearchCategoryProps extends onSelectCategoryType, selectedItemType {
+export interface SearchCategoryProps extends onSelectCategoryType, selectedItemType {
   label: string;
   Icon: SvgIconComponent;
 }
-export interface MobileSearchCategoriesProps extends onSelectCategoryType {
+export interface SearchCategoriesProps extends onSelectCategoryType {
   categoryOptions: Array<SearchCategoryItemType>;
 }
 
@@ -104,7 +116,6 @@ export interface SideBarItemProps {
 
 export interface PopularFrequentSearchProps {
   PopularFrequentSearchItems: Array<PopularFrequentSearchType>;
-  PopularFrequentSearchTitle: string;
   onSelectPopularItem: (item: PopularFrequentSearchType) => void;
 }
 
@@ -118,10 +129,20 @@ export interface NavBarItemProps {
   index: number;
   setSelectedIndex: (item: number) => void;
   selectedIndex: number;
+  onselectNavbarItem: Dispatch<SetStateAction<string>>;
 }
 
 interface AutoCompleteSearchProps extends onSelectCategoryType {
   sourceId: string;
   categoryOptions: Array<SearchCategoryItemType>;
   collectionGroupedItems: Array<SearchResultItemCollectionType>;
+  recommendations: Array<recommendationType>;
+  setIsMobileSearchOpen: Dispatch<SetStateAction<boolean>>;
+}
+interface SearchRecommendationItemProps {
+  item: recommendationItem;
+}
+
+export interface SearchRecommendationsProps {
+  recommendations: Array<recommendationType>;
 }

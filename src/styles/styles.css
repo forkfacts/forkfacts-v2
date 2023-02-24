@@ -1,3 +1,7 @@
-.MuiBox-root input[type="search"] {
-  appearance: textField !important;
+html {
+  overflow: auto;
+}
+
+body {
+  font-family: "Poppins";
 }

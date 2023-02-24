@@ -1,7 +1,8 @@
-import { createTheme } from "@mui/material";
+import { createTheme } from "@mui/material/styles";
+
+const theme = createTheme();
 
 export const customTheme = createTheme({
-  spacing: 0,
   palette: {
     primary: {
       main: "#4C42E8",
@@ -38,18 +39,110 @@ export const customTheme = createTheme({
     background: {
       default: "#FFFFFF",
     },
+    customGray: {
+      light: "#E5E1E6",
+      main: "#1C1B1F",
+      dark: "#78767A",
+      textLight: " #929094",
+    },
   },
   typography: {
+    button: {
+      textTransform: "none",
+    },
+    fontWeightMedium: 600,
+    fontWeightRegular: 500,
+    fontWeightLight: 400,
     fontFamily: "Poppins",
-    htmlFontSize: 12,
-    h1: {},
-    h2: {},
-    h3: {},
-    subtitle1: {},
-    body1: {},
-    body2: {},
-    subtitle2: {},
+    displaySmall: {
+      fontSize: "16px",
+      lineHeight: "24px",
+      fontStyle: "normal",
+      letterSpacing: "0.1px",
+    },
+    displayMedium: {
+      fontSize: "24px",
+      lineHeight: "24px",
+      fontStyle: "normal",
+      letterSpacing: "0.1px",
+    },
+    displayLarge: {
+      fontSize: "32px",
+      lineHeight: "24px",
+      fontStyle: "normal",
+      letterSpacing: "0.1px",
+    },
+    headline6: {
+      fontSize: theme.spacing(2.25),
+      lineHeight: "24px",
+      fontStyle: "normal",
+      letterSpacing: "0.1px",
+    },
+    headline4: {
+      fontSize: theme.spacing(3),
+      lineHeight: "24px",
+      fontStyle: "normal",
+      letterSpacing: "0.1px",
+    },
+    headline3: {
+      fontSize: "24px",
+      lineHeight: "32px",
+      fontStyle: "normal",
+      letterSpacing: "0.1px",
+    },
+    titleSmall: {
+      fontSize: theme.spacing(1.75),
+      lineHeight: "20px",
+      fontStyle: "normal",
+      letterSpacing: "0.1px",
+    },
+    titleMedium: {
+      fontSize: theme.spacing(2),
+      lineHeight: "24px",
+      letterSpacing: "0.1px",
+      fontStyle: "normal",
+    },
+    titleLarge: {
+      fontSize: "14px",
+      lineHeight: "20px",
+      fontStyle: "normal",
+      letterSpacing: "0.1px",
+    },
+    labelSmall: {
+      fontSize: theme.spacing(1.375),
+      lineHeight: "16px",
+      fontStyle: "normal",
+      letterSpacing: "0.5px",
+    },
+    labelMedium: {
+      fontSize: theme.spacing(1.5),
+      lineHeight: "16px",
+      letterSpacing: "0.5px",
+      fontStyle: "normal",
+    },
+    labelLarge: {
+      fontSize: theme.spacing(1.75),
+      lineHeight: "20px",
+      letterSpacing: "0.25px",
+      fontStyle: "normal",
+    },
+    bodyMedium: {
+      fontSize: theme.spacing(1.75),
+      lineHeight: "20px",
+      letterSpacing: "0.25px",
+      fontStyle: "normal",
+    },
+    bodyLarge: {
+      fontSize: "18px",
+      lineHeight: "32px",
+      letterSpacing: "0.25px",
+      fontStyle: "normal",
+    },
+    bodySmall: {
+      fontSize: theme.spacing(1.5),
+      lineHeight: "16px",
+      letterSpacing: "0.4px",
+      fontStyle: "normal",
+    },
   },
-  components: {},
-  breakpoints: {},
 });

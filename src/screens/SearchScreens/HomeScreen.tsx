@@ -1,5 +1,5 @@
-import React, { CSSProperties, useState, useEffect } from "react";
-import { Box, Typography, useTheme } from "@mui/material";
+import React, { useState } from "react";
+import { Box, useMediaQuery, useTheme } from "@mui/material";
 import {
   Layout,
   AutoCompleteSearch,
@@ -14,65 +14,61 @@ export default function HomeScreen({
   sidebarItems,
   navbarItems,
   PopularFrequentSearchItems,
-  PopularFrequentSearchTitle,
   onSelectPopularItem,
-  onSelectCategory,
   collectionGroupedItems,
   categoryOptions,
-  placeholder,
   sourceId,
+  recommendations,
 }: HomeScreenProps) {
   const theme = useTheme();
-
-  const [appBarHeight, setAppBarHeight] = useState<CSSProperties>();
-  useEffect(() => {
-    setAppBarHeight(theme.mixins.toolbar);
-  }, [theme.mixins.toolbar]);
-  const classes = useStyles(appBarHeight?.minHeight);
+  const mobile = useMediaQuery(theme.breakpoints.down("md"));
+  const [selectedNavbarItem, setSelectedNavbarItem] = useState("Food");
+  const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false);
+  const [selectedMobileItem, setSelectedMobileItem] = useState("Food");
+  const classes = useStyles();
 
   return (
-    <Layout sidebarItems={sidebarItems}>
-      <Box className={classes.root}>
-        <Box>
-          <Box className={classes.spaceBottom}>
-            <Typography variant="h5" className={classes.searchTitle}>
-              Forkfacts, Your Healthy diet search place.
-            </Typography>
+    <>
+      <Layout sidebarItems={sidebarItems}>
+        <Box className={classes.desktopScreenWrapper}>
+          <Box
+            component="img"
+            src="/homeImg.svg"
+            alt="home page image"
+            className={classes.img}
+            sx={{ maxWidth: "100%" }}
+          />
+          {!isMobileSearchOpen ? (
+            <Box className={classNames(classes.navbarStyles)}>
+              <NavBar navbarItems={navbarItems} onselectNavbarItem={setSelectedNavbarItem} />
+            </Box>
+          ) : null}
+          <Box className={classNames(classes.searchInputStyles)}>
+            <AutoCompleteSearch
+              recommendations={recommendations}
+              placeholder={`Search ${
+                isMobileSearchOpen
+                  ? selectedMobileItem.toLowerCase()
+                  : selectedNavbarItem.toLowerCase()
+              }`}
+              openOnFocus={true}
+              sourceId={sourceId}
+              onSelectCategory={setSelectedMobileItem}
+              categoryOptions={categoryOptions}
+              collectionGroupedItems={collectionGroupedItems}
+              setIsMobileSearchOpen={setIsMobileSearchOpen}
+            />
           </Box>
-          <Box className={classes.desktopScreenWrapper}>
-            <Box className={classes.showDesktop}>
-              <img src="/homeImg.svg" alt="home page image" className={classes.img} />
-            </Box>
-
-            <Typography
-              variant="h4"
-              className={classNames(classes.selectedSearchTitle, classes.showDesktop)}
-            >
-              Foods
-            </Typography>
-            <Box className={classNames(classes.searchInputStyles)}>
-              <AutoCompleteSearch
-                placeholder={placeholder}
-                openOnFocus={true}
-                sourceId={sourceId}
-                onSelectCategory={onSelectCategory}
-                categoryOptions={categoryOptions}
-                collectionGroupedItems={collectionGroupedItems}
-              />
-            </Box>
-            <Box className={classNames(classes.showDesktop, classes.navbarStyles)}>
-              <NavBar navbarItems={navbarItems} />
-            </Box>
-            <Box className={classNames(classes.showDesktop, classes.PopularFrequentStyles)}>
+          {!isMobileSearchOpen ? (
+            <Box className={classNames(classes.PopularFrequentStyles)}>
               <PopularFrequentSearchCategories
-                PopularFrequentSearchTitle={PopularFrequentSearchTitle}
                 PopularFrequentSearchItems={PopularFrequentSearchItems}
                 onSelectPopularItem={onSelectPopularItem}
               />
             </Box>
-          </Box>
+          ) : null}
         </Box>
-      </Box>
-    </Layout>
+      </Layout>
+    </>
   );
 }

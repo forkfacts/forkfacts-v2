@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Typography, List } from "@mui/material";
+import { Box, Typography, List, useTheme, useMediaQuery } from "@mui/material";
 import { ForLoops } from "@forkfacts/helpers";
 import { SearchResultsProps } from "@forkfacts/models";
 import { ViewMoreButton, SearchResultItem } from "@forkfacts/components";
@@ -13,6 +13,8 @@ const SearchResults: React.FC<SearchResultsProps> = ({
   handleViewMore,
 }) => {
   const classes = useStyles();
+  const theme = useTheme();
+  const mobile = useMediaQuery(theme.breakpoints.down("md"));
 
   return (
     <Box className={classes.root}>
@@ -23,13 +25,38 @@ const SearchResults: React.FC<SearchResultsProps> = ({
               {(value, idx) => {
                 return (
                   <List key={idx} className={classes.listWrapper}>
-                    <Typography
-                      color="text.secondary"
-                      component="div"
-                      className={classes.categoryName}
+                    <Box
+                      sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        width: "100%",
+                        mb: theme.spacing(1.5),
+                      }}
                     >
-                      {value.categoryName}
-                    </Typography>
+                      <Typography
+                        variant="labelMedium"
+                        sx={{
+                          padding: theme.spacing(1.2, 2),
+                          color: theme.palette.customGray.main,
+                        }}
+                      >
+                        {value.categoryName}
+                      </Typography>
+                      <Typography
+                        color="primary"
+                        sx={{
+                          bgcolor: theme.palette.primary.light,
+                          width: theme.spacing(3),
+                          height: theme.spacing(3),
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          borderRadius: "50%",
+                        }}
+                      >
+                        {value.collection.length}
+                      </Typography>
+                    </Box>
                     <Box>
                       <ForLoops each={value.collection}>
                         {(item, index) => {
@@ -39,9 +66,11 @@ const SearchResults: React.FC<SearchResultsProps> = ({
                         }}
                       </ForLoops>
                     </Box>
-                    {value.collection.length > 3 && (
-                      <ViewMoreButton handleViewMore={handleViewMore} />
-                    )}
+                    <Box sx={{ ml: mobile ? theme.spacing(-1) : theme.spacing(1) }}>
+                      {value.collection.length > 3 && (
+                        <ViewMoreButton handleViewMore={handleViewMore} text="See more" />
+                      )}
+                    </Box>
                   </List>
                 );
               }}
@@ -59,9 +88,11 @@ const SearchResults: React.FC<SearchResultsProps> = ({
               </ForLoops>
             </List>
           )}
-          {collectionListsItems && handleViewMore && collectionListsItems?.length > 3 && (
-            <ViewMoreButton handleViewMore={handleViewMore} />
-          )}
+          <Box sx={{ ml: mobile ? theme.spacing(-1) : theme.spacing(1) }}>
+            {collectionListsItems && collectionListsItems?.length > 3 && (
+              <ViewMoreButton handleViewMore={handleViewMore} text="View all" />
+            )}
+          </Box>
         </Box>
       )}
     </Box>

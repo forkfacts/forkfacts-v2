@@ -19,7 +19,7 @@ export default {
 export const Mobile: ComponentStory<typeof Header> = (args) => <Header {...args} />;
 Mobile.parameters = {
   viewport: {
-    defaultViewport: "iphone6",
+    defaultViewport: "iphonexr",
   },
 };
 

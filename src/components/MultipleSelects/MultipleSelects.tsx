@@ -122,12 +122,9 @@ const MultipleSelects: React.FC<MultipleSelectsProps> = ({
             }}
           >
             <Typography
-              variant="caption"
+              variant="bodySmall"
               sx={{
-                color: theme.palette.grey[600],
-                fontWeight: theme.typography.fontWeightMedium,
-                lineHeight: theme.spacing(2),
-                letterSpacing: theme.spacing(0.05),
+                fontWeight: theme.typography.fontWeightRegular,
                 textTransform: "uppercase",
               }}
             >
@@ -166,13 +163,10 @@ const MultipleSelects: React.FC<MultipleSelectsProps> = ({
                   <Box>
                     <Checkbox checked={item.checked} color="primary" />
                     <Typography
-                      component="span"
+                      variant="bodyMedium"
                       sx={{
-                        fontSize: theme.typography.subtitle2.fontSize,
-                        color: "#1C1B1F",
+                        color: theme.palette.customGray.main,
                         fontWeight: theme.typography.fontWeightRegular,
-                        lineHeight: theme.spacing(2),
-                        letterSpacing: theme.spacing(0.05),
                       }}
                     >
                       {item.name}
@@ -190,7 +184,14 @@ const MultipleSelects: React.FC<MultipleSelectsProps> = ({
                 mt: theme.spacing(2),
               }}
             >
-              <Typography color="primary" onClick={onSelectAll}>
+              <Typography
+                color="primary"
+                variant="labelLarge"
+                onClick={onSelectAll}
+                sx={{
+                  fontWeight: theme.typography.fontWeightRegular,
+                }}
+              >
                 Select All
               </Typography>
             </Box>

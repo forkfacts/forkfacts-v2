@@ -2,20 +2,20 @@ import React from "react";
 import { ForLoops } from "@forkfacts/helpers";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { SearchRecommendationsProps } from "@forkfacts/models";
-import { Box, Stack, Typography, useTheme } from "@mui/material";
+import { Box, Stack, Typography, useMediaQuery, useTheme } from "@mui/material";
 import SearchRecommendationItem from "./SearchRecommendationItem";
 
 const SearchRecommendations: React.FC<SearchRecommendationsProps> = ({ recommendations }) => {
   const theme = useTheme();
+  const mobile = useMediaQuery(theme.breakpoints.between("xs", "sm"));
 
   return (
     <Box>
-      <Box sx={{ mb: theme.spacing(2) }}>
+      <Box sx={{ mb: theme.spacing(1.5) }}>
         <Typography
-          variant="subtitle2"
+          variant="labelLarge"
           sx={{
-            fontWeight: theme.typography.fontWeightBold,
-            fontSize: theme.typography.subtitle2.fontSize,
+            fontWeight: theme.typography.fontWeightRegular,
           }}
         >
           Recommendations
@@ -24,13 +24,12 @@ const SearchRecommendations: React.FC<SearchRecommendationsProps> = ({ recommend
       <ForLoops each={recommendations}>
         {(value, idx) => {
           return (
-            <Box key={idx} sx={{ mb: theme.spacing(2) }}>
+            <Box key={idx} sx={{ mb: theme.spacing(2.5) }}>
               <Typography
+                variant="labelMedium"
                 sx={{
-                  mb: theme.spacing(1),
-                  fontSize: theme.typography.caption.fontSize,
-                  fontWeight: theme.typography.fontWeightMedium,
-                  color: theme.palette.customGray.textLight,
+                  fontWeight: theme.typography.fontWeightRegular,
+                  color: theme.palette.customGray.dark,
                   textTransform: "uppercase",
                 }}
               >
@@ -41,7 +40,8 @@ const SearchRecommendations: React.FC<SearchRecommendationsProps> = ({ recommend
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "space-between",
-                  gap: theme.spacing(1.5),
+                  gap: theme.spacing(2),
+                  mt: theme.spacing(0.7),
                 }}
               >
                 <Stack direction="row" gap={1}>

@@ -41,6 +41,7 @@ export default function SearchCategory({
         alignItems: "center",
         justifyContent: "center",
         cursor: "pointer",
+        pb: theme.spacing(1),
       }}
       onClick={handleClick}
     >
@@ -53,7 +54,15 @@ export default function SearchCategory({
           mr: theme.spacing(1),
         }}
       />
-      <Typography> {label}</Typography>
+      <Typography
+        variant="titleSmall"
+        sx={{
+          color: theme.palette.customGray.main,
+          fontWeight: theme.typography.fontWeightRegular,
+        }}
+      >
+        {label}
+      </Typography>
     </Box>
   );
 }

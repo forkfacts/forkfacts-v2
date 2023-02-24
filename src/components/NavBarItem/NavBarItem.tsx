@@ -24,10 +24,9 @@ export default function NavBarItem({
       className={classes.btn}
       variant="text"
       sx={{
-        color: ({ palette }) =>
-          selectedIndex === index ? theme.palette.primary.main : palette.customGray.main,
-        backgroundColor: ({ palette }) =>
-          selectedIndex === index ? palette.primary.light : palette.background.default,
+        color: selectedIndex === index ? theme.palette.primary.main : theme.palette.customGray.main,
+        backgroundColor:
+          selectedIndex === index ? theme.palette.primary.light : theme.palette.background.default,
         display: "flex",
         flexDirection: "row",
         alignItems: "center",
@@ -41,8 +40,6 @@ export default function NavBarItem({
         borderBottomRightRadius: index === 2 ? theme.spacing(1) : 0,
         borderTopLeftRadius: index === 0 ? theme.spacing(1) : 0,
         borderBottomLeftRadius: index === 0 ? theme.spacing(1) : 0,
-        fontWeight: theme.typography.fontWeightBold,
-        fontSize: mobile ? theme.typography.titleSmall : theme.typography.titleMedium,
       }}
       onClick={handleClick}
       size="small"
@@ -58,10 +55,12 @@ export default function NavBarItem({
       }
     >
       <Typography
+        variant={mobile ? "titleSmall" : "titleMedium"}
         sx={{
           textTransform: "capitalize",
-          color: theme.palette.customGray.dark,
-          fontSize: mobile ? theme.typography.titleSmall : theme.typography.titleMedium,
+          fontWeight: theme.typography.fontWeightRegular,
+          color:
+            selectedIndex === index ? theme.palette.primary.main : theme.palette.customGray.main,
         }}
       >
         {item.label}

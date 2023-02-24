@@ -1,7 +1,7 @@
 import { makeStyles } from "@mui/styles";
 import { Theme } from "@mui/material";
 
-export const useStyles = makeStyles(({ spacing, breakpoints, typography }: Theme) => ({
+export const useStyles = makeStyles(({ spacing, breakpoints, typography, palette }: Theme) => ({
   root: {
     maxWidth: "100%",
     width: "100%",
@@ -9,10 +9,10 @@ export const useStyles = makeStyles(({ spacing, breakpoints, typography }: Theme
   },
   ListItemText: {
     marginLeft: spacing(-2),
-  },
-  categoryName: {
-    fontSize: typography.caption.fontSize,
-    padding: spacing(1.2, 2),
+    display: "flex",
+    alignItems: "center",
+    flexWrap: "wrap",
+    columnGap: spacing(1),
   },
   listWrapper: {
     marginTop: spacing(-1),

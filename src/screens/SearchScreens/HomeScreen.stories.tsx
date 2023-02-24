@@ -160,8 +160,8 @@ const { PopularFrequentSearchItems, onSelectPopularItem }: PopularFrequentSearch
 
 const categoryOptions = [
   { label: "Food", Icon: EggAltOutlinedIcon },
-  { label: "Recipes", Icon: EmojiFoodBeverageOutlinedIcon },
-  { label: "Library", Icon: BookmarkBorderOutlinedIcon },
+  { label: "Recipe", Icon: EmojiFoodBeverageOutlinedIcon },
+  { label: "Library", Icon: LibraryBooksOutlinedIcon },
 ];
 
 const collection = [
@@ -195,7 +195,6 @@ const collection = [
 const collectionGroupedItems = [
   { categoryName: "FRUIT AND FRUIT JUICES", collection: collection },
   { categoryName: "BABY FOODS", collection: collection.slice(0, 3) },
-  { categoryName: "SWEETS", collection: collection.slice(0, 4) },
 ];
 
 const Template: ComponentStory<typeof HomeScreen> = (args) => <HomeScreen {...args} />;

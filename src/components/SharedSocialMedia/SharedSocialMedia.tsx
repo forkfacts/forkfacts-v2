@@ -57,7 +57,9 @@ const SharedSocialMedia: React.FC<SharedSocialMediaProps> = ({
           alignItems: "center",
         }}
       >
-        <Typography>Share this food</Typography>
+        <Typography variant="titleMedium" sx={{ fontWeight: theme.typography.fontWeightRegular }}>
+          Share this food
+        </Typography>
         <CloseIcon onClick={handleClose} style={{ cursor: "pointer" }} />
       </Box>
       <Box
@@ -82,10 +84,10 @@ const SharedSocialMedia: React.FC<SharedSocialMediaProps> = ({
         </LinkedinShareButton>
       </Box>
       <Typography
+        variant="labelLarge"
         sx={{
           mt: theme.spacing(4),
           fontWeight: theme.typography.fontWeightBold,
-          fontSize: theme.typography.subtitle2.fontSize,
           color: theme.palette.customGray.textDark,
         }}
       >
@@ -115,7 +117,7 @@ const SharedSocialMedia: React.FC<SharedSocialMediaProps> = ({
         />
         <CopyToClipboard
           text={link}
-          onCopy={(_, result) => {
+          onCopy={(_: any, result: boolean) => {
             setIsCopied(result);
           }}
         >

@@ -51,13 +51,12 @@ const DetailsPageTitles: React.FC<DetailsPageTitlesProps> = ({
                   checked={selectedAgeIndex === index ? true : false}
                 />
                 <Typography
+                  variant={mobile ? "bodySmall" : "titleMedium"}
                   sx={{
-                    lineHeight: theme.spacing(3),
                     fontWeight: mobile
-                      ? theme.typography.fontWeightRegular
-                      : theme.typography.fontWeightMedium,
+                      ? theme.typography.fontWeightLight
+                      : theme.typography.fontWeightRegular,
                     color: theme.palette.customGray.textDark,
-                    fontSize: mobile ? theme.spacing(1.5) : theme.typography.body2.fontSize,
                   }}
                 >
                   {item.title}
@@ -69,7 +68,7 @@ const DetailsPageTitles: React.FC<DetailsPageTitlesProps> = ({
         <Grid
           item
           sx={{
-            ml: mobile ? theme.spacing(-2) : theme.spacing(5),
+            ml: mobile ? theme.spacing(-2) : theme.spacing(2),
             mt: mobile ? theme.spacing(-3) : 0,
           }}
         >

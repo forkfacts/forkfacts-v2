@@ -3,7 +3,7 @@ import { action } from "@storybook/addon-actions";
 import { CssBaseline } from "@mui/material";
 import { addDecorator } from "@storybook/react";
 import { withConsole, setConsoleOptions } from "@storybook/addon-console";
-import { ThemeProvider } from "@mui/material";
+import { ThemeProvider } from "@mui/material/styles";
 import "@storybook/addon-actions/register";
 import "@fontsource/poppins"; // Defaults to weight 400.
 import { customTheme } from "../src/themes/theme";

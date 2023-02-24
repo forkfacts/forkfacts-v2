@@ -40,7 +40,11 @@ export default function Header({ handleToggleButton }: HeaderProps) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography color="primary" variant={mobile ? "h5" : "h4"} className={classes.pageTitle}>
+          <Typography
+            color="primary"
+            variant={mobile ? "displayMedium" : "displayLarge"}
+            className={classes.pageTitle}
+          >
             Forkfacts
           </Typography>
           <Box className={classes.rightContent}>

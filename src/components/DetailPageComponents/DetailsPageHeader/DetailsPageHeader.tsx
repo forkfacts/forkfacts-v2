@@ -29,7 +29,9 @@ const DetailsPageHeader: React.FC<DetailsPageHeaderProps> = ({ detailsHeaderValu
                   position: "relative",
                 }}
               >
-                <Typography variant="h5">{detailsHeaderValues.name}</Typography>
+                <Typography variant={"headline4"} sx={{ color: theme.palette.customGray.main }}>
+                  {detailsHeaderValues.name}
+                </Typography>
                 <ShareIcon
                   color="primary"
                   sx={{
@@ -42,8 +44,11 @@ const DetailsPageHeader: React.FC<DetailsPageHeaderProps> = ({ detailsHeaderValu
                 />
               </Box>
               <Typography
-                variant="subtitle2"
-                sx={{ color: "#47464A", fontWeight: theme.typography.fontWeightRegular }}
+                variant={"bodyMedium"}
+                sx={{
+                  color: theme.palette.customGray.textDark,
+                  fontWeight: theme.typography.fontWeightRegular,
+                }}
               >
                 {detailsHeaderValues.subTitle}
               </Typography>
@@ -79,8 +84,8 @@ const DetailsPageHeader: React.FC<DetailsPageHeaderProps> = ({ detailsHeaderValu
                           }}
                         />
                         <Typography
-                          variant="caption"
-                          sx={{ color: "#1C1B1F", fontWeight: theme.typography.fontWeightBold }}
+                          variant="labelLarge"
+                          sx={{ color: "#1C1B1F", fontWeight: theme.typography.fontWeightRegular }}
                         >
                           {item.name}
                         </Typography>
@@ -93,7 +98,7 @@ const DetailsPageHeader: React.FC<DetailsPageHeaderProps> = ({ detailsHeaderValu
           </Box>
           <Box>
             <Typography
-              variant="caption"
+              variant="bodyMedium"
               sx={{
                 backgroundColor: "#FCF8FD",
                 width: theme.spacing(46.875),
@@ -117,7 +122,9 @@ const DetailsPageHeader: React.FC<DetailsPageHeaderProps> = ({ detailsHeaderValu
             <Box component="img" src={detailsHeaderValues.img} />
             <Box>
               <Box sx={{ display: "flex", alignItems: "center", columnGap: theme.spacing(1.5) }}>
-                <Typography variant="subtitle1">{detailsHeaderValues.name}</Typography>
+                <Typography variant="headline6" sx={{ color: theme.palette.customGray.main }}>
+                  {detailsHeaderValues.name}
+                </Typography>
                 <ShareIcon
                   color="primary"
                   sx={{
@@ -134,10 +141,14 @@ const DetailsPageHeader: React.FC<DetailsPageHeaderProps> = ({ detailsHeaderValu
                   setIsSharedMediaOpen={setIsSharedMediaOpen}
                 />
               </Box>
-              <Typography variant="caption" sx={{ color: "#47464A", mt: theme.spacing(1) }}>
+              <Typography
+                variant="bodySmall"
+                sx={{ color: theme.palette.customGray.textDark, mt: theme.spacing(1) }}
+              >
                 {detailsHeaderValues.subTitle}
               </Typography>
               <Typography
+                variant="bodySmall"
                 sx={{
                   backgroundColor: "#FCF8FD",
                   width: "100%",
@@ -150,7 +161,6 @@ const DetailsPageHeader: React.FC<DetailsPageHeaderProps> = ({ detailsHeaderValu
                   color: "#1C1B1F",
                   fontWeight: theme.typography.fontWeightRegular,
                   mt: theme.spacing(2),
-                  fontSize: "12px",
                 }}
               >
                 {detailsHeaderValues.tag}
@@ -190,8 +200,8 @@ const DetailsPageHeader: React.FC<DetailsPageHeaderProps> = ({ detailsHeaderValu
                       }}
                     />
                     <Typography
-                      variant="caption"
-                      sx={{ color: "#1C1B1F", fontWeight: theme.typography.fontWeightBold }}
+                      variant="labelMedium"
+                      sx={{ color: "#1C1B1F", fontWeight: theme.typography.fontWeightRegular }}
                     >
                       {item.name}
                     </Typography>

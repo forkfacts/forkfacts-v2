@@ -28,41 +28,47 @@ export default function HomeScreen({
   const classes = useStyles();
 
   return (
-    <Layout sidebarItems={sidebarItems}>
-      <Box className={classes.desktopScreenWrapper}>
-        <Box
-          component="img"
-          src="/homeImg.svg"
-          alt="home page image"
-          className={classes.img}
-          sx={{ maxWidth: "100%" }}
-        />
-        <Box className={classNames(classes.navbarStyles)}>
-          <NavBar navbarItems={navbarItems} onselectNavbarItem={setSelectedNavbarItem} />
-        </Box>
-        <Box className={classNames(classes.searchInputStyles)}>
-          <AutoCompleteSearch
-            recommendations={recommendations}
-            placeholder={`Search ${
-              isMobileSearchOpen
-                ? selectedMobileItem.toLowerCase()
-                : selectedNavbarItem.toLowerCase()
-            }`}
-            openOnFocus={true}
-            sourceId={sourceId}
-            onSelectCategory={setSelectedMobileItem}
-            categoryOptions={categoryOptions}
-            collectionGroupedItems={collectionGroupedItems}
-            setIsMobileSearchOpen={setIsMobileSearchOpen}
+    <>
+      <Layout sidebarItems={sidebarItems}>
+        <Box className={classes.desktopScreenWrapper}>
+          <Box
+            component="img"
+            src="/homeImg.svg"
+            alt="home page image"
+            className={classes.img}
+            sx={{ maxWidth: "100%" }}
           />
+          {!isMobileSearchOpen ? (
+            <Box className={classNames(classes.navbarStyles)}>
+              <NavBar navbarItems={navbarItems} onselectNavbarItem={setSelectedNavbarItem} />
+            </Box>
+          ) : null}
+          <Box className={classNames(classes.searchInputStyles)}>
+            <AutoCompleteSearch
+              recommendations={recommendations}
+              placeholder={`Search ${
+                isMobileSearchOpen
+                  ? selectedMobileItem.toLowerCase()
+                  : selectedNavbarItem.toLowerCase()
+              }`}
+              openOnFocus={true}
+              sourceId={sourceId}
+              onSelectCategory={setSelectedMobileItem}
+              categoryOptions={categoryOptions}
+              collectionGroupedItems={collectionGroupedItems}
+              setIsMobileSearchOpen={setIsMobileSearchOpen}
+            />
+          </Box>
+          {!isMobileSearchOpen ? (
+            <Box className={classNames(classes.PopularFrequentStyles)}>
+              <PopularFrequentSearchCategories
+                PopularFrequentSearchItems={PopularFrequentSearchItems}
+                onSelectPopularItem={onSelectPopularItem}
+              />
+            </Box>
+          ) : null}
         </Box>
-        <Box className={classNames(classes.PopularFrequentStyles)}>
-          <PopularFrequentSearchCategories
-            PopularFrequentSearchItems={PopularFrequentSearchItems}
-            onSelectPopularItem={onSelectPopularItem}
-          />
-        </Box>
-      </Box>
-    </Layout>
+      </Layout>
+    </>
   );
 }

@@ -64,22 +64,22 @@ const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
           }}
         >
           <Typography
+            variant={mobile ? "labelLarge" : "titleLarge"}
             sx={{
               color: theme.palette.customGray.textDark,
               textTransform: "uppercase",
-              fontSize: mobile ? theme.typography.caption.fontSize : theme.typography.h6.fontSize,
-              fontWeight: theme.typography.fontWeightMedium,
+              fontWeight: theme.typography.fontWeightRegular,
             }}
           >
             {compareTableDetails.name}
           </Typography>
           <Typography
+            variant={mobile ? "bodySmall" : "labelLarge"}
             sx={{
               ml: mobile ? 0 : theme.spacing(1),
-              color: theme.palette.customGray.textLight,
-              fontSize: mobile ? "10px" : theme.typography.caption.fontSize,
-              mt: mobile ? theme.spacing(2) : 0,
-              fontWeight: theme.typography.fontWeightMedium,
+              color: theme.palette.customGray.textDark,
+              mt: mobile ? theme.spacing(1) : 0,
+              fontWeight: theme.typography.fontWeightRegular,
             }}
           >
             {compareTableDetails.quantityAmount}
@@ -156,8 +156,10 @@ const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
                       cursor: "pointer",
                     }}
                   >
-                    <Typography sx={{ color: "#78767A" }}>Food name</Typography>
-                    <CompareSorting width={theme.spacing(2.75)} height={theme.spacing(2.75)} />
+                    <Typography variant="labelLarge" sx={{ color: "#78767A" }}>
+                      Food name
+                    </Typography>
+                    <CompareSorting width={theme.spacing(2.45)} height={theme.spacing(2.45)} />
                   </Box>
                 </TableCell>
                 <TableCell align="right" style={{ borderBottom: "none" }}>
@@ -169,8 +171,10 @@ const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
                       cursor: "pointer",
                     }}
                   >
-                    <Typography sx={{ color: "#78767A" }}>Calories</Typography>
-                    <CompareSorting width={theme.spacing(2.75)} height={theme.spacing(2.75)} />
+                    <Typography variant="labelLarge" sx={{ color: "#78767A" }}>
+                      Calories
+                    </Typography>
+                    <CompareSorting width={theme.spacing(2.45)} height={theme.spacing(2.45)} />
                   </Box>
                 </TableCell>
                 <TableCell align="right" style={{ borderBottom: "none" }}>
@@ -182,8 +186,10 @@ const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
                       cursor: "pointer",
                     }}
                   >
-                    <Typography sx={{ color: "#78767A" }}>Beta Carotene (mg)</Typography>
-                    <CompareSorting width={theme.spacing(2.75)} height={theme.spacing(2.75)} />
+                    <Typography variant="labelLarge" sx={{ color: "#78767A" }}>
+                      Beta Carotene (mg)
+                    </Typography>
+                    <CompareSorting width={theme.spacing(2.45)} height={theme.spacing(2.45)} />
                   </Box>
                 </TableCell>
                 <TableCell align="right" style={{ borderBottom: "none" }}>
@@ -195,8 +201,10 @@ const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
                       cursor: "pointer",
                     }}
                   >
-                    <Typography sx={{ color: "#78767A" }}>Vitamin C (mg)</Typography>
-                    <CompareSorting width={theme.spacing(2.75)} height={theme.spacing(2.75)} />
+                    <Typography variant="labelLarge" sx={{ color: "#78767A" }}>
+                      Vitamin C (mg)
+                    </Typography>
+                    <CompareSorting width={theme.spacing(2.45)} height={theme.spacing(2.45)} />
                   </Box>
                 </TableCell>
                 <TableCell align="right" style={{ borderBottom: "none" }}>
@@ -208,8 +216,10 @@ const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
                       cursor: "pointer",
                     }}
                   >
-                    <Typography sx={{ color: "#78767A" }}>Calcium (mg)</Typography>
-                    <CompareSorting width={theme.spacing(2.75)} height={theme.spacing(2.75)} />
+                    <Typography variant="labelLarge" sx={{ color: "#78767A" }}>
+                      Calcium (mg)
+                    </Typography>
+                    <CompareSorting width={theme.spacing(2.45)} height={theme.spacing(2.45)} />
                   </Box>
                 </TableCell>
                 <TableCell align="right" style={{ borderBottom: "none" }}>
@@ -221,8 +231,10 @@ const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
                       cursor: "pointer",
                     }}
                   >
-                    <Typography sx={{ color: "#78767A" }}>Iron (mg)</Typography>
-                    <CompareSorting width={theme.spacing(2.75)} height={theme.spacing(2.75)} />
+                    <Typography variant="labelLarge" sx={{ color: "#78767A" }}>
+                      Iron (mg)
+                    </Typography>
+                    <CompareSorting width={theme.spacing(2.45)} height={theme.spacing(2.45)} />
                   </Box>
                 </TableCell>
               </TableRow>
@@ -234,7 +246,11 @@ const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
                     <TableRow key={index}>
                       <TableCell style={{ borderBottom: "none" }} component="th" scope="row">
                         <Typography
-                          sx={{ color: "#1C1B1F", fontWeight: theme.typography.fontWeightBold }}
+                          variant="titleMedium"
+                          sx={{
+                            color: theme.palette.customGray.main,
+                            fontWeight: theme.typography.fontWeightRegular,
+                          }}
                         >
                           {row.foodName}
                         </Typography>
@@ -243,7 +259,14 @@ const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
                         style={{ borderBottom: "none", marginRight: theme.spacing(4) }}
                         align="right"
                       >
-                        <Typography sx={{ marginRight: theme.spacing(7) }}>
+                        <Typography
+                          variant="bodyLarge"
+                          sx={{
+                            marginRight: theme.spacing(7),
+                            fontWeight: theme.typography.fontWeightLight,
+                            color: theme.palette.customGray.main,
+                          }}
+                        >
                           {row.Calories}
                         </Typography>
                       </TableCell>
@@ -251,7 +274,14 @@ const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
                         style={{ borderBottom: "none", marginRight: theme.spacing(4) }}
                         align="right"
                       >
-                        <Typography sx={{ marginRight: theme.spacing(8) }}>
+                        <Typography
+                          variant="bodyLarge"
+                          sx={{
+                            marginRight: theme.spacing(8),
+                            fontWeight: theme.typography.fontWeightLight,
+                            color: theme.palette.customGray.main,
+                          }}
+                        >
                           {row["Beta carotene"]}
                         </Typography>
                       </TableCell>
@@ -259,12 +289,26 @@ const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
                         style={{ borderBottom: "none", marginRight: theme.spacing(4) }}
                         align="right"
                       >
-                        <Typography sx={{ marginRight: theme.spacing(8) }}>
+                        <Typography
+                          variant="bodyLarge"
+                          sx={{
+                            marginRight: theme.spacing(8),
+                            fontWeight: theme.typography.fontWeightLight,
+                            color: theme.palette.customGray.main,
+                          }}
+                        >
                           {row.Vitamin}
                         </Typography>
                       </TableCell>
                       <TableCell style={{ borderBottom: "none" }} align="right">
-                        <Typography sx={{ marginRight: theme.spacing(8) }}>
+                        <Typography
+                          variant="bodyLarge"
+                          sx={{
+                            marginRight: theme.spacing(8),
+                            fontWeight: theme.typography.fontWeightLight,
+                            color: theme.palette.customGray.main,
+                          }}
+                        >
                           {row.Calcium}
                         </Typography>
                       </TableCell>
@@ -272,7 +316,16 @@ const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
                         style={{ borderBottom: "none", marginRight: theme.spacing(4) }}
                         align="right"
                       >
-                        <Typography sx={{ marginRight: theme.spacing(7) }}>{row.Iron}</Typography>
+                        <Typography
+                          variant="bodyLarge"
+                          sx={{
+                            marginRight: theme.spacing(7),
+                            fontWeight: theme.typography.fontWeightLight,
+                            color: theme.palette.customGray.main,
+                          }}
+                        >
+                          {row.Iron}
+                        </Typography>
                       </TableCell>
                     </TableRow>
                   );
@@ -315,8 +368,9 @@ const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
                         color:
                           item.name === selectNutrient
                             ? theme.palette.primary.main
-                            : theme.palette.customGray.dark,
-                        fontWeight: theme.typography.fontWeightMedium,
+                            : theme.palette.customGray.main,
+                        fontWeight: theme.typography.fontWeightRegular,
+                        fontSize: theme.typography.labelSmall.fontSize,
                       }}
                     >
                       {item.name}
@@ -331,9 +385,10 @@ const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
               <Box sx={{ display: "flex", gap: theme.spacing(3), alignItems: "center" }}>
                 <Box sx={{ textAlign: "end", width: "30%" }}>
                   <Typography
+                    variant="bodySmall"
                     sx={{
+                      color: theme.palette.customGray.main,
                       whiteSpace: "nowrap",
-                      fontSize: theme.typography.caption.fontSize,
                     }}
                   >
                     {item.foodName}

@@ -115,7 +115,7 @@ const SharedSocialMedia: React.FC<SharedSocialMediaProps> = ({
         />
         <CopyToClipboard
           text={link}
-          onCopy={(_, result) => {
+          onCopy={(_: any, result: boolean) => {
             setIsCopied(result);
           }}
         >

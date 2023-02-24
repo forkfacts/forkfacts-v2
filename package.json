@@ -30,6 +30,7 @@
     "@emotion/server": "latest",
     "@emotion/styled": "latest",
     "@fontsource/material-icons": "^4.5.4",
+    "@fontsource/open-sans": "^4.5.14",
     "@fontsource/poppins": "^4.5.10",
     "@mdx-js/react": "^2.1.5",
     "@mui/icons-material": "^5.10.15",
@@ -55,8 +56,7 @@
     "react": "^18.2.0",
     "react-copy-to-clipboard": "^5.1.0",
     "react-dom": "^18.2.0",
-    "react-share": "^4.4.1",
-    "recharts": "^2.4.1"
+    "react-share": "^4.4.1"
   },
   "devDependencies": {
     "@babel/core": "^7.20.2",

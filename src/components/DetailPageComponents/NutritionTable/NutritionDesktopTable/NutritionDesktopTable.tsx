@@ -12,7 +12,6 @@ import {
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import { CompareSorting } from "@forkfacts/icons";
-import { ForLoops } from "@forkfacts/helpers";
 import React, { useState } from "react";
 import { NutritionDesktopTableProps } from "@forkfacts/models";
 
@@ -30,7 +29,7 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ nutrition
   const isCollapsed = (nutrient: any) => collapsedRows.includes(nutrient);
   return (
     <Box>
-      <TableContainer>
+      <TableContainer sx={{ overflow: "hidden" }}>
         <Table sx={{ minWidth: 650, border: "none", ml: theme.spacing(3) }}>
           <TableHead style={{ border: "none", backgroundColor: "#FCFCFC" }}>
             <TableRow>
@@ -43,7 +42,15 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ nutrition
                     cursor: "pointer",
                   }}
                 >
-                  <Typography sx={{ color: "#78767A" }}>Nutrient</Typography>
+                  <Typography
+                    variant="labelLarge"
+                    sx={{
+                      color: theme.palette.customGray.dark,
+                      fontWeight: theme.typography.fontWeightRegular,
+                    }}
+                  >
+                    Nutrient
+                  </Typography>
                 </Box>
               </TableCell>
               <TableCell style={{ borderBottom: "none" }}>
@@ -55,8 +62,16 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ nutrition
                     cursor: "pointer",
                   }}
                 >
-                  <Typography sx={{ color: "#78767A" }}>%Daily Value</Typography>
-                  <CompareSorting width={theme.spacing(2.75)} height={theme.spacing(2.75)} />
+                  <Typography
+                    variant="labelLarge"
+                    sx={{
+                      color: theme.palette.customGray.dark,
+                      fontWeight: theme.typography.fontWeightRegular,
+                    }}
+                  >
+                    %Daily Value
+                  </Typography>
+                  <CompareSorting width={theme.spacing(2.45)} height={theme.spacing(2.75)} />
                 </Box>{" "}
               </TableCell>
               <TableCell style={{ borderBottom: "none" }}>
@@ -68,7 +83,15 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ nutrition
                     cursor: "pointer",
                   }}
                 >
-                  <Typography sx={{ color: "#78767A" }}>Amount</Typography>
+                  <Typography
+                    variant="labelLarge"
+                    sx={{
+                      color: theme.palette.customGray.dark,
+                      fontWeight: theme.typography.fontWeightRegular,
+                    }}
+                  >
+                    Amount
+                  </Typography>
                 </Box>
               </TableCell>
               <TableCell style={{ borderBottom: "none" }}>
@@ -80,8 +103,16 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ nutrition
                     cursor: "pointer",
                   }}
                 >
-                  <Typography sx={{ color: "#78767A" }}>RDI</Typography>
-                  <CompareSorting width={theme.spacing(2.75)} height={theme.spacing(2.75)} />
+                  <Typography
+                    variant="labelLarge"
+                    sx={{
+                      color: theme.palette.customGray.dark,
+                      fontWeight: theme.typography.fontWeightRegular,
+                    }}
+                  >
+                    RDI
+                  </Typography>
+                  <CompareSorting width={theme.spacing(2.45)} height={theme.spacing(2.75)} />
                 </Box>
               </TableCell>
             </TableRow>
@@ -110,10 +141,10 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ nutrition
                         />
                       )}
                       <Typography
+                        variant="titleMedium"
                         sx={{
                           color: theme.palette.customGray.main,
                           fontWeight: theme.typography.fontWeightRegular,
-                          fontSize: theme.typography.titleMedium,
                         }}
                       >
                         {item.nutrient}
@@ -122,10 +153,10 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ nutrition
                   </TableCell>
                   <TableCell style={{ borderBottom: "none" }}>
                     <Typography
+                      variant="titleMedium"
                       sx={{
                         color: theme.palette.customGray.main,
                         fontWeight: theme.typography.fontWeightRegular,
-                        fontSize: theme.typography.titleMedium,
                         marginLeft: theme.spacing(4),
                       }}
                     >
@@ -134,10 +165,10 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ nutrition
                   </TableCell>
                   <TableCell style={{ borderBottom: "none" }}>
                     <Typography
+                      variant="titleMedium"
                       sx={{
                         color: theme.palette.customGray.main,
                         fontWeight: theme.typography.fontWeightRegular,
-                        fontSize: theme.typography.titleMedium,
                         marginLeft: theme.spacing(1),
                       }}
                     >
@@ -146,10 +177,10 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ nutrition
                   </TableCell>
                   <TableCell style={{ borderBottom: "none" }}>
                     <Typography
+                      variant="titleMedium"
                       sx={{
                         color: theme.palette.customGray.main,
                         fontWeight: theme.typography.fontWeightRegular,
-                        fontSize: theme.typography.titleMedium,
                         marginLeft: theme.spacing(1),
                       }}
                     >
@@ -162,7 +193,9 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ nutrition
                     <TableRow key={content.nutrient}>
                       <TableCell style={{ borderBottom: "none" }}>
                         <Typography
+                          variant="bodyLarge"
                           sx={{
+                            color: theme.palette.customGray.main,
                             marginLeft: theme.spacing(4),
                             fontWeight: theme.typography.fontWeightLight,
                           }}
@@ -172,7 +205,9 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ nutrition
                       </TableCell>
                       <TableCell style={{ borderBottom: "none" }}>
                         <Typography
+                          variant="bodyLarge"
                           sx={{
+                            color: theme.palette.customGray.main,
                             marginLeft: theme.spacing(4),
                             fontWeight: theme.typography.fontWeightLight,
                           }}
@@ -182,7 +217,9 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ nutrition
                       </TableCell>
                       <TableCell style={{ borderBottom: "none" }}>
                         <Typography
+                          variant="bodyLarge"
                           sx={{
+                            color: theme.palette.customGray.main,
                             marginLeft: theme.spacing(1),
                             fontWeight: theme.typography.fontWeightLight,
                           }}
@@ -192,7 +229,9 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ nutrition
                       </TableCell>
                       <TableCell style={{ borderBottom: "none" }}>
                         <Typography
+                          variant="bodyLarge"
                           sx={{
+                            color: theme.palette.customGray.main,
                             marginLeft: theme.spacing(1),
                             fontWeight: theme.typography.fontWeightLight,
                           }}

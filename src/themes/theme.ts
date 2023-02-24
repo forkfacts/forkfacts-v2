@@ -45,6 +45,7 @@ export const customTheme = createTheme({
       dark: "#78767A",
       textLight: "#78767A",
       textDark: "#47464A",
+      textBlack: "#000000",
     },
   },
   typography: {

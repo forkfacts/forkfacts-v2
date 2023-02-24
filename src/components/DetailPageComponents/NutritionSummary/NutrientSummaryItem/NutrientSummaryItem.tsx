@@ -10,58 +10,60 @@ const NutrientSummaryItem: React.FC<NutrientSummaryItemProps> = ({ percentage, w
   return (
     <Box
       sx={{
-        width: mobile ? theme.spacing(6.25) : theme.spacing(16.5),
         mt: theme.spacing(2),
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        flexDirection: "column",
       }}
     >
       <Typography
+        variant={mobile ? "labelMedium" : "titleLarge"}
         sx={{
           textAlign: "center",
           mb: theme.spacing(1.5),
           color: theme.palette.common.black,
-          fontSize: mobile
-            ? theme.typography.labelMedium.fontSize
-            : theme.typography.titleLarge.fontSize,
-          fontWeight: theme.typography.fontWeightMedium,
-          lineHeight: theme.spacing(2),
-          letterSpacing: theme.spacing(0.05),
+          fontWeight: theme.typography.fontWeightRegular,
           textTransform: "uppercase",
         }}
       >
         {name}
       </Typography>
-      <CircularProgressbarWithChildren
-        strokeWidth={mobile ? 10 : 12}
-        value={percentage}
-        styles={buildStyles({
-          textColor: theme.palette.grey[800],
-          pathColor: theme.palette.primary.main,
-          trailColor: "#C9C5CA",
-          textSize: theme.typography.fontSize,
-        })}
+      <Box
+        sx={{
+          width: mobile ? theme.spacing(6.25) : theme.spacing(16.5),
+          height: mobile ? theme.spacing(6.25) : theme.spacing(16.5),
+        }}
       >
-        <Typography
-          sx={{
-            lineHeight: theme.spacing(2.5),
-            color: theme.palette.common.black,
-            fontWeight: theme.typography.fontWeightMedium,
-            fontSize: mobile
-              ? theme.typography.labelMedium.fontSize
-              : theme.typography.caption.fontSize,
-          }}
+        <CircularProgressbarWithChildren
+          strokeWidth={mobile ? 10 : 12}
+          value={percentage}
+          styles={buildStyles({
+            textColor: theme.palette.grey[800],
+            pathColor: theme.palette.primary.main,
+            trailColor: "#C9C5CA",
+            textSize: theme.typography.fontSize,
+          })}
         >
-          {weight}
-        </Typography>
-      </CircularProgressbarWithChildren>
+          <Typography
+            variant={mobile ? "labelMedium" : "titleLarge"}
+            sx={{
+              lineHeight: theme.spacing(2.5),
+              color: theme.palette.common.black,
+              fontWeight: theme.typography.fontWeightRegular,
+            }}
+          >
+            {weight}
+          </Typography>
+        </CircularProgressbarWithChildren>
+      </Box>
       <Typography
+        variant={mobile ? "labelMedium" : "titleMedium"}
         sx={{
           textAlign: "center",
           mt: theme.spacing(1),
           color: theme.palette.common.black,
-          fontSize: mobile
-            ? theme.typography.labelMedium.fontSize
-            : theme.typography.caption.fontSize,
-          fontWeight: theme.typography.fontWeightMedium,
+          fontWeight: theme.typography.fontWeightRegular,
         }}
       >
         {percentage}%

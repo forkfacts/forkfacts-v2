@@ -24,6 +24,7 @@ declare module "@mui/material/styles/createPalette" {
       dark: string;
       textLight: string;
       textDark: string;
+      textBlack: string;
     };
   }
   interface PaletteOptions {
@@ -47,6 +48,7 @@ declare module "@mui/material/styles/createPalette" {
       dark: string;
       textLight: string;
       textDark: string;
+      textBlack: string;
     };
   }
 }

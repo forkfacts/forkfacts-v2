@@ -38,6 +38,6 @@ export interface DetailsPageScreenProps {
     name: string;
     quantityAmount: string;
   };
-  multipleSelectItems: filterItem[];
-  getSelectedNutrients: Dispatch<SetStateAction<string[]>>;
+  values: filterItem[];
+  onSelectedValue: Dispatch<SetStateAction<string[]>>;
 }

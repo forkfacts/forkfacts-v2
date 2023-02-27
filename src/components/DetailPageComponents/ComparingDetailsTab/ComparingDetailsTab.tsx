@@ -24,12 +24,12 @@ import { MultipleSelects } from "@forkfacts/components";
 const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
   compareTableItems,
   compareTableDetails,
-  multipleSelectItems,
-  getSelectedNutrients,
+  values,
+  onSelectedValue,
 }) => {
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.down("md"));
-  const [selectNutrient, setSelectedNutrient] = useState("Vitamin");
+  const [selectedNutrient, setSelectedNutrient] = useState("Vitamin");
   const [open, setIsOpen] = useState(false);
   const [isShowHideOpen, setShowHideOpen] = useState(false);
 
@@ -40,7 +40,7 @@ const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
   const nutrientData = compareTableItems.map((item: any) => {
     return {
       foodName: item.foodName,
-      value: item[selectNutrient],
+      value: item[selectedNutrient],
     };
   });
 
@@ -88,8 +88,8 @@ const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
         <Box sx={{ mr: mobile ? 0 : theme.spacing(2), position: "relative" }}>
           <MultipleSelects
             margin={theme.spacing(-15.5)}
-            multipleSelectItems={multipleSelectItems}
-            getSelectedNutrients={getSelectedNutrients}
+            values={values}
+            onSelectedValue={onSelectedValue}
             open={open}
             setIsOpen={setIsOpen}
             multiselectTitle="Filter foods"
@@ -116,8 +116,8 @@ const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
           {mobile || (
             <MultipleSelects
               margin={theme.spacing(-15.5)}
-              multipleSelectItems={tableHeaderItems}
-              getSelectedNutrients={getSelectedNutrients}
+              values={tableHeaderItems}
+              onSelectedValue={onSelectedValue}
               open={isShowHideOpen}
               setIsOpen={setShowHideOpen}
               multiselectTitle="Show/Hide nutrients"
@@ -346,86 +346,102 @@ const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
                   width: "0px",
                   background: "transparent",
                 },
-                mt: theme.spacing(2),
+                mt: theme.spacing(4), // increase spacing between items
               }}
             >
-              <List sx={{ display: "flex" }}>
-                {tableHeaderItems?.map((item: { name: string }, idx) => (
+              <List
+                sx={{
+                  display: "flex",
+                  "> li": { width: "auto", flexShrink: 0 },
+                  justifyContent: "space-between",
+                }}
+              >
+                {tableHeaderItems?.map((item: { name: string }, index) => (
                   <ListItem
-                    key={idx}
+                    key={index}
                     sx={{
-                      width: "auto",
-                      flexShrink: 0,
                       backgroundColor:
-                        item.name === selectNutrient ? theme.palette.primary.light : "#FFFBFF",
-                      p: theme.spacing(0.25),
+                        item.name === selectedNutrient ? theme.palette.primary.light : "#FFFBFF",
                       borderRadius: theme.spacing(12.5),
                     }}
+                    role="button"
+                    aria-pressed={item.name === selectedNutrient ? "true" : "false"}
                     onClick={() => setSelectedNutrient(item.name)}
                   >
-                    <Button
+                    <Typography
+                      variant="labelSmall"
+                      component="span"
                       sx={{
                         color:
-                          item.name === selectNutrient
+                          item.name === selectedNutrient
                             ? theme.palette.primary.main
                             : theme.palette.customGray.main,
                         fontWeight: theme.typography.fontWeightRegular,
-                        fontSize: theme.typography.labelSmall.fontSize,
+                        cursor: "pointer",
                       }}
                     >
                       {item.name}
-                    </Button>
+                    </Typography>
                   </ListItem>
                 ))}
               </List>
             </Box>
           </Box>
-          {nutrientData.map((item, index) => (
-            <Box key={index} sx={{ my: theme.spacing(3) }}>
-              <Box sx={{ display: "flex", gap: theme.spacing(3), alignItems: "center" }}>
-                <Box sx={{ textAlign: "end", width: "30%" }}>
-                  <Typography
-                    variant="bodySmall"
-                    sx={{
-                      color: theme.palette.customGray.main,
-                      whiteSpace: "nowrap",
-                    }}
-                  >
-                    {item.foodName}
-                  </Typography>
-                </Box>
-                <Box
-                  sx={{
-                    width: "70%",
-                    display: "flex",
-                    justifyContent: "flex-start",
-                    alignItems: "center",
-                  }}
-                >
-                  <Box
-                    sx={{
-                      backgroundColor: theme.palette.primary.main,
-                      display: "flex",
-                      justifyContent: "flex-end",
-                      alignItems: "center",
-                      width: `${item.value}%`,
-                      py: theme.spacing(0.5),
-                      px: theme.spacing(2),
-                    }}
-                  >
+          <Box>
+            {nutrientData.map((item, index) => (
+              <Box
+                key={index}
+                sx={{
+                  my: theme.spacing(3),
+                  width: "100%",
+                  overflow: "hidden",
+                }}
+              >
+                <Box sx={{ display: "flex", gap: theme.spacing(3), alignItems: "center" }}>
+                  <Box sx={{ textAlign: "end", width: "30%" }}>
                     <Typography
-                      variant="caption"
+                      variant="bodySmall"
                       sx={{
-                        color: theme.palette.common.white,
+                        color: theme.palette.customGray.main,
+                        whiteSpace: "nowrap",
                       }}
                     >
-                      {item.value}
+                      {item.foodName}
                     </Typography>
+                  </Box>
+                  <Box
+                    sx={{
+                      width: "70%",
+                      display: "flex",
+                      justifyContent: "flex-start",
+                      alignItems: "center",
+                    }}
+                  >
+                    <Box
+                      sx={{
+                        backgroundColor: theme.palette.primary.main,
+                        display: "flex",
+                        justifyContent: "flex-end",
+                        alignItems: "center",
+                        width: `${item.value}%`,
+                      }}
+                    >
+                      <Typography
+                        variant="caption"
+                        sx={{
+                          color: theme.palette.common.white,
+                          py: theme.spacing(0.5),
+                          px: theme.spacing(2),
+                        }}
+                      >
+                        {item.value}
+                      </Typography>
+                    </Box>
                   </Box>
                 </Box>
               </Box>
-            </Box>
-          ))}
+            ))}
+          </Box>
         </>
       )}
     </Box>

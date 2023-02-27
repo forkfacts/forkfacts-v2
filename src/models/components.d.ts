@@ -189,8 +189,8 @@ export interface ComparingDetailsTabProps {
     name: string;
     quantityAmount: string;
   };
-  multipleSelectItems: filterItem[];
-  getSelectedNutrients: Dispatch<SetStateAction<string[]>>;
+  values: filterItem[];
+  onSelectedValue: Dispatch<SetStateAction<string[]>>;
 }
 export interface SharedSocialMediaProps {
   isSharedMediaOpen: boolean;
@@ -198,8 +198,8 @@ export interface SharedSocialMediaProps {
   link: string;
 }
 export interface MultipleSelectsProps {
-  multipleSelectItems: filterItem[];
-  getSelectedNutrients: Dispatch<SetStateAction<string[]>>;
+  values: filterItem[];
+  onSelectedValue: Dispatch<SetStateAction<string[]>>;
   renderSelectButton?: String | React.ReactNode;
   open: boolean;
   setIsOpen: Dispatch<SetStateAction<boolean>>;

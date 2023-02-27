@@ -18,8 +18,8 @@ const DetailsPageScreen: React.FC<DetailsPageScreenProps> = ({
   tabItems,
   compareTableItems,
   compareTableDetails,
-  multipleSelectItems,
-  getSelectedNutrients,
+  values,
+  onSelectedValue,
 }) => {
   const classes = useStyles();
   const theme = useTheme();
@@ -88,8 +88,8 @@ const DetailsPageScreen: React.FC<DetailsPageScreenProps> = ({
                 <ComparingDetailsTab
                   compareTableItems={compareTableItems}
                   compareTableDetails={compareTableDetails}
-                  multipleSelectItems={multipleSelectItems}
-                  getSelectedNutrients={getSelectedNutrients}
+                  values={values}
+                  onSelectedValue={onSelectedValue}
                 />
               </Box>
             ) : null}

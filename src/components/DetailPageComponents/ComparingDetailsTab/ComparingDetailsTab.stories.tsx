@@ -72,7 +72,7 @@ const compareTableItemRows: compareTableItem[] = [
     Iron: 1,
   },
 ];
-const multipleSelectItems: filterItem[] = [
+const values: filterItem[] = [
   {
     name: "Beta Carotene (mg)",
   },
@@ -98,7 +98,7 @@ const multipleSelectItems: filterItem[] = [
 
 const Template: ComponentStory<typeof ComparingDetailsTab> = (args) => {
   const [_, setSelectedNutrients] = useState<string[]>([]);
-  return <ComparingDetailsTab {...args} getSelectedNutrients={setSelectedNutrients} />;
+  return <ComparingDetailsTab {...args} onSelectedValue={setSelectedNutrients} />;
 };
 
 export const Desktop = Template.bind({});
@@ -109,7 +109,7 @@ Desktop.args = {
     name: "Comparing Greens",
     quantityAmount: "3 1/2 OUNCES RAW (2 TO 3 CUPS)",
   },
-  multipleSelectItems: multipleSelectItems,
+  values: values,
 };
 
 export const Mobile = Template.bind({});
@@ -120,7 +120,7 @@ Mobile.args = {
     name: "Comparing Greens",
     quantityAmount: "3 1/2 OUNCES RAW (2 TO 3 CUPS)",
   },
-  multipleSelectItems: multipleSelectItems,
+  values: values,
 };
 
 Mobile.parameters = {
@@ -137,7 +137,7 @@ Tablet.args = {
     name: "Comparing Greens",
     quantityAmount: "3 1/2 OUNCES RAW (2 TO 3 CUPS)",
   },
-  multipleSelectItems: multipleSelectItems,
+  values: values,
 };
 
 Tablet.parameters = {

@@ -10,7 +10,7 @@ export default {
   component: MultipleSelects,
 } as ComponentMeta<typeof MultipleSelects>;
 
-const multipleSelectItems: filterItem[] = [
+const values: filterItem[] = [
   {
     name: "Beta Carotene (mg)",
   },
@@ -41,7 +41,7 @@ const Template: ComponentStory<typeof MultipleSelects> = (args) => {
     <Box sx={{ width: "70%", m: "auto" }}>
       <MultipleSelects
         {...args}
-        getSelectedNutrients={setSelectedNutrients}
+        onSelectedValue={setSelectedNutrients}
         open={open}
         setIsOpen={setIsOpen}
         multiselectTitle="Filter foods"
@@ -68,7 +68,7 @@ const Template: ComponentStory<typeof MultipleSelects> = (args) => {
 export const Main = Template.bind({});
 Main.args = {
   ...Main.args,
-  multipleSelectItems: multipleSelectItems,
+  values: values,
 };
 
 Main.storyName = "MultipleSelects";

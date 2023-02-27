@@ -138,15 +138,7 @@
         ]
       },
       "tableHeaders": {
-        "multipleSelectItems": [
-          "Protein",
-          "Carbohydrate",
-          "Water",
-          "Vitamin",
-          "Fats",
-          "Fiber",
-          "Minerals"
-        ],
+        "values": ["Protein", "Carbohydrate", "Water", "Vitamin", "Fats", "Fiber", "Minerals"],
         "valuePercent": "% Daily Value",
         "rdi": {
           "amount": 130,

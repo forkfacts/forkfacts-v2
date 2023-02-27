@@ -134,9 +134,9 @@ export const customTheme = createTheme({
       fontStyle: "normal",
     },
     bodyLarge: {
-      fontSize: "18px",
-      lineHeight: "32px",
-      letterSpacing: "0.25px",
+      fontSize: theme.spacing(2),
+      lineHeight: "24px",
+      letterSpacing: "0.5px",
       fontStyle: "normal",
     },
     bodySmall: {

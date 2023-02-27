@@ -103,6 +103,7 @@ const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
                     overflow: "hidden",
                     textOverflow: "ellipsis",
                     borderRadius: theme.spacing(1),
+                    fontWeight: theme.typography.fontWeightRegular,
                   }}
                   onClick={() => setIsOpen(!open)}
                 >
@@ -132,6 +133,7 @@ const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
                       overflow: "hidden",
                       textOverflow: "ellipsis",
                       borderRadius: theme.spacing(1),
+                      fontWeight: theme.typography.fontWeightRegular,
                     }}
                   >
                     Show/Hide

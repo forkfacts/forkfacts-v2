@@ -38,7 +38,7 @@ export default function DetailsPageTabItem({
         borderBottomRightRadius: index === 4 ? theme.spacing(1) : 0,
         borderTopLeftRadius: index === 0 ? theme.spacing(1) : 0,
         borderBottomLeftRadius: index === 0 ? theme.spacing(1) : 0,
-        fontWeight: theme.typography.fontWeightBold,
+        fontWeight: theme.typography.fontWeightMedium,
         width: mobile ? "auto" : theme.spacing(29.2),
         height: theme.spacing(5),
         flexShrink: 0,
@@ -56,12 +56,7 @@ export default function DetailsPageTabItem({
         />
       }
     >
-      <Typography
-        variant={mobile ? "labelMedium" : "titleMedium"}
-        sx={{ fontWeight: theme.typography.fontWeightRegular }}
-      >
-        {item.label}
-      </Typography>
+      <Typography variant={mobile ? "labelMedium" : "titleMedium"}>{item.label}</Typography>
     </Button>
   );
 }

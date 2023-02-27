@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import FilterListOutlinedIcon from "@mui/icons-material/FilterListOutlined";
 import { MultipleSelects } from "@forkfacts/components";
 import { filterItem } from "@forkfacts/models";
-import { Box, Button } from "@mui/material";
+import { Box, Button, useTheme } from "@mui/material";
 
 export default {
   title: "Components/MultipleSelects/MultipleSelects",
@@ -37,6 +37,7 @@ const values: filterItem[] = [
 const Template: ComponentStory<typeof MultipleSelects> = (args) => {
   const [_, setSelectedNutrients] = useState<string[]>([]);
   const [open, setIsOpen] = useState(false);
+  const theme = useTheme();
   return (
     <Box sx={{ width: "70%", m: "auto" }}>
       <MultipleSelects
@@ -54,6 +55,7 @@ const Template: ComponentStory<typeof MultipleSelects> = (args) => {
               overflow: "hidden",
               textOverflow: "ellipsis",
               borderRadius: "10px",
+              fontWeight: theme.typography.fontWeightRegular,
             }}
             onClick={() => setIsOpen(!open)}
           >

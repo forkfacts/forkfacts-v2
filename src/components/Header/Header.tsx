@@ -52,7 +52,7 @@ export default function Header({ handleToggleButton }: HeaderProps) {
               size={mobile ? "medium" : "large"}
               color="primary"
               variant="contained"
-              sx={{ py: theme.spacing(1), px: theme.spacing(3) }}
+              sx={{ py: theme.spacing(1), px: theme.spacing(3), borderRadius: theme.spacing(1.25) }}
             >
               Sign in
             </Button>

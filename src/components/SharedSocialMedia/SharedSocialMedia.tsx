@@ -79,6 +79,8 @@ const SharedSocialMedia: React.FC<SharedSocialMediaProps> = ({
           right: 0,
           bottom: 0,
           borderRadius: theme.spacing(1),
+          borderBottomLeftRadius: mobile ? 0 : theme.spacing(1),
+          borderBottomRightRadius: mobile ? 0 : theme.spacing(1),
         }}
       >
         <Box

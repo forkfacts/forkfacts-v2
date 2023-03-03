@@ -10,7 +10,7 @@ const DetailsPageHeader: React.FC<DetailsPageHeaderProps> = ({ detailsHeaderValu
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.down("md"));
   return (
-    <Box sx={{ position: "relative" }}>
+    <Box>
       <SharedSocialMedia
         link="https://www.forkfacts.app/raw-banana-23hy-ripe"
         isSharedMediaOpen={isSharedMediaOpen}

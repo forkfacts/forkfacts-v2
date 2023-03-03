@@ -91,7 +91,10 @@ const MultipleSelects: React.FC<MultipleSelectsProps> = ({
   }, [ref]);
 
   return (
-    <Box sx={{ cursor: "pointer", zIndex: theme.zIndex.modal, position: "relative" }} ref={ref}>
+    <Box
+      sx={{ cursor: "pointer", zIndex: theme.zIndex.mobileStepper, position: "relative" }}
+      ref={ref}
+    >
       <Box>{renderSelectButton}</Box>
       {open && (
         <Box

@@ -3,6 +3,7 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import { ComparingDetailsTab } from "@forkfacts/components";
 import { compareTableItem, filterItem } from "@forkfacts/models";
+import { Box } from "@mui/material";
 
 export default {
   title: "Components/DetailsPageComponents/ComparingDetailsTab",
@@ -98,7 +99,11 @@ const values: filterItem[] = [
 
 const Template: ComponentStory<typeof ComparingDetailsTab> = (args) => {
   const [_, setSelectedNutrients] = useState<string[]>([]);
-  return <ComparingDetailsTab {...args} onSelectedValue={setSelectedNutrients} />;
+  return (
+    <Box sx={{ width: { md: "70%", xs: "100%" }, mx: "auto" }}>
+      <ComparingDetailsTab {...args} onSelectedValue={setSelectedNutrients} />
+    </Box>
+  );
 };
 
 export const Desktop = Template.bind({});

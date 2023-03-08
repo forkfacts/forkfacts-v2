@@ -5,7 +5,7 @@ import { addDecorator } from "@storybook/react";
 import { withConsole, setConsoleOptions } from "@storybook/addon-console";
 import { ThemeProvider } from "@mui/material/styles";
 import "@storybook/addon-actions/register";
-import "@fontsource/poppins"; // Defaults to weight 400.
+import "@fontsource/poppins/500.css";
 import { customTheme } from "../src/themes/theme";
 import { MINIMAL_VIEWPORTS } from "@storybook/addon-viewport";
 

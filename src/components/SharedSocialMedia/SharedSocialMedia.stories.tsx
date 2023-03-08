@@ -28,12 +28,14 @@ export const Desktop = Template.bind({});
 
 Desktop.args = {
   isSharedMediaOpen: true,
+  link: "https://www.forkfacts.app/raw-banana-23hy-ripe",
 };
 
 export const Mobile = Template.bind({});
 
 Mobile.args = {
   isSharedMediaOpen: true,
+  link: "https://www.forkfacts.app/raw-banana-23hy-ripe",
 };
 
 Mobile.parameters = {

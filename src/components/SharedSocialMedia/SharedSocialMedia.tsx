@@ -153,7 +153,11 @@ const SharedSocialMedia: React.FC<SharedSocialMediaProps> = ({
                 </InputAdornment>
               ),
             }}
-            sx={{ borderRadius: theme.spacing(8), width: mobile ? "100%" : "60%" }}
+            sx={{
+              borderRadius: theme.spacing(8),
+              width: mobile ? "100%" : "60%",
+              caretColor: "transparent",
+            }}
             value={link}
             aria-readonly
           />

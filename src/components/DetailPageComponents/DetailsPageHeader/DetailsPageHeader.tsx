@@ -10,7 +10,7 @@ const DetailsPageHeader: React.FC<DetailsPageHeaderProps> = ({ detailsHeaderValu
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.down("md"));
   return (
-    <Box>
+    <Box sx={{ position: "relative" }}>
       <SharedSocialMedia
         link="https://www.forkfacts.app/raw-banana-23hy-ripe"
         isSharedMediaOpen={isSharedMediaOpen}
@@ -85,7 +85,10 @@ const DetailsPageHeader: React.FC<DetailsPageHeaderProps> = ({ detailsHeaderValu
                         />
                         <Typography
                           variant="labelLarge"
-                          sx={{ color: "#1C1B1F", fontWeight: theme.typography.fontWeightRegular }}
+                          sx={{
+                            color: theme.palette.customGray.main,
+                            fontWeight: theme.typography.fontWeightRegular,
+                          }}
                         >
                           {item.name}
                         </Typography>
@@ -201,7 +204,10 @@ const DetailsPageHeader: React.FC<DetailsPageHeaderProps> = ({ detailsHeaderValu
                     />
                     <Typography
                       variant="labelMedium"
-                      sx={{ color: "#1C1B1F", fontWeight: theme.typography.fontWeightRegular }}
+                      sx={{
+                        color: theme.palette.customGray.main,
+                        fontWeight: theme.typography.fontWeightRegular,
+                      }}
                     >
                       {item.name}
                     </Typography>

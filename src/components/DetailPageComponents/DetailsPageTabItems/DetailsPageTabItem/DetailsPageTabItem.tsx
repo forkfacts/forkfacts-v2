@@ -56,7 +56,15 @@ export default function DetailsPageTabItem({
         />
       }
     >
-      <Typography variant={mobile ? "labelMedium" : "titleMedium"}>{item.label}</Typography>
+      <Typography
+        variant={mobile ? "labelMedium" : "titleMedium"}
+        sx={{
+          color: theme.palette.customGray.main,
+          fontWeight: theme.typography.fontWeightRegular,
+        }}
+      >
+        {item.label}
+      </Typography>
     </Button>
   );
 }

@@ -193,3 +193,24 @@ Mobile.parameters = {
     defaultViewport: "iphonexr",
   },
 };
+
+export const Tablet = Template.bind({});
+
+Tablet.args = {
+  sidebarItems,
+  DetailsPageTitlesItems: DetailsPageTitlesItems,
+  detailsHeaderValues: detailsHeaderValues,
+  tabItems: tabItems,
+  compareTableItems: compareTableItemRows,
+  compareTableDetails: {
+    name: "Comparing Greens",
+    quantityAmount: "3 1/2 OUNCES RAW (2 TO 3 CUPS)",
+  },
+  values: values,
+};
+
+Tablet.parameters = {
+  viewport: {
+    defaultViewport: "ipad",
+  },
+};

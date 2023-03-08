@@ -356,7 +356,7 @@ const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
                   display: "flex",
                   "> li": { width: "auto", flexShrink: 0 },
                   justifyContent: "space-between",
-                  columnGap: theme.spacing(2),
+                  columnGap: theme.spacing(1),
                 }}
               >
                 {tableHeaderItems?.map((item: { name: string }, index) => (

@@ -4,7 +4,10 @@ import { ThemeProvider } from "@mui/material/styles";
 import { customTheme } from "../../themes/theme";
 import { Header, SideBar } from "@forkfacts/components";
 import { LayoutProps } from "@forkfacts/models";
+import "@fontsource/poppins";
 import "@fontsource/poppins/500.css";
+import "@fontsource/poppins/600.css";
+import "@fontsource/poppins/700.css";
 
 const Layout: FC<LayoutProps> = ({ children, sidebarItems }) => {
   const theme = useTheme();

@@ -5,10 +5,6 @@ export const useStyles = makeStyles(({ typography, palette, spacing, breakpoints
   root: {
     width: "100%",
   },
-  btn: {
-    fontWeight: typography.fontWeightBold,
-    lineHeight: spacing(2.5),
-  },
   icon: {
     "&:hover": {
       color: palette.primary.main,

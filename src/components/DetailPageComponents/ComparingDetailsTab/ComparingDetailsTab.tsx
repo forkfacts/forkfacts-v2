@@ -64,6 +64,7 @@ const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
           }}
         >
           <Typography
+            component="h1"
             variant={mobile ? "labelLarge" : "titleLarge"}
             sx={{
               color: theme.palette.customGray.textDark,
@@ -407,6 +408,7 @@ const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
                       sx={{
                         color: theme.palette.customGray.main,
                         whiteSpace: "nowrap",
+                        fontWeight: theme.typography.fontWeightLight,
                       }}
                     >
                       {item.foodName}

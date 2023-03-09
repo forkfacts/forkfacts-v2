@@ -38,12 +38,15 @@ export default function Header({ handleToggleButton }: HeaderProps) {
             sx={{ mr: 0.5 }}
             onClick={handleToggleButton}
           >
-            <MenuIcon />
+            <MenuIcon sx={{ width: theme.spacing(3), height: theme.spacing(3) }} />
           </IconButton>
           <Typography
             color="primary"
             variant={mobile ? "displayMedium" : "displayLarge"}
-            className={classes.pageTitle}
+            sx={{
+              lineHeight: theme.spacing(5),
+              fontWeight: theme.typography.fontWeightLight,
+            }}
           >
             Forkfacts
           </Typography>

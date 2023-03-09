@@ -68,7 +68,7 @@ export const customTheme = createTheme({
       letterSpacing: "0.1px",
     },
     displayLarge: {
-      fontSize: "32px",
+      fontSize: theme.spacing(4),
       lineHeight: "24px",
       fontStyle: "normal",
       letterSpacing: "0.1px",

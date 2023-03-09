@@ -21,6 +21,7 @@ export default function DetailsPageTabItem({
 
   return (
     <Button
+      className={classes.btn}
       variant="text"
       sx={{
         color: ({ palette }) =>
@@ -37,6 +38,7 @@ export default function DetailsPageTabItem({
         borderBottomRightRadius: index === 4 ? theme.spacing(1) : 0,
         borderTopLeftRadius: index === 0 ? theme.spacing(1) : 0,
         borderBottomLeftRadius: index === 0 ? theme.spacing(1) : 0,
+        fontWeight: theme.typography.fontWeightMedium,
         width: mobile ? "auto" : theme.spacing(29.2),
         height: theme.spacing(5),
         flexShrink: 0,
@@ -54,7 +56,15 @@ export default function DetailsPageTabItem({
         />
       }
     >
-      {item.label}
+      <Typography
+        variant={mobile ? "labelMedium" : "titleMedium"}
+        sx={{
+          color: theme.palette.customGray.main,
+          fontWeight: theme.typography.fontWeightRegular,
+        }}
+      >
+        {item.label}
+      </Typography>
     </Button>
   );
 }

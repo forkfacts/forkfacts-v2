@@ -34,9 +34,7 @@ const DetailsPageScreen: React.FC<DetailsPageScreenProps> = ({
           <Button
             startIcon={<ArrowBackIosIcon />}
             sx={{
-              fontWeight: mobile
-                ? theme.typography.fontWeightRegular
-                : theme.typography.fontWeightMedium,
+              fontWeight: theme.typography.fontWeightRegular,
               fontSize: mobile ? theme.typography.labelMedium : theme.typography.labelLarge,
               lineHeight: theme.spacing(2.5),
             }}

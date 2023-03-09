@@ -44,7 +44,7 @@ export default function Header({ handleToggleButton }: HeaderProps) {
             color="primary"
             variant={mobile ? "displayMedium" : "displayLarge"}
             sx={{
-              lineHeight: theme.spacing(5),
+              lineHeight: mobile ? theme.spacing(4.5) : theme.spacing(4),
               fontWeight: theme.typography.fontWeightLight,
             }}
           >

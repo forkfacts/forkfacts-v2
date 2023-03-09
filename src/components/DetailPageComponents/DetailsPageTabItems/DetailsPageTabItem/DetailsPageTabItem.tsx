@@ -38,7 +38,7 @@ export default function DetailsPageTabItem({
         borderTopLeftRadius: index === 0 ? theme.spacing(1) : 0,
         borderBottomLeftRadius: index === 0 ? theme.spacing(1) : 0,
         width: mobile ? "auto" : theme.spacing(29.2),
-        height: theme.spacing(5),
+        height: mobile ? theme.spacing(5) : theme.spacing(7),
         flexShrink: 0,
       }}
       onClick={handleClick}

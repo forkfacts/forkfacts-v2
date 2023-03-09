@@ -31,7 +31,7 @@ const DetailsPageHeader: React.FC<DetailsPageHeaderProps> = ({ detailsHeaderValu
                 }}
               >
                 <Typography
-                  variant={"headline4"}
+                  variant="headline4"
                   sx={{
                     color: theme.palette.customGray.main,
                     fontWeight: theme.typography.fontWeightLight,

@@ -7,7 +7,7 @@ import {
 } from "@forkfacts/components";
 import { DetailsPageScreenProps } from "@forkfacts/models";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-import { Box, Button, useMediaQuery, useTheme } from "@mui/material";
+import { Box, Button, Typography, useMediaQuery, useTheme } from "@mui/material";
 import React, { useState } from "react";
 import { useStyles } from "./detailspageStyles";
 
@@ -31,15 +31,15 @@ const DetailsPageScreen: React.FC<DetailsPageScreenProps> = ({
     <Layout sidebarItems={sidebarItems}>
       <Box className={classes.desktopScreenWrapper}>
         <Box sx={{ px: mobile ? 0 : theme.spacing(1.5) }}>
-          <Button
-            startIcon={<ArrowBackIosIcon />}
-            sx={{
-              fontWeight: theme.typography.fontWeightRegular,
-              fontSize: mobile ? theme.typography.labelMedium : theme.typography.labelLarge,
-              lineHeight: theme.spacing(2.5),
-            }}
-          >
-            Go back
+          <Button startIcon={<ArrowBackIosIcon />}>
+            <Typography
+              variant={mobile ? "labelMedium" : "labelLarge"}
+              sx={{
+                fontWeight: theme.typography.fontWeightRegular,
+              }}
+            >
+              Go back
+            </Typography>
           </Button>
         </Box>
         <Box>

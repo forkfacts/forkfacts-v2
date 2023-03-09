@@ -80,6 +80,7 @@ const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
               color: theme.palette.customGray.textDark,
               mt: mobile ? theme.spacing(1) : 0,
               fontWeight: theme.typography.fontWeightRegular,
+              lineHeight: mobile ? theme.typography.extraSmall.lineHeight : theme.spacing(3),
             }}
           >
             {compareTableDetails.quantityAmount}
@@ -104,10 +105,15 @@ const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
                     textOverflow: "ellipsis",
                     borderRadius: theme.spacing(1),
                     fontWeight: theme.typography.fontWeightRegular,
+                    py: mobile ? theme.spacing(1) : theme.spacing(1.25),
+                    pl: mobile ? theme.spacing(0.5) : theme.spacing(2),
+                    pr: mobile ? theme.spacing(1.5) : theme.spacing(3),
                   }}
                   onClick={() => setIsOpen(!open)}
                 >
-                  Filter foods
+                  <Typography variant={mobile ? "labelSmall" : "labelLarge"}>
+                    Filter foods
+                  </Typography>
                 </Button>
               </>
             }
@@ -134,9 +140,14 @@ const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
                       textOverflow: "ellipsis",
                       borderRadius: theme.spacing(1),
                       fontWeight: theme.typography.fontWeightRegular,
+                      py: mobile ? theme.spacing(1) : theme.spacing(1.25),
+                      pl: mobile ? theme.spacing(0.5) : theme.spacing(2),
+                      pr: mobile ? theme.spacing(1.5) : theme.spacing(3),
                     }}
                   >
-                    Show/Hide
+                    <Typography variant={mobile ? "labelSmall" : "labelLarge"}>
+                      Show/Hide
+                    </Typography>
                   </Button>
                 </>
               }
@@ -158,7 +169,13 @@ const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
                       cursor: "pointer",
                     }}
                   >
-                    <Typography variant="labelLarge" sx={{ color: "#78767A" }}>
+                    <Typography
+                      variant="labelLarge"
+                      sx={{
+                        color: theme.palette.customGray.dark,
+                        fontWeight: theme.typography.fontWeightRegular,
+                      }}
+                    >
                       Food name
                     </Typography>
                     <CompareSorting width={theme.spacing(2.45)} height={theme.spacing(2.45)} />
@@ -173,7 +190,13 @@ const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
                       cursor: "pointer",
                     }}
                   >
-                    <Typography variant="labelLarge" sx={{ color: "#78767A" }}>
+                    <Typography
+                      variant="labelLarge"
+                      sx={{
+                        color: theme.palette.customGray.dark,
+                        fontWeight: theme.typography.fontWeightRegular,
+                      }}
+                    >
                       Calories
                     </Typography>
                     <CompareSorting width={theme.spacing(2.45)} height={theme.spacing(2.45)} />
@@ -188,7 +211,13 @@ const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
                       cursor: "pointer",
                     }}
                   >
-                    <Typography variant="labelLarge" sx={{ color: "#78767A" }}>
+                    <Typography
+                      variant="labelLarge"
+                      sx={{
+                        color: theme.palette.customGray.dark,
+                        fontWeight: theme.typography.fontWeightRegular,
+                      }}
+                    >
                       Beta Carotene (mg)
                     </Typography>
                     <CompareSorting width={theme.spacing(2.45)} height={theme.spacing(2.45)} />
@@ -203,7 +232,13 @@ const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
                       cursor: "pointer",
                     }}
                   >
-                    <Typography variant="labelLarge" sx={{ color: "#78767A" }}>
+                    <Typography
+                      variant="labelLarge"
+                      sx={{
+                        color: theme.palette.customGray.dark,
+                        fontWeight: theme.typography.fontWeightRegular,
+                      }}
+                    >
                       Vitamin C (mg)
                     </Typography>
                     <CompareSorting width={theme.spacing(2.45)} height={theme.spacing(2.45)} />
@@ -218,7 +253,13 @@ const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
                       cursor: "pointer",
                     }}
                   >
-                    <Typography variant="labelLarge" sx={{ color: "#78767A" }}>
+                    <Typography
+                      variant="labelLarge"
+                      sx={{
+                        color: theme.palette.customGray.dark,
+                        fontWeight: theme.typography.fontWeightRegular,
+                      }}
+                    >
                       Calcium (mg)
                     </Typography>
                     <CompareSorting width={theme.spacing(2.45)} height={theme.spacing(2.45)} />
@@ -233,7 +274,13 @@ const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
                       cursor: "pointer",
                     }}
                   >
-                    <Typography variant="labelLarge" sx={{ color: "#78767A" }}>
+                    <Typography
+                      variant="labelLarge"
+                      sx={{
+                        color: theme.palette.customGray.dark,
+                        fontWeight: theme.typography.fontWeightRegular,
+                      }}
+                    >
                       Iron (mg)
                     </Typography>
                     <CompareSorting width={theme.spacing(2.45)} height={theme.spacing(2.45)} />

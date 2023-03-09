@@ -127,8 +127,8 @@ const SharedSocialMedia: React.FC<SharedSocialMediaProps> = ({
           <Typography
             variant="labelLarge"
             sx={{
-              fontWeight: theme.typography.fontWeightBold,
-              color: theme.palette.customGray.textDark,
+              fontWeight: theme.typography.fontWeightRegular,
+              color: theme.palette.customGray.main,
             }}
           >
             or copy the url

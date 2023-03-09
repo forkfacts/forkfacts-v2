@@ -19,7 +19,7 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "prepare": "husky install",
-    "generate-icon": "npx @svgr/cli --out-dir src/DesignIcons  --typescript --ignore-existing -- src/images/icons"
+    "svgr": "npx @svgr/cli --out-dir src/DesignIcons  --typescript --ignore-existing -- src/images/icons"
   },
   "dependencies": {
     "@algolia/autocomplete-core": "1.7.3",

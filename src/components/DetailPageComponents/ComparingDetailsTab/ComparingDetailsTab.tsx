@@ -64,10 +64,9 @@ const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
           }}
         >
           <Typography
-            component="h1"
             variant={mobile ? "labelLarge" : "titleLarge"}
             sx={{
-              color: theme.palette.customGray.textDark,
+              color: mobile ? theme.palette.customGray.main : theme.palette.customGray.textDark,
               textTransform: "uppercase",
               fontWeight: theme.typography.fontWeightRegular,
             }}
@@ -75,7 +74,7 @@ const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
             {compareTableDetails.name}
           </Typography>
           <Typography
-            variant={mobile ? "bodySmall" : "labelLarge"}
+            variant={mobile ? "extraSmall" : "labelLarge"}
             sx={{
               ml: mobile ? 0 : theme.spacing(1),
               color: theme.palette.customGray.textDark,
@@ -146,7 +145,7 @@ const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
         </Box>
       </Box>
       {!mobile ? (
-        <TableContainer sx={{ mt: theme.spacing(5), boxShadow: "none" }}>
+        <TableContainer sx={{ mt: theme.spacing(2), boxShadow: "none" }}>
           <Table sx={{ minWidth: 650, border: "none" }}>
             <TableHead style={{ border: "none", backgroundColor: "#FCFCFC" }}>
               <TableRow>
@@ -379,7 +378,7 @@ const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
                         color:
                           item.name === selectedNutrient
                             ? theme.palette.primary.main
-                            : theme.palette.customGray.main,
+                            : theme.palette.customGray.dark,
                         fontWeight: theme.typography.fontWeightRegular,
                         cursor: "pointer",
                       }}

@@ -145,5 +145,11 @@ export const customTheme = createTheme({
       letterSpacing: "0.4px",
       fontStyle: "normal",
     },
+    extraSmall: {
+      fontSize: theme.spacing(1.25),
+      lineHeight: "24px",
+      letterSpacing: "0.1px",
+      fontStyle: "normal",
+    },
   },
 });

@@ -112,6 +112,7 @@ const MultipleSelects: React.FC<MultipleSelectsProps> = ({
             zIndex: theme.zIndex.modal,
             backgroundColor: theme.palette.common.white,
             ml: mobile ? theme.spacing(-17.5) : margin,
+            borderRadius: theme.spacing(1),
           }}
           boxShadow={1}
         >
@@ -121,7 +122,7 @@ const MultipleSelects: React.FC<MultipleSelectsProps> = ({
               justifyContent: "space-between",
               width: "100%",
               alignItems: "center",
-              mt: theme.spacing(3),
+              mt: theme.spacing(1),
             }}
           >
             <Typography
@@ -129,6 +130,7 @@ const MultipleSelects: React.FC<MultipleSelectsProps> = ({
               sx={{
                 fontWeight: theme.typography.fontWeightRegular,
                 textTransform: "uppercase",
+                color: theme.palette.customGray.textDark,
               }}
             >
               {multiselectTitle}
@@ -169,7 +171,7 @@ const MultipleSelects: React.FC<MultipleSelectsProps> = ({
                       variant="bodyMedium"
                       sx={{
                         color: theme.palette.customGray.main,
-                        fontWeight: theme.typography.fontWeightRegular,
+                        fontWeight: theme.typography.fontWeightLight,
                       }}
                     >
                       {item.name}

@@ -27,9 +27,16 @@ const DetailsPageHeader: React.FC<DetailsPageHeaderProps> = ({ detailsHeaderValu
                   alignItems: "center",
                   columnGap: theme.spacing(3.5),
                   position: "relative",
+                  mb: theme.spacing(1),
                 }}
               >
-                <Typography variant={"headline4"} sx={{ color: theme.palette.customGray.main }}>
+                <Typography
+                  variant={"headline4"}
+                  sx={{
+                    color: theme.palette.customGray.main,
+                    fontWeight: theme.typography.fontWeightLight,
+                  }}
+                >
                   {detailsHeaderValues.name}
                 </Typography>
                 <ShareIcon
@@ -44,10 +51,10 @@ const DetailsPageHeader: React.FC<DetailsPageHeaderProps> = ({ detailsHeaderValu
                 />
               </Box>
               <Typography
-                variant={"bodyMedium"}
+                variant="bodyMedium"
                 sx={{
                   color: theme.palette.customGray.textDark,
-                  fontWeight: theme.typography.fontWeightRegular,
+                  fontWeight: theme.typography.fontWeightLight,
                 }}
               >
                 {detailsHeaderValues.subTitle}
@@ -130,9 +137,7 @@ const DetailsPageHeader: React.FC<DetailsPageHeaderProps> = ({ detailsHeaderValu
                   variant="headline6"
                   sx={{
                     color: theme.palette.customGray.main,
-                    fontWeight: mobile
-                      ? theme.typography.fontWeightLight
-                      : theme.typography.fontWeightRegular,
+                    fontWeight: theme.typography.fontWeightLight,
                   }}
                 >
                   {detailsHeaderValues.name}
@@ -155,7 +160,11 @@ const DetailsPageHeader: React.FC<DetailsPageHeaderProps> = ({ detailsHeaderValu
               </Box>
               <Typography
                 variant="bodySmall"
-                sx={{ color: theme.palette.customGray.textDark, mt: theme.spacing(1) }}
+                sx={{
+                  color: theme.palette.customGray.textDark,
+                  mt: theme.spacing(1),
+                  fontWeight: theme.typography.fontWeightLight,
+                }}
               >
                 {detailsHeaderValues.subTitle}
               </Typography>

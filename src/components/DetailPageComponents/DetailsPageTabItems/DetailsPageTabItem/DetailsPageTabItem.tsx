@@ -13,7 +13,7 @@ export default function DetailsPageTabItem({
   const classes = useStyles();
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.down("md"));
-
+  const desktop = useMediaQuery(theme.breakpoints.up("md"));
   const handleClick = () => {
     setSelectedIndex(index);
     onSelectDetailsPageTabItem(item.label);
@@ -37,7 +37,6 @@ export default function DetailsPageTabItem({
         borderBottomRightRadius: index === 4 ? theme.spacing(1) : 0,
         borderTopLeftRadius: index === 0 ? theme.spacing(1) : 0,
         borderBottomLeftRadius: index === 0 ? theme.spacing(1) : 0,
-        fontWeight: theme.typography.fontWeightMedium,
         width: mobile ? "auto" : theme.spacing(29.2),
         height: theme.spacing(5),
         flexShrink: 0,
@@ -58,7 +57,8 @@ export default function DetailsPageTabItem({
       <Typography
         variant={mobile ? "labelMedium" : "titleMedium"}
         sx={{
-          color: theme.palette.customGray.main,
+          color: ({ palette }) =>
+            selectedIndex === index ? palette.primary.main : palette.customGray.main,
           fontWeight: theme.typography.fontWeightRegular,
         }}
       >

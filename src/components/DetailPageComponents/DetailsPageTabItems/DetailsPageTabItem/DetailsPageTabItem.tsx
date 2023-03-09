@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, Typography, useMediaQuery, useTheme } from "@mui/material";
-import { DetailsPageTabItemProps, NavBarItemProps } from "@forkfacts/models";
+import { DetailsPageTabItemProps } from "@forkfacts/models";
 import { useStyles } from "../detailsPageTabItemStyles";
 
 export default function DetailsPageTabItem({
@@ -21,7 +21,6 @@ export default function DetailsPageTabItem({
 
   return (
     <Button
-      className={classes.btn}
       variant="text"
       sx={{
         color: ({ palette }) =>

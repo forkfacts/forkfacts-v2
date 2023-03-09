@@ -113,7 +113,7 @@ const DetailsPageHeader: React.FC<DetailsPageHeaderProps> = ({ detailsHeaderValu
                 pl: theme.spacing(2),
                 borderLeft: `3px solid ${theme.palette.primary.main}`,
                 color: "#1C1B1F",
-                fontWeight: theme.typography.fontWeightRegular,
+                fontWeight: theme.typography.fontWeightLight,
               }}
             >
               {detailsHeaderValues.tag}
@@ -171,9 +171,7 @@ const DetailsPageHeader: React.FC<DetailsPageHeaderProps> = ({ detailsHeaderValu
                   py: theme.spacing(1),
                   borderLeft: `3px solid ${theme.palette.primary.main}`,
                   color: "#1C1B1F",
-                  fontWeight: mobile
-                    ? theme.typography.fontWeightLight
-                    : theme.typography.fontWeightRegular,
+                  fontWeight: theme.typography.fontWeightLight,
                   mt: theme.spacing(2),
                 }}
               >

@@ -8,6 +8,10 @@ import {
   recommendationType,
   DetailsPageTitlesItem,
   compareTableItem,
+  summaryItem,
+  SearchNutritionFilterItem,
+  ageItem,
+  NutritionTableItem,
 } from "@forkfacts/models";
 import { Dispatch, SetStateAction } from "react";
 
@@ -38,6 +42,22 @@ export interface DetailsPageScreenProps {
     name: string;
     quantityAmount: string;
   };
+  nutritionSummaryItems: Array<summaryItem>;
+  ageItems: Array<ageItem>;
+  nutritionFilterItems: Array<SearchNutritionFilterItem>;
+  measurementFilterItems: string[];
+  onSelectMeasurementItem: (item: string) => void;
+  onSelectFilterPageData: Dispatch<SetStateAction<any>>;
+  multipleSelectItems: filterItem[];
+  getSelectedNutrients: Dispatch<SetStateAction<string[]>>;
+  onSelectFilterItems: (item: string[]) => void;
+  onSelectLifeStageItem: Dispatch<SetStateAction<any | string>>;
+  onSelectAgeItem: dispatch<SetStateAction<ageItem>>;
+  onSelectUnit: Dispatch<SetStateAction<string>>;
+  units: string[];
+  nutritionTableItems: NutritionTableItem[];
+  onSelectNutritionFilterItem: Dispatch<SetStateAction<SearchNutritionFilterItem[] | any>>;
   values: filterItem[];
   onSelectedValue: Dispatch<SetStateAction<string[]>>;
+  lifeStageItems: Array<lifeStageItem>;
 }

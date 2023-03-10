@@ -21,4 +21,16 @@ export { default as DetailsPageTabItem } from "./DetailPageComponents/DetailsPag
 export { default as ComparingDetailsTab } from "./DetailPageComponents/ComparingDetailsTab/ComparingDetailsTab";
 export { default as SharedSocialMedia } from "./SharedSocialMedia/SharedSocialMedia";
 export { default as MultipleSelects } from "./MultipleSelects/MultipleSelects";
+export { default as NutrientSummaryItem } from "./DetailPageComponents/NutritionSummary/NutrientSummaryItem/NutrientSummaryItem";
+export { default as NutritionSummary } from "./DetailPageComponents/NutritionSummary/NutritionSummary";
+export { default as NutritionDetailsTab } from "./DetailPageComponents/NutritionDetailsTab/NutritionDetailsTab";
+export { default as AllFilters } from "./Filters/AllFilters/AllFilters";
+export { default as LifeStage } from "./Filters/LifeStage/LifeStage";
+export { default as LifeStageItem } from "./Filters/LifeStageItem/LifeStageItem";
+export { default as FilterAge } from "./Filters/FilterAge/FilterAge";
+export { default as SearchNutritionFilter } from "./Filters/SearchNutritionFilter/SearchNutritionFilter";
+export { default as MeasurementFilter } from "./Filters/MeasurementFilter/MeasurementFilter";
+export { default as NutritionFilters } from "./Filters/NutritionFilters/NutritionFilters";
+export { default as NutritionDesktopTable } from "./DetailPageComponents/NutritionTable/NutritionDesktopTable/NutritionDesktopTable";
+export { default as NutritionMobileTable } from "./DetailPageComponents/NutritionTable/NutritionMobileTable/NutritionMobileTable";
 export { default as AutoCompleteSearch } from "./AutoCompleteSearch/AutoCompleteSearch";

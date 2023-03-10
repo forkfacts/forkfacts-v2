@@ -44,6 +44,7 @@ export const customTheme = createTheme({
       main: "#1C1B1F",
       dark: "#78767A",
       textDark: "#47464A",
+      textBlack: "#000000",
       textLight: " #929094",
     },
   },

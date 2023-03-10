@@ -9,10 +9,6 @@ export const useStyles = makeStyles(({ typography, spacing, breakpoints, palette
     position: "absolute",
     right: spacing(1.5),
   },
-  pageTitle: {
-    lineHeight: spacing(5),
-    fontWeight: typography.fontWeightRegular,
-  },
   authBtn: {
     borderRadius: spacing(12.5),
     color: palette.common.white,

@@ -59,4 +59,6 @@ export interface DetailsPageScreenProps {
   units: string[];
   nutritionTableItems: NutritionTableItem[];
   onSelectNutritionFilterItem: Dispatch<SetStateAction<SearchNutritionFilterItem[] | any>>;
+  values: filterItem[];
+  onSelectedValue: Dispatch<SetStateAction<string[]>>;
 }

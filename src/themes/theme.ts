@@ -56,11 +56,6 @@ export const customTheme = createTheme({
     fontWeightRegular: 500,
     fontWeightLight: 400,
     fontFamily: "Poppins",
-    caption: {
-      fontSize: theme.spacing(1.25),
-      lineHeight: "16px",
-      letterSpacing: "0.4px",
-    },
     displaySmall: {
       fontSize: "16px",
       lineHeight: "24px",
@@ -74,7 +69,7 @@ export const customTheme = createTheme({
       letterSpacing: "0.1px",
     },
     displayLarge: {
-      fontSize: "32px",
+      fontSize: theme.spacing(4),
       lineHeight: "24px",
       fontStyle: "normal",
       letterSpacing: "0.1px",
@@ -83,19 +78,19 @@ export const customTheme = createTheme({
       fontSize: theme.spacing(2.25),
       lineHeight: "24px",
       fontStyle: "normal",
-      letterSpacing: "0.1px",
+      letterSpacing: "0%",
     },
     headline4: {
       fontSize: theme.spacing(3),
-      lineHeight: "24px",
+      lineHeight: "32px",
       fontStyle: "normal",
-      letterSpacing: "0.1px",
+      letterSpacing: "0%",
     },
     headline3: {
       fontSize: "24px",
       lineHeight: "32px",
       fontStyle: "normal",
-      letterSpacing: "0.1px",
+      letterSpacing: "0%",
     },
     titleSmall: {
       fontSize: theme.spacing(1.75),
@@ -113,7 +108,7 @@ export const customTheme = createTheme({
       fontSize: theme.spacing(2.75),
       lineHeight: "28px",
       fontStyle: "normal",
-      letterSpacing: "0.1px",
+      letterSpacing: "0%",
     },
     labelSmall: {
       fontSize: theme.spacing(1.375),
@@ -130,7 +125,7 @@ export const customTheme = createTheme({
     labelLarge: {
       fontSize: theme.spacing(1.75),
       lineHeight: "20px",
-      letterSpacing: "0.25px",
+      letterSpacing: "0.1px",
       fontStyle: "normal",
     },
     bodyMedium: {
@@ -140,15 +135,21 @@ export const customTheme = createTheme({
       fontStyle: "normal",
     },
     bodyLarge: {
-      fontSize: "18px",
-      lineHeight: "32px",
-      letterSpacing: "0.25px",
+      fontSize: theme.spacing(2),
+      lineHeight: "24px",
+      letterSpacing: "0.5px",
       fontStyle: "normal",
     },
     bodySmall: {
       fontSize: theme.spacing(1.5),
       lineHeight: "16px",
       letterSpacing: "0.4px",
+      fontStyle: "normal",
+    },
+    extraSmall: {
+      fontSize: theme.spacing(1.25),
+      lineHeight: "24px",
+      letterSpacing: "0.1px",
       fontStyle: "normal",
     },
   },

@@ -38,12 +38,15 @@ export default function Header({ handleToggleButton }: HeaderProps) {
             sx={{ mr: 0.5 }}
             onClick={handleToggleButton}
           >
-            <MenuIcon />
+            <MenuIcon sx={{ width: theme.spacing(3), height: theme.spacing(3) }} />
           </IconButton>
           <Typography
             color="primary"
             variant={mobile ? "displayMedium" : "displayLarge"}
-            className={classes.pageTitle}
+            sx={{
+              lineHeight: mobile ? theme.spacing(4.5) : theme.spacing(4),
+              fontWeight: theme.typography.fontWeightLight,
+            }}
           >
             Forkfacts
           </Typography>
@@ -52,7 +55,7 @@ export default function Header({ handleToggleButton }: HeaderProps) {
               size={mobile ? "medium" : "large"}
               color="primary"
               variant="contained"
-              sx={{ py: theme.spacing(1), px: theme.spacing(3) }}
+              sx={{ py: theme.spacing(1), px: theme.spacing(3), borderRadius: theme.spacing(1.25) }}
             >
               Sign in
             </Button>

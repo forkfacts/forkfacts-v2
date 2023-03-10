@@ -10,8 +10,8 @@ type NutrientType = {
 } & filterItem;
 
 const MultipleSelects: React.FC<MultipleSelectsProps> = ({
-  multipleSelectItems,
-  getSelectedNutrients,
+  values,
+  onSelectedValue,
   renderSelectButton,
   open,
   setIsOpen,
@@ -21,7 +21,7 @@ const MultipleSelects: React.FC<MultipleSelectsProps> = ({
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.down("md"));
   const ref = useRef<HTMLDivElement>(null);
-  const newNutrients: NutrientType[] = [...multipleSelectItems].map((item) => {
+  const newNutrients: NutrientType[] = [...values].map((item) => {
     return {
       name: item.name,
       checked: false,
@@ -66,13 +66,13 @@ const MultipleSelects: React.FC<MultipleSelectsProps> = ({
       }
     });
     if (checkedNutrients.length) {
-      getSelectedNutrients(
+      onSelectedValue(
         checkedNutrients.map((item) => {
           return item?.name as string;
         })
       );
     } else {
-      getSelectedNutrients([]);
+      onSelectedValue([]);
     }
     setIsOpen(false);
   };
@@ -91,7 +91,10 @@ const MultipleSelects: React.FC<MultipleSelectsProps> = ({
   }, [ref]);
 
   return (
-    <Box sx={{ cursor: "pointer", zIndex: theme.zIndex.modal, position: "relative" }} ref={ref}>
+    <Box
+      sx={{ cursor: "pointer", zIndex: theme.zIndex.mobileStepper, position: "relative" }}
+      ref={ref}
+    >
       <Box>{renderSelectButton}</Box>
       {open && (
         <Box
@@ -109,6 +112,7 @@ const MultipleSelects: React.FC<MultipleSelectsProps> = ({
             zIndex: theme.zIndex.modal,
             backgroundColor: theme.palette.common.white,
             ml: mobile ? theme.spacing(-17.5) : margin,
+            borderRadius: theme.spacing(1),
           }}
           boxShadow={1}
         >
@@ -118,7 +122,7 @@ const MultipleSelects: React.FC<MultipleSelectsProps> = ({
               justifyContent: "space-between",
               width: "100%",
               alignItems: "center",
-              mt: theme.spacing(3),
+              mt: theme.spacing(1),
             }}
           >
             <Typography
@@ -126,6 +130,7 @@ const MultipleSelects: React.FC<MultipleSelectsProps> = ({
               sx={{
                 fontWeight: theme.typography.fontWeightRegular,
                 textTransform: "uppercase",
+                color: theme.palette.customGray.textDark,
               }}
             >
               {multiselectTitle}
@@ -166,7 +171,7 @@ const MultipleSelects: React.FC<MultipleSelectsProps> = ({
                       variant="bodyMedium"
                       sx={{
                         color: theme.palette.customGray.main,
-                        fontWeight: theme.typography.fontWeightRegular,
+                        fontWeight: theme.typography.fontWeightLight,
                       }}
                     >
                       {item.name}

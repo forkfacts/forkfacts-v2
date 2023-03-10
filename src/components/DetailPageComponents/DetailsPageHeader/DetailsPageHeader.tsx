@@ -1,5 +1,5 @@
 import { DetailsPageHeaderProps } from "@forkfacts/models";
-import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
+import { Box, Typography, useMediaQuery, useTheme, Button } from "@mui/material";
 import ShareIcon from "@mui/icons-material/Share";
 import { ForLoops } from "@forkfacts/helpers";
 import { SharedSocialMedia } from "@forkfacts/components";
@@ -27,9 +27,16 @@ const DetailsPageHeader: React.FC<DetailsPageHeaderProps> = ({ detailsHeaderValu
                   alignItems: "center",
                   columnGap: theme.spacing(3.5),
                   position: "relative",
+                  mb: theme.spacing(1),
                 }}
               >
-                <Typography variant={"headline4"} sx={{ color: theme.palette.customGray.main }}>
+                <Typography
+                  variant="headline4"
+                  sx={{
+                    color: theme.palette.customGray.main,
+                    fontWeight: theme.typography.fontWeightLight,
+                  }}
+                >
                   {detailsHeaderValues.name}
                 </Typography>
                 <ShareIcon
@@ -44,10 +51,10 @@ const DetailsPageHeader: React.FC<DetailsPageHeaderProps> = ({ detailsHeaderValu
                 />
               </Box>
               <Typography
-                variant={"bodyMedium"}
+                variant="bodyMedium"
                 sx={{
                   color: theme.palette.customGray.textDark,
-                  fontWeight: theme.typography.fontWeightRegular,
+                  fontWeight: theme.typography.fontWeightLight,
                 }}
               >
                 {detailsHeaderValues.subTitle}
@@ -84,8 +91,11 @@ const DetailsPageHeader: React.FC<DetailsPageHeaderProps> = ({ detailsHeaderValu
                           }}
                         />
                         <Typography
-                          variant="labelLarge"
-                          sx={{ color: "#1C1B1F", fontWeight: theme.typography.fontWeightRegular }}
+                          variant="labelMedium"
+                          sx={{
+                            color: theme.palette.customGray.main,
+                            fontWeight: theme.typography.fontWeightRegular,
+                          }}
                         >
                           {item.name}
                         </Typography>
@@ -109,7 +119,7 @@ const DetailsPageHeader: React.FC<DetailsPageHeaderProps> = ({ detailsHeaderValu
                 pl: theme.spacing(2),
                 borderLeft: `3px solid ${theme.palette.primary.main}`,
                 color: "#1C1B1F",
-                fontWeight: theme.typography.fontWeightRegular,
+                fontWeight: theme.typography.fontWeightLight,
               }}
             >
               {detailsHeaderValues.tag}
@@ -122,7 +132,13 @@ const DetailsPageHeader: React.FC<DetailsPageHeaderProps> = ({ detailsHeaderValu
             <Box component="img" src={detailsHeaderValues.img} />
             <Box>
               <Box sx={{ display: "flex", alignItems: "center", columnGap: theme.spacing(1.5) }}>
-                <Typography variant="headline6" sx={{ color: theme.palette.customGray.main }}>
+                <Typography
+                  variant="headline6"
+                  sx={{
+                    color: theme.palette.customGray.main,
+                    fontWeight: theme.typography.fontWeightLight,
+                  }}
+                >
                   {detailsHeaderValues.name}
                 </Typography>
                 <ShareIcon
@@ -143,7 +159,11 @@ const DetailsPageHeader: React.FC<DetailsPageHeaderProps> = ({ detailsHeaderValu
               </Box>
               <Typography
                 variant="bodySmall"
-                sx={{ color: theme.palette.customGray.textDark, mt: theme.spacing(1) }}
+                sx={{
+                  color: theme.palette.customGray.textDark,
+                  mt: theme.spacing(1),
+                  fontWeight: theme.typography.fontWeightLight,
+                }}
               >
                 {detailsHeaderValues.subTitle}
               </Typography>
@@ -155,11 +175,11 @@ const DetailsPageHeader: React.FC<DetailsPageHeaderProps> = ({ detailsHeaderValu
                   textAlign: "start",
                   display: "flex",
                   alignItems: "center",
-                  px: theme.spacing(2.5),
+                  px: mobile ? theme.spacing(1.5) : theme.spacing(2.5),
                   py: theme.spacing(1),
                   borderLeft: `3px solid ${theme.palette.primary.main}`,
                   color: "#1C1B1F",
-                  fontWeight: theme.typography.fontWeightRegular,
+                  fontWeight: theme.typography.fontWeightLight,
                   mt: theme.spacing(2),
                 }}
               >
@@ -201,7 +221,10 @@ const DetailsPageHeader: React.FC<DetailsPageHeaderProps> = ({ detailsHeaderValu
                     />
                     <Typography
                       variant="labelMedium"
-                      sx={{ color: "#1C1B1F", fontWeight: theme.typography.fontWeightRegular }}
+                      sx={{
+                        color: theme.palette.customGray.main,
+                        fontWeight: theme.typography.fontWeightRegular,
+                      }}
                     >
                       {item.name}
                     </Typography>

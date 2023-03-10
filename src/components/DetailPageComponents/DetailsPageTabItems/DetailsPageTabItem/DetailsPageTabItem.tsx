@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, Typography, useMediaQuery, useTheme } from "@mui/material";
-import { DetailsPageTabItemProps, NavBarItemProps } from "@forkfacts/models";
+import { DetailsPageTabItemProps } from "@forkfacts/models";
 import { useStyles } from "../detailsPageTabItemStyles";
 
 export default function DetailsPageTabItem({
@@ -13,7 +13,7 @@ export default function DetailsPageTabItem({
   const classes = useStyles();
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.down("md"));
-
+  const desktop = useMediaQuery(theme.breakpoints.up("md"));
   const handleClick = () => {
     setSelectedIndex(index);
     onSelectDetailsPageTabItem(item.label);
@@ -21,7 +21,6 @@ export default function DetailsPageTabItem({
 
   return (
     <Button
-      className={classes.btn}
       variant="text"
       sx={{
         color: ({ palette }) =>
@@ -38,9 +37,8 @@ export default function DetailsPageTabItem({
         borderBottomRightRadius: index === 4 ? theme.spacing(1) : 0,
         borderTopLeftRadius: index === 0 ? theme.spacing(1) : 0,
         borderBottomLeftRadius: index === 0 ? theme.spacing(1) : 0,
-        fontWeight: theme.typography.fontWeightBold,
         width: mobile ? "auto" : theme.spacing(29.2),
-        height: theme.spacing(5),
+        height: mobile ? theme.spacing(5) : theme.spacing(7),
         flexShrink: 0,
       }}
       onClick={handleClick}
@@ -58,7 +56,11 @@ export default function DetailsPageTabItem({
     >
       <Typography
         variant={mobile ? "labelMedium" : "titleMedium"}
-        sx={{ fontWeight: theme.typography.fontWeightRegular }}
+        sx={{
+          color: ({ palette }) =>
+            selectedIndex === index ? palette.primary.main : palette.customGray.main,
+          fontWeight: theme.typography.fontWeightRegular,
+        }}
       >
         {item.label}
       </Typography>

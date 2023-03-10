@@ -24,12 +24,13 @@ import { MultipleSelects } from "@forkfacts/components";
 const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
   compareTableItems,
   compareTableDetails,
-  multipleSelectItems,
-  getSelectedNutrients,
+  values,
+  onSelectedValue,
 }) => {
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.down("md"));
-  const [selectNutrient, setSelectedNutrient] = useState("Vitamin");
+  const tablet = useMediaQuery(theme.breakpoints.up("sm"));
+  const [selectedNutrient, setSelectedNutrient] = useState("Vitamin");
   const [open, setIsOpen] = useState(false);
   const [isShowHideOpen, setShowHideOpen] = useState(false);
 
@@ -40,7 +41,7 @@ const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
   const nutrientData = compareTableItems.map((item: any) => {
     return {
       foodName: item.foodName,
-      value: item[selectNutrient],
+      value: item[selectedNutrient],
     };
   });
 
@@ -66,7 +67,7 @@ const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
           <Typography
             variant={mobile ? "labelLarge" : "titleLarge"}
             sx={{
-              color: theme.palette.customGray.textDark,
+              color: mobile ? theme.palette.customGray.main : theme.palette.customGray.textDark,
               textTransform: "uppercase",
               fontWeight: theme.typography.fontWeightRegular,
             }}
@@ -74,12 +75,13 @@ const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
             {compareTableDetails.name}
           </Typography>
           <Typography
-            variant={mobile ? "bodySmall" : "labelLarge"}
+            variant={mobile ? "extraSmall" : "labelLarge"}
             sx={{
               ml: mobile ? 0 : theme.spacing(1),
               color: theme.palette.customGray.textDark,
               mt: mobile ? theme.spacing(1) : 0,
               fontWeight: theme.typography.fontWeightRegular,
+              lineHeight: mobile ? theme.typography.extraSmall.lineHeight : theme.spacing(3),
             }}
           >
             {compareTableDetails.quantityAmount}
@@ -88,8 +90,8 @@ const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
         <Box sx={{ mr: mobile ? 0 : theme.spacing(2), position: "relative" }}>
           <MultipleSelects
             margin={theme.spacing(-15.5)}
-            multipleSelectItems={multipleSelectItems}
-            getSelectedNutrients={getSelectedNutrients}
+            values={values}
+            onSelectedValue={onSelectedValue}
             open={open}
             setIsOpen={setIsOpen}
             multiselectTitle="Filter foods"
@@ -103,10 +105,16 @@ const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
                     overflow: "hidden",
                     textOverflow: "ellipsis",
                     borderRadius: theme.spacing(1),
+                    fontWeight: theme.typography.fontWeightRegular,
+                    py: mobile ? theme.spacing(1) : theme.spacing(1.25),
+                    pl: mobile ? theme.spacing(2) : theme.spacing(2),
+                    pr: mobile ? theme.spacing(2) : theme.spacing(3),
                   }}
                   onClick={() => setIsOpen(!open)}
                 >
-                  Filter foods
+                  <Typography variant={mobile ? "labelSmall" : "labelLarge"}>
+                    Filter foods
+                  </Typography>
                 </Button>
               </>
             }
@@ -116,8 +124,8 @@ const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
           {mobile || (
             <MultipleSelects
               margin={theme.spacing(-15.5)}
-              multipleSelectItems={tableHeaderItems}
-              getSelectedNutrients={getSelectedNutrients}
+              values={tableHeaderItems}
+              onSelectedValue={onSelectedValue}
               open={isShowHideOpen}
               setIsOpen={setShowHideOpen}
               multiselectTitle="Show/Hide nutrients"
@@ -132,9 +140,15 @@ const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
                       overflow: "hidden",
                       textOverflow: "ellipsis",
                       borderRadius: theme.spacing(1),
+                      fontWeight: theme.typography.fontWeightRegular,
+                      py: mobile ? theme.spacing(1) : theme.spacing(1.25),
+                      pl: mobile ? theme.spacing(2) : theme.spacing(2),
+                      pr: mobile ? theme.spacing(2) : theme.spacing(3),
                     }}
                   >
-                    Show/Hide
+                    <Typography variant={mobile ? "labelSmall" : "labelLarge"}>
+                      Show/Hide
+                    </Typography>
                   </Button>
                 </>
               }
@@ -143,7 +157,7 @@ const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
         </Box>
       </Box>
       {!mobile ? (
-        <TableContainer sx={{ mt: theme.spacing(5), boxShadow: "none" }}>
+        <TableContainer sx={{ mt: theme.spacing(2), boxShadow: "none" }}>
           <Table sx={{ minWidth: 650, border: "none" }}>
             <TableHead style={{ border: "none", backgroundColor: "#FCFCFC" }}>
               <TableRow>
@@ -156,7 +170,13 @@ const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
                       cursor: "pointer",
                     }}
                   >
-                    <Typography variant="labelLarge" sx={{ color: "#78767A" }}>
+                    <Typography
+                      variant="labelLarge"
+                      sx={{
+                        color: theme.palette.customGray.dark,
+                        fontWeight: theme.typography.fontWeightRegular,
+                      }}
+                    >
                       Food name
                     </Typography>
                     <CompareSorting width={theme.spacing(2.45)} height={theme.spacing(2.45)} />
@@ -171,7 +191,13 @@ const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
                       cursor: "pointer",
                     }}
                   >
-                    <Typography variant="labelLarge" sx={{ color: "#78767A" }}>
+                    <Typography
+                      variant="labelLarge"
+                      sx={{
+                        color: theme.palette.customGray.dark,
+                        fontWeight: theme.typography.fontWeightRegular,
+                      }}
+                    >
                       Calories
                     </Typography>
                     <CompareSorting width={theme.spacing(2.45)} height={theme.spacing(2.45)} />
@@ -186,7 +212,13 @@ const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
                       cursor: "pointer",
                     }}
                   >
-                    <Typography variant="labelLarge" sx={{ color: "#78767A" }}>
+                    <Typography
+                      variant="labelLarge"
+                      sx={{
+                        color: theme.palette.customGray.dark,
+                        fontWeight: theme.typography.fontWeightRegular,
+                      }}
+                    >
                       Beta Carotene (mg)
                     </Typography>
                     <CompareSorting width={theme.spacing(2.45)} height={theme.spacing(2.45)} />
@@ -201,7 +233,13 @@ const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
                       cursor: "pointer",
                     }}
                   >
-                    <Typography variant="labelLarge" sx={{ color: "#78767A" }}>
+                    <Typography
+                      variant="labelLarge"
+                      sx={{
+                        color: theme.palette.customGray.dark,
+                        fontWeight: theme.typography.fontWeightRegular,
+                      }}
+                    >
                       Vitamin C (mg)
                     </Typography>
                     <CompareSorting width={theme.spacing(2.45)} height={theme.spacing(2.45)} />
@@ -216,7 +254,13 @@ const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
                       cursor: "pointer",
                     }}
                   >
-                    <Typography variant="labelLarge" sx={{ color: "#78767A" }}>
+                    <Typography
+                      variant="labelLarge"
+                      sx={{
+                        color: theme.palette.customGray.dark,
+                        fontWeight: theme.typography.fontWeightRegular,
+                      }}
+                    >
                       Calcium (mg)
                     </Typography>
                     <CompareSorting width={theme.spacing(2.45)} height={theme.spacing(2.45)} />
@@ -231,7 +275,13 @@ const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
                       cursor: "pointer",
                     }}
                   >
-                    <Typography variant="labelLarge" sx={{ color: "#78767A" }}>
+                    <Typography
+                      variant="labelLarge"
+                      sx={{
+                        color: theme.palette.customGray.dark,
+                        fontWeight: theme.typography.fontWeightRegular,
+                      }}
+                    >
                       Iron (mg)
                     </Typography>
                     <CompareSorting width={theme.spacing(2.45)} height={theme.spacing(2.45)} />
@@ -244,7 +294,11 @@ const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
                 {(row, index) => {
                   return (
                     <TableRow key={index}>
-                      <TableCell style={{ borderBottom: "none" }} component="th" scope="row">
+                      <TableCell
+                        style={{ borderBottom: "1px solid #F3EFF4" }}
+                        component="th"
+                        scope="row"
+                      >
                         <Typography
                           variant="titleMedium"
                           sx={{
@@ -256,7 +310,7 @@ const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
                         </Typography>
                       </TableCell>
                       <TableCell
-                        style={{ borderBottom: "none", marginRight: theme.spacing(4) }}
+                        style={{ borderBottom: "1px solid #F3EFF4", marginRight: theme.spacing(4) }}
                         align="right"
                       >
                         <Typography
@@ -271,7 +325,7 @@ const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
                         </Typography>
                       </TableCell>
                       <TableCell
-                        style={{ borderBottom: "none", marginRight: theme.spacing(4) }}
+                        style={{ borderBottom: "1px solid #F3EFF4", marginRight: theme.spacing(4) }}
                         align="right"
                       >
                         <Typography
@@ -286,7 +340,7 @@ const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
                         </Typography>
                       </TableCell>
                       <TableCell
-                        style={{ borderBottom: "none", marginRight: theme.spacing(4) }}
+                        style={{ borderBottom: "1px solid #F3EFF4", marginRight: theme.spacing(4) }}
                         align="right"
                       >
                         <Typography
@@ -300,7 +354,7 @@ const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
                           {row.Vitamin}
                         </Typography>
                       </TableCell>
-                      <TableCell style={{ borderBottom: "none" }} align="right">
+                      <TableCell style={{ borderBottom: "1px solid #F3EFF4" }} align="right">
                         <Typography
                           variant="bodyLarge"
                           sx={{
@@ -313,7 +367,7 @@ const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
                         </Typography>
                       </TableCell>
                       <TableCell
-                        style={{ borderBottom: "none", marginRight: theme.spacing(4) }}
+                        style={{ borderBottom: "1px solid #F3EFF4", marginRight: theme.spacing(4) }}
                         align="right"
                       >
                         <Typography
@@ -346,86 +400,119 @@ const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
                   width: "0px",
                   background: "transparent",
                 },
-                mt: theme.spacing(2),
+                mt: theme.spacing(4), // increase spacing between items
               }}
             >
-              <List sx={{ display: "flex" }}>
-                {tableHeaderItems?.map((item: { name: string }, idx) => (
+              <List
+                sx={{
+                  display: "flex",
+                  "> li": { width: "auto", flexShrink: 0 },
+                  justifyContent: "space-between",
+                  columnGap: theme.spacing(1),
+                }}
+              >
+                {tableHeaderItems?.map((item: { name: string }, index) => (
                   <ListItem
-                    key={idx}
+                    key={index}
                     sx={{
-                      width: "auto",
-                      flexShrink: 0,
                       backgroundColor:
-                        item.name === selectNutrient ? theme.palette.primary.light : "#FFFBFF",
-                      p: theme.spacing(0.25),
+                        item.name === selectedNutrient ? theme.palette.primary.light : "#FFFBFF",
                       borderRadius: theme.spacing(12.5),
                     }}
+                    role="button"
+                    aria-pressed={item.name === selectedNutrient ? "true" : "false"}
                     onClick={() => setSelectedNutrient(item.name)}
                   >
-                    <Button
+                    <Typography
+                      variant="labelSmall"
+                      component="span"
                       sx={{
                         color:
-                          item.name === selectNutrient
+                          item.name === selectedNutrient
                             ? theme.palette.primary.main
-                            : theme.palette.customGray.main,
+                            : theme.palette.customGray.dark,
                         fontWeight: theme.typography.fontWeightRegular,
-                        fontSize: theme.typography.labelSmall.fontSize,
+                        cursor: "pointer",
                       }}
                     >
                       {item.name}
-                    </Button>
+                    </Typography>
                   </ListItem>
                 ))}
               </List>
             </Box>
           </Box>
-          {nutrientData.map((item, index) => (
-            <Box key={index} sx={{ my: theme.spacing(3) }}>
-              <Box sx={{ display: "flex", gap: theme.spacing(3), alignItems: "center" }}>
-                <Box sx={{ textAlign: "end", width: "30%" }}>
-                  <Typography
-                    variant="bodySmall"
-                    sx={{
-                      color: theme.palette.customGray.main,
-                      whiteSpace: "nowrap",
-                    }}
-                  >
-                    {item.foodName}
-                  </Typography>
-                </Box>
-                <Box
-                  sx={{
-                    width: "70%",
-                    display: "flex",
-                    justifyContent: "flex-start",
-                    alignItems: "center",
-                  }}
-                >
-                  <Box
-                    sx={{
-                      backgroundColor: theme.palette.primary.main,
-                      display: "flex",
-                      justifyContent: "flex-end",
-                      alignItems: "center",
-                      width: `${item.value}%`,
-                      py: theme.spacing(0.5),
-                      px: theme.spacing(2),
-                    }}
-                  >
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              mt: tablet ? theme.spacing(3) : theme.spacing(1),
+              ml: tablet ? theme.spacing(-27) : theme.spacing(-9),
+            }}
+          >
+            <Typography
+              variant="caption"
+              sx={{ color: theme.palette.customGray.dark, textAlign: "center" }}
+            >
+              *in mg
+            </Typography>
+          </Box>
+          <Box sx={{ mt: theme.spacing(-2) }}>
+            {nutrientData.map((item, index) => (
+              <Box
+                key={index}
+                sx={{
+                  my: theme.spacing(3),
+                  width: "100%",
+                  overflow: "hidden",
+                }}
+              >
+                <Box sx={{ display: "flex", gap: theme.spacing(3), alignItems: "center" }}>
+                  <Box sx={{ textAlign: "end", width: "30%" }}>
                     <Typography
-                      variant="caption"
+                      variant="bodySmall"
                       sx={{
-                        color: theme.palette.common.white,
+                        color: theme.palette.customGray.main,
+                        whiteSpace: "nowrap",
+                        fontWeight: theme.typography.fontWeightLight,
                       }}
                     >
-                      {item.value}
+                      {item.foodName}
                     </Typography>
+                  </Box>
+                  <Box
+                    sx={{
+                      width: "70%",
+                      display: "flex",
+                      justifyContent: "flex-start",
+                      alignItems: "center",
+                    }}
+                  >
+                    <Box
+                      sx={{
+                        backgroundColor: theme.palette.primary.main,
+                        display: "flex",
+                        justifyContent: "flex-end",
+                        alignItems: "center",
+                        width: `${item.value}%`,
+                      }}
+                    >
+                      <Typography
+                        variant="caption"
+                        sx={{
+                          color: theme.palette.common.white,
+                          py: theme.spacing(0.5),
+                          px: theme.spacing(2),
+                        }}
+                      >
+                        {item.value}
+                      </Typography>
+                    </Box>
                   </Box>
                 </Box>
               </Box>
-            </Box>
-          ))}
+            ))}
+          </Box>
         </>
       )}
     </Box>

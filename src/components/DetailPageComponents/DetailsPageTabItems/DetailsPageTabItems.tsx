@@ -11,6 +11,7 @@ export default function DetailsPageTabItems({
   const [selectedIndex, setSelectedIndex] = useState(0);
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.down("md"));
+
   return (
     <Box sx={{ width: "100%" }}>
       <Box
@@ -22,7 +23,9 @@ export default function DetailsPageTabItems({
             width: "0px",
             background: "transparent",
           },
+          flexDirection: "row", // set the flex-direction to row
         }}
+        id="tab-items-container"
       >
         <ForLoops each={tabItems}>
           {(item, idx) => (

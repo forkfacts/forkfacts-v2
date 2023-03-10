@@ -24,7 +24,7 @@ export default function ViewMoreButton({
           variant={!mobile ? "labelLarge" : "labelSmall"}
           color="primary"
           sx={{
-            fontWeight: theme.typography.fontWeightMedium,
+            fontWeight: theme.typography.fontWeightRegular,
             textTransform: "capitalize",
           }}
         >

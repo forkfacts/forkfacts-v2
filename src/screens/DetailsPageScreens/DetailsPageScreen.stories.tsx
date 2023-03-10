@@ -137,7 +137,7 @@ const compareTableItemRows: compareTableItem[] = [
     Iron: 1,
   },
 ];
-const multipleSelectItems: filterItem[] = [
+const values: filterItem[] = [
   {
     name: "Beta Carotene (mg)",
   },
@@ -187,6 +187,7 @@ const Template: ComponentStory<typeof DetailsPageScreen> = (args) => {
       onSelectUnit={setUnit}
     />
   );
+  return <DetailsPageScreen {...args} onSelectedValue={setSelectedNutrients} />;
 };
 
 const units = ["Plates", "Cups", "Tea spoon"];
@@ -516,7 +517,6 @@ Desktop.args = {
     name: "Comparing Greens",
     quantityAmount: "3 1/2 OUNCES RAW (2 TO 3 CUPS)",
   },
-  multipleSelectItems: multipleSelectItems,
   ageItems,
   lifeStageItems,
   nutritionFilterItems,
@@ -527,6 +527,7 @@ Desktop.args = {
   measurementFilterItems: ["US", "Metric"],
   nutritionTableItems: nutritionTableItems,
   units,
+  values: values,
 };
 
 export const Mobile = Template.bind({});
@@ -541,21 +542,32 @@ Mobile.args = {
     name: "Comparing Greens",
     quantityAmount: "3 1/2 OUNCES RAW (2 TO 3 CUPS)",
   },
-  multipleSelectItems: multipleSelectItems,
-  ageItems,
-  lifeStageItems,
-  nutritionFilterItems,
-  nutritionSummaryItems,
-  onSelectFilterItems: (item: string[]) => {
-    console.log(item);
-  },
-  measurementFilterItems: ["US", "Metric"],
-  nutritionTableItems: nutritionTableItems,
-  units,
+  values: values,
 };
 
 Mobile.parameters = {
   viewport: {
     defaultViewport: "iphonexr",
+  },
+};
+
+export const Tablet = Template.bind({});
+
+Tablet.args = {
+  sidebarItems,
+  DetailsPageTitlesItems: DetailsPageTitlesItems,
+  detailsHeaderValues: detailsHeaderValues,
+  tabItems: tabItems,
+  compareTableItems: compareTableItemRows,
+  compareTableDetails: {
+    name: "Comparing Greens",
+    quantityAmount: "3 1/2 OUNCES RAW (2 TO 3 CUPS)",
+  },
+  values: values,
+};
+
+Tablet.parameters = {
+  viewport: {
+    defaultViewport: "ipad",
   },
 };

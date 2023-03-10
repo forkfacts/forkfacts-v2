@@ -25,7 +25,7 @@ const DetailsPageTitles: React.FC<DetailsPageTitlesProps> = ({
       <Grid
         container
         sx={{
-          width: mobile ? "100%" : "80%",
+          width: mobile ? "100%" : "90%",
           mt: theme.spacing(2),
           ml: mobile ? theme.spacing(-1) : 0,
         }}

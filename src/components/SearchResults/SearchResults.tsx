@@ -37,7 +37,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({
                         variant="labelMedium"
                         sx={{
                           padding: theme.spacing(1.2, 2),
-                          color: theme.palette.customGray.main,
+                          color: theme.palette.customGray.dark,
                         }}
                       >
                         {value.categoryName}

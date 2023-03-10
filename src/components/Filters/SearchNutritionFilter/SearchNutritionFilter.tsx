@@ -257,12 +257,10 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
               }}
             >
               <Typography
-                variant="caption"
+                variant="labelSmall"
                 sx={{
-                  color: theme.palette.grey[600],
-                  fontWeight: theme.typography.fontWeightMedium,
-                  lineHeight: theme.spacing(2),
-                  letterSpacing: theme.spacing(0.05),
+                  color: theme.palette.customGray.textDark,
+                  fontWeight: theme.typography.fontWeightRegular,
                   textTransform: "uppercase",
                 }}
               >
@@ -332,7 +330,15 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
                             checked={item.checked}
                             onClick={(event) => handleSelectItem(event, item.name, index)}
                           />
-                          <Typography variant="body1">{item.name}</Typography>
+                          <Typography
+                            variant="bodyMedium"
+                            sx={{
+                              fontWeight: theme.typography.fontWeightLight,
+                              color: theme.palette.customGray.textDark,
+                            }}
+                          >
+                            {item.name}
+                          </Typography>
                         </Box>
                       </AccordionSummary>
                       <AccordionDetails sx={{ mt: theme.spacing(-2) }}>
@@ -345,7 +351,15 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
                                 onClick={() => onSelectSubItem(item.name, item2.name)}
                               >
                                 <Checkbox color="primary" checked={item2.checked} />
-                                <Typography variant="body1">{item2.name}</Typography>
+                                <Typography
+                                  variant="bodyMedium"
+                                  sx={{
+                                    fontWeight: theme.typography.fontWeightLight,
+                                    color: theme.palette.customGray.textDark,
+                                  }}
+                                >
+                                  {item2.name}
+                                </Typography>
                               </Box>
                             );
                           }}
@@ -404,6 +418,7 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
             }}
           >
             <Typography
+              variant="labelMedium"
               sx={{
                 fontWeight: theme.typography.fontWeightRegular,
                 cursor: "pointer",

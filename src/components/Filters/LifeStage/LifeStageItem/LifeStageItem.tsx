@@ -32,15 +32,24 @@ const LifeStageItem: React.FC<LifeStageItemProps> = ({
         backgroundColor: selectedItem === item.name ? blue[100] : "none",
         color: selectedItem === item.name ? theme.palette.primary.dark : theme.palette.common.black,
         border: "1px solid #F2EFFF",
+        p: theme.spacing(1.25),
       }}
     >
-      <Box>
-        <item.icon />
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          flexDirection: "column",
+        }}
+      >
+        <item.icon sx={{ color: "#929094" }} />
         <Typography
+          variant="subhead1"
           sx={{
-            fontSize: theme.typography.htmlFontSize,
-            fontWeight: theme.typography.fontWeightLight,
-            lineHeight: theme.spacing(3),
+            color: theme.palette.customGray.main,
+            fontWeight: theme.typography.fontWeightRegular,
+            mt: theme.spacing(1),
           }}
         >
           {item.name}

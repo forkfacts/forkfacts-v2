@@ -46,10 +46,7 @@ const AllFilters = ({
       <Button
         color="primary"
         sx={{
-          fontSize: theme.typography.caption.fontSize,
-          fontWeight: theme.typography.fontWeightBold,
-          lineHeight: theme.spacing(2),
-          letterSpacing: theme.spacing(0.05),
+          fontWeight: theme.typography.fontWeightRegular,
           textTransform: "capitalize",
           whiteSpace: "nowrap",
           display: "flex",
@@ -59,7 +56,9 @@ const AllFilters = ({
         startIcon={<FilterListIcon />}
         onClick={() => setOpen(!open)}
       >
-        All filters {filterStatus !== 0 ? filterStatus : null}
+        <Typography variant="labelLarge" sx={{ fontWeight: theme.typography.fontWeightRegular }}>
+          All filters {filterStatus !== 0 ? filterStatus : null}
+        </Typography>
       </Button>
       {open && (
         <Box
@@ -85,16 +84,13 @@ const AllFilters = ({
                 justifyContent: "space-between",
                 width: "100%",
                 alignItems: "center",
-                mt: theme.spacing(3),
               }}
             >
               <Typography
-                variant="caption"
+                variant="labelLarge"
                 sx={{
-                  color: theme.palette.grey[600],
-                  fontWeight: theme.typography.fontWeightMedium,
-                  lineHeight: theme.spacing(2),
-                  letterSpacing: theme.spacing(0.05),
+                  color: theme.palette.customGray.textDark,
+                  fontWeight: theme.typography.fontWeightRegular,
                   textTransform: "uppercase",
                 }}
               >

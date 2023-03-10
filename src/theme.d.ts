@@ -145,6 +145,12 @@ declare module "@mui/material/styles/createTypography" {
       fontStyle: string;
       letterSpacing: string;
     };
+    subhead1: {
+      fontSize: string;
+      lineHeight: string;
+      fontStyle: string;
+      letterSpacing: string;
+    };
     extraSmall: {
       fontSize: string;
       lineHeight: string;
@@ -245,6 +251,12 @@ declare module "@mui/material/styles/createTypography" {
       fontStyle: string;
       letterSpacing: string;
     };
+    subhead1: {
+      fontSize: string;
+      lineHeight: string;
+      fontStyle: string;
+      letterSpacing: string;
+    };
     extraSmall: {
       fontSize: string;
       lineHeight: string;
@@ -271,5 +283,6 @@ declare module "@mui/material/Typography" {
     bodyMedium: true;
     bodySmall: true;
     extraSmall: true;
+    subhead1: true;
   }
 }

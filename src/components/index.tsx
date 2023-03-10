@@ -26,7 +26,7 @@ export { default as NutritionSummary } from "./DetailPageComponents/NutritionSum
 export { default as NutritionDetailsTab } from "./DetailPageComponents/NutritionDetailsTab/NutritionDetailsTab";
 export { default as AllFilters } from "./Filters/AllFilters/AllFilters";
 export { default as LifeStage } from "./Filters/LifeStage/LifeStage";
-export { default as LifeStageItem } from "./Filters/LifeStageItem/LifeStageItem";
+export { default as LifeStageItem } from "./Filters/LifeStage/LifeStageItem/LifeStageItem";
 export { default as FilterAge } from "./Filters/FilterAge/FilterAge";
 export { default as SearchNutritionFilter } from "./Filters/SearchNutritionFilter/SearchNutritionFilter";
 export { default as MeasurementFilter } from "./Filters/MeasurementFilter/MeasurementFilter";

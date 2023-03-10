@@ -89,12 +89,10 @@ const LifeStage: React.FC<LifeStageProps> = ({
             }}
           >
             <Typography
-              variant="caption"
+              variant="labelSmall"
               sx={{
-                color: theme.palette.grey[600],
-                fontWeight: theme.typography.fontWeightMedium,
-                lineHeight: theme.spacing(2),
-                letterSpacing: theme.spacing(0.05),
+                color: theme.palette.customGray.textDark,
+                fontWeight: theme.typography.fontWeightRegular,
                 textTransform: "uppercase",
               }}
             >
@@ -107,7 +105,6 @@ const LifeStage: React.FC<LifeStageProps> = ({
               />
             )}
           </Box>
-
           <Box
             sx={{
               width: "100%",
@@ -115,7 +112,7 @@ const LifeStage: React.FC<LifeStageProps> = ({
               alignItems: "center",
               justifyContent: "center",
               flexWrap: "wrap",
-              mt: theme.spacing(3),
+              mt: theme.spacing(1.5),
             }}
           >
             {lifeStageItems.map((item, index) => (
@@ -134,11 +131,16 @@ const LifeStage: React.FC<LifeStageProps> = ({
               display: "flex",
               justifyContent: "flex-end",
               alignItems: "center",
-              my: theme.spacing(2),
+              my: theme.spacing(1),
             }}
           >
             <Typography
-              sx={{ fontWeight: theme.typography.fontWeightRegular, cursor: "pointer" }}
+              variant="labelMedium"
+              sx={{
+                color: theme.palette.customGray.textDark,
+                fontWeight: theme.typography.fontWeightRegular,
+                cursor: "pointer",
+              }}
               onClick={onClearSelectedItem}
             >
               Clear selection

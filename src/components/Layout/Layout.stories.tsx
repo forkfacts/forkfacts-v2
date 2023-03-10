@@ -25,7 +25,7 @@ export default {
 
 const sidebarItems: sidebarItem[] = [
   { label: "Food", Icon: EggAltOutlinedIcon, link: "/food" },
-  { label: "Recipe", Icon: EmojiFoodBeverageOutlinedIcon, link: "/recipe" },
+  { label: "Recipes", Icon: EmojiFoodBeverageOutlinedIcon, link: "/recipe" },
   { label: "Library", Icon: LibraryBooksOutlinedIcon, link: "/library" },
   { label: "Cookbook", Icon: AutoStoriesOutlinedIcon, link: "/cookbook" },
   { label: "Grocery List", Icon: ShoppingCartOutlinedIcon, link: "grocery list" },

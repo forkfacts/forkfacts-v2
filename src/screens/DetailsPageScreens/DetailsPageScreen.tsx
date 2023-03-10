@@ -36,6 +36,7 @@ const DetailsPageScreen: React.FC<DetailsPageScreenProps> = ({
               variant={mobile ? "labelMedium" : "labelLarge"}
               sx={{
                 fontWeight: theme.typography.fontWeightRegular,
+                ml: theme.spacing(-1),
               }}
             >
               Go back

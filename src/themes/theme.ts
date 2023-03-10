@@ -55,6 +55,12 @@ export const customTheme = createTheme({
     fontWeightRegular: 500,
     fontWeightLight: 400,
     fontFamily: "Poppins",
+    caption: {
+      fontSize: theme.spacing(1.25),
+      lineHeight: theme.spacing(2),
+      fontStyle: "normal",
+      letterSpacing: "0.4px",
+    },
     displaySmall: {
       fontSize: "16px",
       lineHeight: "24px",

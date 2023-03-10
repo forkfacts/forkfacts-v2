@@ -29,6 +29,7 @@ const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
 }) => {
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.down("md"));
+  const tablet = useMediaQuery(theme.breakpoints.up("sm"));
   const [selectedNutrient, setSelectedNutrient] = useState("Vitamin");
   const [open, setIsOpen] = useState(false);
   const [isShowHideOpen, setShowHideOpen] = useState(false);
@@ -293,7 +294,11 @@ const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
                 {(row, index) => {
                   return (
                     <TableRow key={index}>
-                      <TableCell style={{ borderBottom: "none" }} component="th" scope="row">
+                      <TableCell
+                        style={{ borderBottom: "1px solid #F3EFF4" }}
+                        component="th"
+                        scope="row"
+                      >
                         <Typography
                           variant="titleMedium"
                           sx={{
@@ -305,7 +310,7 @@ const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
                         </Typography>
                       </TableCell>
                       <TableCell
-                        style={{ borderBottom: "none", marginRight: theme.spacing(4) }}
+                        style={{ borderBottom: "1px solid #F3EFF4", marginRight: theme.spacing(4) }}
                         align="right"
                       >
                         <Typography
@@ -320,7 +325,7 @@ const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
                         </Typography>
                       </TableCell>
                       <TableCell
-                        style={{ borderBottom: "none", marginRight: theme.spacing(4) }}
+                        style={{ borderBottom: "1px solid #F3EFF4", marginRight: theme.spacing(4) }}
                         align="right"
                       >
                         <Typography
@@ -335,7 +340,7 @@ const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
                         </Typography>
                       </TableCell>
                       <TableCell
-                        style={{ borderBottom: "none", marginRight: theme.spacing(4) }}
+                        style={{ borderBottom: "1px solid #F3EFF4", marginRight: theme.spacing(4) }}
                         align="right"
                       >
                         <Typography
@@ -349,7 +354,7 @@ const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
                           {row.Vitamin}
                         </Typography>
                       </TableCell>
-                      <TableCell style={{ borderBottom: "none" }} align="right">
+                      <TableCell style={{ borderBottom: "1px solid #F3EFF4" }} align="right">
                         <Typography
                           variant="bodyLarge"
                           sx={{
@@ -362,7 +367,7 @@ const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
                         </Typography>
                       </TableCell>
                       <TableCell
-                        style={{ borderBottom: "none", marginRight: theme.spacing(4) }}
+                        style={{ borderBottom: "1px solid #F3EFF4", marginRight: theme.spacing(4) }}
                         align="right"
                       >
                         <Typography
@@ -437,7 +442,22 @@ const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
               </List>
             </Box>
           </Box>
-          <Box>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              mt: tablet ? theme.spacing(3) : theme.spacing(1),
+              ml: tablet ? theme.spacing(-27) : theme.spacing(-9),
+            }}
+          >
+            <Typography
+              variant="caption"
+              sx={{ color: theme.palette.customGray.dark, textAlign: "center" }}
+            >
+              *in mg
+            </Typography>
+          </Box>
+          <Box sx={{ mt: theme.spacing(-2) }}>
             {nutrientData.map((item, index) => (
               <Box
                 key={index}

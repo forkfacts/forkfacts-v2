@@ -70,8 +70,7 @@ const DetailsPageHeader: React.FC<DetailsPageHeaderProps> = ({ detailsHeaderValu
                 <ForLoops each={detailsHeaderValues.nutritionValues}>
                   {(item, index) => {
                     return (
-                      <Button
-                        variant="text"
+                      <Box
                         key={index}
                         sx={{
                           display: "flex",
@@ -80,7 +79,6 @@ const DetailsPageHeader: React.FC<DetailsPageHeaderProps> = ({ detailsHeaderValu
                           pr: theme.spacing(2),
                           px: theme.spacing(1),
                           borderRadius: theme.spacing(1),
-                          fontWeight: theme.typography.fontWeightRegular,
                         }}
                       >
                         <Box
@@ -93,14 +91,15 @@ const DetailsPageHeader: React.FC<DetailsPageHeaderProps> = ({ detailsHeaderValu
                           }}
                         />
                         <Typography
-                          variant="labelLarge"
+                          variant="labelMedium"
                           sx={{
                             color: theme.palette.customGray.main,
+                            fontWeight: theme.typography.fontWeightRegular,
                           }}
                         >
                           {item.name}
                         </Typography>
-                      </Button>
+                      </Box>
                     );
                   }}
                 </ForLoops>

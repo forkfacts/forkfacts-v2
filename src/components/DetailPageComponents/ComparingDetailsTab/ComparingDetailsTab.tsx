@@ -107,8 +107,8 @@ const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
                     borderRadius: theme.spacing(1),
                     fontWeight: theme.typography.fontWeightRegular,
                     py: mobile ? theme.spacing(1) : theme.spacing(1.25),
-                    pl: mobile ? theme.spacing(0.5) : theme.spacing(2),
-                    pr: mobile ? theme.spacing(1.5) : theme.spacing(3),
+                    pl: mobile ? theme.spacing(2) : theme.spacing(2),
+                    pr: mobile ? theme.spacing(2) : theme.spacing(3),
                   }}
                   onClick={() => setIsOpen(!open)}
                 >
@@ -142,8 +142,8 @@ const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
                       borderRadius: theme.spacing(1),
                       fontWeight: theme.typography.fontWeightRegular,
                       py: mobile ? theme.spacing(1) : theme.spacing(1.25),
-                      pl: mobile ? theme.spacing(0.5) : theme.spacing(2),
-                      pr: mobile ? theme.spacing(1.5) : theme.spacing(3),
+                      pl: mobile ? theme.spacing(2) : theme.spacing(2),
+                      pr: mobile ? theme.spacing(2) : theme.spacing(3),
                     }}
                   >
                     <Typography variant={mobile ? "labelSmall" : "labelLarge"}>

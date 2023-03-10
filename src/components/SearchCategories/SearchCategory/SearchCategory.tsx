@@ -57,7 +57,7 @@ export default function SearchCategory({
       <Typography
         variant="titleSmall"
         sx={{
-          color: theme.palette.customGray.main,
+          color: selectedIndex === index ? theme.palette.primary.main : theme.palette.grey[700],
           fontWeight: theme.typography.fontWeightRegular,
         }}
       >

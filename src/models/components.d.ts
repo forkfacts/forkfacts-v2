@@ -1,4 +1,5 @@
 import { SvgIconComponent } from "@mui/icons-material";
+import React, { Dispatch, SetStateAction } from "react";
 import { Dispatch, SetStateAction } from "react";
 
 export interface SearchResultItemType {
@@ -12,12 +13,28 @@ export interface recommendationItem {
   name: string;
   icon?: string;
 }
-
+export interface DetailsPageTitlesItem {
+  title: string;
+}
+export interface filterItem {
+  name: string;
+}
 export interface recommendationType {
   recommendationName: string;
   recommendationItems: Array<recommendationItem>;
 }
-
+export interface compareTableItem {
+  foodName: string;
+  Calories: number;
+  "Beta carotene": number;
+  Vitamin: number;
+  Calcium: number;
+  Iron: number;
+}
+export interface recommendationType {
+  recommendationName: string;
+  recommendationItems: Array<recommendationItem>;
+}
 export interface SearchCategoryItemType {
   label: string;
   Icon: SvgIconComponent;
@@ -30,17 +47,14 @@ export interface SearchResultItemCollectionType {
   collection: Array<SearchResultItemType>;
   categoryName: string;
 }
-
 export interface onSelectCategoryType {
   onSelectCategory: Dispatch<SetStateAction<string>>;
 }
-
 interface selectedItemType {
   index: number;
-  setSelectedIndex: (value: number) => value;
+  setSelectedIndex: (value: number) => void;
   selectedIndex: number;
 }
-
 export interface NavbarProps {
   navbarItems: Array<sidebarItem>;
   onselectNavbarItem: Dispatch<SetStateAction<string>>;
@@ -69,7 +83,6 @@ export interface RecentSearchHeaderProps {
   onClosePage: () => void;
   onClearSearch: () => void;
 }
-
 export interface LayoutProps {
   sidebarItems: Array<sidebarItem>;
   children: JSX.Element | JSX.Element[];
@@ -84,12 +97,12 @@ interface SideBarProps {
   mobileOpen: boolean;
   handleDrawerToggle: () => void;
   sidebarItems: Array<sidebarItem>;
-  window?: window;
+  window?: any;
   drawerWidthExpanded: boolean;
 }
 
 interface ExtendSearchResultItemsProps {
-  onSelectItem: (item: SearchResultItemType) => item;
+  onSelectItem: (item: SearchResultItemType) => void;
   handleViewMore?: () => void;
 }
 export type SearchResultsProps = (
@@ -145,4 +158,51 @@ interface SearchRecommendationItemProps {
 
 export interface SearchRecommendationsProps {
   recommendations: Array<recommendationType>;
+}
+export interface DetailsPageHeaderProps {
+  detailsHeaderValues: {
+    img: string;
+    name: string;
+    subTitle: string;
+    nutritionValues: Array<{ name: string; icon: string }>;
+    tag: string;
+  };
+}
+export interface DetailsPageTitlesProps {
+  DetailsPageTitlesItems: Array<DetailsPageTitlesItem>;
+  onSelectDetailsPageTitleItem: Dispatch<SetStateAction<string>>;
+}
+export interface DetailsPageTabItemsProps {
+  tabItems: Array<sidebarItem>;
+  onselectTabItem: Dispatch<SetStateAction<string>>;
+}
+export interface DetailsPageTabItemProps {
+  item: sidebarItem;
+  index: number;
+  setSelectedIndex: (item: number) => void;
+  selectedIndex: number;
+  onSelectDetailsPageTabItem: Dispatch<SetStateAction<string>>;
+}
+export interface ComparingDetailsTabProps {
+  compareTableItems: Array<compareTableItem>;
+  compareTableDetails: {
+    name: string;
+    quantityAmount: string;
+  };
+  values: filterItem[];
+  onSelectedValue: Dispatch<SetStateAction<string[]>>;
+}
+export interface SharedSocialMediaProps {
+  isSharedMediaOpen: boolean;
+  setIsSharedMediaOpen: Dispatch<SetStateAction<boolean>>;
+  link: string;
+}
+export interface MultipleSelectsProps {
+  values: filterItem[];
+  onSelectedValue: Dispatch<SetStateAction<string[]>>;
+  renderSelectButton?: String | React.ReactNode;
+  open: boolean;
+  setIsOpen: Dispatch<SetStateAction<boolean>>;
+  multiselectTitle: string;
+  margin: any;
 }

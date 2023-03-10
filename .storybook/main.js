@@ -6,25 +6,8 @@ module.exports = {
     "@storybook/addon-essentials",
     "@storybook/addon-interactions",
     "@storybook/addon-controls",
+    "@storybook/addon-viewport",
   ],
-  typescript: {
-    check: false,
-    checkOptions: {},
-    reactDocgen: "react-docgen-typescript",
-    reactDocgenTypescriptOptions: {
-      // speeds up storybook build time
-      allowSyntheticDefaultImports: false,
-      // speeds up storybook build time
-      esModuleInterop: false,
-      // makes union prop types like variant and size appear as select controls
-      shouldExtractLiteralValuesFromEnum: true,
-      // makes string and boolean types that can be undefined appear as inputs and switches
-      shouldRemoveUndefinedFromOptional: true,
-      // Filter out third-party props from node_modules except @mui packages
-      propFilter: (prop) =>
-        prop.parent ? !/node_modules\/(?!@mui)/.test(prop.parent.fileName) : true,
-    },
-  },
   webpackFinal: async (config) => {
     // Transpile Gatsby module because Gatsby includes un-transpiled ES6 code.
     config.module.rules[0].exclude = [/node_modules\/(?!(gatsby|gatsby-script)\/)/];
@@ -40,6 +23,7 @@ module.exports = {
     config.resolve.alias["@forkfacts/screens"] = path.resolve(__dirname, "../src/screens");
     config.resolve.alias["@forkfacts/models"] = path.resolve(__dirname, "../src/models");
     config.resolve.alias["@forkfacts/styles"] = path.resolve(__dirname, "../src/styles/");
+    config.resolve.alias["@forkfacts/icons"] = path.resolve(__dirname, "../src/DesignIcons");
     config.resolve.mainFields = ["browser", "module", "main"];
     return config;
   },

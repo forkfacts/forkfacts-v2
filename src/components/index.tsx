@@ -14,4 +14,11 @@ export { default as PopularFrequentSearchCategories } from "./PopularFrequentSea
 export { default as PopularFrequentSearchCategory } from "./PopularFrequentSearchCategories/PopularFrequentSearchCategory/PopularFrequentSearchCategory";
 export { default as NoSearchResults } from "./NoSearchResults/NoSearchResults";
 export { default as SearchRecommendations } from "./SearchRecommendations/SearchRecommendations";
+export { default as DetailsPageTitles } from "./DetailPageComponents/DetailsPageTitles/DetailsPageTitles";
+export { default as DetailsPageHeader } from "./DetailPageComponents/DetailsPageHeader/DetailsPageHeader";
+export { default as DetailsPageTabItems } from "./DetailPageComponents/DetailsPageTabItems/DetailsPageTabItems";
+export { default as DetailsPageTabItem } from "./DetailPageComponents/DetailsPageTabItems/DetailsPageTabItem/DetailsPageTabItem";
+export { default as ComparingDetailsTab } from "./DetailPageComponents/ComparingDetailsTab/ComparingDetailsTab";
+export { default as SharedSocialMedia } from "./SharedSocialMedia/SharedSocialMedia";
+export { default as MultipleSelects } from "./MultipleSelects/MultipleSelects";
 export { default as AutoCompleteSearch } from "./AutoCompleteSearch/AutoCompleteSearch";

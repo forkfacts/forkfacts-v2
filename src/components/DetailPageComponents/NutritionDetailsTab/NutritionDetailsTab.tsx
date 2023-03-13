@@ -139,7 +139,7 @@ const NutritionDetailsTab: React.FC<NutritionDetailsTabProps> = ({
                 </Select>
               </FormControl>
             </Box>
-            <Box sx={{ pr: theme.spacing(1) }}>
+            <Box sx={{ pr: mobile ? 0 : theme.spacing(1) }}>
               <MeasurementFilter
                 measurementFilterItems={measurementFilterItems}
                 onSelectMeasurementItem={onSelectMeasurementItem}

@@ -20,7 +20,7 @@ export function withDropdown<
     zIndex: theme.zIndex.modal,
     backgroundColor: theme.palette.common.white,
     borderRadius: theme.spacing(1),
-    ml: prop.mobile ? theme.spacing(-23.5) : prop.margin,
+    ml: prop.mobile ? theme.spacing(-22.5) : prop.margin,
     mt: theme.spacing(2),
   };
 }

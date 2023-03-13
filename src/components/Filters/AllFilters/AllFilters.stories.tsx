@@ -13,14 +13,6 @@ export default {
       viewports: INITIAL_VIEWPORTS,
     },
   },
-  argTypes: {
-    selectedFilters: {
-      control: {
-        type: "select",
-        options: ["All filters", "Life stage", "Age", "Nutrients", "Measure Units"],
-      },
-    },
-  },
 } as ComponentMeta<typeof AllFilters>;
 
 const lifeStageItems: lifeStageItem[] = [

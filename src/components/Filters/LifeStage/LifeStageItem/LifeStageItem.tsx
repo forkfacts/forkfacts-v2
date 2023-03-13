@@ -24,13 +24,12 @@ const LifeStageItem: React.FC<LifeStageItemProps> = ({
       sx={{
         width: mobile ? theme.spacing(12.5) : theme.spacing(18.25),
         height: mobile ? theme.spacing(12.5) : theme.spacing(18.25),
-        borderColor: theme.palette.grey[200],
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
         textAlign: "center",
         cursor: "pointer",
-        backgroundColor: selectedItem === item.name ? blue[100] : "none",
+        backgroundColor: selectedItem === item.name ? "#F2EFFF" : "none",
         border: "1px solid #F2EFFF",
         p: theme.spacing(1.25),
       }}
@@ -45,10 +44,7 @@ const LifeStageItem: React.FC<LifeStageItemProps> = ({
       >
         <item.icon
           styles={{
-            color:
-              selectedItem === item.name
-                ? theme.palette.primary.main
-                : theme.palette.customGray.textLight,
+            color: "red",
             width: theme.spacing(3.75),
             height: theme.spacing(3.75),
           }}

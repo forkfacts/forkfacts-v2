@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import {
   NutritionSummary,
   NutritionFilters,
@@ -6,7 +6,7 @@ import {
   NutritionDesktopTable,
   NutritionMobileTable,
 } from "@forkfacts/components";
-import { ageItem, NutritionDetailsTabProps, SearchNutritionFilterItem } from "@forkfacts/models";
+import { NutritionDetailsTabProps } from "@forkfacts/models";
 import {
   Box,
   useTheme,

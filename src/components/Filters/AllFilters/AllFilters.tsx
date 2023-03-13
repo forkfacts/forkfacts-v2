@@ -84,6 +84,7 @@ const AllFilters = ({
                 justifyContent: "space-between",
                 width: "100%",
                 alignItems: "center",
+                mb: theme.spacing(3),
               }}
             >
               <Typography

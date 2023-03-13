@@ -13,7 +13,7 @@ export function withDropdown<
   return {
     position: "absolute",
     display: "block",
-    width: 270,
+    width: prop.mobile ? theme.spacing(26) : theme.spacing(41),
     pt: theme.spacing(1),
     pb: theme.spacing(3),
     px: theme.spacing(1.75),

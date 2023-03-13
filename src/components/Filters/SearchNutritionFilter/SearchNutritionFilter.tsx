@@ -297,7 +297,6 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
                 sx={{
                   width: "100%",
                   marginTop: theme.spacing(1.7),
-                  borderRadius: theme.spacing(1),
                   color: theme.palette.customGray.textLight,
                   fontSize: theme.typography.titleSmall.fontSize,
                 }}
@@ -307,6 +306,7 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
                 placeholder="Search for nutrients"
                 onChange={handleChange}
                 InputProps={{
+                  style: { borderRadius: theme.spacing(1) },
                   startAdornment: (
                     <InputAdornment position="start">
                       <SearchOutlined

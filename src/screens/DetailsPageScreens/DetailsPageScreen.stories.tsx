@@ -215,20 +215,20 @@ const nutritionFilterItems: SearchNutritionFilterItem[] = [
 
 const lifeStageItems: lifeStageItem[] = [
   {
-    name: "Infant",
-    icon: Baby,
-  },
-  {
     name: "Children",
     icon: Kids,
   },
   {
-    name: "Male",
-    icon: Male,
+    name: "Infant",
+    icon: Baby,
   },
   {
     name: "Female",
     icon: Woman,
+  },
+  {
+    name: "Male",
+    icon: Male,
   },
   {
     name: "Pregnant",

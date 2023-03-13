@@ -183,7 +183,7 @@ const NutritionMobileTable: React.FC<NutritionMobileTableProps> = ({ nutritionTa
                         {subItem.amount}
                       </Typography>
                       <Typography
-                        variant="titleMedium"
+                        variant="titleSmall"
                         sx={{
                           fontWeight: theme.typography.fontWeightRegular,
                         }}

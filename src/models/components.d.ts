@@ -27,7 +27,7 @@ export interface ageItem {
 
 export type lifeStageItem = {
   name: string;
-  icon: SvgIconComponent | SVGProps;
+  icon: SVGProps;
 };
 
 export interface DetailsPageTitlesItem {

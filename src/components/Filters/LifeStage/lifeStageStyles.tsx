@@ -6,11 +6,11 @@ export function withDropdown<T extends Theme>(theme: T) {
   };
 }
 
-export function withoutDropdown<T extends Theme>(theme: T) {
+export function withoutDropdown<T extends Theme, U extends boolean>(theme: T, mobile: U) {
   return {
     position: "absolute",
     display: "block",
-    width: 300,
+    width: mobile ? theme.spacing(28.5) : theme.spacing(41),
     pt: theme.spacing(1),
     px: theme.spacing(1.75),
     pb: theme.spacing(3),

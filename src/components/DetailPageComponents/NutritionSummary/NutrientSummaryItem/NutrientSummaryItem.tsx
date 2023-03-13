@@ -48,7 +48,7 @@ const NutrientSummaryItem: React.FC<NutrientSummaryItemProps> = ({ percentage, w
           <Typography
             variant={mobile ? "labelMedium" : "titleLarge"}
             sx={{
-              lineHeight: mobile ? "28px" : theme.spacing(2.5),
+              lineHeight: mobile ? "20px" : "28px",
               color: theme.palette.customGray.main,
               fontWeight: theme.typography.fontWeightRegular,
             }}

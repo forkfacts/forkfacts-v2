@@ -10,7 +10,7 @@ import {
   useTheme,
 } from "@mui/material";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
-import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
+import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import { CompareSorting } from "@forkfacts/icons";
 import React, { useState } from "react";
 import { NutritionDesktopTableProps } from "@forkfacts/models";
@@ -127,7 +127,7 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ nutrition
                       sx={{ display: "flex", alignItems: "center", columnGap: theme.spacing(0.5) }}
                     >
                       {isCollapsed(item.nutrient) ? (
-                        <ArrowDropUpIcon
+                        <ArrowRightIcon
                           onClick={() => toggleCollapse(item.nutrient)}
                           sx={{
                             cursor: "pointer",
@@ -191,10 +191,17 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ nutrition
                 </TableRow>
                 {!isCollapsed(item.nutrient) &&
                   item.nutrientContents.map((content) => (
-                    <TableRow key={content.nutrient}>
+                    <TableRow
+                      key={content.nutrient}
+                      sx={{
+                        "&:nth-child(even)": {
+                          backgroundColor: "#FFFBFF",
+                        },
+                      }}
+                    >
                       <TableCell style={{ borderBottom: "none" }}>
                         <Typography
-                          variant="bodyLarge"
+                          variant="bodyMedium"
                           sx={{
                             color: theme.palette.customGray.main,
                             marginLeft: theme.spacing(4),

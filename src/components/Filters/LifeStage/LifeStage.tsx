@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Box, Button, Typography, useTheme } from "@mui/material";
+import { Box, Button, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { LifeStageProps } from "@forkfacts/models";
 import CloseIcon from "@mui/icons-material/Close";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
@@ -13,7 +13,8 @@ const LifeStage: React.FC<LifeStageProps> = ({
   isDropdown,
 }) => {
   const theme = useTheme();
-  const [selectedItem, setSelectedItem] = useState<string>("");
+  const mobile = useMediaQuery(theme.breakpoints.down("md"));
+  const [selectedItem, setSelectedItem] = useState<string>("children");
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   const handleSelectedItem = (name: string, index: number) => {
@@ -84,7 +85,7 @@ const LifeStage: React.FC<LifeStageProps> = ({
       {(open || !isDropdown) && (
         <Box
           component="div"
-          sx={isDropdown ? withoutDropdown(theme) : withDropdown(theme)}
+          sx={isDropdown ? withoutDropdown(theme, mobile) : withDropdown(theme)}
           boxShadow={isDropdown ? 1 : 0}
         >
           <Box

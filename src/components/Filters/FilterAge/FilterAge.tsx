@@ -20,7 +20,7 @@ const FilterAge: React.FC<AgeItemsProps> = ({
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.down("md"));
   const [selectedAgeIndex, setSelectedAgeIndex] = useState<number | null>(2);
-  const [selectedItem, setSelectedItem] = useState("");
+  const [selectedItem, setSelectedItem] = useState("19 -30 Years");
   const [open, setOpen] = useState(false);
 
   const handleSelectAge = (item: ageItem, index: number) => {
@@ -44,6 +44,8 @@ const FilterAge: React.FC<AgeItemsProps> = ({
   useEffect(() => {
     onSelectAgeItem(selectedItem);
   }, [selectedItem]);
+
+  console.log("selectedItem", selectedItem);
 
   return (
     <Box sx={{ position: "relative" }}>
@@ -95,7 +97,7 @@ const FilterAge: React.FC<AgeItemsProps> = ({
             }}
           >
             <Typography
-              variant="labelSmall"
+              variant="labelMedium"
               sx={{
                 color: theme.palette.customGray.textDark,
                 fontWeight: theme.typography.fontWeightRegular,
@@ -121,53 +123,24 @@ const FilterAge: React.FC<AgeItemsProps> = ({
             }}
           >
             <ForLoops each={ageItems}>
-              {(item, index) => (
-                <Box
-                  key={index}
-                  sx={{
-                    width: "100%",
-                    display: "flex",
-                    justifyContent: "flex-start",
-                    alignItems: "center",
-                  }}
-                  onClick={() => handleSelectAge(item, index)}
-                >
-                  <Checkbox
-                    icon={<RadioButtonUncheckedIcon />}
-                    checkedIcon={<RadioButtonCheckedIcon />}
-                    checked={selectedAgeIndex === index ? true : false}
-                  />
-                  {item.start ? (
-                    <Typography
-                      variant="bodyMedium"
-                      sx={{
-                        fontWeight: theme.typography.fontWeightLight,
-                        color: theme.palette.customGray.textBlack,
-                      }}
-                    >
-                      {item.start + "-" + item.end} {item.unit}
-                    </Typography>
-                  ) : (
-                    <Typography
-                      variant="bodyMedium"
-                      sx={{
-                        fontWeight: theme.typography.fontWeightLight,
-                        color: theme.palette.customGray.textBlack,
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                        ml: theme.spacing(-2.5),
-                      }}
-                    >
-                      {item.end >= 70 && !item.start ? (
-                        <ChevronRightIcon
-                          sx={{
-                            width: theme.spacing(2),
-                            height: theme.spacing(2),
-                            ml: theme.spacing(2),
-                          }}
-                        />
-                      ) : null}
+              {(item, index) => {
+                return (
+                  <Box
+                    key={index}
+                    sx={{
+                      width: "100%",
+                      display: "flex",
+                      justifyContent: "flex-start",
+                      alignItems: "center",
+                    }}
+                    onClick={() => handleSelectAge(item, index)}
+                  >
+                    <Checkbox
+                      icon={<RadioButtonUncheckedIcon />}
+                      checkedIcon={<RadioButtonCheckedIcon />}
+                      checked={selectedAgeIndex === index ? true : false}
+                    />
+                    {item.start ? (
                       <Typography
                         variant="bodyMedium"
                         sx={{
@@ -175,12 +148,43 @@ const FilterAge: React.FC<AgeItemsProps> = ({
                           color: theme.palette.customGray.textBlack,
                         }}
                       >
-                        {item.end} {item.unit}
+                        {item.start + "-" + item.end} {item.unit}
                       </Typography>
-                    </Typography>
-                  )}
-                </Box>
-              )}
+                    ) : (
+                      <Typography
+                        variant="bodyMedium"
+                        sx={{
+                          fontWeight: theme.typography.fontWeightLight,
+                          color: theme.palette.customGray.textBlack,
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          ml: theme.spacing(-2.5),
+                        }}
+                      >
+                        {item.end >= 70 && !item.start ? (
+                          <ChevronRightIcon
+                            sx={{
+                              width: theme.spacing(2),
+                              height: theme.spacing(2),
+                              ml: theme.spacing(2),
+                            }}
+                          />
+                        ) : null}
+                        <Typography
+                          variant="bodyMedium"
+                          sx={{
+                            fontWeight: theme.typography.fontWeightLight,
+                            color: theme.palette.customGray.textBlack,
+                          }}
+                        >
+                          {item.end} {item.unit}
+                        </Typography>
+                      </Typography>
+                    )}
+                  </Box>
+                );
+              }}
             </ForLoops>
           </Box>
           <Box

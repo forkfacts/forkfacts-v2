@@ -84,7 +84,7 @@ const NutritionDetailsTab: React.FC<NutritionDetailsTabProps> = ({
               display: "flex",
               alignItems: "center",
               flexWrap: mobile ? "nowrap" : "wrap",
-              columnGap: mobile ? theme.spacing(1) : theme.spacing(3),
+              columnGap: mobile ? theme.spacing(1) : theme.spacing(2),
               width: mobile ? "100%" : "50%",
               justifyContent: mobile ? "space-between" : "flex-end",
               mt: mobile ? theme.spacing(3) : 0,
@@ -139,13 +139,17 @@ const NutritionDetailsTab: React.FC<NutritionDetailsTabProps> = ({
                 </Select>
               </FormControl>
             </Box>
-            <MeasurementFilter
-              measurementFilterItems={measurementFilterItems}
-              onSelectMeasurementItem={onSelectMeasurementItem}
-            />
+            <Box sx={{ pr: theme.spacing(1) }}>
+              <MeasurementFilter
+                measurementFilterItems={measurementFilterItems}
+                onSelectMeasurementItem={onSelectMeasurementItem}
+              />
+            </Box>
           </Box>
         </Box>
-        <NutritionSummary nutritionSummaryItems={nutritionSummaryItems} />
+        <Box sx={{ pr: theme.spacing(1.5) }}>
+          <NutritionSummary nutritionSummaryItems={nutritionSummaryItems} />
+        </Box>
       </Box>
       <Box sx={{ mt: mobile ? theme.spacing(3) : theme.spacing(8) }}>
         {!mobile ? (

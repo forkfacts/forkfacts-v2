@@ -20,7 +20,7 @@ const Template: ComponentStory<typeof MeasurementFilter> = (args) => (
 export const Mobile = Template.bind({});
 
 Mobile.args = {
-  measurementFilterItems: ["US", "Metric"],
+  measurementFilterItems: ["Metric", "US"],
   onSelectMeasurementItem: (item: string) => {
     console.log(item);
   },

@@ -43,7 +43,7 @@ const LifeStageItem: React.FC<LifeStageItemProps> = ({
           flexDirection: "column",
         }}
       >
-        <item.icon sx={{ color: "#929094" }} />
+        <item.icon styles={{ color: "#929094" }} />
         <Typography
           variant="subhead1"
           sx={{

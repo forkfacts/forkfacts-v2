@@ -2,11 +2,8 @@ import React, { useState } from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import { LifeStage } from "@forkfacts/components";
-import ChildCareOutlinedIcon from "@mui/icons-material/ChildCareOutlined";
-import EscalatorWarningOutlinedIcon from "@mui/icons-material/EscalatorWarningOutlined";
-import Person2OutlinedIcon from "@mui/icons-material/Person2Outlined";
-import PregnantWomanOutlinedIcon from "@mui/icons-material/PregnantWomanOutlined";
 import { lifeStageItem } from "@forkfacts/models";
+import { Baby, Kids, Lactation, Male, PregnantWoman, Woman } from "@forkfacts/icons";
 
 export default {
   title: "Components/Filters/LifeStage",
@@ -25,27 +22,27 @@ const Template: ComponentStory<typeof LifeStage> = (args) => {
 const lifeStageItems: lifeStageItem[] = [
   {
     name: "Infant",
-    icon: ChildCareOutlinedIcon,
+    icon: Baby,
   },
   {
     name: "Children",
-    icon: EscalatorWarningOutlinedIcon,
+    icon: Kids,
   },
   {
     name: "Male",
-    icon: PregnantWomanOutlinedIcon,
+    icon: Male,
   },
   {
     name: "Female",
-    icon: EscalatorWarningOutlinedIcon,
+    icon: Woman,
   },
   {
     name: "Pregnant",
-    icon: PregnantWomanOutlinedIcon,
+    icon: PregnantWoman,
   },
   {
     name: "Lactation",
-    icon: Person2OutlinedIcon,
+    icon: Lactation,
   },
 ];
 

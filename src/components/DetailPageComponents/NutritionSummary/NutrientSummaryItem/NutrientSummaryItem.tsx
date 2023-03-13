@@ -22,7 +22,7 @@ const NutrientSummaryItem: React.FC<NutrientSummaryItemProps> = ({ percentage, w
         sx={{
           textAlign: "center",
           mb: theme.spacing(1.5),
-          color: theme.palette.common.black,
+          color: theme.palette.customGray.main,
           fontWeight: theme.typography.fontWeightRegular,
           textTransform: "uppercase",
         }}
@@ -48,8 +48,8 @@ const NutrientSummaryItem: React.FC<NutrientSummaryItemProps> = ({ percentage, w
           <Typography
             variant={mobile ? "labelMedium" : "titleLarge"}
             sx={{
-              lineHeight: theme.spacing(2.5),
-              color: theme.palette.common.black,
+              lineHeight: mobile ? "28px" : theme.spacing(2.5),
+              color: theme.palette.customGray.main,
               fontWeight: theme.typography.fontWeightRegular,
             }}
           >
@@ -62,7 +62,7 @@ const NutrientSummaryItem: React.FC<NutrientSummaryItemProps> = ({ percentage, w
         sx={{
           textAlign: "center",
           mt: theme.spacing(1),
-          color: theme.palette.common.black,
+          color: theme.palette.customGray.main,
           fontWeight: theme.typography.fontWeightRegular,
         }}
       >

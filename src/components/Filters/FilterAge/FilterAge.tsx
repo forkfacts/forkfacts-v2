@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Checkbox from "@mui/material/Checkbox";
 import { Box, Button, Typography, useMediaQuery, useTheme } from "@mui/material";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
 import CloseIcon from "@mui/icons-material/Close";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
@@ -21,8 +22,14 @@ const FilterAge: React.FC<AgeItemsProps> = ({
   const [selectedAgeIndex, setSelectedAgeIndex] = useState<number | null>(2);
   const [selectedItem, setSelectedItem] = useState("");
   const [open, setOpen] = useState(false);
+
   const handleSelectAge = (item: ageItem, index: number) => {
-    const age = `${item.start + "-" + item.end} ${item.unit}`;
+    let age = `${item.start + "-" + item.end} ${item.unit}`;
+    if (!item.start) {
+      age = `${item.end} ${item.unit}`;
+    } else {
+      age = `${item.start + "-" + item.end} ${item.unit}`;
+    }
     setSelectedAgeIndex(index);
     setSelectedItem(age);
   };
@@ -45,26 +52,32 @@ const FilterAge: React.FC<AgeItemsProps> = ({
           variant={selectedItem ? "text" : "outlined"}
           onClick={() => setOpen(!open)}
           sx={{
-            color: theme.palette.grey[900],
             backgroundColor: selectedItem
               ? theme.palette.primary.light
               : theme.palette.background.default,
             borderColor: selectedItem ? theme.palette.primary.main : theme.palette.grey[700],
-            fontSize: theme.typography.caption.fontSize,
-            fontWeight: theme.typography.fontWeightBold,
-            lineHeight: theme.spacing(2),
-            letterSpacing: theme.spacing(0.05),
             textTransform: "capitalize",
             whiteSpace: "nowrap",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
+            borderRadius: theme.spacing(1),
           }}
         >
-          <Typography sx={{ fontSize: theme.typography.labelMedium.fontSize }}>
+          <Typography
+            variant="labelLarge"
+            sx={{
+              color: theme.palette.customGray.textDark,
+              fontWeight: theme.typography.fontWeightRegular,
+            }}
+          >
             {selectedItem ? selectedItem : "Age"}
           </Typography>
-          {open ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}
+          {open ? (
+            <ArrowDropUpIcon sx={{ color: theme.palette.customGray.main }} />
+          ) : (
+            <ArrowDropDownIcon sx={{ color: theme.palette.customGray.main }} />
+          )}
         </Button>
       )}
       {(open || !isDropdown) && (
@@ -79,7 +92,6 @@ const FilterAge: React.FC<AgeItemsProps> = ({
               justifyContent: "space-between",
               width: "100%",
               alignItems: "center",
-              mt: theme.spacing(3),
             }}
           >
             <Typography
@@ -125,15 +137,48 @@ const FilterAge: React.FC<AgeItemsProps> = ({
                     checkedIcon={<RadioButtonCheckedIcon />}
                     checked={selectedAgeIndex === index ? true : false}
                   />
-                  <Typography
-                    variant="bodyMedium"
-                    sx={{
-                      fontWeight: theme.typography.fontWeightLight,
-                      color: theme.palette.customGray.textBlack,
-                    }}
-                  >
-                    {item.start + "-" + item.end} {item.unit}
-                  </Typography>
+                  {item.start ? (
+                    <Typography
+                      variant="bodyMedium"
+                      sx={{
+                        fontWeight: theme.typography.fontWeightLight,
+                        color: theme.palette.customGray.textBlack,
+                      }}
+                    >
+                      {item.start + "-" + item.end} {item.unit}
+                    </Typography>
+                  ) : (
+                    <Typography
+                      variant="bodyMedium"
+                      sx={{
+                        fontWeight: theme.typography.fontWeightLight,
+                        color: theme.palette.customGray.textBlack,
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        ml: theme.spacing(-2.5),
+                      }}
+                    >
+                      {item.end >= 70 && !item.start ? (
+                        <ChevronRightIcon
+                          sx={{
+                            width: theme.spacing(2),
+                            height: theme.spacing(2),
+                            ml: theme.spacing(2),
+                          }}
+                        />
+                      ) : null}
+                      <Typography
+                        variant="bodyMedium"
+                        sx={{
+                          fontWeight: theme.typography.fontWeightLight,
+                          color: theme.palette.customGray.textBlack,
+                        }}
+                      >
+                        {item.end} {item.unit}
+                      </Typography>
+                    </Typography>
+                  )}
                 </Box>
               )}
             </ForLoops>

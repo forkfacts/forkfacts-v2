@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import ChildCareOutlinedIcon from "@mui/icons-material/ChildCareOutlined";
-import EscalatorWarningOutlinedIcon from "@mui/icons-material/EscalatorWarningOutlined";
-import Person2OutlinedIcon from "@mui/icons-material/Person2Outlined";
-import PregnantWomanOutlinedIcon from "@mui/icons-material/PregnantWomanOutlined";
+import { Baby, Kids, Lactation, Male, PregnantWoman, Woman } from "@forkfacts/icons";
 import { NutritionDetailsTab } from "@forkfacts/components";
 import {
   ageItem,
@@ -25,31 +22,30 @@ const nutritionSummaryItems = [
   { name: "FATS", percentage: 20, weight: "112g" },
   { name: "SUGARS", percentage: 20, weight: "9g" },
 ];
-
 const lifeStageItems: lifeStageItem[] = [
   {
     name: "Infant",
-    icon: ChildCareOutlinedIcon,
+    icon: Baby,
   },
   {
     name: "Children",
-    icon: EscalatorWarningOutlinedIcon,
+    icon: Kids,
   },
   {
     name: "Male",
-    icon: PregnantWomanOutlinedIcon,
+    icon: Male,
   },
   {
     name: "Female",
-    icon: EscalatorWarningOutlinedIcon,
+    icon: Woman,
   },
   {
     name: "Pregnant",
-    icon: PregnantWomanOutlinedIcon,
+    icon: PregnantWoman,
   },
   {
     name: "Lactation",
-    icon: Person2OutlinedIcon,
+    icon: Lactation,
   },
 ];
 
@@ -76,6 +72,10 @@ const ageItems: ageItem[] = [
   },
   {
     start: 51,
+    end: 70,
+    unit: "years",
+  },
+  {
     end: 70,
     unit: "years",
   },
@@ -376,7 +376,7 @@ export const Desktop = Template.bind({});
 
 Desktop.args = {
   nutritionSummaryItems: nutritionSummaryItems,
-  measurementFilterItems: ["US", "Metric"],
+  measurementFilterItems: ["Metric", "US"],
   lifeStageItems,
   ageItems,
   nutritionFilterItems,

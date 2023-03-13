@@ -69,7 +69,7 @@ const NutritionMobileTable: React.FC<NutritionMobileTableProps> = ({ nutritionTa
                     variant="titleSmall"
                     sx={{
                       color: theme.palette.customGray.main,
-                      fontWeight: theme.typography.fontWeightBold,
+                      fontWeight: theme.typography.fontWeightRegular,
                     }}
                   >
                     {item.amount}
@@ -83,14 +83,14 @@ const NutritionMobileTable: React.FC<NutritionMobileTableProps> = ({ nutritionTa
                     rowGap: theme.spacing(1),
                   }}
                 >
-                  <Typography variant="caption" sx={{ color: theme.palette.customGray.dark }}>
+                  <Typography variant="labelSmall" sx={{ color: theme.palette.customGray.dark }}>
                     %Daily value
                   </Typography>
                   <Typography
                     variant="titleSmall"
                     sx={{
                       color: theme.palette.customGray.main,
-                      fontWeight: theme.typography.fontWeightBold,
+                      fontWeight: theme.typography.fontWeightRegular,
                     }}
                   >
                     {item.dailyValue}%
@@ -131,13 +131,13 @@ const NutritionMobileTable: React.FC<NutritionMobileTableProps> = ({ nutritionTa
                       fontWeight: theme.typography.fontWeightRegular,
                     }}
                   >
-                    amount
+                    Amount
                   </Typography>
                   <Typography
                     variant="labelSmall"
                     sx={{
                       fontSize: theme.typography.titleSmall.fontSize,
-                      fontWeight: theme.typography.fontWeightBold,
+                      fontWeight: theme.typography.fontWeightRegular,
                     }}
                   >
                     (%Daily value)
@@ -177,7 +177,7 @@ const NutritionMobileTable: React.FC<NutritionMobileTableProps> = ({ nutritionTa
                       <Typography
                         variant="titleMedium"
                         sx={{
-                          fontWeight: theme.typography.fontWeightRegular,
+                          fontWeight: theme.typography.fontWeightLight,
                         }}
                       >
                         {subItem.amount}
@@ -185,7 +185,7 @@ const NutritionMobileTable: React.FC<NutritionMobileTableProps> = ({ nutritionTa
                       <Typography
                         variant="titleMedium"
                         sx={{
-                          fontWeight: theme.typography.fontWeightBold,
+                          fontWeight: theme.typography.fontWeightRegular,
                         }}
                       >
                         ({subItem.dailyValue}%)

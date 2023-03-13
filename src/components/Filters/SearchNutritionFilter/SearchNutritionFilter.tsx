@@ -209,15 +209,12 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
           variant={firstSelectedItem.name ? "text" : "outlined"}
           onClick={() => setOpen(!open)}
           sx={{
-            color: theme.palette.grey[900],
             backgroundColor: firstSelectedItem.name
               ? theme.palette.primary.light
               : theme.palette.background.default,
             borderColor: firstSelectedItem.name
               ? theme.palette.primary.main
               : theme.palette.grey[700],
-            fontSize: theme.typography.caption.fontSize,
-            fontWeight: theme.typography.fontWeightBold,
             lineHeight: theme.spacing(2),
             letterSpacing: theme.spacing(0.05),
             textTransform: "capitalize",
@@ -225,14 +222,25 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
+            borderRadius: theme.spacing(1),
           }}
         >
-          <Typography sx={{ fontSize: theme.typography.labelMedium.fontSize }}>
+          <Typography
+            variant="labelLarge"
+            sx={{
+              fontWeight: theme.typography.fontWeightRegular,
+              color: theme.palette.customGray.textDark,
+            }}
+          >
             {firstSelectedItem.name
               ? `${firstSelectedItem.name} ${firstSelectedItem.length <= 1 ? "" : "+1"} `
               : "Nutrients"}
           </Typography>
-          {open ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}
+          {open ? (
+            <ArrowDropUpIcon sx={{ color: theme.palette.customGray.textDark }} />
+          ) : (
+            <ArrowDropDownIcon sx={{ color: theme.palette.customGray.textDark }} />
+          )}
         </Button>
       )}
       {(open || !isDropdown) && (
@@ -253,11 +261,12 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
                 justifyContent: "space-between",
                 width: "100%",
                 alignItems: "center",
-                mt: theme.spacing(3),
+                mt: theme.spacing(0.5),
+                mb: theme.spacing(1.5),
               }}
             >
               <Typography
-                variant="labelSmall"
+                variant="labelMedium"
                 sx={{
                   color: theme.palette.customGray.textDark,
                   fontWeight: theme.typography.fontWeightRegular,
@@ -268,39 +277,60 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
               </Typography>
               {isDropdown && (
                 <CloseIcon
-                  sx={{ width: theme.spacing(2), height: theme.spacing(2), cursor: "pointer" }}
+                  sx={{
+                    width: theme.spacing(2),
+                    height: theme.spacing(2),
+                    cursor: "pointer",
+                    color: theme.palette.customGray.main,
+                  }}
                   onClick={() => setOpen(false)}
                 />
               )}
             </Box>
-            <TextField
-              size="small"
+            <Box
               sx={{
-                width: "100%",
-                marginTop: theme.spacing(1.7),
+                borderRadius: theme.spacing(3),
               }}
-              fullWidth
-              name="name"
-              value={name}
-              placeholder="Search for nutrients"
-              onChange={handleChange}
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <SearchOutlined />
-                  </InputAdornment>
-                ),
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <Box>
-                      {name ? (
-                        <CloseIcon sx={{ cursor: "pointer" }} onClick={() => setName("")} />
-                      ) : null}
-                    </Box>
-                  </InputAdornment>
-                ),
-              }}
-            />
+            >
+              <TextField
+                size="small"
+                sx={{
+                  width: "100%",
+                  marginTop: theme.spacing(1.7),
+                  borderRadius: theme.spacing(1),
+                  color: theme.palette.customGray.textLight,
+                  fontSize: theme.typography.titleSmall.fontSize,
+                }}
+                fullWidth
+                name="name"
+                value={name}
+                placeholder="Search for nutrients"
+                onChange={handleChange}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <SearchOutlined
+                        sx={{
+                          width: theme.spacing(3),
+                          height: theme.spacing(3),
+                          cursor: "pointer",
+                          color: theme.palette.customGray.textDark,
+                        }}
+                      />
+                    </InputAdornment>
+                  ),
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <Box>
+                        {name ? (
+                          <CloseIcon sx={{ cursor: "pointer" }} onClick={() => setName("")} />
+                        ) : null}
+                      </Box>
+                    </InputAdornment>
+                  ),
+                }}
+              />
+            </Box>
           </Box>
           <Box>
             {renderFilterNutrients.length ? (
@@ -384,7 +414,7 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
                 }}
               </ForLoops>
             ) : (
-              <Box sx={{ textAlign: "center" }}>
+              <Box sx={{ textAlign: "center", mt: theme.spacing(2.5) }}>
                 <Typography
                   sx={{
                     textTransform: "capitalize",
@@ -422,7 +452,9 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
               sx={{
                 fontWeight: theme.typography.fontWeightRegular,
                 cursor: "pointer",
-                color: isDropdown ? theme.palette.primary.main : theme.palette.customGray.textDark,
+                color: firstSelectedItem.name
+                  ? theme.palette.primary.main
+                  : theme.palette.customGray.textDark,
               }}
               onClick={onClearSelectedItem}
             >

@@ -3,10 +3,7 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import { AllFilters } from "@forkfacts/components";
 import { ageItem, lifeStageItem, SearchNutritionFilterItem } from "@forkfacts/models";
-import ChildCareOutlinedIcon from "@mui/icons-material/ChildCareOutlined";
-import EscalatorWarningOutlinedIcon from "@mui/icons-material/EscalatorWarningOutlined";
-import Person2OutlinedIcon from "@mui/icons-material/Person2Outlined";
-import PregnantWomanOutlinedIcon from "@mui/icons-material/PregnantWomanOutlined";
+import { Baby, Kids, Lactation, Male, PregnantWoman, Woman } from "@forkfacts/icons";
 
 export default {
   title: "Components/Filters/AllFilters",
@@ -29,27 +26,27 @@ export default {
 const lifeStageItems: lifeStageItem[] = [
   {
     name: "Infant",
-    icon: ChildCareOutlinedIcon,
+    icon: Baby,
   },
   {
     name: "Children",
-    icon: EscalatorWarningOutlinedIcon,
+    icon: Kids,
   },
   {
     name: "Male",
-    icon: PregnantWomanOutlinedIcon,
+    icon: Male,
   },
   {
     name: "Female",
-    icon: EscalatorWarningOutlinedIcon,
+    icon: Woman,
   },
   {
     name: "Pregnant",
-    icon: PregnantWomanOutlinedIcon,
+    icon: PregnantWoman,
   },
   {
     name: "Lactation",
-    icon: Person2OutlinedIcon,
+    icon: Lactation,
   },
 ];
 
@@ -76,6 +73,10 @@ const ageItems: ageItem[] = [
   },
   {
     start: 51,
+    end: 70,
+    unit: "years",
+  },
+  {
     end: 70,
     unit: "years",
   },
@@ -115,7 +116,7 @@ Mobile.args = {
   lifeStageItems: lifeStageItems,
   ageItems: ageItems,
   nutritionFilterItems: nutritionFilterItems,
-  measurementFilterItems: ["US", "Metric"],
+  measurementFilterItems: ["Metric", "US"],
   openMobilePage: true,
 };
 

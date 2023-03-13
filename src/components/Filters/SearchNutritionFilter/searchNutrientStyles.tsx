@@ -13,12 +13,14 @@ export function withDropdown<
   return {
     position: "absolute",
     display: "block",
-    width: 300,
-    py: theme.spacing(2),
-    px: theme.spacing(1),
+    width: 320,
+    pt: theme.spacing(1),
+    px: theme.spacing(1.75),
+    pb: theme.spacing(3),
     zIndex: theme.zIndex.modal,
     backgroundColor: theme.palette.common.white,
     borderRadius: theme.spacing(1),
-    ml: prop.mobile ? theme.spacing(-25.5) : prop.margin,
+    ml: prop.mobile ? theme.spacing(-23.5) : prop.margin,
+    mt: theme.spacing(2),
   };
 }

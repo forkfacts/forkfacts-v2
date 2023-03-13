@@ -58,6 +58,7 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ nutrition
                   sx={{
                     display: "flex",
                     alignItems: "center",
+
                     columnGap: theme.spacing(1),
                     cursor: "pointer",
                   }}
@@ -71,7 +72,7 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ nutrition
                   >
                     %Daily Value
                   </Typography>
-                  <CompareSorting width={theme.spacing(2.45)} height={theme.spacing(2.75)} />
+                  <CompareSorting width={theme.spacing(3)} height={theme.spacing(3)} />
                 </Box>{" "}
               </TableCell>
               <TableCell style={{ borderBottom: "none" }}>
@@ -112,7 +113,7 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ nutrition
                   >
                     RDI
                   </Typography>
-                  <CompareSorting width={theme.spacing(2.45)} height={theme.spacing(2.75)} />
+                  <CompareSorting width={theme.spacing(3)} height={theme.spacing(3)} />
                 </Box>
               </TableCell>
             </TableRow>

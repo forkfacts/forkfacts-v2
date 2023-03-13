@@ -11,10 +11,12 @@ export function withoutDropdown<T extends Theme>(theme: T) {
     position: "absolute",
     display: "block",
     width: 300,
-    py: theme.spacing(2),
-    px: theme.spacing(1),
+    pt: theme.spacing(1),
+    px: theme.spacing(1.75),
+    pb: theme.spacing(3),
     zIndex: theme.zIndex.modal,
     backgroundColor: theme.palette.common.white,
     borderRadius: theme.spacing(1),
+    mt: theme.spacing(2),
   };
 }

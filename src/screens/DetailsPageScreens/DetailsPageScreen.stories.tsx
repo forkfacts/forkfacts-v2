@@ -5,10 +5,7 @@ import EggAltOutlinedIcon from "@mui/icons-material/EggAltOutlined";
 import EmojiFoodBeverageOutlinedIcon from "@mui/icons-material/EmojiFoodBeverageOutlined";
 import TipsAndUpdatesOutlinedIcon from "@mui/icons-material/TipsAndUpdatesOutlined";
 import CompareArrowsOutlinedIcon from "@mui/icons-material/CompareArrowsOutlined";
-import ChildCareOutlinedIcon from "@mui/icons-material/ChildCareOutlined";
-import EscalatorWarningOutlinedIcon from "@mui/icons-material/EscalatorWarningOutlined";
-import Person2OutlinedIcon from "@mui/icons-material/Person2Outlined";
-import PregnantWomanOutlinedIcon from "@mui/icons-material/PregnantWomanOutlined";
+import { Baby, Kids, Lactation, Male, PregnantWoman, Woman } from "@forkfacts/icons";
 import FastfoodOutlinedIcon from "@mui/icons-material/FastfoodOutlined";
 import SmokingRoomsOutlinedIcon from "@mui/icons-material/SmokingRoomsOutlined";
 import LibraryBooksOutlinedIcon from "@mui/icons-material/LibraryBooksOutlined";
@@ -215,30 +212,31 @@ const nutritionFilterItems: SearchNutritionFilterItem[] = [
   { name: "Fiber", subItems: [], checked: false },
   { name: "Minerals", subItems: [], checked: false },
 ];
+
 const lifeStageItems: lifeStageItem[] = [
   {
     name: "Infant",
-    icon: ChildCareOutlinedIcon,
+    icon: Baby,
   },
   {
     name: "Children",
-    icon: EscalatorWarningOutlinedIcon,
+    icon: Kids,
   },
   {
     name: "Male",
-    icon: PregnantWomanOutlinedIcon,
+    icon: Male,
   },
   {
     name: "Female",
-    icon: EscalatorWarningOutlinedIcon,
+    icon: Woman,
   },
   {
     name: "Pregnant",
-    icon: PregnantWomanOutlinedIcon,
+    icon: PregnantWoman,
   },
   {
     name: "Lactation",
-    icon: Person2OutlinedIcon,
+    icon: Lactation,
   },
 ];
 
@@ -265,6 +263,10 @@ const ageItems: ageItem[] = [
   },
   {
     start: 51,
+    end: 70,
+    unit: "years",
+  },
+  {
     end: 70,
     unit: "years",
   },
@@ -522,7 +524,7 @@ Desktop.args = {
   onSelectFilterItems: (item: string[]) => {
     console.log(item);
   },
-  measurementFilterItems: ["US", "Metric"],
+  measurementFilterItems: ["Metric", "US"],
   nutritionTableItems: nutritionTableItems,
   units,
   values: values,
@@ -540,6 +542,16 @@ Mobile.args = {
     name: "Comparing Greens",
     quantityAmount: "3 1/2 OUNCES RAW (2 TO 3 CUPS)",
   },
+  ageItems,
+  lifeStageItems,
+  nutritionFilterItems,
+  nutritionSummaryItems,
+  onSelectFilterItems: (item: string[]) => {
+    console.log(item);
+  },
+  measurementFilterItems: ["Metric", "US"],
+  nutritionTableItems: nutritionTableItems,
+  units,
   values: values,
 };
 
@@ -561,6 +573,16 @@ Tablet.args = {
     name: "Comparing Greens",
     quantityAmount: "3 1/2 OUNCES RAW (2 TO 3 CUPS)",
   },
+  ageItems,
+  lifeStageItems,
+  nutritionFilterItems,
+  nutritionSummaryItems,
+  onSelectFilterItems: (item: string[]) => {
+    console.log(item);
+  },
+  measurementFilterItems: ["Metric", "US"],
+  nutritionTableItems: nutritionTableItems,
+  units,
   values: values,
 };
 

@@ -1,6 +1,7 @@
 import { SvgIconComponent } from "@mui/icons-material";
 import React, { Dispatch, SetStateAction } from "react";
 import { Dispatch, SetStateAction } from "react";
+import { SVGProps } from "react";
 
 export interface SearchResultItemType {
   name: string;
@@ -19,14 +20,14 @@ export interface filterItem {
 }
 
 export interface ageItem {
-  start: number;
+  start?: number;
   end: number;
   unit: string;
 }
 
 export type lifeStageItem = {
   name: string;
-  icon: SvgIconComponent;
+  icon: SvgIconComponent | SVGProps;
 };
 
 export interface DetailsPageTitlesItem {

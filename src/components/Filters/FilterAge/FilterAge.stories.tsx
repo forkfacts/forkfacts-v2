@@ -43,6 +43,10 @@ const ageItems: ageItem[] = [
     end: 70,
     unit: "years",
   },
+  {
+    end: 70,
+    unit: "years",
+  },
 ];
 
 export const Mobile = Template.bind({});

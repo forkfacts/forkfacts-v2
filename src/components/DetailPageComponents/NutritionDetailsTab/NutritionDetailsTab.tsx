@@ -83,8 +83,8 @@ const NutritionDetailsTab: React.FC<NutritionDetailsTabProps> = ({
             sx={{
               display: "flex",
               alignItems: "center",
-              flexWrap: "wrap",
-              columnGap: mobile ? 0 : theme.spacing(3),
+              flexWrap: mobile ? "nowrap" : "wrap",
+              columnGap: mobile ? theme.spacing(1) : theme.spacing(3),
               width: mobile ? "100%" : "50%",
               justifyContent: mobile ? "space-between" : "flex-end",
               mt: mobile ? theme.spacing(3) : 0,
@@ -107,6 +107,10 @@ const NutritionDetailsTab: React.FC<NutritionDetailsTabProps> = ({
                   width: 80,
                   "& .MuiInputBase-root": {
                     height: 40,
+                    color: theme.palette.customGray.textDark,
+                    fontWeight: theme.typography.fontWeightLight,
+                    lineHeight: "16px",
+                    letterSpacing: "0.4px",
                   },
                 }}
               />
@@ -117,7 +121,13 @@ const NutritionDetailsTab: React.FC<NutritionDetailsTabProps> = ({
                   id="demo-simple-select"
                   value={unit}
                   onChange={handleChange}
-                  sx={{ height: theme.spacing(5) }}
+                  sx={{
+                    height: theme.spacing(5),
+                    color: theme.palette.customGray.textDark,
+                    fontWeight: theme.typography.fontWeightLight,
+                    lineHeight: "16px",
+                    letterSpacing: "0.4px",
+                  }}
                 >
                   {units.map((item, index) => {
                     return (

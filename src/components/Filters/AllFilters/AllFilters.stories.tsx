@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import { AllFilters } from "@forkfacts/components";
@@ -107,21 +107,40 @@ const nutritionFilterItems: SearchNutritionFilterItem[] = [
   { name: "Fiber", subItems: [], checked: false },
   { name: "Minerals", subItems: [], checked: false },
 ];
-const Template: ComponentStory<typeof AllFilters> = (args) => <AllFilters {...args} />;
+const Template: ComponentStory<typeof AllFilters> = (args) => {
+  const [selectedNutritionFilterItems, setSelectedNutritionFilterItems] = useState<
+    SearchNutritionFilterItem[]
+  >([]);
+  const [selectedAge, setSelectedAge] = useState<ageItem>({} as ageItem);
+  const [selectedLifeStage, setLifeStage] = useState("");
+  const handleSelectedAge = (value: ageItem) => {
+    setSelectedAge(value);
+  };
 
-export const Mobile = Template.bind({});
+  const handleLifeStage = (value: string) => {
+    setLifeStage(value);
+  };
 
-Mobile.args = {
-  selectedFilters: ["All filters", "Life stage", "Age", "Nutrients", "Measure Units"],
-  lifeStageItems: lifeStageItems,
-  ageItems: ageItems,
-  nutritionFilterItems: nutritionFilterItems,
-  measurementFilterItems: ["Metric", "US"],
-  openMobilePage: true,
+  const handleSelectNutritionFilterItem = (value: SearchNutritionFilterItem[] | any[]) => {
+    setSelectedNutritionFilterItems(value);
+  };
+  return (
+    <AllFilters
+      {...args}
+      selectedAge={selectedAge}
+      selectedLifeStage={selectedLifeStage}
+      selectedNutritionFilterItems={selectedNutritionFilterItems}
+      handleLifeStage={handleLifeStage}
+      handleSelectNutritionFilterItem={handleSelectNutritionFilterItem}
+      handleSelectedAge={handleSelectedAge}
+    />
+  );
 };
 
-Mobile.parameters = {
-  viewport: {
-    defaultViewport: "iphone6",
-  },
+export const Desktop = Template.bind({});
+
+Desktop.args = {
+  ageItems,
+  lifeStageItems,
+  nutritionFilterItems,
 };

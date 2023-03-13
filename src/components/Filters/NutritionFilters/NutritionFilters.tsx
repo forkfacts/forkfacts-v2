@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Box, useMediaQuery, useTheme } from "@mui/material";
 import "react-multi-carousel/lib/styles.css";
 import { FilterAge, SearchNutritionFilter, LifeStage, AllFilters } from "@forkfacts/components";

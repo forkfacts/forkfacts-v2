@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { Baby, Kids, Lactation, Male, PregnantWoman, Woman } from "@forkfacts/icons";
+import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import { NutritionDetailsTab } from "@forkfacts/components";
 import {
   ageItem,
@@ -13,6 +14,11 @@ import { Box } from "@mui/material";
 export default {
   title: "Components/DetailsPageComponents/NutritionDetailsTab",
   component: NutritionDetailsTab,
+  parameters: {
+    viewport: {
+      viewports: INITIAL_VIEWPORTS,
+    },
+  },
 } as ComponentMeta<typeof NutritionDetailsTab>;
 
 const nutritionSummaryItems = [
@@ -375,6 +381,42 @@ const Template: ComponentStory<typeof NutritionDetailsTab> = (args) => {
 export const Desktop = Template.bind({});
 
 Desktop.args = {
+  nutritionSummaryItems: nutritionSummaryItems,
+  measurementFilterItems: ["Metric", "US"],
+  lifeStageItems,
+  ageItems,
+  nutritionFilterItems,
+  units,
+  nutritionTableItems,
+};
+
+export const Mobile = Template.bind({});
+
+Mobile.parameters = {
+  viewport: {
+    defaultViewport: "iphonexr",
+  },
+};
+
+Mobile.args = {
+  nutritionSummaryItems: nutritionSummaryItems,
+  measurementFilterItems: ["Metric", "US"],
+  lifeStageItems,
+  ageItems,
+  nutritionFilterItems,
+  units,
+  nutritionTableItems,
+};
+
+export const Tablet = Template.bind({});
+
+Tablet.parameters = {
+  viewport: {
+    defaultViewport: "ipad",
+  },
+};
+
+Tablet.args = {
   nutritionSummaryItems: nutritionSummaryItems,
   measurementFilterItems: ["Metric", "US"],
   lifeStageItems,

@@ -57,7 +57,7 @@ const AllFilters = ({
         onClick={() => setOpen(!open)}
       >
         <Typography variant="labelLarge" sx={{ fontWeight: theme.typography.fontWeightRegular }}>
-          All filters {filterStatus !== 0 ? filterStatus : null}
+          All Filters {filterStatus !== 0 ? `(${filterStatus})` : null}
         </Typography>
       </Button>
       {open && (

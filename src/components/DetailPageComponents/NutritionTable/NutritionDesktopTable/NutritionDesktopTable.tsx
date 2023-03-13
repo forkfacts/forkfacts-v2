@@ -194,7 +194,7 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ nutrition
                     <TableRow
                       key={content.nutrient}
                       sx={{
-                        "&:nth-child(even)": {
+                        "&:nth-of-type(even)": {
                           backgroundColor: "#FFFBFF",
                         },
                       }}

@@ -11,6 +11,7 @@ import "@fontsource/poppins/600.css";
 import "@fontsource/poppins/700.css";
 import { customTheme } from "../src/themes/theme";
 import { MINIMAL_VIEWPORTS } from "@storybook/addon-viewport";
+import "../src/styles/styles.css";
 
 const optionsCallback = (options) => ({ panelExclude: [...options.panelExclude, /Warning/] });
 addDecorator((storyFn, context) => withConsole(optionsCallback)(storyFn)(context));

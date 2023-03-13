@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Box, Button, Typography, useMediaQuery, useTheme } from "@mui/material";
-import { LifeStageProps } from "@forkfacts/models";
+import { lifeStageItem, LifeStageProps } from "@forkfacts/models";
 import CloseIcon from "@mui/icons-material/Close";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
@@ -128,7 +128,7 @@ const LifeStage: React.FC<LifeStageProps> = ({
               mt: theme.spacing(2.7),
             }}
           >
-            {lifeStageItems.map((item, index) => (
+            {lifeStageItems.map((item: lifeStageItem, index) => (
               <LifeStageItem
                 index={index}
                 key={index}

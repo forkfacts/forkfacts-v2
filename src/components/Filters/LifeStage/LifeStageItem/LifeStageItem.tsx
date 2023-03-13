@@ -1,7 +1,7 @@
 import React from "react";
-import { blue } from "@mui/material/colors";
 import { lifeStageItem } from "@forkfacts/models";
 import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
+import { Email } from "@forkfacts/icons";
 
 interface LifeStageItemProps {
   handleSelectedItem: (name: string, index: number) => void;
@@ -43,8 +43,12 @@ const LifeStageItem: React.FC<LifeStageItemProps> = ({
         }}
       >
         <item.icon
-          styles={{
-            color: "red",
+          color={
+            selectedItem === item.name
+              ? theme.palette.primary.main
+              : theme.palette.customGray.textLight
+          }
+          style={{
             width: theme.spacing(3.75),
             height: theme.spacing(3.75),
           }}

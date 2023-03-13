@@ -102,9 +102,7 @@ const NutritionDetailsTab: React.FC<NutritionDetailsTabProps> = ({
                 id="outlined-basic"
                 variant="outlined"
                 defaultValue={2}
-                fullWidth
                 sx={{
-                  width: 80,
                   "& .MuiInputBase-root": {
                     height: 40,
                     color: theme.palette.customGray.textDark,
@@ -112,9 +110,12 @@ const NutritionDetailsTab: React.FC<NutritionDetailsTabProps> = ({
                     lineHeight: "16px",
                     letterSpacing: "0.4px",
                   },
+                  "& .MuiInputBase-input": {
+                    textAlign: "center",
+                    width: mobile ? "50px" : "78px",
+                  },
                 }}
               />
-
               <FormControl fullWidth>
                 <Select
                   labelId="demo-simple-select-label"
@@ -125,8 +126,6 @@ const NutritionDetailsTab: React.FC<NutritionDetailsTabProps> = ({
                     height: theme.spacing(5),
                     color: theme.palette.customGray.textDark,
                     fontWeight: theme.typography.fontWeightLight,
-                    lineHeight: "16px",
-                    letterSpacing: "0.4px",
                   }}
                 >
                   {units.map((item, index) => {

@@ -32,7 +32,10 @@ const NutritionMobileTable: React.FC<NutritionMobileTableProps> = ({ nutritionTa
               p: theme.spacing(2),
               borderRadius: theme.spacing(1),
               height: "auto !important",
-              boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
+              boxShadow:
+                !item.nutrientContents.length || !item.amount || item.nutrientContents.length === 1
+                  ? "none"
+                  : "0px 2px 4px rgba(0, 0, 0, 0.1)",
             }}
           >
             <Box>
@@ -169,7 +172,6 @@ const NutritionMobileTable: React.FC<NutritionMobileTableProps> = ({ nutritionTa
                           alignItems: "center",
                           my: theme.spacing(2),
                           borderBottom: "1px solid #FCF8FD",
-                          pb: theme.spacing(0.5),
                         }}
                       >
                         <Typography
@@ -191,7 +193,7 @@ const NutritionMobileTable: React.FC<NutritionMobileTableProps> = ({ nutritionTa
                           <Typography
                             variant="titleSmall"
                             sx={{
-                              fontWeight: theme.typography.fontWeightLight,
+                              fontWeight: theme.typography.fontWeightRegular,
                               color: theme.palette.customGray.dark,
                             }}
                           >

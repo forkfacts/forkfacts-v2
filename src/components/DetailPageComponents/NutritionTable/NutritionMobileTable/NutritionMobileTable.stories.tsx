@@ -16,67 +16,6 @@ export default {
 
 const nutritionTableItems: NutritionTableItem[] = [
   {
-    nutrient: "Fats",
-    dailyValue: 12.91,
-    amount: "30g",
-    rdi: {
-      value: 120,
-      weight: "g",
-    },
-    nutrientContents: [
-      {
-        nutrient: "Saturated",
-        dailyValue: 2.4,
-        amount: "100g",
-        rdi: { value: 30, weight: "g" },
-      },
-      {
-        nutrient: "Trans",
-        dailyValue: 1.7,
-        amount: "35g",
-        rdi: { value: 45, weight: "g" },
-      },
-      {
-        nutrient: "Omega 3",
-        dailyValue: 9.05,
-        amount: "120g",
-        rdi: { value: 120, weight: "g" },
-      },
-      {
-        nutrient: "Omega 6",
-        dailyValue: 2.0,
-        amount: "39g",
-        rdi: { value: 11, weight: "g" },
-      },
-      {
-        nutrient: "Omega 9",
-        dailyValue: 1.07,
-        amount: "4g",
-        rdi: { value: 112, weight: "g" },
-      },
-    ],
-  },
-  {
-    nutrient: "Carbohydrates",
-    dailyValue: 12.91,
-    amount: "30g",
-    rdi: { value: 120, weight: "g" },
-    nutrientContents: [
-      {
-        nutrient: "Sugar",
-        dailyValue: 2.4,
-        amount: "100g",
-        rdi: { value: 30, weight: "g" },
-      },
-      {
-        nutrient: "Starch",
-        dailyValue: 1.7,
-        amount: "35g",
-        rdi: { value: 45, weight: "g" },
-      },
-    ],
-  },
-  {
     nutrient: "Minerals",
     dailyValue: null,
     amount: null,
@@ -135,6 +74,67 @@ const nutritionTableItems: NutritionTableItem[] = [
         dailyValue: 1.07,
         amount: "4g",
         rdi: { value: 112, weight: "g" },
+      },
+    ],
+  },
+  {
+    nutrient: "Fats",
+    dailyValue: 12.91,
+    amount: "30g",
+    rdi: {
+      value: 120,
+      weight: "g",
+    },
+    nutrientContents: [
+      {
+        nutrient: "Saturated",
+        dailyValue: 2.4,
+        amount: "100g",
+        rdi: { value: 30, weight: "g" },
+      },
+      {
+        nutrient: "Trans",
+        dailyValue: 1.7,
+        amount: "35g",
+        rdi: { value: 45, weight: "g" },
+      },
+      {
+        nutrient: "Omega 3",
+        dailyValue: 9.05,
+        amount: "120g",
+        rdi: { value: 120, weight: "g" },
+      },
+      {
+        nutrient: "Omega 6",
+        dailyValue: 2.0,
+        amount: "39g",
+        rdi: { value: 11, weight: "g" },
+      },
+      {
+        nutrient: "Omega 9",
+        dailyValue: 1.07,
+        amount: "4g",
+        rdi: { value: 112, weight: "g" },
+      },
+    ],
+  },
+  {
+    nutrient: "Carbohydrates",
+    dailyValue: 12.91,
+    amount: "30g",
+    rdi: { value: 120, weight: "g" },
+    nutrientContents: [
+      {
+        nutrient: "Sugar",
+        dailyValue: 2.4,
+        amount: "100g",
+        rdi: { value: 30, weight: "g" },
+      },
+      {
+        nutrient: "Starch",
+        dailyValue: 1.7,
+        amount: "35g",
+        rdi: { value: 45, weight: "g" },
       },
     ],
   },

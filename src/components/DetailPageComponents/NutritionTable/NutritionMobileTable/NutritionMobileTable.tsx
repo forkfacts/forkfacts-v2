@@ -116,7 +116,7 @@ const NutritionMobileTable: React.FC<NutritionMobileTableProps> = ({ nutritionTa
                     display: "flex",
                     justifyContent: "space-between",
                     alignItems: "center",
-                    mt: theme.spacing(4),
+                    mt: !item.amount ? theme.spacing(2) : theme.spacing(4),
                     mb: theme.spacing(1),
                   }}
                 >

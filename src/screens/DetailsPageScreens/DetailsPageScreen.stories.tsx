@@ -273,8 +273,70 @@ const ageItems: ageItem[] = [
 ];
 const nutritionTableItems: NutritionTableItem[] = [
   {
+    nutrient: "Minerals",
+    dailyValue: null,
+    amount: null,
+    rdi: { value: null, weight: "g" },
+    nutrientContents: [
+      {
+        nutrient: "Chlorine",
+        dailyValue: 1.7,
+        amount: "100g",
+        rdi: { value: 30, weight: "g" },
+      },
+      {
+        nutrient: "Iron",
+        dailyValue: 1.7,
+        amount: "120g",
+        rdi: { value: 45, weight: "g" },
+      },
+      {
+        nutrient: "Magnesium",
+        dailyValue: 9.05,
+        amount: "39g",
+        rdi: { value: 120, weight: "g" },
+      },
+      {
+        nutrient: "Phosphorus",
+        dailyValue: 2.0,
+        amount: "g",
+        rdi: { value: 11, weight: "g" },
+      },
+      {
+        nutrient: "Potassium",
+        dailyValue: 1.07,
+        amount: "4g",
+        rdi: { value: 112, weight: "g" },
+      },
+      {
+        nutrient: "Sodium",
+        dailyValue: 1.7,
+        amount: "120g",
+        rdi: { value: 45, weight: "g" },
+      },
+      {
+        nutrient: "Sulphur",
+        dailyValue: 9.05,
+        amount: "120g",
+        rdi: { value: 120, weight: "g" },
+      },
+      {
+        nutrient: "Zinc",
+        dailyValue: 2.0,
+        amount: "39g",
+        rdi: { value: 11, weight: "g" },
+      },
+      {
+        nutrient: "Chromium",
+        dailyValue: 1.07,
+        amount: "4g",
+        rdi: { value: 112, weight: "g" },
+      },
+    ],
+  },
+  {
     nutrient: "Fats",
-    dailyValue: 12.9,
+    dailyValue: 12.91,
     amount: "30g",
     rdi: {
       value: 120,
@@ -315,7 +377,7 @@ const nutritionTableItems: NutritionTableItem[] = [
   },
   {
     nutrient: "Carbohydrates",
-    dailyValue: 12.9,
+    dailyValue: 12.91,
     amount: "30g",
     rdi: { value: 120, weight: "g" },
     nutrientContents: [
@@ -330,68 +392,6 @@ const nutritionTableItems: NutritionTableItem[] = [
         dailyValue: 1.7,
         amount: "35g",
         rdi: { value: 45, weight: "g" },
-      },
-    ],
-  },
-  {
-    nutrient: "Minerals",
-    dailyValue: null,
-    amount: null,
-    rdi: { value: null, weight: "g" },
-    nutrientContents: [
-      {
-        nutrient: "Chlorine",
-        dailyValue: 1.7,
-        amount: "100g",
-        rdi: { value: 30, weight: "g" },
-      },
-      {
-        nutrient: "Iron",
-        dailyValue: 1.7,
-        amount: "120g",
-        rdi: { value: 45, weight: "g" },
-      },
-      {
-        nutrient: "Magnesium",
-        dailyValue: 9.05,
-        amount: "39g",
-        rdi: { value: 120, weight: "g" },
-      },
-      {
-        nutrient: "Phosphorus",
-        dailyValue: 2.0,
-        amount: "39g",
-        rdi: { value: 11, weight: "g" },
-      },
-      {
-        nutrient: "Potassium",
-        dailyValue: 1.07,
-        amount: "4g",
-        rdi: { value: 112, weight: "g" },
-      },
-      {
-        nutrient: "Sodium",
-        dailyValue: 1.7,
-        amount: "120g",
-        rdi: { value: 45, weight: "g" },
-      },
-      {
-        nutrient: "Sulphur",
-        dailyValue: 9.05,
-        amount: "120g",
-        rdi: { value: 120, weight: "g" },
-      },
-      {
-        nutrient: "Zinc",
-        dailyValue: 2.0,
-        amount: "39g",
-        rdi: { value: 11, weight: "g" },
-      },
-      {
-        nutrient: "Chromium",
-        dailyValue: 1.07,
-        amount: "4g",
-        rdi: { value: 112, weight: "g" },
       },
     ],
   },
@@ -435,7 +435,7 @@ const nutritionTableItems: NutritionTableItem[] = [
   },
   {
     nutrient: "Protein",
-    dailyValue: 12.9,
+    dailyValue: 12.91,
     amount: "30g",
     rdi: { value: 120, weight: "g" },
     nutrientContents: [],

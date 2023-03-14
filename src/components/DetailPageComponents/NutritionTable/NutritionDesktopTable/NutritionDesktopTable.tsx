@@ -132,6 +132,7 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ nutrition
                   alignItems: "center",
                   columnGap: theme.spacing(0.5),
                   width: "25%",
+                  pl: !item.nutrientContents.length ? theme.spacing(4) : 0,
                 }}
               >
                 {isCollapsed(item.nutrient) && item.nutrientContents.length ? (

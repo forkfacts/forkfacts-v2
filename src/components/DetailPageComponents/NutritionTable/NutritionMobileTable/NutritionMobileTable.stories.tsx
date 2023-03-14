@@ -42,7 +42,7 @@ const nutritionTableItems: NutritionTableItem[] = [
       {
         nutrient: "Phosphorus",
         dailyValue: 2.0,
-        amount: "g",
+        amount: "120g",
         rdi: { value: 11, weight: "g" },
       },
       {

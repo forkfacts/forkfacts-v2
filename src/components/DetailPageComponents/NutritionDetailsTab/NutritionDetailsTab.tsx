@@ -104,7 +104,7 @@ const NutritionDetailsTab: React.FC<NutritionDetailsTabProps> = ({
                 defaultValue={2}
                 sx={{
                   "& .MuiInputBase-root": {
-                    height: 40,
+                    height: mobile ? theme.spacing(4) : theme.spacing(5),
                     color: theme.palette.customGray.textDark,
                     fontWeight: theme.typography.fontWeightLight,
                     lineHeight: "16px",
@@ -123,7 +123,7 @@ const NutritionDetailsTab: React.FC<NutritionDetailsTabProps> = ({
                   value={unit}
                   onChange={handleChange}
                   sx={{
-                    height: theme.spacing(5),
+                    height: mobile ? theme.spacing(4) : theme.spacing(5),
                     color: theme.palette.customGray.textDark,
                     fontWeight: theme.typography.fontWeightLight,
                   }}

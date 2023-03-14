@@ -5,6 +5,7 @@ import Slider from "react-slick";
 import { Box, Typography, useTheme } from "@mui/material";
 import { ForLoops } from "@forkfacts/helpers";
 import { NutritionTableItem } from "@forkfacts/models";
+import "./index.css";
 
 interface NutritionMobileTableProps {
   nutritionTableItems: NutritionTableItem[];
@@ -136,8 +137,8 @@ const NutritionMobileTable: React.FC<NutritionMobileTableProps> = ({ nutritionTa
                   <Typography
                     variant="labelSmall"
                     sx={{
-                      fontSize: theme.typography.titleSmall.fontSize,
                       fontWeight: theme.typography.fontWeightRegular,
+                      color: theme.palette.customGray.main,
                     }}
                   >
                     (%Daily value)
@@ -175,9 +176,10 @@ const NutritionMobileTable: React.FC<NutritionMobileTableProps> = ({ nutritionTa
                       }}
                     >
                       <Typography
-                        variant="titleMedium"
+                        variant="titleSmall"
                         sx={{
                           fontWeight: theme.typography.fontWeightLight,
+                          color: theme.palette.customGray.dark,
                         }}
                       >
                         {subItem.amount}
@@ -186,6 +188,7 @@ const NutritionMobileTable: React.FC<NutritionMobileTableProps> = ({ nutritionTa
                         variant="titleSmall"
                         sx={{
                           fontWeight: theme.typography.fontWeightRegular,
+                          color: theme.palette.customGray.main,
                         }}
                       >
                         ({subItem.dailyValue}%)

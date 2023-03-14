@@ -187,27 +187,6 @@ const FilterAge: React.FC<AgeItemsProps> = ({
               }}
             </ForLoops>
           </Box>
-          <Box
-            sx={{
-              width: "100%",
-              display: "flex",
-              justifyContent: "flex-end",
-              alignItems: "center",
-              my: theme.spacing(1),
-            }}
-          >
-            <Typography
-              variant="labelMedium"
-              sx={{
-                color: theme.palette.customGray.textDark,
-                fontWeight: theme.typography.fontWeightRegular,
-                cursor: "pointer",
-              }}
-              onClick={onClearSelectedItem}
-            >
-              Clear selection
-            </Typography>
-          </Box>
         </Box>
       )}
     </Box>

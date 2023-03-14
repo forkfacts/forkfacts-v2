@@ -1,4 +1,4 @@
-import { SearchOutlined } from "@mui/icons-material";
+import { Check, SearchOutlined } from "@mui/icons-material";
 import {
   Accordion,
   AccordionDetails,
@@ -6,12 +6,16 @@ import {
   Box,
   Button,
   Checkbox,
+  IconButton,
   InputAdornment,
   TextField,
   Typography,
   useMediaQuery,
   useTheme,
 } from "@mui/material";
+import IndeterminateCheckBoxIcon from "@mui/icons-material/IndeterminateCheckBox";
+import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
+import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import { ViewMoreButton } from "@forkfacts/components";
 import CloseIcon from "@mui/icons-material/Close";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
@@ -359,7 +363,18 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
                             color="primary"
                             checked={item.checked}
                             onClick={(event) => handleSelectItem(event, item.name, index)}
+                            checkedIcon={
+                              item.subItems.every((item3) => item3.checked === true) ? (
+                                <CheckBoxIcon color="primary" sx={{ width: theme.spacing(3) }} />
+                              ) : (
+                                <IndeterminateCheckBoxIcon
+                                  color="primary"
+                                  sx={{ width: theme.spacing(3) }}
+                                />
+                              )
+                            }
                           />
+
                           <Typography
                             variant="bodyMedium"
                             sx={{
@@ -372,7 +387,7 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
                         </Box>
                       </AccordionSummary>
                       <AccordionDetails sx={{ mt: theme.spacing(-2) }}>
-                        <ForLoops each={item.subItems.slice(0, viewMore.sub)}>
+                        <ForLoops each={item.subItems}>
                           {(item2, index2) => {
                             return (
                               <Box

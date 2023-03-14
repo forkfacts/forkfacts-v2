@@ -18,5 +18,6 @@ export function withoutDropdown<T extends Theme, U extends boolean>(theme: T, mo
     backgroundColor: theme.palette.common.white,
     borderRadius: theme.spacing(1),
     mt: theme.spacing(2),
+    ml: mobile ? theme.spacing(1) : 0,
   };
 }

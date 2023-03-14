@@ -110,7 +110,7 @@ const AllFilters = ({
                 isDropdown={false}
               />
             </Box>
-            <Box>
+            <Box sx={{ mt: theme.spacing(3) }}>
               <FilterAge
                 ageItems={ageItems}
                 onSelectAgeItem={handleSelectedAge}

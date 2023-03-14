@@ -31,7 +31,9 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ nutrition
     <Box>
       <TableContainer sx={{ overflow: "hidden" }}>
         <Table sx={{ minWidth: 650, border: "none", ml: theme.spacing(3) }}>
-          <TableHead style={{ border: "none", backgroundColor: "#FCFCFC" }}>
+          <TableHead
+            style={{ border: "none", backgroundColor: "#FCFCFC", height: theme.spacing(5) }}
+          >
             <TableRow>
               <TableCell style={{ borderBottom: "none" }}>
                 <Box
@@ -122,7 +124,7 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ nutrition
             {nutritionTableItems.map((item, index) => (
               <React.Fragment key={index}>
                 <TableRow>
-                  <TableCell style={{ borderBottom: "none" }}>
+                  <TableCell style={{ borderBottom: "1px solid #F3EFF4", padding: "8px" }}>
                     <Box
                       sx={{ display: "flex", alignItems: "center", columnGap: theme.spacing(0.5) }}
                     >
@@ -152,7 +154,7 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ nutrition
                       </Typography>
                     </Box>
                   </TableCell>
-                  <TableCell style={{ borderBottom: "none" }}>
+                  <TableCell style={{ borderBottom: "1px solid #F3EFF4", padding: "8px" }}>
                     <Typography
                       variant="titleMedium"
                       sx={{
@@ -164,7 +166,7 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ nutrition
                       {item.dailyValue}%
                     </Typography>
                   </TableCell>
-                  <TableCell style={{ borderBottom: "none" }}>
+                  <TableCell style={{ borderBottom: "1px solid #F3EFF4", padding: "8px" }}>
                     <Typography
                       variant="titleMedium"
                       sx={{
@@ -176,7 +178,7 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ nutrition
                       {item.amount}
                     </Typography>
                   </TableCell>
-                  <TableCell style={{ borderBottom: "none" }}>
+                  <TableCell style={{ borderBottom: "1px solid #F3EFF4", padding: "8px" }}>
                     <Typography
                       variant="titleMedium"
                       sx={{
@@ -194,7 +196,8 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ nutrition
                     <TableRow
                       key={content.nutrient}
                       sx={{
-                        "&:nth-of-type(even)": {
+                        height: theme.spacing(4),
+                        "&:nth-child(odd)": {
                           backgroundColor: "#FFFBFF",
                         },
                       }}

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Typography, useTheme } from "@mui/material";
+import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { blue } from "@mui/material/colors";
 import { ForLoops } from "@forkfacts/helpers";
 import { MeasurementFilterProps } from "@forkfacts/models";
@@ -9,6 +9,7 @@ const MeasurementFilter: React.FC<MeasurementFilterProps> = ({
   measurementFilterItems,
 }) => {
   const theme = useTheme();
+  const mobile = useMediaQuery(theme.breakpoints.down("md"));
   const [selectedItem, setSelectedItem] = useState<string>(measurementFilterItems[0]);
 
   const handleSelectedItem = (name: string, index: number) => {
@@ -33,7 +34,7 @@ const MeasurementFilter: React.FC<MeasurementFilterProps> = ({
                 key={index}
                 sx={{
                   width: "50%",
-                  height: theme.spacing(5),
+                  height: mobile ? theme.spacing(4) : theme.spacing(5),
                   border: selectedItem === name ? "none" : "1px solid #919094",
                   display: "flex",
                   justifyContent: "center",

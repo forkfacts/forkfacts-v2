@@ -37,8 +37,6 @@ const NutritionDetailsTab: React.FC<NutritionDetailsTabProps> = ({
   const tablet = useMediaQuery(theme.breakpoints.between("sm", "lg"));
   const [unit, setUnit] = React.useState("Cups");
 
-  console.log("tablet", tablet);
-
   const handleChange = (event: SelectChangeEvent) => {
     setUnit(event.target.value as string);
   };
@@ -91,7 +89,7 @@ const NutritionDetailsTab: React.FC<NutritionDetailsTabProps> = ({
               columnGap: mobile ? theme.spacing(1) : theme.spacing(2),
               width: mobile ? "100%" : "50%",
               justifyContent: mobile ? "space-between" : tablet ? "flex-start" : "flex-end",
-              mt: mobile ? theme.spacing(4) : tablet ? theme.spacing(5) : theme.spacing(3),
+              mt: mobile ? theme.spacing(4) : tablet ? theme.spacing(5) : 0,
             }}
           >
             <Box

@@ -48,6 +48,7 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
   const [selectedNutrient, setSelectedNutrient] = useState({
     name: "",
   });
+
   const [open, setOpen] = useState(false);
   const [name, setName] = useState<string>("");
   const [viewMore, setViewMore] = useState({
@@ -163,7 +164,7 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
       }
     });
     setFilterNutrient(results);
-  }, [selectedNutrient]);
+  }, [selectedNutrient, renderFilterNutrients]);
 
   useEffect(() => {
     const checkedNutrients = renderFilterNutrients

@@ -169,19 +169,19 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ nutrition
                   width: "25%",
                   display: "flex",
                   justifyContent: "flex-start",
-                  pl: theme.spacing(7),
+                  ml: theme.spacing(19),
                 }}
               >
                 {item.dailyValue ? (
                   <Typography
-                    variant="bodyLarge"
+                    variant="titleMedium"
                     sx={{
                       color: theme.palette.customGray.main,
-                      marginLeft: theme.spacing(4),
-                      fontWeight: theme.typography.fontWeightLight,
+                      fontWeight: theme.typography.fontWeightRegular,
+                      textAlign: "center",
                     }}
                   >
-                    {`${item.dailyValue}`}%
+                    {item.dailyValue}%
                   </Typography>
                 ) : null}
               </Box>
@@ -192,7 +192,7 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ nutrition
                   justifyContent: "center",
                   alignItems: "center",
                   textAlign: "center",
-                  pl: theme.spacing(19),
+                  ml: theme.spacing(11),
                 }}
               >
                 <Typography
@@ -264,7 +264,7 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ nutrition
                       display: "flex",
                       justifyContent: "flex-start",
                       alignItems: "flex-start",
-                      mr: theme.spacing(25),
+                      mr: theme.spacing(27.5),
                     }}
                   >
                     {content.dailyValue ? (
@@ -294,20 +294,29 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ nutrition
                       justifyContent: "center",
                       alignItems: "center",
                       textAlign: "center",
-                      pl: theme.spacing(11),
+                      pl: theme.spacing(10),
                     }}
                   >
-                    <Typography
-                      variant="bodyLarge"
+                    <Box
                       sx={{
-                        color: theme.palette.customGray.main,
-                        marginLeft: theme.spacing(1),
-                        fontWeight: theme.typography.fontWeightLight,
-                        textAlign: "right",
+                        display: "flex",
+                        justifyContent: "flex-end",
+                        alignItems: "flex-start",
+                        width: "100%",
                       }}
                     >
-                      {content.amount}
-                    </Typography>
+                      <Typography
+                        variant="bodyLarge"
+                        sx={{
+                          color: theme.palette.customGray.main,
+                          marginLeft: theme.spacing(1),
+                          fontWeight: theme.typography.fontWeightLight,
+                          textAlign: "right",
+                        }}
+                      >
+                        {content.amount}
+                      </Typography>
+                    </Box>
                   </Box>
                   <Box
                     style={{

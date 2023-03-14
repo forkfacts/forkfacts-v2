@@ -32,8 +32,8 @@ const NutritionMobileTable: React.FC<NutritionMobileTableProps> = ({ nutritionTa
               p: theme.spacing(2),
               boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
               borderRadius: theme.spacing(1),
+              height: "100%",
             }}
-            boxShadow={1}
           >
             <Box>
               <Typography

@@ -40,7 +40,7 @@ const NutritionFilters: React.FC<NutritionFilterProps> = ({
         display: "flex",
         alignItems: "center",
         width: "100%",
-        columnGap: mobile ? 0 : theme.spacing(2),
+        columnGap: mobile ? theme.spacing(1) : theme.spacing(2),
         justifyContent: mobile ? "space-between" : "normal",
       }}
     >

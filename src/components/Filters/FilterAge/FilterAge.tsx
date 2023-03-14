@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Checkbox from "@mui/material/Checkbox";
 import { Box, Button, Typography, useMediaQuery, useTheme } from "@mui/material";
+import DoneIcon from "@mui/icons-material/Done";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
 import CloseIcon from "@mui/icons-material/Close";
@@ -26,19 +27,12 @@ const FilterAge: React.FC<AgeItemsProps> = ({
   const handleSelectAge = (item: ageItem, index: number) => {
     let age = `${item.start + "-" + item.end} ${item.unit}`;
     if (!item.start) {
-      age = `${item.end} ${item.unit}`;
+      age = `>70 years`;
     } else {
       age = `${item.start + "-" + item.end} ${item.unit}`;
     }
     setSelectedAgeIndex(index);
     setSelectedItem(age);
-  };
-
-  const onClearSelectedItem = () => {
-    setSelectedAgeIndex(null);
-    onSelectAgeItem("");
-    setSelectedItem("");
-    setOpen(false);
   };
 
   useEffect(() => {
@@ -71,8 +65,21 @@ const FilterAge: React.FC<AgeItemsProps> = ({
             sx={{
               color: theme.palette.customGray.textDark,
               fontWeight: theme.typography.fontWeightRegular,
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
             }}
           >
+            {selectedItem && (
+              <DoneIcon
+                sx={{
+                  color: theme.palette.customGray.main,
+                  width: theme.spacing(2.25),
+                  height: theme.spacing(2.25),
+                  mr: theme.spacing(1.5),
+                }}
+              />
+            )}
             {selectedItem ? selectedItem : "Age"}
           </Typography>
           {open ? (

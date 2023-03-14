@@ -470,7 +470,7 @@ const Template: ComponentStory<typeof NutritionDetailsTab> = (args) => {
   return (
     <Box
       sx={{
-        width: { sm: "100%", md: "80%" },
+        width: { sm: "100%", md: "70%" },
         m: "auto",
       }}
     >

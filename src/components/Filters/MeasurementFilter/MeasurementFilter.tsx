@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
-import { blue } from "@mui/material/colors";
+import { Box, useMediaQuery, useTheme } from "@mui/material";
 import { ForLoops } from "@forkfacts/helpers";
 import { MeasurementFilterProps } from "@forkfacts/models";
 

@@ -342,6 +342,17 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ nutrition
           </React.Fragment>
         ))}
       </Box>
+      <Box sx={{ display: "flex", justifyContent: "flex-end", my: theme.spacing(7) }}>
+        <Typography
+          variant="labelMedium"
+          sx={{
+            fontWeight: theme.typography.fontWeightRegular,
+            color: theme.palette.customGray.textDark,
+          }}
+        >
+          Source: USDA
+        </Typography>
+      </Box>
     </Box>
   );
 };

@@ -18,6 +18,9 @@ declare module "@mui/material/styles/createPalette" {
       surface4: string;
       surface5: string;
     };
+    iconColors: {
+      main: string;
+    };
     customGray: {
       light: string;
       main: string;
@@ -53,6 +56,9 @@ declare module "@mui/material/styles/createPalette" {
       textBlack: string;
       surfaceLight: string;
       switchColor: string;
+    };
+    iconColors: {
+      main: string;
     };
   }
 }

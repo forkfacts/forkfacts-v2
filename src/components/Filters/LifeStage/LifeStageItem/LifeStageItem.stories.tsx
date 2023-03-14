@@ -1,7 +1,7 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import ChildCareOutlinedIcon from "@mui/icons-material/ChildCareOutlined";
 import { LifeStageItem } from "@forkfacts/components";
+import { Baby, Kids } from "@forkfacts/icons";
 
 export default {
   title: "Components/Filters/LifeStage",
@@ -14,12 +14,12 @@ export const selectedItem = Template.bind({});
 
 selectedItem.args = {
   item: {
-    name: "Infant",
-    icon: ChildCareOutlinedIcon,
+    name: "Children",
+    icon: Kids,
   },
   handleSelectedItem: (name: string, index: number) => {},
-  index: 0,
-  selectedItem: "Infant",
+  index: 1,
+  selectedItem: "Children",
 };
 
 selectedItem.storyName = "selectedItem";
@@ -29,11 +29,11 @@ export const unSelectedItem = Template.bind({});
 unSelectedItem.args = {
   item: {
     name: "Infant",
-    icon: ChildCareOutlinedIcon,
+    icon: Baby,
   },
   handleSelectedItem: (name: string, index: number) => {},
   index: 0,
-  selectedItem: "Children",
+  selectedItem: "Infant",
 };
 
 unSelectedItem.storyName = "unSelectedItem";

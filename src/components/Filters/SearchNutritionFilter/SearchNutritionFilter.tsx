@@ -1,4 +1,4 @@
-import { Check, SearchOutlined } from "@mui/icons-material";
+import { SearchOutlined } from "@mui/icons-material";
 import {
   Accordion,
   AccordionDetails,
@@ -6,7 +6,6 @@ import {
   Box,
   Button,
   Checkbox,
-  IconButton,
   InputAdornment,
   TextField,
   Typography,
@@ -14,13 +13,12 @@ import {
   useTheme,
 } from "@mui/material";
 import IndeterminateCheckBoxIcon from "@mui/icons-material/IndeterminateCheckBox";
-import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import { ViewMoreButton } from "@forkfacts/components";
 import CloseIcon from "@mui/icons-material/Close";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { ForLoops } from "@forkfacts/helpers";
 import { SearchNutritionFilterProps, SearchNutritionFilterItem } from "@forkfacts/models";
 import { withDropdown, withoutDropdown } from "./searchNutrientStyles";
@@ -33,6 +31,7 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
 }) => {
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.down("md"));
+  const ref = useRef<HTMLDivElement>(null);
   const newNutrients: SearchNutritionFilterItem[] = [...nutritionFilterItems].map((item) => {
     return {
       name: item.name,
@@ -59,13 +58,27 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
     name: "",
     length: 0,
   });
-  const renderFilterNutrients: SearchNutritionFilterItem[] = filteredNutrient.filter((item) => {
-    if (!name) return filteredNutrient;
-    if (item.name.toLowerCase().includes(name.toLowerCase())) {
-      return item;
-    }
-  });
-
+  const renderFilterNutrients: SearchNutritionFilterItem[] = filteredNutrient.reduce(
+    (acc: any, item: any) => {
+      if (!name || name === "") {
+        acc.push(item);
+        return acc;
+      }
+      const subSearch = item.subItems.filter((subItem: any) =>
+        subItem.name.toLowerCase().includes(name.toLowerCase())
+      );
+      if (item.name.toLowerCase().includes(name.toLowerCase()) || subSearch.length > 0) {
+        const newItem = {
+          name: item.name,
+          checked: item.checked,
+          subItems: subSearch,
+        };
+        acc.push(newItem);
+      }
+      return acc;
+    },
+    []
+  );
   const onHandleSelectedItem = (name: string, index: number) => {
     let results = renderFilterNutrients.map((item) => {
       if (item.name === name) {
@@ -206,8 +219,21 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
     setFilterNutrient(clearNutrients);
   };
 
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (ref.current && !ref.current.contains(event.target as Node)) {
+        setOpen(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [ref]);
+
   return (
-    <Box sx={{ position: "relative" }}>
+    <Box sx={{ position: "relative" }} ref={ref}>
       {isDropdown && (
         <Button
           variant={firstSelectedItem.name ? "text" : "outlined"}
@@ -241,9 +267,9 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
               : "Nutrients"}
           </Typography>
           {open ? (
-            <ArrowDropUpIcon sx={{ color: theme.palette.customGray.textDark }} />
+            <ArrowDropUpIcon sx={{ color: theme.palette.iconColors.main }} />
           ) : (
-            <ArrowDropDownIcon sx={{ color: theme.palette.customGray.textDark }} />
+            <ArrowDropDownIcon sx={{ color: theme.palette.iconColors.main }} />
           )}
         </Button>
       )}
@@ -431,10 +457,10 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
             ) : (
               <Box sx={{ textAlign: "center", mt: theme.spacing(2.5) }}>
                 <Typography
+                  variant="labelMedium"
                   sx={{
                     textTransform: "capitalize",
-                    color: theme.palette.grey[600],
-                    letterSpacing: theme.spacing(0.0125),
+                    color: theme.palette.customGray.main,
                   }}
                 >
                   No matching nutrient found

@@ -76,9 +76,9 @@ const LifeStage: React.FC<LifeStageProps> = ({
             {selectedItem ? selectedItem : "Life stage"}
           </Typography>
           {open ? (
-            <ArrowDropUpIcon sx={{ color: theme.palette.customGray.main }} />
+            <ArrowDropUpIcon sx={{ color: theme.palette.iconColors.main }} />
           ) : (
-            <ArrowDropDownIcon sx={{ color: theme.palette.customGray.main }} />
+            <ArrowDropDownIcon sx={{ color: theme.palette.iconColors.main }} />
           )}
         </Button>
       )}

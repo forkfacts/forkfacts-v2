@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Checkbox from "@mui/material/Checkbox";
 import { Box, Button, Typography, useMediaQuery, useTheme } from "@mui/material";
 import DoneIcon from "@mui/icons-material/Done";
@@ -20,6 +20,7 @@ const FilterAge: React.FC<AgeItemsProps> = ({
 }) => {
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.down("md"));
+  const ref = useRef<HTMLDivElement>(null);
   const [selectedAgeIndex, setSelectedAgeIndex] = useState<number | null>(2);
   const [selectedItem, setSelectedItem] = useState("19 -30 Years");
   const [open, setOpen] = useState(false);
@@ -39,10 +40,21 @@ const FilterAge: React.FC<AgeItemsProps> = ({
     onSelectAgeItem(selectedItem);
   }, [selectedItem]);
 
-  console.log("selectedItem", selectedItem);
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (ref.current && !ref.current.contains(event.target as Node)) {
+        setOpen(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [ref]);
 
   return (
-    <Box sx={{ position: "relative" }}>
+    <Box sx={{ position: "relative" }} ref={ref}>
       {isDropdown && (
         <Button
           variant={selectedItem ? "text" : "outlined"}
@@ -73,7 +85,7 @@ const FilterAge: React.FC<AgeItemsProps> = ({
             {selectedItem && (
               <DoneIcon
                 sx={{
-                  color: theme.palette.customGray.main,
+                  color: theme.palette.iconColors.main,
                   width: theme.spacing(2.25),
                   height: theme.spacing(2.25),
                   mr: theme.spacing(1.5),
@@ -83,9 +95,9 @@ const FilterAge: React.FC<AgeItemsProps> = ({
             {selectedItem ? selectedItem : "Age"}
           </Typography>
           {open ? (
-            <ArrowDropUpIcon sx={{ color: theme.palette.customGray.main }} />
+            <ArrowDropUpIcon sx={{ color: theme.palette.iconColors.main }} />
           ) : (
-            <ArrowDropDownIcon sx={{ color: theme.palette.customGray.main }} />
+            <ArrowDropDownIcon sx={{ color: theme.palette.iconColors.main }} />
           )}
         </Button>
       )}

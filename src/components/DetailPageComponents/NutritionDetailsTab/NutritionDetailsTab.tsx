@@ -33,8 +33,11 @@ const NutritionDetailsTab: React.FC<NutritionDetailsTabProps> = ({
   units,
 }) => {
   const theme = useTheme();
-  const mobile = useMediaQuery(theme.breakpoints.down("md"));
+  const mobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const tablet = useMediaQuery(theme.breakpoints.between("sm", "lg"));
   const [unit, setUnit] = React.useState("Cups");
+
+  console.log("tablet", tablet);
 
   const handleChange = (event: SelectChangeEvent) => {
     setUnit(event.target.value as string);
@@ -59,6 +62,7 @@ const NutritionDetailsTab: React.FC<NutritionDetailsTabProps> = ({
             justifyContent: "space-between",
             alignItems: "center",
             flexWrap: "wrap",
+            columnGap: mobile ? 0 : tablet ? theme.spacing(10) : 0,
           }}
         >
           <Box
@@ -66,7 +70,7 @@ const NutritionDetailsTab: React.FC<NutritionDetailsTabProps> = ({
               display: "flex",
               alignItems: "center",
               flexWrap: "wrap",
-              columnGap: mobile ? 0 : theme.spacing(3),
+              columnGap: mobile || tablet ? 0 : theme.spacing(3),
               width: mobile ? "100%" : "50%",
             }}
           >
@@ -83,11 +87,11 @@ const NutritionDetailsTab: React.FC<NutritionDetailsTabProps> = ({
             sx={{
               display: "flex",
               alignItems: "center",
-              flexWrap: mobile ? "nowrap" : "wrap",
+              flexWrap: mobile || tablet ? "nowrap" : "wrap",
               columnGap: mobile ? theme.spacing(1) : theme.spacing(2),
               width: mobile ? "100%" : "50%",
-              justifyContent: mobile ? "space-between" : "flex-end",
-              mt: mobile ? theme.spacing(3) : 0,
+              justifyContent: mobile ? "space-between" : tablet ? "flex-start" : "flex-end",
+              mt: mobile ? theme.spacing(4) : tablet ? theme.spacing(5) : theme.spacing(3),
             }}
           >
             <Box
@@ -151,10 +155,10 @@ const NutritionDetailsTab: React.FC<NutritionDetailsTabProps> = ({
         </Box>
       </Box>
       <Box sx={{ mt: mobile ? theme.spacing(3) : theme.spacing(8) }}>
-        {!mobile ? (
-          <NutritionDesktopTable nutritionTableItems={nutritionTableItems} />
-        ) : (
+        {mobile || tablet ? (
           <NutritionMobileTable nutritionTableItems={nutritionTableItems} />
+        ) : (
+          <NutritionDesktopTable nutritionTableItems={nutritionTableItems} />
         )}
       </Box>
     </Box>

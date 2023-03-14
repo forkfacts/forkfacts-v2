@@ -34,7 +34,7 @@ const nutritionFilterItems: SearchNutritionFilterItem[] = [
     checked: false,
   },
   {
-    name: "Vitamin",
+    name: "Vitamins",
     subItems: [
       { name: "Vitamin A", checked: false },
       { name: "Vitamin B1", checked: false },

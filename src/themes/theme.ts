@@ -39,6 +39,9 @@ export const customTheme = createTheme({
     background: {
       default: "#FFFFFF",
     },
+    iconColors: {
+      main: "#1A1A2C",
+    },
     customGray: {
       switchColor: "#6660FF",
       light: "#E5E1E6",

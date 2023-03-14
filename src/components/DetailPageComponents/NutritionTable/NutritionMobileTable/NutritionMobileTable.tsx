@@ -173,6 +173,8 @@ const NutritionMobileTable: React.FC<NutritionMobileTableProps> = ({ nutritionTa
                           alignItems: "center",
                           my: theme.spacing(2),
                           borderBottom: "1px solid #FCF8FD",
+                          pb: theme.spacing(0.5),
+                          height: theme.spacing(3),
                         }}
                       >
                         <Typography

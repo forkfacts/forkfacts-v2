@@ -72,10 +72,10 @@ export interface compareTableItem {
 
 export interface NutritionTableItem {
   nutrient: string;
-  dailyValue: number;
-  amount: string;
+  dailyValue: number | null;
+  amount: string | null;
   rdi: {
-    value: number;
+    value: number | null;
     weight: string;
   };
   nutrientContents: Array<{

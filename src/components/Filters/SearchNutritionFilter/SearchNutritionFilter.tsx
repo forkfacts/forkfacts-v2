@@ -18,7 +18,7 @@ import { ViewMoreButton } from "@forkfacts/components";
 import CloseIcon from "@mui/icons-material/Close";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { ForLoops } from "@forkfacts/helpers";
 import { SearchNutritionFilterProps, SearchNutritionFilterItem } from "@forkfacts/models";
 import { withDropdown, withoutDropdown } from "./searchNutrientStyles";
@@ -32,6 +32,7 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.down("md"));
   const ref = useRef<HTMLDivElement>(null);
+
   const newNutrients: SearchNutritionFilterItem[] = [...nutritionFilterItems].map((item) => {
     return {
       name: item.name,
@@ -48,7 +49,7 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
   const [selectedNutrient, setSelectedNutrient] = useState({
     name: "",
   });
-
+  const [selectedItems, setSelectedItems] = useState<SearchNutritionFilterItem[]>([]);
   const [open, setOpen] = useState(false);
   const [name, setName] = useState<string>("");
   const [viewMore, setViewMore] = useState({
@@ -59,87 +60,69 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
     name: "",
     length: 0,
   });
-  const renderFilterNutrients: SearchNutritionFilterItem[] = filteredNutrient.reduce(
-    (acc: any, item: any) => {
-      if (!name || name === "") {
-        acc.push(item);
-        return acc;
-      }
-      const subSearch = item.subItems.filter((subItem: any) =>
-        subItem.name.toLowerCase().includes(name.toLowerCase())
-      );
-      if (item.name.toLowerCase().includes(name.toLowerCase()) || subSearch.length > 0) {
-        const newItem = {
-          name: item.name,
-          checked: item.checked,
-          subItems: subSearch,
-        };
-        acc.push(newItem);
-      }
-      return acc;
-    },
-    []
-  );
-  const onHandleSelectedItem = (name: string, index: number) => {
-    let results = renderFilterNutrients.map((item) => {
-      if (item.name === name) {
-        if (!item.checked) {
-          let newItem = {
-            ...item,
-            name,
-            checked: true,
-            subItems: item.subItems.map((item2, i) => {
-              let newItem = { ...item2, checked: true };
-              return newItem;
-            }),
-          };
-          return newItem;
-        } else {
-          let newItem = {
-            ...item,
-            name,
-            checked: false,
-            subItems: item.subItems.map((item2, i) => {
-              let newItem = { ...item2, checked: false };
-              return newItem;
-            }),
-          };
-          return newItem;
-        }
-      } else {
-        return item;
-      }
-    });
-    return setFilterNutrient(results);
-  };
 
+  const renderFilterNutrients = useCallback((): SearchNutritionFilterItem[] => {
+    let filteredItems = [...filteredNutrient].slice();
+    if (name && name !== "") {
+      filteredItems = filteredItems.reduce((acc: any, item: any) => {
+        const subSearch = item.subItems.filter((subItem: any) =>
+          subItem.name.toLowerCase().includes(name.toLowerCase())
+        );
+        if (item.name.toLowerCase().includes(name.toLowerCase()) || subSearch.length > 0) {
+          const newItem = {
+            name: item.name,
+            checked: item.checked,
+            subItems: subSearch,
+          };
+          acc.push(newItem);
+        }
+        return acc;
+      }, []);
+    }
+
+    return filteredItems;
+  }, [name, filteredNutrient, selectedItems, selectedNutrient, selectedNutrient]);
+
+  const onHandleSelectedItem = useCallback(
+    (name: string, index: number) => {
+      const itemIndex = filteredNutrient.findIndex((item) => item.name === name);
+      if (itemIndex !== -1) {
+        const updatedItem = {
+          ...filteredNutrient[itemIndex],
+          checked: !filteredNutrient[itemIndex].checked,
+          subItems: filteredNutrient[itemIndex].subItems.map((subItem) => ({
+            ...subItem,
+            checked: !filteredNutrient[itemIndex].checked,
+          })),
+        };
+        const updatedNutrientList = Array.from(filteredNutrient);
+        updatedNutrientList.splice(itemIndex, 1, updatedItem);
+        setFilterNutrient(updatedNutrientList);
+      }
+    },
+    [filteredNutrient]
+  );
   const onSelectSubItem = (name1: string, name2: string) => {
     setSelectedNutrient({
       name: name1,
     });
-    let results = renderFilterNutrients.map((item, index) => {
-      if (item.name === name1) {
+    const updatedNutrients = filteredNutrient.map((nutrient) => {
+      if (nutrient.name === name1) {
+        const updatedSubItems = nutrient.subItems.map((subItem) => {
+          if (subItem.name === name2) {
+            return { ...subItem, checked: !subItem.checked };
+          }
+          return subItem;
+        });
         return {
-          ...item,
-          subItems: item.subItems.map((item2, i) => {
-            if (item2.name === name2) {
-              if (!item2.checked) {
-                let newItem = { ...item2, checked: true };
-                return newItem;
-              } else {
-                let newItem = { ...item2, checked: false };
-                return newItem;
-              }
-            } else {
-              return item2;
-            }
-          }),
+          ...nutrient,
+          subItems: updatedSubItems,
+          checked: updatedSubItems.some((si) => si.checked),
         };
-      } else {
-        return item;
       }
+      return nutrient;
     });
-    return setFilterNutrient(results);
+    setFilterNutrient(updatedNutrients);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => setName(e.target.value);
@@ -154,20 +137,7 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
   };
 
   useEffect(() => {
-    let results = renderFilterNutrients.map((item, index) => {
-      if (renderFilterNutrients[index].name === selectedNutrient.name) {
-        const checked = item.subItems.some((i) => i.checked === true);
-        let newItem = { ...item, checked: checked };
-        return newItem;
-      } else {
-        return item;
-      }
-    });
-    setFilterNutrient(results);
-  }, [selectedNutrient, renderFilterNutrients]);
-
-  useEffect(() => {
-    const checkedNutrients = renderFilterNutrients
+    const checkedNutrients = renderFilterNutrients()
       .copyWithin(0, renderFilterNutrients.length)
       .map((item) => {
         if (item.checked) {
@@ -363,9 +333,21 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
               />
             </Box>
           </Box>
-          <Box>
-            {renderFilterNutrients.length ? (
-              <ForLoops each={renderFilterNutrients.slice(0, viewMore.main)}>
+          <Box
+            sx={{
+              width: "100%",
+              maxHeight: "500px",
+              overflowY: "auto",
+              "&::-webkit-scrollbar": {
+                width: "8px",
+              },
+              "&::-webkit-scrollbar-thumb": {
+                backgroundColor: isDropdown ? theme.palette.primary.main : "",
+              },
+            }}
+          >
+            {renderFilterNutrients().length ? (
+              <ForLoops each={renderFilterNutrients().slice(0, viewMore.main)}>
                 {(item, index) => {
                   return (
                     <Accordion

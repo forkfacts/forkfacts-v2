@@ -13,7 +13,8 @@ const NutritionFilters: React.FC<NutritionFilterProps> = ({
   onSelectNutritionFilterItem,
 }) => {
   const theme = useTheme();
-  const mobile = useMediaQuery(theme.breakpoints.down("md"));
+  const mobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const tablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
   const [selectedAge, setSelectedAge] = useState<ageItem>({} as ageItem);
   const [selectedLifeStage, setLifeStage] = useState("");
   const [selectedNutritionFilterItems, setSelectedNutritionFilterItems] = useState<
@@ -40,8 +41,15 @@ const NutritionFilters: React.FC<NutritionFilterProps> = ({
         display: "flex",
         alignItems: "center",
         width: "100%",
+        pr: mobile ? theme.spacing(3) : 0,
         columnGap: mobile ? theme.spacing(1) : theme.spacing(2),
-        justifyContent: mobile ? "space-between" : "normal",
+        justifyContent: mobile ? "space-between" : tablet ? "flex-start" : "normal",
+        overflowX: "auto",
+        scrollbarWidth: "none",
+        "&::-webkit-scrollbar": {
+          width: "0px",
+          background: "transparent",
+        },
       }}
     >
       <AllFilters

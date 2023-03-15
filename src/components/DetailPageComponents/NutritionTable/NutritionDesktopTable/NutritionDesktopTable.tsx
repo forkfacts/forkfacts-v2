@@ -1,4 +1,4 @@
-import { Box, Typography, useTheme } from "@mui/material";
+import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import { CompareSorting } from "@forkfacts/icons";
@@ -7,6 +7,7 @@ import { NutritionDesktopTableProps } from "@forkfacts/models";
 
 const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ nutritionTableItems }) => {
   const theme = useTheme();
+  const tablet = useMediaQuery(theme.breakpoints.only("lg"));
   const [collapsedRows, setCollapsedRows] = useState<any>([]);
   const toggleCollapse = (nutrient: any) => {
     if (collapsedRows.includes(nutrient)) {
@@ -15,10 +16,13 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ nutrition
       setCollapsedRows([...collapsedRows, nutrient]);
     }
   };
-
   const isCollapsed = (nutrient: any) => collapsedRows.includes(nutrient);
   return (
-    <Box sx={{ width: "1128px" }}>
+    <Box
+      sx={{
+        maxWidth: "1128px",
+      }}
+    >
       <Box
         sx={{
           border: "none",
@@ -260,11 +264,10 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ nutrition
                   </Box>
                   <Box
                     sx={{
-                      width: "100px",
+                      width: "25%",
                       display: "flex",
                       justifyContent: "flex-start",
                       alignItems: "flex-start",
-                      mr: theme.spacing(27.5),
                     }}
                   >
                     {content.dailyValue ? (
@@ -274,6 +277,7 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ nutrition
                           justifyContent: "flex-end",
                           alignItems: "flex-start",
                           width: "100%",
+                          mr: tablet ? theme.spacing(10) : theme.spacing(15),
                         }}
                       >
                         <Typography
@@ -291,10 +295,11 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ nutrition
                   </Box>
                   <Box
                     sx={{
+                      width: "25%",
                       justifyContent: "center",
                       alignItems: "center",
                       textAlign: "center",
-                      pl: theme.spacing(10),
+                      mr: tablet ? theme.spacing(0.5) : theme.spacing(3),
                     }}
                   >
                     <Box

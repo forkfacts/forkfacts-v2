@@ -2,10 +2,7 @@ import React, { useState } from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import { NutritionFilters } from "@forkfacts/components";
-import ChildCareOutlinedIcon from "@mui/icons-material/ChildCareOutlined";
-import EscalatorWarningOutlinedIcon from "@mui/icons-material/EscalatorWarningOutlined";
-import Person2OutlinedIcon from "@mui/icons-material/Person2Outlined";
-import PregnantWomanOutlinedIcon from "@mui/icons-material/PregnantWomanOutlined";
+import { Baby, Kids, Lactation, Male, PregnantWoman, Woman } from "@forkfacts/icons";
 import { ageItem, lifeStageItem, SearchNutritionFilterItem } from "@forkfacts/models";
 
 export default {
@@ -20,28 +17,28 @@ export default {
 
 const lifeStageItems: lifeStageItem[] = [
   {
-    name: "Infant",
-    icon: ChildCareOutlinedIcon,
-  },
-  {
     name: "Children",
-    icon: EscalatorWarningOutlinedIcon,
+    icon: Kids,
   },
   {
-    name: "Male",
-    icon: PregnantWomanOutlinedIcon,
+    name: "Infant",
+    icon: Baby,
   },
   {
     name: "Female",
-    icon: EscalatorWarningOutlinedIcon,
+    icon: Woman,
+  },
+  {
+    name: "Male",
+    icon: Male,
   },
   {
     name: "Pregnant",
-    icon: PregnantWomanOutlinedIcon,
+    icon: PregnantWoman,
   },
   {
     name: "Lactation",
-    icon: Person2OutlinedIcon,
+    icon: Lactation,
   },
 ];
 
@@ -84,16 +81,13 @@ const nutritionFilterItems: SearchNutritionFilterItem[] = [
     checked: false,
   },
   {
-    name: "Vitamin",
+    name: "Vitamins",
     subItems: [
       { name: "Vitamin A", checked: false },
       { name: "Vitamin B1", checked: false },
       { name: "Vitamin B2", checked: false },
       { name: "Vitamin B3", checked: false },
       { name: "Vitamin B4", checked: false },
-      { name: "Vitamin C", checked: false },
-      { name: "Vitamin D", checked: false },
-      { name: "Vitamin E", checked: false },
     ],
     checked: false,
   },

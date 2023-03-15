@@ -8,7 +8,7 @@ const MeasurementFilter: React.FC<MeasurementFilterProps> = ({
   measurementFilterItems,
 }) => {
   const theme = useTheme();
-  const mobile = useMediaQuery(theme.breakpoints.down("md"));
+  const mobile = useMediaQuery(theme.breakpoints.down("sm"));
   const [selectedItem, setSelectedItem] = useState<string>(measurementFilterItems[0]);
 
   const handleSelectedItem = (name: string, index: number) => {

@@ -117,7 +117,7 @@ const nutritionFilterItems: SearchNutritionFilterItem[] = [
   { name: "Fiber", subItems: [], checked: false },
 ];
 
-const units = ["Plates", "Cups", "Tea spoon"];
+const units = ["Plates", "Cups", "Spoon"];
 
 const nutritionTableItems: NutritionTableItem[] = [
   {
@@ -470,7 +470,7 @@ const Template: ComponentStory<typeof NutritionDetailsTab> = (args) => {
   return (
     <Box
       sx={{
-        width: { sm: "100%", md: "70%" },
+        width: { sm: "100%", md: "70%", lg: "70%" },
         m: "auto",
       }}
     >

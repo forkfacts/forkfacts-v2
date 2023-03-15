@@ -88,7 +88,7 @@ const FilterAge: React.FC<AgeItemsProps> = ({
                   color: theme.palette.iconColors.main,
                   width: theme.spacing(2.25),
                   height: theme.spacing(2.25),
-                  mr: theme.spacing(1.5),
+                  mr: theme.spacing(0.5),
                 }}
               />
             )}

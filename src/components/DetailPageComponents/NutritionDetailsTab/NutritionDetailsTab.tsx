@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   NutritionSummary,
   NutritionFilters,
@@ -6,6 +6,8 @@ import {
   NutritionDesktopTable,
   NutritionMobileTable,
 } from "@forkfacts/components";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import { NutritionDetailsTabProps } from "@forkfacts/models";
 import {
   Box,
@@ -16,6 +18,8 @@ import {
   MenuItem,
   TextField,
   useMediaQuery,
+  Button,
+  Typography,
 } from "@mui/material";
 
 const NutritionDetailsTab: React.FC<NutritionDetailsTabProps> = ({
@@ -34,119 +38,37 @@ const NutritionDetailsTab: React.FC<NutritionDetailsTabProps> = ({
 }) => {
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.down("sm"));
-  const tablet = useMediaQuery(theme.breakpoints.between("sm", "lg"));
-  const [unit, setUnit] = React.useState("Cups");
-
-  const handleChange = (event: SelectChangeEvent) => {
-    setUnit(event.target.value as string);
-  };
-
-  useEffect(() => {
-    onSelectUnit(unit);
-  }, [unit]);
+  const tablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
 
   return (
-    <Box>
+    <Box sx={{ overflowX: "hidden" }}>
       <Box
         sx={{
           display: "flex",
-          flexDirection: mobile ? "column-reverse" : "column",
+          flexDirection: mobile || tablet ? "column-reverse" : "column",
           rowGap: mobile ? theme.spacing(6) : theme.spacing(6),
         }}
       >
         <Box
           sx={{
             display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            flexWrap: "wrap",
-            columnGap: mobile ? 0 : tablet ? theme.spacing(10) : 0,
+            flexDirection: mobile || tablet ? "column" : "row",
           }}
         >
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              flexWrap: "wrap",
-              columnGap: mobile || tablet ? 0 : theme.spacing(3),
-              width: mobile ? "100%" : "50%",
-            }}
-          >
-            <NutritionFilters
-              lifeStageItems={lifeStageItems}
-              onSelectAgeItem={onSelectAgeItem}
-              ageItems={ageItems}
-              onSelectLifeStageItem={onSelectLifeStageItem}
-              nutritionFilterItems={nutritionFilterItems}
-              onSelectNutritionFilterItem={onSelectNutritionFilterItem}
-            />
-          </Box>
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              flexWrap: mobile || tablet ? "nowrap" : "wrap",
-              columnGap: mobile ? theme.spacing(1) : theme.spacing(2),
-              width: mobile ? "100%" : "50%",
-              justifyContent: mobile ? "space-between" : tablet ? "flex-start" : "flex-end",
-              mt: mobile ? theme.spacing(4) : tablet ? theme.spacing(5) : 0,
-            }}
-          >
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "space-between",
-                width: "auto",
-                columnGap: theme.spacing(1),
-              }}
-            >
-              <TextField
-                id="outlined-basic"
-                variant="outlined"
-                defaultValue={2}
-                sx={{
-                  "& .MuiInputBase-root": {
-                    height: mobile ? theme.spacing(4) : theme.spacing(5),
-                    color: theme.palette.customGray.textDark,
-                    fontWeight: theme.typography.fontWeightLight,
-                    lineHeight: "16px",
-                    letterSpacing: "0.4px",
-                  },
-                  "& .MuiInputBase-input": {
-                    textAlign: "center",
-                    width: mobile ? "50px" : "78px",
-                  },
-                }}
-              />
-              <FormControl fullWidth>
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  value={unit}
-                  onChange={handleChange}
-                  sx={{
-                    height: mobile ? theme.spacing(4) : theme.spacing(5),
-                    color: theme.palette.customGray.textDark,
-                    fontWeight: theme.typography.fontWeightLight,
-                  }}
-                >
-                  {units.map((item, index) => {
-                    return (
-                      <MenuItem value={item} key={index}>
-                        {item}
-                      </MenuItem>
-                    );
-                  })}
-                </Select>
-              </FormControl>
-            </Box>
-            <Box sx={{ pr: mobile ? 0 : theme.spacing(1) }}>
-              <MeasurementFilter
-                measurementFilterItems={measurementFilterItems}
-                onSelectMeasurementItem={onSelectMeasurementItem}
-              />
-            </Box>
-          </Box>
+          <NutritionFilters
+            lifeStageItems={lifeStageItems}
+            onSelectAgeItem={onSelectAgeItem}
+            ageItems={ageItems}
+            onSelectLifeStageItem={onSelectLifeStageItem}
+            nutritionFilterItems={nutritionFilterItems}
+            onSelectNutritionFilterItem={onSelectNutritionFilterItem}
+          />
+          <NutritionDetailsRightComp
+            units={units}
+            onSelectMeasurementItem={onSelectMeasurementItem}
+            measurementFilterItems={measurementFilterItems}
+            onSelectUnit={onSelectUnit}
+          />
         </Box>
         <Box sx={{ pr: theme.spacing(1.5) }}>
           <NutritionSummary nutritionSummaryItems={nutritionSummaryItems} />
@@ -156,7 +78,9 @@ const NutritionDetailsTab: React.FC<NutritionDetailsTabProps> = ({
         {mobile || tablet ? (
           <NutritionMobileTable nutritionTableItems={nutritionTableItems} />
         ) : (
-          <NutritionDesktopTable nutritionTableItems={nutritionTableItems} />
+          <Box sx={{ overflowX: "hidden" }}>
+            <NutritionDesktopTable nutritionTableItems={nutritionTableItems} />
+          </Box>
         )}
       </Box>
     </Box>
@@ -164,3 +88,177 @@ const NutritionDetailsTab: React.FC<NutritionDetailsTabProps> = ({
 };
 
 export default NutritionDetailsTab;
+
+interface NutritionDetailsRightCompProps {
+  onSelectUnit: any;
+  onSelectMeasurementItem: any;
+  measurementFilterItems: any;
+  units: any;
+}
+
+export const NutritionDetailsRightComp: React.FC<NutritionDetailsRightCompProps> = ({
+  onSelectUnit,
+  onSelectMeasurementItem,
+  measurementFilterItems,
+  units,
+}) => {
+  const theme = useTheme();
+  const ref = useRef<HTMLDivElement>(null);
+  const mobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const tablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
+  const [unit, setUnit] = React.useState("Cups");
+  const [open, setOpen] = useState(false);
+
+  const handleChange = (name: string) => {
+    setUnit(name);
+  };
+
+  useEffect(() => {
+    onSelectUnit(unit);
+  }, [unit]);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (ref.current && !ref.current.contains(event.target as Node)) {
+        setOpen(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [ref]);
+
+  return (
+    <Box
+      ref={ref}
+      sx={{
+        display: "flex",
+        alignItems: "center",
+        flexWrap: mobile || tablet ? "nowrap" : "wrap",
+        columnGap: mobile || tablet ? theme.spacing(1) : theme.spacing(2),
+        width: mobile || tablet ? "100%" : "70%",
+        justifyContent: mobile ? "space-between" : tablet ? "flex-start" : "flex-end",
+        mt: mobile || tablet ? theme.spacing(3) : 0,
+      }}
+    >
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          width: "auto",
+          columnGap: theme.spacing(1),
+        }}
+      >
+        <TextField
+          id="outlined-basic"
+          variant="outlined"
+          defaultValue={2}
+          sx={{
+            "& .MuiInputBase-root": {
+              height: mobile ? theme.spacing(4) : theme.spacing(5),
+              color: theme.palette.customGray.textDark,
+              fontWeight: theme.typography.fontWeightLight,
+              lineHeight: "16px",
+              letterSpacing: "0.4px",
+              border: "1px solid #787680",
+            },
+            "& .MuiInputBase-input": {
+              textAlign: "center",
+              width: mobile ? "50px" : "78px",
+            },
+          }}
+        />
+        <Box>
+          <Box
+            onClick={() => setOpen(!open)}
+            sx={{
+              textTransform: "capitalize",
+              whiteSpace: "nowrap",
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              px: theme.spacing(1),
+              borderRadius: theme.spacing(0.5),
+              border: "1px solid #787680",
+              height: mobile ? theme.spacing(4) : theme.spacing(5),
+              width: theme.spacing(16.375),
+              cursor: "pointer",
+            }}
+          >
+            <Typography
+              variant="labelLarge"
+              sx={{
+                color: theme.palette.customGray.textDark,
+                fontWeight: theme.typography.fontWeightRegular,
+              }}
+            >
+              {unit}
+            </Typography>
+            {open ? (
+              <ArrowDropUpIcon sx={{ color: theme.palette.customGray.textBlack }} />
+            ) : (
+              <ArrowDropDownIcon sx={{ color: theme.palette.customGray.textBlack }} />
+            )}
+          </Box>
+          {open && (
+            <Box
+              component="div"
+              sx={{
+                position: "absolute",
+                display: "block",
+                width: theme.spacing(16.375),
+                zIndex: theme.zIndex.drawer,
+                background:
+                  " linear-gradient(0deg, rgba(76, 66, 232, 0.08), rgba(76, 66, 232, 0.08)), #FFFBFF",
+                borderRadius: theme.spacing(0.5),
+                mt: theme.spacing(1),
+                boxShadow: " 0px 2px 6px 2px rgba(0, 0, 0, 0.15), 0px 1px 2px rgba(0, 0, 0, 0.3)",
+              }}
+            >
+              <Box
+                sx={{
+                  width: "100%",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  flexWrap: "wrap",
+                }}
+              >
+                {units.map((item: any, index: number) => (
+                  <Typography
+                    onClick={() => handleChange(item)}
+                    variant="bodyLarge"
+                    sx={{
+                      fontWeight: theme.typography.fontWeightLight,
+                      cursor: "pointer",
+                      height: theme.spacing(6),
+                      width: "100%",
+                      background:
+                        unit === item
+                          ? "rgba(103, 80, 164, 0.12)"
+                          : " linear-gradient(0deg, rgba(76, 66, 232, 0.08), rgba(76, 66, 232, 0.08)), #FFFBFF",
+                      pt: theme.spacing(4),
+                      pb: theme.spacing(4),
+                      pl: theme.spacing(2.75),
+                      boxSizing: "border-box",
+                    }}
+                  >
+                    {item}
+                  </Typography>
+                ))}
+              </Box>
+            </Box>
+          )}
+        </Box>
+      </Box>
+      <Box sx={{ pr: mobile ? 0 : theme.spacing(1) }}>
+        <MeasurementFilter
+          measurementFilterItems={measurementFilterItems}
+          onSelectMeasurementItem={onSelectMeasurementItem}
+        />
+      </Box>
+    </Box>
+  );
+};

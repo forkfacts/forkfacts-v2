@@ -77,7 +77,20 @@ const AllFilters = ({
           }}
           boxShadow={1}
         >
-          <Box sx={{ display: "flex", flexDirection: "column", height: "auto" }}>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              maxHeight: "700px",
+              overflowY: "auto",
+              "&::-webkit-scrollbar": {
+                width: "8px",
+              },
+              "&::-webkit-scrollbar-thumb": {
+                backgroundColor: theme.palette.primary.main,
+              },
+            }}
+          >
             <Box
               sx={{
                 display: "flex",
@@ -110,7 +123,7 @@ const AllFilters = ({
                 isDropdown={false}
               />
             </Box>
-            <Box sx={{ mt: theme.spacing(3) }}>
+            <Box sx={{ my: theme.spacing(3) }}>
               <FilterAge
                 ageItems={ageItems}
                 onSelectAgeItem={handleSelectedAge}

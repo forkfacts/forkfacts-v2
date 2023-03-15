@@ -17,6 +17,7 @@ const NutritionFilters: React.FC<NutritionFilterProps> = ({
   const tablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
   const [selectedAge, setSelectedAge] = useState<ageItem>({} as ageItem);
   const [selectedLifeStage, setLifeStage] = useState("");
+  const [open, setOpen] = useState(false);
   const [selectedNutritionFilterItems, setSelectedNutritionFilterItems] = useState<
     SearchNutritionFilterItem[]
   >([]);
@@ -30,6 +31,10 @@ const NutritionFilters: React.FC<NutritionFilterProps> = ({
     onSelectLifeStageItem(value);
   };
 
+  const onClick = () => {
+    setOpen(!open);
+  };
+
   const handleSelectNutritionFilterItem = (value: SearchNutritionFilterItem[] | any[]) => {
     onSelectNutritionFilterItem(value);
     setSelectedNutritionFilterItems(value);
@@ -40,10 +45,16 @@ const NutritionFilters: React.FC<NutritionFilterProps> = ({
       sx={{
         display: "flex",
         alignItems: "center",
-        minWidth: "100%",
-        columnGap: mobile ? theme.spacing(0.7) : theme.spacing(2),
+        width: "100%",
+        columnGap: mobile ? theme.spacing(1) : theme.spacing(2),
         justifyContent: mobile ? "space-between" : tablet ? "flex-start" : "normal",
-        flexDirection: "row", //
+        overflowX: "auto",
+        scrollbarWidth: "none",
+        "&::-webkit-scrollbar": {
+          width: "0px",
+          background: "transparent",
+        },
+        flexDirection: "row",
       }}
     >
       <AllFilters
@@ -57,17 +68,20 @@ const NutritionFilters: React.FC<NutritionFilterProps> = ({
         nutritionFilterItems={nutritionFilterItems}
         handleSelectNutritionFilterItem={handleSelectNutritionFilterItem}
       />
+
       <LifeStage
         lifeStageItems={lifeStageItems}
         onSelectLifeStageItem={handleLifeStage}
         isDropdown
       />
+
       <FilterAge
         ageItems={ageItems}
         onSelectAgeItem={handleSelectedAge}
         isDropdown
         margin={theme.spacing(-15.5)}
       />
+
       <SearchNutritionFilter
         onSelectNutritionFilterItem={handleSelectNutritionFilterItem}
         nutritionFilterItems={nutritionFilterItems}

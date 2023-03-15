@@ -23,7 +23,7 @@ export default function DetailsPageTabItems({
             width: "0px",
             background: "transparent",
           },
-          flexDirection: "row", // set the flex-direction to row
+          flexDirection: "row",
         }}
         id="tab-items-container"
       >

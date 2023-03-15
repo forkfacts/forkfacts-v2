@@ -208,7 +208,7 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
   }, [ref]);
 
   return (
-    <Box sx={{ position: "relative" }} ref={ref}>
+    <Box sx={{ display: "block" }} ref={ref}>
       {isDropdown && (
         <Button
           variant={firstSelectedItem.name ? "text" : "outlined"}

@@ -9,18 +9,7 @@ import {
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import { NutritionDetailsTabProps } from "@forkfacts/models";
-import {
-  Box,
-  useTheme,
-  FormControl,
-  Select,
-  SelectChangeEvent,
-  MenuItem,
-  TextField,
-  useMediaQuery,
-  Button,
-  Typography,
-} from "@mui/material";
+import { Box, useTheme, TextField, useMediaQuery, Button, Typography } from "@mui/material";
 
 const NutritionDetailsTab: React.FC<NutritionDetailsTabProps> = ({
   nutritionSummaryItems,
@@ -46,7 +35,7 @@ const NutritionDetailsTab: React.FC<NutritionDetailsTabProps> = ({
         sx={{
           display: "flex",
           flexDirection: mobile || tablet ? "column-reverse" : "column",
-          rowGap: mobile ? theme.spacing(6) : theme.spacing(6),
+          rowGap: mobile ? theme.spacing(3) : theme.spacing(6),
         }}
       >
         <Box
@@ -56,7 +45,7 @@ const NutritionDetailsTab: React.FC<NutritionDetailsTabProps> = ({
             flexWrap: "wrap",
           }}
         >
-          <Box sx={{ width: "50%" }}>
+          <Box sx={{ width: mobile || tablet ? "100%" : "50%" }}>
             <NutritionFilters
               lifeStageItems={lifeStageItems}
               onSelectAgeItem={onSelectAgeItem}

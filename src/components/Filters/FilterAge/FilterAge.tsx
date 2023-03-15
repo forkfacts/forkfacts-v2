@@ -54,7 +54,7 @@ const FilterAge: React.FC<AgeItemsProps> = ({
   }, [ref]);
 
   return (
-    <Box sx={{ position: "relative" }} ref={ref}>
+    <Box sx={{ display: "block" }} ref={ref}>
       {isDropdown && (
         <Button
           variant={selectedItem ? "text" : "outlined"}

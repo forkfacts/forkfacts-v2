@@ -29,12 +29,8 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ nutrition
   };
   const isCollapsed = (nutrient: any) => collapsedRows.includes(nutrient);
   return (
-    <Box
-      sx={{
-        maxWidth: "1128px",
-      }}
-    >
-      <Table sx={{ minWidth: 750, border: "none", ml: theme.spacing(3) }}>
+    <Box>
+      <Table sx={{ minWidth: 1000, border: "none", ml: theme.spacing(3) }}>
         <TableHead style={{ border: "none", backgroundColor: "#FCFCFC" }}>
           <TableRow>
             <TableCell sx={{ borderBottom: "none" }}>

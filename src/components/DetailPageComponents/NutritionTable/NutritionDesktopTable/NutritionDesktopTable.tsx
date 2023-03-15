@@ -8,6 +8,7 @@ import { NutritionDesktopTableProps } from "@forkfacts/models";
 const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ nutritionTableItems }) => {
   const theme = useTheme();
   const tablet = useMediaQuery(theme.breakpoints.only("lg"));
+  const desktop = useMediaQuery(theme.breakpoints.only("lg"));
   const [collapsedRows, setCollapsedRows] = useState<any>([]);
   const toggleCollapse = (nutrient: any) => {
     if (collapsedRows.includes(nutrient)) {
@@ -173,7 +174,7 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ nutrition
                   width: "25%",
                   display: "flex",
                   justifyContent: "flex-start",
-                  ml: theme.spacing(19),
+                  ml: tablet ? theme.spacing(15) : theme.spacing(19),
                 }}
               >
                 {item.dailyValue ? (
@@ -196,7 +197,7 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ nutrition
                   justifyContent: "center",
                   alignItems: "center",
                   textAlign: "center",
-                  ml: theme.spacing(11),
+                  ml: tablet ? theme.spacing(11) : theme.spacing(11),
                 }}
               >
                 <Typography
@@ -277,7 +278,11 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ nutrition
                           justifyContent: "flex-end",
                           alignItems: "flex-start",
                           width: "100%",
-                          mr: tablet ? theme.spacing(10) : theme.spacing(15),
+                          mr: tablet
+                            ? theme.spacing(10)
+                            : desktop
+                            ? theme.spacing(5)
+                            : theme.spacing(15),
                         }}
                       >
                         <Typography

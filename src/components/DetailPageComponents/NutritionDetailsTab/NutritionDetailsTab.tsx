@@ -55,20 +55,24 @@ const NutritionDetailsTab: React.FC<NutritionDetailsTabProps> = ({
             flexDirection: mobile || tablet ? "column" : "row",
           }}
         >
-          <NutritionFilters
-            lifeStageItems={lifeStageItems}
-            onSelectAgeItem={onSelectAgeItem}
-            ageItems={ageItems}
-            onSelectLifeStageItem={onSelectLifeStageItem}
-            nutritionFilterItems={nutritionFilterItems}
-            onSelectNutritionFilterItem={onSelectNutritionFilterItem}
-          />
-          <NutritionDetailsRightComp
-            units={units}
-            onSelectMeasurementItem={onSelectMeasurementItem}
-            measurementFilterItems={measurementFilterItems}
-            onSelectUnit={onSelectUnit}
-          />
+          <Box sx={{ width: "50%" }}>
+            <NutritionFilters
+              lifeStageItems={lifeStageItems}
+              onSelectAgeItem={onSelectAgeItem}
+              ageItems={ageItems}
+              onSelectLifeStageItem={onSelectLifeStageItem}
+              nutritionFilterItems={nutritionFilterItems}
+              onSelectNutritionFilterItem={onSelectNutritionFilterItem}
+            />
+          </Box>
+          <Box sx={{ width: mobile || tablet ? "100%" : "50%" }}>
+            <NutritionDetailsRightComp
+              units={units}
+              onSelectMeasurementItem={onSelectMeasurementItem}
+              measurementFilterItems={measurementFilterItems}
+              onSelectUnit={onSelectUnit}
+            />
+          </Box>
         </Box>
         <Box sx={{ pr: theme.spacing(1.5) }}>
           <NutritionSummary nutritionSummaryItems={nutritionSummaryItems} />
@@ -106,6 +110,7 @@ export const NutritionDetailsRightComp: React.FC<NutritionDetailsRightCompProps>
   const ref = useRef<HTMLDivElement>(null);
   const mobile = useMediaQuery(theme.breakpoints.down("sm"));
   const tablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
+  const desktop = useMediaQuery(theme.breakpoints.only("lg"));
   const [unit, setUnit] = React.useState("Cups");
   const [open, setOpen] = useState(false);
 
@@ -136,9 +141,9 @@ export const NutritionDetailsRightComp: React.FC<NutritionDetailsRightCompProps>
       sx={{
         display: "flex",
         alignItems: "center",
-        flexWrap: mobile || tablet ? "nowrap" : "wrap",
+        flexWrap: mobile ? "nowrap" : "wrap",
         columnGap: mobile || tablet ? theme.spacing(1) : theme.spacing(2),
-        width: mobile || tablet ? "100%" : "70%",
+        width: "100%",
         justifyContent: mobile ? "space-between" : tablet ? "flex-start" : "flex-end",
         mt: mobile || tablet ? theme.spacing(3) : 0,
       }}
@@ -255,7 +260,7 @@ export const NutritionDetailsRightComp: React.FC<NutritionDetailsRightCompProps>
           )}
         </Box>
       </Box>
-      <Box sx={{ pr: mobile ? 0 : theme.spacing(1) }}>
+      <Box sx={{ pr: mobile ? 0 : theme.spacing(1), mt: desktop ? theme.spacing(3) : 0 }}>
         <MeasurementFilter
           measurementFilterItems={measurementFilterItems}
           onSelectMeasurementItem={onSelectMeasurementItem}

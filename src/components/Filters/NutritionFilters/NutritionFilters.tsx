@@ -47,7 +47,6 @@ const NutritionFilters: React.FC<NutritionFilterProps> = ({
         // overflowX: "auto",
         scrollbarWidth: "none",
         "&::-webkit-scrollbar": {
-          width: "0px",
           background: "transparent",
         },
       }}

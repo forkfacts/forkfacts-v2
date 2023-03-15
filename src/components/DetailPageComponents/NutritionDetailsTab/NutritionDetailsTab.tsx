@@ -53,6 +53,7 @@ const NutritionDetailsTab: React.FC<NutritionDetailsTabProps> = ({
           sx={{
             display: "flex",
             flexDirection: mobile || tablet ? "column" : "row",
+            flexWrap: "wrap",
           }}
         >
           <Box sx={{ width: "50%" }}>
@@ -246,9 +247,10 @@ export const NutritionDetailsRightComp: React.FC<NutritionDetailsRightCompProps>
                         unit === item
                           ? "rgba(103, 80, 164, 0.12)"
                           : " linear-gradient(0deg, rgba(76, 66, 232, 0.08), rgba(76, 66, 232, 0.08)), #FFFBFF",
-                      pt: theme.spacing(4),
+                      pt: theme.spacing(3),
                       pb: theme.spacing(4),
                       pl: theme.spacing(2.75),
+                      pr: theme.spacing(1.5),
                       boxSizing: "border-box",
                     }}
                   >
@@ -260,7 +262,7 @@ export const NutritionDetailsRightComp: React.FC<NutritionDetailsRightCompProps>
           )}
         </Box>
       </Box>
-      <Box sx={{ pr: mobile ? 0 : theme.spacing(1), mt: desktop ? theme.spacing(3) : 0 }}>
+      <Box sx={{ pr: mobile ? 0 : theme.spacing(1) }}>
         <MeasurementFilter
           measurementFilterItems={measurementFilterItems}
           onSelectMeasurementItem={onSelectMeasurementItem}

@@ -182,7 +182,12 @@ const nutritionTableItems: NutritionTableItem[] = [
 
 const Template: ComponentStory<typeof NutritionDesktopTable> = (args) => {
   return (
-    <Box sx={{ width: { sm: "100%", md: "70%" }, mx: "auto" }}>
+    <Box
+      sx={{
+        width: { sm: "100%", md: "90%" },
+        m: "auto",
+      }}
+    >
       <NutritionDesktopTable {...args} />
     </Box>
   );

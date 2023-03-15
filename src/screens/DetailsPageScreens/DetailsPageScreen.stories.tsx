@@ -185,7 +185,7 @@ const Template: ComponentStory<typeof DetailsPageScreen> = (args) => {
   );
 };
 
-const units = ["Plates", "Cups", "Spoon"];
+const units = ["Plates", "Cups", "TeaSpoon"];
 
 const nutritionFilterItems: SearchNutritionFilterItem[] = [
   {

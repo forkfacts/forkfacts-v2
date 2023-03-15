@@ -1,4 +1,14 @@
-import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
+import {
+  Box,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableRow,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import { CompareSorting } from "@forkfacts/icons";
@@ -24,334 +34,219 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ nutrition
         maxWidth: "1128px",
       }}
     >
-      <Box
-        sx={{
-          border: "none",
-          backgroundColor: "#FCFCFC",
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          height: theme.spacing(5),
-          p: theme.spacing(3),
-        }}
-      >
-        <Box sx={{ width: "25%" }}>
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              columnGap: theme.spacing(1),
-              cursor: "pointer",
-            }}
-          >
-            <Typography
-              variant="labelLarge"
-              sx={{
-                color: theme.palette.customGray.dark,
-                fontWeight: theme.typography.fontWeightRegular,
-              }}
-            >
-              Nutrient
-            </Typography>
-          </Box>
-        </Box>
-        <Box sx={{ width: "25%" }}>
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              columnGap: theme.spacing(1),
-              cursor: "pointer",
-            }}
-          >
-            <Typography
-              variant="labelLarge"
-              sx={{
-                color: theme.palette.customGray.dark,
-                fontWeight: theme.typography.fontWeightRegular,
-              }}
-            >
-              %Daily Value
-            </Typography>
-            <CompareSorting width={theme.spacing(2.45)} height={theme.spacing(2.75)} />
-          </Box>{" "}
-        </Box>
-        <Box style={{ width: "25%" }}>
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              columnGap: theme.spacing(1),
-              cursor: "pointer",
-            }}
-          >
-            <Typography
-              variant="labelLarge"
-              sx={{
-                color: theme.palette.customGray.dark,
-                fontWeight: theme.typography.fontWeightRegular,
-              }}
-            >
-              Amount (per 100g)
-            </Typography>
-          </Box>
-        </Box>
-        <Box style={{ borderBottom: "none" }}>
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              columnGap: theme.spacing(1),
-              cursor: "pointer",
-            }}
-          >
-            <Typography
-              variant="labelLarge"
-              sx={{
-                color: theme.palette.customGray.dark,
-                fontWeight: theme.typography.fontWeightRegular,
-              }}
-            >
-              RDI
-            </Typography>
-            <CompareSorting width={theme.spacing(2.45)} height={theme.spacing(2.75)} />
-          </Box>
-        </Box>
-      </Box>
-      <Box>
-        {nutritionTableItems.map((item, index) => (
-          <React.Fragment key={index}>
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                p: theme.spacing(3),
-                borderBottom: "1px solid #F3EFF4",
-                pb: "8px",
-              }}
-            >
+      <Table sx={{ minWidth: 750, border: "none", ml: theme.spacing(3) }}>
+        <TableHead style={{ border: "none", backgroundColor: "#FCFCFC" }}>
+          <TableRow>
+            <TableCell sx={{ borderBottom: "none" }}>
+              <Typography
+                variant="labelLarge"
+                sx={{
+                  color: theme.palette.customGray.dark,
+                  fontWeight: theme.typography.fontWeightRegular,
+                }}
+              >
+                Nutrient
+              </Typography>
+            </TableCell>
+            <TableCell sx={{ borderBottom: "none" }}>
               <Box
                 sx={{
                   display: "flex",
                   alignItems: "center",
-                  columnGap: theme.spacing(0.5),
-                  width: "25%",
-                  pl: !item.nutrientContents.length ? theme.spacing(4) : 0,
+                  ml: theme.spacing(-2),
+                  columnGap: theme.spacing(1),
+                  cursor: "pointer",
                 }}
               >
-                {isCollapsed(item.nutrient) && item.nutrientContents.length ? (
-                  <ArrowRightIcon
-                    onClick={() => toggleCollapse(item.nutrient)}
-                    sx={{
-                      cursor: "pointer",
-                      width: theme.spacing(3),
-                      height: theme.spacing(3),
-                    }}
-                  />
-                ) : (
-                  <>
-                    {item.nutrientContents.length ? (
+                <Typography
+                  variant="labelLarge"
+                  sx={{
+                    color: theme.palette.customGray.dark,
+                    fontWeight: theme.typography.fontWeightRegular,
+                  }}
+                >
+                  %Daily Value
+                </Typography>
+                <CompareSorting width={theme.spacing(3)} height={theme.spacing(3)} />
+              </Box>
+            </TableCell>
+            <TableCell sx={{ borderBottom: "none" }}>
+              <Typography
+                variant="labelLarge"
+                sx={{
+                  color: theme.palette.customGray.dark,
+                  fontWeight: theme.typography.fontWeightRegular,
+                  ml: theme.spacing(-7),
+                }}
+              >
+                Amount (per 100g)
+              </Typography>
+            </TableCell>
+            <TableCell sx={{ borderBottom: "none" }}>
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  cursor: "pointer",
+                }}
+              >
+                <Typography
+                  variant="labelLarge"
+                  sx={{
+                    color: theme.palette.customGray.dark,
+                    fontWeight: theme.typography.fontWeightRegular,
+                  }}
+                >
+                  RDI
+                </Typography>
+                <CompareSorting
+                  width={theme.spacing(3)}
+                  height={theme.spacing(3)}
+                  style={{ marginLeft: theme.spacing(1) }}
+                />
+              </Box>
+            </TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {nutritionTableItems.map((item) => (
+            <React.Fragment key={item.nutrient}>
+              <TableRow>
+                <TableCell sx={{ borderBottom: "1px solid #F3EFF4" }}>
+                  <Box sx={{ display: "flex", alignItems: "center" }}>
+                    {isCollapsed(item.nutrient) ? (
+                      <ArrowRightIcon
+                        onClick={() => toggleCollapse(item.nutrient)}
+                        sx={{
+                          cursor: "pointer",
+                          width: theme.spacing(3),
+                          height: theme.spacing(3),
+                        }}
+                      />
+                    ) : (
                       <ArrowDropDownIcon
                         onClick={() => toggleCollapse(item.nutrient)}
                         sx={{ cursor: "pointer" }}
                       />
-                    ) : null}
-                  </>
-                )}
-                <Typography
-                  variant="titleMedium"
-                  sx={{
-                    color: theme.palette.customGray.main,
-                    fontWeight: theme.typography.fontWeightRegular,
-                  }}
-                >
-                  {item.nutrient}
-                </Typography>
-              </Box>
-              <Box
-                sx={{
-                  width: "25%",
-                  display: "flex",
-                  justifyContent: "flex-start",
-                  ml: tablet ? theme.spacing(15) : theme.spacing(19),
-                }}
-              >
-                {item.dailyValue ? (
-                  <Typography
-                    variant="titleMedium"
-                    sx={{
-                      color: theme.palette.customGray.main,
-                      fontWeight: theme.typography.fontWeightRegular,
-                      textAlign: "center",
-                    }}
-                  >
-                    {item.dailyValue}%
-                  </Typography>
-                ) : null}
-              </Box>
-              <Box
-                sx={{
-                  width: "25%",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  textAlign: "center",
-                  ml: tablet ? theme.spacing(11) : theme.spacing(11),
-                }}
-              >
-                <Typography
-                  variant="titleMedium"
-                  sx={{
-                    color: theme.palette.customGray.main,
-                    fontWeight: theme.typography.fontWeightRegular,
-                    textAlign: "center",
-                  }}
-                >
-                  {item.amount}
-                </Typography>
-              </Box>
-              <Box
-                sx={{
-                  width: "25%",
-                  display: "flex",
-                  justifyContent: "flex-end",
-                  alignItems: "center",
-                }}
-              >
-                {item.rdi.value ? (
-                  <Typography
-                    variant="titleMedium"
-                    sx={{
-                      color: theme.palette.customGray.main,
-                      fontWeight: theme.typography.fontWeightRegular,
-                      marginLeft: theme.spacing(1),
-                    }}
-                  >
-                    {`${item.rdi.value}${item.rdi.weight}`}
-                  </Typography>
-                ) : null}
-              </Box>
-            </Box>
-            {!isCollapsed(item.nutrient) &&
-              item.nutrientContents.map((content) => (
-                <Box
-                  key={content.nutrient}
-                  sx={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                    p: theme.spacing(3),
-                    height: theme.spacing(4),
-                    "&:nth-child(1)": {
-                      backgroundColor: "none !important",
-                    },
-                    "&:nth-child(odd)": {
-                      backgroundColor: "#FFFBFF",
-                    },
-                  }}
-                >
-                  <Box sx={{ width: "25%" }}>
+                    )}
                     <Typography
-                      variant="bodyLarge"
+                      variant="titleMedium"
                       sx={{
                         color: theme.palette.customGray.main,
-                        marginLeft: theme.spacing(4),
-                        fontWeight: theme.typography.fontWeightLight,
+                        fontWeight: theme.typography.fontWeightRegular,
                       }}
                     >
-                      {content.nutrient}
+                      {item.nutrient}
                     </Typography>
                   </Box>
-                  <Box
-                    sx={{
-                      width: "25%",
-                      display: "flex",
-                      justifyContent: "flex-start",
-                      alignItems: "flex-start",
-                    }}
-                  >
-                    {content.dailyValue ? (
-                      <Box
-                        sx={{
-                          display: "flex",
-                          justifyContent: "flex-end",
-                          alignItems: "flex-start",
-                          width: "100%",
-                          mr: tablet
-                            ? theme.spacing(10)
-                            : desktop
-                            ? theme.spacing(5)
-                            : theme.spacing(15),
-                        }}
-                      >
-                        <Typography
-                          variant="bodyLarge"
-                          sx={{
-                            color: theme.palette.customGray.main,
-                            fontWeight: theme.typography.fontWeightLight,
-                            textAlign: "end",
-                          }}
-                        >
-                          {content.dailyValue}%
-                        </Typography>
-                      </Box>
-                    ) : null}
-                  </Box>
-                  <Box
-                    sx={{
-                      width: "25%",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      textAlign: "center",
-                      mr: tablet ? theme.spacing(0.5) : theme.spacing(4),
-                    }}
-                  >
-                    <Box
+                </TableCell>
+                <TableCell sx={{ borderBottom: "1px solid #F3EFF4" }}>
+                  {item.dailyValue && (
+                    <Typography
+                      variant="titleMedium"
                       sx={{
-                        display: "flex",
-                        justifyContent: "flex-end",
-                        alignItems: "flex-start",
-                        width: "100%",
+                        color: theme.palette.customGray.main,
+                        fontWeight: theme.typography.fontWeightRegular,
                       }}
                     >
+                      {item.dailyValue}%
+                    </Typography>
+                  )}
+                </TableCell>
+                <TableCell sx={{ borderBottom: "1px solid #F3EFF4" }}>
+                  {item.amount && (
+                    <Typography
+                      variant="titleMedium"
+                      sx={{
+                        color: theme.palette.customGray.main,
+                        fontWeight: theme.typography.fontWeightRegular,
+                      }}
+                    >
+                      {item.amount}
+                    </Typography>
+                  )}
+                </TableCell>
+                <TableCell sx={{ borderBottom: "1px solid #F3EFF4" }}>
+                  {item.rdi.value && (
+                    <Typography
+                      variant="titleMedium"
+                      sx={{
+                        color: theme.palette.customGray.main,
+                        fontWeight: theme.typography.fontWeightRegular,
+                      }}
+                    >
+                      {`${item.rdi.value}${item.rdi.weight}`}
+                    </Typography>
+                  )}
+                </TableCell>
+              </TableRow>
+              {!isCollapsed(item.nutrient) &&
+                item.nutrientContents.map((content) => (
+                  <TableRow
+                    key={content.nutrient}
+                    sx={{
+                      "&:nth-of-type(odd)": {
+                        backgroundColor: "#FFFBFF",
+                      },
+                    }}
+                  >
+                    <TableCell sx={{ borderBottom: "none", ml: theme.spacing(10) }} align="left">
+                      <Typography
+                        variant="bodyMedium"
+                        sx={{
+                          color: theme.palette.customGray.main,
+                          fontWeight: theme.typography.fontWeightLight,
+                          ml: theme.spacing(3),
+                          textAlign: "right", // added property
+                        }}
+                      >
+                        {content.nutrient}
+                      </Typography>
+                    </TableCell>
+                    <TableCell sx={{ borderBottom: "none" }}>
                       <Typography
                         variant="bodyLarge"
                         sx={{
                           color: theme.palette.customGray.main,
-                          marginLeft: theme.spacing(1),
                           fontWeight: theme.typography.fontWeightLight,
-                          textAlign: "right",
+                          textAlign: "right", // added property
+                        }}
+                      >
+                        {content.dailyValue}%
+                      </Typography>
+                    </TableCell>
+                    <TableCell sx={{ borderBottom: "none" }}>
+                      <Typography
+                        component="span"
+                        variant="bodyLarge"
+                        sx={{
+                          color: theme.palette.customGray.main,
+                          fontWeight: theme.typography.fontWeightLight,
+                          textAlign: "right", // added property
                         }}
                       >
                         {content.amount}
                       </Typography>
-                    </Box>
-                  </Box>
-                  <Box
-                    style={{
-                      width: "25%",
-                      display: "flex",
-                      justifyContent: "flex-end",
-                      alignItems: "center",
-                    }}
-                  >
-                    {content.rdi.value ? (
+                    </TableCell>
+                    <TableCell sx={{ borderBottom: "none" }}>
                       <Typography
                         variant="bodyLarge"
+                        component="span"
                         sx={{
                           color: theme.palette.customGray.main,
-                          marginLeft: theme.spacing(1),
                           fontWeight: theme.typography.fontWeightLight,
+                          textAlign: "right", // added property
                         }}
-                      >{`${content.rdi.value}${content.rdi.weight}`}</Typography>
-                    ) : null}
-                  </Box>
-                </Box>
-              ))}
-          </React.Fragment>
-        ))}
-      </Box>
+                      >
+                        {`${content.rdi.value}${content.rdi.weight}`}
+                      </Typography>
+                    </TableCell>
+                  </TableRow>
+                ))}
+            </React.Fragment>
+          ))}
+        </TableBody>
+      </Table>
       <Box sx={{ display: "flex", justifyContent: "flex-end", my: theme.spacing(7) }}>
         <Typography
           variant="labelMedium"

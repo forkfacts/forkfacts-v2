@@ -3,6 +3,26 @@ import { createTheme } from "@mui/material/styles";
 const theme = createTheme();
 
 export const customTheme = createTheme({
+  components: {
+    MuiAccordionSummary: {
+      styleOverrides: {
+        root: {
+          "&:hover:not(.Mui-disabled)": {
+            cursor: "default",
+          },
+        },
+      },
+    },
+    MuiAccordion: {
+      styleOverrides: {
+        root: {
+          "&:hover:not(.Mui-disabled)": {
+            cursor: "default",
+          },
+        },
+      },
+    },
+  },
   palette: {
     primary: {
       main: "#4C42E8",

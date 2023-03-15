@@ -6,6 +6,7 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import { LifeStageItem } from "@forkfacts/components";
 import { withDropdown, withoutDropdown } from "./lifeStageStyles";
+import DoneIcon from "@mui/icons-material/Done";
 
 const LifeStage: React.FC<LifeStageProps> = ({
   lifeStageItems,
@@ -71,8 +72,21 @@ const LifeStage: React.FC<LifeStageProps> = ({
             sx={{
               color: theme.palette.customGray.textDark,
               fontWeight: theme.typography.fontWeightRegular,
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
             }}
           >
+            {selectedItem && (
+              <DoneIcon
+                sx={{
+                  color: theme.palette.iconColors.main,
+                  width: theme.spacing(2.25),
+                  height: theme.spacing(2.25),
+                  mr: theme.spacing(0.5),
+                }}
+              />
+            )}
             {selectedItem ? selectedItem : "Life stage"}
           </Typography>
           {open ? (

@@ -28,7 +28,7 @@ export const unSelectedItem = Template.bind({});
 
 unSelectedItem.args = {
   item: {
-    name: "Infant",
+    name: "Children",
     icon: Baby,
   },
   handleSelectedItem: (name: string, index: number) => {},

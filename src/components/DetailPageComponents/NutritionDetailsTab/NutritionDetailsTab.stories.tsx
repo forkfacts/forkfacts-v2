@@ -117,7 +117,7 @@ const nutritionFilterItems: SearchNutritionFilterItem[] = [
   { name: "Fiber", subItems: [], checked: false },
 ];
 
-const units = ["Plates", "Cups", "TeaSpoon"];
+const units = ["Plates", "Cups", "Teaspoon"];
 
 const nutritionTableItems: NutritionTableItem[] = [
   {

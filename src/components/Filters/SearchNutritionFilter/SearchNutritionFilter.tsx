@@ -128,7 +128,7 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => setName(e.target.value);
 
   const handleSelectItem = (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    e: React.MouseEvent<HTMLDivElement, MouseEvent>,
     name: string,
     index: number
   ) => {
@@ -342,7 +342,7 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
                 width: "8px",
               },
               "&::-webkit-scrollbar-thumb": {
-                backgroundColor: isDropdown ? theme.palette.primary.main : "",
+                backgroundColor: isDropdown ? theme.palette.customGray.dark : "",
               },
             }}
           >
@@ -366,12 +366,23 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
                       }}
                       key={index}
                     >
-                      <AccordionSummary aria-controls="panel1a-content" id="panel1a-header">
-                        <Box sx={{ display: "flex", alignItems: "center" }}>
+                      <AccordionSummary
+                        aria-controls="panel1a-content"
+                        id="panel1a-header"
+                        sx={{ cursor: "default" }}
+                        onClick={(event) => handleSelectItem(event, item.name, index)}
+                      >
+                        <Box
+                          sx={{
+                            display: "flex",
+                            alignItems: "center",
+                            cursor: "pointer",
+                            width: "100%",
+                          }}
+                        >
                           <Checkbox
                             color="primary"
                             checked={item.checked}
-                            onClick={(event) => handleSelectItem(event, item.name, index)}
                             checkedIcon={
                               item.subItems.every((item3) => item3.checked === true) ? (
                                 <CheckBoxIcon color="primary" sx={{ width: theme.spacing(3) }} />
@@ -395,12 +406,12 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
                           </Typography>
                         </Box>
                       </AccordionSummary>
-                      <AccordionDetails sx={{ mt: theme.spacing(-2) }}>
+                      <AccordionDetails sx={{ mt: theme.spacing(-2), cursor: "default" }}>
                         <ForLoops each={item.subItems}>
                           {(item2, index2) => {
                             return (
                               <Box
-                                sx={{ display: "flex", alignItems: "center" }}
+                                sx={{ display: "flex", alignItems: "center", cursor: "pointer" }}
                                 key={index2}
                                 onClick={() => onSelectSubItem(item.name, item2.name)}
                               >
@@ -469,6 +480,7 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
               justifyContent: "flex-end",
               alignItems: "center",
               my: theme.spacing(2),
+              pr: theme.spacing(1.5),
             }}
           >
             <Typography

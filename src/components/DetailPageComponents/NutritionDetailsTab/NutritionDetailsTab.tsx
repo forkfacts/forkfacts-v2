@@ -111,12 +111,12 @@ export const NutritionDetailsRightComp: React.FC<NutritionDetailsRightCompProps>
   const ref = useRef<HTMLDivElement>(null);
   const mobile = useMediaQuery(theme.breakpoints.down("sm"));
   const tablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
-  const desktop = useMediaQuery(theme.breakpoints.only("lg"));
   const [unit, setUnit] = React.useState("Cups");
   const [open, setOpen] = useState(false);
 
   const handleChange = (name: string) => {
     setUnit(name);
+    setOpen(false);
   };
 
   useEffect(() => {
@@ -192,6 +192,7 @@ export const NutritionDetailsRightComp: React.FC<NutritionDetailsRightCompProps>
               cursor: "pointer",
               border: "1px solid #787680",
               zIndex: theme.zIndex.appBar,
+              pr: theme.spacing(1),
             }}
           >
             <Typography
@@ -217,8 +218,7 @@ export const NutritionDetailsRightComp: React.FC<NutritionDetailsRightCompProps>
                 display: "block",
                 width: mobile ? theme.spacing(12.5) : theme.spacing(16.375),
                 zIndex: theme.zIndex.appBar,
-                background:
-                  " linear-gradient(0deg, rgba(76, 66, 232, 0.08), rgba(76, 66, 232, 0.08)), #FFFBFF",
+                background: " #FFFBFF",
                 borderRadius: theme.spacing(0.5),
                 mt: theme.spacing(1),
                 boxShadow: " 0px 2px 6px 2px rgba(0, 0, 0, 0.15), 0px 1px 2px rgba(0, 0, 0, 0.3)",
@@ -237,16 +237,13 @@ export const NutritionDetailsRightComp: React.FC<NutritionDetailsRightCompProps>
                   <Typography
                     key={index}
                     onClick={() => handleChange(item)}
-                    variant="bodyLarge"
+                    variant={mobile ? "bodySmall" : "bodyLarge"}
                     sx={{
                       fontWeight: theme.typography.fontWeightLight,
                       cursor: "pointer",
                       height: theme.spacing(6),
                       width: "100%",
-                      background:
-                        unit === item
-                          ? "rgba(103, 80, 164, 0.12)"
-                          : " linear-gradient(0deg, rgba(76, 66, 232, 0.08), rgba(76, 66, 232, 0.08)), #FFFBFF",
+                      background: unit === item ? "rgba(103, 80, 164, 0.12)" : "#fff",
                       pt: theme.spacing(3),
                       pb: theme.spacing(4),
                       pl: theme.spacing(2.75),

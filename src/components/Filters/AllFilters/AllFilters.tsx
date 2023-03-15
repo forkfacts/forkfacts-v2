@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Box, Button, Typography, useMediaQuery, useTheme } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { FilterAge, LifeStage, SearchNutritionFilter } from "@forkfacts/components";
@@ -18,6 +18,7 @@ const AllFilters = ({
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.down("md"));
   const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
   let filterStatus = 0;
   if (
     Object.keys(selectedAge).length > 0 ||
@@ -40,9 +41,20 @@ const AllFilters = ({
       filterStatus = 2;
     }
   }
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (ref.current && !ref.current.contains(event.target as Node)) {
+        setOpen(false);
+      }
+    }
 
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [ref]);
   return (
-    <Box sx={{ display: mobile ? "none" : "block" }}>
+    <Box sx={{ display: mobile ? "none" : "block" }} ref={ref}>
       <Button
         color="primary"
         sx={{
@@ -87,7 +99,8 @@ const AllFilters = ({
                 width: "8px",
               },
               "&::-webkit-scrollbar-thumb": {
-                backgroundColor: theme.palette.primary.main,
+                backgroundColor: theme.palette.customGray.dark,
+                border: theme.spacing(0.5),
               },
             }}
           >

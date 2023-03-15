@@ -120,10 +120,14 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ nutrition
                         }}
                       />
                     ) : (
-                      <ArrowDropDownIcon
-                        onClick={() => toggleCollapse(item.nutrient)}
-                        sx={{ cursor: "pointer" }}
-                      />
+                      <>
+                        {item.nutrientContents.length && (
+                          <ArrowDropDownIcon
+                            onClick={() => toggleCollapse(item.nutrient)}
+                            sx={{ cursor: "pointer" }}
+                          />
+                        )}
+                      </>
                     )}
                     <Typography
                       variant="titleMedium"
@@ -193,45 +197,70 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ nutrition
                           color: theme.palette.customGray.main,
                           fontWeight: theme.typography.fontWeightLight,
                           ml: theme.spacing(3),
-                          textAlign: "right", // added property
+                          textAlign: "right",
                         }}
                       >
                         {content.nutrient}
                       </Typography>
                     </TableCell>
                     <TableCell sx={{ borderBottom: "none" }}>
-                      <Typography
-                        variant="bodyLarge"
+                      <Box
                         sx={{
-                          color: theme.palette.customGray.main,
-                          fontWeight: theme.typography.fontWeightLight,
-                          textAlign: "right", // added property
+                          display: "flex",
+                          justifyContent: "flex-start",
+                          textAlign: "right",
                         }}
                       >
-                        {content.dailyValue}%
-                      </Typography>
+                        <Typography
+                          component="span"
+                          variant="bodyLarge"
+                          sx={{
+                            color: theme.palette.customGray.main,
+                            fontWeight: theme.typography.fontWeightLight,
+                            textAlign: "right",
+                            display: "flex",
+                            justifyContent: "flex-end",
+                            alignItems: "flex-end",
+                            maxWidth: "40px",
+                          }}
+                        >
+                          {content.dailyValue}%
+                        </Typography>
+                      </Box>
+                    </TableCell>
+                    <TableCell sx={{ borderBottom: "none" }}>
+                      <Box
+                        sx={{
+                          display: "flex",
+                          justifyContent: "flex-start",
+                          textAlign: "right",
+                        }}
+                      >
+                        <Typography
+                          component="span"
+                          variant="bodyLarge"
+                          sx={{
+                            color: theme.palette.customGray.main,
+                            fontWeight: theme.typography.fontWeightLight,
+                            textAlign: "right",
+                            display: "flex",
+                            justifyContent: "flex-end",
+                            alignItems: "flex-end",
+                            maxWidth: "30px",
+                          }}
+                        >
+                          {content.amount}
+                        </Typography>
+                      </Box>
                     </TableCell>
                     <TableCell sx={{ borderBottom: "none" }}>
                       <Typography
-                        component="span"
-                        variant="bodyLarge"
-                        sx={{
-                          color: theme.palette.customGray.main,
-                          fontWeight: theme.typography.fontWeightLight,
-                          textAlign: "right", // added property
-                        }}
-                      >
-                        {content.amount}
-                      </Typography>
-                    </TableCell>
-                    <TableCell sx={{ borderBottom: "none" }}>
-                      <Typography
                         variant="bodyLarge"
                         component="span"
                         sx={{
                           color: theme.palette.customGray.main,
                           fontWeight: theme.typography.fontWeightLight,
-                          textAlign: "right", // added property
+                          textAlign: "right",
                         }}
                       >
                         {`${content.rdi.value}${content.rdi.weight}`}

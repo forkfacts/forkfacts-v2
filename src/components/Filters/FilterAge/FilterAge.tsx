@@ -165,6 +165,7 @@ const FilterAge: React.FC<AgeItemsProps> = ({
                         sx={{
                           fontWeight: theme.typography.fontWeightLight,
                           color: theme.palette.customGray.textBlack,
+                          cursor: "pointer",
                         }}
                       >
                         {item.start + "-" + item.end} {item.unit}

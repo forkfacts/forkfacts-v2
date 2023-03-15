@@ -162,7 +162,6 @@ export const NutritionDetailsRightComp: React.FC<NutritionDetailsRightCompProps>
               fontWeight: theme.typography.fontWeightLight,
               lineHeight: "16px",
               letterSpacing: "0.4px",
-              border: "1px solid #787680",
             },
             "& .MuiInputBase-input": {
               textAlign: "center",
@@ -171,7 +170,8 @@ export const NutritionDetailsRightComp: React.FC<NutritionDetailsRightCompProps>
           }}
         />
         <Box>
-          <Box
+          <Button
+            variant="text"
             onClick={() => setOpen(!open)}
             sx={{
               textTransform: "capitalize",
@@ -181,10 +181,11 @@ export const NutritionDetailsRightComp: React.FC<NutritionDetailsRightCompProps>
               alignItems: "center",
               px: theme.spacing(1),
               borderRadius: theme.spacing(0.5),
-              border: "1px solid #787680",
               height: mobile ? theme.spacing(4) : theme.spacing(5),
-              width: theme.spacing(16.375),
+              width: mobile ? theme.spacing(12.5) : theme.spacing(16.375),
               cursor: "pointer",
+              border: "1px solid #787680",
+              zIndex: theme.zIndex.appBar,
             }}
           >
             <Typography
@@ -201,15 +202,15 @@ export const NutritionDetailsRightComp: React.FC<NutritionDetailsRightCompProps>
             ) : (
               <ArrowDropDownIcon sx={{ color: theme.palette.customGray.textBlack }} />
             )}
-          </Box>
+          </Button>
           {open && (
             <Box
               component="div"
               sx={{
                 position: "absolute",
                 display: "block",
-                width: theme.spacing(16.375),
-                zIndex: theme.zIndex.drawer,
+                width: mobile ? theme.spacing(12.5) : theme.spacing(16.375),
+                zIndex: theme.zIndex.appBar,
                 background:
                   " linear-gradient(0deg, rgba(76, 66, 232, 0.08), rgba(76, 66, 232, 0.08)), #FFFBFF",
                 borderRadius: theme.spacing(0.5),
@@ -228,6 +229,7 @@ export const NutritionDetailsRightComp: React.FC<NutritionDetailsRightCompProps>
               >
                 {units.map((item: any, index: number) => (
                   <Typography
+                    key={index}
                     onClick={() => handleChange(item)}
                     variant="bodyLarge"
                     sx={{

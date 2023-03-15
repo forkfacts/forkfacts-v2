@@ -44,7 +44,7 @@ const NutritionFilters: React.FC<NutritionFilterProps> = ({
         pr: mobile ? theme.spacing(3) : 0,
         columnGap: mobile ? theme.spacing(1) : theme.spacing(2),
         justifyContent: mobile ? "space-between" : tablet ? "flex-start" : "normal",
-        overflowX: "auto",
+        // overflowX: "auto",
         scrollbarWidth: "none",
         "&::-webkit-scrollbar": {
           width: "0px",

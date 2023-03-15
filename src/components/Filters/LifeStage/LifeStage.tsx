@@ -61,14 +61,12 @@ const LifeStage: React.FC<LifeStageProps> = ({
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            py: theme.spacing(0.75),
-            pl: theme.spacing(2),
-            pr: theme.spacing(1),
+
             borderRadius: theme.spacing(1),
           }}
         >
           <Typography
-            variant="labelLarge"
+            variant={mobile ? "labelMedium" : "labelLarge"}
             sx={{
               color: theme.palette.customGray.textDark,
               fontWeight: theme.typography.fontWeightRegular,

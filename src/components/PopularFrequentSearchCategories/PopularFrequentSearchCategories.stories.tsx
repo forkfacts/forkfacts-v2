@@ -128,7 +128,6 @@ Mobile.parameters = {
     defaultViewport: "iphonexr",
   },
 };
-
 export const Tablet = Template.bind({});
 Tablet.args = {
   ...Tablet.args,

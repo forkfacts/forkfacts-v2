@@ -13,6 +13,7 @@ import {
   useTheme,
 } from "@mui/material";
 import IndeterminateCheckBoxIcon from "@mui/icons-material/IndeterminateCheckBox";
+import DoneIcon from "@mui/icons-material/Done";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import { ViewMoreButton } from "@forkfacts/components";
 import CloseIcon from "@mui/icons-material/Close";
@@ -56,9 +57,12 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
     main: 5,
     sub: 4,
   });
-  const [firstSelectedItem, setFirstSelectedItem] = useState({
+  const [firstSelectedItem, setFirstSelectedItem] = useState<{
+    name: string;
+    length: number | null;
+  }>({
     name: "",
-    length: 0,
+    length: null,
   });
 
   const renderFilterNutrients = useCallback((): SearchNutritionFilterItem[] => {
@@ -216,8 +220,6 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
             borderColor: firstSelectedItem.name
               ? theme.palette.primary.main
               : theme.palette.grey[700],
-            lineHeight: theme.spacing(2),
-            letterSpacing: theme.spacing(0.05),
             textTransform: "capitalize",
             whiteSpace: "nowrap",
             display: "flex",
@@ -227,14 +229,29 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
           }}
         >
           <Typography
-            variant="labelLarge"
+            variant={mobile ? "labelMedium" : "labelLarge"}
             sx={{
               fontWeight: theme.typography.fontWeightRegular,
               color: theme.palette.customGray.textDark,
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
             }}
           >
+            {firstSelectedItem.name && (
+              <DoneIcon
+                sx={{
+                  color: theme.palette.iconColors.main,
+                  width: theme.spacing(2.25),
+                  height: theme.spacing(2.25),
+                  mr: theme.spacing(0.5),
+                }}
+              />
+            )}
             {firstSelectedItem.name
-              ? `${firstSelectedItem.name} ${firstSelectedItem.length <= 1 ? "" : "+1"} `
+              ? `${firstSelectedItem.name} ${
+                  !firstSelectedItem ? "" : `+${firstSelectedItem.length}`
+                } `
               : "Nutrients"}
           </Typography>
           {open ? (

@@ -73,7 +73,7 @@ const FilterAge: React.FC<AgeItemsProps> = ({
           }}
         >
           <Typography
-            variant="labelLarge"
+            variant={mobile ? "labelMedium" : "labelLarge"}
             sx={{
               color: theme.palette.customGray.textDark,
               fontWeight: theme.typography.fontWeightRegular,

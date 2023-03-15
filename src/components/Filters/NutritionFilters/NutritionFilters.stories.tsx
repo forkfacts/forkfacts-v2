@@ -120,3 +120,17 @@ Desktop.args = {
   ageItems,
   nutritionFilterItems,
 };
+
+export const Mobile = Template.bind({});
+
+Mobile.parameters = {
+  viewport: {
+    defaultViewport: "iphonexr",
+  },
+};
+
+Mobile.args = {
+  lifeStageItems,
+  ageItems,
+  nutritionFilterItems,
+};

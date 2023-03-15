@@ -40,10 +40,10 @@ const NutritionFilters: React.FC<NutritionFilterProps> = ({
       sx={{
         display: "flex",
         alignItems: "center",
-        width: "100%",
-        pr: mobile ? theme.spacing(3) : 0,
-        columnGap: mobile ? theme.spacing(1) : theme.spacing(2),
+        minWidth: "100%",
+        columnGap: mobile ? theme.spacing(0.7) : theme.spacing(2),
         justifyContent: mobile ? "space-between" : tablet ? "flex-start" : "normal",
+        flexDirection: "row", //
       }}
     >
       <AllFilters

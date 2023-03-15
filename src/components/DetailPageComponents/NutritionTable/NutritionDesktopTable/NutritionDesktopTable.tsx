@@ -304,7 +304,7 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ nutrition
                       justifyContent: "center",
                       alignItems: "center",
                       textAlign: "center",
-                      mr: tablet ? theme.spacing(0.5) : theme.spacing(3),
+                      mr: tablet ? theme.spacing(0.5) : theme.spacing(4),
                     }}
                   >
                     <Box

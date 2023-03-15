@@ -250,7 +250,13 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
             )}
             {firstSelectedItem.name
               ? `${firstSelectedItem.name} ${
-                  !firstSelectedItem ? "" : `+${firstSelectedItem.length}`
+                  !firstSelectedItem
+                    ? ""
+                    : `+${
+                        firstSelectedItem.name === "Carbohydrate"
+                          ? (firstSelectedItem.length as number) + 1
+                          : firstSelectedItem.length
+                      }`
                 } `
               : "Nutrients"}
           </Typography>

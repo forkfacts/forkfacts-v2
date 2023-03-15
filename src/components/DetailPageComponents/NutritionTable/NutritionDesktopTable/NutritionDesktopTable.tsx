@@ -121,12 +121,12 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ nutrition
                       />
                     ) : (
                       <>
-                        {item.nutrientContents.length && (
+                        {item.nutrientContents.length ? (
                           <ArrowDropDownIcon
                             onClick={() => toggleCollapse(item.nutrient)}
                             sx={{ cursor: "pointer" }}
                           />
-                        )}
+                        ) : null}
                       </>
                     )}
                     <Typography
@@ -134,6 +134,7 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ nutrition
                       sx={{
                         color: theme.palette.customGray.main,
                         fontWeight: theme.typography.fontWeightRegular,
+                        ml: !item.nutrientContents.length ? theme.spacing(3) : 0,
                       }}
                     >
                       {item.nutrient}

@@ -18,12 +18,18 @@ declare module "@mui/material/styles/createPalette" {
       surface4: string;
       surface5: string;
     };
+    iconColors: {
+      main: string;
+    };
     customGray: {
       light: string;
       main: string;
       dark: string;
       textLight: string;
       textDark: string;
+      textBlack: string;
+      surfaceLight: string;
+      switchColor: string;
     };
   }
   interface PaletteOptions {
@@ -47,6 +53,12 @@ declare module "@mui/material/styles/createPalette" {
       dark: string;
       textLight: string;
       textDark: string;
+      textBlack: string;
+      surfaceLight: string;
+      switchColor: string;
+    };
+    iconColors: {
+      main: string;
     };
   }
 }
@@ -138,6 +150,12 @@ declare module "@mui/material/styles/createTypography" {
       letterSpacing: string;
     };
     displayLarge: {
+      fontSize: string;
+      lineHeight: string;
+      fontStyle: string;
+      letterSpacing: string;
+    };
+    subhead1: {
       fontSize: string;
       lineHeight: string;
       fontStyle: string;
@@ -243,6 +261,12 @@ declare module "@mui/material/styles/createTypography" {
       fontStyle: string;
       letterSpacing: string;
     };
+    subhead1: {
+      fontSize: string;
+      lineHeight: string;
+      fontStyle: string;
+      letterSpacing: string;
+    };
     extraSmall: {
       fontSize: string;
       lineHeight: string;
@@ -269,5 +293,6 @@ declare module "@mui/material/Typography" {
     bodyMedium: true;
     bodySmall: true;
     extraSmall: true;
+    subhead1: true;
   }
 }

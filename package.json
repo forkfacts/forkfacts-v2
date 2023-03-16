@@ -19,7 +19,7 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "prepare": "husky install",
-    "svgr": "npx @svgr/cli --out-dir src/DesignIcons  --typescript --ignore-existing -- src/images/icons"
+    "svgr": "npx @svgr/cli --out-dir src/DesignIcons --typescript --ignore-existing --replace-attr-values '#000=currentColor' src/images/icons"
   },
   "dependencies": {
     "@algolia/autocomplete-core": "1.7.3",
@@ -54,9 +54,15 @@
     "gatsby-transformer-sharp": "^5.1.0",
     "install": "^0.13.0",
     "react": "^18.2.0",
+    "react-circular-progressbar": "^2.1.0",
     "react-copy-to-clipboard": "^5.1.0",
     "react-dom": "^18.2.0",
-    "react-share": "^4.4.1"
+    "react-multi-carousel": "^2.8.2",
+    "react-share": "^4.4.1",
+    "react-slick": "^0.29.0",
+    "recharts": "^2.4.1",
+    "slick-carousel": "^1.8.1",
+    "uninstall": "^0.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.2",
@@ -75,6 +81,7 @@
     "@types/react": "^18.0.25",
     "@types/react-copy-to-clipboard": "^5.0.4",
     "@types/react-dom": "^18.0.8",
+    "@types/react-slick": "^0.23.10",
     "babel-loader": "^8.3.0",
     "husky": "^8.0.0",
     "prettier": "2.8.0",

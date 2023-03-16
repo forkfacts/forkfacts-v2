@@ -68,7 +68,7 @@
     },
     "images": ["/img1", "/img2", "/img3"],
     "nutrition": {
-      "availableAmounts": ["1 tablespoon", "1cup", "100g"],
+      "availableAmounts": ["1 tableTeaspoon", "1cup", "100g"],
       "source": "USDA",
       "dashboard": [
         { "name": "Protein", "percentage": "10%", "weight": "120g" },

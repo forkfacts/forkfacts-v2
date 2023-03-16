@@ -123,6 +123,17 @@ To use the Controls addon, you need to write your stories using args. Storybook 
 
 By default, Storybook will choose a control for each arg based on the initial value of the arg. It works well with certain types of args, such as boolean values or free-text strings, but in other cases, you want a more restricted control. Read more at [storybook controls github tutorial](https://github.com/storybookjs/storybook/blob/next/docs/essentials/controls.md) and [storybook controls documentation](https://storybook.js.org/docs/react/essentials/controls).
 
+## Generating Icons
+
+To generate icons from SVG images downloaded from the project Figma design, use the following command:
+
+```
+npm run svgr
+
+```
+
+This will use the @svgr/cli package to generate TypeScript files for the SVG icons in the src/images/icons directory. The generated files will be placed in the src/DesignIcons directory. The --replace-attr-values '#000=currentColor' option replaces any #000 fill values with the currentColor value, which allows the icons to inherit the color of their parent element.
+
 ## Release
 
 We are using a version of [6 weeks cycle](https://3.basecamp-help.com/article/35-the-six-week-cycle). However, we may not

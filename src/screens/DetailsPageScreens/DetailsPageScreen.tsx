@@ -4,6 +4,7 @@ import {
   Layout,
   DetailsPageTabItems,
   ComparingDetailsTab,
+  NutritionDetailsTab,
 } from "@forkfacts/components";
 import { DetailsPageScreenProps } from "@forkfacts/models";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
@@ -18,6 +19,20 @@ const DetailsPageScreen: React.FC<DetailsPageScreenProps> = ({
   tabItems,
   compareTableItems,
   compareTableDetails,
+  nutritionSummaryItems,
+  lifeStageItems,
+  ageItems,
+  nutritionFilterItems,
+  measurementFilterItems,
+  multipleSelectItems,
+  getSelectedNutrients,
+  onSelectMeasurementItem,
+  onSelectLifeStageItem,
+  onSelectAgeItem,
+  onSelectUnit,
+  units,
+  nutritionTableItems,
+  onSelectNutritionFilterItem,
   values,
   onSelectedValue,
 }) => {
@@ -25,7 +40,7 @@ const DetailsPageScreen: React.FC<DetailsPageScreenProps> = ({
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.down("md"));
   const [_, setSelectedTitle] = useState("");
-  const [selectedTabItem, setSelectedTabItem] = useState("Compare foods");
+  const [selectedTabItem, setSelectedTabItem] = useState("Nutrition");
 
   return (
     <Layout sidebarItems={sidebarItems}>
@@ -77,7 +92,20 @@ const DetailsPageScreen: React.FC<DetailsPageScreenProps> = ({
             }}
           >
             {selectedTabItem === "Nutrition" ? (
-              <Box>Nutrition</Box>
+              <NutritionDetailsTab
+                nutritionSummaryItems={nutritionSummaryItems}
+                lifeStageItems={lifeStageItems}
+                onSelectLifeStageItem={onSelectLifeStageItem}
+                ageItems={ageItems}
+                onSelectAgeItem={onSelectAgeItem}
+                nutritionFilterItems={nutritionFilterItems}
+                measurementFilterItems={measurementFilterItems}
+                onSelectMeasurementItem={onSelectMeasurementItem}
+                onSelectUnit={onSelectUnit}
+                units={units}
+                nutritionTableItems={nutritionTableItems}
+                onSelectNutritionFilterItem={onSelectNutritionFilterItem}
+              />
             ) : selectedTabItem === "Recipes" ? (
               <Box>Recipes</Box>
             ) : selectedTabItem === "Emissions" ? (

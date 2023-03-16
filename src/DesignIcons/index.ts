@@ -1,6 +1,12 @@
 export { default as CompareSorting } from "./CompareSorting";
+export { default as Baby } from "./Baby";
 export { default as Email } from "./Email";
 export { default as Facebook } from "./Facebook";
+export { default as Kids } from "./Kids";
+export { default as Lactation } from "./Lactation";
 export { default as Linkedin } from "./Linkedin";
+export { default as Male } from "./Male";
 export { default as NutritionIcon } from "./NutritionIcon";
+export { default as PregnantWoman } from "./PregnantWoman";
 export { default as Twitter } from "./Twitter";
+export { default as Woman } from "./Woman";

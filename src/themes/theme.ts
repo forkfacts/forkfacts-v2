@@ -3,6 +3,26 @@ import { createTheme } from "@mui/material/styles";
 const theme = createTheme();
 
 export const customTheme = createTheme({
+  components: {
+    MuiAccordionSummary: {
+      styleOverrides: {
+        root: {
+          "&:hover:not(.Mui-disabled)": {
+            cursor: "default",
+          },
+        },
+      },
+    },
+    MuiAccordion: {
+      styleOverrides: {
+        root: {
+          "&:hover:not(.Mui-disabled)": {
+            cursor: "default",
+          },
+        },
+      },
+    },
+  },
   palette: {
     primary: {
       main: "#4C42E8",
@@ -39,11 +59,17 @@ export const customTheme = createTheme({
     background: {
       default: "#FFFFFF",
     },
+    iconColors: {
+      main: "#1A1A2C",
+    },
     customGray: {
+      switchColor: "#6660FF",
       light: "#E5E1E6",
       main: "#1C1B1F",
       dark: "#78767A",
-      textDark: "#47464A",
+      surfaceLight: "#77767A",
+      textDark: "#47464F",
+      textBlack: "#000000",
       textLight: " #929094",
     },
   },
@@ -149,6 +175,12 @@ export const customTheme = createTheme({
       fontSize: theme.spacing(1.5),
       lineHeight: "16px",
       letterSpacing: "0.4px",
+      fontStyle: "normal",
+    },
+    subhead1: {
+      fontSize: theme.spacing(2),
+      lineHeight: "24px",
+      letterSpacing: "0.1px",
       fontStyle: "normal",
     },
     extraSmall: {

@@ -9,7 +9,6 @@
   "engines": {
     "node": "18.x"
   },
-  "type": "module",
   "scripts": {
     "develop": "gatsby develop",
     "start": "gatsby develop",

@@ -12,8 +12,8 @@
   "type": "module",
   "scripts": {
     "develop": "gatsby develop",
-    "start": "npm run download-data & gatsby develop",
-    "build": "npm run download-data & gatsby build",
+    "start": "gatsby develop",
+    "build": "gatsby build",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "typecheck": "tsc --noEmit",

@@ -59,10 +59,10 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
   });
   const [firstSelectedItem, setFirstSelectedItem] = useState<{
     name: string;
-    length: number | null;
+    length: number;
   }>({
     name: "",
-    length: null,
+    length: 0,
   });
 
   const renderFilterNutrients = useCallback((): SearchNutritionFilterItem[] => {
@@ -249,9 +249,17 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
               />
             )}
             {firstSelectedItem.name
-              ? `${firstSelectedItem.name} ${
-                  !firstSelectedItem ? "" : `+${firstSelectedItem.length + 1}`
-                } `
+              ? `${firstSelectedItem.name}${
+                  firstSelectedItem.name === "Carbohydrate"
+                    ? ` ${
+                        firstSelectedItem.length === 1
+                          ? `+${1}`
+                          : `+${firstSelectedItem.length - 1}`
+                      }`
+                    : firstSelectedItem.length > 1
+                    ? ` +${firstSelectedItem.length - 1}`
+                    : ""
+                }`
               : "Nutrients"}
           </Typography>
           {open ? (

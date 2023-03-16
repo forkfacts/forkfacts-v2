@@ -23,7 +23,7 @@ const files = [
  * @param fileName
  */
 
-const download = async (url: string, toDir: string, fileName: string) => {
+const download = async (url, toDir, fileName) => {
   return $`rm -rf ${toDir} && mkdir -p ${toDir} && wget ${url} -O "${toDir}/${fileName}"`;
 };
 
@@ -32,7 +32,7 @@ async function downloadFiles() {
     await $`cd src`;
     await $`mkdir -p data`;
     for (const file of files) {
-      const fileUrl = `${process.env.DATA_ENDPOINT!}/${file.name}`;
+      const fileUrl = `${process.env.DATA_ENDPOINT}/${file.name}`;
       await download(fileUrl, "data", file.name);
     }
     console.log("Downloaded successfully");

@@ -13,6 +13,7 @@ const files = [
   {
     name: "usda_rdi_nutrient_mapping.json",
   },
+  { name: "rdi.json" },
 ];
 
 /**
@@ -32,7 +33,7 @@ async function downloadFiles() {
     await $`mkdir -p data`;
     for (const file of files) {
       const fileUrl = `${process.env.DATA_ENDPOINT!}/${file.name}`;
-      download(fileUrl, "data", file.name);
+      await download(fileUrl, "data", file.name);
     }
     console.log("Downloaded successfully");
   } catch (error) {

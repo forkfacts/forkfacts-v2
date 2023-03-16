@@ -162,17 +162,23 @@ in order to merge to `main`. We prefer to merge to `main` (hence a release) as s
    updated storybook components. This can be of tremendous help during the code review.
 5. Once you are done with the work, assign your PR to a reviewer.
 
-## Environment variables needed in the project.
+## Setting up environment variables
 
-### Follow these steps to add environment variables before you run the project.
+To run this project, you'll need to set up some environment variables. These variables are used to connect to various APIs and services used in the project.
 
-1. Create .env file in project root directory.
-2. Add the following environment variables inside .env file
+1. Copy the contents of the `.env.sample` file to a new file called `.env` using the following command:
 
-```
-GATSBY_SEARCH_APP_ID =Algolia APP ID value
-GATSBY_SEARCH_API_KEY =Algolia APP KEY value
-```
+   ```
+   npm run build:env
+   ```
+
+   This command will copy all the keys and their default values from `.env.sample` to `.env`.
+
+2. Open the `.env` file and replace the default values with the appropriate values for your local environment.
+
+3. Save the `.env` file.
+
+With the environment variables set up, you're ready to run the project!
 
 **After you done that successfully, reach out to the project owner for the key values**
 

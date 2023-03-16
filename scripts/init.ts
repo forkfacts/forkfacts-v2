@@ -32,8 +32,8 @@ async function downloadFiles() {
     await $`cd src`;
     await $`mkdir -p data`;
     for (const file of files) {
-      const fileUrl = `${process.env.DATA_ENDPOINT as string}/${file.name}`;
-      download(fileUrl, "data", file.name);
+      const fileUrl = `${process.env.DATA_ENDPOINT!}/${file.name}`;
+      await download(fileUrl, "data", file.name);
     }
     console.log("Downloaded successfully");
   } catch (error) {

@@ -6,4 +6,4 @@ src/gatsby-types.d.ts
 .env
 .vscode
 data
-.wget-log*
+wget-log*

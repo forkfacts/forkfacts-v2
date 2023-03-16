@@ -114,6 +114,7 @@
     "./gatsby-node.ts",
     "./gatsby-config.ts",
     "./plugins/**/*",
-    "src/theme.d.ts"
+    "src/theme.d.ts",
+    "download-data.mjs"
   ]
 }

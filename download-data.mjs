@@ -7,7 +7,7 @@ const files = [
   {
     name: "foundation_food_nutrition_facts.json",
   },
-  { url: `rdi.json`, name: "rdi.json" },
+  { name: "rdi.json" },
   {
     name: "sr_legacy_food_nutrition_facts.json",
   },
@@ -15,6 +15,12 @@ const files = [
     name: "usda_rdi_nutrient_mapping.json",
   },
 ];
+/**
+ * Create the nested directories, if needed, and downloads the file from internet
+ * @param url
+ * @param toDir
+ * @param fileName
+ */
 const download = async (url, toDir, fileName) => {
   return $`mkdir -p ${toDir} && wget ${url} -O "${toDir}/${fileName}"`;
 };

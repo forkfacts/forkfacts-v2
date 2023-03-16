@@ -108,6 +108,10 @@
     // "skipDefaultLibCheck": true,                      /* Skip type checking .d.ts files that are included with TypeScript. */
     "skipLibCheck": true /* Skip type checking all .d.ts files. */
   },
+  "ts-node": {
+    // Tell ts-node CLI to install the --loader automatically
+    "esm": true
+  },
   "include": [
     "src",
     "src/pages/projects/gatsby-node.ts",
@@ -115,6 +119,6 @@
     "./gatsby-config.ts",
     "./plugins/**/*",
     "src/theme.d.ts",
-    "download-data.mjs"
+    "download-data.ts"
   ]
 }

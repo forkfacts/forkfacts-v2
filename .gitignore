@@ -5,3 +5,4 @@ src/gatsby-types.d.ts
 .idea/
 .env
 .vscode
+data

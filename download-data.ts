@@ -15,13 +15,15 @@ const files = [
     name: "usda_rdi_nutrient_mapping.json",
   },
 ];
+
 /**
  * Create the nested directories, if needed, and downloads the file from internet
  * @param url
  * @param toDir
  * @param fileName
  */
-const download = async (url, toDir, fileName) => {
+
+const download = async (url: string, toDir: string, fileName: string) => {
   return $`mkdir -p ${toDir} && wget ${url} -O "${toDir}/${fileName}"`;
 };
 
@@ -29,11 +31,10 @@ async function downloadFiles() {
   try {
     dotenv;
     await $`cd src`;
-    await $`mkdir -p src/data`;
+    await $`mkdir -p data`;
     for (const file of files) {
-      download(process.env.DATA_ENDPOINT, "src/data", file.name);
+      download(process.env.DATA_ENDPOINT as string, "data", file.name);
     }
-
     console.log("Downloaded successfully");
   } catch (error) {
     console.log(error);

@@ -9,9 +9,10 @@
   "engines": {
     "node": "18.x"
   },
+  "type": "module",
   "scripts": {
     "develop": "gatsby develop",
-    "start": "ts-node download-data.mjs & gatsby develop",
+    "start": "ts-node --experimentalSpecifierResolution node download-data.ts & gatsby develop",
     "build": "gatsby build",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
@@ -20,7 +21,7 @@
     "build-storybook": "build-storybook",
     "prepare": "husky install",
     "svgr": "npx @svgr/cli --out-dir src/DesignIcons --typescript --ignore-existing --replace-attr-values '#000=currentColor' src/images/icons",
-    "download-data": "ts-node download-data.mjs"
+    "download-data": "ts-node --experimentalSpecifierResolution node download-data.ts"
   },
   "dependencies": {
     "@algolia/autocomplete-core": "1.7.3",

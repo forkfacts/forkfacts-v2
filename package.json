@@ -12,8 +12,8 @@
   "type": "module",
   "scripts": {
     "develop": "gatsby develop",
-    "start": "ts-node --experimentalSpecifierResolution node download-data.ts & gatsby develop",
-    "build": "gatsby build",
+    "start": "npm run download-data & gatsby develop",
+    "build": "npm run download-data & gatsby build",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "typecheck": "tsc --noEmit",
@@ -21,7 +21,8 @@
     "build-storybook": "build-storybook",
     "prepare": "husky install",
     "svgr": "npx @svgr/cli --out-dir src/DesignIcons --typescript --ignore-existing --replace-attr-values '#000=currentColor' src/images/icons",
-    "download-data": "ts-node --experimentalSpecifierResolution node download-data.ts"
+    "download-data": "ts-node --experimentalSpecifierResolution node scripts.ts",
+    "build:env": "cp .env.sample .env"
   },
   "dependencies": {
     "@algolia/autocomplete-core": "1.7.3",
@@ -68,12 +69,6 @@
     "uninstall": "^0.0.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.21.0",
-    "@babel/core": "^7.21.3",
-    "@babel/plugin-proposal-numeric-separator": "^7.18.6",
-    "@babel/plugin-transform-runtime": "^7.21.0",
-    "@babel/preset-env": "^7.20.2",
-    "@babel/runtime": "^7.21.0",
     "@storybook/addon-actions": "^6.5.13",
     "@storybook/addon-console": "^1.2.3",
     "@storybook/addon-controls": "^6.5.14",

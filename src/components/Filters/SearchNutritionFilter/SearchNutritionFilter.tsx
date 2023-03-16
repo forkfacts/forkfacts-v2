@@ -15,7 +15,6 @@ import {
 import IndeterminateCheckBoxIcon from "@mui/icons-material/IndeterminateCheckBox";
 import DoneIcon from "@mui/icons-material/Done";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
-import { ViewMoreButton } from "@forkfacts/components";
 import CloseIcon from "@mui/icons-material/Close";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
@@ -50,19 +49,16 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
   const [selectedNutrient, setSelectedNutrient] = useState({
     name: "",
   });
-  const [selectedItems, setSelectedItems] = useState<SearchNutritionFilterItem[]>([]);
+  const [selectedItems, _] = useState<SearchNutritionFilterItem[]>([]);
   const [open, setOpen] = useState(false);
   const [name, setName] = useState<string>("");
-  const [viewMore, setViewMore] = useState({
-    main: 5,
-    sub: 4,
-  });
+
   const [firstSelectedItem, setFirstSelectedItem] = useState<{
     name: string;
-    length: number | null;
+    length: number;
   }>({
     name: "",
-    length: null,
+    length: 0,
   });
 
   const renderFilterNutrients = useCallback((): SearchNutritionFilterItem[] => {
@@ -88,7 +84,7 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
   }, [name, filteredNutrient, selectedItems, selectedNutrient, selectedNutrient]);
 
   const onHandleSelectedItem = useCallback(
-    (name: string, index: number) => {
+    (name: string) => {
       const itemIndex = filteredNutrient.findIndex((item) => item.name === name);
       if (itemIndex !== -1) {
         const updatedItem = {
@@ -131,13 +127,9 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => setName(e.target.value);
 
-  const handleSelectItem = (
-    e: React.MouseEvent<HTMLDivElement, MouseEvent>,
-    name: string,
-    index: number
-  ) => {
+  const handleSelectItem = (e: React.MouseEvent<HTMLDivElement, MouseEvent>, name: string) => {
     e.stopPropagation();
-    onHandleSelectedItem(name, index);
+    onHandleSelectedItem(name);
   };
 
   useEffect(() => {
@@ -147,8 +139,8 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
         if (item.checked) {
           return {
             ...item,
-            subItems: item.subItems.filter((item2, index) => {
-              if (item2.checked === true) {
+            subItems: item.subItems.filter((item2) => {
+              if (item2.checked) {
                 return item2;
               }
             }),
@@ -164,17 +156,6 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
     }
     onSelectNutritionFilterItem(checkedNutrients);
   }, [filteredNutrient]);
-
-  const handleMainViewMore = () => {
-    if (viewMore.main === renderFilterNutrients.length) {
-      setViewMore({ ...viewMore, main: 5 });
-    } else setViewMore({ ...viewMore, main: renderFilterNutrients.length });
-  };
-  const handleSubViewMore = (sub: SearchNutritionFilterItem) => {
-    if (viewMore.sub === sub.subItems.length) {
-      setViewMore({ ...viewMore, sub: 4 });
-    } else setViewMore({ ...viewMore, sub: sub.subItems.length });
-  };
 
   const onClearSelectedItem = () => {
     onSelectNutritionFilterItem([]);
@@ -250,7 +231,7 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
             )}
             {firstSelectedItem.name
               ? `${firstSelectedItem.name} ${
-                  !firstSelectedItem ? "" : `+${firstSelectedItem.length + 1}`
+                  firstSelectedItem.length < 2 ? "" : `+${firstSelectedItem.length - 1}`
                 } `
               : "Nutrients"}
           </Typography>
@@ -364,7 +345,7 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
             }}
           >
             {renderFilterNutrients().length ? (
-              <ForLoops each={renderFilterNutrients().slice(0, viewMore.main)}>
+              <ForLoops each={renderFilterNutrients()}>
                 {(item, index) => {
                   return (
                     <Accordion
@@ -387,7 +368,7 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
                         aria-controls="panel1a-content"
                         id="panel1a-header"
                         sx={{ cursor: "default" }}
-                        onClick={(event) => handleSelectItem(event, item.name, index)}
+                        onClick={(event) => handleSelectItem(event, item.name)}
                       >
                         <Box
                           sx={{
@@ -446,20 +427,6 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
                             );
                           }}
                         </ForLoops>
-                        <Box sx={{ ml: theme.spacing(-1), display: "none" }}>
-                          {item.subItems.length > 4 && (
-                            <Box>
-                              {viewMore.sub === item.subItems.length ? (
-                                <ViewMoreButton
-                                  handleViewMore={() => handleSubViewMore(item)}
-                                  text="View less"
-                                />
-                              ) : (
-                                <ViewMoreButton handleViewMore={() => handleSubViewMore(item)} />
-                              )}
-                            </Box>
-                          )}
-                        </Box>
                       </AccordionDetails>
                     </Accordion>
                   );
@@ -478,17 +445,6 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
                 </Typography>
               </Box>
             )}
-            <Box sx={{ mt: theme.spacing(-2.5), ml: theme.spacing(-1), display: "none" }}>
-              {renderFilterNutrients.length > 5 && (
-                <Box>
-                  {viewMore.main === renderFilterNutrients.length ? (
-                    <ViewMoreButton handleViewMore={handleMainViewMore} text="View less" />
-                  ) : (
-                    <ViewMoreButton handleViewMore={handleMainViewMore} />
-                  )}
-                </Box>
-              )}
-            </Box>
           </Box>
           <Box
             sx={{

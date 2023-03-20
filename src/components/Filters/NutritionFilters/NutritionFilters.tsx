@@ -53,6 +53,7 @@ const NutritionFilters: React.FC<NutritionFilterProps> = ({
         "&::-webkit-scrollbar": {
           width: "0px",
           background: "transparent",
+          height: "0px",
         },
         flexDirection: "row",
       }}

@@ -93,7 +93,7 @@ const AllFilters = ({
             sx={{
               display: "flex",
               flexDirection: "column",
-              maxHeight: "700px",
+              maxHeight: "500px",
               overflowY: "auto",
               "&::-webkit-scrollbar": {
                 width: "8px",

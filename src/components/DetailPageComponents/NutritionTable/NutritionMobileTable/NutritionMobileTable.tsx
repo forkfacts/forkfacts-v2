@@ -4,12 +4,8 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import { Box, Typography, useTheme } from "@mui/material";
 import { ForLoops } from "@forkfacts/helpers";
-import { NutritionTableItem } from "@forkfacts/models";
+import { NutritionTableItem, NutritionMobileTableProps } from "@forkfacts/models";
 import "./index.css";
-
-interface NutritionMobileTableProps {
-  nutritionTableItems: NutritionTableItem[];
-}
 
 const NutritionMobileTable: React.FC<NutritionMobileTableProps> = ({ nutritionTableItems }) => {
   const theme = useTheme();
@@ -112,11 +108,11 @@ const NutritionMobileTable: React.FC<NutritionMobileTableProps> = ({ nutritionTa
                 </Box>
               )}
             </Box>
-            {item.nutrientContents.length ? (
+            {item?.nutrientContents?.length ? (
               <Box>
                 <Box
                   sx={{
-                    display: item.nutrientContents.length ? "flex" : "none",
+                    display: item?.nutrientContents?.length ? "flex" : "none",
                     justifyContent: "space-between",
                     alignItems: "center",
                     mt: !item.amount ? theme.spacing(2) : theme.spacing(4),

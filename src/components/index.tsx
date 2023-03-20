@@ -34,3 +34,4 @@ export { default as NutritionFilters } from "./Filters/NutritionFilters/Nutritio
 export { default as NutritionDesktopTable } from "./DetailPageComponents/NutritionTable/NutritionDesktopTable/NutritionDesktopTable";
 export { default as NutritionMobileTable } from "./DetailPageComponents/NutritionTable/NutritionMobileTable/NutritionMobileTable";
 export { default as AutoCompleteSearch } from "./AutoCompleteSearch/AutoCompleteSearch";
+export { default as ComingSoon } from "./ComingSoon/ComingSoon";

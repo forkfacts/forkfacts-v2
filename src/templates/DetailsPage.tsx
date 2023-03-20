@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { graphql, PageProps } from "gatsby";
 import { DetailsPageScreen } from "@forkfacts/screens";
 import { SEO } from "@forkfacts/components";
@@ -22,6 +22,8 @@ import {
   sidebarItem,
   NutritionTableItem,
 } from "@forkfacts/models";
+import { generateRdiForFood } from "@forkfacts/helpers";
+import { Box } from "@mui/material";
 
 const sidebarItems: sidebarItem[] = [
   { label: "Food", Icon: EggAltOutlinedIcon, link: "/food" },
@@ -53,18 +55,6 @@ const DetailsPageTitlesItems: DetailsPageTitlesItem[] = [
     title: "Banana, raw",
   },
 ];
-
-const detailsHeaderValues = {
-  img: "/banana.svg",
-  name: "Banana, overripe, raw",
-  subTitle: "Fruits and Fruit Juices",
-  nutritionValues: [
-    { name: "Gluten - Free", icon: "/details1.svg" },
-    { name: "Vegan", icon: "/details2.svg" },
-    { name: "Good for diabetes", icon: "/details3.svg" },
-  ],
-  tag: "High in Vitamin C and Calcium",
-};
 
 const compareTableItemRows: compareTableItem[] = [
   {
@@ -158,32 +148,6 @@ const nutritionSummaryItems = [
 
 const units = ["Plates", "Cups", "Teaspoon"];
 
-const nutritionFilterItems: SearchNutritionFilterItem[] = [
-  {
-    name: "Vitamin",
-    subItems: [
-      { name: "Vitamin B1", checked: false },
-      { name: "Vitamin B2", checked: false },
-      { name: "Vitamin B3", checked: false },
-      { name: "Vitamin B4", checked: false },
-    ],
-    checked: false,
-  },
-  {
-    name: "Protein",
-    subItems: [
-      { name: "Protein B1", checked: false },
-      { name: "Protein B2", checked: false },
-    ],
-    checked: false,
-  },
-  { name: "Carbohydrate", subItems: [], checked: false },
-  { name: "Water", subItems: [], checked: false },
-  { name: "Fats", subItems: [], checked: false },
-  { name: "Fiber", subItems: [], checked: false },
-  { name: "Minerals", subItems: [], checked: false },
-];
-
 const lifeStageItems: lifeStageItem[] = [
   {
     name: "Children",
@@ -242,366 +206,109 @@ const ageItems: ageItem[] = [
     unit: "years",
   },
 ];
-const nutritionTableItems: NutritionTableItem[] = [
-  {
-    nutrient: "Minerals",
-    dailyValue: null,
-    amount: null,
-    rdi: { value: null, weight: "g" },
-    nutrientContents: [
-      {
-        nutrient: "Chlorine",
-        dailyValue: 1.7,
-        amount: "100g",
-        rdi: { value: 30, weight: "g" },
-      },
-      {
-        nutrient: "Iron",
-        dailyValue: 1.7,
-        amount: "120g",
-        rdi: { value: 45, weight: "g" },
-      },
-      {
-        nutrient: "Magnesium",
-        dailyValue: 9.05,
-        amount: "39g",
-        rdi: { value: 120, weight: "g" },
-      },
-      {
-        nutrient: "Phosphorus",
-        dailyValue: 2.0,
-        amount: "g",
-        rdi: { value: 11, weight: "g" },
-      },
-      {
-        nutrient: "Potassium",
-        dailyValue: 1.07,
-        amount: "4g",
-        rdi: { value: 112, weight: "g" },
-      },
-      {
-        nutrient: "Sodium",
-        dailyValue: 1.7,
-        amount: "120g",
-        rdi: { value: 45, weight: "g" },
-      },
-      {
-        nutrient: "Sulphur",
-        dailyValue: 9.05,
-        amount: "120g",
-        rdi: { value: 120, weight: "g" },
-      },
-      {
-        nutrient: "Zinc",
-        dailyValue: 2.0,
-        amount: "39g",
-        rdi: { value: 11, weight: "g" },
-      },
-      {
-        nutrient: "Chromium",
-        dailyValue: 1.07,
-        amount: "4g",
-        rdi: { value: 112, weight: "g" },
-      },
-    ],
-  },
-  {
-    nutrient: "Fats",
-    dailyValue: 12.91,
-    amount: "30g",
-    rdi: {
-      value: 120,
-      weight: "g",
-    },
-    nutrientContents: [
-      {
-        nutrient: "Saturated",
-        dailyValue: 2.4,
-        amount: "100g",
-        rdi: { value: 30, weight: "g" },
-      },
-      {
-        nutrient: "Trans",
-        dailyValue: 1.7,
-        amount: "35g",
-        rdi: { value: 45, weight: "g" },
-      },
-      {
-        nutrient: "Omega 3",
-        dailyValue: 9.05,
-        amount: "120g",
-        rdi: { value: 120, weight: "g" },
-      },
-      {
-        nutrient: "Omega 6",
-        dailyValue: 2.0,
-        amount: "39g",
-        rdi: { value: 11, weight: "g" },
-      },
-      {
-        nutrient: "Omega 9",
-        dailyValue: 1.07,
-        amount: "4g",
-        rdi: { value: 112, weight: "g" },
-      },
-    ],
-  },
-  {
-    nutrient: "Carbohydrates",
-    dailyValue: 12.91,
-    amount: "30g",
-    rdi: { value: 120, weight: "g" },
-    nutrientContents: [
-      {
-        nutrient: "Sugar",
-        dailyValue: 2.4,
-        amount: "100g",
-        rdi: { value: 30, weight: "g" },
-      },
-      {
-        nutrient: "Starch",
-        dailyValue: 1.7,
-        amount: "35g",
-        rdi: { value: 45, weight: "g" },
-      },
-    ],
-  },
-  {
-    nutrient: "Vitamins",
-    dailyValue: null,
-    amount: null,
-    rdi: { value: null, weight: "g" },
-    nutrientContents: [
-      {
-        nutrient: "Vitamin A",
-        dailyValue: 2.4,
-        amount: "100g",
-        rdi: { value: 30, weight: "g" },
-      },
-      {
-        nutrient: "Vitamin B1",
-        dailyValue: 1.7,
-        amount: "45g",
-        rdi: { value: 45, weight: "g" },
-      },
-      {
-        nutrient: "Vitamin B12",
-        dailyValue: 9.05,
-        amount: "120g",
-        rdi: { value: 30, weight: "g" },
-      },
-      {
-        nutrient: "Vitamin C",
-        dailyValue: 2.0,
-        amount: "11g",
-        rdi: { value: 45, weight: "g" },
-      },
-      {
-        nutrient: "Vitamin D",
-        dailyValue: 1.07,
-        amount: "4g",
-        rdi: { value: 112, weight: "g" },
-      },
-    ],
-  },
-  {
-    nutrient: "Protein",
-    dailyValue: 12.91,
-    amount: "30g",
-    rdi: { value: 120, weight: "g" },
-    nutrientContents: [],
-  },
-];
-const DesktopNutritionTableItems: NutritionTableItem[] = [
-  {
-    nutrient: "Fats",
-    dailyValue: 12.91,
-    amount: "30g",
-    rdi: {
-      value: 120,
-      weight: "g",
-    },
-    nutrientContents: [
-      {
-        nutrient: "Saturated",
-        dailyValue: 2.4,
-        amount: "100g",
-        rdi: { value: 30, weight: "g" },
-      },
-      {
-        nutrient: "Trans",
-        dailyValue: 1.7,
-        amount: "35g",
-        rdi: { value: 45, weight: "g" },
-      },
-      {
-        nutrient: "Omega 3",
-        dailyValue: 9.05,
-        amount: "120g",
-        rdi: { value: 120, weight: "g" },
-      },
-      {
-        nutrient: "Omega 6",
-        dailyValue: 2.0,
-        amount: "39g",
-        rdi: { value: 11, weight: "g" },
-      },
-      {
-        nutrient: "Omega 9",
-        dailyValue: 1.07,
-        amount: "4g",
-        rdi: { value: 112, weight: "g" },
-      },
-    ],
-  },
-  {
-    nutrient: "Minerals",
-    dailyValue: null,
-    amount: null,
-    rdi: { value: null, weight: "g" },
-    nutrientContents: [
-      {
-        nutrient: "Chlorine",
-        dailyValue: 1.7,
-        amount: "100g",
-        rdi: { value: 30, weight: "g" },
-      },
-      {
-        nutrient: "Iron",
-        dailyValue: 1.7,
-        amount: "120g",
-        rdi: { value: 45, weight: "g" },
-      },
-      {
-        nutrient: "Magnesium",
-        dailyValue: 9.05,
-        amount: "39g",
-        rdi: { value: 120, weight: "g" },
-      },
-      {
-        nutrient: "Phosphorus",
-        dailyValue: 2.0,
-        amount: "120g",
-        rdi: { value: 11, weight: "g" },
-      },
-      {
-        nutrient: "Potassium",
-        dailyValue: 1.07,
-        amount: "4g",
-        rdi: { value: 112, weight: "g" },
-      },
-      {
-        nutrient: "Sodium",
-        dailyValue: 1.7,
-        amount: "120g",
-        rdi: { value: 45, weight: "g" },
-      },
-      {
-        nutrient: "Sulphur",
-        dailyValue: 9.05,
-        amount: "120g",
-        rdi: { value: 120, weight: "g" },
-      },
-      {
-        nutrient: "Zinc",
-        dailyValue: 2.0,
-        amount: "39g",
-        rdi: { value: 11, weight: "g" },
-      },
-      {
-        nutrient: "Chromium",
-        dailyValue: 1.07,
-        amount: "4g",
-        rdi: { value: 112, weight: "g" },
-      },
-    ],
-  },
-  {
-    nutrient: "Carbohydrates",
-    dailyValue: 12.91,
-    amount: "30g",
-    rdi: { value: 120, weight: "g" },
-    nutrientContents: [
-      {
-        nutrient: "Sugar",
-        dailyValue: 2.4,
-        amount: "100g",
-        rdi: { value: 30, weight: "g" },
-      },
-      {
-        nutrient: "Starch",
-        dailyValue: 1.7,
-        amount: "35g",
-        rdi: { value: 45, weight: "g" },
-      },
-    ],
-  },
-  {
-    nutrient: "Vitamins",
-    dailyValue: null,
-    amount: null,
-    rdi: { value: null, weight: "g" },
-    nutrientContents: [
-      {
-        nutrient: "Vitamin A",
-        dailyValue: 2.4,
-        amount: "100g",
-        rdi: { value: 30, weight: "g" },
-      },
-      {
-        nutrient: "Vitamin B1",
-        dailyValue: 1.7,
-        amount: "45g",
-        rdi: { value: 45, weight: "g" },
-      },
-      {
-        nutrient: "Vitamin B12",
-        dailyValue: 9.05,
-        amount: "120g",
-        rdi: { value: 30, weight: "g" },
-      },
-      {
-        nutrient: "Vitamin C",
-        dailyValue: 2.0,
-        amount: "11g",
-        rdi: { value: 45, weight: "g" },
-      },
-      {
-        nutrient: "Vitamin D",
-        dailyValue: 1.07,
-        amount: "4g",
-        rdi: { value: 112, weight: "g" },
-      },
-    ],
-  },
-  {
-    nutrient: "Protein",
-    dailyValue: 12.91,
-    amount: "30g",
-    rdi: { value: 120, weight: "g" },
-    nutrientContents: [],
-  },
-];
+interface NutriTable {
+  nutrient: {
+    amount: number;
+    name: string;
+    unit: string;
+  };
+  percentDaily: string;
+  rdi: {
+    ageStart: number;
+    ageEnd: number;
+    ageUnit: string;
+    amount: number;
+    nutrient: string;
+    nutrientUnit: string;
+    applicableFor: string;
+  };
+}
 
 const DynamicPageTemplate = ({ pageContext }: PageProps) => {
-  const pageData = pageContext;
-
-  console.log(pageData);
-
+  const { food, rdis, seo } = pageContext as any;
+  const [rows, setRows] = useState<any[]>([]);
   const [_, setSelectedNutrients] = useState<string[]>([]);
   const [selectLifeStage, setSelectedLifeStage] = useState("");
   const [selectAge, setSelectedAge] = useState<ageItem>({} as ageItem);
-  const [selectSearchNutrition, seSelectedSearchNutrition] = useState(
+  const [selectSearchNutrition, setSelectedSearchNutrition] = useState(
     [] as SearchNutritionFilterItem[]
   );
   const [unit, setUnit] = React.useState("Cups");
 
+  const [state, setState] = useState<{
+    selectedGender: string;
+    selectedAge: ageItem;
+    selectedNutrients: any[];
+  }>({
+    selectedGender: selectLifeStage,
+    selectedAge: selectAge,
+    selectedNutrients: [],
+  });
+
+  useEffect(() => {
+    setState({
+      selectedGender: selectLifeStage,
+      selectedAge: selectAge,
+      selectedNutrients: selectSearchNutrition,
+    });
+  }, [selectAge, selectLifeStage, selectSearchNutrition]);
+  const thisFood = food as any;
+  const allRdis = rdis as any[];
+
+  const nutrientRdis: NutriTable[] = generateRdiForFood(thisFood, allRdis);
+  useEffect(() => {
+    const gender = state.selectedGender;
+    const age = state.selectedAge;
+    const nutrients = state.selectedNutrients.length < 1 ? food.nutrients : state.selectedNutrients;
+    const nutrientsWithRdis = nutrients.map((nutrient: any, index: number) => {
+      const nutrientWithRdi = nutrientRdis.filter(
+        (nutrientRdi) =>
+          nutrientRdi.nutrient.name === nutrient.name &&
+          age.start === nutrientRdi?.rdi?.ageStart &&
+          age.end === nutrientRdi?.rdi?.ageEnd &&
+          gender.toLowerCase() === nutrientRdi?.rdi?.applicableFor?.toLowerCase() &&
+          age.unit === nutrientRdi?.rdi.ageUnit
+      )[0];
+      const getPercentDaily = () => {
+        if (!nutrientWithRdi || !nutrientWithRdi.rdi) return undefined;
+        return nutrientWithRdi.percentDaily;
+      };
+      const factTableRow: any = {
+        nutrient: nutrient.name,
+        amount: nutrient.amount,
+        amountUnit: nutrient.unit.toLowerCase(),
+        dailyValue: getPercentDaily(),
+        rdi: {
+          amount: nutrientWithRdi,
+          weight: nutrientWithRdi,
+        },
+      };
+      return factTableRow;
+    });
+    setRows(nutrientsWithRdis);
+  }, [state.selectedAge, state.selectedGender, state.selectedNutrients]);
+
+  console.log(rows);
+
+  const dataNutrients = food.nutrients.map(
+    (item: { checked: boolean; name: string; unit: string }) => {
+      return {
+        checked: false,
+        name: item.name,
+        unit: item.unit,
+      };
+    }
+  );
+
   return (
-    <>
+    <Box sx={{ p: "8px" }}>
       <DetailsPageScreen
         sidebarItems={sidebarItems}
         DetailsPageTitlesItems={DetailsPageTitlesItems}
-        detailsHeaderValues={detailsHeaderValues}
+        detailsHeaderValues={{
+          name: food.name,
+          category: food.category,
+        }}
         tabItems={tabItems}
         compareTableItems={compareTableItemRows}
         compareTableDetails={{
@@ -610,16 +317,16 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
         }}
         ageItems={ageItems}
         lifeStageItems={lifeStageItems}
-        nutritionFilterItems={nutritionFilterItems}
+        nutritionFilterItems={dataNutrients}
         nutritionSummaryItems={nutritionSummaryItems}
         measurementFilterItems={["Metric", "US"]}
-        nutritionTableItems={nutritionTableItems}
+        nutritionTableItems={rows}
         units={units}
         values={values}
         getSelectedNutrients={setSelectedNutrients}
         onSelectLifeStageItem={setSelectedLifeStage}
         onSelectAgeItem={setSelectedAge}
-        onSelectNutritionFilterItem={seSelectedSearchNutrition}
+        onSelectNutritionFilterItem={setSelectedSearchNutrition}
         onSelectUnit={setUnit}
         onSelectMeasurementItem={function (item: string): void {
           throw new Error("Function not implemented.");
@@ -635,7 +342,7 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
           throw new Error("Function not implemented.");
         }}
       />
-    </>
+    </Box>
   );
 };
 

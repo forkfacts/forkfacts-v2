@@ -36,8 +36,9 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
   const newNutrients: SearchNutritionFilterItem[] = [...nutritionFilterItems].map((item) => {
     return {
       name: item.name,
+      unit: item.unit,
       checked: item.checked,
-      subItems: item.subItems.map((item2) => {
+      subItems: item?.subItems?.map((item2) => {
         return {
           name: item2.name,
           checked: item.checked,
@@ -90,7 +91,7 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
         const updatedItem = {
           ...filteredNutrient[itemIndex],
           checked: !filteredNutrient[itemIndex].checked,
-          subItems: filteredNutrient[itemIndex].subItems.map((subItem) => ({
+          subItems: filteredNutrient[itemIndex]?.subItems?.map((subItem) => ({
             ...subItem,
             checked: !filteredNutrient[itemIndex].checked,
           })),
@@ -108,16 +109,16 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
     });
     const updatedNutrients = filteredNutrient.map((nutrient) => {
       if (nutrient.name === name1) {
-        const updatedSubItems = nutrient.subItems.map((subItem) => {
-          if (subItem.name === name2) {
-            return { ...subItem, checked: !subItem.checked };
+        const updatedSubItems: any = nutrient?.subItems?.map((subItem) => {
+          if (subItem?.name === name2) {
+            return { ...subItem, checked: !subItem?.checked };
           }
           return subItem;
         });
         return {
           ...nutrient,
           subItems: updatedSubItems,
-          checked: updatedSubItems.some((si) => si.checked),
+          checked: updatedSubItems?.some((si: any) => si?.checked!),
         };
       }
       return nutrient;
@@ -139,7 +140,7 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
         if (item.checked) {
           return {
             ...item,
-            subItems: item.subItems.filter((item2) => {
+            subItems: item.subItems?.filter((item2) => {
               if (item2.checked) {
                 return item2;
               }
@@ -164,7 +165,8 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
       return {
         name: item.name,
         checked: false,
-        subItems: item.subItems.map((item2) => {
+        unit: item.unit,
+        subItems: item?.subItems?.map((item2) => {
           return {
             name: item2.name,
             checked: false,
@@ -382,7 +384,7 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
                             color="primary"
                             checked={item.checked}
                             checkedIcon={
-                              item.subItems.every((item3) => item3.checked === true) ? (
+                              item?.subItems?.every((item3) => item3.checked === true) ? (
                                 <CheckBoxIcon color="primary" sx={{ width: theme.spacing(3) }} />
                               ) : (
                                 <IndeterminateCheckBoxIcon
@@ -405,28 +407,30 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
                         </Box>
                       </AccordionSummary>
                       <AccordionDetails sx={{ mt: theme.spacing(-2), cursor: "default" }}>
-                        <ForLoops each={item.subItems}>
-                          {(item2, index2) => {
-                            return (
-                              <Box
-                                sx={{ display: "flex", alignItems: "center", cursor: "pointer" }}
-                                key={index2}
-                                onClick={() => onSelectSubItem(item.name, item2.name)}
-                              >
-                                <Checkbox color="primary" checked={item2.checked} />
-                                <Typography
-                                  variant="bodyMedium"
-                                  sx={{
-                                    fontWeight: theme.typography.fontWeightLight,
-                                    color: theme.palette.customGray.textDark,
-                                  }}
+                        {item.subItems && (
+                          <ForLoops each={item.subItems}>
+                            {(item2, index2) => {
+                              return (
+                                <Box
+                                  sx={{ display: "flex", alignItems: "center", cursor: "pointer" }}
+                                  key={index2}
+                                  onClick={() => onSelectSubItem(item.name, item2.name)}
                                 >
-                                  {item2.name}
-                                </Typography>
-                              </Box>
-                            );
-                          }}
-                        </ForLoops>
+                                  <Checkbox color="primary" checked={item2.checked} />
+                                  <Typography
+                                    variant="bodyMedium"
+                                    sx={{
+                                      fontWeight: theme.typography.fontWeightLight,
+                                      color: theme.palette.customGray.textDark,
+                                    }}
+                                  >
+                                    {item2.name}
+                                  </Typography>
+                                </Box>
+                              );
+                            }}
+                          </ForLoops>
+                        )}
                       </AccordionDetails>
                     </Accordion>
                   );

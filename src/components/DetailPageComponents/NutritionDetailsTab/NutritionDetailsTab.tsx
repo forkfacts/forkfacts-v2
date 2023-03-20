@@ -45,7 +45,7 @@ const NutritionDetailsTab: React.FC<NutritionDetailsTabProps> = ({
             flexWrap: "wrap",
           }}
         >
-          <Box sx={{ width: mobile || tablet ? "100%" : "50%" }}>
+          <Box sx={{ width: mobile || tablet ? "100%" : "65%" }}>
             <NutritionFilters
               lifeStageItems={lifeStageItems}
               onSelectAgeItem={onSelectAgeItem}
@@ -55,7 +55,7 @@ const NutritionDetailsTab: React.FC<NutritionDetailsTabProps> = ({
               onSelectNutritionFilterItem={onSelectNutritionFilterItem}
             />
           </Box>
-          <Box sx={{ width: mobile || tablet ? "100%" : "50%" }}>
+          <Box sx={{ width: mobile || tablet ? "100%" : "35%" }}>
             <NutritionDetailsRightComp
               units={units}
               onSelectMeasurementItem={onSelectMeasurementItem}
@@ -64,9 +64,9 @@ const NutritionDetailsTab: React.FC<NutritionDetailsTabProps> = ({
             />
           </Box>
         </Box>
-        <Box sx={{ pr: theme.spacing(1.5) }}>
+        {/* <Box sx={{ pr: theme.spacing(1.5) }}>
           <NutritionSummary nutritionSummaryItems={nutritionSummaryItems} />
-        </Box>
+        </Box> */}
       </Box>
       <Box sx={{ mt: mobile ? theme.spacing(3) : theme.spacing(8) }}>
         {mobile || tablet ? (
@@ -136,6 +136,7 @@ export const NutritionDetailsRightComp: React.FC<NutritionDetailsRightCompProps>
         width: "100%",
         justifyContent: mobile ? "space-between" : tablet ? "flex-start" : "flex-end",
         mt: mobile || tablet ? theme.spacing(3) : 0,
+        visibility: "hidden",
       }}
     >
       <Box

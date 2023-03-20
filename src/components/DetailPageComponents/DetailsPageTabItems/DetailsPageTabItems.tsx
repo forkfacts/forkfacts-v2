@@ -21,6 +21,7 @@ export default function DetailsPageTabItems({
           scrollbarWidth: "none",
           "&::-webkit-scrollbar": {
             width: "0px",
+            height: "0px",
             background: "transparent",
           },
           flexDirection: "row",

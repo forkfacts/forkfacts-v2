@@ -19,7 +19,7 @@ const DetailsPageHeader: React.FC<DetailsPageHeaderProps> = ({ detailsHeaderValu
       {!mobile ? (
         <Box sx={{ display: "flex", justifyContent: "space-between" }}>
           <Box sx={{ display: "flex", alignItems: "flex-start", gap: theme.spacing(4) }}>
-            <Box component="img" src={detailsHeaderValues.img} />
+            {/* <Box component="img" src={detailsHeaderValues.img} /> */}
             <Box>
               <Box
                 sx={{
@@ -57,9 +57,9 @@ const DetailsPageHeader: React.FC<DetailsPageHeaderProps> = ({ detailsHeaderValu
                   fontWeight: theme.typography.fontWeightLight,
                 }}
               >
-                {detailsHeaderValues.subTitle}
+                {detailsHeaderValues.category}
               </Typography>
-              <Box
+              {/* <Box
                 sx={{
                   display: "flex",
                   gap: theme.spacing(1.5),
@@ -103,7 +103,7 @@ const DetailsPageHeader: React.FC<DetailsPageHeaderProps> = ({ detailsHeaderValu
                     );
                   }}
                 </ForLoops>
-              </Box>
+              </Box> */}
             </Box>
           </Box>
           <Box>
@@ -120,6 +120,7 @@ const DetailsPageHeader: React.FC<DetailsPageHeaderProps> = ({ detailsHeaderValu
                 borderLeft: `3px solid ${theme.palette.primary.main}`,
                 color: "#1C1B1F",
                 fontWeight: theme.typography.fontWeightLight,
+                visibility: "hidden",
               }}
             >
               {detailsHeaderValues.tag}
@@ -165,7 +166,7 @@ const DetailsPageHeader: React.FC<DetailsPageHeaderProps> = ({ detailsHeaderValu
                   fontWeight: theme.typography.fontWeightLight,
                 }}
               >
-                {detailsHeaderValues.subTitle}
+                {detailsHeaderValues.category}
               </Typography>
               <Typography
                 variant="bodySmall"
@@ -181,13 +182,14 @@ const DetailsPageHeader: React.FC<DetailsPageHeaderProps> = ({ detailsHeaderValu
                   color: "#1C1B1F",
                   fontWeight: theme.typography.fontWeightLight,
                   mt: theme.spacing(2),
+                  visibility: "hidden",
                 }}
               >
                 {detailsHeaderValues.tag}
               </Typography>
             </Box>
           </Box>
-          <Box
+          {/* <Box
             sx={{
               display: "flex",
               gap: theme.spacing(1.5),
@@ -232,7 +234,7 @@ const DetailsPageHeader: React.FC<DetailsPageHeaderProps> = ({ detailsHeaderValu
                 );
               }}
             </ForLoops>
-          </Box>
+          </Box> */}
         </>
       )}
     </Box>

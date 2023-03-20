@@ -15,7 +15,7 @@ const LifeStage: React.FC<LifeStageProps> = ({
 }) => {
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.down("md"));
-  const [selectedItem, setSelectedItem] = useState<string>("Children");
+  const [selectedItem, setSelectedItem] = useState<string>("Female");
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   const handleSelectedItem = (name: string, index: number) => {

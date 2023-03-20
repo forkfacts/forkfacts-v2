@@ -30,11 +30,11 @@ export interface DetailsPageScreenProps {
   sidebarItems: sidebarItem[];
   DetailsPageTitlesItems: Array<DetailsPageTitlesItem>;
   detailsHeaderValues: {
-    img: string;
+    img?: string;
     name: string;
-    subTitle: string;
-    nutritionValues: Array<{ name: string; icon: string }>;
-    tag: string;
+    category: string;
+    nutritionValues?: Array<{ name: string; icon: string }>;
+    tag?: string;
   };
   tabItems: sidebarItem[];
   compareTableItems: Array<compareTableItem>;

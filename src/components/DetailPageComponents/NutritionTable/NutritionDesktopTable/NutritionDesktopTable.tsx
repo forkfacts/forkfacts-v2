@@ -121,7 +121,7 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ nutrition
                       />
                     ) : (
                       <>
-                        {item.nutrientContents.length ? (
+                        {item?.nutrientContents?.length ? (
                           <ArrowDropDownIcon
                             onClick={() => toggleCollapse(item.nutrient)}
                             sx={{ cursor: "pointer" }}
@@ -134,7 +134,7 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ nutrition
                       sx={{
                         color: theme.palette.customGray.main,
                         fontWeight: theme.typography.fontWeightRegular,
-                        ml: !item.nutrientContents.length ? theme.spacing(3) : 0,
+                        ml: !item?.nutrientContents?.length ? theme.spacing(3) : 0,
                       }}
                     >
                       {item.nutrient}
@@ -155,7 +155,7 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ nutrition
                   )}
                 </TableCell>
                 <TableCell sx={{ borderBottom: "1px solid #F3EFF4" }}>
-                  {item.amount && (
+                  {!item.amount ? null : (
                     <Typography
                       variant="titleMedium"
                       sx={{
@@ -164,6 +164,7 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ nutrition
                       }}
                     >
                       {item.amount}
+                      {item.amountUnit}
                     </Typography>
                   )}
                 </TableCell>
@@ -182,9 +183,9 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ nutrition
                 </TableCell>
               </TableRow>
               {!isCollapsed(item.nutrient) &&
-                item.nutrientContents.map((content) => (
+                item?.nutrientContents?.map((content, index2) => (
                   <TableRow
-                    key={content.nutrient}
+                    key={index2}
                     sx={{
                       "&:nth-of-type(odd)": {
                         backgroundColor: "#FFFBFF",

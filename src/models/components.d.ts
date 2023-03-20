@@ -72,16 +72,17 @@ export interface compareTableItem {
 
 export interface NutritionTableItem {
   nutrient: string;
-  dailyValue: number | null;
-  amount: string | null;
+  dailyValue?: number | null;
+  amount?: number;
+  amountUnit: string;
   rdi: {
-    value: number | null;
-    weight: string;
+    value?: number | null;
+    weight?: string;
   };
-  nutrientContents: Array<{
-    nutrient: string;
-    dailyValue: number;
-    amount: string;
+  nutrientContents?: Array<{
+    nutrient?: string;
+    dailyValue?: number;
+    amount?: string;
     rdi: { value: number; weight: string };
   }>;
 }
@@ -216,11 +217,11 @@ export interface SearchRecommendationsProps {
 }
 export interface DetailsPageHeaderProps {
   detailsHeaderValues: {
-    img: string;
+    img?: string;
     name: string;
-    subTitle: string;
-    nutritionValues: Array<{ name: string; icon: string }>;
-    tag: string;
+    category: string;
+    nutritionValues?: Array<{ name: string; icon: string }>;
+    tag?: string;
   };
 }
 export interface DetailsPageTitlesProps {
@@ -324,8 +325,9 @@ export interface SearchNutritionFilterProps {
 
 export interface SearchNutritionFilterItem {
   name: string;
-  subItems: { name: string; checked: boolean }[];
+  subItems?: { name: string; checked: boolean }[];
   checked: boolean;
+  unit: string;
 }
 export interface AllFiltersProps {}
 
@@ -344,5 +346,9 @@ export interface MultipleSelectsProps {
 }
 
 export interface NutritionDesktopTableProps {
+  nutritionTableItems: NutritionTableItem[];
+}
+
+interface NutritionMobileTableProps {
   nutritionTableItems: NutritionTableItem[];
 }

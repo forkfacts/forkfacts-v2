@@ -22,23 +22,40 @@ const FilterAge: React.FC<AgeItemsProps> = ({
   const mobile = useMediaQuery(theme.breakpoints.down("md"));
   const ref = useRef<HTMLDivElement>(null);
   const [selectedAgeIndex, setSelectedAgeIndex] = useState<number | null>(2);
-  const [selectedItem, setSelectedItem] = useState("19 -30 Years");
+  const [selectedItem, setSelectedItem] = useState("31-50 years");
+  const [useSelectedAge, setSelectedUseAge] = useState<ageItem>({
+    start: 31,
+    end: 51,
+    unit: "year",
+  } as ageItem);
   const [open, setOpen] = useState(false);
 
   const handleSelectAge = (item: ageItem, index: number) => {
     let age = `${item.start + "-" + item.end} ${item.unit}`;
+    let useAge;
     if (!item.start) {
       age = `>70 years`;
+      useAge = {
+        start: 0,
+        end: item.end,
+        unit: "year",
+      };
     } else {
       age = `${item.start + "-" + item.end} ${item.unit}`;
+      useAge = {
+        start: item.start,
+        end: item.end,
+        unit: "year",
+      };
     }
+    setSelectedUseAge(useAge);
     setSelectedAgeIndex(index);
     setSelectedItem(age);
   };
 
   useEffect(() => {
-    onSelectAgeItem(selectedItem);
-  }, [selectedItem]);
+    onSelectAgeItem(useSelectedAge);
+  }, [selectedItem, useSelectedAge]);
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -64,7 +81,7 @@ const FilterAge: React.FC<AgeItemsProps> = ({
               ? theme.palette.primary.light
               : theme.palette.background.default,
             borderColor: selectedItem ? theme.palette.primary.main : theme.palette.grey[700],
-            textTransform: "capitalize",
+
             whiteSpace: "nowrap",
             display: "flex",
             justifyContent: "center",

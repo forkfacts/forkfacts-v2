@@ -11,7 +11,6 @@ import {
   sidebarItem,
   PopularFrequentSearchProps,
   PopularFrequentSearchType,
-  SearchCategoryItemType,
   recommendationType,
 } from "@forkfacts/models";
 import { HomeScreen } from "@forkfacts/screens";

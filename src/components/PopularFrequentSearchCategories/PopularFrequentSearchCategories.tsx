@@ -27,27 +27,29 @@ const PopularFrequentSearchCategories = ({
           Popular foods
         </Typography>
       </Box>
-      <Box
-        sx={{
-          width: "100%",
-          bgcolor: "background.paper",
-          display: "flex",
-          justifyContent: mobile || desktop ? "space-between" : "normal",
-          flexWrap: "wrap",
-          rowGap: theme.spacing(3.5),
-          columnGap: tablet ? theme.spacing(3.5) : desktop ? theme.spacing(1.5) : 0,
-        }}
-      >
-        <ForLoops each={PopularFrequentSearchItems}>
-          {(item, idx) => (
-            <PopularFrequentSearchCategory
-              item={item}
-              key={idx}
-              onSelectPopularItem={onSelectPopularItem}
-            />
-          )}
-        </ForLoops>
-      </Box>
+      {onSelectPopularItem && onSelectPopularItem?.length && (
+        <Box
+          sx={{
+            width: "100%",
+            bgcolor: "background.paper",
+            display: "flex",
+            justifyContent: mobile || desktop ? "space-between" : "normal",
+            flexWrap: "wrap",
+            rowGap: theme.spacing(3.5),
+            columnGap: tablet ? theme.spacing(3.5) : desktop ? theme.spacing(1.5) : 0,
+          }}
+        >
+          <ForLoops each={PopularFrequentSearchItems!}>
+            {(item, idx) => (
+              <PopularFrequentSearchCategory
+                item={item}
+                key={idx}
+                onSelectPopularItem={onSelectPopularItem}
+              />
+            )}
+          </ForLoops>
+        </Box>
+      )}
     </Box>
   );
 };

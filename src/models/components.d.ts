@@ -183,8 +183,8 @@ export interface SideBarItemProps {
 }
 
 export interface PopularFrequentSearchProps {
-  PopularFrequentSearchItems: Array<PopularFrequentSearchType>;
-  onSelectPopularItem: (item: PopularFrequentSearchType) => void;
+  PopularFrequentSearchItems?: Array<PopularFrequentSearchType>;
+  onSelectPopularItem?: (item: PopularFrequentSearchType) => void;
 }
 
 export interface PopularFrequentSearchCategoryProps {
@@ -203,8 +203,8 @@ export interface NavBarItemProps {
 interface AutoCompleteSearchProps extends onSelectCategoryType {
   sourceId: string;
   categoryOptions: Array<SearchCategoryItemType>;
-  collectionGroupedItems: Array<SearchResultItemCollectionType>;
-  recommendations: Array<recommendationType>;
+  collectionGroupedItems?: Array<SearchResultItemCollectionType>;
+  recommendations?: Array<recommendationType>;
   setIsMobileSearchOpen: Dispatch<SetStateAction<boolean>>;
 }
 interface SearchRecommendationItemProps {

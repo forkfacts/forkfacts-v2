@@ -24,7 +24,7 @@ const files = [
  */
 
 const download = async (url, toDir, fileName) => {
-  return $`rm -rf ${toDir} && mkdir -p ${toDir} && wget ${url} -O "${toDir}/${fileName}"`;
+  return $`mkdir -p ${toDir} && wget ${url} -O "${toDir}/${fileName}"`;
 };
 
 async function downloadFiles() {

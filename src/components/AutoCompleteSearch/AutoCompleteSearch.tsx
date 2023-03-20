@@ -29,8 +29,8 @@ import {
 } from "./autocompleteSearchStyles";
 import "../../styles/styles.css";
 
-const appId = process.env.GATSBY_SEARCH_APP_ID as string;
-const apiKey = process.env.GATSBY_SEARCH_API_KEY as string;
+const appId = "7d08c3e6a7bc49e0857cf459b47a6381";
+const apiKey = "JVO84ADVS3";
 const searchClient = algoliasearch(apiKey, appId);
 const INDEX_NAMES = ["ff_index", "sr_index"];
 
@@ -271,7 +271,7 @@ function AutoCompleteSearch(
             {...autocomplete.getPanelProps({})}
             sx={{ width: "100%" }}
           >
-            {!query && status === "idle" && (mobile || desktop) && (
+            {/* {!query && status === "idle" && (mobile || desktop) && (
               <Box
                 sx={{
                   width: "100%",
@@ -304,8 +304,8 @@ function AutoCompleteSearch(
                   Clear
                 </Typography>
               </Box>
-            )}
-            {!query && (mobile || desktop) ? (
+            )} */}
+            {/* {false ? (
               <>
                 <Box
                   sx={{
@@ -314,6 +314,7 @@ function AutoCompleteSearch(
                     paddingRight: theme.spacing(1),
                     mt: mobile ? theme.spacing(1.3) : theme.spacing(2),
                     ml: theme.spacing(-0.7),
+                    display: "hidden",
                   }}
                 >
                   <ForLoops each={collections}>
@@ -343,7 +344,7 @@ function AutoCompleteSearch(
                   <SearchRecommendations recommendations={props.recommendations} />
                 </Box>
               </>
-            ) : query && (desktop || mobile) ? (
+            ) : (query && (desktop || mobile)) || (!query && (mobile || desktop)) ? (
               <Box
                 sx={{
                   width: "100%",
@@ -373,7 +374,35 @@ function AutoCompleteSearch(
                   }}
                 </ForLoops>
               </Box>
-            ) : null}
+            ) : null} */}
+            {(query && (desktop || mobile)) || (!query && (mobile || desktop)) ? (
+              <Box
+                sx={{
+                  width: "100%",
+                  paddingLeft: theme.spacing(1),
+                  paddingRight: theme.spacing(1),
+                  mb: theme.spacing(3),
+                }}
+              >
+                <ForLoops each={collections}>
+                  {(collection, index) => {
+                    const { source, items } = collection;
+                    if (items.length === 0) {
+                      return <NoSearchResults key={`source-${index}`} />;
+                    }
+                    return (
+                      <Box component="section" key={`source-${index}`}>
+                        {items.length > 0 && (
+                          <SearchResults collectionListsItems={items} onSelectItem={onSelectItem} />
+                        )}
+                      </Box>
+                    );
+                  }}
+                </ForLoops>
+              </Box>
+            ) : (
+              ""
+            )}
           </Box>
         )}
       </Box>

@@ -15,6 +15,7 @@ const config: GatsbyConfig = {
     `gatsby-transformer-sharp`,
     "gatsby-plugin-sitemap",
     "gatsby-plugin-mui-emotion",
+    "gatsby-plugin-top-layouts",
     {
       resolve: "gatsby-plugin-manifest",
       options: {
@@ -34,10 +35,12 @@ const config: GatsbyConfig = {
           "@forkfacts/screens": path.resolve(__dirname, "src/screens"),
           "@forkfacts/styles": path.resolve(__dirname, "src/styles"),
           "@forkfacts/icons": path.resolve(__dirname, "src/DesignIcons"),
+          "@forkfacts/generate-pages": path.resolve(__dirname, "src/pageGenerators"),
         },
         extensions: [".js", ".jsx", ".ts", ".tsx", ".css"],
       },
     },
+    "gatsby-transformer-json",
     {
       resolve: "gatsby-source-filesystem",
       options: {

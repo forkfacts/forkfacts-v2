@@ -15,6 +15,7 @@ const SEO = ({ title, description, pathname, children }: SeoProps) => {
     description: description || defaultDescription,
     image: `${siteUrl}${image}`,
     url: `${siteUrl}${pathname || ``}`,
+    slug: "",
   };
 
   return (

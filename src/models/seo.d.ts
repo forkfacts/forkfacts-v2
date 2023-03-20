@@ -4,6 +4,7 @@ export type SeoProps = {
   image?: string;
   siteUrl?: string;
   pathname?: string;
+  slug?: string;
   children?: JSX.Element | JSX.Element[];
 };
 export type seoDataProps = {

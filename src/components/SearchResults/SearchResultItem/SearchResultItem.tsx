@@ -13,13 +13,13 @@ export default function SearchResultItem({ item, onSelectItem }: SearchResultIte
   return (
     <ListItem disablePadding onClick={() => onSelectItem(item)} sx={{ mb: theme.spacing(0.5) }}>
       <ListItemButton>
-        <ListItemIcon>
+        {/* <ListItemIcon>
           <img
             src={item.image || "/recentImg.png"}
             alt={item.name}
             style={{ width: theme.spacing(3), height: theme.spacing(3) }}
           />
-        </ListItemIcon>
+        </ListItemIcon> */}
         <ListItemText
           primary={
             <Box className={styles.ListItemText}>

@@ -88,7 +88,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({
               </ForLoops>
             </List>
           )}
-          <Box sx={{ ml: mobile ? theme.spacing(-1) : theme.spacing(1) }}>
+          <Box sx={{ ml: mobile ? theme.spacing(-2.5) : theme.spacing(-1) }}>
             {collectionListsItems && collectionListsItems?.length > 3 && (
               <ViewMoreButton handleViewMore={handleViewMore} text="View all" />
             )}

@@ -18,12 +18,12 @@ import { Dispatch, SetStateAction } from "react";
 export interface HomeScreenProps {
   sidebarItems: sidebarItem[];
   navbarItems: sidebarItem[];
-  PopularFrequentSearchItems: PopularFrequentSearchType[];
-  onSelectPopularItem: (item: PopularFrequentSearchType) => void;
+  PopularFrequentSearchItems?: PopularFrequentSearchType[];
+  onSelectPopularItem?: (item: PopularFrequentSearchType) => void;
   categoryOptions: SearchCategoryItemType[];
-  collectionGroupedItems: Array<SearchResultItemCollectionType>;
+  collectionGroupedItems?: Array<SearchResultItemCollectionType>;
   sourceId: string;
-  recommendations: Array<recommendationType>;
+  recommendations?: Array<recommendationType>;
 }
 
 export interface DetailsPageScreenProps {

@@ -60,12 +60,16 @@ export default function HomeScreen({
             />
           </Box>
           {!isMobileSearchOpen ? (
-            <Box className={classNames(classes.PopularFrequentStyles)}>
-              <PopularFrequentSearchCategories
-                PopularFrequentSearchItems={PopularFrequentSearchItems}
-                onSelectPopularItem={onSelectPopularItem}
-              />
-            </Box>
+            <>
+              {PopularFrequentSearchItems && PopularFrequentSearchItems.length ? (
+                <Box className={classNames(classes.PopularFrequentStyles)}>
+                  <PopularFrequentSearchCategories
+                    PopularFrequentSearchItems={PopularFrequentSearchItems}
+                    onSelectPopularItem={onSelectPopularItem}
+                  />
+                </Box>
+              ) : null}
+            </>
           ) : null}
         </Box>
       </Layout>

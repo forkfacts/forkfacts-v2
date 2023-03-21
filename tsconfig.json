@@ -121,6 +121,7 @@
     "./plugins/**/*",
     "src/theme.d.ts",
     "download-data.ts",
-    "src/templates/DetailsPage.tsx"
+    "src/templates/DetailsPage.tsx",
+    "src/pageGenerators/index.tsx"
   ]
 }

@@ -66,10 +66,10 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
     let filteredItems = [...filteredNutrient].slice();
     if (name && name !== "") {
       filteredItems = filteredItems.reduce((acc: any, item: any) => {
-        const subSearch = item.subItems.filter((subItem: any) =>
-          subItem.name.toLowerCase().includes(name.toLowerCase())
+        const subSearch = item?.subItems?.filter((subItem: any) =>
+          subItem?.name.toLowerCase().includes(name.toLowerCase())
         );
-        if (item.name.toLowerCase().includes(name.toLowerCase()) || subSearch.length > 0) {
+        if (item.name.toLowerCase().includes(name.toLowerCase()) || subSearch?.length > 0) {
           const newItem = {
             name: item.name,
             checked: item.checked,
@@ -93,7 +93,7 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
           checked: !filteredNutrient[itemIndex].checked,
           subItems: filteredNutrient[itemIndex]?.subItems?.map((subItem) => ({
             ...subItem,
-            checked: !filteredNutrient[itemIndex].checked,
+            checked: !filteredNutrient[itemIndex]?.checked,
           })),
         };
         const updatedNutrientList = Array.from(filteredNutrient);
@@ -140,7 +140,7 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
         if (item.checked) {
           return {
             ...item,
-            subItems: item.subItems?.filter((item2) => {
+            subItems: item?.subItems?.filter((item2) => {
               if (item2.checked) {
                 return item2;
               }
@@ -152,7 +152,7 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
     if (checkedNutrients) {
       setFirstSelectedItem({
         name: checkedNutrients[0]?.name,
-        length: checkedNutrients.length,
+        length: checkedNutrients?.length,
       });
     }
     onSelectNutritionFilterItem(checkedNutrients);
@@ -346,7 +346,7 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
               },
             }}
           >
-            {renderFilterNutrients().length ? (
+            {renderFilterNutrients()?.length ? (
               <ForLoops each={renderFilterNutrients()}>
                 {(item, index) => {
                   return (

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box, Typography, List, useTheme, useMediaQuery } from "@mui/material";
 import { ForLoops } from "@forkfacts/helpers";
 import { SearchResultItemCollectionType, SearchResultsProps } from "@forkfacts/models";
@@ -13,8 +13,9 @@ const SearchResults: React.FC<SearchResultsProps> = ({
   const classes = useStyles();
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.down("md"));
-
-  const groupedItems = collectionListsItems!.reduce(
+  const resultResultLimit = Number(process.env.NUM_SEARCH_RESULT_VISIBLE) || 5;
+  const [viewMore, setViewMore] = useState(resultResultLimit);
+  const groupedItems = collectionListsItems.reduce(
     (groups: SearchResultItemCollectionType[], item: any) => {
       const group = groups.find(
         (g: SearchResultItemCollectionType) => g.categoryName === item.category
@@ -29,13 +30,17 @@ const SearchResults: React.FC<SearchResultsProps> = ({
     []
   );
 
-  const handleViewMore = () => {};
+  console.log("process.env", process.env);
+
+  const handleGroupedViewMore = () => {
+    setViewMore(collectionListsItems.length);
+  };
   return (
     <Box className={classes.root}>
       {multiple ? (
         <Box>
           {groupedItems && (
-            <ForLoops each={groupedItems}>
+            <ForLoops each={groupedItems.slice(0, viewMore)}>
               {(value, idx) => {
                 return (
                   <List key={idx} sx={{ wordBreak: "break-all" }}>
@@ -69,7 +74,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({
                           alignItems: "center",
                           borderRadius: "50%",
                           fontSize: theme.spacing(1.7),
-                          mt: theme.spacing(1),
+                          pt: theme.spacing(0.5),
                         }}
                       >
                         {value.collection.length}
@@ -89,9 +94,14 @@ const SearchResults: React.FC<SearchResultsProps> = ({
                         }}
                       </ForLoops>
                     </Box>
-                    <Box sx={{ ml: mobile ? theme.spacing(-1) : theme.spacing(-1.5) }}>
-                      {value.collection.length > 3 && (
-                        <ViewMoreButton handleViewMore={handleViewMore} text="See more" />
+                    <Box
+                      sx={{
+                        ml: mobile ? theme.spacing(-1) : theme.spacing(-1.5),
+                        display: collectionListsItems?.length === viewMore ? "none" : "block",
+                      }}
+                    >
+                      {value.collection.length > resultResultLimit && (
+                        <ViewMoreButton handleViewMore={handleGroupedViewMore} text="See more" />
                       )}
                     </Box>
                   </List>
@@ -102,25 +112,28 @@ const SearchResults: React.FC<SearchResultsProps> = ({
         </Box>
       ) : (
         <Box>
-          {collectionListsItems && (
-            <List sx={{ padding: 0 }}>
-              <ForLoops each={collectionListsItems}>
-                {(item, index) => {
-                  return (
-                    <SearchResultItem
-                      key={index}
-                      item={item}
-                      onSelectItem={onSelectItem}
-                      multiple={multiple}
-                    />
-                  );
-                }}
-              </ForLoops>
-            </List>
-          )}
-          <Box sx={{ ml: mobile ? theme.spacing(-2.5) : theme.spacing(-1) }}>
-            {collectionListsItems && collectionListsItems?.length > 3 && (
-              <ViewMoreButton handleViewMore={handleViewMore} text="View all" />
+          <List sx={{ padding: 0 }}>
+            <ForLoops each={collectionListsItems.slice(0, viewMore)}>
+              {(item, index) => {
+                return (
+                  <SearchResultItem
+                    key={index}
+                    item={item}
+                    onSelectItem={onSelectItem}
+                    multiple={multiple}
+                  />
+                );
+              }}
+            </ForLoops>
+          </List>
+          <Box
+            sx={{
+              ml: mobile ? theme.spacing(-2.5) : theme.spacing(-1),
+              display: collectionListsItems?.length === viewMore ? "none" : "block",
+            }}
+          >
+            {collectionListsItems?.length > resultResultLimit && (
+              <ViewMoreButton handleViewMore={handleGroupedViewMore} text="View all" />
             )}
           </Box>
         </Box>

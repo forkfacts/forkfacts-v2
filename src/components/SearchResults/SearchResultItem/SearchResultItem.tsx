@@ -48,7 +48,7 @@ export default function SearchResultItem({ item, onSelectItem, multiple }: Searc
               <Typography
                 variant="bodyMedium"
                 sx={{
-                  whiteSpace: "nowrap",
+                  whiteSpace: "normal",
                   color: theme.palette.customGray.main,
                   fontWeight: theme.typography.fontWeightLight,
                 }}

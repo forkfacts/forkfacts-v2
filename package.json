@@ -11,8 +11,8 @@
   },
   "scripts": {
     "develop": "gatsby develop",
-    "start": "gatsby develop",
-    "build": "gatsby build",
+    "start": "npm run download-data && gatsby develop",
+    "build": "npm run download-data && gatsby build",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "typecheck": "tsc --noEmit",
@@ -21,14 +21,16 @@
     "prepare": "husky install",
     "svgr": "npx @svgr/cli --out-dir src/DesignIcons --typescript --ignore-existing --replace-attr-values '#000=currentColor' src/images/icons",
     "download-data": "ts-node --experimentalSpecifierResolution node scripts/init.mjs",
-    "build:env": "cp .env.sample .env"
+    "build:env:dev": "cp .env .env.development",
+    "build:env": "cp .env.sample .env && npm run build:env:dev && npm run build:env:prod",
+    "build:env:prod": "cp .env .env.production"
   },
   "dependencies": {
     "@algolia/autocomplete-core": "1.7.3",
     "@algolia/autocomplete-preset-algolia": "1.7.3",
     "@algolia/autocomplete-theme-classic": "1.7.3",
     "@algolia/client-search": "4.9.1",
-    "@emotion/react": "^11.10.5",
+    "@emotion/react": "^11.10.6",
     "@emotion/server": "latest",
     "@emotion/styled": "latest",
     "@fontsource/material-icons": "^4.5.4",

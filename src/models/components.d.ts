@@ -161,17 +161,10 @@ interface SideBarProps {
 interface ExtendSearchResultItemsProps {
   onSelectItem: (item: SearchResultItemType) => void;
 }
-export type SearchResultsProps = (
-  | {
-      collectionListsItems?: Array<SearchResultItemType>;
-      multiple: true;
-    }
-  | {
-      collectionListsItems: Array<SearchResultItemType>;
-      multiple?: false;
-    }
-) &
-  ExtendSearchResultItemsProps;
+export type SearchResultsProps = {
+  collectionListsItems: Array<SearchResultItemType>;
+  multiple?: true;
+} & ExtendSearchResultItemsProps;
 
 export interface SideBarItemProps {
   index: number;
@@ -202,7 +195,6 @@ export interface NavBarItemProps {
 interface AutoCompleteSearchProps extends onSelectCategoryType {
   sourceId: string;
   categoryOptions: Array<SearchCategoryItemType>;
-  collectionGroupedItems?: Array<SearchResultItemCollectionType>;
   recommendations?: Array<recommendationType>;
   setIsMobileSearchOpen: Dispatch<SetStateAction<boolean>>;
 }

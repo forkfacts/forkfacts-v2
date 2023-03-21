@@ -176,6 +176,7 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ nutrition
                         color: theme.palette.customGray.main,
                         fontWeight: theme.typography.fontWeightRegular,
                         textTransform: "lowercase",
+                        ml: theme.spacing(1),
                       }}
                     >
                       {`${item.rdi.value}${item.rdi.weight}`}
@@ -209,9 +210,11 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ nutrition
                     <TableCell sx={{ borderBottom: "none" }}>
                       <Box
                         sx={{
-                          display: "flex",
-                          justifyContent: "flex-start",
+                          width: "18%",
                           textAlign: "right",
+                          display: "flex",
+                          justifyContent: "flex-end",
+                          alignItems: "flex-end",
                         }}
                       >
                         <Typography
@@ -221,22 +224,21 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ nutrition
                             color: theme.palette.customGray.main,
                             fontWeight: theme.typography.fontWeightLight,
                             textAlign: "right",
-                            display: "flex",
-                            justifyContent: "flex-end",
-                            alignItems: "flex-end",
-                            maxWidth: "40px",
+                            mr: theme.spacing(1),
                           }}
                         >
                           {content.dailyValue}%
                         </Typography>
                       </Box>
                     </TableCell>
-                    <TableCell sx={{ borderBottom: "none" }}>
+                    <TableCell sx={{ borderBottom: "none" }} align="right">
                       <Box
                         sx={{
-                          display: "flex",
-                          justifyContent: "flex-start",
+                          width: "18%",
                           textAlign: "right",
+                          display: "flex",
+                          justifyContent: "flex-end",
+                          alignItems: "flex-end",
                         }}
                       >
                         <Typography
@@ -245,29 +247,35 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ nutrition
                           sx={{
                             color: theme.palette.customGray.main,
                             fontWeight: theme.typography.fontWeightLight,
-                            textAlign: "right",
-                            display: "flex",
-                            justifyContent: "flex-end",
-                            alignItems: "flex-end",
-                            maxWidth: "30px",
+                            mr: theme.spacing(1),
                           }}
                         >
                           {content.amount}
                         </Typography>
                       </Box>
                     </TableCell>
-                    <TableCell sx={{ borderBottom: "none" }}>
-                      <Typography
-                        variant="bodyLarge"
-                        component="span"
+                    <TableCell sx={{ borderBottom: "none", textAlign: "right" }}>
+                      <Box
                         sx={{
-                          color: theme.palette.customGray.main,
-                          fontWeight: theme.typography.fontWeightLight,
+                          width: "21%",
                           textAlign: "right",
+                          display: "flex",
+                          justifyContent: "flex-end",
+                          alignItems: "flex-end",
                         }}
                       >
-                        {`${content.rdi.value}${content.rdi.weight}`}
-                      </Typography>
+                        <Typography
+                          variant="bodyLarge"
+                          component="span"
+                          sx={{
+                            color: theme.palette.customGray.main,
+                            fontWeight: theme.typography.fontWeightLight,
+                            textAlign: "right",
+                          }}
+                        >
+                          {`${Math.abs(content.rdi.value)}${content.rdi.weight}`}
+                        </Typography>
+                      </Box>
                     </TableCell>
                   </TableRow>
                 ))}

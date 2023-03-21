@@ -15,7 +15,6 @@ const useSiteMetadata = () => {
       }
     }
   `);
-
   return data.site.siteMetadata;
 };
 

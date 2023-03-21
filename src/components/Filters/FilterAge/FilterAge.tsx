@@ -21,7 +21,7 @@ const FilterAge: React.FC<AgeItemsProps> = ({
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.down("md"));
   const ref = useRef<HTMLDivElement>(null);
-  const [selectedAgeIndex, setSelectedAgeIndex] = useState<number | null>(2);
+  const [selectedAgeIndex, setSelectedAgeIndex] = useState<number | null>(7);
   const [selectedItem, setSelectedItem] = useState("31-50 years");
   const [useSelectedAge, setSelectedUseAge] = useState<ageItem>({
     start: 31,
@@ -176,7 +176,7 @@ const FilterAge: React.FC<AgeItemsProps> = ({
                       checkedIcon={<RadioButtonCheckedIcon />}
                       checked={selectedAgeIndex === index ? true : false}
                     />
-                    {item.start ? (
+                    {item.start || item.start === 0 ? (
                       <Typography
                         variant="bodyMedium"
                         sx={{
@@ -185,7 +185,7 @@ const FilterAge: React.FC<AgeItemsProps> = ({
                           cursor: "pointer",
                         }}
                       >
-                        {item.start + "-" + item.end} {item.unit}
+                        {item.start === undefined ? 0 : item.start + "-" + item.end} {item.unit}
                       </Typography>
                     ) : (
                       <Typography
@@ -199,15 +199,13 @@ const FilterAge: React.FC<AgeItemsProps> = ({
                           ml: theme.spacing(-2.5),
                         }}
                       >
-                        {item.end >= 70 && !item.start ? (
-                          <ChevronRightIcon
-                            sx={{
-                              width: theme.spacing(2),
-                              height: theme.spacing(2),
-                              ml: theme.spacing(2),
-                            }}
-                          />
-                        ) : null}
+                        <ChevronRightIcon
+                          sx={{
+                            width: theme.spacing(2),
+                            height: theme.spacing(2),
+                            ml: theme.spacing(2),
+                          }}
+                        />
                         <Typography
                           variant="bodyMedium"
                           sx={{

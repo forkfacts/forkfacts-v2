@@ -78,15 +78,7 @@ function AutoCompleteSearch(
               getItems({ query }) {
                 return getAlgoliaResults({
                   searchClient,
-                  queries: [
-                    {
-                      indexName: query ? INDEX_NAMES[1] : INDEX_NAMES[0],
-                      query,
-                      params: {
-                        hitsPerPage: 4,
-                      },
-                    },
-                  ],
+                  queries: INDEX_NAMES.map((indexName) => ({ indexName, query })),
                 });
               },
               getItemUrl({ item }) {
@@ -116,7 +108,7 @@ function AutoCompleteSearch(
     if (desktop) {
       window.addEventListener("mousedown", onMouseDown);
       window.addEventListener("touchstart", onTouchStart);
-      window.addEventListener("touchmove", onTouchMove);
+      // window.addEventListener("touchmove", onTouchMove);
     }
     return () => {
       window.removeEventListener("mousedown", onMouseDown);

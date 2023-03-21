@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { PageProps } from "gatsby";
 import { DetailsPageScreen } from "@forkfacts/screens";
 import { SEO } from "@forkfacts/components";
-
+import rdis from "../data/rdi.json";
 import {
   ageItem,
   SearchNutritionFilterItem,
@@ -38,7 +38,7 @@ interface NutriTable {
 }
 
 const DynamicPageTemplate = ({ pageContext }: PageProps) => {
-  const { food, rdis, seo } = pageContext as any;
+  const { food, seo } = pageContext as any;
   const [rows, setRows] = useState<any[]>([]);
   const [_, setSelectedNutrients] = useState<string[]>([]);
   const [selectLifeStage, setSelectedLifeStage] = useState("");

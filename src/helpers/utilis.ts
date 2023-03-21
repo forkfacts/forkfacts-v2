@@ -33,7 +33,7 @@ export const generateSEOMetaDescription = (foodName: string, category: string) =
   return `Nutrient facts from USDA and NIH with the option to filter by nutrients, age and gender for 100gm of  ${foodName} in ${category} category.`;
 };
 
-const mappings: any = require("../../data/usda_rdi_nutrient_mapping.json");
+import mappings from "../data/usda_rdi_nutrient_mapping.json";
 
 export const mappingsByNutrient: Map<string, any> = mappings.reduce((acc: any, mapping: any) => {
   acc.set(mapping.usdaNutrientName, mapping);
@@ -46,20 +46,6 @@ export const getNutrientRdiPercent = (nutrient: any, rdi: any): number | undefin
 
   const multiplier = mappingsByNutrient.get(nutrient.name).usdaToRdiUnitMultiplier;
   return ((nutrient.amount * multiplier) / rdi.amount) * 100;
-
-  /*console.log(
-      nutrient.name,
-      rdi.nutrient,
-      rdi.applicableFor,
-      rdi.ageStart,
-      nutrient.amount,
-      multiplier,
-      rdi.amount,
-      rdiPercent
-    )
-  
-    return rdiPercent
-     */
 };
 export const generateRdiForFood = (food: any, rdis: any[]): any[] => {
   return food.nutrients

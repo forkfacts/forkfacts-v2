@@ -30,10 +30,10 @@ const download = async (url, toDir, fileName) => {
 async function downloadFiles() {
   try {
     await $`cd src`;
-    await $`mkdir -p data`;
+    await $`mkdir -p src/data`;
     for (const file of files) {
       const fileUrl = `${process.env.DATA_ENDPOINT}/${file.name}`;
-      await download(fileUrl, "data", file.name);
+      await download(fileUrl, "src/data", file.name);
     }
     console.log("Downloaded successfully");
   } catch (error) {

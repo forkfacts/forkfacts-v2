@@ -3,9 +3,8 @@ import { spaceToDashes, generateSEOTitle, generateSEOMetaDescription } from "../
 import { SearchIndex } from "../models/pages";
 import { SeoProps } from "../models/seo";
 
-const ff_nutrition_facts = require("../../data/foundation_food_nutrition_facts.json");
-const sr_legacy_nutrition_facts = require("../../data/sr_legacy_food_nutrition_facts.json");
-import rdis from "../../data/rdi.json";
+import ff_nutrition_facts from "../data/foundation_food_nutrition_facts.json";
+import sr_legacy_nutrition_facts from "../data/sr_legacy_food_nutrition_facts.json";
 
 export const createDetailPage = (createPage: any) => {
   try {
@@ -39,7 +38,6 @@ const createNutritionTable = ({ createPageFunction, foods, indexFileName }: any)
       component: template,
       context: {
         food,
-        rdis,
         seo,
       },
     });

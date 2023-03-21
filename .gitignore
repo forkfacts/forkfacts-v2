@@ -5,5 +5,5 @@ src/gatsby-types.d.ts
 .idea/
 .env
 .vscode
-data
+src/data*
 wget-log*

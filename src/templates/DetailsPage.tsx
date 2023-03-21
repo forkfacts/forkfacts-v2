@@ -3,12 +3,7 @@ import { PageProps } from "gatsby";
 import { DetailsPageScreen } from "@forkfacts/screens";
 import { SEO } from "@forkfacts/components";
 import rdis from "../data/rdi.json";
-import {
-  ageItem,
-  SearchNutritionFilterItem,
-  sidebarItem,
-  NutritionTableItem,
-} from "@forkfacts/models";
+import { ageItem, SearchNutritionFilterItem } from "@forkfacts/models";
 import { generateRdiForFood } from "@forkfacts/helpers";
 import { Box } from "@mui/material";
 import {

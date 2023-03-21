@@ -1,4 +1,4 @@
-import React, { FC, PropsWithChildren, useState } from "react";
+import React, { FC, useState } from "react";
 import { Box, CssBaseline, useTheme } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 import { customTheme } from "../../themes/theme";

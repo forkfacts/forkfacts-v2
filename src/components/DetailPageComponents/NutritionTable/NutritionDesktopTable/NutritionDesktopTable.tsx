@@ -207,7 +207,7 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ nutrition
                         {content.nutrient}
                       </Typography>
                     </TableCell>
-                    <TableCell sx={{ borderBottom: "none" }}>
+                    <TableCell sx={{ borderBottom: "none" }} align="right">
                       <Box
                         sx={{
                           width: "18%",
@@ -254,7 +254,7 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ nutrition
                         </Typography>
                       </Box>
                     </TableCell>
-                    <TableCell sx={{ borderBottom: "none", textAlign: "right" }}>
+                    <TableCell sx={{ borderBottom: "none", textAlign: "" }}>
                       <Box
                         sx={{
                           width: "21%",

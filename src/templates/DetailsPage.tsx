@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { PageProps } from "gatsby";
 import { DetailsPageScreen } from "@forkfacts/screens";
 import { SEO } from "@forkfacts/components";
-import rdis from "../data/rdi.json";
+import rdis from "../../data/rdi.json";
 import { ageItem, SearchNutritionFilterItem } from "@forkfacts/models";
 import { generateRdiForFood } from "@forkfacts/helpers";
 import { Box } from "@mui/material";
@@ -66,16 +66,16 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
   useEffect(() => {
     const gender = state.selectedGender;
     const age = state.selectedAge;
-    const nutrients = state.selectedNutrients.length < 1 ? food.nutrients : state.selectedNutrients;
+    const nutrients = !state.selectedNutrients.length ? food.nutrients : state.selectedNutrients;
     const nutrientsWithRdis = nutrients.map((nutrient: any, index: number) => {
       const nutrientWithRdi = nutrientRdis.filter(
         (nutrientRdi) =>
-          nutrientRdi.nutrient.name === nutrient.name &&
-          nutrientRdi.nutrient.unit === nutrient.unit &&
-          age.start === nutrientRdi?.rdi?.ageStart &&
-          age.end === nutrientRdi?.rdi?.ageEnd &&
-          age?.unit?.toLowerCase() === nutrientRdi?.rdi?.ageUnit &&
-          gender.toLowerCase() === nutrientRdi?.rdi?.applicableFor.toLowerCase()
+          nutrientRdi.nutrient.name === nutrient.name ||
+          (nutrientRdi.nutrient.unit === nutrient.unit &&
+            age.start === nutrientRdi?.rdi?.ageStart &&
+            age.end === nutrientRdi?.rdi?.ageEnd &&
+            age?.unit?.toLowerCase() === nutrientRdi?.rdi?.ageUnit &&
+            gender.toLowerCase() === nutrientRdi?.rdi?.applicableFor.toLowerCase())
       )[0];
       const getValueRounded = (amount: number) => {
         return Math.round(amount * 100) / 100;
@@ -83,8 +83,8 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
       const factTableRow: any = {
         index: index,
         nutrient: nutrient.name,
-        amount: nutrient.amount,
-        amountUnit: nutrient.unit.toLowerCase(),
+        amount: nutrient?.amount,
+        amountUnit: nutrient?.unit?.toLowerCase(),
         dailyValue: nutrientWithRdi?.percentDaily
           ? getValueRounded(Number(nutrientWithRdi?.percentDaily))
           : undefined,

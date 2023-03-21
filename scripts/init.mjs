@@ -24,16 +24,16 @@ const files = [
  */
 
 const download = async (url, toDir, fileName) => {
-  return $`mkdir -p ${toDir} && wget ${url} -O "${toDir}/${fileName}"`;
+  return $`curl --create-dirs --output "${toDir}/${fileName}" ${url}`;
 };
 
 async function downloadFiles() {
   try {
     await $`cd src`;
-    await $`mkdir -p src/data`;
+    await $`mkdir -p data`;
     for (const file of files) {
       const fileUrl = `${process.env.DATA_ENDPOINT}/${file.name}`;
-      await download(fileUrl, "src/data", file.name);
+      await download(fileUrl, "data", file.name);
     }
     console.log("Downloaded successfully");
   } catch (error) {

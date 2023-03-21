@@ -121,7 +121,8 @@
     "./plugins/**/*",
     "src/theme.d.ts",
     "download-data.ts",
-    "data"
+    "src/templates/DetailsPage.tsx",
+    "src/pageGenerators/index.tsx"
   ],
   "exclude": ["node_modules"]
 }

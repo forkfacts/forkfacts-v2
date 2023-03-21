@@ -15,6 +15,7 @@ const config: GatsbyConfig = {
     `gatsby-transformer-sharp`,
     "gatsby-plugin-sitemap",
     "gatsby-plugin-top-layouts",
+    "gatsby-plugin-mui-emotion",
     {
       resolve: "gatsby-plugin-manifest",
       options: {

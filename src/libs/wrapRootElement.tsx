@@ -1,9 +1,19 @@
-import { Box } from "@mui/material";
 import React, { ReactNode } from "react";
+import { CssBaseline } from "@mui/material";
+import { ThemeProvider } from "@mui/material/styles";
+import "@fontsource/poppins";
+import "@fontsource/poppins/500.css";
+import "@fontsource/poppins/600.css";
+import "@fontsource/poppins/700.css";
+import { customTheme } from "../themes/theme";
 
 const wrapRootElement = ({ element }: { element: ReactNode }) => {
-  // the wrapper supply dynamic tool like redux providers, e.t.c
-  return <Box>{element}</Box>;
+  return (
+    <ThemeProvider theme={customTheme}>
+      <CssBaseline />
+      <>{element}</>
+    </ThemeProvider>
+  );
 };
 
 export default wrapRootElement;

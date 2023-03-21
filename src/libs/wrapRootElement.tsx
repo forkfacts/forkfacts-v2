@@ -1,4 +1,5 @@
 import React, { ReactNode } from "react";
+import { CacheProvider } from "@emotion/react";
 import { CssBaseline } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 import "@fontsource/poppins";

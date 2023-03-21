@@ -21,15 +21,15 @@ const lifeStageItems: lifeStageItem[] = [
     icon: Kids,
   },
   {
-    name: "Infant",
+    name: "Infants",
     icon: Baby,
   },
   {
-    name: "Female",
+    name: "females",
     icon: Woman,
   },
   {
-    name: "Male",
+    name: "males",
     icon: Male,
   },
   {
@@ -73,10 +73,10 @@ const ageItems: ageItem[] = [
     unit: "years",
   },
 ];
-
 const nutritionFilterItems: SearchNutritionFilterItem[] = [
   {
     name: "Vitamin",
+    unit: "mg",
     subItems: [
       { name: "Vitamin B1", checked: false },
       { name: "Vitamin B2", checked: false },
@@ -87,18 +87,20 @@ const nutritionFilterItems: SearchNutritionFilterItem[] = [
   },
   {
     name: "Protein",
+    unit: "mg",
     subItems: [
       { name: "Protein B1", checked: false },
       { name: "Protein B2", checked: false },
     ],
     checked: false,
   },
-  { name: "Carbohydrate", subItems: [], checked: false },
-  { name: "Water", subItems: [], checked: false },
-  { name: "Fats", subItems: [], checked: false },
-  { name: "Fiber", subItems: [], checked: false },
-  { name: "Minerals", subItems: [], checked: false },
+  { name: "Carbohydrate", unit: "mg", subItems: [], checked: false },
+  { name: "Water", unit: "mg", subItems: [], checked: false },
+  { name: "Fats", unit: "mg", subItems: [], checked: false },
+  { name: "Fiber", unit: "mg", subItems: [], checked: false },
+  { name: "Minerals", unit: "mg", subItems: [], checked: false },
 ];
+
 const Template: ComponentStory<typeof AllFilters> = (args) => {
   const [selectedNutritionFilterItems, setSelectedNutritionFilterItems] = useState<
     SearchNutritionFilterItem[]

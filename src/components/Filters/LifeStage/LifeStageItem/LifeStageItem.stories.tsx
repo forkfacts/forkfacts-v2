@@ -33,7 +33,7 @@ unSelectedItem.args = {
   },
   handleSelectedItem: (name: string, index: number) => {},
   index: 0,
-  selectedItem: "Infant",
+  selectedItem: "Infants",
 };
 
 unSelectedItem.storyName = "unSelectedItem";

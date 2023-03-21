@@ -1,36 +1,52 @@
 import React from "react";
 import { Box, Typography, List, useTheme, useMediaQuery } from "@mui/material";
 import { ForLoops } from "@forkfacts/helpers";
-import { SearchResultsProps } from "@forkfacts/models";
+import { SearchResultItemCollectionType, SearchResultsProps } from "@forkfacts/models";
 import { ViewMoreButton, SearchResultItem } from "@forkfacts/components";
 import { useStyles } from "./searchResultsStyles";
 
 const SearchResults: React.FC<SearchResultsProps> = ({
-  collectionGroupedItems,
   collectionListsItems,
   multiple,
   onSelectItem,
-  handleViewMore,
 }) => {
   const classes = useStyles();
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.down("md"));
 
+  const groupedItems = collectionListsItems!.reduce(
+    (groups: SearchResultItemCollectionType[], item: any) => {
+      const group = groups.find(
+        (g: SearchResultItemCollectionType) => g.categoryName === item.category
+      );
+      if (group) {
+        group.collection.push(item);
+      } else {
+        groups.push({ categoryName: item.category, collection: [item] });
+      }
+      return groups;
+    },
+    []
+  );
+
+  const handleViewMore = () => {};
   return (
     <Box className={classes.root}>
       {multiple ? (
         <Box>
-          {collectionGroupedItems && (
-            <ForLoops each={collectionGroupedItems}>
+          {groupedItems && (
+            <ForLoops each={groupedItems}>
               {(value, idx) => {
                 return (
-                  <List key={idx} className={classes.listWrapper}>
+                  <List key={idx} sx={{ wordBreak: "break-all" }}>
                     <Box
                       sx={{
                         display: "flex",
                         alignItems: "center",
                         width: "100%",
-                        mb: theme.spacing(1.5),
+                        mb: theme.spacing(1),
+                        ml: theme.spacing(-2),
+                        wordBreak: "break-all",
                       }}
                     >
                       <Typography
@@ -52,6 +68,8 @@ const SearchResults: React.FC<SearchResultsProps> = ({
                           justifyContent: "center",
                           alignItems: "center",
                           borderRadius: "50%",
+                          fontSize: theme.spacing(1.7),
+                          mt: theme.spacing(1),
                         }}
                       >
                         {value.collection.length}
@@ -61,12 +79,17 @@ const SearchResults: React.FC<SearchResultsProps> = ({
                       <ForLoops each={value.collection}>
                         {(item, index) => {
                           return (
-                            <SearchResultItem key={index} item={item} onSelectItem={onSelectItem} />
+                            <SearchResultItem
+                              key={index}
+                              item={item}
+                              onSelectItem={onSelectItem}
+                              multiple={multiple}
+                            />
                           );
                         }}
                       </ForLoops>
                     </Box>
-                    <Box sx={{ ml: mobile ? theme.spacing(-1) : theme.spacing(1) }}>
+                    <Box sx={{ ml: mobile ? theme.spacing(-1) : theme.spacing(-1.5) }}>
                       {value.collection.length > 3 && (
                         <ViewMoreButton handleViewMore={handleViewMore} text="See more" />
                       )}
@@ -80,10 +103,17 @@ const SearchResults: React.FC<SearchResultsProps> = ({
       ) : (
         <Box>
           {collectionListsItems && (
-            <List sx={{ padding: 0 }} className={classes.listWrapper}>
+            <List sx={{ padding: 0 }}>
               <ForLoops each={collectionListsItems}>
                 {(item, index) => {
-                  return <SearchResultItem key={index} item={item} onSelectItem={onSelectItem} />;
+                  return (
+                    <SearchResultItem
+                      key={index}
+                      item={item}
+                      onSelectItem={onSelectItem}
+                      multiple={multiple}
+                    />
+                  );
                 }}
               </ForLoops>
             </List>

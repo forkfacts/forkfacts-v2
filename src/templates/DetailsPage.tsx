@@ -154,15 +154,15 @@ const lifeStageItems: lifeStageItem[] = [
     icon: Kids,
   },
   {
-    name: "Infant",
+    name: "Infants",
     icon: Baby,
   },
   {
-    name: "Female",
+    name: "females",
     icon: Woman,
   },
   {
-    name: "Male",
+    name: "males",
     icon: Male,
   },
   {
@@ -259,28 +259,31 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
   useEffect(() => {
     const gender = state.selectedGender;
     const age = state.selectedAge;
+    console.log(age);
     const nutrients = state.selectedNutrients.length < 1 ? food.nutrients : state.selectedNutrients;
     const nutrientsWithRdis = nutrients.map((nutrient: any, index: number) => {
       const nutrientWithRdi = nutrientRdis.filter(
         (nutrientRdi) =>
           nutrientRdi.nutrient.name === nutrient.name &&
+          nutrientRdi.nutrient.unit === nutrient.unit &&
           age.start === nutrientRdi?.rdi?.ageStart &&
-          age.end === nutrientRdi?.rdi?.ageEnd &&
-          gender.toLowerCase() === nutrientRdi?.rdi?.applicableFor?.toLowerCase() &&
-          age.unit === nutrientRdi?.rdi.ageUnit
+          age?.unit?.toLowerCase() === nutrientRdi?.rdi?.ageUnit &&
+          gender.toLowerCase() === nutrientRdi?.rdi?.applicableFor
       )[0];
-      const getPercentDaily = () => {
-        if (!nutrientWithRdi || !nutrientWithRdi.rdi) return undefined;
-        return nutrientWithRdi.percentDaily;
+      const getValueRounded = (amount: number) => {
+        return Math.round(amount * 100) / 100;
       };
       const factTableRow: any = {
+        index: index,
         nutrient: nutrient.name,
         amount: nutrient.amount,
         amountUnit: nutrient.unit.toLowerCase(),
-        dailyValue: getPercentDaily(),
+        dailyValue: nutrientWithRdi?.percentDaily
+          ? getValueRounded(Number(nutrientWithRdi?.percentDaily))
+          : undefined,
         rdi: {
-          amount: nutrientWithRdi,
-          weight: nutrientWithRdi,
+          value: nutrientWithRdi?.rdi?.amount,
+          weight: nutrientWithRdi?.rdi?.nutrientUnit,
         },
       };
       return factTableRow;
@@ -288,7 +291,7 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
     setRows(nutrientsWithRdis);
   }, [state.selectedAge, state.selectedGender, state.selectedNutrients]);
 
-  console.log(rows);
+  console.log(nutrientRdis);
 
   const dataNutrients = food.nutrients.map(
     (item: { checked: boolean; name: string; unit: string }) => {

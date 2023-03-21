@@ -88,11 +88,11 @@
             "icon": "DirectionsCarFilledOutlinedIcon"
           },
           {
-            "name": "Male",
+            "name": "males",
             "icon": "OilBarrelOutlinedIcon"
           },
           {
-            "name": "Female",
+            "name": "females",
             "icon": "DirectionsCarFilledOutlinedIcon"
           },
           {

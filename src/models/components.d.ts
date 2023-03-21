@@ -146,6 +146,7 @@ export interface LayoutProps {
 
 export interface SearchResultItemProps {
   item: SearchResultItemType;
+  multiple?: boolean;
   onSelectItem: (item: SearchResultItemType) => void;
 }
 interface SideBarProps {
@@ -159,18 +160,15 @@ interface SideBarProps {
 
 interface ExtendSearchResultItemsProps {
   onSelectItem: (item: SearchResultItemType) => void;
-  handleViewMore?: () => void;
 }
 export type SearchResultsProps = (
   | {
       collectionListsItems?: Array<SearchResultItemType>;
       multiple: true;
-      collectionGroupedItems: Array<SearchResultItemCollectionType>;
     }
   | {
       collectionListsItems: Array<SearchResultItemType>;
       multiple?: false;
-      collectionGroupedItems?: Array<SearchResultItemCollectionType>;
     }
 ) &
   ExtendSearchResultItemsProps;

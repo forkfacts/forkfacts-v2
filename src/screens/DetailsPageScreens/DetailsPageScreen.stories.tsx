@@ -221,15 +221,15 @@ const lifeStageItems: lifeStageItem[] = [
     icon: Kids,
   },
   {
-    name: "Infant",
+    name: "Infants",
     icon: Baby,
   },
   {
-    name: "Female",
+    name: "females",
     icon: Woman,
   },
   {
-    name: "Male",
+    name: "males",
     icon: Male,
   },
   {

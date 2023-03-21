@@ -175,6 +175,7 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ nutrition
                       sx={{
                         color: theme.palette.customGray.main,
                         fontWeight: theme.typography.fontWeightRegular,
+                        textTransform: "lowercase",
                       }}
                     >
                       {`${item.rdi.value}${item.rdi.weight}`}

@@ -271,7 +271,7 @@ function AutoCompleteSearch(
             {...autocomplete.getPanelProps({})}
             sx={{ width: "100%" }}
           >
-            {/* {!query && status === "idle" && (mobile || desktop) && (
+            {!query && status === "idle" && (mobile || desktop) && (
               <Box
                 sx={{
                   width: "100%",
@@ -298,23 +298,22 @@ function AutoCompleteSearch(
                   sx={{
                     fontWeight: theme.typography.fontWeightRegular,
                     pr: theme.spacing(1.5),
+                    cursor: "pointer",
                   }}
                   onClick={onClearSearch}
                 >
                   Clear
                 </Typography>
               </Box>
-            )} */}
-            {/* {false ? (
+            )}
+            {!query && (mobile || desktop) ? (
               <>
                 <Box
                   sx={{
                     width: "100%",
-                    paddingLeft: theme.spacing(1),
-                    paddingRight: theme.spacing(1),
+                    paddingLeft: theme.spacing(2),
+                    paddingRight: theme.spacing(2),
                     mt: mobile ? theme.spacing(1.3) : theme.spacing(2),
-                    ml: theme.spacing(-0.7),
-                    display: "hidden",
                   }}
                 >
                   <ForLoops each={collections}>
@@ -341,15 +340,15 @@ function AutoCompleteSearch(
                     mt: mobile ? theme.spacing(0.5) : theme.spacing(1.5),
                   }}
                 >
-                  <SearchRecommendations recommendations={props.recommendations} />
+                  {/* <SearchRecommendations recommendations={props.recommendations} /> */}
                 </Box>
               </>
-            ) : (query && (desktop || mobile)) || (!query && (mobile || desktop)) ? (
+            ) : query && (desktop || mobile) ? (
               <Box
                 sx={{
                   width: "100%",
-                  paddingLeft: theme.spacing(1),
-                  paddingRight: theme.spacing(1),
+                  paddingLeft: theme.spacing(2),
+                  paddingRight: theme.spacing(2),
                   mb: theme.spacing(3),
                 }}
               >
@@ -363,7 +362,7 @@ function AutoCompleteSearch(
                         <Box component="section" key={`source-${index}`}>
                           {items.length > 0 && (
                             <SearchResults
-                              collectionGroupedItems={props.collectionGroupedItems}
+                              collectionListsItems={items}
                               onSelectItem={onSelectItem}
                               multiple={true}
                             />
@@ -374,35 +373,7 @@ function AutoCompleteSearch(
                   }}
                 </ForLoops>
               </Box>
-            ) : null} */}
-            {(query && (desktop || mobile)) || (!query && (mobile || desktop)) ? (
-              <Box
-                sx={{
-                  width: "100%",
-                  paddingLeft: theme.spacing(1),
-                  paddingRight: theme.spacing(1),
-                  mb: theme.spacing(3),
-                }}
-              >
-                <ForLoops each={collections}>
-                  {(collection, index) => {
-                    const { source, items } = collection;
-                    if (items.length === 0) {
-                      return <NoSearchResults key={`source-${index}`} />;
-                    }
-                    return (
-                      <Box component="section" key={`source-${index}`}>
-                        {items.length > 0 && (
-                          <SearchResults collectionListsItems={items} onSelectItem={onSelectItem} />
-                        )}
-                      </Box>
-                    );
-                  }}
-                </ForLoops>
-              </Box>
-            ) : (
-              ""
-            )}
+            ) : null}
           </Box>
         )}
       </Box>

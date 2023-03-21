@@ -21,7 +21,7 @@ const Template: ComponentStory<typeof LifeStage> = (args) => {
 };
 const lifeStageItems: lifeStageItem[] = [
   {
-    name: "Infant",
+    name: "Infants",
     icon: Baby,
   },
   {
@@ -29,11 +29,11 @@ const lifeStageItems: lifeStageItem[] = [
     icon: Kids,
   },
   {
-    name: "Male",
+    name: "males",
     icon: Male,
   },
   {
-    name: "Female",
+    name: "females",
     icon: Woman,
   },
   {

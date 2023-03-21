@@ -13,11 +13,6 @@ export const useStyles = makeStyles(({ spacing, breakpoints, typography, palette
     alignItems: "center",
     flexWrap: "wrap",
     columnGap: spacing(1),
-  },
-  listWrapper: {
-    marginTop: spacing(-1),
-    "&:first-child": {
-      marginTop: 0,
-    },
+    wordBreak: "break-all",
   },
 }));

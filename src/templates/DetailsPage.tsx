@@ -47,7 +47,6 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
     [] as SearchNutritionFilterItem[]
   );
   const [unit, setUnit] = React.useState("Cups");
-
   const [state, setState] = useState<{
     selectedGender: string;
     selectedAge: ageItem;
@@ -71,9 +70,7 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
   const nutrientRdis: NutriTable[] = generateRdiForFood(thisFood, allRdis);
   useEffect(() => {
     const gender = state.selectedGender;
-    console.log(state.selectedGender);
     const age = state.selectedAge;
-    console.log(age);
     const nutrients = state.selectedNutrients.length < 1 ? food.nutrients : state.selectedNutrients;
     const nutrientsWithRdis = nutrients.map((nutrient: any, index: number) => {
       const nutrientWithRdi = nutrientRdis.filter(
@@ -105,8 +102,6 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
     });
     setRows(nutrientsWithRdis);
   }, [state.selectedAge, state.selectedGender, state.selectedNutrients]);
-
-  console.log(nutrientRdis);
 
   const dataNutrients = food.nutrients.map(
     (item: { checked: boolean; name: string; unit: string }) => {

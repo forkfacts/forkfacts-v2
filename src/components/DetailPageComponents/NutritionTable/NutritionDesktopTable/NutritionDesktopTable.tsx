@@ -260,8 +260,8 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ nutrition
                           width: "21%",
                           textAlign: "right",
                           display: "flex",
-                          justifyContent: "flex-end",
-                          alignItems: "flex-end",
+                          justifyContent: "flex-start",
+                          alignItems: "flex-start",
                         }}
                       >
                         <Typography

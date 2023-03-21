@@ -97,7 +97,7 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
           ? getValueRounded(Number(nutrientWithRdi?.percentDaily))
           : undefined,
         rdi: {
-          value: Math.abs(nutrientWithRdi?.rdi?.amount),
+          value: nutrientWithRdi?.rdi?.amount ? Math.abs(nutrientWithRdi?.rdi?.amount) : undefined,
           weight: nutrientWithRdi?.rdi?.nutrientUnit,
         },
       };

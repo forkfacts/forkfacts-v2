@@ -5,7 +5,7 @@ import { SeoProps } from "../models/seo";
 
 const ff_nutrition_facts = require("../../data/foundation_food_nutrition_facts.json");
 const sr_legacy_nutrition_facts = require("../../data/sr_legacy_food_nutrition_facts.json");
-const rdis: any = require("../../data/rdi.json");
+import rdis from "../../data/rdi.json";
 
 export const createDetailPage = (createPage: any) => {
   try {

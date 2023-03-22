@@ -63,8 +63,6 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
   const allRdis = rdis as any[];
 
   const nutrientRdis: NutriTable[] = generateRdiForFood(thisFood, allRdis);
-
-  console.log(nutrientRdis);
   useEffect(() => {
     const gender = state.selectedGender;
     const age = state.selectedAge;

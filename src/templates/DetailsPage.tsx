@@ -67,6 +67,10 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
     const gender = state.selectedGender;
     const age = state.selectedAge;
     const nutrients = !state.selectedNutrients.length ? food.nutrients : state.selectedNutrients;
+
+    if (state.selectedNutrients.length && state.selectedAge && state.selectedNutrients) {
+    }
+
     const nutrientsWithRdis = nutrients.map((nutrient: any, index: number) => {
       const nutrientWithRdi = nutrientRdis.filter(
         (nutrientRdi) =>

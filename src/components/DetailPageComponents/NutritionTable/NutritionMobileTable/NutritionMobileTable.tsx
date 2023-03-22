@@ -20,7 +20,7 @@ const NutritionMobileTable: React.FC<NutritionMobileTableProps> = ({ nutritionTa
     fade: true,
     adaptiveHeight: false,
     appendDots: (dots: any) => {
-      return <MagicSliderDots dots={dots} numDotsToShow={7} dotWidth={30} />;
+      return <MagicSliderDots dots={dots} numDotsToShow={10} dotWidth={30} />;
     },
   };
 

@@ -72,7 +72,8 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
     const nutrientsWithRdis = nutrients.map((nutrient: any, index: number) => {
       const nutrientWithRdi = nutrientRdis.filter(
         (nutrientRdi) =>
-          nutrientRdi.nutrient.name === nutrient.name &&
+          (nutrientRdi.nutrient.name === nutrient.name ||
+            nutrientRdi.nutrient.unit === nutrient.unit) &&
           age.start === nutrientRdi?.rdi?.ageStart &&
           age.end === nutrientRdi?.rdi?.ageEnd &&
           age?.ageUnit?.toLowerCase() === nutrientRdi?.rdi?.ageUnit &&
@@ -81,7 +82,6 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
       const getValueRounded = (amount: number) => {
         return Math.round(amount * 100) / 100;
       };
-
       const factTableRow: any = {
         index: index,
         nutrient: nutrient.name,

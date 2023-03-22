@@ -4,6 +4,7 @@ import { DetailsPageScreen } from "@forkfacts/screens";
 import { SEO } from "@forkfacts/components";
 import rdis from "../../data/rdi.json";
 import { ageItem } from "@forkfacts/models";
+
 import { generateRdiForFood, getAgeRangesForLifeStage } from "@forkfacts/helpers";
 import { Box } from "@mui/material";
 import {
@@ -105,6 +106,7 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
       };
     }
   );
+  console.log(nutrientRdis);
   return (
     <WrapRootElement>
       <Box sx={{ p: "8px" }}>

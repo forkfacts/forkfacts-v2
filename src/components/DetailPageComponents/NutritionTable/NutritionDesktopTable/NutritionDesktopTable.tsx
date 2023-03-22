@@ -3,6 +3,7 @@ import {
   Table,
   TableBody,
   TableCell,
+  TableContainer,
   TableHead,
   TableRow,
   Typography,
@@ -28,32 +29,45 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ nutrition
     }
   };
   const isCollapsed = (nutrient: any) => collapsedRows.includes(nutrient);
+
+  function createData(name: string, calories: number, fat: number, carbs: number, protein: number) {
+    return { name, calories, fat, carbs, protein };
+  }
+
+  const row = [
+    createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
+    createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
+    createData("Eclair", 262, 16.0, 24, 6.0),
+    createData("Cupcake", 305, 3.7, 67, 4.3),
+    createData("Gingerbread", 356, 16.0, 49, 3.9),
+  ];
   return (
     <Box>
-      <Table sx={{ minWidth: 1000, border: "none", ml: theme.spacing(3) }}>
-        <TableHead style={{ border: "none", backgroundColor: "#FCFCFC" }}>
-          <TableRow>
-            <TableCell sx={{ borderBottom: "none" }}>
-              <Typography
-                variant="labelLarge"
-                sx={{
-                  color: theme.palette.customGray.dark,
-                  fontWeight: theme.typography.fontWeightRegular,
-                }}
-              >
-                Nutrient
-              </Typography>
-            </TableCell>
-            <TableCell sx={{ borderBottom: "none" }}>
-              <Box
+      <TableContainer>
+        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+          <TableHead sx={{ border: "none", backgroundColor: "#FCFCFC" }}>
+            <TableRow>
+              <TableCell sx={{ borderBottom: "none" }}>
+                <Typography
+                  variant="labelLarge"
+                  sx={{
+                    color: theme.palette.customGray.dark,
+                    fontWeight: theme.typography.fontWeightRegular,
+                  }}
+                >
+                  Nutrient
+                </Typography>
+              </TableCell>
+              <TableCell
+                align="right"
                 sx={{
                   display: "flex",
                   alignItems: "center",
-                  ml: theme.spacing(-2),
-                  columnGap: theme.spacing(1),
                   cursor: "pointer",
+                  borderBottom: "none",
                 }}
               >
+                <CompareSorting width={theme.spacing(3)} height={theme.spacing(3)} />
                 <Typography
                   variant="labelLarge"
                   sx={{
@@ -63,29 +77,20 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ nutrition
                 >
                   %Daily Value
                 </Typography>
-                <CompareSorting width={theme.spacing(3)} height={theme.spacing(3)} />
-              </Box>
-            </TableCell>
-            <TableCell sx={{ borderBottom: "none" }}>
-              <Typography
-                variant="labelLarge"
-                sx={{
-                  color: theme.palette.customGray.dark,
-                  fontWeight: theme.typography.fontWeightRegular,
-                  ml: theme.spacing(-7),
-                }}
-              >
-                Amount (per 100g)
-              </Typography>
-            </TableCell>
-            <TableCell sx={{ borderBottom: "none" }}>
-              <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  cursor: "pointer",
-                }}
-              >
+              </TableCell>
+              <TableCell align="right" sx={{ borderBottom: "none" }}>
+                <Typography
+                  variant="labelLarge"
+                  sx={{
+                    color: theme.palette.customGray.dark,
+                    fontWeight: theme.typography.fontWeightRegular,
+                    ml: theme.spacing(-7),
+                  }}
+                >
+                  Amount (per 100g)
+                </Typography>
+              </TableCell>
+              <TableCell align="right" sx={{ borderBottom: "none" }}>
                 <Typography
                   variant="labelLarge"
                   sx={{
@@ -100,15 +105,13 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ nutrition
                   height={theme.spacing(3)}
                   style={{ marginLeft: theme.spacing(1) }}
                 />
-              </Box>
-            </TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {nutritionTableItems.map((item) => (
-            <React.Fragment key={item.nutrient}>
-              <TableRow>
-                <TableCell sx={{ borderBottom: "1px solid #F3EFF4" }}>
+              </TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {nutritionTableItems.map((item, index) => (
+              <TableRow key={index} sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
+                <TableCell component="th" scope="row" sx={{ borderBottom: "1px solid #F3EFF4" }}>
                   <Box sx={{ display: "flex", alignItems: "center" }}>
                     {isCollapsed(item.nutrient) ? (
                       <ArrowRightIcon
@@ -141,7 +144,7 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ nutrition
                     </Typography>
                   </Box>
                 </TableCell>
-                <TableCell sx={{ borderBottom: "1px solid #F3EFF4" }}>
+                <TableCell align="right" sx={{ borderBottom: "1px solid #F3EFF4" }}>
                   {item.dailyValue && (
                     <Typography
                       variant="titleMedium"
@@ -154,7 +157,7 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ nutrition
                     </Typography>
                   )}
                 </TableCell>
-                <TableCell sx={{ borderBottom: "1px solid #F3EFF4" }}>
+                <TableCell align="right" sx={{ borderBottom: "1px solid #F3EFF4" }}>
                   {!item.amount ? null : (
                     <Typography
                       variant="titleMedium"
@@ -168,7 +171,7 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ nutrition
                     </Typography>
                   )}
                 </TableCell>
-                <TableCell sx={{ borderBottom: "1px solid #F3EFF4" }}>
+                <TableCell align="right" sx={{ borderBottom: "1px solid #F3EFF4" }}>
                   {item.rdi.value && (
                     <Typography
                       variant="titleMedium"
@@ -176,7 +179,6 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ nutrition
                         color: theme.palette.customGray.main,
                         fontWeight: theme.typography.fontWeightLight,
                         textTransform: "lowercase",
-                        ml: theme.spacing(1),
                       }}
                     >
                       {`${item.rdi.value}${item.rdi.weight}`}
@@ -184,105 +186,10 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ nutrition
                   )}
                 </TableCell>
               </TableRow>
-              {!isCollapsed(item.nutrient) &&
-                item?.nutrientContents?.map((content, index2) => (
-                  <TableRow
-                    key={index2}
-                    sx={{
-                      "&:nth-of-type(odd)": {
-                        backgroundColor: "#FFFBFF",
-                      },
-                    }}
-                  >
-                    <TableCell sx={{ borderBottom: "none", ml: theme.spacing(10) }} align="left">
-                      <Typography
-                        variant="bodyMedium"
-                        sx={{
-                          color: theme.palette.customGray.main,
-                          fontWeight: theme.typography.fontWeightLight,
-                          ml: theme.spacing(3),
-                          textAlign: "right",
-                        }}
-                      >
-                        {content.nutrient}
-                      </Typography>
-                    </TableCell>
-                    <TableCell sx={{ borderBottom: "none" }} align="right">
-                      <Box
-                        sx={{
-                          width: "18%",
-                          textAlign: "right",
-                          display: "flex",
-                          justifyContent: "flex-end",
-                          alignItems: "flex-end",
-                        }}
-                      >
-                        <Typography
-                          component="span"
-                          variant="bodyLarge"
-                          sx={{
-                            color: theme.palette.customGray.main,
-                            fontWeight: theme.typography.fontWeightLight,
-                            textAlign: "right",
-                            mr: theme.spacing(1),
-                          }}
-                        >
-                          {content.dailyValue}%
-                        </Typography>
-                      </Box>
-                    </TableCell>
-                    <TableCell sx={{ borderBottom: "none" }} align="right">
-                      <Box
-                        sx={{
-                          width: "18%",
-                          textAlign: "right",
-                          display: "flex",
-                          justifyContent: "flex-end",
-                          alignItems: "flex-end",
-                        }}
-                      >
-                        <Typography
-                          component="span"
-                          variant="bodyLarge"
-                          sx={{
-                            color: theme.palette.customGray.main,
-                            fontWeight: theme.typography.fontWeightLight,
-                            mr: theme.spacing(1),
-                          }}
-                        >
-                          {content.amount}
-                        </Typography>
-                      </Box>
-                    </TableCell>
-                    <TableCell sx={{ borderBottom: "none", textAlign: "" }}>
-                      <Box
-                        sx={{
-                          width: "21%",
-                          textAlign: "right",
-                          display: "flex",
-                          justifyContent: "flex-start",
-                          alignItems: "flex-start",
-                        }}
-                      >
-                        <Typography
-                          variant="bodyLarge"
-                          component="span"
-                          sx={{
-                            color: theme.palette.customGray.main,
-                            fontWeight: theme.typography.fontWeightLight,
-                            textAlign: "right",
-                          }}
-                        >
-                          {`${Math.abs(content.rdi.value)}${content.rdi.weight}`}
-                        </Typography>
-                      </Box>
-                    </TableCell>
-                  </TableRow>
-                ))}
-            </React.Fragment>
-          ))}
-        </TableBody>
-      </Table>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
       <Box sx={{ display: "flex", justifyContent: "flex-end", my: theme.spacing(7) }}>
         <Typography
           variant="labelMedium"

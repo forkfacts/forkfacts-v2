@@ -127,6 +127,7 @@ const AllFilters = ({ ageItems, lifeStageItems, nutritionFilterItems }: any) => 
                 isDropdown={false}
               />
             </Box>
+            <Box sx={{ height: "10vh", width: "100%" }} />
           </Box>
         </Box>
       )}

@@ -72,11 +72,11 @@ export function getAgeRangesForLifeStage(selectedLifeStageName: string = "Female
   const ageRanges = allAges.map((ageRange) => {
     switch (selectedLifeStageName) {
       case "Infants":
-        return ageRange.ageUnit === "month" && ageRange.start >= 0 && ageRange?.end! <= 7
+        return ageRange.ageUnit === "month" && ageRange.start >= 0 && ageRange?.end! <= 12
           ? ageRange
           : null;
       case "Children":
-        return ageRange.ageUnit === "year" && ageRange.start >= 1 && ageRange?.end! <= 4
+        return ageRange.ageUnit === "year" && ageRange.start >= 1 && ageRange?.end! <= 8
           ? ageRange
           : null;
 
@@ -85,11 +85,11 @@ export function getAgeRangesForLifeStage(selectedLifeStageName: string = "Female
       case "Females":
         return ageRange.ageUnit === "year" && ageRange.start >= 9 ? ageRange : null;
       case "Pregnant":
-        return ageRange.ageUnit === "year" && ageRange.start >= 14 && ageRange.end <= 31
+        return ageRange.ageUnit === "year" && ageRange.start >= 14 && ageRange.end <= 50
           ? ageRange
           : null;
       case "Lactation":
-        return ageRange.ageUnit === "year" && ageRange.start >= 14 && ageRange.end <= 31
+        return ageRange.ageUnit === "year" && ageRange.start >= 14 && ageRange.end <= 50
           ? ageRange
           : null;
 

@@ -22,6 +22,8 @@ interface NutriTable {
     amount: number;
     name: string;
     unit: string;
+    displayName: string;
+    nutrientGroup: string;
   };
   percentDaily: string;
   rdi: {
@@ -38,7 +40,7 @@ interface NutriTable {
 const DynamicPageTemplate = ({ pageContext }: PageProps) => {
   const { food } = pageContext as any;
   const [rows, setRows] = useState<any[]>([]);
-  const { gender, age, nutrients } = useStore((state) => state);
+  const { gender, age, nutrients, setAge } = useStore((state) => state);
   const [_, setUnit] = React.useState("Cups");
   const [state, setState] = useState<{
     selectedGender: string;
@@ -61,6 +63,8 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
   const allRdis = rdis as any[];
 
   const nutrientRdis: NutriTable[] = generateRdiForFood(thisFood, allRdis);
+
+  console.log(nutrientRdis);
   useEffect(() => {
     const gender = state.selectedGender;
     const age = state.selectedAge;
@@ -68,16 +72,16 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
     const nutrientsWithRdis = nutrients.map((nutrient: any, index: number) => {
       const nutrientWithRdi = nutrientRdis.filter(
         (nutrientRdi) =>
-          nutrientRdi.nutrient.name === nutrient.name ||
-          (nutrientRdi.nutrient.unit === nutrient.unit &&
-            age.start === nutrientRdi?.rdi?.ageStart &&
-            age.end === nutrientRdi?.rdi?.ageEnd &&
-            age?.ageUnit?.toLowerCase() === nutrientRdi?.rdi?.ageUnit &&
-            gender.toLowerCase() === nutrientRdi?.rdi?.applicableFor.toLowerCase())
+          nutrientRdi.nutrient.name === nutrient.name &&
+          age.start === nutrientRdi?.rdi?.ageStart &&
+          age.end === nutrientRdi?.rdi?.ageEnd &&
+          age?.ageUnit?.toLowerCase() === nutrientRdi?.rdi?.ageUnit &&
+          gender.toLowerCase() === nutrientRdi?.rdi?.applicableFor.toLowerCase()
       )[0];
       const getValueRounded = (amount: number) => {
         return Math.round(amount * 100) / 100;
       };
+
       const factTableRow: any = {
         index: index,
         nutrient: nutrient.name,
@@ -96,6 +100,40 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
     setRows(nutrientsWithRdis);
   }, [state.selectedAge, state.selectedGender, state.selectedNutrients]);
 
+  useEffect(() => {
+    const { selectedGender } = state;
+    if (selectedGender === "Infants")
+      setAge({
+        start: 0,
+        end: 6,
+        ageUnit: "month",
+      });
+    else if (selectedGender === "Children")
+      setAge({
+        start: 1,
+        end: 3,
+        ageUnit: "year",
+      });
+    else if (selectedGender === "Males")
+      setAge({
+        start: 9,
+        end: 13,
+        ageUnit: "year",
+      });
+    else if (selectedGender === "Females")
+      setAge({
+        start: 31,
+        end: 50,
+        ageUnit: "year",
+      });
+    else if (selectedGender === "Pregnant" || selectedGender === "Lactation")
+      setAge({
+        start: 14,
+        end: 18,
+        ageUnit: "year",
+      });
+  }, [state.selectedGender]);
+
   const ageRanges = getAgeRangesForLifeStage(state.selectedGender);
   const dataNutrients = food.nutrients.map(
     (item: { checked: boolean; name: string; unit: string }) => {
@@ -106,7 +144,6 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
       };
     }
   );
-  console.log(nutrientRdis);
   return (
     <WrapRootElement>
       <Box sx={{ p: "8px" }}>

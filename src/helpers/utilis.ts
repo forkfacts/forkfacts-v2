@@ -99,3 +99,7 @@ export function getAgeRangesForLifeStage(selectedLifeStageName: string = "Female
   });
   return ageRanges.filter((range) => range !== null);
 }
+
+const getValueRounded = (amount: number) => {
+  return Math.round(amount * 100) / 100;
+};

@@ -72,32 +72,22 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
     }
 
     const nutrientsWithRdis = nutrients.map((nutrient: any, index: number) => {
-      const nutrientWithRdi = nutrientRdis.filter(
-        (nutrientRdi) =>
-          (nutrientRdi.nutrient.name === nutrient.name ||
-            nutrientRdi.nutrient.unit === nutrient.unit) &&
-          age.start === nutrientRdi?.rdi?.ageStart &&
-          age.end === nutrientRdi?.rdi?.ageEnd &&
-          age?.ageUnit?.toLowerCase() === nutrientRdi?.rdi?.ageUnit &&
-          gender.toLowerCase() === nutrientRdi?.rdi?.applicableFor.toLowerCase()
-      )[0];
-      const getValueRounded = (amount: number) => {
-        return Math.round(amount * 100) / 100;
-      };
-      const factTableRow: any = {
-        index: index,
-        nutrient: nutrient.name,
-        amount: nutrient?.amount,
-        amountUnit: nutrient?.unit?.toLowerCase(),
-        dailyValue: nutrientWithRdi?.percentDaily
-          ? getValueRounded(Number(nutrientWithRdi?.percentDaily))
-          : undefined,
-        rdi: {
-          value: nutrientWithRdi?.rdi?.amount ? Math.abs(nutrientWithRdi?.rdi?.amount) : undefined,
-          weight: nutrientWithRdi?.rdi?.nutrientUnit,
-        },
-      };
-      return factTableRow;
+      // const factTableRow: any = {
+      //   index: index,
+      //   nutrient: nutrient.name,
+      //   amount: nutrient?.amount,
+      //   amountUnit: nutrient?.unit?.toLowerCase(),
+      //   dailyValue: nutrientWithRdi?.percentDaily
+      //     ? getValueRounded(Number(nutrientWithRdi?.percentDaily))
+      //     : undefined,
+      //   rdi: {
+      //     value: nutrientWithRdi?.rdi?.amount ? Math.abs(nutrientWithRdi?.rdi?.amount) : undefined,
+      //     weight: nutrientWithRdi?.rdi?.nutrientUnit,
+      //   },
+      // };
+      // return factTableRow;
+      const filteredNutrient = nutrientRdis.filter((item) => {});
+      return nutrient;
     });
     setRows(nutrientsWithRdis);
   }, [state.selectedAge, state.selectedGender, state.selectedNutrients]);
@@ -146,10 +136,12 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
       };
     }
   );
+
+  console.log(nutrientRdis);
   return (
     <WrapRootElement>
       <Box sx={{ p: "8px" }}>
-        <DetailsPageScreen
+        {/* <DetailsPageScreen
           sidebarItems={sidebarItems}
           DetailsPageTitlesItems={[]}
           detailsHeaderValues={{
@@ -178,7 +170,7 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
           onSelectedValue={function (value: React.SetStateAction<string[]>): void {
             throw new Error("Function not implemented.");
           }}
-        />
+        /> */}
       </Box>
     </WrapRootElement>
   );

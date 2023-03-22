@@ -176,8 +176,6 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
     };
   }, [ref]);
 
-  console.log("nutrients", nutrients);
-
   return (
     <Box sx={{ display: "block" }} ref={ref}>
       {isDropdown && (

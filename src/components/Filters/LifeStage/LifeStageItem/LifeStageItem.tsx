@@ -59,7 +59,7 @@ const LifeStageItem: React.FC<LifeStageItemProps> = ({
             color:
               selectedItem.toLowerCase() === item.name.toLowerCase()
                 ? theme.palette.primary.main
-                : theme.palette.common.black,
+                : theme.palette.customGray.main,
             fontWeight: theme.typography.fontWeightRegular,
             mt: theme.spacing(1),
             textTransform: "capitalize",

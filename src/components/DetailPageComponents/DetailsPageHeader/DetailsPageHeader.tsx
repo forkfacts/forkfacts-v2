@@ -5,14 +5,21 @@ import { ForLoops } from "@forkfacts/helpers";
 import { SharedSocialMedia } from "@forkfacts/components";
 import React, { useState } from "react";
 
-const DetailsPageHeader: React.FC<DetailsPageHeaderProps> = ({ detailsHeaderValues }) => {
+interface DetailsPageHeaderPropsWithLocation extends DetailsPageHeaderProps {
+  location: Location;
+}
+
+const DetailsPageHeader: React.FC<DetailsPageHeaderPropsWithLocation> = ({
+  detailsHeaderValues,
+}) => {
   const [isSharedMediaOpen, setIsSharedMediaOpen] = useState(false);
   const theme = useTheme();
+  const fullUrl = window && window.location.href;
   const mobile = useMediaQuery(theme.breakpoints.down("md"));
   return (
     <Box sx={{ position: "relative" }}>
       <SharedSocialMedia
-        link="https://www.forkfacts.app/raw-banana-23hy-ripe"
+        link={fullUrl}
         isSharedMediaOpen={isSharedMediaOpen}
         setIsSharedMediaOpen={setIsSharedMediaOpen}
       />

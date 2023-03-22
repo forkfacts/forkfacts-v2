@@ -34,13 +34,14 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ nutrition
     return { name, calories, fat, carbs, protein };
   }
 
-  const row = [
+  const rows = [
     createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
     createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
     createData("Eclair", 262, 16.0, 24, 6.0),
     createData("Cupcake", 305, 3.7, 67, 4.3),
     createData("Gingerbread", 356, 16.0, 49, 3.9),
   ];
+
   return (
     <Box>
       <TableContainer>
@@ -109,84 +110,158 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ nutrition
             </TableRow>
           </TableHead>
           <TableBody>
-            {nutritionTableItems.map((item, index) => (
-              <TableRow key={index} sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
-                <TableCell component="th" scope="row" sx={{ borderBottom: "1px solid #F3EFF4" }}>
-                  <Box sx={{ display: "flex", alignItems: "center" }}>
-                    {isCollapsed(item.nutrient) ? (
-                      <ArrowRightIcon
-                        onClick={() => toggleCollapse(item.nutrient)}
-                        sx={{
-                          cursor: "pointer",
-                          width: theme.spacing(3),
-                          height: theme.spacing(3),
-                        }}
-                      />
-                    ) : (
-                      <>
-                        {item?.nutrientContents?.length ? (
-                          <ArrowDropDownIcon
+            <>
+              {nutritionTableItems.map((item, index) => (
+                <>
+                  <TableRow key={index} sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
+                    <TableCell
+                      component="th"
+                      scope="row"
+                      sx={{ borderBottom: "1px solid #F3EFF4" }}
+                    >
+                      <Box sx={{ display: "flex", alignItems: "center" }}>
+                        {isCollapsed(item.nutrient) ? (
+                          <ArrowRightIcon
                             onClick={() => toggleCollapse(item.nutrient)}
-                            sx={{ cursor: "pointer" }}
+                            sx={{
+                              cursor: "pointer",
+                              width: theme.spacing(3),
+                              height: theme.spacing(3),
+                            }}
                           />
-                        ) : null}
-                      </>
-                    )}
-                    <Typography
-                      variant="titleMedium"
-                      sx={{
-                        color: theme.palette.customGray.main,
-                        fontWeight: theme.typography.fontWeightLight,
-                        ml: !item?.nutrientContents?.length ? theme.spacing(3) : 0,
-                      }}
-                    >
-                      {item.nutrient}
-                    </Typography>
-                  </Box>
-                </TableCell>
-                <TableCell align="right" sx={{ borderBottom: "1px solid #F3EFF4" }}>
-                  {item.dailyValue && (
-                    <Typography
-                      variant="titleMedium"
-                      sx={{
-                        color: theme.palette.customGray.main,
-                        fontWeight: theme.typography.fontWeightLight,
-                      }}
-                    >
-                      {item.dailyValue}%
-                    </Typography>
-                  )}
-                </TableCell>
-                <TableCell align="right" sx={{ borderBottom: "1px solid #F3EFF4" }}>
-                  {!item.amount ? null : (
-                    <Typography
-                      variant="titleMedium"
-                      sx={{
-                        color: theme.palette.customGray.main,
-                        fontWeight: theme.typography.fontWeightLight,
-                      }}
-                    >
-                      {item.amount}
-                      {item.amountUnit}
-                    </Typography>
-                  )}
-                </TableCell>
-                <TableCell align="right" sx={{ borderBottom: "1px solid #F3EFF4" }}>
-                  {item.rdi.value && (
-                    <Typography
-                      variant="titleMedium"
-                      sx={{
-                        color: theme.palette.customGray.main,
-                        fontWeight: theme.typography.fontWeightLight,
-                        textTransform: "lowercase",
-                      }}
-                    >
-                      {`${item.rdi.value}${item.rdi.weight}`}
-                    </Typography>
-                  )}
-                </TableCell>
-              </TableRow>
-            ))}
+                        ) : (
+                          <>
+                            {item?.nutrientContents?.length ? (
+                              <ArrowDropDownIcon
+                                onClick={() => toggleCollapse(item.nutrient)}
+                                sx={{ cursor: "pointer" }}
+                              />
+                            ) : null}
+                          </>
+                        )}
+                        <Typography
+                          variant="titleMedium"
+                          sx={{
+                            color: theme.palette.customGray.main,
+                            fontWeight: theme.typography.fontWeightLight,
+                            ml: !item?.nutrientContents?.length ? theme.spacing(3) : 0,
+                          }}
+                        >
+                          {item.nutrient}
+                        </Typography>
+                      </Box>
+                    </TableCell>
+                    <TableCell align="right" sx={{ borderBottom: "1px solid #F3EFF4" }}>
+                      {item.dailyValue && (
+                        <Typography
+                          variant="titleMedium"
+                          sx={{
+                            color: theme.palette.customGray.main,
+                            fontWeight: theme.typography.fontWeightLight,
+                          }}
+                        >
+                          {item.dailyValue}%
+                        </Typography>
+                      )}
+                    </TableCell>
+                    <TableCell align="right" sx={{ borderBottom: "1px solid #F3EFF4" }}>
+                      {!item.amount ? null : (
+                        <Typography
+                          variant="titleMedium"
+                          sx={{
+                            color: theme.palette.customGray.main,
+                            fontWeight: theme.typography.fontWeightLight,
+                          }}
+                        >
+                          {item.amount}
+                          {item.amountUnit}
+                        </Typography>
+                      )}
+                    </TableCell>
+                    <TableCell align="right" sx={{ borderBottom: "1px solid #F3EFF4" }}>
+                      {item.rdi.value && (
+                        <Typography
+                          variant="titleMedium"
+                          sx={{
+                            color: theme.palette.customGray.main,
+                            fontWeight: theme.typography.fontWeightLight,
+                            textTransform: "lowercase",
+                          }}
+                        >
+                          {`${item.rdi.value}${item.rdi.weight}`}
+                        </Typography>
+                      )}
+                    </TableCell>
+                  </TableRow>
+                  {!isCollapsed(item.nutrient) &&
+                    item?.nutrientContents?.map((content, index2) => (
+                      <TableRow
+                        key={index2}
+                        sx={{
+                          "&:first-child td": {
+                            backgroundColor: "none",
+                          },
+                          "&:nth-of-type(odd)": {
+                            backgroundColor: "#FFFBFF",
+                          },
+                        }}
+                      >
+                        <TableCell component="th" scope="row" sx={{ borderBottom: "none" }}>
+                          <Typography
+                            variant="bodyMedium"
+                            sx={{
+                              color: theme.palette.customGray.main,
+                              fontWeight: theme.typography.fontWeightLight,
+                              ml: theme.spacing(3),
+                              textAlign: "right",
+                            }}
+                          >
+                            {content.nutrient}
+                          </Typography>
+                        </TableCell>
+                        <TableCell align="right" sx={{ borderBottom: "none" }}>
+                          <Typography
+                            component="span"
+                            variant="bodyLarge"
+                            sx={{
+                              color: theme.palette.customGray.main,
+                              fontWeight: theme.typography.fontWeightLight,
+                              textAlign: "right",
+                              mr: theme.spacing(1),
+                            }}
+                          >
+                            {content.dailyValue}%
+                          </Typography>
+                        </TableCell>
+                        <TableCell align="right" sx={{ borderBottom: "none" }}>
+                          <Typography
+                            component="span"
+                            variant="bodyLarge"
+                            sx={{
+                              color: theme.palette.customGray.main,
+                              fontWeight: theme.typography.fontWeightLight,
+                            }}
+                          >
+                            {content.amount}
+                          </Typography>
+                        </TableCell>
+                        <TableCell align="right" sx={{ borderBottom: "none" }}>
+                          <Typography
+                            variant="bodyLarge"
+                            component="span"
+                            sx={{
+                              color: theme.palette.customGray.main,
+                              fontWeight: theme.typography.fontWeightLight,
+                            }}
+                          >
+                            {`${Math.abs(content.rdi.value)}${content.rdi.weight}`}
+                          </Typography>
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                </>
+              ))}
+            </>
           </TableBody>
         </Table>
       </TableContainer>

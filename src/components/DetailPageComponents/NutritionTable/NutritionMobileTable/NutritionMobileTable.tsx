@@ -2,9 +2,11 @@ import React from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-import { Box, Typography, useTheme } from "@mui/material";
+import { Box, Button, Typography, useTheme } from "@mui/material";
 import { ForLoops } from "@forkfacts/helpers";
 import { NutritionTableItem, NutritionMobileTableProps } from "@forkfacts/models";
+import MagicSliderDots from "react-magic-slider-dots";
+import "react-magic-slider-dots/dist/magic-dots.css";
 import "./index.css";
 
 const NutritionMobileTable: React.FC<NutritionMobileTableProps> = ({ nutritionTableItems }) => {
@@ -17,6 +19,9 @@ const NutritionMobileTable: React.FC<NutritionMobileTableProps> = ({ nutritionTa
     slidesToScroll: 1,
     fade: true,
     adaptiveHeight: false,
+    appendDots: (dots: any) => {
+      return <MagicSliderDots dots={dots} numDotsToShow={7} dotWidth={30} />;
+    },
   };
 
   return (

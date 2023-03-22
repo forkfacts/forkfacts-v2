@@ -10,6 +10,7 @@ const config: GatsbyConfig = {
   siteMetadata: siteMetadata,
   graphqlTypegen: true,
   plugins: [
+    `gatsby-plugin-mui-emotion`,
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,

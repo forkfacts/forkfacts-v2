@@ -30,23 +30,11 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ nutrition
   };
   const isCollapsed = (nutrient: any) => collapsedRows.includes(nutrient);
 
-  function createData(name: string, calories: number, fat: number, carbs: number, protein: number) {
-    return { name, calories, fat, carbs, protein };
-  }
-
-  const rows = [
-    createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
-    createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
-    createData("Eclair", 262, 16.0, 24, 6.0),
-    createData("Cupcake", 305, 3.7, 67, 4.3),
-    createData("Gingerbread", 356, 16.0, 49, 3.9),
-  ];
-
   return (
     <Box>
       <TableContainer>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
-          <TableHead sx={{ border: "none", backgroundColor: "#FCFCFC" }}>
+          <TableHead sx={{ border: "none", backgroundColor: "#FCFCFC", height: theme.spacing(5) }}>
             <TableRow>
               <TableCell sx={{ borderBottom: "none" }}>
                 <Typography
@@ -59,24 +47,25 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ nutrition
                   Nutrient
                 </Typography>
               </TableCell>
-              <TableCell
-                align="right"
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  cursor: "pointer",
-                  borderBottom: "none",
-                }}
-              >
-                <CompareSorting width={theme.spacing(3)} height={theme.spacing(3)} />
+              <TableCell align="right" sx={{ borderBottom: "none" }}>
                 <Typography
                   variant="labelLarge"
                   sx={{
+                    display: "inline-block",
                     color: theme.palette.customGray.dark,
                     fontWeight: theme.typography.fontWeightRegular,
                   }}
                 >
                   %Daily Value
+                  <CompareSorting
+                    width={theme.spacing(2.3)}
+                    height={theme.spacing(2.3)}
+                    style={{
+                      marginLeft: theme.spacing(1),
+                      display: "inline",
+                      paddingTop: theme.spacing(0.1),
+                    }}
+                  />
                 </Typography>
               </TableCell>
               <TableCell align="right" sx={{ borderBottom: "none" }}>
@@ -95,18 +84,24 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ nutrition
                 <Typography
                   variant="labelLarge"
                   sx={{
+                    display: "inline",
                     color: theme.palette.customGray.dark,
                     fontWeight: theme.typography.fontWeightRegular,
                   }}
                 >
                   RDI
+                  <CompareSorting
+                    width={theme.spacing(2.3)}
+                    height={theme.spacing(2.3)}
+                    style={{
+                      marginLeft: theme.spacing(1),
+                      display: "inline",
+                      paddingTop: theme.spacing(0.1),
+                    }}
+                  />
                 </Typography>
-                <CompareSorting
-                  width={theme.spacing(3)}
-                  height={theme.spacing(3)}
-                  style={{ marginLeft: theme.spacing(1) }}
-                />
               </TableCell>
+              <TableCell align="right" sx={{ borderBottom: "none" }}></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -158,6 +153,7 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ nutrition
                           sx={{
                             color: theme.palette.customGray.main,
                             fontWeight: theme.typography.fontWeightLight,
+                            pr: "20px",
                           }}
                         >
                           {item.dailyValue}%
@@ -171,6 +167,7 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ nutrition
                           sx={{
                             color: theme.palette.customGray.main,
                             fontWeight: theme.typography.fontWeightLight,
+                            pr: "20px",
                           }}
                         >
                           {item.amount}
@@ -186,6 +183,7 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ nutrition
                             color: theme.palette.customGray.main,
                             fontWeight: theme.typography.fontWeightLight,
                             textTransform: "lowercase",
+                            pr: "20px",
                           }}
                         >
                           {`${item.rdi.value}${item.rdi.weight}`}

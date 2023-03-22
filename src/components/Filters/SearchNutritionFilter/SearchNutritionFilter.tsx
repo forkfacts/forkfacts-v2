@@ -324,7 +324,7 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
                 width: "8px",
               },
               "&::-webkit-scrollbar-thumb": {
-                backgroundColor: isDropdown ? theme.palette.customGray.dark : "",
+                backgroundColor: isDropdown ? theme.palette.customGray.textLight : "",
               },
             }}
           >

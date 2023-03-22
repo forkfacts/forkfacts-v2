@@ -14,7 +14,10 @@ const DetailsPageHeader: React.FC<DetailsPageHeaderPropsWithLocation> = ({
 }) => {
   const [isSharedMediaOpen, setIsSharedMediaOpen] = useState(false);
   const theme = useTheme();
-  const fullUrl = window && window.location.href;
+  let fullUrl = "";
+  if (typeof window !== "undefined") {
+    fullUrl = window.location.href;
+  }
   const mobile = useMediaQuery(theme.breakpoints.down("md"));
   return (
     <Box sx={{ position: "relative" }}>

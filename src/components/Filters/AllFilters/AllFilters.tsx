@@ -85,7 +85,7 @@ const AllFilters = ({ ageItems, lifeStageItems, nutritionFilterItems }: any) => 
                 width: "8px",
               },
               "&::-webkit-scrollbar-thumb": {
-                backgroundColor: theme.palette.customGray.dark,
+                backgroundColor: theme.palette.customGray.textLight,
                 border: theme.spacing(0.5),
               },
             }}

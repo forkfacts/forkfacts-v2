@@ -166,7 +166,7 @@ const FilterAge: React.FC<AgeItemsProps> = ({ ageItems, isDropdown, margin = 0 }
                         variant="bodyMedium"
                         sx={{
                           fontWeight: theme.typography.fontWeightLight,
-                          color: theme.palette.customGray.textBlack,
+                          color: theme.palette.customGray.main,
                           cursor: "pointer",
                         }}
                       >
@@ -177,7 +177,7 @@ const FilterAge: React.FC<AgeItemsProps> = ({ ageItems, isDropdown, margin = 0 }
                         variant="bodyMedium"
                         sx={{
                           fontWeight: theme.typography.fontWeightLight,
-                          color: theme.palette.customGray.textBlack,
+                          color: theme.palette.customGray.main,
                           display: "flex",
                           justifyContent: "center",
                           alignItems: "center",
@@ -195,7 +195,7 @@ const FilterAge: React.FC<AgeItemsProps> = ({ ageItems, isDropdown, margin = 0 }
                           variant="bodyMedium"
                           sx={{
                             fontWeight: theme.typography.fontWeightLight,
-                            color: theme.palette.customGray.textBlack,
+                            color: theme.palette.customGray.main,
                           }}
                         >
                           {item.start} {item.ageUnit}

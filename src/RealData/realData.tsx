@@ -60,54 +60,27 @@ export const lifeStageItems: lifeStageItem[] = [
   },
 ];
 
-export const ageItems: ageItem[] = [
-  {
-    start: 0,
-    end: 6,
-    unit: "month",
-  },
-  {
-    start: 7,
-    end: 13,
-    unit: "month",
-  },
-  {
-    start: 1,
-    end: 3,
-    unit: "month",
-  },
-  {
-    start: 4,
-    end: 8,
-    unit: "month",
-  },
-  {
-    start: 9,
-    end: 13,
-    unit: "year",
-  },
-  {
-    start: 14,
-    end: 18,
-    unit: "year",
-  },
-  {
-    start: 19,
-    end: 30,
-    unit: "year",
-  },
-  {
-    start: 31,
-    end: 50,
-    unit: "year",
-  },
-  {
-    start: 51,
-    end: 70,
-    unit: "year",
-  },
-  {
-    end: 70,
-    unit: "year",
-  },
+export const allAges: any[] = [
+  { index: 0, start: 0, end: 6, ageUnit: "month" },
+  { index: 1, start: 7, end: 12, ageUnit: "month" },
+  { index: 2, start: 1, end: 3, ageUnit: "year" },
+  { index: 3, start: 4, end: 8, ageUnit: "year" },
+  { index: 4, start: 9, end: 13, ageUnit: "year" },
+  { index: 5, start: 14, end: 18, ageUnit: "year" },
+  { index: 6, start: 19, end: 30, ageUnit: "year" },
+  { index: 7, start: 31, end: 50, ageUnit: "year" },
+  { index: 8, start: 51, end: 70, ageUnit: "year" },
+  { index: 9, start: 70, ageUnit: "year" },
+];
+
+export const navbarItems = [
+  { label: "Food", Icon: EggAltOutlinedIcon, link: "/food" },
+  { label: "Recipes", Icon: EmojiFoodBeverageOutlinedIcon, link: "/recipe" },
+  { label: "Library", Icon: LibraryBooksOutlinedIcon, link: "/library" },
+];
+
+export const categoryOptions = [
+  { label: "Food", Icon: EggAltOutlinedIcon },
+  { label: "Recipe", Icon: EmojiFoodBeverageOutlinedIcon },
+  { label: "Library", Icon: LibraryBooksOutlinedIcon },
 ];

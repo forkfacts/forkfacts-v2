@@ -20,9 +20,10 @@ export interface filterItem {
 }
 
 export interface ageItem {
-  start?: number;
-  end: number;
-  unit: string;
+  start: number;
+  end?: number;
+  ageUnit: string;
+  index?: number;
 }
 
 export type lifeStageItem = {
@@ -256,13 +257,10 @@ export interface NutrientSummaryItemProps {
 export interface NutritionDetailsTabProps {
   nutritionSummaryItems: Array<summaryItem>;
   lifeStageItems: Array<lifeStageItem>;
-  onSelectLifeStageItem: Dispatch<SetStateAction<any | string>>;
   ageItems: Array<ageItem>;
   nutritionFilterItems: Array<SearchNutritionFilterItem>;
   measurementFilterItems: string[];
   onSelectMeasurementItem: (item: string) => void;
-  onSelectNutritionFilterItem: Dispatch<SetStateAction<SearchNutritionFilterItem[] | any>>;
-  onSelectAgeItem: dispatch<SetStateAction<ageItem>>;
   onSelectUnit: Dispatch<SetStateAction<string>>;
   units: string[];
   nutritionTableItems: NutritionTableItem[];
@@ -270,11 +268,8 @@ export interface NutritionDetailsTabProps {
 
 export interface NutritionFilterProps {
   lifeStageItems: Array<lifeStageItem>;
-  onSelectLifeStageItem: Dispatch<SetStateAction<any | string>>;
   ageItems: Array<ageItem>;
-  onSelectAgeItem: dispatch<SetStateAction<ageItem>>;
   nutritionFilterItems: Array<SearchNutritionFilterItem>;
-  onSelectNutritionFilterItem: Dispatch<SetStateAction<SearchNutritionFilterItem[] | any>>;
 }
 
 export interface SelectNutrientsProps {
@@ -295,20 +290,17 @@ export interface NutrientServingSizeProps {
 
 export interface LifeStageProps {
   lifeStageItems: Array<lifeStageItem>;
-  onSelectLifeStageItem: Dispatch<SetStateAction<string | any>>;
   isDropdown: boolean;
 }
 
 export interface AgeItemsProps {
   ageItems: Array<ageItem>;
-  onSelectAgeItem: dispatch<SetStateAction<ageItem>>;
   isDropdown: boolean;
   margin?: string | number;
 }
 
 export interface SearchNutritionFilterProps {
   nutritionFilterItems: Array<SearchNutritionFilterItem>;
-  onSelectNutritionFilterItem: Dispatch<SetStateAction<SearchNutritionFilterItem[] | any>>;
   isDropdown: boolean;
   margin?: string | number;
 }

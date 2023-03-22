@@ -1,25 +1,8 @@
-import React from "react";
-import { CacheProvider } from "@emotion/react";
-import { CssBaseline } from "@mui/material";
-import { ThemeProvider } from "@mui/material/styles";
-import "@fontsource/poppins";
-import "@fontsource/poppins/500.css";
-import "@fontsource/poppins/600.css";
-import "@fontsource/poppins/700.css";
-import { customTheme } from "../../src/themes/theme";
-import getEmotionCache from "../gatsby-plugin-mui-emotion/getEmotionCache";
+/**
+ * Implement Gatsby's Browser APIs in this file.
+ *
+ * See: https://www.gatsbyjs.org/docs/browser-apis/
+ */
 
-const cache = getEmotionCache();
-
-const wrapRootElement = ({ element }) => {
-  return (
-    <CacheProvider value={cache}>
-      <ThemeProvider theme={customTheme}>
-        <CssBaseline />
-        <>{element}</>
-      </ThemeProvider>
-    </CacheProvider>
-  );
-};
-
-export default wrapRootElement;
+export { default as wrapRootElement } from "../../src/libs/wrapRootElement";
+export { default as wrapPageElement } from "../../src/libs/wrapPageElement";

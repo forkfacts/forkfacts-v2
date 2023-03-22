@@ -4,14 +4,13 @@ import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { Email } from "@forkfacts/icons";
 
 interface LifeStageItemProps {
-  handleSelectedItem: (name: string, index: number) => void;
+  handleSelectedItem: (name: string) => void;
   item: lifeStageItem;
   selectedItem: string;
   index: number;
 }
 
 const LifeStageItem: React.FC<LifeStageItemProps> = ({
-  index,
   item,
   selectedItem,
   handleSelectedItem,
@@ -20,7 +19,7 @@ const LifeStageItem: React.FC<LifeStageItemProps> = ({
   const mobile = useMediaQuery(theme.breakpoints.down("md"));
   return (
     <Box
-      onClick={() => handleSelectedItem(item.name, index)}
+      onClick={() => handleSelectedItem(item.name)}
       sx={{
         width: mobile ? theme.spacing(12.5) : theme.spacing(18.25),
         height: mobile ? theme.spacing(12.5) : theme.spacing(18.25),
@@ -29,7 +28,8 @@ const LifeStageItem: React.FC<LifeStageItemProps> = ({
         alignItems: "center",
         textAlign: "center",
         cursor: "pointer",
-        backgroundColor: selectedItem === item.name ? "#F2EFFF" : "none",
+        backgroundColor:
+          selectedItem.toLowerCase() === item.name.toLowerCase() ? "#F2EFFF" : "none",
         border: "1px solid #F2EFFF",
         p: theme.spacing(1.25),
       }}
@@ -44,7 +44,7 @@ const LifeStageItem: React.FC<LifeStageItemProps> = ({
       >
         <item.icon
           color={
-            selectedItem === item.name
+            selectedItem.toLowerCase() === item.name.toLowerCase()
               ? theme.palette.primary.main
               : theme.palette.customGray.textLight
           }
@@ -57,9 +57,12 @@ const LifeStageItem: React.FC<LifeStageItemProps> = ({
           variant={mobile ? "labelMedium" : "subhead1"}
           sx={{
             color:
-              selectedItem === item.name ? theme.palette.primary.main : theme.palette.common.black,
+              selectedItem.toLowerCase() === item.name.toLowerCase()
+                ? theme.palette.primary.main
+                : theme.palette.common.black,
             fontWeight: theme.typography.fontWeightRegular,
             mt: theme.spacing(1),
+            textTransform: "capitalize",
           }}
         >
           {item.name}

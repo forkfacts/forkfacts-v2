@@ -16,8 +16,7 @@ export default {
 } as ComponentMeta<typeof LifeStage>;
 
 const Template: ComponentStory<typeof LifeStage> = (args) => {
-  const [_, setSelectedLifeStage] = useState("");
-  return <LifeStage {...args} onSelectLifeStageItem={setSelectedLifeStage} />;
+  return <LifeStage {...args} />;
 };
 const lifeStageItems: lifeStageItem[] = [
   {
@@ -29,11 +28,11 @@ const lifeStageItems: lifeStageItem[] = [
     icon: Kids,
   },
   {
-    name: "males",
+    name: "Males",
     icon: Male,
   },
   {
-    name: "females",
+    name: "Females",
     icon: Woman,
   },
   {

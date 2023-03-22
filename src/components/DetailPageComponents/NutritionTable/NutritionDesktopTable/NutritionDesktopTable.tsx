@@ -133,7 +133,7 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ nutrition
                       variant="titleMedium"
                       sx={{
                         color: theme.palette.customGray.main,
-                        fontWeight: theme.typography.fontWeightRegular,
+                        fontWeight: theme.typography.fontWeightLight,
                         ml: !item?.nutrientContents?.length ? theme.spacing(3) : 0,
                       }}
                     >
@@ -147,7 +147,7 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ nutrition
                       variant="titleMedium"
                       sx={{
                         color: theme.palette.customGray.main,
-                        fontWeight: theme.typography.fontWeightRegular,
+                        fontWeight: theme.typography.fontWeightLight,
                       }}
                     >
                       {item.dailyValue}%
@@ -160,7 +160,7 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ nutrition
                       variant="titleMedium"
                       sx={{
                         color: theme.palette.customGray.main,
-                        fontWeight: theme.typography.fontWeightRegular,
+                        fontWeight: theme.typography.fontWeightLight,
                       }}
                     >
                       {item.amount}
@@ -174,7 +174,7 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ nutrition
                       variant="titleMedium"
                       sx={{
                         color: theme.palette.customGray.main,
-                        fontWeight: theme.typography.fontWeightRegular,
+                        fontWeight: theme.typography.fontWeightLight,
                         textTransform: "lowercase",
                         ml: theme.spacing(1),
                       }}

@@ -14,11 +14,8 @@ import { Box, useTheme, TextField, useMediaQuery, Button, Typography } from "@mu
 const NutritionDetailsTab: React.FC<NutritionDetailsTabProps> = ({
   nutritionSummaryItems,
   lifeStageItems,
-  onSelectLifeStageItem,
-  onSelectAgeItem,
   ageItems,
   nutritionFilterItems,
-  onSelectNutritionFilterItem,
   measurementFilterItems,
   onSelectMeasurementItem,
   onSelectUnit,
@@ -48,11 +45,8 @@ const NutritionDetailsTab: React.FC<NutritionDetailsTabProps> = ({
           <Box sx={{ width: mobile || tablet ? "100%" : "65%" }}>
             <NutritionFilters
               lifeStageItems={lifeStageItems}
-              onSelectAgeItem={onSelectAgeItem}
               ageItems={ageItems}
-              onSelectLifeStageItem={onSelectLifeStageItem}
               nutritionFilterItems={nutritionFilterItems}
-              onSelectNutritionFilterItem={onSelectNutritionFilterItem}
             />
           </Box>
           <Box sx={{ width: mobile || tablet ? "100%" : "35%" }}>

@@ -2,43 +2,19 @@ import React, { useState } from "react";
 import { Box, useMediaQuery, useTheme } from "@mui/material";
 import "react-multi-carousel/lib/styles.css";
 import { FilterAge, SearchNutritionFilter, LifeStage, AllFilters } from "@forkfacts/components";
-import { ageItem, NutritionFilterProps, SearchNutritionFilterItem } from "@forkfacts/models";
+import { NutritionFilterProps, SearchNutritionFilterItem } from "@forkfacts/models";
 
 const NutritionFilters: React.FC<NutritionFilterProps> = ({
   lifeStageItems,
-  onSelectLifeStageItem,
   ageItems,
-  onSelectAgeItem,
   nutritionFilterItems,
-  onSelectNutritionFilterItem,
 }) => {
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.down("sm"));
   const tablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
-  const [selectedAge, setSelectedAge] = useState<ageItem>({} as ageItem);
-  const [selectedLifeStage, setLifeStage] = useState("");
-  const [open, setOpen] = useState(false);
   const [selectedNutritionFilterItems, setSelectedNutritionFilterItems] = useState<
     SearchNutritionFilterItem[]
   >([]);
-  const handleSelectedAge = (value: ageItem) => {
-    setSelectedAge(value);
-    onSelectAgeItem(value);
-  };
-
-  const handleLifeStage = (value: string) => {
-    setLifeStage(value);
-    onSelectLifeStageItem(value);
-  };
-
-  const onClick = () => {
-    setOpen(!open);
-  };
-
-  const handleSelectNutritionFilterItem = (value: SearchNutritionFilterItem[] | any[]) => {
-    onSelectNutritionFilterItem(value);
-    setSelectedNutritionFilterItems(value);
-  };
 
   return (
     <Box
@@ -59,32 +35,13 @@ const NutritionFilters: React.FC<NutritionFilterProps> = ({
       }}
     >
       <AllFilters
-        selectedAge={selectedAge}
-        selectedLifeStage={selectedLifeStage}
-        selectedNutritionFilterItems={selectedNutritionFilterItems}
         ageItems={ageItems}
-        handleSelectedAge={handleSelectedAge}
         lifeStageItems={lifeStageItems}
-        handleLifeStage={handleLifeStage}
         nutritionFilterItems={nutritionFilterItems}
-        handleSelectNutritionFilterItem={handleSelectNutritionFilterItem}
       />
-
-      <LifeStage
-        lifeStageItems={lifeStageItems}
-        onSelectLifeStageItem={handleLifeStage}
-        isDropdown
-      />
-
-      <FilterAge
-        ageItems={ageItems}
-        onSelectAgeItem={handleSelectedAge}
-        isDropdown
-        margin={theme.spacing(-15.5)}
-      />
-
+      <LifeStage lifeStageItems={lifeStageItems} isDropdown />
+      <FilterAge ageItems={ageItems} isDropdown margin={theme.spacing(-15.5)} />
       <SearchNutritionFilter
-        onSelectNutritionFilterItem={handleSelectNutritionFilterItem}
         nutritionFilterItems={nutritionFilterItems}
         isDropdown
         margin={theme.spacing(-23.5)}

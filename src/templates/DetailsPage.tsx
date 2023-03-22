@@ -3,16 +3,18 @@ import { PageProps } from "gatsby";
 import { DetailsPageScreen } from "@forkfacts/screens";
 import { SEO } from "@forkfacts/components";
 import rdis from "../../data/rdi.json";
-import { ageItem, SearchNutritionFilterItem } from "@forkfacts/models";
-import { generateRdiForFood } from "@forkfacts/helpers";
+import { ageItem } from "@forkfacts/models";
+import { generateRdiForFood, getAgeRangesForLifeStage } from "@forkfacts/helpers";
 import { Box } from "@mui/material";
 import {
-  ageItems,
+  allAges,
   lifeStageItems,
   nutritionSummaryItems,
   sidebarItems,
   tabItems,
 } from "../RealData/realData";
+import { useStore } from "../store/store";
+import WrapRootElement from "../libs/wrapRootElement";
 
 interface NutriTable {
   nutrient: {
@@ -33,32 +35,27 @@ interface NutriTable {
 }
 
 const DynamicPageTemplate = ({ pageContext }: PageProps) => {
-  const { food, seo } = pageContext as any;
+  const { food } = pageContext as any;
   const [rows, setRows] = useState<any[]>([]);
-  const [_, setSelectedNutrients] = useState<string[]>([]);
-  const [selectLifeStage, setSelectedLifeStage] = useState("");
-  const [selectAge, setSelectedAge] = useState<ageItem>({} as ageItem);
-  const [selectSearchNutrition, setSelectedSearchNutrition] = useState(
-    [] as SearchNutritionFilterItem[]
-  );
-  const [unit, setUnit] = React.useState("Cups");
+  const { gender, age, nutrients } = useStore((state) => state);
+  const [_, setUnit] = React.useState("Cups");
   const [state, setState] = useState<{
     selectedGender: string;
     selectedAge: ageItem;
     selectedNutrients: any[];
   }>({
-    selectedGender: selectLifeStage,
-    selectedAge: selectAge,
+    selectedGender: gender,
+    selectedAge: allAges.filter((age) => age.start === 31)[0],
     selectedNutrients: [],
   });
 
   useEffect(() => {
     setState({
-      selectedGender: selectLifeStage,
-      selectedAge: selectAge,
-      selectedNutrients: selectSearchNutrition,
+      selectedGender: gender,
+      selectedAge: age,
+      selectedNutrients: nutrients,
     });
-  }, [selectAge, selectLifeStage, selectSearchNutrition]);
+  }, [gender, age, nutrients]);
   const thisFood = food as any;
   const allRdis = rdis as any[];
 
@@ -74,7 +71,7 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
           (nutrientRdi.nutrient.unit === nutrient.unit &&
             age.start === nutrientRdi?.rdi?.ageStart &&
             age.end === nutrientRdi?.rdi?.ageEnd &&
-            age?.unit?.toLowerCase() === nutrientRdi?.rdi?.ageUnit &&
+            age?.ageUnit?.toLowerCase() === nutrientRdi?.rdi?.ageUnit &&
             gender.toLowerCase() === nutrientRdi?.rdi?.applicableFor.toLowerCase())
       )[0];
       const getValueRounded = (amount: number) => {
@@ -98,6 +95,7 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
     setRows(nutrientsWithRdis);
   }, [state.selectedAge, state.selectedGender, state.selectedNutrients]);
 
+  const ageRanges = getAgeRangesForLifeStage(state.selectedGender);
   const dataNutrients = food.nutrients.map(
     (item: { checked: boolean; name: string; unit: string }) => {
       return {
@@ -107,50 +105,41 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
       };
     }
   );
-
   return (
-    <Box sx={{ p: "8px" }}>
-      <DetailsPageScreen
-        sidebarItems={sidebarItems}
-        DetailsPageTitlesItems={[]}
-        detailsHeaderValues={{
-          name: food.name,
-          category: food.category,
-        }}
-        tabItems={tabItems}
-        compareTableItems={[]}
-        compareTableDetails={{
-          name: "Comparing Greens",
-          quantityAmount: "3 1/2 OUNCES RAW (2 TO 3 CUPS)",
-        }}
-        ageItems={ageItems}
-        lifeStageItems={lifeStageItems}
-        nutritionFilterItems={dataNutrients}
-        nutritionSummaryItems={nutritionSummaryItems}
-        measurementFilterItems={[]}
-        nutritionTableItems={rows}
-        units={[]}
-        values={[]}
-        getSelectedNutrients={setSelectedNutrients}
-        onSelectLifeStageItem={setSelectedLifeStage}
-        onSelectAgeItem={setSelectedAge}
-        onSelectNutritionFilterItem={setSelectedSearchNutrition}
-        onSelectUnit={setUnit}
-        onSelectMeasurementItem={function (item: string): void {
-          throw new Error("Function not implemented.");
-        }}
-        onSelectFilterPageData={function (value: any): void {
-          throw new Error("Function not implemented.");
-        }}
-        multipleSelectItems={[]}
-        onSelectFilterItems={function (item: string[]): void {
-          throw new Error("Function not implemented.");
-        }}
-        onSelectedValue={function (value: React.SetStateAction<string[]>): void {
-          throw new Error("Function not implemented.");
-        }}
-      />
-    </Box>
+    <WrapRootElement>
+      <Box sx={{ p: "8px" }}>
+        <DetailsPageScreen
+          sidebarItems={sidebarItems}
+          DetailsPageTitlesItems={[]}
+          detailsHeaderValues={{
+            name: food.name,
+            category: food.category,
+          }}
+          tabItems={tabItems}
+          compareTableItems={[]}
+          compareTableDetails={{
+            name: "",
+            quantityAmount: "",
+          }}
+          ageItems={ageRanges}
+          lifeStageItems={lifeStageItems}
+          nutritionFilterItems={dataNutrients}
+          nutritionSummaryItems={nutritionSummaryItems}
+          measurementFilterItems={[]}
+          nutritionTableItems={rows}
+          units={[]}
+          values={[]}
+          onSelectUnit={setUnit}
+          onSelectMeasurementItem={function (item: string): void {
+            throw new Error("Function not implemented.");
+          }}
+          multipleSelectItems={[]}
+          onSelectedValue={function (value: React.SetStateAction<string[]>): void {
+            throw new Error("Function not implemented.");
+          }}
+        />
+      </Box>
+    </WrapRootElement>
   );
 };
 

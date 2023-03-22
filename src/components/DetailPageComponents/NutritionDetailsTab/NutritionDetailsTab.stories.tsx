@@ -59,31 +59,31 @@ const ageItems: ageItem[] = [
   {
     start: 9,
     end: 13,
-    unit: "years",
+    ageUnit: "years",
   },
   {
     start: 14,
     end: 18,
-    unit: "years",
+    ageUnit: "years",
   },
   {
     start: 19,
     end: 30,
-    unit: "years",
+    ageUnit: "years",
   },
   {
     start: 31,
     end: 50,
-    unit: "years",
+    ageUnit: "years",
   },
   {
     start: 51,
     end: 70,
-    unit: "years",
+    ageUnit: "years",
   },
   {
     end: 70,
-    unit: "years",
+    ageUnit: "years",
   },
 ];
 
@@ -292,8 +292,6 @@ const nutritionTableItems: NutritionTableItem[] = [
 ];
 
 const Template: ComponentStory<typeof NutritionDetailsTab> = (args) => {
-  const [selectLifeStage, setSelectedLifeStage] = useState("");
-  const [selectAge, setSelectedAge] = useState<ageItem>({} as ageItem);
   const [selectSearchNutrition, seSelectedSearchNutrition] = useState(
     [] as SearchNutritionFilterItem[]
   );
@@ -307,8 +305,6 @@ const Template: ComponentStory<typeof NutritionDetailsTab> = (args) => {
     >
       <NutritionDetailsTab
         {...args}
-        onSelectLifeStageItem={setSelectedLifeStage}
-        onSelectAgeItem={setSelectedAge}
         onSelectNutritionFilterItem={seSelectedSearchNutrition}
         onSelectUnit={setUnit}
       />

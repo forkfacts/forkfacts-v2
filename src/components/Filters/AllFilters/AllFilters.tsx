@@ -2,40 +2,26 @@ import React, { useEffect, useRef, useState } from "react";
 import { Box, Button, Typography, useMediaQuery, useTheme } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { FilterAge, LifeStage, SearchNutritionFilter } from "@forkfacts/components";
+import { ageItem, NutritionFilterProps, SearchNutritionFilterItem } from "@forkfacts/models";
 import FilterListIcon from "@mui/icons-material/FilterList";
+import { useStore } from "../../../store/store";
 
-const AllFilters = ({
-  selectedAge,
-  selectedLifeStage,
-  selectedNutritionFilterItems,
-  ageItems,
-  handleSelectedAge,
-  lifeStageItems,
-  handleLifeStage,
-  nutritionFilterItems,
-  handleSelectNutritionFilterItem,
-}: any) => {
+const AllFilters = ({ ageItems, lifeStageItems, nutritionFilterItems }: any) => {
+  const { age, gender, nutrients } = useStore((state) => state);
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.down("md"));
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   let filterStatus = 0;
-  if (
-    Object.keys(selectedAge).length > 0 ||
-    selectedLifeStage ||
-    selectedNutritionFilterItems.length > 0
-  ) {
+
+  if (Object.keys(age).length > 0 || gender || nutrients.length > 0) {
     if (
-      (Object.keys(selectedAge).length === 0 && !selectedLifeStage) ||
-      (Object.keys(selectedAge).length === 0 && selectedNutritionFilterItems.length === 0) ||
-      (!selectedLifeStage && selectedNutritionFilterItems.length === 0)
+      (Object.keys(age).length === 0 && !gender) ||
+      (Object.keys(age).length === 0 && nutrients.length === 0) ||
+      (!gender && nutrients.length === 0)
     ) {
       filterStatus = 1;
-    } else if (
-      Object.keys(selectedAge).length > 0 &&
-      selectedLifeStage &&
-      selectedNutritionFilterItems.length > 0
-    ) {
+    } else if (Object.keys(age).length > 0 && gender && nutrients.length > 0) {
       filterStatus = 3;
     } else {
       filterStatus = 2;
@@ -47,12 +33,12 @@ const AllFilters = ({
         setOpen(false);
       }
     }
-
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [ref]);
+
   return (
     <Box sx={{ display: mobile ? "none" : "block" }} ref={ref}>
       <Button
@@ -130,22 +116,13 @@ const AllFilters = ({
               />
             </Box>
             <Box>
-              <LifeStage
-                lifeStageItems={lifeStageItems}
-                onSelectLifeStageItem={handleLifeStage}
-                isDropdown={false}
-              />
+              <LifeStage lifeStageItems={lifeStageItems} isDropdown={false} />
             </Box>
             <Box sx={{ my: theme.spacing(3) }}>
-              <FilterAge
-                ageItems={ageItems}
-                onSelectAgeItem={handleSelectedAge}
-                isDropdown={false}
-              />
+              <FilterAge ageItems={ageItems} isDropdown={false} />
             </Box>
             <Box sx={{ mb: theme.spacing(3) }}>
               <SearchNutritionFilter
-                onSelectNutritionFilterItem={handleSelectNutritionFilterItem}
                 nutritionFilterItems={nutritionFilterItems}
                 isDropdown={false}
               />

@@ -1,5 +1,8 @@
 // import fs from "fs";
 
+const mappings: any = require("../../data/usda_rdi_nutrient_mapping.json");
+import { allAges, lifeStageItems } from "../RealData/realData";
+
 const ARTIFACT_PATH = ".raw";
 
 /**
@@ -33,8 +36,6 @@ export const generateSEOMetaDescription = (foodName: string, category: string) =
   return `Nutrient facts from USDA and NIH with the option to filter by nutrients, age and gender for 100gm of  ${foodName} in ${category} category.`;
 };
 
-const mappings: any = require("../../data/usda_rdi_nutrient_mapping.json");
-
 export const mappingsByNutrient: Map<string, any> = mappings!.reduce((acc: any, mapping: any) => {
   acc.set(mapping.usdaNutrientName, mapping);
   return acc;
@@ -62,3 +63,39 @@ export const generateRdiForFood = (food: any, rdis: any[]): any[] => {
     })
     .flat();
 };
+
+export function getAgeRangesForLifeStage(selectedLifeStageName: string = "Females"): any[] {
+  const selectedLifeStage = lifeStageItems.find((item) => item.name === selectedLifeStageName);
+  if (!selectedLifeStage) {
+    return [];
+  }
+  const ageRanges = allAges.map((ageRange) => {
+    switch (selectedLifeStageName) {
+      case "Infants":
+        return ageRange.ageUnit === "month" && ageRange.start >= 0 && ageRange?.end! <= 7
+          ? ageRange
+          : null;
+      case "Children":
+        return ageRange.ageUnit === "year" && ageRange.start >= 1 && ageRange?.end! <= 4
+          ? ageRange
+          : null;
+
+      case "Males":
+        return ageRange.ageUnit === "year" && ageRange.start >= 9 ? ageRange : null;
+      case "Females":
+        return ageRange.ageUnit === "year" && ageRange.start >= 9 ? ageRange : null;
+      case "Pregnant":
+        return ageRange.ageUnit === "year" && ageRange.start >= 14 && ageRange.end <= 31
+          ? ageRange
+          : null;
+      case "Lactation":
+        return ageRange.ageUnit === "year" && ageRange.start >= 14 && ageRange.end <= 31
+          ? ageRange
+          : null;
+
+      default:
+        return null;
+    }
+  });
+  return ageRanges.filter((range) => range !== null);
+}

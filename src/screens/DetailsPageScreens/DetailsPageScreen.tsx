@@ -27,14 +27,10 @@ const DetailsPageScreen: React.FC<DetailsPageScreenProps> = ({
   nutritionFilterItems,
   measurementFilterItems,
   multipleSelectItems,
-  getSelectedNutrients,
   onSelectMeasurementItem,
-  onSelectLifeStageItem,
-  onSelectAgeItem,
   onSelectUnit,
   units,
   nutritionTableItems,
-  onSelectNutritionFilterItem,
   values,
   onSelectedValue,
 }) => {
@@ -101,16 +97,13 @@ const DetailsPageScreen: React.FC<DetailsPageScreenProps> = ({
               <NutritionDetailsTab
                 nutritionSummaryItems={nutritionSummaryItems}
                 lifeStageItems={lifeStageItems}
-                onSelectLifeStageItem={onSelectLifeStageItem}
                 ageItems={ageItems}
-                onSelectAgeItem={onSelectAgeItem}
+                nutritionTableItems={nutritionTableItems}
                 nutritionFilterItems={nutritionFilterItems}
                 measurementFilterItems={measurementFilterItems}
                 onSelectMeasurementItem={onSelectMeasurementItem}
                 onSelectUnit={onSelectUnit}
                 units={units}
-                nutritionTableItems={nutritionTableItems}
-                onSelectNutritionFilterItem={onSelectNutritionFilterItem}
               />
             ) : selectedTabItem === "Recipes" ? (
               <Box>

@@ -37,7 +37,5 @@ export const replaceRenderer = ({ bodyComponent, setHeadComponents, replaceBodyH
       />
     ))
   );
-
-  // render the result from `extractCritical`
   replaceBodyHTMLString(emotionStyles.html);
 };

@@ -1,18 +1,18 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
-import { DetailsPageHeader } from "@forkfacts/components";
+import { FoodOverview } from "@forkfacts/components";
 import { Box } from "@mui/material";
 
 export default {
-  title: "Components/DetailsPageComponents/FoodOverview",
-  component: DetailsPageHeader,
+  title: "Components/DetailPageComponents/FoodOverview",
+  component: FoodOverview,
   parameters: {
     viewport: {
       viewports: INITIAL_VIEWPORTS,
     },
   },
-} as ComponentMeta<typeof DetailsPageHeader>;
+} as ComponentMeta<typeof FoodOverview>;
 
 const values = {
   img: "/banana.svg",
@@ -26,10 +26,10 @@ const values = {
   tag: "High in Vitamin C and Calcium",
 };
 
-const Template: ComponentStory<typeof DetailsPageHeader> = (args) => {
+const Template: ComponentStory<typeof FoodOverview> = (args) => {
   return (
     <Box sx={{ mt: { md: "50px", sm: "50px" } }}>
-      <DetailsPageHeader {...args} />
+      <FoodOverview {...args} />
     </Box>
   );
 };

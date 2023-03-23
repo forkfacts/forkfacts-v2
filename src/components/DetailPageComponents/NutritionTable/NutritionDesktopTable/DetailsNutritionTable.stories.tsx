@@ -5,7 +5,7 @@ import { NutritionDesktopTable } from "@forkfacts/components";
 import { Box } from "@mui/material";
 
 export default {
-  title: "Components/DetailsPageComponents/NutritionTable",
+  title: "Components/DetailPageComponents/NutritionTable",
   component: NutritionDesktopTable,
 } as ComponentMeta<typeof NutritionDesktopTable>;
 

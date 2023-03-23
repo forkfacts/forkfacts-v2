@@ -3,7 +3,7 @@ import { Button, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { DetailsPageTabItemProps } from "@forkfacts/models";
 import { useStyles } from "../detailsPageTabItemStyles";
 
-export default function DetailsPageTabItem({
+export default function DetailPageTab({
   index,
   item,
   setSelectedIndex,

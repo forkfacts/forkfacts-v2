@@ -1,21 +1,21 @@
 import React, { useState } from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
-import { DetailsPageTitles } from "@forkfacts/components";
+import { FoodsWithSameName } from "@forkfacts/components";
 import { FoodWithSameName } from "@forkfacts/models";
 export default {
-  title: "Components/DetailsPageComponents/DetailsPageTitles",
-  component: DetailsPageTitles,
+  title: "Components/DetailPageComponents/DetailsPageTitles",
+  component: FoodsWithSameName,
   parameters: {
     viewport: {
       viewports: INITIAL_VIEWPORTS,
     },
   },
-} as ComponentMeta<typeof DetailsPageTitles>;
+} as ComponentMeta<typeof FoodsWithSameName>;
 
-const Template: ComponentStory<typeof DetailsPageTitles> = (args) => {
+const Template: ComponentStory<typeof FoodsWithSameName> = (args) => {
   const [SelectedTitle, setSelectedTitle] = useState("");
-  return <DetailsPageTitles {...args} onSelectFoodWithSameName={setSelectedTitle} />;
+  return <FoodsWithSameName {...args} onSelectFoodWithSameName={setSelectedTitle} />;
 };
 
 const DetailsPageTitlesItems: FoodWithSameName[] = [

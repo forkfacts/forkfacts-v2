@@ -4,7 +4,7 @@ import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import { NutritionSummary } from "@forkfacts/components";
 
 export default {
-  title: "Components/DetailsPageComponents/NutritionSummary",
+  title: "Components/DetailPageComponents/NutritionSummary",
   component: NutritionSummary,
   parameters: {
     viewport: {

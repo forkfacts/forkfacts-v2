@@ -5,7 +5,7 @@ import { NutritionMobileTable } from "@forkfacts/components";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 
 export default {
-  title: "Components/DetailsPageComponents/NutritionTable",
+  title: "Components/DetailPageComponents/NutritionTable",
   component: NutritionMobileTable,
   parameters: {
     viewport: {
@@ -18,7 +18,6 @@ const nutritionTableItems: NutritionTableItem[] = [
   {
     nutrient: "Minerals",
     dailyValue: null,
-    amount: null,
     rdi: { value: null, weight: "g" },
     nutrientContents: [
       {
@@ -80,7 +79,8 @@ const nutritionTableItems: NutritionTableItem[] = [
   {
     nutrient: "Fats",
     dailyValue: 12.91,
-    amount: "30g",
+    amount: 30,
+    amountUnit: "g",
     rdi: {
       value: 120,
       weight: "g",
@@ -121,7 +121,8 @@ const nutritionTableItems: NutritionTableItem[] = [
   {
     nutrient: "Carbohydrates",
     dailyValue: 12.91,
-    amount: "30g",
+    amount: 30,
+    amountUnit: "g",
     rdi: { value: 120, weight: "g" },
     nutrientContents: [
       {
@@ -141,7 +142,6 @@ const nutritionTableItems: NutritionTableItem[] = [
   {
     nutrient: "Vitamins",
     dailyValue: null,
-    amount: null,
     rdi: { value: null, weight: "g" },
     nutrientContents: [
       {
@@ -179,7 +179,8 @@ const nutritionTableItems: NutritionTableItem[] = [
   {
     nutrient: "Protein",
     dailyValue: 12.91,
-    amount: "30g",
+    amount: 30,
+    amountUnit: "g",
     rdi: { value: 120, weight: "g" },
     nutrientContents: [],
   },

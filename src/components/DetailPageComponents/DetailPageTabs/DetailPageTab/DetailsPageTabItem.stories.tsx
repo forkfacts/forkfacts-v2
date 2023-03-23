@@ -5,7 +5,7 @@ import { DetailsPageTabItem } from "@forkfacts/components";
 import FastfoodOutlinedIcon from "@mui/icons-material/FastfoodOutlined";
 
 export default {
-  title: "Components/DetailsPageComponents/DetailsPageTabItems",
+  title: "Components/DetailPageComponents/DetailsPageTab",
   component: DetailsPageTabItem,
   parameters: {
     viewport: {

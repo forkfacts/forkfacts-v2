@@ -7,7 +7,7 @@ import { RdiAge, NutritionTableItem, lifeStageItem, SelectedNutrient } from "@fo
 import { Box } from "@mui/material";
 
 export default {
-  title: "Components/DetailsPageComponents/NutritionDetailsTab",
+  title: "Components/DetailPageComponents/NutritionDetailsTab",
   component: NutritionDetailsTab,
   parameters: {
     viewport: {
@@ -54,31 +54,31 @@ const ageItems: RdiAge[] = [
   {
     start: 9,
     end: 13,
-    ageUnit: "years",
+    ageUnit: "year",
   },
   {
     start: 14,
     end: 18,
-    ageUnit: "years",
+    ageUnit: "year",
   },
   {
     start: 19,
     end: 30,
-    ageUnit: "years",
+    ageUnit: "year",
   },
   {
     start: 31,
     end: 50,
-    ageUnit: "years",
+    ageUnit: "year",
   },
   {
     start: 51,
     end: 70,
-    ageUnit: "years",
+    ageUnit: "year",
   },
   {
-    end: 70,
-    ageUnit: "years",
+    start: 70,
+    ageUnit: "year",
   },
 ];
 
@@ -298,7 +298,7 @@ const Template: ComponentStory<typeof NutritionDetailsTab> = (args) => {
     >
       <NutritionDetailsTab
         {...args}
-        onSelectNutritionFilterItem={seSelectedSearchNutrition}
+        //onSelectNutritionFilterItem={seSelectedSearchNutrition} // todo(h2): not sure why it is broken
         onSelectUnit={setUnit}
       />
     </Box>

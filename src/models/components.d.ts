@@ -75,7 +75,7 @@ export interface NutritionTableItem {
   nutrient: string;
   dailyValue?: number | null;
   amount?: number;
-  amountUnit: string;
+  amountUnit?: string;
   rdi: {
     value?: number | null;
     weight?: string;
@@ -219,7 +219,7 @@ export interface FoodsWithSameNameProps {
   foodsWithSameNames: Array<FoodWithSameName>;
   onSelectFoodWithSameName: Dispatch<SetStateAction<string>>;
 }
-export interface DetailsPageTabItemsProps {
+export interface DetailPageTabsProps {
   tabItems: Array<MenuItem>;
   onselectTabItem: Dispatch<SetStateAction<string>>;
 }

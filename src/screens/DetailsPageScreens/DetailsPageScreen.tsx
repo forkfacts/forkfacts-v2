@@ -1,9 +1,8 @@
 import {
-  DetailsPageHeader,
-  DetailsPageTitles,
+  FoodOverview,
+  FoodsWithSameName,
   Layout,
-  DetailsPageTabItems,
-  ComparingDetailsTab,
+  DetailPageTabs,
   NutritionDetailsTab,
   ComingSoon,
 } from "@forkfacts/components";
@@ -63,7 +62,7 @@ const DetailsPageScreen: React.FC<DetailsPageScreenProps> = ({
   const Overview = () => (
     <Box sx={{ display: "flex", flexDirection: mobile ? "column-reverse" : "column" }}>
       <Box sx={{ mt: mobile ? theme.spacing(1) : theme.spacing(0), display: "none" }}>
-        <DetailsPageTitles
+        <FoodsWithSameName
           onSelectFoodWithSameName={setSelectedTitle}
           foodsWithSameNames={foodsWithSameNames}
         />
@@ -74,7 +73,7 @@ const DetailsPageScreen: React.FC<DetailsPageScreenProps> = ({
           mt: mobile ? theme.spacing(3) : theme.spacing(5),
         }}
       >
-        <DetailsPageHeader values={foodOverview} />
+        <FoodOverview values={foodOverview} />
       </Box>
     </Box>
   );
@@ -92,7 +91,7 @@ const DetailsPageScreen: React.FC<DetailsPageScreenProps> = ({
               width: "100%",
             }}
           >
-            <DetailsPageTabItems tabItems={tabItems} onselectTabItem={setSelectedTabItem} />
+            <DetailPageTabs tabItems={tabItems} onselectTabItem={setSelectedTabItem} />
           </Box>
           <Box
             sx={{

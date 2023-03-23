@@ -6,17 +6,17 @@ import TipsAndUpdatesOutlinedIcon from "@mui/icons-material/TipsAndUpdatesOutlin
 import CompareArrowsOutlinedIcon from "@mui/icons-material/CompareArrowsOutlined";
 import FastfoodOutlinedIcon from "@mui/icons-material/FastfoodOutlined";
 import SmokingRoomsOutlinedIcon from "@mui/icons-material/SmokingRoomsOutlined";
-import { DetailsPageTabItems } from "@forkfacts/components";
+import { DetailPageTabs } from "@forkfacts/components";
 
 export default {
-  title: "Components/DetailsPageComponents/DetailsPageTabItems",
-  component: DetailsPageTabItems,
+  title: "Components/DetailPageComponents/DetailsPageTabItems",
+  component: DetailPageTabs,
   parameters: {
     viewport: {
       viewports: INITIAL_VIEWPORTS,
     },
   },
-} as ComponentMeta<typeof DetailsPageTabItems>;
+} as ComponentMeta<typeof DetailPageTabs>;
 
 const tabItems = [
   { label: "Nutrition", Icon: FastfoodOutlinedIcon, link: "/food" },
@@ -26,10 +26,10 @@ const tabItems = [
   { label: "Compare foods", Icon: CompareArrowsOutlinedIcon, link: "/recipe" },
 ];
 
-const Template: ComponentStory<typeof DetailsPageTabItems> = (args) => {
+const Template: ComponentStory<typeof DetailPageTabs> = (args) => {
   const [_, setSelectedTabItem] = useState("Compare foods");
 
-  return <DetailsPageTabItems {...args} onselectTabItem={setSelectedTabItem} />;
+  return <DetailPageTabs {...args} onselectTabItem={setSelectedTabItem} />;
 };
 
 export const Desktop = Template.bind({});

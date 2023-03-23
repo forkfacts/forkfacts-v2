@@ -1,13 +1,10 @@
 import React, { useState } from "react";
-import { DetailsPageTabItemsProps } from "@forkfacts/models";
+import { DetailPageTabsProps } from "@forkfacts/models";
 import { ForLoops } from "@forkfacts/helpers";
 import { Box, useMediaQuery, useTheme } from "@mui/material";
 import { DetailsPageTabItem } from "@forkfacts/components";
 
-export default function DetailsPageTabItems({
-  tabItems,
-  onselectTabItem,
-}: DetailsPageTabItemsProps) {
+export default function DetailPageTabs({ tabItems, onselectTabItem }: DetailPageTabsProps) {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.down("md"));

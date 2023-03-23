@@ -115,6 +115,7 @@ const units = ["Plates", "Cups", "Teaspoon"];
 const nutritionTableItems: NutritionTableRow[] = [
   {
     nutrient: "Fats",
+    nutrientGroup: "Fats",
     dailyValue: 12.9,
     amount: 30,
     amountUnit: "g",
@@ -157,6 +158,7 @@ const nutritionTableItems: NutritionTableRow[] = [
   },
   {
     nutrient: "Carbohydrates",
+    nutrientGroup: "Carbohydrates",
     dailyValue: 12.9,
     amount: 30,
     amountUnit: "g",
@@ -178,6 +180,7 @@ const nutritionTableItems: NutritionTableRow[] = [
   },
   {
     nutrient: "Minerals",
+    nutrientGroup: "Minerals",
     dailyValue: null,
     amountUnit: "g",
     rdi: { value: null, weight: "g" },
@@ -240,6 +243,7 @@ const nutritionTableItems: NutritionTableRow[] = [
   },
   {
     nutrient: "Vitamins",
+    nutrientGroup: "Vitamins",
     dailyValue: null,
     amountUnit: "g",
     rdi: { value: null, weight: "g" },
@@ -278,6 +282,7 @@ const nutritionTableItems: NutritionTableRow[] = [
   },
   {
     nutrient: "Protein",
+    nutrientGroup: "Proteins",
     dailyValue: 12.9,
     amount: 30,
     amountUnit: "g",

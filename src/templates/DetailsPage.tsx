@@ -15,7 +15,6 @@ import {
   tabItems,
 } from "../RealData/realData";
 import { useStore } from "../store/store";
-import WrapRootElement from "../libs/wrapRootElement";
 
 interface NutriTable {
   nutrient: {
@@ -167,7 +166,7 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
     }
   );
   return (
-    <WrapRootElement>
+    <>
       <Box sx={{ p: "8px" }}>
         <DetailsPageScreen
           sidebarItems={sidebarItems}
@@ -200,7 +199,7 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
           }}
         />
       </Box>
-    </WrapRootElement>
+    </>
   );
 };
 

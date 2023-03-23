@@ -7,7 +7,7 @@ import "@fontsource/poppins/600.css";
 import "@fontsource/poppins/700.css";
 import { customTheme } from "../themes/theme";
 
-const WrapRootElement: React.FC<React.PropsWithChildren> = ({ children }) => {
+const wrapRootElement: React.FC<React.PropsWithChildren> = ({ children }) => {
   return (
     <ThemeProvider theme={customTheme}>
       <CssBaseline />
@@ -16,4 +16,4 @@ const WrapRootElement: React.FC<React.PropsWithChildren> = ({ children }) => {
   );
 };
 
-export default WrapRootElement;
+export default wrapRootElement;

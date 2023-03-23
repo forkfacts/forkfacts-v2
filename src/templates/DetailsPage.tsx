@@ -7,6 +7,7 @@ import { generateRdiForFood, getAgeRangesForLifeStage } from "@forkfacts/helpers
 import { Box } from "@mui/material";
 import { lifeStageItems, nutritionSummaryItems, menuItems, tabItems } from "../RealData/realData";
 import { useStore } from "../store/store";
+import { NutritionTableRow } from "@forkfacts/models";
 
 export interface NutritionFact {
   nutrient: {
@@ -79,9 +80,10 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
           age?.ageUnit?.toLowerCase() === nutrientRdi?.rdi?.ageUnit &&
           gender.toLowerCase() === nutrientRdi?.rdi?.applicableFor.toLowerCase()
       )[0];
-      const factTableRow: any = {
-        index: index,
+      const factTableRow: NutritionTableRow = {
+        //index: index,
         nutrient: nutrient.name,
+        nutrientGroup: nutrient.nutrientGroup,
         amount: nutrient?.amount,
         amountUnit: nutrient?.unit?.toLowerCase(),
         dailyValue: nutrientWithRdi?.percentDaily

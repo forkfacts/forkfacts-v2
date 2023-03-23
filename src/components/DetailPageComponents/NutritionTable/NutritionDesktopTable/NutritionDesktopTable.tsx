@@ -14,7 +14,7 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import { CompareSorting } from "@forkfacts/icons";
 import React, { useState } from "react";
-import { NutritionDesktopTableProps } from "@forkfacts/models";
+import { NutritionDesktopTableProps, NutritionTableRow } from "@forkfacts/models";
 
 const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ rows }) => {
   const theme = useTheme();
@@ -29,7 +29,16 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ rows }) =
     }
   };
   const isCollapsed = (nutrient: any) => collapsedRows.includes(nutrient);
-  console.log({ rows });
+  const rowsByNutrientGroup = rows.reduce((acc, row) => {
+    const nutrientGroup = row.nutrientGroup;
+    if (!acc.has(nutrientGroup)) {
+      acc.set(nutrientGroup, [row]);
+      return acc;
+    }
+    acc.set(nutrientGroup, [...(acc.get(nutrientGroup) as NutritionTableRow[]), row]);
+    return acc;
+  }, new Map<string, NutritionTableRow[]>());
+  console.log({ rowsByNutrientGroup });
   return (
     <Box>
       <TableContainer>
@@ -106,7 +115,7 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ rows }) =
           </TableHead>
           <TableBody>
             <>
-              {rows.map((item, index) => (
+              {rows.map((row, index) => (
                 <>
                   <TableRow key={index} sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
                     <TableCell
@@ -115,9 +124,9 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ rows }) =
                       sx={{ borderBottom: "1px solid #F3EFF4" }}
                     >
                       <Box sx={{ display: "flex", alignItems: "center" }}>
-                        {isCollapsed(item.nutrient) ? (
+                        {isCollapsed(row.nutrient) ? (
                           <ArrowRightIcon
-                            onClick={() => toggleCollapse(item.nutrient)}
+                            onClick={() => toggleCollapse(row.nutrient)}
                             sx={{
                               cursor: "pointer",
                               width: theme.spacing(3),
@@ -126,9 +135,9 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ rows }) =
                           />
                         ) : (
                           <>
-                            {item?.nutrientContents?.length ? (
+                            {row?.nutrientContents?.length ? (
                               <ArrowDropDownIcon
-                                onClick={() => toggleCollapse(item.nutrient)}
+                                onClick={() => toggleCollapse(row.nutrient)}
                                 sx={{ cursor: "pointer" }}
                               />
                             ) : null}
@@ -139,15 +148,15 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ rows }) =
                           sx={{
                             color: theme.palette.customGray.main,
                             fontWeight: theme.typography.fontWeightLight,
-                            ml: !item?.nutrientContents?.length ? theme.spacing(3) : 0,
+                            ml: !row?.nutrientContents?.length ? theme.spacing(3) : 0,
                           }}
                         >
-                          {item.nutrient}
+                          {row.nutrient}
                         </Typography>
                       </Box>
                     </TableCell>
                     <TableCell align="right" sx={{ borderBottom: "1px solid #F3EFF4" }}>
-                      {item.dailyValue && (
+                      {row.dailyValue && (
                         <Typography
                           variant="titleMedium"
                           sx={{
@@ -156,12 +165,12 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ rows }) =
                             pr: "20px",
                           }}
                         >
-                          {item.dailyValue}%
+                          {row.dailyValue}%
                         </Typography>
                       )}
                     </TableCell>
                     <TableCell align="right" sx={{ borderBottom: "1px solid #F3EFF4" }}>
-                      {!item.amount ? null : (
+                      {!row.amount ? null : (
                         <Typography
                           variant="titleMedium"
                           sx={{
@@ -170,13 +179,13 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ rows }) =
                             pr: "20px",
                           }}
                         >
-                          {item.amount}
-                          {item.amountUnit}
+                          {row.amount}
+                          {row.amountUnit}
                         </Typography>
                       )}
                     </TableCell>
                     <TableCell align="right" sx={{ borderBottom: "1px solid #F3EFF4" }}>
-                      {item.rdi.value && (
+                      {row.rdi.value && (
                         <Typography
                           variant="titleMedium"
                           sx={{
@@ -186,13 +195,13 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ rows }) =
                             pr: "20px",
                           }}
                         >
-                          {`${item.rdi.value}${item.rdi.weight}`}
+                          {`${row.rdi.value}${row.rdi.weight}`}
                         </Typography>
                       )}
                     </TableCell>
                   </TableRow>
-                  {!isCollapsed(item.nutrient) &&
-                    item?.nutrientContents?.map((content, index2) => (
+                  {!isCollapsed(row.nutrient) &&
+                    row?.nutrientContents?.map((content, index2) => (
                       <TableRow
                         key={index2}
                         sx={{

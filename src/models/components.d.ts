@@ -76,6 +76,7 @@ export interface NutritionTableRow {
   dailyValue?: number | null;
   amount?: number;
   amountUnit?: string;
+  nutrientGroup: string;
   rdi: {
     value?: number | null;
     weight?: string;

@@ -66,6 +66,9 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
     const gender = selectedLifeStage;
     const age = selectedAge;
     const nutrients = !selectedNutrients.length ? food.nutrients : selectedNutrients;
+    const getValueRounded = (amount: number) => {
+      return Math.round(amount * 100) / 100;
+    };
     const nutrientsWithRdis = nutrients.map((nutrient: any, index: number) => {
       const nutrientWithRdi = nutritionFacts.filter(
         (nutrientRdi) =>
@@ -76,9 +79,6 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
           age?.ageUnit?.toLowerCase() === nutrientRdi?.rdi?.ageUnit &&
           gender.toLowerCase() === nutrientRdi?.rdi?.applicableFor.toLowerCase()
       )[0];
-      const getValueRounded = (amount: number) => {
-        return Math.round(amount * 100) / 100;
-      };
       const factTableRow: any = {
         index: index,
         nutrient: nutrient.name,
@@ -142,6 +142,7 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
       };
     }
   );
+  console.log({ dataNutrients });
   return (
     <>
       <Box sx={{ p: "8px" }}>
@@ -161,18 +162,18 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
           ageItems={ageRanges}
           lifeStageItems={lifeStageItems}
           nutritionFilterItems={dataNutrients}
-          nutritionSummaryItems={nutritionSummaryItems}
-          measurementFilterItems={[]}
+          nutritionSummaryItems={[]} // todo(h2): Feature not available yet.
+          measurementFilterItems={[]} // todo(h2): Feature not available yet.
           nutritionTableItems={rows}
-          units={[]}
-          values={[]}
+          units={[]} // todo(h2): Feature not available yet.
+          values={[]} // todo(h2): Feature not available yet.
           onSelectUnit={() => console.log(`Feature not available yet.`)}
           onSelectMeasurementItem={function (item: string): void {
-            throw new Error("Function not implemented.");
+            throw new Error(`Feature not available yet.`);
           }}
-          multipleSelectItems={[]}
+          multipleSelectItems={[]} // todo(h2): Feature not available yet.
           onSelectedValue={function (value: React.SetStateAction<string[]>): void {
-            throw new Error("Function not implemented.");
+            throw new Error(`Feature not available yet.`);
           }}
         />
       </Box>

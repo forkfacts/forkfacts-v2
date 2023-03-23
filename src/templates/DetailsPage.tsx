@@ -63,31 +63,62 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
   const allRdis = rdis as any[];
 
   const nutrientRdis: NutriTable[] = generateRdiForFood(thisFood, allRdis);
+
+  const groupedNutriTables = Object.entries(
+    nutrientRdis.reduce((acc: any, item: any) => {
+      if (!acc[item.nutrient.nutrientGroup]) {
+        acc[item.nutrient.nutrientGroup] = [];
+      }
+      acc[item.nutrient.nutrientGroup].push({
+        name: item?.nutrient?.name,
+        dailyValue: parseInt(item?.percentDaily),
+        amount: item?.nutrient?.amount + " " + item?.nutrient?.unit,
+        rdi: {
+          value: item?.rdi?.amount,
+          weight: item?.rdi?.nutrientUnit,
+        },
+      });
+      return acc;
+    }, {})
+  ).map(([nutrientGroup, nutrientContents]) => ({
+    nutrientGroup,
+    nutrientContents,
+  }));
+  console.log(groupedNutriTables);
+
   useEffect(() => {
     const gender = state.selectedGender;
     const age = state.selectedAge;
     const nutrients = !state.selectedNutrients.length ? food.nutrients : state.selectedNutrients;
-
-    if (state.selectedNutrients.length && state.selectedAge && state.selectedNutrients) {
-    }
-
+    console.log(nutrients);
     const nutrientsWithRdis = nutrients.map((nutrient: any, index: number) => {
-      // const factTableRow: any = {
-      //   index: index,
-      //   nutrient: nutrient.name,
-      //   amount: nutrient?.amount,
-      //   amountUnit: nutrient?.unit?.toLowerCase(),
-      //   dailyValue: nutrientWithRdi?.percentDaily
-      //     ? getValueRounded(Number(nutrientWithRdi?.percentDaily))
-      //     : undefined,
-      //   rdi: {
-      //     value: nutrientWithRdi?.rdi?.amount ? Math.abs(nutrientWithRdi?.rdi?.amount) : undefined,
-      //     weight: nutrientWithRdi?.rdi?.nutrientUnit,
-      //   },
-      // };
-      // return factTableRow;
-      const filteredNutrient = nutrientRdis.filter((item) => {});
-      return nutrient;
+      const nutrientWithRdi = nutrientRdis.filter(
+        (nutrientRdi) =>
+          nutrientRdi.nutrient.name.toLowerCase() === nutrient.name.toLowerCase() &&
+          nutrientRdi.nutrient.unit === nutrient.unit &&
+          age.start === nutrientRdi?.rdi?.ageStart &&
+          age.end === nutrientRdi?.rdi?.ageEnd &&
+          age?.ageUnit?.toLowerCase() === nutrientRdi?.rdi?.ageUnit &&
+          gender.toLowerCase() === nutrientRdi?.rdi?.applicableFor.toLowerCase()
+      )[0];
+      const getValueRounded = (amount: number) => {
+        return Math.round(amount * 100) / 100;
+      };
+      const factTableRow: any = {
+        index: index,
+        nutrient: nutrient.name,
+        amount: nutrient?.amount,
+        amountUnit: nutrient?.unit?.toLowerCase(),
+        dailyValue: nutrientWithRdi?.percentDaily
+          ? getValueRounded(Number(nutrientWithRdi?.percentDaily))
+          : undefined,
+        rdi: {
+          value: nutrientWithRdi?.rdi?.amount ? Math.abs(nutrientWithRdi?.rdi?.amount) : undefined,
+          weight: nutrientWithRdi?.rdi?.nutrientUnit,
+        },
+        nutrientContents: [],
+      };
+      return factTableRow;
     });
     setRows(nutrientsWithRdis);
   }, [state.selectedAge, state.selectedGender, state.selectedNutrients]);
@@ -126,6 +157,8 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
       });
   }, [state.selectedGender]);
 
+  console.log(state);
+
   const ageRanges = getAgeRangesForLifeStage(state.selectedGender);
   const dataNutrients = food.nutrients.map(
     (item: { checked: boolean; name: string; unit: string }) => {
@@ -136,12 +169,10 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
       };
     }
   );
-
-  console.log(nutrientRdis);
   return (
     <WrapRootElement>
       <Box sx={{ p: "8px" }}>
-        {/* <DetailsPageScreen
+        <DetailsPageScreen
           sidebarItems={sidebarItems}
           DetailsPageTitlesItems={[]}
           detailsHeaderValues={{
@@ -170,7 +201,7 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
           onSelectedValue={function (value: React.SetStateAction<string[]>): void {
             throw new Error("Function not implemented.");
           }}
-        /> */}
+        />
       </Box>
     </WrapRootElement>
   );

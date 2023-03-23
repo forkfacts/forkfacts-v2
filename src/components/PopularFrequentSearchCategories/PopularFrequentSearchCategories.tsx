@@ -7,7 +7,6 @@ import { PopularFrequentSearchCategory } from "@forkfacts/components";
 
 const PopularFrequentSearchCategories = ({
   PopularFrequentSearchItems,
-  onSelectPopularItem,
 }: PopularFrequentSearchProps) => {
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.between("xs", "sm"));
@@ -27,7 +26,7 @@ const PopularFrequentSearchCategories = ({
           Popular foods
         </Typography>
       </Box>
-      {onSelectPopularItem && onSelectPopularItem?.length && (
+      {PopularFrequentSearchItems?.length && (
         <Box
           sx={{
             width: "100%",
@@ -40,13 +39,7 @@ const PopularFrequentSearchCategories = ({
           }}
         >
           <ForLoops each={PopularFrequentSearchItems!}>
-            {(item, idx) => (
-              <PopularFrequentSearchCategory
-                item={item}
-                key={idx}
-                onSelectPopularItem={onSelectPopularItem}
-              />
-            )}
+            {(item, idx) => <PopularFrequentSearchCategory item={item} key={idx} />}
           </ForLoops>
         </Box>
       )}

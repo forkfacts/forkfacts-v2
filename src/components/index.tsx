@@ -9,7 +9,7 @@ export { default as SearchResultItem } from "./SearchResults/SearchResultItem/Se
 export { default as SideBar } from "./SideBar/SideBar";
 export { default as SideBarItem } from "./SideBar/SideBarItem/SideBarItem";
 export { default as NavBar } from "./NavBar/NavBar";
-export { default as NavBarItem } from "./NavBarItem/NavBarItem";
+export { default as NavBarItem } from "./NavBar/NavBarItem/NavBarItem";
 export { default as PopularFrequentSearchCategories } from "./PopularFrequentSearchCategories/PopularFrequentSearchCategories";
 export { default as PopularFrequentSearchCategory } from "./PopularFrequentSearchCategories/PopularFrequentSearchCategory/PopularFrequentSearchCategory";
 export { default as NoSearchResults } from "./NoSearchResults/NoSearchResults";

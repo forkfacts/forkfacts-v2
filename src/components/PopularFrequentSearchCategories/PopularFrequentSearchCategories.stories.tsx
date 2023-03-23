@@ -15,7 +15,7 @@ export default {
   },
 } as ComponentMeta<typeof PopularFrequentSearchCategories>;
 
-const { PopularFrequentSearchItems, onSelectPopularItem }: PopularFrequentSearchProps = {
+const { PopularFrequentSearchItems }: PopularFrequentSearchProps = {
   PopularFrequentSearchItems: [
     {
       searchImg: "/popular.png",
@@ -90,7 +90,6 @@ const { PopularFrequentSearchItems, onSelectPopularItem }: PopularFrequentSearch
       ],
     },
   ],
-  onSelectPopularItem: (item: PopularFrequentSearchType) => {},
 };
 
 const Template: ComponentStory<typeof PopularFrequentSearchCategories> = (args) => (
@@ -113,7 +112,6 @@ export const Desktop = Template.bind({});
 Desktop.args = {
   ...Desktop.args,
   PopularFrequentSearchItems: PopularFrequentSearchItems,
-  onSelectPopularItem: onSelectPopularItem,
 };
 
 export const Mobile = Template.bind({});
@@ -121,7 +119,6 @@ export const Mobile = Template.bind({});
 Mobile.args = {
   ...Mobile.args,
   PopularFrequentSearchItems: PopularFrequentSearchItems,
-  onSelectPopularItem: onSelectPopularItem,
 };
 Mobile.parameters = {
   viewport: {
@@ -132,7 +129,6 @@ export const Tablet = Template.bind({});
 Tablet.args = {
   ...Tablet.args,
   PopularFrequentSearchItems: PopularFrequentSearchItems,
-  onSelectPopularItem: onSelectPopularItem,
 };
 Tablet.parameters = {
   viewport: {

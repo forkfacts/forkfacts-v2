@@ -177,12 +177,10 @@ export interface SideBarItemProps {
 
 export interface PopularFrequentSearchProps {
   PopularFrequentSearchItems?: Array<PopularFrequentSearchType>;
-  onSelectPopularItem?: (item: PopularFrequentSearchType) => void;
 }
 
 export interface PopularFrequentSearchCategoryProps {
   item: PopularFrequentSearchType;
-  onSelectPopularItem: (item: PopularFrequentSearchType) => void;
 }
 
 export interface NavBarItemProps {
@@ -224,11 +222,10 @@ export interface DetailsPageTabItemsProps {
   onselectTabItem: Dispatch<SetStateAction<string>>;
 }
 export interface DetailsPageTabItemProps {
-  item: sidebarItem;
   index: number;
-  setSelectedIndex: (item: number) => void;
-  selectedIndex: number;
-  onSelectDetailsPageTabItem: Dispatch<SetStateAction<string>>;
+  item: sidebarItem;
+  selectedTab: string;
+  handleClick: (item: sidebarItem) => void;
 }
 export interface ComparingDetailsTabProps {
   compareTableItems: Array<compareTableItem>;

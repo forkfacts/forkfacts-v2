@@ -14,14 +14,11 @@ export default function HomeScreen({
   sidebarItems,
   navbarItems,
   PopularFrequentSearchItems,
-  onSelectPopularItem,
-  collectionGroupedItems,
   categoryOptions,
   sourceId,
   recommendations,
 }: HomeScreenProps) {
   const theme = useTheme();
-  const mobile = useMediaQuery(theme.breakpoints.down("md"));
   const [selectedNavbarItem, setSelectedNavbarItem] = useState("Food");
   const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false);
   const [selectedMobileItem, setSelectedMobileItem] = useState("Food");
@@ -55,7 +52,6 @@ export default function HomeScreen({
               sourceId={sourceId}
               onSelectCategory={setSelectedMobileItem}
               categoryOptions={categoryOptions}
-              collectionGroupedItems={collectionGroupedItems}
               setIsMobileSearchOpen={setIsMobileSearchOpen}
             />
           </Box>
@@ -65,7 +61,6 @@ export default function HomeScreen({
                 <Box className={classNames(classes.PopularFrequentStyles)}>
                   <PopularFrequentSearchCategories
                     PopularFrequentSearchItems={PopularFrequentSearchItems}
-                    onSelectPopularItem={onSelectPopularItem}
                   />
                 </Box>
               ) : null}

@@ -56,27 +56,6 @@ const MultipleSelects: React.FC<MultipleSelectsProps> = ({
     setSelectNutrients(checkedNutrients);
   };
 
-  const onDoneFilter = () => {
-    const checkedNutrients = selectedNutrients.filter((item) => {
-      if (item.checked) {
-        return {
-          ...item,
-          checked: true,
-        };
-      }
-    });
-    if (checkedNutrients.length) {
-      onSelectedValue(
-        checkedNutrients.map((item) => {
-          return item?.name as string;
-        })
-      );
-    } else {
-      onSelectedValue([]);
-    }
-    setIsOpen(false);
-  };
-
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (ref.current && !ref.current.contains(event.target as Node)) {

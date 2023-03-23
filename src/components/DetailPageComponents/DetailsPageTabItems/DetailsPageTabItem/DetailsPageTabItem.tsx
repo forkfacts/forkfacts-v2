@@ -6,27 +6,21 @@ import { useStyles } from "../detailsPageTabItemStyles";
 export default function DetailsPageTabItem({
   index,
   item,
-  setSelectedIndex,
-  selectedIndex,
-  onSelectDetailsPageTabItem,
+  handleClick,
+  selectedTab,
 }: DetailsPageTabItemProps) {
   const classes = useStyles();
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.down("md"));
-  const desktop = useMediaQuery(theme.breakpoints.up("md"));
-  const handleClick = () => {
-    setSelectedIndex(index);
-    onSelectDetailsPageTabItem(item.label);
-  };
 
   return (
     <Button
       variant="text"
       sx={{
         color: ({ palette }) =>
-          selectedIndex === index ? palette.primary.main : palette.customGray.main,
+          selectedTab === item.label ? palette.primary.main : palette.customGray.main,
         backgroundColor: ({ palette }) =>
-          selectedIndex === index ? palette.primary.light : palette.background.default,
+          selectedTab === item.label ? palette.primary.light : palette.background.default,
         display: "flex",
         flexDirection: "row",
         alignItems: "center",
@@ -41,7 +35,7 @@ export default function DetailsPageTabItem({
         height: mobile ? theme.spacing(5) : theme.spacing(7),
         flexShrink: 0,
       }}
-      onClick={handleClick}
+      onClick={() => handleClick(item)}
       size="small"
       startIcon={
         <item.Icon
@@ -58,7 +52,7 @@ export default function DetailsPageTabItem({
         variant={mobile ? "labelMedium" : "titleMedium"}
         sx={{
           color: ({ palette }) =>
-            selectedIndex === index ? palette.primary.main : palette.customGray.main,
+            selectedTab === item.label ? palette.primary.main : palette.customGray.main,
           fontWeight: theme.typography.fontWeightRegular,
         }}
       >

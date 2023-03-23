@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { DetailsPageTabItemsProps } from "@forkfacts/models";
+import { DetailsPageTabItemsProps, sidebarItem } from "@forkfacts/models";
 import { ForLoops } from "@forkfacts/helpers";
 import { Box, useMediaQuery, useTheme } from "@mui/material";
 import { DetailsPageTabItem } from "@forkfacts/components";
@@ -8,9 +8,14 @@ export default function DetailsPageTabItems({
   tabItems,
   onselectTabItem,
 }: DetailsPageTabItemsProps) {
-  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [selectedTab, setSelectedTab] = useState("Nutrition");
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.down("md"));
+
+  const handleClick = (item: sidebarItem): void => {
+    setSelectedTab(item.label);
+    onselectTabItem(item.label);
+  };
 
   return (
     <Box sx={{ width: "100%" }}>
@@ -34,9 +39,8 @@ export default function DetailsPageTabItems({
               key={idx}
               index={idx}
               item={item}
-              setSelectedIndex={setSelectedIndex}
-              selectedIndex={selectedIndex}
-              onSelectDetailsPageTabItem={onselectTabItem}
+              handleClick={handleClick}
+              selectedTab={selectedTab}
             />
           )}
         </ForLoops>

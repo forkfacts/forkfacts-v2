@@ -1,17 +1,10 @@
 import { DetailsPageHeaderProps } from "@forkfacts/models";
-import { Box, Typography, useMediaQuery, useTheme, Button } from "@mui/material";
+import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
 import ShareIcon from "@mui/icons-material/Share";
-import { ForLoops } from "@forkfacts/helpers";
 import { SharedSocialMedia } from "@forkfacts/components";
 import React, { useState } from "react";
 
-interface DetailsPageHeaderPropsWithLocation extends DetailsPageHeaderProps {
-  location: Location;
-}
-
-const DetailsPageHeader: React.FC<DetailsPageHeaderPropsWithLocation> = ({
-  detailsHeaderValues,
-}) => {
+const DetailsPageHeader: React.FC<DetailsPageHeaderProps> = ({ detailsHeaderValues }) => {
   const [isSharedMediaOpen, setIsSharedMediaOpen] = useState(false);
   const theme = useTheme();
   let fullUrl = "";

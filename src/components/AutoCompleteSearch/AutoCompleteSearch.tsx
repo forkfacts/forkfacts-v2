@@ -11,13 +11,9 @@ import { Box, TextField, useTheme, useMediaQuery, Button, Typography } from "@mu
 import classnames from "classnames";
 import { SearchOutlined } from "@mui/icons-material";
 import InputAdornment from "@mui/material/InputAdornment";
-import {
-  SearchResults,
-  SearchCategories,
-  SearchRecommendations,
-  NoSearchResults,
-} from "@forkfacts/components";
+import { SearchResults, SearchCategories, NoSearchResults } from "@forkfacts/components";
 import { SearchResultItemType, AutoCompleteSearchProps } from "@forkfacts/models";
+import CircularProgress from "@mui/material/CircularProgress";
 import CloseIcon from "@mui/icons-material/Close";
 import { ForLoops } from "@forkfacts/helpers";
 import { navigate } from "gatsby";
@@ -58,6 +54,7 @@ function AutoCompleteSearch(
   const { query, collections, isOpen, status } = autocompleteState;
   const mobile = useMediaQuery(theme.breakpoints.down("md"));
   const desktop = useMediaQuery(theme.breakpoints.up("md"));
+  const [loading, setLoading] = useState(true);
   const classes = useStyles({ isOpen });
   const autocomplete = useMemo(
     () =>
@@ -69,6 +66,7 @@ function AutoCompleteSearch(
       >({
         onStateChange({ state }) {
           setAutocompleteState(state);
+          setLoading(false);
         },
         shouldPanelOpen: () => true,
         getSources() {
@@ -247,15 +245,16 @@ function AutoCompleteSearch(
           </Box>
         </Box>
         {isOpen && desktop && (
-          <Box
-            style={{
-              backgroundColor: theme.palette.grey[300],
-              width: "100%",
-              height: theme.spacing(0.125),
-            }}
-          />
+          <>
+            <Box
+              style={{
+                backgroundColor: theme.palette.grey[300],
+                width: "100%",
+                height: theme.spacing(0.125),
+              }}
+            />
+          </>
         )}
-
         {isOpen && (desktop || mobile) && (
           <Box
             component="div"
@@ -366,6 +365,7 @@ function AutoCompleteSearch(
                 </ForLoops>
               </Box>
             ) : null}
+            {loading && <CircularProgress color="primary" />}
           </Box>
         )}
       </Box>

@@ -10,7 +10,7 @@ export const useStyles = makeStyles(({ typography, spacing, breakpoints, palette
     right: spacing(1.5),
   },
   authBtn: {
-    borderRadius: spacing(12.5),
+    borderRadius: spacing(1),
     color: palette.common.white,
     width: spacing(14),
     height: spacing(6),

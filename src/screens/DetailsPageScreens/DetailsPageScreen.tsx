@@ -7,7 +7,7 @@ import {
   NutritionDetailsTab,
   ComingSoon,
 } from "@forkfacts/components";
-import { DetailsPageScreenProps } from "@forkfacts/models";
+import { DetailsPageScreenProps, sidebarItem } from "@forkfacts/models";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import { Box, Button, Typography, useMediaQuery, useTheme } from "@mui/material";
 import React, { useState } from "react";
@@ -44,39 +44,47 @@ const DetailsPageScreen: React.FC<DetailsPageScreenProps> = ({
     navigate("/");
   };
 
+  const GoBack = () => (
+    <Box sx={{ px: mobile ? 0 : theme.spacing(1.5), cursor: "pointer" }}>
+      <Button startIcon={<ArrowBackIosIcon />} onClick={onSelectItem}>
+        <Typography
+          variant={mobile ? "labelMedium" : "labelLarge"}
+          sx={{
+            fontWeight: theme.typography.fontWeightRegular,
+            ml: theme.spacing(-1),
+          }}
+        >
+          Go back
+        </Typography>
+      </Button>
+    </Box>
+  );
+
+  const Overview = () => (
+    <Box sx={{ display: "flex", flexDirection: mobile ? "column-reverse" : "column" }}>
+      <Box sx={{ mt: mobile ? theme.spacing(1) : theme.spacing(0), display: "none" }}>
+        <DetailsPageTitles
+          onSelectDetailsPageTitleItem={setSelectedTitle}
+          DetailsPageTitlesItems={DetailsPageTitlesItems}
+        />
+      </Box>
+      <Box
+        sx={{
+          px: mobile ? 0 : theme.spacing(1.5),
+          mt: mobile ? theme.spacing(3) : theme.spacing(5),
+        }}
+      >
+        <DetailsPageHeader detailsHeaderValues={detailsHeaderValues} />
+      </Box>
+    </Box>
+  );
+
   return (
     <Layout sidebarItems={sidebarItems}>
       <Box className={classes.desktopScreenWrapper}>
-        <Box sx={{ px: mobile ? 0 : theme.spacing(1.5), cursor: "pointer" }}>
-          <Button startIcon={<ArrowBackIosIcon />} onClick={onSelectItem}>
-            <Typography
-              variant={mobile ? "labelMedium" : "labelLarge"}
-              sx={{
-                fontWeight: theme.typography.fontWeightRegular,
-                ml: theme.spacing(-1),
-              }}
-            >
-              Go back
-            </Typography>
-          </Button>
-        </Box>
+        <GoBack />
         <Box>
-          <Box sx={{ display: "flex", flexDirection: mobile ? "column-reverse" : "column" }}>
-            <Box sx={{ mt: mobile ? theme.spacing(1) : theme.spacing(0), display: "none" }}>
-              <DetailsPageTitles
-                onSelectDetailsPageTitleItem={setSelectedTitle}
-                DetailsPageTitlesItems={DetailsPageTitlesItems}
-              />
-            </Box>
-            <Box
-              sx={{
-                px: mobile ? 0 : theme.spacing(1.5),
-                mt: mobile ? theme.spacing(3) : theme.spacing(5),
-              }}
-            >
-              <DetailsPageHeader detailsHeaderValues={detailsHeaderValues} />
-            </Box>
-          </Box>
+          <Overview />
           <Box
             sx={{
               px: mobile ? 0 : theme.spacing(1.5),

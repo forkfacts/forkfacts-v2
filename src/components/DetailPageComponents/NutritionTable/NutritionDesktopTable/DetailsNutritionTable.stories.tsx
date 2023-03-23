@@ -1,6 +1,6 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { NutritionTableItem } from "@forkfacts/models";
+import { NutritionTableRow } from "@forkfacts/models";
 import { NutritionDesktopTable } from "@forkfacts/components";
 import { Box } from "@mui/material";
 
@@ -9,7 +9,7 @@ export default {
   component: NutritionDesktopTable,
 } as ComponentMeta<typeof NutritionDesktopTable>;
 
-const nutritionTableItems: NutritionTableItem[] = [
+const nutritionTableItems: NutritionTableRow[] = [
   {
     nutrient: "Fats",
     dailyValue: 12.9,
@@ -199,5 +199,5 @@ const Template: ComponentStory<typeof NutritionDesktopTable> = (args) => {
 export const Desktop = Template.bind({});
 
 Desktop.args = {
-  nutritionTableItems: nutritionTableItems,
+  rows: nutritionTableItems,
 };

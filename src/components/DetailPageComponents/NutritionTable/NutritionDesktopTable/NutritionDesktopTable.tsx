@@ -16,7 +16,7 @@ import { CompareSorting } from "@forkfacts/icons";
 import React, { useState } from "react";
 import { NutritionDesktopTableProps } from "@forkfacts/models";
 
-const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ nutritionTableItems }) => {
+const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ rows }) => {
   const theme = useTheme();
   const tablet = useMediaQuery(theme.breakpoints.only("lg"));
   const desktop = useMediaQuery(theme.breakpoints.only("lg"));
@@ -29,7 +29,7 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ nutrition
     }
   };
   const isCollapsed = (nutrient: any) => collapsedRows.includes(nutrient);
-
+  console.log({ rows });
   return (
     <Box>
       <TableContainer>
@@ -106,7 +106,7 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ nutrition
           </TableHead>
           <TableBody>
             <>
-              {nutritionTableItems.map((item, index) => (
+              {rows.map((item, index) => (
                 <>
                   <TableRow key={index} sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
                     <TableCell

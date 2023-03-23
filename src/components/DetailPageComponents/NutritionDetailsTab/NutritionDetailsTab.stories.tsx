@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { Baby, Kids, Lactation, Male, PregnantWoman, Woman } from "@forkfacts/icons";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import { NutritionDetailsTab } from "@forkfacts/components";
-import { RdiAge, NutritionTableItem, lifeStageItem, SelectedNutrient } from "@forkfacts/models";
+import { RdiAge, NutritionTableRow, lifeStageItem, SelectedNutrient } from "@forkfacts/models";
 import { Box } from "@mui/material";
 
 export default {
@@ -112,7 +112,7 @@ const nutritionFilterItems: SelectedNutrient[] = [
 
 const units = ["Plates", "Cups", "Teaspoon"];
 
-const nutritionTableItems: NutritionTableItem[] = [
+const nutritionTableItems: NutritionTableRow[] = [
   {
     nutrient: "Fats",
     dailyValue: 12.9,

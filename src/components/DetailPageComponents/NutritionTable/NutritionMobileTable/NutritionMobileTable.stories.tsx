@@ -1,6 +1,6 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { NutritionTableItem } from "@forkfacts/models";
+import { NutritionTableRow } from "@forkfacts/models";
 import { NutritionMobileTable } from "@forkfacts/components";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 
@@ -14,7 +14,7 @@ export default {
   },
 } as ComponentMeta<typeof NutritionMobileTable>;
 
-const nutritionTableItems: NutritionTableItem[] = [
+const nutritionTableItems: NutritionTableRow[] = [
   {
     nutrient: "Minerals",
     dailyValue: null,

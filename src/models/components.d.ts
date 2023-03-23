@@ -71,7 +71,7 @@ export interface compareTableItem {
   Iron: number;
 }
 
-export interface NutritionTableItem {
+export interface NutritionTableRow {
   nutrient: string;
   dailyValue?: number | null;
   amount?: number;
@@ -263,7 +263,7 @@ export interface NutritionDetailsTabProps {
   onSelectMeasurementItem: (item: string) => void;
   onSelectUnit: Dispatch<SetStateAction<string>>;
   units: string[];
-  nutritionTableItems: NutritionTableItem[];
+  nutritionTableItems: NutritionTableRow[];
 }
 
 export interface NutritionFilterProps {
@@ -328,9 +328,9 @@ export interface MultipleSelectsProps {
 }
 
 export interface NutritionDesktopTableProps {
-  nutritionTableItems: NutritionTableItem[];
+  rows: NutritionTableRow[];
 }
 
 interface NutritionMobileTableProps {
-  nutritionTableItems: NutritionTableItem[];
+  nutritionTableItems: NutritionTableRow[];
 }

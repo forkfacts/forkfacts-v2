@@ -5,7 +5,7 @@ import {
   FoodWithSameName,
   lifeStageItem,
   MenuItem,
-  NutritionTableItem,
+  NutritionTableRow,
   PopularFrequentSearchType,
   RdiAge,
   recommendationType,
@@ -51,7 +51,7 @@ export interface DetailsPageScreenProps {
   multipleSelectItems: filterItem[];
   onSelectUnit: Dispatch<SetStateAction<string>>;
   units: string[];
-  nutritionTableRows: NutritionTableItem[];
+  nutritionTableRows: NutritionTableRow[];
   values: filterItem[];
   onSelectedValue: Dispatch<SetStateAction<string[]>>;
   lifeStageItems: Array<lifeStageItem>;

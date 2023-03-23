@@ -20,7 +20,7 @@ import {
   lifeStageItem,
   SelectedNutrient,
   MenuItem,
-  NutritionTableItem,
+  NutritionTableRow,
 } from "@forkfacts/models";
 export default {
   title: "Screens/DetailsPageScreen",
@@ -262,7 +262,7 @@ const ageItems: RdiAge[] = [
     ageUnit: "year",
   },
 ];
-const nutritionTableRows: NutritionTableItem[] = [
+const nutritionTableRows: NutritionTableRow[] = [
   {
     nutrient: "Fats",
     dailyValue: 12.9,

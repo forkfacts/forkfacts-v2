@@ -15,7 +15,18 @@ const SearchResults: React.FC<SearchResultsProps> = ({
   const mobile = useMediaQuery(theme.breakpoints.down("md"));
   const resultResultLimit = Number(process.env.NUM_SEARCH_RESULT_VISIBLE) || 5;
   const [viewMore, setViewMore] = useState(resultResultLimit);
-  const groupedItems = collectionListsItems.reduce(
+
+  const namesSet = new Set<string>();
+  const uniqueSearchResults = collectionListsItems.filter((item) => {
+    if (namesSet.has(item.name)) {
+      return false;
+    } else {
+      namesSet.add(item.name);
+      return true;
+    }
+  });
+
+  const groupedItems = uniqueSearchResults.reduce(
     (groups: SearchResultItemCollectionType[], item: any) => {
       const group = groups.find(
         (g: SearchResultItemCollectionType) => g.categoryName === item.category
@@ -29,11 +40,8 @@ const SearchResults: React.FC<SearchResultsProps> = ({
     },
     []
   );
-
-  console.log("process.env", process.env);
-
   const handleGroupedViewMore = () => {
-    setViewMore(collectionListsItems.length);
+    setViewMore(uniqueSearchResults.length);
   };
   return (
     <Box className={classes.root}>
@@ -97,7 +105,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({
                     <Box
                       sx={{
                         ml: mobile ? theme.spacing(-1) : theme.spacing(-1.5),
-                        display: collectionListsItems?.length === viewMore ? "none" : "block",
+                        display: uniqueSearchResults?.length === viewMore ? "none" : "block",
                       }}
                     >
                       {value.collection.length > resultResultLimit && (
@@ -113,7 +121,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({
       ) : (
         <Box>
           <List sx={{ padding: 0 }}>
-            <ForLoops each={collectionListsItems.slice(0, viewMore)}>
+            <ForLoops each={uniqueSearchResults.slice(0, viewMore)}>
               {(item, index) => {
                 return (
                   <SearchResultItem
@@ -129,10 +137,10 @@ const SearchResults: React.FC<SearchResultsProps> = ({
           <Box
             sx={{
               ml: mobile ? theme.spacing(-2.5) : theme.spacing(-1),
-              display: collectionListsItems?.length === viewMore ? "none" : "block",
+              display: uniqueSearchResults?.length === viewMore ? "none" : "block",
             }}
           >
-            {collectionListsItems?.length > resultResultLimit && (
+            {uniqueSearchResults?.length > resultResultLimit && (
               <ViewMoreButton handleViewMore={handleGroupedViewMore} text="View all" />
             )}
           </Box>

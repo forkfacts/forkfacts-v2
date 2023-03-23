@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { PageProps } from "gatsby";
 import { DetailsPageScreen } from "@forkfacts/screens";
 import { SEO } from "@forkfacts/components";
-import rdis from "../../data/rdi.json";
 import { ageItem } from "@forkfacts/models";
 
 import { generateRdiForFood, getAgeRangesForLifeStage } from "@forkfacts/helpers";
@@ -37,7 +36,7 @@ interface NutriTable {
 }
 
 const DynamicPageTemplate = ({ pageContext }: PageProps) => {
-  const { food } = pageContext as any;
+  const { food, recommendedDailyIntakes } = pageContext as any;
   const [rows, setRows] = useState<any[]>([]);
   const { gender, age, nutrients, setAge } = useStore((state) => state);
   const [_, setUnit] = React.useState("Cups");
@@ -59,7 +58,7 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
     });
   }, [gender, age, nutrients]);
   const thisFood = food as any;
-  const allRdis = rdis as any[];
+  const allRdis = recommendedDailyIntakes as any[];
 
   const nutrientRdis: NutriTable[] = generateRdiForFood(thisFood, allRdis);
 

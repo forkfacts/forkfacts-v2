@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Box, useMediaQuery, useTheme } from "@mui/material";
 import {
-  Layout,
   AutoCompleteSearch,
+  Layout,
   NavBar,
   PopularFrequentSearchCategories,
 } from "@forkfacts/components";
@@ -29,7 +29,7 @@ export default function HomeScreen({
 
   return (
     <>
-      <Layout sidebarItems={sidebarItems}>
+      <Layout menuItems={sidebarItems}>
         <Box className={classes.desktopScreenWrapper}>
           <Box
             component="img"
@@ -55,7 +55,7 @@ export default function HomeScreen({
               sourceId={sourceId}
               onSelectCategory={setSelectedMobileItem}
               categoryOptions={categoryOptions}
-              collectionGroupedItems={collectionGroupedItems}
+              //collectionGroupedItems={collectionGroupedItems} // todo(h2): Not sure about this error
               setIsMobileSearchOpen={setIsMobileSearchOpen}
             />
           </Box>

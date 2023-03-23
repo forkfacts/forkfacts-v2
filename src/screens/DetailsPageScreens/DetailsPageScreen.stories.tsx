@@ -13,13 +13,13 @@ import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import AutoStoriesOutlinedIcon from "@mui/icons-material/AutoStoriesOutlined";
 import { DetailsPageScreen } from "@forkfacts/screens";
 import {
-  DetailsPageTitlesItem,
+  FoodWithSameName,
   RdiAge,
   compareTableItem,
   filterItem,
   lifeStageItem,
   SelectedNutrient,
-  sidebarItem,
+  MenuItem,
   NutritionTableItem,
 } from "@forkfacts/models";
 export default {
@@ -32,7 +32,7 @@ export default {
   },
 } as ComponentMeta<typeof DetailsPageScreen>;
 
-const sidebarItems: sidebarItem[] = [
+const menuItems: MenuItem[] = [
   { label: "Food", Icon: EggAltOutlinedIcon, link: "/food" },
   { label: "Recipes", Icon: EmojiFoodBeverageOutlinedIcon, link: "/recipe" },
   { label: "Library", Icon: LibraryBooksOutlinedIcon, link: "/library" },
@@ -40,7 +40,7 @@ const sidebarItems: sidebarItem[] = [
   { label: "Grocery List", Icon: ShoppingCartOutlinedIcon, link: "/grocery-list" },
 ];
 
-const tabItems = [
+const tabs = [
   { label: "Nutrition", Icon: FastfoodOutlinedIcon, link: "/food" },
   { label: "Recipes", Icon: EmojiFoodBeverageOutlinedIcon, link: "/recipe" },
   { label: "Emissions", Icon: SmokingRoomsOutlinedIcon, link: "/library" },
@@ -48,7 +48,7 @@ const tabItems = [
   { label: "Compare foods", Icon: CompareArrowsOutlinedIcon, link: "/recipe" },
 ];
 
-const DetailsPageTitlesItems: DetailsPageTitlesItem[] = [
+const foodsWithSameNames: FoodWithSameName[] = [
   {
     title: "Banana, overripe, raw",
   },
@@ -63,7 +63,7 @@ const DetailsPageTitlesItems: DetailsPageTitlesItem[] = [
   },
 ];
 
-const detailsHeaderValues = {
+const foodOverview = {
   img: "/banana.svg",
   name: "Banana, overripe, raw",
   category: "Fruits and Fruit Juices",
@@ -438,10 +438,10 @@ const nutritionTableItems: NutritionTableItem[] = [
 export const Desktop = Template.bind({});
 
 Desktop.args = {
-  sidebarItems,
-  DetailsPageTitlesItems: DetailsPageTitlesItems,
-  detailsHeaderValues: detailsHeaderValues,
-  tabItems: tabItems,
+  menuItems: menuItems,
+  foodsWithSameNames,
+  foodOverview,
+  tabItems: tabs,
   compareTableItems: compareTableItemRows,
   compareTableDetails: {
     name: "Comparing Greens",
@@ -460,10 +460,10 @@ Desktop.args = {
 export const Mobile = Template.bind({});
 
 Mobile.args = {
-  sidebarItems,
-  DetailsPageTitlesItems: DetailsPageTitlesItems,
-  detailsHeaderValues: detailsHeaderValues,
-  tabItems: tabItems,
+  menuItems: menuItems,
+  foodsWithSameNames,
+  foodOverview,
+  tabItems: tabs,
   compareTableItems: compareTableItemRows,
   compareTableDetails: {
     name: "Comparing Greens",
@@ -488,10 +488,10 @@ Mobile.parameters = {
 export const Tablet = Template.bind({});
 
 Tablet.args = {
-  sidebarItems,
-  DetailsPageTitlesItems: DetailsPageTitlesItems,
-  detailsHeaderValues: detailsHeaderValues,
-  tabItems: tabItems,
+  menuItems: menuItems,
+  foodsWithSameNames: foodsWithSameNames,
+  foodOverview,
+  tabItems: tabs,
   compareTableItems: compareTableItemRows,
   compareTableDetails: {
     name: "Comparing Greens",

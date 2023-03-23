@@ -1,17 +1,15 @@
-import { DetailsPageHeaderProps } from "@forkfacts/models";
+import { FoodOverviewProps } from "@forkfacts/models";
 import { Box, Typography, useMediaQuery, useTheme, Button } from "@mui/material";
 import ShareIcon from "@mui/icons-material/Share";
 import { ForLoops } from "@forkfacts/helpers";
 import { SharedSocialMedia } from "@forkfacts/components";
 import React, { useState } from "react";
 
-interface DetailsPageHeaderPropsWithLocation extends DetailsPageHeaderProps {
+interface FoodOverviewPropsWithLocation extends FoodOverviewProps {
   //location: Location; // todo(h2): not sure how this is used
 }
 
-const DetailsPageHeader: React.FC<DetailsPageHeaderPropsWithLocation> = ({
-  detailsHeaderValues,
-}) => {
+const FoodOverview: React.FC<FoodOverviewPropsWithLocation> = ({ values }) => {
   const [isSharedMediaOpen, setIsSharedMediaOpen] = useState(false);
   const theme = useTheme();
   let fullUrl = "";
@@ -29,7 +27,7 @@ const DetailsPageHeader: React.FC<DetailsPageHeaderPropsWithLocation> = ({
       {!mobile ? (
         <Box sx={{ display: "flex", justifyContent: "space-between" }}>
           <Box sx={{ display: "flex", alignItems: "flex-start", gap: theme.spacing(4) }}>
-            {/* <Box component="img" src={detailsHeaderValues.img} /> */}
+            {/*<Box component="img" src={values.img} />*/}
             <Box>
               <Box
                 sx={{
@@ -47,7 +45,7 @@ const DetailsPageHeader: React.FC<DetailsPageHeaderPropsWithLocation> = ({
                     fontWeight: theme.typography.fontWeightLight,
                   }}
                 >
-                  {detailsHeaderValues.name}
+                  {values.name}
                 </Typography>
                 <ShareIcon
                   color="primary"
@@ -67,9 +65,9 @@ const DetailsPageHeader: React.FC<DetailsPageHeaderPropsWithLocation> = ({
                   fontWeight: theme.typography.fontWeightLight,
                 }}
               >
-                {detailsHeaderValues.category}
+                {values.category}
               </Typography>
-              {/* <Box
+              <Box
                 sx={{
                   display: "flex",
                   gap: theme.spacing(1.5),
@@ -77,7 +75,7 @@ const DetailsPageHeader: React.FC<DetailsPageHeaderPropsWithLocation> = ({
                   mt: theme.spacing(3),
                 }}
               >
-                <ForLoops each={detailsHeaderValues.nutritionValues}>
+                {/*<ForLoops each={values.nutritionValues}>
                   {(item, index) => {
                     return (
                       <Box
@@ -112,8 +110,8 @@ const DetailsPageHeader: React.FC<DetailsPageHeaderPropsWithLocation> = ({
                       </Box>
                     );
                   }}
-                </ForLoops>
-              </Box> */}
+                </ForLoops>*/}
+              </Box>
             </Box>
           </Box>
           <Box>
@@ -133,14 +131,14 @@ const DetailsPageHeader: React.FC<DetailsPageHeaderPropsWithLocation> = ({
                 visibility: "hidden",
               }}
             >
-              {detailsHeaderValues.tag}
+              {values.tag}
             </Typography>
           </Box>
         </Box>
       ) : (
         <>
           <Box sx={{ display: "flex", alignItems: "flex-start", gap: theme.spacing(1) }}>
-            <Box component="img" src={detailsHeaderValues.img} />
+            <Box component="img" src={values.img} />
             <Box>
               <Box sx={{ display: "flex", alignItems: "center", columnGap: theme.spacing(1.5) }}>
                 <Typography
@@ -150,7 +148,7 @@ const DetailsPageHeader: React.FC<DetailsPageHeaderPropsWithLocation> = ({
                     fontWeight: theme.typography.fontWeightLight,
                   }}
                 >
-                  {detailsHeaderValues.name}
+                  {values.name}
                 </Typography>
                 <ShareIcon
                   color="primary"
@@ -176,7 +174,7 @@ const DetailsPageHeader: React.FC<DetailsPageHeaderPropsWithLocation> = ({
                   fontWeight: theme.typography.fontWeightLight,
                 }}
               >
-                {detailsHeaderValues.category}
+                {values.category}
               </Typography>
               <Typography
                 variant="bodySmall"
@@ -195,7 +193,7 @@ const DetailsPageHeader: React.FC<DetailsPageHeaderPropsWithLocation> = ({
                   visibility: "hidden",
                 }}
               >
-                {detailsHeaderValues.tag}
+                {values.tag}
               </Typography>
             </Box>
           </Box>
@@ -251,4 +249,4 @@ const DetailsPageHeader: React.FC<DetailsPageHeaderPropsWithLocation> = ({
   );
 };
 
-export default DetailsPageHeader;
+export default FoodOverview;

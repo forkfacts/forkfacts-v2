@@ -5,7 +5,7 @@ import { DetailsPageHeader } from "@forkfacts/components";
 import { Box } from "@mui/material";
 
 export default {
-  title: "Components/DetailsPageComponents/DetailsPageHeader",
+  title: "Components/DetailsPageComponents/FoodOverview",
   component: DetailsPageHeader,
   parameters: {
     viewport: {
@@ -14,10 +14,10 @@ export default {
   },
 } as ComponentMeta<typeof DetailsPageHeader>;
 
-const detailsHeaderValues = {
+const values = {
   img: "/banana.svg",
   name: "Banana, overripe, raw",
-  subTitle: "Fruits and Fruit Juices",
+  category: "Fruits and Fruit Juices",
   nutritionValues: [
     { name: "Gluten - Free", icon: "/details1.svg" },
     { name: "Vegan", icon: "/details2.svg" },
@@ -37,13 +37,13 @@ const Template: ComponentStory<typeof DetailsPageHeader> = (args) => {
 export const Desktop = Template.bind({});
 
 Desktop.args = {
-  detailsHeaderValues: detailsHeaderValues,
+  values,
 };
 
 export const Mobile = Template.bind({});
 
 Mobile.args = {
-  detailsHeaderValues: detailsHeaderValues,
+  values,
 };
 
 Mobile.parameters = {
@@ -55,7 +55,7 @@ Mobile.parameters = {
 export const Tablet = Template.bind({});
 
 Tablet.args = {
-  detailsHeaderValues: detailsHeaderValues,
+  values,
 };
 
 Tablet.parameters = {

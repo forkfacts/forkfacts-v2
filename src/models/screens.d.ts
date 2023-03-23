@@ -1,23 +1,22 @@
 import {
   collection,
-  SearchCategoryItemType,
-  onSelectCategoryType,
-  SearchResultItemCollectionType,
-  PopularFrequentSearchType,
-  sidebarItem,
-  recommendationType,
-  DetailsPageTitlesItem,
   compareTableItem,
-  summaryItem,
-  SelectedNutrient,
-  RdiAge,
+  FoodWithSameName,
+  MenuItem,
   NutritionTableItem,
+  PopularFrequentSearchType,
+  RdiAge,
+  recommendationType,
+  SearchCategoryItemType,
+  SearchResultItemCollectionType,
+  SelectedNutrient,
+  summaryItem,
 } from "@forkfacts/models";
 import { Dispatch, SetStateAction } from "react";
 
 export interface HomeScreenProps {
-  sidebarItems: sidebarItem[];
-  navbarItems: sidebarItem[];
+  sidebarItems: MenuItem[];
+  navbarItems: MenuItem[];
   PopularFrequentSearchItems?: PopularFrequentSearchType[];
   onSelectPopularItem?: (item: PopularFrequentSearchType) => void;
   categoryOptions: SearchCategoryItemType[];
@@ -27,16 +26,16 @@ export interface HomeScreenProps {
 }
 
 export interface DetailsPageScreenProps {
-  sidebarItems: sidebarItem[];
-  DetailsPageTitlesItems: Array<DetailsPageTitlesItem>;
-  detailsHeaderValues: {
+  menuItems: MenuItem[];
+  foodsWithSameNames: Array<FoodWithSameName>;
+  foodOverview: {
     img?: string;
     name: string;
     category: string;
     nutritionValues?: Array<{ name: string; icon: string }>;
     tag?: string;
   };
-  tabItems: sidebarItem[];
+  tabItems: MenuItem[];
   compareTableItems: Array<compareTableItem>;
   compareTableDetails: {
     name: string;

@@ -7,7 +7,7 @@ import {
   NutritionDetailsTab,
   ComingSoon,
 } from "@forkfacts/components";
-import { DetailsPageScreenProps, sidebarItem } from "@forkfacts/models";
+import { DetailsPageScreenProps, MenuItem } from "@forkfacts/models";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import { Box, Button, Typography, useMediaQuery, useTheme } from "@mui/material";
 import React, { useState } from "react";
@@ -15,9 +15,9 @@ import { navigate } from "gatsby";
 import { useStyles } from "./detailspageStyles";
 
 const DetailsPageScreen: React.FC<DetailsPageScreenProps> = ({
-  sidebarItems,
-  DetailsPageTitlesItems,
-  detailsHeaderValues,
+  menuItems,
+  foodsWithSameNames,
+  foodOverview,
   tabItems,
   compareTableItems,
   compareTableDetails,
@@ -64,8 +64,8 @@ const DetailsPageScreen: React.FC<DetailsPageScreenProps> = ({
     <Box sx={{ display: "flex", flexDirection: mobile ? "column-reverse" : "column" }}>
       <Box sx={{ mt: mobile ? theme.spacing(1) : theme.spacing(0), display: "none" }}>
         <DetailsPageTitles
-          onSelectDetailsPageTitleItem={setSelectedTitle}
-          DetailsPageTitlesItems={DetailsPageTitlesItems}
+          onSelectFoodWithSameName={setSelectedTitle}
+          foodsWithSameNames={foodsWithSameNames}
         />
       </Box>
       <Box
@@ -74,13 +74,13 @@ const DetailsPageScreen: React.FC<DetailsPageScreenProps> = ({
           mt: mobile ? theme.spacing(3) : theme.spacing(5),
         }}
       >
-        <DetailsPageHeader detailsHeaderValues={detailsHeaderValues} />
+        <DetailsPageHeader values={foodOverview} />
       </Box>
     </Box>
   );
 
   return (
-    <Layout sidebarItems={sidebarItems}>
+    <Layout menuItems={menuItems}>
       <Box className={classes.desktopScreenWrapper}>
         <GoBack />
         <Box>

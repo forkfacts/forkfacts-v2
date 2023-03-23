@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import EggAltOutlinedIcon from "@mui/icons-material/EggAltOutlined";
 import EmojiFoodBeverageOutlinedIcon from "@mui/icons-material/EmojiFoodBeverageOutlined";
 import LibraryBooksOutlinedIcon from "@mui/icons-material/LibraryBooksOutlined";
-import { sidebarItem } from "@forkfacts/models";
+import { MenuItem } from "@forkfacts/models";
 import { NavBar } from "@forkfacts/components";
 
 export default {
@@ -13,7 +13,7 @@ export default {
 
 const Template: ComponentStory<typeof NavBar> = (args) => <NavBar {...args} />;
 
-const navbarItems: sidebarItem[] = [
+const navbarItems: MenuItem[] = [
   { label: "Food", Icon: EggAltOutlinedIcon, link: "/food" },
   { label: "Recipes", Icon: EmojiFoodBeverageOutlinedIcon, link: "/Recipe" },
   { label: "Library", Icon: LibraryBooksOutlinedIcon, link: "/library" },

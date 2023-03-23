@@ -5,12 +5,7 @@ import { SEO } from "@forkfacts/components";
 
 import { generateRdiForFood, getAgeRangesForLifeStage } from "@forkfacts/helpers";
 import { Box } from "@mui/material";
-import {
-  lifeStageItems,
-  nutritionSummaryItems,
-  sidebarItems,
-  tabItems,
-} from "../RealData/realData";
+import { lifeStageItems, nutritionSummaryItems, menuItems, tabItems } from "../RealData/realData";
 import { useStore } from "../store/store";
 
 export interface NutritionFact {
@@ -151,9 +146,9 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
     <>
       <Box sx={{ p: "8px" }}>
         <DetailsPageScreen
-          sidebarItems={sidebarItems}
-          DetailsPageTitlesItems={[]}
-          detailsHeaderValues={{
+          menuItems={menuItems}
+          foodsWithSameNames={[]}
+          foodOverview={{
             name: food.name,
             category: food.category,
           }}

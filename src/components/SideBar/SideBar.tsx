@@ -1,6 +1,6 @@
 import React, { FC, useState } from "react";
 import { Box, List, Drawer, Toolbar, useTheme } from "@mui/material";
-import { SideBarProps, sidebarItem } from "@forkfacts/models";
+import { SideBarProps, MenuItem } from "@forkfacts/models";
 import { ForLoops } from "@forkfacts/helpers";
 import { SideBarItem } from "@forkfacts/components";
 
@@ -16,7 +16,7 @@ const SideBar: FC<SideBarProps> = ({
   const { transitions, spacing } = useTheme();
   const [selectedIndex, setSelectedIndex] = useState<number>(0);
 
-  const handleSelectedIndex = (index: number, item: sidebarItem) => {
+  const handleSelectedIndex = (index: number, item: MenuItem) => {
     setSelectedIndex(index);
   };
 

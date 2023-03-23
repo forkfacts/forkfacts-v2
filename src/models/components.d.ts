@@ -31,7 +31,7 @@ export type lifeStageItem = {
   icon: SVGProps;
 };
 
-export interface DetailsPageTitlesItem {
+export interface FoodWithSameName {
   title: string;
 }
 
@@ -97,7 +97,7 @@ export interface SearchCategoryItemType {
   Icon: SvgIconComponent;
 }
 
-export type sidebarItem = SearchCategoryItemType & {
+export type MenuItem = SearchCategoryItemType & {
   link: string;
 };
 export interface SearchResultItemCollectionType {
@@ -113,7 +113,7 @@ interface selectedItemType {
   selectedIndex: number;
 }
 export interface NavbarProps {
-  navbarItems: Array<sidebarItem>;
+  navbarItems: Array<MenuItem>;
   onselectNavbarItem: Dispatch<SetStateAction<string>>;
 }
 
@@ -141,7 +141,7 @@ export interface RecentSearchHeaderProps {
   onClearSearch: () => void;
 }
 export interface LayoutProps {
-  sidebarItems: Array<sidebarItem>;
+  menuItems: Array<MenuItem>;
   children: JSX.Element | JSX.Element[];
 }
 
@@ -154,7 +154,7 @@ interface SideBarProps {
   drawerWidth: string;
   mobileOpen: boolean;
   handleDrawerToggle: () => void;
-  sidebarItems: Array<sidebarItem>;
+  sidebarItems: Array<MenuItem>;
   window?: any;
   drawerWidthExpanded: boolean;
 }
@@ -171,8 +171,8 @@ export interface SideBarItemProps {
   index: number;
   selectedIndex: number;
   drawerWidthExpanded: boolean;
-  item: sidebarItem;
-  handleSelectedIndex: (index: number, item: sidebarItem) => void;
+  item: MenuItem;
+  handleSelectedIndex: (index: number, item: MenuItem) => void;
 }
 
 export interface PopularFrequentSearchProps {
@@ -186,7 +186,7 @@ export interface PopularFrequentSearchCategoryProps {
 }
 
 export interface NavBarItemProps {
-  item: sidebarItem;
+  item: MenuItem;
   index: number;
   setSelectedIndex: (item: number) => void;
   selectedIndex: number;
@@ -206,8 +206,8 @@ interface SearchRecommendationItemProps {
 export interface SearchRecommendationsProps {
   recommendations: Array<recommendationType>;
 }
-export interface DetailsPageHeaderProps {
-  detailsHeaderValues: {
+export interface FoodOverviewProps {
+  values: {
     img?: string;
     name: string;
     category: string;
@@ -215,16 +215,16 @@ export interface DetailsPageHeaderProps {
     tag?: string;
   };
 }
-export interface DetailsPageTitlesProps {
-  DetailsPageTitlesItems: Array<DetailsPageTitlesItem>;
-  onSelectDetailsPageTitleItem: Dispatch<SetStateAction<string>>;
+export interface FoodsWithSameNameProps {
+  foodsWithSameNames: Array<FoodWithSameName>;
+  onSelectFoodWithSameName: Dispatch<SetStateAction<string>>;
 }
 export interface DetailsPageTabItemsProps {
-  tabItems: Array<sidebarItem>;
+  tabItems: Array<MenuItem>;
   onselectTabItem: Dispatch<SetStateAction<string>>;
 }
 export interface DetailsPageTabItemProps {
-  item: sidebarItem;
+  item: MenuItem;
   index: number;
   setSelectedIndex: (item: number) => void;
   selectedIndex: number;

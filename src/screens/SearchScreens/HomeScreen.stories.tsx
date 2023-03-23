@@ -6,9 +6,8 @@ import EmojiFoodBeverageOutlinedIcon from "@mui/icons-material/EmojiFoodBeverage
 import LibraryBooksOutlinedIcon from "@mui/icons-material/LibraryBooksOutlined";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import AutoStoriesOutlinedIcon from "@mui/icons-material/AutoStoriesOutlined";
-import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlined";
 import {
-  sidebarItem,
+  MenuItem,
   PopularFrequentSearchProps,
   PopularFrequentSearchType,
   recommendationType,
@@ -25,7 +24,7 @@ export default {
   },
 } as ComponentMeta<typeof HomeScreen>;
 
-const sidebarItems: sidebarItem[] = [
+const sidebarItems: MenuItem[] = [
   { label: "Food", Icon: EggAltOutlinedIcon, link: "/food" },
   { label: "Recipes", Icon: EmojiFoodBeverageOutlinedIcon, link: "/recipe" },
   { label: "Library", Icon: LibraryBooksOutlinedIcon, link: "/library" },

@@ -13,7 +13,7 @@ import {
 } from "../RealData/realData";
 import { useStore } from "../store/store";
 
-interface NutritionFactTable {
+export interface NutritionFact {
   nutrient: {
     amount: number;
     name: string;
@@ -41,21 +41,21 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
   );
   const thisFood = food as any;
   const allRdis = recommendedDailyIntakes as any[];
+  const nutritionFacts: NutritionFact[] = generateRdiForFood(thisFood, allRdis);
 
-  const nutrientRdis: NutritionFactTable[] = generateRdiForFood(thisFood, allRdis);
-
-  const groupedNutriTables = Object.entries(
-    nutrientRdis.reduce((acc: any, item: any) => {
-      if (!acc[item.nutrient.nutrientGroup]) {
-        acc[item.nutrient.nutrientGroup] = [];
+  const nutritionFactsByNutrient = Object.entries(
+    nutritionFacts.reduce((acc: any, nutritionFact: any) => {
+      const nutrient = nutritionFact.nutrient;
+      if (!acc[nutrient.nutrientGroup]) {
+        acc[nutrient.nutrientGroup] = [];
       }
-      acc[item.nutrient.nutrientGroup].push({
-        name: item?.nutrient?.name,
-        dailyValue: parseInt(item?.percentDaily),
-        amount: item?.nutrient?.amount + " " + item?.nutrient?.unit,
+      acc[nutrient.nutrientGroup].push({
+        name: nutrient.displayName ? nutrient.displayName : nutrient.name,
+        dailyValue: parseInt(nutritionFact?.percentDaily),
+        amount: nutrient.amount + " " + nutrient.unit,
         rdi: {
-          value: item?.rdi?.amount,
-          weight: item?.rdi?.nutrientUnit,
+          value: nutritionFact?.rdi?.amount,
+          weight: nutritionFact?.rdi?.nutrientUnit,
         },
       });
       return acc;
@@ -64,12 +64,15 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
     nutrientGroup,
     nutrientContents,
   }));
+
+  console.log({ nutritionFactsByNutrient });
+
   useEffect(() => {
     const gender = selectedLifeStage;
     const age = selectedAge;
     const nutrients = !selectedNutrients.length ? food.nutrients : selectedNutrients;
     const nutrientsWithRdis = nutrients.map((nutrient: any, index: number) => {
-      const nutrientWithRdi = nutrientRdis.filter(
+      const nutrientWithRdi = nutritionFacts.filter(
         (nutrientRdi) =>
           nutrientRdi.nutrient.name.toLowerCase() === nutrient.name.toLowerCase() &&
           nutrientRdi.nutrient.unit === nutrient.unit &&

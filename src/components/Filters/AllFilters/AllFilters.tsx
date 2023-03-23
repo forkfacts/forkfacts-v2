@@ -2,26 +2,30 @@ import React, { useEffect, useRef, useState } from "react";
 import { Box, Button, Typography, useMediaQuery, useTheme } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { FilterAge, LifeStage, SearchNutritionFilter } from "@forkfacts/components";
-import { ageItem, NutritionFilterProps, SearchNutritionFilterItem } from "@forkfacts/models";
+import { RdiAge, NutritionFilterProps, SelectedNutrient } from "@forkfacts/models";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import { useStore } from "../../../store/store";
 
 const AllFilters = ({ ageItems, lifeStageItems, nutritionFilterItems }: any) => {
-  const { age, gender, nutrients } = useStore((state) => state);
+  const { selectedAge, selectedLifeStage, selectedNutrients } = useStore((state) => state);
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.down("md"));
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   let filterStatus = 0;
 
-  if (Object.keys(age).length > 0 || gender || nutrients.length > 0) {
+  if (Object.keys(selectedAge).length > 0 || selectedLifeStage || selectedNutrients.length > 0) {
     if (
-      (Object.keys(age).length === 0 && !gender) ||
-      (Object.keys(age).length === 0 && nutrients.length === 0) ||
-      (!gender && nutrients.length === 0)
+      (Object.keys(selectedAge).length === 0 && !selectedLifeStage) ||
+      (Object.keys(selectedAge).length === 0 && selectedNutrients.length === 0) ||
+      (!selectedLifeStage && selectedNutrients.length === 0)
     ) {
       filterStatus = 1;
-    } else if (Object.keys(age).length > 0 && gender && nutrients.length > 0) {
+    } else if (
+      Object.keys(selectedAge).length > 0 &&
+      selectedLifeStage &&
+      selectedNutrients.length > 0
+    ) {
       filterStatus = 3;
     } else {
       filterStatus = 2;

@@ -9,7 +9,7 @@ import LibraryBooksOutlinedIcon from "@mui/icons-material/LibraryBooksOutlined";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import AutoStoriesOutlinedIcon from "@mui/icons-material/AutoStoriesOutlined";
 
-import { ageItem, lifeStageItem, sidebarItem, NutritionTableItem } from "@forkfacts/models";
+import { RdiAge, lifeStageItem, sidebarItem, NutritionTableItem } from "@forkfacts/models";
 
 export const sidebarItems: sidebarItem[] = [
   { label: "Food", Icon: EggAltOutlinedIcon, link: "/food" },

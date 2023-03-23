@@ -11,13 +11,13 @@ import { useStore } from "../../../store/store";
 
 const LifeStage: React.FC<LifeStageProps> = ({ lifeStageItems, isDropdown }) => {
   const theme = useTheme();
-  const { gender, selectGender } = useStore((state) => state);
+  const { selectedLifeStage, setSelectedLifeStage } = useStore((state) => state);
   const mobile = useMediaQuery(theme.breakpoints.down("md"));
-  const [selectedItem, setSelectedItem] = useState<string>(gender);
+  const [selectedItem, setSelectedItem] = useState<string>(selectedLifeStage);
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   const handleSelectedItem = (name: string) => {
-    selectGender(name);
+    setSelectedLifeStage(name);
     setSelectedItem(name);
     setOpen(false);
   };
@@ -74,7 +74,7 @@ const LifeStage: React.FC<LifeStageProps> = ({ lifeStageItems, isDropdown }) => 
                 }}
               />
             )}
-            {selectedItem ? gender : "Life stage"}
+            {selectedItem ? selectedLifeStage : "Life stage"}
           </Typography>
           {open ? (
             <ArrowDropUpIcon sx={{ color: theme.palette.iconColors.main }} />
@@ -133,7 +133,7 @@ const LifeStage: React.FC<LifeStageProps> = ({ lifeStageItems, isDropdown }) => 
               <LifeStageItem
                 index={index}
                 key={index}
-                selectedItem={gender}
+                selectedItem={selectedLifeStage}
                 handleSelectedItem={handleSelectedItem}
                 item={item}
               />

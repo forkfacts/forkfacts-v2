@@ -19,10 +19,10 @@ export interface filterItem {
   name: string;
 }
 
-export interface ageItem {
+export interface RdiAge {
   start: number;
   end?: number;
-  ageUnit: string;
+  ageUnit: "month" | "year";
   index?: number;
 }
 
@@ -257,8 +257,8 @@ export interface NutrientSummaryItemProps {
 export interface NutritionDetailsTabProps {
   nutritionSummaryItems: Array<summaryItem>;
   lifeStageItems: Array<lifeStageItem>;
-  ageItems: Array<ageItem>;
-  nutritionFilterItems: Array<SearchNutritionFilterItem>;
+  ageItems: Array<RdiAge>;
+  nutritionFilterItems: Array<SelectedNutrient>;
   measurementFilterItems: string[];
   onSelectMeasurementItem: (item: string) => void;
   onSelectUnit: Dispatch<SetStateAction<string>>;
@@ -268,8 +268,8 @@ export interface NutritionDetailsTabProps {
 
 export interface NutritionFilterProps {
   lifeStageItems: Array<lifeStageItem>;
-  ageItems: Array<ageItem>;
-  nutritionFilterItems: Array<SearchNutritionFilterItem>;
+  ageItems: Array<RdiAge>;
+  nutritionFilterItems: Array<SelectedNutrient>;
 }
 
 export interface SelectNutrientsProps {
@@ -294,22 +294,22 @@ export interface LifeStageProps {
 }
 
 export interface AgeItemsProps {
-  ageItems: Array<ageItem>;
+  ageItems: Array<RdiAge>;
   isDropdown: boolean;
   margin?: string | number;
 }
 
 export interface SearchNutritionFilterProps {
-  nutritionFilterItems: Array<SearchNutritionFilterItem>;
+  nutritionFilterItems: Array<SelectedNutrient>;
   isDropdown: boolean;
   margin?: string | number;
 }
 
-export interface SearchNutritionFilterItem {
+export interface SelectedNutrient {
   name: string;
   subItems?: { name: string; checked: boolean }[];
   checked: boolean;
-  unit: string;
+  unit: string; // todo(h2): do we need to store unit?
 }
 export interface AllFiltersProps {}
 

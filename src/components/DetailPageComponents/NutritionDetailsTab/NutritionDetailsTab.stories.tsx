@@ -3,12 +3,7 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { Baby, Kids, Lactation, Male, PregnantWoman, Woman } from "@forkfacts/icons";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import { NutritionDetailsTab } from "@forkfacts/components";
-import {
-  ageItem,
-  NutritionTableItem,
-  lifeStageItem,
-  SearchNutritionFilterItem,
-} from "@forkfacts/models";
+import { RdiAge, NutritionTableItem, lifeStageItem, SelectedNutrient } from "@forkfacts/models";
 import { Box } from "@mui/material";
 
 export default {
@@ -55,7 +50,7 @@ const lifeStageItems: lifeStageItem[] = [
     icon: Lactation,
   },
 ];
-const ageItems: ageItem[] = [
+const ageItems: RdiAge[] = [
   {
     start: 9,
     end: 13,
@@ -87,7 +82,7 @@ const ageItems: ageItem[] = [
   },
 ];
 
-const nutritionFilterItems: SearchNutritionFilterItem[] = [
+const nutritionFilterItems: SelectedNutrient[] = [
   {
     name: "Vitamin",
     unit: "mg",
@@ -292,9 +287,7 @@ const nutritionTableItems: NutritionTableItem[] = [
 ];
 
 const Template: ComponentStory<typeof NutritionDetailsTab> = (args) => {
-  const [selectSearchNutrition, seSelectedSearchNutrition] = useState(
-    [] as SearchNutritionFilterItem[]
-  );
+  const [selectSearchNutrition, seSelectedSearchNutrition] = useState([] as SelectedNutrient[]);
   const [unit, setUnit] = React.useState("Cups");
   return (
     <Box

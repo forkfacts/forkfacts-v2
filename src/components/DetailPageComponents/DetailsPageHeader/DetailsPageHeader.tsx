@@ -6,7 +6,7 @@ import { SharedSocialMedia } from "@forkfacts/components";
 import React, { useState } from "react";
 
 interface DetailsPageHeaderPropsWithLocation extends DetailsPageHeaderProps {
-  location: Location;
+  //location: Location; // todo(h2): not sure how this is used
 }
 
 const DetailsPageHeader: React.FC<DetailsPageHeaderPropsWithLocation> = ({

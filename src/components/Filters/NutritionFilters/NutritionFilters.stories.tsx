@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import { NutritionFilters } from "@forkfacts/components";
 import { Baby, Kids, Lactation, Male, PregnantWoman, Woman } from "@forkfacts/icons";
-import { ageItem, lifeStageItem, SearchNutritionFilterItem } from "@forkfacts/models";
+import { RdiAge, lifeStageItem, SelectedNutrient } from "@forkfacts/models";
 
 export default {
   title: "Components/Filters/NutritionFilters",
@@ -42,7 +42,7 @@ const lifeStageItems: lifeStageItem[] = [
   },
 ];
 
-const ageItems: ageItem[] = [
+const ageItems: RdiAge[] = [
   {
     start: 9,
     end: 13,
@@ -70,7 +70,7 @@ const ageItems: ageItem[] = [
   },
 ];
 
-const nutritionFilterItems: SearchNutritionFilterItem[] = [
+const nutritionFilterItems: SelectedNutrient[] = [
   {
     name: "Vitamin",
     unit: "mg",
@@ -99,9 +99,7 @@ const nutritionFilterItems: SearchNutritionFilterItem[] = [
 ];
 
 const Template: ComponentStory<typeof NutritionFilters> = (args) => {
-  const [selectSearchNutrition, seSelectedSearchNutrition] = useState(
-    [] as SearchNutritionFilterItem[]
-  );
+  const [selectSearchNutrition, seSelectedSearchNutrition] = useState([] as SelectedNutrient[]);
   return <NutritionFilters {...args} onSelectNutritionFilterItem={seSelectedSearchNutrition} />;
 };
 

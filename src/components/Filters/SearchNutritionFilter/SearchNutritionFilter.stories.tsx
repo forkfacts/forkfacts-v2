@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import { SearchNutritionFilter } from "@forkfacts/components";
-import { SearchNutritionFilterItem } from "@forkfacts/models";
+import { SelectedNutrient } from "@forkfacts/models";
 
 export default {
   title: "Components/Filters/SearchNutritionFilter",
@@ -15,15 +15,13 @@ export default {
 } as ComponentMeta<typeof SearchNutritionFilter>;
 
 const Template: ComponentStory<typeof SearchNutritionFilter> = (args) => {
-  const [selectSearchNutrition, seSelectedSearchNutrition] = useState(
-    [] as SearchNutritionFilterItem[]
-  );
+  const [selectSearchNutrition, seSelectedSearchNutrition] = useState([] as SelectedNutrient[]);
   return (
     <SearchNutritionFilter {...args} onSelectNutritionFilterItem={seSelectedSearchNutrition} />
   );
 };
 
-const nutritionFilterItems: SearchNutritionFilterItem[] = [
+const nutritionFilterItems: SelectedNutrient[] = [
   {
     name: "Vitamin",
     unit: "mg",

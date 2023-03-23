@@ -20,7 +20,7 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { ForLoops } from "@forkfacts/helpers";
-import { SearchNutritionFilterProps, SearchNutritionFilterItem } from "@forkfacts/models";
+import { SearchNutritionFilterProps, SelectedNutrient } from "@forkfacts/models";
 import { withDropdown, withoutDropdown } from "./searchNutrientStyles";
 import { useStore } from "../../../store/store";
 
@@ -33,7 +33,7 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
   const mobile = useMediaQuery(theme.breakpoints.down("md"));
   const ref = useRef<HTMLDivElement>(null);
 
-  const newNutrients: SearchNutritionFilterItem[] = [...nutritionFilterItems].map((item) => {
+  const newNutrients: SelectedNutrient[] = [...nutritionFilterItems].map((item) => {
     return {
       name: item.name,
       unit: item.unit,
@@ -50,12 +50,12 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
   const [selectedNutrientName, setSelectedNutrientName] = useState({
     name: "",
   });
-  const [selectedItems, _] = useState<SearchNutritionFilterItem[]>([]);
+  const [selectedItems, _] = useState<SelectedNutrient[]>([]);
   const [open, setOpen] = useState(false);
   const [name, setName] = useState<string>("");
-  const { setSelectNutrient, nutrients } = useStore((state) => state);
+  const { setSelectedNutrient, selectedNutrients } = useStore((state) => state);
 
-  const renderFilterNutrients = useCallback((): SearchNutritionFilterItem[] => {
+  const renderFilterNutrients = useCallback((): SelectedNutrient[] => {
     let filteredItems = [...filteredNutrient].slice();
     if (name && name !== "") {
       filteredItems = filteredItems.reduce((acc: any, item: any) => {
@@ -141,13 +141,13 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
           };
         }
       })
-      .filter((item) => item !== undefined) as SearchNutritionFilterItem[];
-    setSelectNutrient(checkedNutrients);
+      .filter((item) => item !== undefined) as SelectedNutrient[];
+    setSelectedNutrient(checkedNutrients);
   }, [filteredNutrient]);
 
   const onClearSelectedItem = () => {
-    setSelectNutrient([]);
-    const clearNutrients: SearchNutritionFilterItem[] = [...nutritionFilterItems].map((item) => {
+    setSelectedNutrient([]);
+    const clearNutrients: SelectedNutrient[] = [...nutritionFilterItems].map((item) => {
       return {
         name: item.name,
         checked: false,
@@ -180,13 +180,15 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
     <Box sx={{ display: "block" }} ref={ref}>
       {isDropdown && (
         <Button
-          variant={nutrients[0]?.name ? "text" : "outlined"}
+          variant={selectedNutrients[0]?.name ? "text" : "outlined"}
           onClick={() => setOpen(!open)}
           sx={{
-            backgroundColor: nutrients[0]?.name
+            backgroundColor: selectedNutrients[0]?.name
               ? theme.palette.primary.light
               : theme.palette.background.default,
-            borderColor: nutrients[0]?.name ? theme.palette.primary.main : theme.palette.grey[700],
+            borderColor: selectedNutrients[0]?.name
+              ? theme.palette.primary.main
+              : theme.palette.grey[700],
             textTransform: "capitalize",
             whiteSpace: "nowrap",
             display: "flex",
@@ -205,7 +207,7 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
               alignItems: "center",
             }}
           >
-            {nutrients.length && nutrients[0].name ? (
+            {selectedNutrients.length && selectedNutrients[0].name ? (
               <DoneIcon
                 sx={{
                   color: theme.palette.iconColors.main,
@@ -215,8 +217,10 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
                 }}
               />
             ) : null}
-            {nutrients[0]?.name
-              ? `${nutrients[0]?.name} ${nutrients?.length < 2 ? "" : `+${nutrients.length - 1}`}`
+            {selectedNutrients[0]?.name
+              ? `${selectedNutrients[0]?.name} ${
+                  selectedNutrients?.length < 2 ? "" : `+${selectedNutrients.length - 1}`
+                }`
               : "Nutrients"}
           </Typography>
           {open ? (
@@ -447,7 +451,7 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
               sx={{
                 fontWeight: theme.typography.fontWeightRegular,
                 cursor: "pointer",
-                color: nutrients.length
+                color: selectedNutrients.length
                   ? theme.palette.primary.main
                   : theme.palette.customGray.textDark,
               }}

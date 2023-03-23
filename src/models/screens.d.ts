@@ -9,8 +9,8 @@ import {
   DetailsPageTitlesItem,
   compareTableItem,
   summaryItem,
-  SearchNutritionFilterItem,
-  ageItem,
+  SelectedNutrient,
+  RdiAge,
   NutritionTableItem,
 } from "@forkfacts/models";
 import { Dispatch, SetStateAction } from "react";
@@ -43,8 +43,8 @@ export interface DetailsPageScreenProps {
     quantityAmount: string;
   };
   nutritionSummaryItems: Array<summaryItem>;
-  ageItems: Array<ageItem>;
-  nutritionFilterItems: Array<SearchNutritionFilterItem>;
+  ageItems: Array<RdiAge>;
+  nutritionFilterItems: Array<SelectedNutrient>;
   measurementFilterItems: string[];
   onSelectMeasurementItem: (item: string) => void;
   multipleSelectItems: filterItem[];

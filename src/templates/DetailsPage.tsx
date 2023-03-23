@@ -2,12 +2,10 @@ import React, { useEffect, useState } from "react";
 import { PageProps } from "gatsby";
 import { DetailsPageScreen } from "@forkfacts/screens";
 import { SEO } from "@forkfacts/components";
-import { ageItem } from "@forkfacts/models";
 
 import { generateRdiForFood, getAgeRangesForLifeStage } from "@forkfacts/helpers";
 import { Box } from "@mui/material";
 import {
-  allAges,
   lifeStageItems,
   nutritionSummaryItems,
   sidebarItems,
@@ -15,7 +13,7 @@ import {
 } from "../RealData/realData";
 import { useStore } from "../store/store";
 
-interface NutriTable {
+interface NutritionFactTable {
   nutrient: {
     amount: number;
     name: string;
@@ -38,29 +36,13 @@ interface NutriTable {
 const DynamicPageTemplate = ({ pageContext }: PageProps) => {
   const { food, recommendedDailyIntakes } = pageContext as any;
   const [rows, setRows] = useState<any[]>([]);
-  const { gender, age, nutrients, setAge } = useStore((state) => state);
-  const [_, setUnit] = React.useState("Cups");
-  const [state, setState] = useState<{
-    selectedGender: string;
-    selectedAge: ageItem;
-    selectedNutrients: any[];
-  }>({
-    selectedGender: gender,
-    selectedAge: allAges.filter((age) => age.start === 31)[0],
-    selectedNutrients: [],
-  });
-
-  useEffect(() => {
-    setState({
-      selectedGender: gender,
-      selectedAge: age,
-      selectedNutrients: nutrients,
-    });
-  }, [gender, age, nutrients]);
+  const { selectedLifeStage, selectedAge, selectedNutrients, setSelectedAge } = useStore(
+    (state) => state
+  );
   const thisFood = food as any;
   const allRdis = recommendedDailyIntakes as any[];
 
-  const nutrientRdis: NutriTable[] = generateRdiForFood(thisFood, allRdis);
+  const nutrientRdis: NutritionFactTable[] = generateRdiForFood(thisFood, allRdis);
 
   const groupedNutriTables = Object.entries(
     nutrientRdis.reduce((acc: any, item: any) => {
@@ -83,9 +65,9 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
     nutrientContents,
   }));
   useEffect(() => {
-    const gender = state.selectedGender;
-    const age = state.selectedAge;
-    const nutrients = !state.selectedNutrients.length ? food.nutrients : state.selectedNutrients;
+    const gender = selectedLifeStage;
+    const age = selectedAge;
+    const nutrients = !selectedNutrients.length ? food.nutrients : selectedNutrients;
     const nutrientsWithRdis = nutrients.map((nutrient: any, index: number) => {
       const nutrientWithRdi = nutrientRdis.filter(
         (nutrientRdi) =>
@@ -116,45 +98,43 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
       return factTableRow;
     });
     setRows(nutrientsWithRdis);
-  }, [state.selectedAge, state.selectedGender, state.selectedNutrients]);
+  }, [selectedAge, selectedLifeStage, selectedNutrients]);
 
   useEffect(() => {
-    const { selectedGender } = state;
+    const selectedGender = selectedLifeStage;
     if (selectedGender === "Infants")
-      setAge({
+      setSelectedAge({
         start: 0,
         end: 6,
         ageUnit: "month",
       });
     else if (selectedGender === "Children")
-      setAge({
+      setSelectedAge({
         start: 1,
         end: 3,
         ageUnit: "year",
       });
     else if (selectedGender === "Males")
-      setAge({
+      setSelectedAge({
         start: 9,
         end: 13,
         ageUnit: "year",
       });
     else if (selectedGender === "Females")
-      setAge({
+      setSelectedAge({
         start: 31,
         end: 50,
         ageUnit: "year",
       });
     else if (selectedGender === "Pregnant" || selectedGender === "Lactation")
-      setAge({
+      setSelectedAge({
         start: 14,
         end: 18,
         ageUnit: "year",
       });
-  }, [state.selectedGender]);
+  }, [selectedLifeStage]);
 
-  console.log(state);
-
-  const ageRanges = getAgeRangesForLifeStage(state.selectedGender);
+  const ageRanges = getAgeRangesForLifeStage(selectedLifeStage);
   const dataNutrients = food.nutrients.map(
     (item: { checked: boolean; name: string; unit: string }) => {
       return {
@@ -188,7 +168,7 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
           nutritionTableItems={rows}
           units={[]}
           values={[]}
-          onSelectUnit={setUnit}
+          onSelectUnit={() => console.log(`Feature not available yet.`)}
           onSelectMeasurementItem={function (item: string): void {
             throw new Error("Function not implemented.");
           }}

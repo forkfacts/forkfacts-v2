@@ -28,11 +28,9 @@ const Layout: FC<LayoutProps> = ({ children, sidebarItems }) => {
 
   return (
     <ThemeProvider theme={customTheme}>
-      <Box>
-        <Header handleToggleButton={handleDrawerToggle} />
-      </Box>
+      <CssBaseline />
+      <Header handleToggleButton={handleDrawerToggle} />
       <Box sx={{ display: { sm: "flex", xs: "block" } }}>
-        <CssBaseline />
         <SideBar
           handleDrawerToggle={handleDrawerToggle}
           mobileOpen={mobileOpen}

@@ -33,17 +33,11 @@ export default function Header({ handleToggleButton }: HeaderProps) {
           zIndex: (theme) => theme.zIndex.drawer + 1,
           backgroundColor: ({ palette }) => palette.common.white,
           paddingY: mobile ? theme.spacing(2) : theme.spacing(1),
-          paddingX: theme.spacing(1),
+          paddingX: theme.spacing(0),
         }}
       >
         <Toolbar sx={{ position: "relative" }}>
-          <IconButton
-            size="large"
-            edge="start"
-            aria-label="menu"
-            sx={{ mr: 0.5 }}
-            onClick={handleToggleButton}
-          >
+          <IconButton size="large" edge="start" aria-label="menu" onClick={handleToggleButton}>
             <MenuIcon />
           </IconButton>
           <Typography

@@ -196,7 +196,7 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ nutrition
                       <TableRow
                         key={index2}
                         sx={{
-                          "&:first-child td": {
+                          "&:first-of-type td": {
                             backgroundColor: "none",
                           },
                           "&:nth-of-type(odd)": {

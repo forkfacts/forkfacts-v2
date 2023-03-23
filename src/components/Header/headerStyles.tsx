@@ -24,6 +24,12 @@ export const useStyles = makeStyles(({ typography, spacing, breakpoints, palette
     },
     [breakpoints.down("md")]: {
       fontSize: typography.labelMedium.fontSize,
+      paddingTop: spacing(1),
+      width: spacing(12),
+      height: spacing(5),
+      paddingBottom: spacing(1),
+      paddingLeft: spacing(2),
+      paddingRight: spacing(2),
     },
   },
 }));

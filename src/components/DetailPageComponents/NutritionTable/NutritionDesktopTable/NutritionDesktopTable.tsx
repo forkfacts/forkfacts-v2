@@ -18,8 +18,6 @@ import { NutritionDesktopTableProps } from "@forkfacts/models";
 
 const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ nutritionTableItems }) => {
   const theme = useTheme();
-  const tablet = useMediaQuery(theme.breakpoints.only("lg"));
-  const desktop = useMediaQuery(theme.breakpoints.only("lg"));
   const [collapsedRows, setCollapsedRows] = useState<any>([]);
   const toggleCollapse = (nutrient: any) => {
     if (collapsedRows.includes(nutrient)) {
@@ -107,8 +105,8 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ nutrition
           <TableBody>
             <>
               {nutritionTableItems.map((item, index) => (
-                <>
-                  <TableRow key={index} sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
+                <React.Fragment key={index}>
+                  <TableRow sx={{ "&:last-of-type td, &:last-of-type th": { border: 0 } }}>
                     <TableCell
                       component="th"
                       scope="row"
@@ -257,7 +255,7 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ nutrition
                         </TableCell>
                       </TableRow>
                     ))}
-                </>
+                </React.Fragment>
               ))}
             </>
           </TableBody>

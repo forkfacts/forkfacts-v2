@@ -1,7 +1,9 @@
 import {
   collection,
   compareTableItem,
+  filterItem,
   FoodWithSameName,
+  lifeStageItem,
   MenuItem,
   NutritionTableItem,
   PopularFrequentSearchType,
@@ -49,7 +51,7 @@ export interface DetailsPageScreenProps {
   multipleSelectItems: filterItem[];
   onSelectUnit: Dispatch<SetStateAction<string>>;
   units: string[];
-  nutritionTableItems: NutritionTableItem[];
+  nutritionTableRows: NutritionTableItem[];
   values: filterItem[];
   onSelectedValue: Dispatch<SetStateAction<string[]>>;
   lifeStageItems: Array<lifeStageItem>;

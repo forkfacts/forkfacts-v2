@@ -164,7 +164,7 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
           nutritionFilterItems={dataNutrients}
           nutritionSummaryItems={[]} // todo(h2): Feature not available yet.
           measurementFilterItems={[]} // todo(h2): Feature not available yet.
-          nutritionTableItems={rows}
+          nutritionTableRows={rows}
           units={[]} // todo(h2): Feature not available yet.
           values={[]} // todo(h2): Feature not available yet.
           onSelectUnit={() => console.log(`Feature not available yet.`)}

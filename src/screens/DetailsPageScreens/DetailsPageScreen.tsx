@@ -29,7 +29,7 @@ const DetailsPageScreen: React.FC<DetailsPageScreenProps> = ({
   onSelectMeasurementItem,
   onSelectUnit,
   units,
-  nutritionTableItems,
+  nutritionTableRows,
   values,
   onSelectedValue,
 }) => {
@@ -105,7 +105,7 @@ const DetailsPageScreen: React.FC<DetailsPageScreenProps> = ({
                 nutritionSummaryItems={nutritionSummaryItems}
                 lifeStageItems={lifeStageItems}
                 ageItems={ageItems}
-                nutritionTableItems={nutritionTableItems}
+                nutritionTableItems={nutritionTableRows}
                 nutritionFilterItems={nutritionFilterItems}
                 measurementFilterItems={measurementFilterItems}
                 onSelectMeasurementItem={onSelectMeasurementItem}

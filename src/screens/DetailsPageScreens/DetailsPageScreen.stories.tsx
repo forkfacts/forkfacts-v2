@@ -262,7 +262,7 @@ const ageItems: RdiAge[] = [
     ageUnit: "year",
   },
 ];
-const nutritionTableItems: NutritionTableItem[] = [
+const nutritionTableRows: NutritionTableItem[] = [
   {
     nutrient: "Fats",
     dailyValue: 12.9,
@@ -452,7 +452,7 @@ Desktop.args = {
   nutritionFilterItems,
   nutritionSummaryItems,
   measurementFilterItems: ["Metric", "US"],
-  nutritionTableItems: nutritionTableItems,
+  nutritionTableRows,
   units,
   values: values,
 };
@@ -474,7 +474,7 @@ Mobile.args = {
   nutritionFilterItems,
   nutritionSummaryItems,
   measurementFilterItems: ["Metric", "US"],
-  nutritionTableItems: nutritionTableItems,
+  nutritionTableRows,
   units,
   values: values,
 };
@@ -502,7 +502,7 @@ Tablet.args = {
   nutritionFilterItems,
   nutritionSummaryItems,
   measurementFilterItems: ["Metric", "US"],
-  nutritionTableItems: nutritionTableItems,
+  nutritionTableRows,
   units,
   values: values,
 };

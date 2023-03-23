@@ -84,13 +84,10 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
     nutrientGroup,
     nutrientContents,
   }));
-  console.log(groupedNutriTables);
-
   useEffect(() => {
     const gender = state.selectedGender;
     const age = state.selectedAge;
     const nutrients = !state.selectedNutrients.length ? food.nutrients : state.selectedNutrients;
-    console.log(nutrients);
     const nutrientsWithRdis = nutrients.map((nutrient: any, index: number) => {
       const nutrientWithRdi = nutrientRdis.filter(
         (nutrientRdi) =>

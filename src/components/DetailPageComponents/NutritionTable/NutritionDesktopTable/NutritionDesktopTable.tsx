@@ -158,7 +158,7 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ rows }) =
                               variant="titleMedium"
                               sx={{
                                 color: theme.palette.customGray.main,
-                                fontWeight: theme.typography.fontWeightLight,
+                                fontWeight: theme.typography.fontWeightRegular,
                               }}
                             >
                               {row.nutrientGroup}
@@ -248,7 +248,7 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ rows }) =
                                   fontWeight: theme.typography.fontWeightLight,
                                 }}
                               >
-                                {content?.amount}
+                                {content?.amount} {content?.amountUnit}
                               </Typography>
                             </TableCell>
                             <TableCell align="right" sx={{ borderBottom: "none" }}>
@@ -259,6 +259,7 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ rows }) =
                                   sx={{
                                     color: theme.palette.customGray.main,
                                     fontWeight: theme.typography.fontWeightLight,
+                                    textTransform: "lowercase",
                                   }}
                                 >
                                   {`${Math.abs(content?.rdi?.value)}${content?.rdi?.weight}`}
@@ -270,7 +271,7 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ rows }) =
                     </>
                   );
                 }
-                if (row.nutrientGroup === "") {
+                if (!row.nutrientGroup) {
                   return row.rows.map((innerRow, index) => {
                     return (
                       <>
@@ -306,7 +307,7 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ rows }) =
                                 variant="titleMedium"
                                 sx={{
                                   color: theme.palette.customGray.main,
-                                  fontWeight: theme.typography.fontWeightLight,
+                                  fontWeight: theme.typography.fontWeightRegular,
                                 }}
                               >
                                 {innerRow.nutrient}
@@ -319,7 +320,7 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ rows }) =
                                 variant="titleMedium"
                                 sx={{
                                   color: theme.palette.customGray.main,
-                                  fontWeight: theme.typography.fontWeightLight,
+                                  fontWeight: theme.typography.fontWeightRegular,
                                   pr: "20px",
                                 }}
                               >
@@ -333,7 +334,7 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ rows }) =
                                 variant="titleMedium"
                                 sx={{
                                   color: theme.palette.customGray.main,
-                                  fontWeight: theme.typography.fontWeightLight,
+                                  fontWeight: theme.typography.fontWeightRegular,
                                   pr: "20px",
                                 }}
                               >
@@ -348,7 +349,7 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ rows }) =
                                 variant="titleMedium"
                                 sx={{
                                   color: theme.palette.customGray.main,
-                                  fontWeight: theme.typography.fontWeightLight,
+                                  fontWeight: theme.typography.fontWeightRegular,
                                   textTransform: "lowercase",
                                   pr: "20px",
                                 }}

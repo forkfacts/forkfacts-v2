@@ -81,12 +81,6 @@ export interface NutritionTableRow {
     value?: number | null;
     weight?: string;
   };
-  nutrientContents?: Array<{
-    nutrient?: string;
-    dailyValue?: number;
-    amount?: string;
-    rdi: { value: number; weight: string };
-  }>;
 }
 
 export interface recommendationType {
@@ -178,12 +172,10 @@ export interface SideBarItemProps {
 
 export interface PopularFrequentSearchProps {
   PopularFrequentSearchItems?: Array<PopularFrequentSearchType>;
-  onSelectPopularItem?: (item: PopularFrequentSearchType) => void;
 }
 
 export interface PopularFrequentSearchCategoryProps {
   item: PopularFrequentSearchType;
-  onSelectPopularItem: (item: PopularFrequentSearchType) => void;
 }
 
 export interface NavBarItemProps {
@@ -227,9 +219,8 @@ export interface DetailPageTabsProps {
 export interface DetailsPageTabItemProps {
   item: MenuItem;
   index: number;
-  setSelectedIndex: (item: number) => void;
-  selectedIndex: number;
-  onSelectDetailsPageTabItem: Dispatch<SetStateAction<string>>;
+  selectedTab: string;
+  handleClick: (item: sidebarItem) => void;
 }
 export interface ComparingDetailsTabProps {
   compareTableItems: Array<compareTableItem>;

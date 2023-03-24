@@ -6,12 +6,7 @@ import EmojiFoodBeverageOutlinedIcon from "@mui/icons-material/EmojiFoodBeverage
 import LibraryBooksOutlinedIcon from "@mui/icons-material/LibraryBooksOutlined";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import AutoStoriesOutlinedIcon from "@mui/icons-material/AutoStoriesOutlined";
-import {
-  MenuItem,
-  PopularFrequentSearchProps,
-  PopularFrequentSearchType,
-  recommendationType,
-} from "@forkfacts/models";
+import { MenuItem, PopularFrequentSearchProps, recommendationType } from "@forkfacts/models";
 import { HomeScreen } from "@forkfacts/screens";
 
 export default {
@@ -78,7 +73,7 @@ const recommendations: recommendationType[] = [
   },
 ];
 
-const { PopularFrequentSearchItems, onSelectPopularItem }: PopularFrequentSearchProps = {
+const { PopularFrequentSearchItems }: PopularFrequentSearchProps = {
   PopularFrequentSearchItems: [
     {
       searchImg: "/popular.png",
@@ -153,7 +148,6 @@ const { PopularFrequentSearchItems, onSelectPopularItem }: PopularFrequentSearch
       ],
     },
   ],
-  onSelectPopularItem: (item: PopularFrequentSearchType) => {},
 };
 
 const categoryOptions = [
@@ -203,10 +197,8 @@ Desktop.args = {
   sidebarItems: sidebarItems,
   navbarItems: navbarItems,
   PopularFrequentSearchItems: PopularFrequentSearchItems,
-  onSelectPopularItem: onSelectPopularItem,
   sourceId: "forkfact-v2",
   categoryOptions: categoryOptions,
-  collectionGroupedItems: collectionGroupedItems,
   recommendations: recommendations,
 };
 
@@ -220,9 +212,7 @@ Mobile.parameters = {
 Mobile.args = {
   sidebarItems: sidebarItems,
   categoryOptions: categoryOptions,
-  collectionGroupedItems: collectionGroupedItems,
   PopularFrequentSearchItems: PopularFrequentSearchItems,
-  onSelectPopularItem: onSelectPopularItem,
   sourceId: "forkfact-v2",
   navbarItems: navbarItems,
   recommendations: recommendations,
@@ -238,9 +228,7 @@ Tablet.parameters = {
 Tablet.args = {
   sidebarItems: sidebarItems,
   categoryOptions: categoryOptions,
-  collectionGroupedItems: collectionGroupedItems,
   PopularFrequentSearchItems: PopularFrequentSearchItems,
-  onSelectPopularItem: onSelectPopularItem,
   navbarItems: navbarItems,
   sourceId: "forkfact-v2",
   recommendations: recommendations,

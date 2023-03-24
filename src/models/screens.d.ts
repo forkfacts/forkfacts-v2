@@ -20,9 +20,7 @@ export interface HomeScreenProps {
   sidebarItems: MenuItem[];
   navbarItems: MenuItem[];
   PopularFrequentSearchItems?: PopularFrequentSearchType[];
-  onSelectPopularItem?: (item: PopularFrequentSearchType) => void;
   categoryOptions: SearchCategoryItemType[];
-  collectionGroupedItems?: Array<SearchResultItemCollectionType>;
   sourceId: string;
   recommendations?: Array<recommendationType>;
 }

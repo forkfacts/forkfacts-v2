@@ -2,6 +2,7 @@ const path = require("path");
 
 const ff_nutrition_facts = require("../../data/foundation_food_nutrition_facts.json");
 const sr_legacy_nutrition_facts = require("../../data/sr_legacy_food_nutrition_facts.json");
+
 const recommendedDailyIntakes = require("../../data/rdi.json");
 
 const spaceToDashes = (name: string) => {
@@ -16,11 +17,11 @@ export const createDetailPage = (createPage: any) => {
       foods: ff_nutrition_facts,
       indexFileName: "ff_search_index",
     });
-    /*createNutritionTable({
+    createNutritionTable({
       createPageFunction: createPage,
       foods: sr_legacy_nutrition_facts,
       indexFileName: "sr_search_index",
-    });*/
+    });
   } catch (error: any) {
     throw new Error(error);
   }

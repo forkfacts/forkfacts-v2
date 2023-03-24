@@ -25,7 +25,6 @@ export const PopularFrequentSingleSearch = Template.bind({});
 
 PopularFrequentSingleSearch.args = {
   item: PopularFrequentSearchItems,
-  onSelectPopularItem: (item: PopularFrequentSearchType) => {},
 };
 
 PopularFrequentSingleSearch.storyName = "PopularFrequentSearchCategory";

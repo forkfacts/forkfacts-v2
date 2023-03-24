@@ -5,7 +5,7 @@ import { SEO } from "@forkfacts/components";
 
 import { generateRdiForFood, getAgeRangesForLifeStage } from "@forkfacts/helpers";
 import { Box } from "@mui/material";
-import { lifeStageItems, nutritionSummaryItems, menuItems, tabItems } from "../RealData/realData";
+import { lifeStageItems, menuItems, tabItems } from "../RealData/realData";
 import { useStore } from "../store/store";
 import { NutritionTableRow } from "@forkfacts/models";
 
@@ -39,30 +39,6 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
   const allRdis = recommendedDailyIntakes as any[];
   const nutritionFacts: NutritionFact[] = generateRdiForFood(thisFood, allRdis);
 
-  const nutritionFactsByNutrient = Object.entries(
-    nutritionFacts.reduce((acc: any, nutritionFact: any) => {
-      const nutrient = nutritionFact.nutrient;
-      if (!acc[nutrient.nutrientGroup]) {
-        acc[nutrient.nutrientGroup] = [];
-      }
-      acc[nutrient.nutrientGroup].push({
-        name: nutrient.displayName ? nutrient.displayName : nutrient.name,
-        dailyValue: parseInt(nutritionFact?.percentDaily),
-        amount: nutrient.amount + " " + nutrient.unit,
-        rdi: {
-          value: nutritionFact?.rdi?.amount,
-          weight: nutritionFact?.rdi?.nutrientUnit,
-        },
-      });
-      return acc;
-    }, {})
-  ).map(([nutrientGroup, nutrientContents]) => ({
-    nutrientGroup,
-    nutrientContents,
-  }));
-
-  console.log({ nutritionFactsByNutrient });
-
   useEffect(() => {
     const gender = selectedLifeStage;
     const age = selectedAge;
@@ -93,7 +69,6 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
           value: nutrientWithRdi?.rdi?.amount ? Math.abs(nutrientWithRdi?.rdi?.amount) : undefined,
           weight: nutrientWithRdi?.rdi?.nutrientUnit,
         },
-        nutrientContents: [],
       };
       return factTableRow;
     });
@@ -144,7 +119,6 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
       };
     }
   );
-  console.log({ dataNutrients });
   return (
     <>
       <Box sx={{ p: "8px" }}>

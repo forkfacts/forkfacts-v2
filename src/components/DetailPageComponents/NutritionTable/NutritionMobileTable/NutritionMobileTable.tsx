@@ -26,7 +26,7 @@ const NutritionMobileTable: React.FC<NutritionMobileTableProps> = ({ nutritionTa
 
   return (
     <Box sx={{ mb: theme.spacing(15), background: " #FFFFFF" }}>
-      <Slider {...settings}>
+      {/* <Slider {...settings}>
         {nutritionTableItems.map((item, index) => (
           <Box
             key={index}
@@ -218,7 +218,7 @@ const NutritionMobileTable: React.FC<NutritionMobileTableProps> = ({ nutritionTa
             ) : null}
           </Box>
         ))}
-      </Slider>
+      </Slider> */}
     </Box>
   );
 };

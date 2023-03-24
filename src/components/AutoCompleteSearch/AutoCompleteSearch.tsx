@@ -365,7 +365,7 @@ function AutoCompleteSearch(
                 </ForLoops>
               </Box>
             ) : null}
-            {loading && <CircularProgress color="primary" />}
+            {loading && !query && isOpen && <CircularProgress color="primary" />}
           </Box>
         )}
       </Box>

@@ -1,3 +1,3 @@
 export * from "./ArrayRendering";
 export * from "./HighLight";
-export * from "./utilis";
+export * from "./utils";

@@ -2,21 +2,14 @@ import React, { useEffect, useState } from "react";
 import { PageProps } from "gatsby";
 import { DetailsPageScreen } from "@forkfacts/screens";
 import { SEO } from "@forkfacts/components";
-import rdis from "../../data/rdi.json";
-import { ageItem } from "@forkfacts/models";
 
 import { generateRdiForFood, getAgeRangesForLifeStage } from "@forkfacts/helpers";
 import { Box } from "@mui/material";
-import {
-  allAges,
-  lifeStageItems,
-  nutritionSummaryItems,
-  sidebarItems,
-  tabItems,
-} from "../RealData/realData";
+import { lifeStageItems, menuItems, tabItems } from "../RealData/realData";
 import { useStore } from "../store/store";
+import { NutritionTableRow } from "@forkfacts/models";
 
-interface NutriTable {
+export interface NutritionFact {
   nutrient: {
     amount: number;
     name: string;
@@ -37,58 +30,24 @@ interface NutriTable {
 }
 
 const DynamicPageTemplate = ({ pageContext }: PageProps) => {
-  const { food } = pageContext as any;
+  const { food, recommendedDailyIntakes } = pageContext as any;
   const [rows, setRows] = useState<any[]>([]);
-  const { gender, age, nutrients, setAge } = useStore((state) => state);
-  const [_, setUnit] = React.useState("Cups");
-  const [state, setState] = useState<{
-    selectedGender: string;
-    selectedAge: ageItem;
-    selectedNutrients: any[];
-  }>({
-    selectedGender: gender,
-    selectedAge: allAges.filter((age) => age.start === 31)[0],
-    selectedNutrients: [],
-  });
-
-  useEffect(() => {
-    setState({
-      selectedGender: gender,
-      selectedAge: age,
-      selectedNutrients: nutrients,
-    });
-  }, [gender, age, nutrients]);
+  const { selectedLifeStage, selectedAge, selectedNutrients, setSelectedAge } = useStore(
+    (state) => state
+  );
   const thisFood = food as any;
-  const allRdis = rdis as any[];
+  const allRdis = recommendedDailyIntakes as any[];
+  const nutritionFacts: NutritionFact[] = generateRdiForFood(thisFood, allRdis);
 
-  const nutrientRdis: NutriTable[] = generateRdiForFood(thisFood, allRdis);
-
-  const groupedNutriTables = Object.entries(
-    nutrientRdis.reduce((acc: any, item: any) => {
-      if (!acc[item.nutrient.nutrientGroup]) {
-        acc[item.nutrient.nutrientGroup] = [];
-      }
-      acc[item.nutrient.nutrientGroup].push({
-        name: item?.nutrient?.name,
-        dailyValue: parseInt(item?.percentDaily),
-        amount: item?.nutrient?.amount + " " + item?.nutrient?.unit,
-        rdi: {
-          value: item?.rdi?.amount,
-          weight: item?.rdi?.nutrientUnit,
-        },
-      });
-      return acc;
-    }, {})
-  ).map(([nutrientGroup, nutrientContents]) => ({
-    nutrientGroup,
-    nutrientContents,
-  }));
   useEffect(() => {
-    const gender = state.selectedGender;
-    const age = state.selectedAge;
-    const nutrients = !state.selectedNutrients.length ? food.nutrients : state.selectedNutrients;
+    const gender = selectedLifeStage;
+    const age = selectedAge;
+    const nutrients = !selectedNutrients.length ? food.nutrients : selectedNutrients;
+    const getValueRounded = (amount: number) => {
+      return Math.round(amount * 100) / 100;
+    };
     const nutrientsWithRdis = nutrients.map((nutrient: any, index: number) => {
-      const nutrientWithRdi = nutrientRdis.filter(
+      const nutrientWithRdi = nutritionFacts.filter(
         (nutrientRdi) =>
           nutrientRdi.nutrient.name.toLowerCase() === nutrient.name.toLowerCase() &&
           nutrientRdi.nutrient.unit === nutrient.unit &&
@@ -97,12 +56,10 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
           age?.ageUnit?.toLowerCase() === nutrientRdi?.rdi?.ageUnit &&
           gender.toLowerCase() === nutrientRdi?.rdi?.applicableFor.toLowerCase()
       )[0];
-      const getValueRounded = (amount: number) => {
-        return Math.round(amount * 100) / 100;
-      };
-      const factTableRow: any = {
-        index: index,
+      const factTableRow: NutritionTableRow = {
+        //index: index,
         nutrient: nutrient.name,
+        nutrientGroup: nutrient.nutrientGroup,
         amount: nutrient?.amount,
         amountUnit: nutrient?.unit?.toLowerCase(),
         dailyValue: nutrientWithRdi?.percentDaily
@@ -112,50 +69,47 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
           value: nutrientWithRdi?.rdi?.amount ? Math.abs(nutrientWithRdi?.rdi?.amount) : undefined,
           weight: nutrientWithRdi?.rdi?.nutrientUnit,
         },
-        nutrientContents: [],
       };
       return factTableRow;
     });
     setRows(nutrientsWithRdis);
-  }, [state.selectedAge, state.selectedGender, state.selectedNutrients]);
+  }, [selectedAge, selectedLifeStage, selectedNutrients]);
 
   useEffect(() => {
-    const { selectedGender } = state;
+    const selectedGender = selectedLifeStage;
     if (selectedGender === "Infants")
-      setAge({
+      setSelectedAge({
         start: 0,
         end: 6,
         ageUnit: "month",
       });
     else if (selectedGender === "Children")
-      setAge({
+      setSelectedAge({
         start: 1,
         end: 3,
         ageUnit: "year",
       });
     else if (selectedGender === "Males")
-      setAge({
+      setSelectedAge({
         start: 9,
         end: 13,
         ageUnit: "year",
       });
     else if (selectedGender === "Females")
-      setAge({
+      setSelectedAge({
         start: 31,
         end: 50,
         ageUnit: "year",
       });
     else if (selectedGender === "Pregnant" || selectedGender === "Lactation")
-      setAge({
+      setSelectedAge({
         start: 14,
         end: 18,
         ageUnit: "year",
       });
-  }, [state.selectedGender]);
+  }, [selectedLifeStage]);
 
-  console.log(state);
-
-  const ageRanges = getAgeRangesForLifeStage(state.selectedGender);
+  const ageRanges = getAgeRangesForLifeStage(selectedLifeStage);
   const dataNutrients = food.nutrients.map(
     (item: { checked: boolean; name: string; unit: string }) => {
       return {
@@ -169,9 +123,9 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
     <>
       <Box sx={{ p: "8px" }}>
         <DetailsPageScreen
-          sidebarItems={sidebarItems}
-          DetailsPageTitlesItems={[]}
-          detailsHeaderValues={{
+          menuItems={menuItems}
+          foodsWithSameNames={[]}
+          foodOverview={{
             name: food.name,
             category: food.category,
           }}
@@ -184,18 +138,18 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
           ageItems={ageRanges}
           lifeStageItems={lifeStageItems}
           nutritionFilterItems={dataNutrients}
-          nutritionSummaryItems={nutritionSummaryItems}
-          measurementFilterItems={[]}
-          nutritionTableItems={rows}
-          units={[]}
-          values={[]}
-          onSelectUnit={setUnit}
+          nutritionSummaryItems={[]} // todo(h2): Feature not available yet.
+          measurementFilterItems={[]} // todo(h2): Feature not available yet.
+          nutritionTableRows={rows}
+          units={[]} // todo(h2): Feature not available yet.
+          values={[]} // todo(h2): Feature not available yet.
+          onSelectUnit={() => console.log(`Feature not available yet.`)}
           onSelectMeasurementItem={function (item: string): void {
-            throw new Error("Function not implemented.");
+            throw new Error(`Feature not available yet.`);
           }}
-          multipleSelectItems={[]}
+          multipleSelectItems={[]} // todo(h2): Feature not available yet.
           onSelectedValue={function (value: React.SetStateAction<string[]>): void {
-            throw new Error("Function not implemented.");
+            throw new Error(`Feature not available yet.`);
           }}
         />
       </Box>

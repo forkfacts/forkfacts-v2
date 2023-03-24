@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import { AllFilters } from "@forkfacts/components";
-import { ageItem, lifeStageItem, SearchNutritionFilterItem } from "@forkfacts/models";
+import { RdiAge, lifeStageItem, SelectedNutrient } from "@forkfacts/models";
 import { Baby, Kids, Lactation, Male, PregnantWoman, Woman } from "@forkfacts/icons";
 
 export default {
@@ -42,38 +42,38 @@ const lifeStageItems: lifeStageItem[] = [
   },
 ];
 
-const ageItems: ageItem[] = [
+const ageItems: RdiAge[] = [
   {
     start: 9,
     end: 13,
-    unit: "years",
+    ageUnit: "year",
   },
   {
     start: 14,
     end: 18,
-    unit: "years",
+    ageUnit: "year",
   },
   {
     start: 19,
     end: 30,
-    unit: "years",
+    ageUnit: "year",
   },
   {
     start: 31,
     end: 50,
-    unit: "years",
+    ageUnit: "year",
   },
   {
     start: 51,
     end: 70,
-    unit: "years",
+    ageUnit: "year",
   },
   {
-    end: 70,
-    unit: "years",
+    start: 70,
+    ageUnit: "year",
   },
 ];
-const nutritionFilterItems: SearchNutritionFilterItem[] = [
+const nutritionFilterItems: SelectedNutrient[] = [
   {
     name: "Vitamin",
     unit: "mg",
@@ -103,11 +103,11 @@ const nutritionFilterItems: SearchNutritionFilterItem[] = [
 
 const Template: ComponentStory<typeof AllFilters> = (args) => {
   const [selectedNutritionFilterItems, setSelectedNutritionFilterItems] = useState<
-    SearchNutritionFilterItem[]
+    SelectedNutrient[]
   >([]);
-  const [selectedAge, setSelectedAge] = useState<ageItem>({} as ageItem);
+  const [selectedAge, setSelectedAge] = useState<RdiAge>({} as RdiAge);
   const [selectedLifeStage, setLifeStage] = useState("");
-  const handleSelectedAge = (value: ageItem) => {
+  const handleSelectedAge = (value: RdiAge) => {
     setSelectedAge(value);
   };
 
@@ -115,7 +115,7 @@ const Template: ComponentStory<typeof AllFilters> = (args) => {
     setLifeStage(value);
   };
 
-  const handleSelectNutritionFilterItem = (value: SearchNutritionFilterItem[] | any[]) => {
+  const handleSelectNutritionFilterItem = (value: SelectedNutrient[] | any[]) => {
     setSelectedNutritionFilterItems(value);
   };
   return (

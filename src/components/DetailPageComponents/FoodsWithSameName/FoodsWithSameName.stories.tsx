@@ -1,24 +1,24 @@
 import React, { useState } from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
-import { DetailsPageTitles } from "@forkfacts/components";
-import { DetailsPageTitlesItem } from "@forkfacts/models";
+import { FoodsWithSameName } from "@forkfacts/components";
+import { FoodWithSameName } from "@forkfacts/models";
 export default {
-  title: "Components/DetailsPageComponents/DetailsPageTitles",
-  component: DetailsPageTitles,
+  title: "Components/DetailPageComponents/DetailsPageTitles",
+  component: FoodsWithSameName,
   parameters: {
     viewport: {
       viewports: INITIAL_VIEWPORTS,
     },
   },
-} as ComponentMeta<typeof DetailsPageTitles>;
+} as ComponentMeta<typeof FoodsWithSameName>;
 
-const Template: ComponentStory<typeof DetailsPageTitles> = (args) => {
+const Template: ComponentStory<typeof FoodsWithSameName> = (args) => {
   const [SelectedTitle, setSelectedTitle] = useState("");
-  return <DetailsPageTitles {...args} onSelectDetailsPageTitleItem={setSelectedTitle} />;
+  return <FoodsWithSameName {...args} onSelectFoodWithSameName={setSelectedTitle} />;
 };
 
-const DetailsPageTitlesItems: DetailsPageTitlesItem[] = [
+const DetailsPageTitlesItems: FoodWithSameName[] = [
   {
     title: "Banana, overripe, raw",
   },
@@ -36,13 +36,13 @@ const DetailsPageTitlesItems: DetailsPageTitlesItem[] = [
 export const Desktop = Template.bind({});
 
 Desktop.args = {
-  DetailsPageTitlesItems: DetailsPageTitlesItems,
+  foodsWithSameNames: DetailsPageTitlesItems,
 };
 
 export const Mobile = Template.bind({});
 
 Mobile.args = {
-  DetailsPageTitlesItems: DetailsPageTitlesItems,
+  foodsWithSameNames: DetailsPageTitlesItems,
 };
 
 Mobile.parameters = {
@@ -54,7 +54,7 @@ Mobile.parameters = {
 export const Tablet = Template.bind({});
 
 Tablet.args = {
-  DetailsPageTitlesItems: DetailsPageTitlesItems,
+  foodsWithSameNames: DetailsPageTitlesItems,
 };
 
 Tablet.parameters = {

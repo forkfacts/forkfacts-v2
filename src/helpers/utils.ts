@@ -1,5 +1,7 @@
 // import fs from "fs";
 
+import { NutritionFact } from "../templates/DetailsPage";
+
 const mappings: any = require("../../data/usda_rdi_nutrient_mapping.json");
 import { allAges, lifeStageItems } from "../RealData/realData";
 
@@ -48,15 +50,15 @@ export const getNutrientRdiPercent = (nutrient: any, rdi: any): number | undefin
   const multiplier = mappingsByNutrient.get(nutrient.name).usdaToRdiUnitMultiplier;
   return ((nutrient.amount * multiplier) / rdi.amount) * 100;
 };
-export const generateRdiForFood = (food: any, rdis: any[]): any[] => {
+export const generateRdiForFood = (food: any, rdis: any[]): NutritionFact[] => {
   return food.nutrients
     .map((nutrient: any) => {
       const mappedRdi = mappingsByNutrient.get(nutrient.name);
       if (!mappedRdi) return { nutrient };
-      const nutrientRdisForGenderAge = rdis.filter(
+      const rdisForLifeStageAndAge = rdis.filter(
         (rdi) => rdi.nutrient === mappedRdi.rdiNutrientName
       );
-      return nutrientRdisForGenderAge.map((rdi) => {
+      return rdisForLifeStageAndAge.map((rdi) => {
         const percentDaily = getNutrientRdiPercent(nutrient, rdi);
         return { nutrient, rdi, percentDaily };
       });

@@ -13,14 +13,14 @@ import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import AutoStoriesOutlinedIcon from "@mui/icons-material/AutoStoriesOutlined";
 import { DetailsPageScreen } from "@forkfacts/screens";
 import {
-  DetailsPageTitlesItem,
-  ageItem,
+  FoodWithSameName,
+  RdiAge,
   compareTableItem,
   filterItem,
   lifeStageItem,
-  SearchNutritionFilterItem,
-  sidebarItem,
-  NutritionTableItem,
+  SelectedNutrient,
+  MenuItem,
+  NutritionTableRow,
 } from "@forkfacts/models";
 export default {
   title: "Screens/DetailsPageScreen",
@@ -32,7 +32,7 @@ export default {
   },
 } as ComponentMeta<typeof DetailsPageScreen>;
 
-const sidebarItems: sidebarItem[] = [
+const menuItems: MenuItem[] = [
   { label: "Food", Icon: EggAltOutlinedIcon, link: "/food" },
   { label: "Recipes", Icon: EmojiFoodBeverageOutlinedIcon, link: "/recipe" },
   { label: "Library", Icon: LibraryBooksOutlinedIcon, link: "/library" },
@@ -40,7 +40,7 @@ const sidebarItems: sidebarItem[] = [
   { label: "Grocery List", Icon: ShoppingCartOutlinedIcon, link: "/grocery-list" },
 ];
 
-const tabItems = [
+const tabs = [
   { label: "Nutrition", Icon: FastfoodOutlinedIcon, link: "/food" },
   { label: "Recipes", Icon: EmojiFoodBeverageOutlinedIcon, link: "/recipe" },
   { label: "Emissions", Icon: SmokingRoomsOutlinedIcon, link: "/library" },
@@ -48,7 +48,7 @@ const tabItems = [
   { label: "Compare foods", Icon: CompareArrowsOutlinedIcon, link: "/recipe" },
 ];
 
-const DetailsPageTitlesItems: DetailsPageTitlesItem[] = [
+const foodsWithSameNames: FoodWithSameName[] = [
   {
     title: "Banana, overripe, raw",
   },
@@ -63,7 +63,7 @@ const DetailsPageTitlesItems: DetailsPageTitlesItem[] = [
   },
 ];
 
-const detailsHeaderValues = {
+const foodOverview = {
   img: "/banana.svg",
   name: "Banana, overripe, raw",
   category: "Fruits and Fruit Juices",
@@ -168,26 +168,15 @@ const nutritionSummaryItems = [
 const Template: ComponentStory<typeof DetailsPageScreen> = (args) => {
   const [_, setSelectedNutrients] = useState<string[]>([]);
   const [selectLifeStage, setSelectedLifeStage] = useState("");
-  const [selectAge, setSelectedAge] = useState<ageItem>({} as ageItem);
-  const [selectSearchNutrition, seSelectedSearchNutrition] = useState(
-    [] as SearchNutritionFilterItem[]
-  );
+  const [selectAge, setSelectedAge] = useState<RdiAge>({} as RdiAge);
+  const [selectSearchNutrition, seSelectedSearchNutrition] = useState([] as SelectedNutrient[]);
   const [unit, setUnit] = React.useState("Cups");
-  return (
-    <DetailsPageScreen
-      {...args}
-      getSelectedNutrients={setSelectedNutrients}
-      onSelectLifeStageItem={setSelectedLifeStage}
-      onSelectAgeItem={setSelectedAge}
-      onSelectNutritionFilterItem={seSelectedSearchNutrition}
-      onSelectUnit={setUnit}
-    />
-  );
+  return <DetailsPageScreen {...args} onSelectUnit={setUnit} />;
 };
 
 const units = ["Plates", "Cups", "Teaspoon"];
 
-const nutritionFilterItems: SearchNutritionFilterItem[] = [
+const nutritionFilterItems: SelectedNutrient[] = [
   {
     name: "Vitamin",
     unit: "mg",
@@ -242,38 +231,38 @@ const lifeStageItems: lifeStageItem[] = [
   },
 ];
 
-const ageItems: ageItem[] = [
+const ageItems: RdiAge[] = [
   {
     start: 9,
     end: 13,
-    unit: "years",
+    ageUnit: "year",
   },
   {
     start: 14,
     end: 18,
-    unit: "years",
+    ageUnit: "year",
   },
   {
     start: 19,
     end: 30,
-    unit: "years",
+    ageUnit: "year",
   },
   {
     start: 31,
     end: 50,
-    unit: "years",
+    ageUnit: "year",
   },
   {
     start: 51,
     end: 70,
-    unit: "years",
+    ageUnit: "year",
   },
   {
-    end: 70,
-    unit: "years",
+    start: 70,
+    ageUnit: "year",
   },
 ];
-const nutritionTableItems: NutritionTableItem[] = [
+const nutritionTableRows: NutritionTableRow[] = [
   {
     nutrient: "Fats",
     dailyValue: 12.9,
@@ -449,10 +438,10 @@ const nutritionTableItems: NutritionTableItem[] = [
 export const Desktop = Template.bind({});
 
 Desktop.args = {
-  sidebarItems,
-  DetailsPageTitlesItems: DetailsPageTitlesItems,
-  detailsHeaderValues: detailsHeaderValues,
-  tabItems: tabItems,
+  menuItems: menuItems,
+  foodsWithSameNames,
+  foodOverview,
+  tabItems: tabs,
   compareTableItems: compareTableItemRows,
   compareTableDetails: {
     name: "Comparing Greens",
@@ -462,11 +451,8 @@ Desktop.args = {
   lifeStageItems,
   nutritionFilterItems,
   nutritionSummaryItems,
-  onSelectFilterItems: (item: string[]) => {
-    console.log(item);
-  },
   measurementFilterItems: ["Metric", "US"],
-  nutritionTableItems: nutritionTableItems,
+  nutritionTableRows,
   units,
   values: values,
 };
@@ -474,10 +460,10 @@ Desktop.args = {
 export const Mobile = Template.bind({});
 
 Mobile.args = {
-  sidebarItems,
-  DetailsPageTitlesItems: DetailsPageTitlesItems,
-  detailsHeaderValues: detailsHeaderValues,
-  tabItems: tabItems,
+  menuItems: menuItems,
+  foodsWithSameNames,
+  foodOverview,
+  tabItems: tabs,
   compareTableItems: compareTableItemRows,
   compareTableDetails: {
     name: "Comparing Greens",
@@ -487,11 +473,8 @@ Mobile.args = {
   lifeStageItems,
   nutritionFilterItems,
   nutritionSummaryItems,
-  onSelectFilterItems: (item: string[]) => {
-    console.log(item);
-  },
   measurementFilterItems: ["Metric", "US"],
-  nutritionTableItems: nutritionTableItems,
+  nutritionTableRows,
   units,
   values: values,
 };
@@ -505,10 +488,10 @@ Mobile.parameters = {
 export const Tablet = Template.bind({});
 
 Tablet.args = {
-  sidebarItems,
-  DetailsPageTitlesItems: DetailsPageTitlesItems,
-  detailsHeaderValues: detailsHeaderValues,
-  tabItems: tabItems,
+  menuItems: menuItems,
+  foodsWithSameNames: foodsWithSameNames,
+  foodOverview,
+  tabItems: tabs,
   compareTableItems: compareTableItemRows,
   compareTableDetails: {
     name: "Comparing Greens",
@@ -518,11 +501,8 @@ Tablet.args = {
   lifeStageItems,
   nutritionFilterItems,
   nutritionSummaryItems,
-  onSelectFilterItems: (item: string[]) => {
-    console.log(item);
-  },
   measurementFilterItems: ["Metric", "US"],
-  nutritionTableItems: nutritionTableItems,
+  nutritionTableRows,
   units,
   values: values,
 };

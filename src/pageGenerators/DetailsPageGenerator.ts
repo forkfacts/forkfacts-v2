@@ -3,12 +3,11 @@ const path = require("path");
 const ff_nutrition_facts = require("../../data/foundation_food_nutrition_facts.json");
 const sr_legacy_nutrition_facts = require("../../data/sr_legacy_food_nutrition_facts.json");
 
+const recommendedDailyIntakes = require("../../data/rdi.json");
+
 const spaceToDashes = (name: string) => {
-  const pathname = name
-    .toLowerCase()
-    .trim()
-    .replace(/[^\w]+/g, "-");
-  return pathname.endsWith("-") ? pathname.substr(0, pathname.length - 1) : pathname;
+  const pathname = name.toLowerCase().trim().replace(/\W+/g, "-");
+  return pathname.endsWith("-") ? pathname.slice(0, pathname.length - 1) : pathname;
 };
 
 export const createDetailPage = (createPage: any) => {
@@ -31,7 +30,9 @@ export const createDetailPage = (createPage: any) => {
 const createNutritionTable = ({ createPageFunction, foods, indexFileName }: any) => {
   let ffSearchIndex: any = [];
   const template = path.resolve("src/templates/DetailsPage.tsx");
-  foods.forEach((food: any) => {
+  // todo(h2): create pages for all foods
+  foods.slice(0, 10).forEach((food: any) => {
+    console.log({ ...food });
     if (food.name) {
       const pagePath = spaceToDashes(food["name"].toString());
       const seo: any = {
@@ -45,6 +46,7 @@ const createNutritionTable = ({ createPageFunction, foods, indexFileName }: any)
         context: {
           food,
           seo,
+          recommendedDailyIntakes,
         },
       });
       ffSearchIndex.push({

@@ -9,9 +9,9 @@ import LibraryBooksOutlinedIcon from "@mui/icons-material/LibraryBooksOutlined";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import AutoStoriesOutlinedIcon from "@mui/icons-material/AutoStoriesOutlined";
 
-import { ageItem, lifeStageItem, sidebarItem, NutritionTableItem } from "@forkfacts/models";
+import { lifeStageItem, MenuItem } from "@forkfacts/models";
 
-export const sidebarItems: sidebarItem[] = [
+export const menuItems: MenuItem[] = [
   { label: "Food", Icon: EggAltOutlinedIcon, link: "/food" },
   { label: "Recipes", Icon: EmojiFoodBeverageOutlinedIcon, link: "/recipe" },
   { label: "Library", Icon: LibraryBooksOutlinedIcon, link: "/library" },

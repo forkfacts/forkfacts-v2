@@ -3,16 +3,11 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { Baby, Kids, Lactation, Male, PregnantWoman, Woman } from "@forkfacts/icons";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import { NutritionDetailsTab } from "@forkfacts/components";
-import {
-  ageItem,
-  NutritionTableItem,
-  lifeStageItem,
-  SearchNutritionFilterItem,
-} from "@forkfacts/models";
+import { RdiAge, NutritionTableRow, lifeStageItem, SelectedNutrient } from "@forkfacts/models";
 import { Box } from "@mui/material";
 
 export default {
-  title: "Components/DetailsPageComponents/NutritionDetailsTab",
+  title: "Components/DetailPageComponents/NutritionDetailsTab",
   component: NutritionDetailsTab,
   parameters: {
     viewport: {
@@ -55,39 +50,39 @@ const lifeStageItems: lifeStageItem[] = [
     icon: Lactation,
   },
 ];
-const ageItems: ageItem[] = [
+const ageItems: RdiAge[] = [
   {
     start: 9,
     end: 13,
-    ageUnit: "years",
+    ageUnit: "year",
   },
   {
     start: 14,
     end: 18,
-    ageUnit: "years",
+    ageUnit: "year",
   },
   {
     start: 19,
     end: 30,
-    ageUnit: "years",
+    ageUnit: "year",
   },
   {
     start: 31,
     end: 50,
-    ageUnit: "years",
+    ageUnit: "year",
   },
   {
     start: 51,
     end: 70,
-    ageUnit: "years",
+    ageUnit: "year",
   },
   {
-    end: 70,
-    ageUnit: "years",
+    start: 70,
+    ageUnit: "year",
   },
 ];
 
-const nutritionFilterItems: SearchNutritionFilterItem[] = [
+const nutritionFilterItems: SelectedNutrient[] = [
   {
     name: "Vitamin",
     unit: "mg",
@@ -117,9 +112,10 @@ const nutritionFilterItems: SearchNutritionFilterItem[] = [
 
 const units = ["Plates", "Cups", "Teaspoon"];
 
-const nutritionTableItems: NutritionTableItem[] = [
+const nutritionTableItems: NutritionTableRow[] = [
   {
     nutrient: "Fats",
+    nutrientGroup: "Fats",
     dailyValue: 12.9,
     amount: 30,
     amountUnit: "g",
@@ -162,6 +158,7 @@ const nutritionTableItems: NutritionTableItem[] = [
   },
   {
     nutrient: "Carbohydrates",
+    nutrientGroup: "Carbohydrates",
     dailyValue: 12.9,
     amount: 30,
     amountUnit: "g",
@@ -183,6 +180,7 @@ const nutritionTableItems: NutritionTableItem[] = [
   },
   {
     nutrient: "Minerals",
+    nutrientGroup: "Minerals",
     dailyValue: null,
     amountUnit: "g",
     rdi: { value: null, weight: "g" },
@@ -245,6 +243,7 @@ const nutritionTableItems: NutritionTableItem[] = [
   },
   {
     nutrient: "Vitamins",
+    nutrientGroup: "Vitamins",
     dailyValue: null,
     amountUnit: "g",
     rdi: { value: null, weight: "g" },
@@ -283,6 +282,7 @@ const nutritionTableItems: NutritionTableItem[] = [
   },
   {
     nutrient: "Protein",
+    nutrientGroup: "Proteins",
     dailyValue: 12.9,
     amount: 30,
     amountUnit: "g",
@@ -292,9 +292,7 @@ const nutritionTableItems: NutritionTableItem[] = [
 ];
 
 const Template: ComponentStory<typeof NutritionDetailsTab> = (args) => {
-  const [selectSearchNutrition, seSelectedSearchNutrition] = useState(
-    [] as SearchNutritionFilterItem[]
-  );
+  const [selectSearchNutrition, seSelectedSearchNutrition] = useState([] as SelectedNutrient[]);
   const [unit, setUnit] = React.useState("Cups");
   return (
     <Box
@@ -305,7 +303,7 @@ const Template: ComponentStory<typeof NutritionDetailsTab> = (args) => {
     >
       <NutritionDetailsTab
         {...args}
-        onSelectNutritionFilterItem={seSelectedSearchNutrition}
+        //onSelectNutritionFilterItem={seSelectedSearchNutrition} // todo(h2): not sure why it is broken
         onSelectUnit={setUnit}
       />
     </Box>

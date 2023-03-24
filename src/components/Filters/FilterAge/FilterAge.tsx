@@ -8,7 +8,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import RadioButtonCheckedIcon from "@mui/icons-material/RadioButtonChecked";
-import { AgeItemsProps, ageItem } from "@forkfacts/models";
+import { AgeItemsProps, RdiAge } from "@forkfacts/models";
 import { ForLoops } from "@forkfacts/helpers";
 import { withDropdown, withoutDropdown } from "./filterAgeStyles";
 import { useStore } from "../../../store/store";
@@ -17,12 +17,14 @@ const FilterAge: React.FC<AgeItemsProps> = ({ ageItems, isDropdown, margin = 0 }
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.down("md"));
   const ref = useRef<HTMLDivElement>(null);
-  const { age, setAge } = useStore((state) => state);
-  const ageString = age?.end ? `${age.start}-${age.end} ${age.ageUnit}` : `>70 years`;
+  const { selectedAge, setSelectedAge } = useStore((state) => state);
+  const ageString = selectedAge?.end
+    ? `${selectedAge.start}-${selectedAge.end} ${selectedAge.ageUnit}`
+    : `>70 years`;
   const [selectedItem, setSelectedItem] = useState(ageString);
   const [open, setOpen] = useState(false);
 
-  const handleSelectAge = (item: ageItem) => {
+  const handleSelectAge = (item: RdiAge) => {
     let ageString = "";
     if (!item.end) {
       ageString = `>70 years`;
@@ -34,7 +36,7 @@ const FilterAge: React.FC<AgeItemsProps> = ({ ageItems, isDropdown, margin = 0 }
       end: item.end,
       ageUnit: "year",
     };
-    setAge(newAge);
+    setSelectedAge(newAge);
     setSelectedItem(ageString);
     setOpen(false);
   };
@@ -156,7 +158,8 @@ const FilterAge: React.FC<AgeItemsProps> = ({ ageItems, isDropdown, margin = 0 }
                       icon={<RadioButtonUncheckedIcon />}
                       checkedIcon={<RadioButtonCheckedIcon />}
                       checked={
-                        (age.start === item.start && age.end == item.end) || age.start > 70
+                        (selectedAge.start === item.start && selectedAge.end == item.end) ||
+                        selectedAge.start > 70
                           ? true
                           : false
                       }

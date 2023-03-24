@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Box, useMediaQuery, useTheme } from "@mui/material";
 import {
-  Layout,
   AutoCompleteSearch,
+  Layout,
   NavBar,
   PopularFrequentSearchCategories,
 } from "@forkfacts/components";
@@ -26,7 +26,7 @@ export default function HomeScreen({
 
   return (
     <>
-      <Layout sidebarItems={sidebarItems}>
+      <Layout menuItems={sidebarItems}>
         <Box className={classes.desktopScreenWrapper}>
           <Box
             component="img"

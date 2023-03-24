@@ -3,13 +3,13 @@ import Checkbox from "@mui/material/Checkbox";
 import { Box, Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
 import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
 import RadioButtonCheckedIcon from "@mui/icons-material/RadioButtonChecked";
-import { DetailsPageTitlesProps } from "@forkfacts/models";
+import { FoodsWithSameNameProps } from "@forkfacts/models";
 import { ForLoops } from "@forkfacts/helpers";
 import { ViewMoreButton } from "@forkfacts/components";
 
-const DetailsPageTitles: React.FC<DetailsPageTitlesProps> = ({
-  DetailsPageTitlesItems,
-  onSelectDetailsPageTitleItem,
+const FoodsWithSameName: React.FC<FoodsWithSameNameProps> = ({
+  foodsWithSameNames,
+  onSelectFoodWithSameName,
 }) => {
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.down("md"));
@@ -17,7 +17,7 @@ const DetailsPageTitles: React.FC<DetailsPageTitlesProps> = ({
 
   const handleDetailsPageTitlesItem = (item: string, index: number) => {
     setSelectedAgeIndex(index);
-    onSelectDetailsPageTitleItem(item);
+    onSelectFoodWithSameName(item);
   };
 
   return (
@@ -33,7 +33,7 @@ const DetailsPageTitles: React.FC<DetailsPageTitlesProps> = ({
         gap={1}
         alignItems={mobile ? "flex-start" : "center"}
       >
-        <ForLoops each={DetailsPageTitlesItems}>
+        <ForLoops each={foodsWithSameNames}>
           {(item, index) => (
             <Grid item key={index} sx={{ mt: mobile ? theme.spacing(-2) : 0 }}>
               <Box
@@ -80,4 +80,4 @@ const DetailsPageTitles: React.FC<DetailsPageTitlesProps> = ({
   );
 };
 
-export default DetailsPageTitles;
+export default FoodsWithSameName;

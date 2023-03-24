@@ -6,7 +6,7 @@ import { compareTableItem, filterItem } from "@forkfacts/models";
 import { Box } from "@mui/material";
 
 export default {
-  title: "Components/DetailsPageComponents/ComparingDetailsTab",
+  title: "Components/DetailPageComponents/ComparingDetailsTab",
   component: ComparingDetailsTab,
   parameters: {
     viewport: {

@@ -2,7 +2,7 @@ import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { SideBarItem } from "@forkfacts/components";
 import EggAltOutlinedIcon from "@mui/icons-material/EggAltOutlined";
-import { sidebarItem } from "@forkfacts/models";
+import { MenuItem } from "@forkfacts/models";
 
 export default {
   title: "Components/SideBar",
@@ -21,7 +21,7 @@ SelectedSideBarSingleItem.args = {
   },
   selectedIndex: 0,
   index: 0,
-  handleSelectedIndex: (index: number = 0, item: sidebarItem) => {},
+  handleSelectedIndex: (index: number = 0, item: MenuItem) => {},
 };
 
 SelectedSideBarSingleItem.storyName = "SelectedSideBarSingleItem";
@@ -36,7 +36,7 @@ UnSelectedSideBarSingleItem.args = {
   },
   selectedIndex: 1,
   index: 0,
-  handleSelectedIndex: (index: number = 0, item: sidebarItem) => {},
+  handleSelectedIndex: (index: number = 0, item: MenuItem) => {},
 };
 
 UnSelectedSideBarSingleItem.storyName = "UnSelectedSideBarSingleItem";

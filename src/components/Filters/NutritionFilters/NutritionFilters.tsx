@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Box, useMediaQuery, useTheme } from "@mui/material";
 import "react-multi-carousel/lib/styles.css";
 import { FilterAge, SearchNutritionFilter, LifeStage, AllFilters } from "@forkfacts/components";
-import { NutritionFilterProps, SearchNutritionFilterItem } from "@forkfacts/models";
+import { NutritionFilterProps, SelectedNutrient } from "@forkfacts/models";
 
 const NutritionFilters: React.FC<NutritionFilterProps> = ({
   lifeStageItems,
@@ -13,7 +13,7 @@ const NutritionFilters: React.FC<NutritionFilterProps> = ({
   const mobile = useMediaQuery(theme.breakpoints.down("sm"));
   const tablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
   const [selectedNutritionFilterItems, setSelectedNutritionFilterItems] = useState<
-    SearchNutritionFilterItem[]
+    SelectedNutrient[]
   >([]);
 
   return (

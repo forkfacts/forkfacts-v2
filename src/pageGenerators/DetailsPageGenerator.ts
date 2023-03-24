@@ -30,9 +30,7 @@ export const createDetailPage = (createPage: any) => {
 const createNutritionTable = ({ createPageFunction, foods, indexFileName }: any) => {
   let ffSearchIndex: any = [];
   const template = path.resolve("src/templates/DetailsPage.tsx");
-  // todo(h2): create pages for all foods
-  foods.slice(0, 10).forEach((food: any) => {
-    console.log({ ...food });
+  foods.forEach((food: any) => {
     if (food.name) {
       const pagePath = spaceToDashes(food["name"].toString());
       const seo: any = {

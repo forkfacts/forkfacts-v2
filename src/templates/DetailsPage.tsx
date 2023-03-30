@@ -90,6 +90,16 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
       });
       setRows(nutrientsWithRdis);
     } else {
+      const flatRow = selectedNutrients.map((item) => {
+        const data = [];
+        if (item.rows) {
+          data.push([...item.rows]);
+        } else {
+          data.push(item);
+        }
+        return data;
+      });
+      console.log(flatRow);
       const nutrientsWithRdis = selectedNutrients.map((nutrient: any) => {
         if (!nutrient.rows) {
           const nutrientWithRdi: any = nutritionFacts.filter(
@@ -111,11 +121,6 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
             },
           };
           return factTableRow;
-        } else {
-          const nutrientsWithRdis = nutrient.rows.map((nutrient) => {
-            return nutrient;
-          });
-          console.log();
         }
       });
       setRows(nutrientsWithRdis);
@@ -184,7 +189,7 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
         check: false,
         nutrientGroup: item.nutrientGroup,
         name: item.nutrientGroup,
-        rows: item.rows.map((row) => {
+        rows: item?.rows?.map((row) => {
           return {
             ...row,
             checked: false,
@@ -199,6 +204,8 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
       return {
         ...flatRow,
         checked: false,
+        name: flatRow.displayName ? flatRow.displayName : flatRow.name,
+        rows: [],
       };
     });
 

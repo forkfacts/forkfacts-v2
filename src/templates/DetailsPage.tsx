@@ -54,18 +54,16 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
     const getValueRounded = (amount: number) => {
       return Math.round(amount * 100) / 100;
     };
-    const nutrientsWithRdis = nutrients.map((nutrient: any, index: number) => {
+    const nutrientsWithRdis = nutrients.map((nutrient: any) => {
       const nutrientWithRdi = nutritionFacts.filter(
         (nutrientRdi) =>
           nutrientRdi.nutrient.name.toLowerCase() === nutrient.name.toLowerCase() &&
-          nutrientRdi.nutrient.unit === nutrient.unit &&
           age.start === nutrientRdi?.rdi?.ageStart &&
           age.end === nutrientRdi?.rdi?.ageEnd &&
           age?.ageUnit?.toLowerCase() === nutrientRdi?.rdi?.ageUnit &&
           gender.toLowerCase() === nutrientRdi?.rdi?.applicableFor.toLowerCase()
       )[0];
       const factTableRow: NutritionTableRow = {
-        //index: index,
         nutrient: nutrient.name,
         nutrientGroup: nutrient.nutrientGroup,
         amount: nutrient?.amount,

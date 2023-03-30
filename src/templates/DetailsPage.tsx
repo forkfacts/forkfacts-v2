@@ -95,7 +95,6 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
           const nutrientWithRdi: any = nutritionFacts.filter(
             (nutrientRdi) => nutrientRdi.nutrient.name.toLowerCase() === nutrient.name.toLowerCase()
           )[0];
-          console.log(nutrientWithRdi);
           const factTableRow: NutritionTableRow = {
             nutrient: nutrient.name,
             nutrientGroup: nutrient.nutrientGroup,
@@ -114,6 +113,9 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
           return factTableRow;
         } else {
           console.log(nutrient.rows);
+          // const groupedFilter=nutrient.rows.map((nutrient)=>{
+          //    console.log(nu);
+          // })
         }
       });
       setRows(nutrientsWithRdis);

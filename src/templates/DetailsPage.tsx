@@ -3,49 +3,17 @@ import { PageProps } from "gatsby";
 import { DetailsPageScreen } from "@forkfacts/screens";
 import { SEO } from "@forkfacts/components";
 
-import { generateRdiForFood, getAgeRangesForLifeStage } from "@forkfacts/helpers";
+import { generateRdiForFood, getAgeRangesForLifeStage, getValueRounded } from "@forkfacts/helpers";
 import { Box } from "@mui/material";
 import { lifeStageItems, menuItems, tabItems } from "../RealData/realData";
 import { useStore } from "../store/store";
-import { NutritionTableRow, SelectedNutrient } from "@forkfacts/models";
-
-export interface NutritionFact {
-  nutrient: {
-    amount: number;
-    name: string;
-    unit: string;
-    displayName: string;
-    nutrientGroup: string;
-  };
-  percentDaily: string;
-  rdi: {
-    ageStart: number;
-    ageEnd: number;
-    ageUnit: string;
-    amount: number;
-    nutrient: string;
-    nutrientUnit: string;
-    applicableFor: string;
-  };
-}
-
-type NutrientGroup = {
-  nutrientGroup: string;
-  name: string;
-  rows: NutrientItem[];
-};
-
-type NutrientItem = {
-  amount: number;
-  displayName: string;
-  name: string;
-  nutrientGroup: string;
-  unit: string;
-};
-
-const getValueRounded = (amount: number) => {
-  return Math.round(amount * 100) / 100;
-};
+import {
+  NutrientGroup,
+  NutrientItem,
+  NutritionFact,
+  NutritionTableRow,
+  SelectedNutrient,
+} from "@forkfacts/models";
 
 const DynamicPageTemplate = ({ pageContext }: PageProps) => {
   const { food, recommendedDailyIntakes } = pageContext as any;
@@ -57,6 +25,30 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
   const allRdis = recommendedDailyIntakes as any[];
   const nutritionFacts: NutritionFact[] = generateRdiForFood(thisFood, allRdis);
 
+  const getSelectedNutrients = (nutrients: SelectedNutrient[]) => {
+    const selectedNutrientsWithRows = [...nutrients]
+      .map((item) => {
+        const data: NutrientItem[] = [];
+        if (item?.rows) {
+          item?.rows?.map((item: any) => {
+            data.push(item);
+          });
+        }
+        return data;
+      })
+      .flat();
+    const unSelectedNutrientsRows = selectedNutrients
+      .map((item) => {
+        if (!item.rows?.length) {
+          return item;
+        }
+      })
+      .filter((item) => item !== undefined);
+    return [...selectedNutrientsWithRows, ...unSelectedNutrientsRows].filter(
+      (item) => item !== undefined
+    );
+  };
+
   useEffect(() => {
     const gender = selectedLifeStage;
     const age = selectedAge;
@@ -65,7 +57,6 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
         const nutrientWithRdi = nutritionFacts.filter(
           (nutrientRdi) =>
             nutrientRdi.nutrient.name.toLowerCase() === nutrient.name.toLowerCase() &&
-            nutrientRdi.nutrient.unit === nutrient.unit &&
             age.start === nutrientRdi?.rdi?.ageStart &&
             age.end === nutrientRdi?.rdi?.ageEnd &&
             age?.ageUnit?.toLowerCase() === nutrientRdi?.rdi?.ageUnit &&
@@ -90,29 +81,7 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
       });
       setRows(nutrientsWithRdis);
     } else {
-      const flatRows = [...selectedNutrients]
-        .map((item) => {
-          const data: NutrientItem[] = [];
-          if (item?.rows) {
-            item?.rows?.map((item: NutrientItem) => {
-              data.push(item);
-            });
-          }
-          return data;
-        })
-        .flat();
-      const whenNoRows = selectedNutrients
-        .map((item) => {
-          if (!item.rows?.length) {
-            return item;
-          }
-        })
-        .filter((item) => item !== undefined);
-      const getAllSelectedNutrients = [...flatRows, ...whenNoRows].filter(
-        (item) => item !== undefined
-      );
-      console.log(getAllSelectedNutrients);
-      const nutrientsWithRdis = getAllSelectedNutrients?.map((nutrient: any) => {
+      const nutrientsWithRdis = getSelectedNutrients(selectedNutrients)?.map((nutrient: any) => {
         const nutrientWithRdi: any = nutritionFacts.filter(
           (nutrientRdi) => nutrientRdi.nutrient.name.toLowerCase() === nutrient.name.toLowerCase()
         )[0];
@@ -184,7 +153,7 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
         };
         acc.push(group);
       } else {
-        acc[index].rows.push(item);
+        acc[index]?.rows?.push(item);
       }
       return acc;
     },

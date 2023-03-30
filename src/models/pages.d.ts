@@ -37,3 +37,37 @@ export type FoodPageType = CreatePageFnProps & {
   foods: FoundationOrSrFood[];
   indexFileName: string;
 };
+
+export interface NutritionFact {
+  nutrient: {
+    amount: number;
+    name: string;
+    unit: string;
+    displayName: string;
+    nutrientGroup: string;
+  };
+  percentDaily: string;
+  rdi: {
+    ageStart: number;
+    ageEnd: number;
+    ageUnit: string;
+    amount: number;
+    nutrient: string;
+    nutrientUnit: string;
+    applicableFor: string;
+  };
+}
+
+export type NutrientGroup = {
+  nutrientGroup: string;
+  name: string;
+  rows: NutrientItem[];
+};
+
+export type NutrientItem = {
+  amount: number;
+  displayName: string;
+  name: string;
+  nutrientGroup: string;
+  unit: string;
+};

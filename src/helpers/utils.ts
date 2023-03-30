@@ -1,9 +1,8 @@
 // import fs from "fs";
-
-import { NutritionFact } from "../templates/DetailsPage";
-
 const mappings: any = require("../../data/usda_rdi_nutrient_mapping.json");
 import { allAges, lifeStageItems } from "../RealData/realData";
+import { NutrientItem, NutritionFact } from "../models/pages";
+import { SelectedNutrient } from "../models/components";
 
 const ARTIFACT_PATH = ".raw";
 
@@ -102,6 +101,30 @@ export function getAgeRangesForLifeStage(selectedLifeStageName: string = "Female
   return ageRanges.filter((range) => range !== null);
 }
 
-const getValueRounded = (amount: number) => {
+export const getValueRounded = (amount: number) => {
   return Math.round(amount * 100) / 100;
+};
+
+export const getSelectedNutrients = (nutrients: SelectedNutrient[]) => {
+  const selectedNutrientsWithRows = [...nutrients]
+    .map((item) => {
+      const data: NutrientItem[] = [];
+      if (item?.rows) {
+        item?.rows?.map((item: any) => {
+          data.push(item);
+        });
+      }
+      return data;
+    })
+    .flat();
+  const unSelectedNutrientsRows = nutrients
+    .map((item) => {
+      if (!item.rows?.length) {
+        return item;
+      }
+    })
+    .filter((item) => item !== undefined);
+  return [...selectedNutrientsWithRows, ...unSelectedNutrientsRows].filter(
+    (item) => item !== undefined
+  );
 };

@@ -1,4 +1,5 @@
 const path = require("path");
+
 module.exports = {
   stories: ["../src/**/*.stories.mdx", "../src/**/*.stories.@(js|jsx|ts|tsx)"],
   addons: [
@@ -31,7 +32,7 @@ module.exports = {
   resolve: {
     modules: [path.resolve(__dirname, "src"), "node_modules"],
   },
-  staticDirs: ["../static", "/data/usda_rdi_nutrient_mapping.json"],
+  staticDirs: ["../static", "data/usda_rdi_nutrient_mapping.json"],
   framework: "@storybook/react",
   core: {
     builder: "@storybook/builder-webpack5",

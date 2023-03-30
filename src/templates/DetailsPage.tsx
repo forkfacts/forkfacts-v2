@@ -224,7 +224,7 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
           }}
           multipleSelectItems={[]} // todo(h2): Feature not available yet.
           onSelectedValue={function (value: React.SetStateAction<string[]>): void {
-            throw new Error(`Feature not available yet.`);
+            throw new Error(`Feature is not available yet.`);
           }}
         />
       </Box>

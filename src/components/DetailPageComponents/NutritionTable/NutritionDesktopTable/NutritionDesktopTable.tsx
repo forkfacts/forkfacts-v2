@@ -28,7 +28,7 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ rows }) =
   };
   const isCollapsed = (nutrient: any) => collapsedRows.includes(nutrient);
   const rowsByNutrientGroup = rows.reduce((acc, row) => {
-    const nutrientGroup = row.nutrientGroup;
+    const nutrientGroup = row?.nutrientGroup;
     if (!acc.has(nutrientGroup)) {
       acc.set(nutrientGroup, [row]);
       return acc;
@@ -279,7 +279,7 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ rows }) =
                             sx={{ borderBottom: "1px solid #F3EFF4" }}
                           >
                             <Box sx={{ display: "flex", alignItems: "center" }}>
-                              {isCollapsed(row.nutrientGroup) ? (
+                              {isCollapsed(row?.nutrientGroup) ? (
                                 <ArrowRightIcon
                                   onClick={() => toggleCollapse(row.nutrientGroup)}
                                   sx={{
@@ -304,12 +304,12 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ rows }) =
                                   fontWeight: theme.typography.fontWeightRegular,
                                 }}
                               >
-                                {innerRow.nutrient}
+                                {innerRow?.nutrient}
                               </Typography>
                             </Box>
                           </TableCell>
                           <TableCell align="right" sx={{ borderBottom: "1px solid #F3EFF4" }}>
-                            {innerRow.dailyValue && (
+                            {innerRow?.dailyValue && (
                               <Typography
                                 variant="titleMedium"
                                 sx={{
@@ -318,12 +318,12 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ rows }) =
                                   pr: "20px",
                                 }}
                               >
-                                {innerRow.dailyValue}%
+                                {innerRow?.dailyValue}%
                               </Typography>
                             )}
                           </TableCell>
                           <TableCell align="right" sx={{ borderBottom: "1px solid #F3EFF4" }}>
-                            {!innerRow.amount ? null : (
+                            {!innerRow?.amount ? null : (
                               <Typography
                                 variant="titleMedium"
                                 sx={{
@@ -332,13 +332,13 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ rows }) =
                                   pr: "20px",
                                 }}
                               >
-                                {innerRow.amount}
-                                {innerRow.amountUnit}
+                                {innerRow?.amount}
+                                {innerRow?.amountUnit}
                               </Typography>
                             )}
                           </TableCell>
                           <TableCell align="right" sx={{ borderBottom: "1px solid #F3EFF4" }}>
-                            {innerRow.rdi.value && (
+                            {innerRow?.rdi?.value && (
                               <Typography
                                 variant="titleMedium"
                                 sx={{
@@ -348,7 +348,7 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ rows }) =
                                   pr: "20px",
                                 }}
                               >
-                                {`${innerRow.rdi.value}${innerRow.rdi.weight}`}
+                                {`${innerRow?.rdi?.value}${innerRow?.rdi?.weight}`}
                               </Typography>
                             )}
                           </TableCell>

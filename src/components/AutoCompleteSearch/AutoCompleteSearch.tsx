@@ -292,7 +292,7 @@ function AutoCompleteSearch(
             {...autocomplete.getPanelProps({})}
             sx={{ width: "100%" }}
           >
-            {!query && status === "idle" && (mobile || desktop) && (
+            {!query && status === "idle" && (mobile || desktop) && recentSearches.length ? (
               <Box
                 sx={{
                   width: "100%",
@@ -326,6 +326,8 @@ function AutoCompleteSearch(
                   Clear
                 </Typography>
               </Box>
+            ) : (
+              <>No recent search</>
             )}
             {!query && (mobile || desktop) ? (
               <>

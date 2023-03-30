@@ -237,24 +237,28 @@ const NutritionMobileTable: React.FC<NutritionMobileTableProps> = ({ rows }) => 
                           columnGap: theme.spacing(0.3),
                         }}
                       >
-                        <Typography
-                          variant="titleSmall"
-                          sx={{
-                            fontWeight: theme.typography.fontWeightRegular,
-                            color: theme.palette.customGray.dark,
-                          }}
-                        >
-                          {subItem.amount}
-                        </Typography>
-                        <Typography
-                          variant="titleSmall"
-                          sx={{
-                            fontWeight: theme.typography.fontWeightRegular,
-                            color: theme.palette.customGray.main,
-                          }}
-                        >
-                          ({subItem.dailyValue}%)
-                        </Typography>
+                        {subItem.amount && (
+                          <Typography
+                            variant="titleSmall"
+                            sx={{
+                              fontWeight: theme.typography.fontWeightRegular,
+                              color: theme.palette.customGray.dark,
+                            }}
+                          >
+                            {subItem.amount}
+                          </Typography>
+                        )}
+                        {subItem.dailyValue && (
+                          <Typography
+                            variant="titleSmall"
+                            sx={{
+                              fontWeight: theme.typography.fontWeightRegular,
+                              color: theme.palette.customGray.main,
+                            }}
+                          >
+                            ({subItem.dailyValue}%)
+                          </Typography>
+                        )}
                       </Box>
                     </Box>
                   )}

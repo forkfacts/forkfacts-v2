@@ -64,7 +64,7 @@ const NutritionDetailsTab: React.FC<NutritionDetailsTabProps> = ({
       </Box>
       <Box sx={{ mt: mobile ? theme.spacing(2) : theme.spacing(8) }}>
         {mobile || tablet ? (
-          <NutritionMobileTable nutritionTableItems={nutritionTableItems} />
+          <NutritionMobileTable rows={nutritionTableItems} />
         ) : (
           <Box sx={{ overflowX: "hidden" }}>
             <NutritionDesktopTable rows={nutritionTableItems} />

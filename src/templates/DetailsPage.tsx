@@ -160,32 +160,34 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
     []
   );
 
-  const filteredNutritionFilterItems: any = nutrientGroups
-    .filter((item: any) => item.nutrientGroup !== "")
-    .map((item) => {
-      return {
-        ...item,
-        check: false,
-        nutrientGroup: item.nutrientGroup,
-        name: item.nutrientGroup,
-        rows: item?.rows?.map((row) => {
-          return {
-            ...row,
-            checked: false,
-          };
-        }),
-      };
-    });
+  const filteredNutritionFilterItems =
+    nutrientGroups
+      .filter((item: any) => item.nutrientGroup !== "")
+      .map((item) => {
+        return {
+          ...item,
+          check: false,
+          nutrientGroup: item.nutrientGroup,
+          name: item.nutrientGroup,
+          rows: item?.rows?.map((row) => {
+            return {
+              ...row,
+              checked: false,
+            };
+          }),
+        };
+      }) || [];
 
-  const emptyNutrientGroupItems: any = nutrientGroups
-    ?.filter((item: any) => item.nutrientGroup === "")[0]
-    ?.rows?.map((flatRow) => {
-      return {
-        ...flatRow,
-        checked: false,
-        rows: [],
-      };
-    });
+  const emptyNutrientGroupItems =
+    nutrientGroups
+      ?.filter((item: any) => item.nutrientGroup === "")[0]
+      ?.rows?.map((flatRow) => {
+        return {
+          ...flatRow,
+          checked: false,
+          rows: [],
+        };
+      }) || [];
 
   return (
     <>
@@ -205,7 +207,9 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
           }}
           ageItems={ageRanges}
           lifeStageItems={lifeStageItems}
-          nutritionFilterItems={[...filteredNutritionFilterItems, ...emptyNutrientGroupItems]}
+          nutritionFilterItems={
+            [...filteredNutritionFilterItems, ...emptyNutrientGroupItems] as any[]
+          }
           nutritionSummaryItems={[]} // todo(h2): Feature not available yet.
           measurementFilterItems={[]} // todo(h2): Feature not available yet.
           nutritionTableRows={rows}

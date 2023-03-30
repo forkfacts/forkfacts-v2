@@ -330,5 +330,5 @@ export interface NutritionDesktopTableProps {
 }
 
 interface NutritionMobileTableProps {
-  nutritionTableItems: NutritionTableRow[];
+  rows: NutritionTableRow[];
 }

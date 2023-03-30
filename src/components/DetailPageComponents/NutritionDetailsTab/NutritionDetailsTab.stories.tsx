@@ -85,209 +85,73 @@ const ageItems: RdiAge[] = [
 const nutritionFilterItems: SelectedNutrient[] = [
   {
     name: "Vitamin",
-    unit: "mg",
-    subItems: [
-      { name: "Vitamin B1", checked: false },
-      { name: "Vitamin B2", checked: false },
-      { name: "Vitamin B3", checked: false },
-      { name: "Vitamin B4", checked: false },
+    nutrientGroup: "Vitamins",
+    rows: [
+      { name: "Vitamin B1", checked: false, nutrientGroup: "Vitamins" },
+      { name: "Vitamin B2", checked: false, nutrientGroup: "Vitamins" },
+      { name: "Vitamin B3", checked: false, nutrientGroup: "Vitamins" },
+      { name: "Vitamin B4", checked: false, nutrientGroup: "Vitamins" },
     ],
     checked: false,
   },
   {
     name: "Protein",
-    unit: "mg",
-    subItems: [
-      { name: "Protein B1", checked: false },
-      { name: "Protein B2", checked: false },
+    nutrientGroup: "Proteins",
+    rows: [
+      { name: "Protein B1", checked: false, nutrientGroup: "Proteins" },
+      { name: "Protein B2", checked: false, nutrientGroup: "Proteins" },
     ],
     checked: false,
   },
-  { name: "Carbohydrate", unit: "mg", subItems: [], checked: false },
-  { name: "Water", unit: "mg", subItems: [], checked: false },
-  { name: "Fats", unit: "mg", subItems: [], checked: false },
-  { name: "Fiber", unit: "mg", subItems: [], checked: false },
-  { name: "Minerals", unit: "mg", subItems: [], checked: false },
+  { name: "Carbohydrate", rows: [], checked: false, nutrientGroup: "" },
+  { name: "Water", rows: [], checked: false, nutrientGroup: "" },
+  { name: "Fats", rows: [], checked: false, nutrientGroup: "" },
+  { name: "Fiber", rows: [], checked: false, nutrientGroup: "" },
+  { name: "Minerals", rows: [], checked: false, nutrientGroup: "" },
 ];
 
 const units = ["Plates", "Cups", "Teaspoon"];
-
 const nutritionTableItems: NutritionTableRow[] = [
   {
     nutrient: "Fats",
-    nutrientGroup: "Fats",
     dailyValue: 12.9,
     amount: 30,
+    nutrientGroup: "Fats",
     amountUnit: "g",
     rdi: {
       value: 120,
       weight: "g",
     },
-    nutrientContents: [
-      {
-        nutrient: "Saturated",
-        dailyValue: 2.4,
-        amount: "100g",
-        rdi: { value: 30, weight: "g" },
-      },
-      {
-        nutrient: "Trans",
-        dailyValue: 1.7,
-        amount: "35g",
-        rdi: { value: 45, weight: "g" },
-      },
-      {
-        nutrient: "Omega 3",
-        dailyValue: 9.05,
-        amount: "120g",
-        rdi: { value: 120, weight: "g" },
-      },
-      {
-        nutrient: "Omega 6",
-        dailyValue: 2.0,
-        amount: "39g",
-        rdi: { value: 11, weight: "g" },
-      },
-      {
-        nutrient: "Omega 9",
-        dailyValue: 1.07,
-        amount: "4g",
-        rdi: { value: 112, weight: "g" },
-      },
-    ],
   },
   {
     nutrient: "Carbohydrates",
-    nutrientGroup: "Carbohydrates",
     dailyValue: 12.9,
     amount: 30,
+    nutrientGroup: "Fats",
     amountUnit: "g",
     rdi: { value: 120, weight: "g" },
-    nutrientContents: [
-      {
-        nutrient: "Sugar",
-        dailyValue: 2.4,
-        amount: "100g",
-        rdi: { value: 30, weight: "g" },
-      },
-      {
-        nutrient: "Starch",
-        dailyValue: 1.7,
-        amount: "35g",
-        rdi: { value: 45, weight: "g" },
-      },
-    ],
   },
   {
     nutrient: "Minerals",
-    nutrientGroup: "Minerals",
     dailyValue: null,
+    nutrientGroup: "Fats",
     amountUnit: "g",
     rdi: { value: null, weight: "g" },
-    nutrientContents: [
-      {
-        nutrient: "Chlorine",
-        dailyValue: 1.7,
-        amount: "100g",
-        rdi: { value: 30, weight: "g" },
-      },
-      {
-        nutrient: "Iron",
-        dailyValue: 1.7,
-        amount: "120g",
-        rdi: { value: 45, weight: "g" },
-      },
-      {
-        nutrient: "Magnesium",
-        dailyValue: 9.05,
-        amount: "39g",
-        rdi: { value: 120, weight: "g" },
-      },
-      {
-        nutrient: "Phosphorus",
-        dailyValue: 2.0,
-        amount: "39g",
-        rdi: { value: 11, weight: "g" },
-      },
-      {
-        nutrient: "Potassium",
-        dailyValue: 1.07,
-        amount: "4g",
-        rdi: { value: 112, weight: "g" },
-      },
-      {
-        nutrient: "Sodium",
-        dailyValue: 1.7,
-        amount: "120g",
-        rdi: { value: 45, weight: "g" },
-      },
-      {
-        nutrient: "Sulphur",
-        dailyValue: 9.05,
-        amount: "120g",
-        rdi: { value: 120, weight: "g" },
-      },
-      {
-        nutrient: "Zinc",
-        dailyValue: 2.0,
-        amount: "39g",
-        rdi: { value: 11, weight: "g" },
-      },
-      {
-        nutrient: "Chromium",
-        dailyValue: 1.07,
-        amount: "4g",
-        rdi: { value: 112, weight: "g" },
-      },
-    ],
   },
   {
     nutrient: "Vitamins",
-    nutrientGroup: "Vitamins",
     dailyValue: null,
+    nutrientGroup: "Fats",
     amountUnit: "g",
     rdi: { value: null, weight: "g" },
-    nutrientContents: [
-      {
-        nutrient: "Vitamin A",
-        dailyValue: 2.4,
-        amount: "100g",
-        rdi: { value: 30, weight: "g" },
-      },
-      {
-        nutrient: "Vitamin B1",
-        dailyValue: 1.7,
-        amount: "45g",
-        rdi: { value: 45, weight: "g" },
-      },
-      {
-        nutrient: "Vitamin B12",
-        dailyValue: 9.05,
-        amount: "120g",
-        rdi: { value: 30, weight: "g" },
-      },
-      {
-        nutrient: "Vitamin C",
-        dailyValue: 2.0,
-        amount: "11g",
-        rdi: { value: 45, weight: "g" },
-      },
-      {
-        nutrient: "Vitamin D",
-        dailyValue: 1.07,
-        amount: "4g",
-        rdi: { value: 112, weight: "g" },
-      },
-    ],
   },
   {
     nutrient: "Protein",
-    nutrientGroup: "Proteins",
     dailyValue: 12.9,
+    nutrientGroup: "Fats",
     amount: 30,
     amountUnit: "g",
     rdi: { value: 120, weight: "g" },
-    nutrientContents: [],
   },
 ];
 

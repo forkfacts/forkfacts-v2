@@ -180,7 +180,7 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
 
   const emptyNutrientGroupItems =
     nutrientGroups
-      ?.filter((item: any) => !item.nutrientGroup)[0]
+      ?.filter((item: any) => item.nutrientGroup === "")[0]
       ?.rows?.map((flatRow) => {
         return {
           ...flatRow,
@@ -193,8 +193,6 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
     ...filteredNutritionFilterItems,
     ...emptyNutrientGroupItems,
   ] as SelectedNutrient[];
-
-  console.log(filteredNutritionFilterItems);
 
   return (
     <>

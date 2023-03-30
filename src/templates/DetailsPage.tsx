@@ -29,6 +29,12 @@ export interface NutritionFact {
   };
 }
 
+type NutrientGroup = {
+  nutrientGroup: string;
+  name: string;
+  rows: NutrientItem[];
+};
+
 type NutrientItem = {
   amount: number;
   displayName: string;
@@ -55,28 +61,32 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
       return Math.round(amount * 100) / 100;
     };
     const nutrientsWithRdis = nutrients.map((nutrient: any) => {
-      const nutrientWithRdi = nutritionFacts.filter(
-        (nutrientRdi) =>
-          nutrientRdi.nutrient.name.toLowerCase() === nutrient.name.toLowerCase() &&
-          age.start === nutrientRdi?.rdi?.ageStart &&
-          age.end === nutrientRdi?.rdi?.ageEnd &&
-          age?.ageUnit?.toLowerCase() === nutrientRdi?.rdi?.ageUnit &&
-          gender.toLowerCase() === nutrientRdi?.rdi?.applicableFor.toLowerCase()
-      )[0];
-      const factTableRow: NutritionTableRow = {
-        nutrient: nutrient.name,
-        nutrientGroup: nutrient.nutrientGroup,
-        amount: nutrient?.amount,
-        amountUnit: nutrient?.unit?.toLowerCase(),
-        dailyValue: nutrientWithRdi?.percentDaily
-          ? getValueRounded(Number(nutrientWithRdi?.percentDaily))
-          : undefined,
-        rdi: {
-          value: nutrientWithRdi?.rdi?.amount ? Math.abs(nutrientWithRdi?.rdi?.amount) : undefined,
-          weight: nutrientWithRdi?.rdi?.nutrientUnit,
-        },
-      };
-      return factTableRow;
+      if (!nutrient.rows) {
+        const nutrientWithRdi: any = nutritionFacts.filter(
+          (nutrientRdi) => nutrientRdi.nutrient.name.toLowerCase() === nutrient.name.toLowerCase()
+          // age.start === nutrientRdi?.rdi?.ageStart &&
+          // age.end === nutrientRdi?.rdi?.ageEnd &&
+          // age?.ageUnit?.toLowerCase() === nutrientRdi?.rdi?.ageUnit &&
+          // gender.toLowerCase() === nutrientRdi?.rdi?.applicableFor.toLowerCase()
+        )[0];
+        console.log(nutrientWithRdi);
+        const factTableRow: NutritionTableRow = {
+          nutrient: nutrient.name,
+          nutrientGroup: nutrient.nutrientGroup,
+          amount: nutrientWithRdi?.nutrient?.amount,
+          amountUnit: nutrientWithRdi?.nutrient.unit?.toLowerCase(),
+          dailyValue: nutrientWithRdi?.percentDaily
+            ? getValueRounded(Number(nutrientWithRdi?.percentDaily))
+            : undefined,
+          rdi: {
+            value: nutrientWithRdi?.rdi?.amount
+              ? Math.abs(nutrientWithRdi?.rdi?.amount)
+              : undefined,
+            weight: nutrientWithRdi?.rdi?.nutrientUnit,
+          },
+        };
+        return factTableRow;
+      }
     });
     setRows(nutrientsWithRdis);
   }, [selectedAge, selectedLifeStage, selectedNutrients]);
@@ -161,13 +171,6 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
       };
     });
 
-  type NutrientGroup = {
-    nutrientGroup: string;
-    name: string;
-    rows: NutrientItem[];
-  };
-
-  console.log(emptyNutrientGroupItems);
   return (
     <>
       <Box sx={{ p: "8px" }}>

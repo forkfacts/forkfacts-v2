@@ -108,32 +108,30 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
           }
         })
         .filter((item) => item !== undefined);
-      const getAllSelectedNutrients = [...whenNoRows, ...flatRows].filter(
+      const getAllSelectedNutrients = [...flatRows, ...whenNoRows].filter(
         (item) => item !== undefined
       );
       console.log(getAllSelectedNutrients);
       const nutrientsWithRdis = getAllSelectedNutrients?.map((nutrient: any) => {
-        if (!nutrient.rows) {
-          const nutrientWithRdi: any = nutritionFacts.filter(
-            (nutrientRdi) => nutrientRdi.nutrient.name.toLowerCase() === nutrient.name.toLowerCase()
-          )[0];
-          const factTableRow: NutritionTableRow = {
-            nutrient: nutrient.name,
-            nutrientGroup: nutrient.nutrientGroup,
-            amount: nutrientWithRdi?.nutrient?.amount,
-            amountUnit: nutrientWithRdi?.nutrient.unit?.toLowerCase(),
-            dailyValue: nutrientWithRdi?.percentDaily
-              ? getValueRounded(Number(nutrientWithRdi?.percentDaily))
+        const nutrientWithRdi: any = nutritionFacts.filter(
+          (nutrientRdi) => nutrientRdi.nutrient.name.toLowerCase() === nutrient.name.toLowerCase()
+        )[0];
+        const factTableRow: NutritionTableRow = {
+          nutrient: nutrient.name,
+          nutrientGroup: nutrient.nutrientGroup,
+          amount: nutrientWithRdi?.nutrient?.amount,
+          amountUnit: nutrientWithRdi?.nutrient.unit?.toLowerCase(),
+          dailyValue: nutrientWithRdi?.percentDaily
+            ? getValueRounded(Number(nutrientWithRdi?.percentDaily))
+            : undefined,
+          rdi: {
+            value: nutrientWithRdi?.rdi?.amount
+              ? Math.abs(nutrientWithRdi?.rdi?.amount)
               : undefined,
-            rdi: {
-              value: nutrientWithRdi?.rdi?.amount
-                ? Math.abs(nutrientWithRdi?.rdi?.amount)
-                : undefined,
-              weight: nutrientWithRdi?.rdi?.nutrientUnit,
-            },
-          };
-          return factTableRow;
-        }
+            weight: nutrientWithRdi?.rdi?.nutrientUnit,
+          },
+        };
+        return factTableRow;
       });
       setRows(nutrientsWithRdis);
     }

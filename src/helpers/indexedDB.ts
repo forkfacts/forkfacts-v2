@@ -46,15 +46,17 @@ export const addSearchEntry = async (searchData: SearchParams) => {
     const db = await initDB();
     const tx = db.transaction("items", "readwrite");
     const store = tx.objectStore("items");
-    const count = await store.count();
-    if (count >= 5) {
-      const oldestEntry = await store.index("timestamp").openCursor();
-      if (oldestEntry) {
-        await store.delete(oldestEntry.value.name);
-      }
+    const allItems = await store.getAll();
+    allItems.sort((a, b) => b.timestamp.getTime() - a.timestamp.getTime());
+    if (allItems.length >= 5) {
+      const lastItem = allItems[allItems.length - 1];
+      await store.delete(lastItem.name);
     }
     await store.add(searchData);
+    const recentSearches = await store.getAll();
+    recentSearches.sort((a, b) => b.timestamp.getTime() - a.timestamp.getTime());
     await tx.done;
+    return recentSearches.slice(0, 5);
   } catch (error) {
     console.log(error);
   }

@@ -163,7 +163,7 @@ function AutoCompleteSearch(
 
   useEffect(() => {
     async function fetchData() {
-      const searches = await fetchRecentSearches();
+      const searches = await (await fetchRecentSearches()).reverse();
       setRecentSearches(searches as SearchParams[]);
     }
     fetchData();
@@ -326,10 +326,8 @@ function AutoCompleteSearch(
                   Clear
                 </Typography>
               </Box>
-            ) : (
-              <>No recent search</>
-            )}
-            {!query && (mobile || desktop) ? (
+            ) : null}
+            {!query && recentSearches.length && (mobile || desktop) ? (
               <>
                 <Box
                   sx={{

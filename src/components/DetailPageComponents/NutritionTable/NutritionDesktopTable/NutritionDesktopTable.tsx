@@ -45,7 +45,7 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ rows }) =
     })
   );
 
-  console.log(rowsByNutrientGroupArray);
+  // console.log(rowsByNutrientGroupArray);
 
   return (
     <Box>
@@ -126,11 +126,8 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ rows }) =
               {rowsByNutrientGroupArray.reverse().map((row, index) => {
                 if (row.nutrientGroup) {
                   return (
-                    <>
-                      <TableRow
-                        key={index}
-                        sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                      >
+                    <React.Fragment key={index}>
+                      <TableRow sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
                         <TableCell
                           component="th"
                           scope="row"
@@ -268,17 +265,14 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ rows }) =
                             </TableCell>
                           </TableRow>
                         ))}
-                    </>
+                    </React.Fragment>
                   );
                 }
                 if (!row.nutrientGroup) {
                   return row.rows.map((innerRow, index) => {
                     return (
-                      <>
-                        <TableRow
-                          key={index}
-                          sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                        >
+                      <React.Fragment key={index}>
+                        <TableRow sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
                           <TableCell
                             component="th"
                             scope="row"
@@ -359,7 +353,7 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ rows }) =
                             )}
                           </TableCell>
                         </TableRow>
-                      </>
+                      </React.Fragment>
                     );
                   });
                 }

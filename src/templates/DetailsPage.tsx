@@ -7,7 +7,7 @@ import { generateRdiForFood, getAgeRangesForLifeStage } from "@forkfacts/helpers
 import { Box } from "@mui/material";
 import { lifeStageItems, menuItems, tabItems } from "../RealData/realData";
 import { useStore } from "../store/store";
-import { NutritionTableRow } from "@forkfacts/models";
+import { NutritionTableRow, SelectedNutrient } from "@forkfacts/models";
 
 export interface NutritionFact {
   nutrient: {
@@ -28,6 +28,14 @@ export interface NutritionFact {
     applicableFor: string;
   };
 }
+
+type NutrientItem = {
+  amount: number;
+  displayName: string;
+  name: string;
+  nutrientGroup: string;
+  unit: string;
+};
 
 const DynamicPageTemplate = ({ pageContext }: PageProps) => {
   const { food, recommendedDailyIntakes } = pageContext as any;
@@ -119,6 +127,48 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
       };
     }
   );
+
+  const nutrientGroups: NutrientGroup[] = food.nutrients.reduce(
+    (acc: NutrientGroup[], item: NutrientItem) => {
+      const index = acc.findIndex((group) => group.nutrientGroup === item.nutrientGroup);
+      if (index === -1) {
+        // If the nutrientGroup doesn't exist yet, create a new one
+        const group: NutrientGroup = {
+          nutrientGroup: item.nutrientGroup,
+          name: item.nutrientGroup,
+          rows: [item],
+        };
+        acc.push(group);
+      } else {
+        acc[index].rows.push(item);
+      }
+      return acc;
+    },
+    []
+  );
+
+  const filteredNutritionFilterItems: any = nutrientGroups
+    .filter((item: any) => item.nutrientGroup !== "")
+    .map((item) => {
+      return {
+        ...item,
+        check: false,
+        nutrientGroup: item.nutrientGroup,
+        name: item.nutrientGroup,
+      };
+    });
+
+  const emptyNutrientGroupItems: any = nutrientGroups.filter(
+    (item: any) => item.nutrientGroup === ""
+  );
+
+  type NutrientGroup = {
+    nutrientGroup: string;
+    name: string;
+    rows: NutrientItem[];
+  };
+
+  console.log(filteredNutritionFilterItems);
   return (
     <>
       <Box sx={{ p: "8px" }}>
@@ -137,7 +187,7 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
           }}
           ageItems={ageRanges}
           lifeStageItems={lifeStageItems}
-          nutritionFilterItems={dataNutrients}
+          nutritionFilterItems={filteredNutritionFilterItems}
           nutritionSummaryItems={[]} // todo(h2): Feature not available yet.
           measurementFilterItems={[]} // todo(h2): Feature not available yet.
           nutritionTableRows={rows}

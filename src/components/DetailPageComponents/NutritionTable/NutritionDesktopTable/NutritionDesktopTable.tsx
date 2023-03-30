@@ -123,7 +123,7 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ rows }) =
           </TableHead>
           <TableBody>
             <>
-              {rowsByNutrientGroupArray.reverse().map((row, index) => {
+              {rowsByNutrientGroupArray?.reverse().map((row, index) => {
                 if (row.nutrientGroup) {
                   return (
                     <React.Fragment key={index}>
@@ -269,7 +269,7 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ rows }) =
                   );
                 }
                 if (!row.nutrientGroup) {
-                  return row.rows.map((innerRow, index) => {
+                  return row?.rows?.map((innerRow, index) => {
                     return (
                       <React.Fragment key={index}>
                         <TableRow sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>

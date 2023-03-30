@@ -90,17 +90,29 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
       });
       setRows(nutrientsWithRdis);
     } else {
-      const flatRow = selectedNutrients.map((item) => {
-        const data = [];
-        if (item.rows) {
-          data.push([...item.rows]);
-        } else {
-          data.push(item);
-        }
-        return data;
-      });
-      console.log(flatRow);
-      const nutrientsWithRdis = selectedNutrients.map((nutrient: any) => {
+      const flatRows = [...selectedNutrients]
+        .map((item) => {
+          const data: NutrientItem[] = [];
+          if (item?.rows) {
+            item?.rows?.map((item: NutrientItem) => {
+              data.push(item);
+            });
+          }
+          return data;
+        })
+        .flat();
+      const whenNoRows = selectedNutrients
+        .map((item) => {
+          if (!item.rows?.length) {
+            return item;
+          }
+        })
+        .filter((item) => item !== undefined);
+      const getAllSelectedNutrients = [...whenNoRows, ...flatRows].filter(
+        (item) => item !== undefined
+      );
+      console.log(getAllSelectedNutrients);
+      const nutrientsWithRdis = getAllSelectedNutrients?.map((nutrient: any) => {
         if (!nutrient.rows) {
           const nutrientWithRdi: any = nutritionFacts.filter(
             (nutrientRdi) => nutrientRdi.nutrient.name.toLowerCase() === nutrient.name.toLowerCase()
@@ -204,7 +216,6 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
       return {
         ...flatRow,
         checked: false,
-        name: flatRow.displayName ? flatRow.displayName : flatRow.name,
         rows: [],
       };
     });

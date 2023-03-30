@@ -56,7 +56,7 @@ const NutritionMobileTable: React.FC<NutritionMobileTableProps> = ({ rows }) => 
 
   const emptyNutrientGroupItems =
     rowsByNutrientGroupArray
-      ?.filter((item: any) => item.nutrientGroup === "")[0]
+      ?.filter((item: any) => !item.nutrientGroup)[0]
       ?.rows?.map((flatRow) => {
         return {
           ...flatRow,

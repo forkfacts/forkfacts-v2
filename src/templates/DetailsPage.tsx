@@ -118,21 +118,11 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
   }, [selectedLifeStage]);
 
   const ageRanges = getAgeRangesForLifeStage(selectedLifeStage);
-  const dataNutrients = food.nutrients.map(
-    (item: { checked: boolean; name: string; unit: string }) => {
-      return {
-        checked: false,
-        name: item.name,
-        unit: item.unit,
-      };
-    }
-  );
 
   const nutrientGroups: NutrientGroup[] = food.nutrients.reduce(
     (acc: NutrientGroup[], item: NutrientItem) => {
       const index = acc.findIndex((group) => group.nutrientGroup === item.nutrientGroup);
       if (index === -1) {
-        // If the nutrientGroup doesn't exist yet, create a new one
         const group: NutrientGroup = {
           nutrientGroup: item.nutrientGroup,
           name: item.nutrientGroup,
@@ -155,6 +145,12 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
         check: false,
         nutrientGroup: item.nutrientGroup,
         name: item.nutrientGroup,
+        rows: item.rows.map((row) => {
+          return {
+            ...row,
+            checked: false,
+          };
+        }),
       };
     });
 

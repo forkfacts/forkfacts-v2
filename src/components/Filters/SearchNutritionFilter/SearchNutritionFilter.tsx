@@ -36,7 +36,6 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
   const newNutrients: SelectedNutrient[] = [...nutritionFilterItems].map((item) => {
     return {
       name: item.name,
-      unit: item.unit,
       checked: item.checked,
       nutrientGroup: item.nutrientGroup,
       rows: item?.rows?.map((item2) => {
@@ -154,7 +153,6 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
       return {
         name: item.name,
         checked: false,
-        unit: item.unit,
         nutrientGroup: item.nutrientGroup,
         rows: item?.rows?.map((item2) => {
           return {

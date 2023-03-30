@@ -301,14 +301,12 @@ export interface SelectNutrientRow {
   name: string;
   nutrientGroup: string;
   checked: boolean;
-  unit: string;
 }
 
 export interface SelectedNutrient {
   name: string;
   nutrientGroup: string;
   checked: boolean;
-  unit: string;
   rows: SelectNutrientRow[];
 }
 export interface AllFiltersProps {}

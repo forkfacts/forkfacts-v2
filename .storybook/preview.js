@@ -2,6 +2,7 @@ import "@storybook/addon-console";
 import { action } from "@storybook/addon-actions";
 import { CssBaseline } from "@mui/material";
 import { addDecorator } from "@storybook/react";
+import usdaRdiNutrientMapping from "../data/usda_rdi_nutrient_mapping.json";
 import { withConsole, setConsoleOptions } from "@storybook/addon-console";
 import { ThemeProvider } from "@mui/material/styles";
 import "@storybook/addon-actions/register";

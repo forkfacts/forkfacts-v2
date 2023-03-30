@@ -189,6 +189,11 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
         };
       }) || [];
 
+  const nutrients = [
+    ...filteredNutritionFilterItems,
+    ...emptyNutrientGroupItems,
+  ] as SelectedNutrient[];
+
   return (
     <>
       <Box sx={{ p: "8px" }}>
@@ -207,9 +212,7 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
           }}
           ageItems={ageRanges}
           lifeStageItems={lifeStageItems}
-          nutritionFilterItems={
-            [...filteredNutritionFilterItems, ...emptyNutrientGroupItems] as any[]
-          }
+          nutritionFilterItems={nutrients}
           nutritionSummaryItems={[]} // todo(h2): Feature not available yet.
           measurementFilterItems={[]} // todo(h2): Feature not available yet.
           nutritionTableRows={rows}

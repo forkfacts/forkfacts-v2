@@ -154,9 +154,14 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
       };
     });
 
-  const emptyNutrientGroupItems: any = nutrientGroups.filter(
-    (item: any) => item.nutrientGroup === ""
-  );
+  const emptyNutrientGroupItems: any = nutrientGroups
+    .filter((item: any) => item.nutrientGroup === "")[0]
+    .rows.map((flatRow) => {
+      return {
+        ...flatRow,
+        checked: false,
+      };
+    });
 
   type NutrientGroup = {
     nutrientGroup: string;
@@ -164,7 +169,7 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
     rows: NutrientItem[];
   };
 
-  console.log(filteredNutritionFilterItems);
+  console.log(emptyNutrientGroupItems);
   return (
     <>
       <Box sx={{ p: "8px" }}>
@@ -183,7 +188,7 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
           }}
           ageItems={ageRanges}
           lifeStageItems={lifeStageItems}
-          nutritionFilterItems={filteredNutritionFilterItems}
+          nutritionFilterItems={[...filteredNutritionFilterItems, ...emptyNutrientGroupItems]}
           nutritionSummaryItems={[]} // todo(h2): Feature not available yet.
           measurementFilterItems={[]} // todo(h2): Feature not available yet.
           nutritionTableRows={rows}

@@ -7,7 +7,7 @@ export interface SearchResultItemType {
   name: string;
   url: string;
   image: string;
-  category?: string;
+  category: string;
 }
 
 export interface recommendationItem {
@@ -188,6 +188,7 @@ export interface NavBarItemProps {
 
 interface AutoCompleteSearchProps extends onSelectCategoryType {
   sourceId: string;
+  searchLocation: string;
   categoryOptions: Array<SearchCategoryItemType>;
   recommendations?: Array<recommendationType>;
   setIsMobileSearchOpen: Dispatch<SetStateAction<boolean>>;

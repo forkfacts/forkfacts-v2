@@ -19,7 +19,7 @@ export default function HomeScreen({
   recommendations,
 }: HomeScreenProps) {
   const theme = useTheme();
-  const [selectedNavbarItem, setSelectedNavbarItem] = useState("Food");
+  const [selectedNavbarItem, setSelectedNavbarItem] = useState<string>("Food");
   const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false);
   const [selectedMobileItem, setSelectedMobileItem] = useState("Food");
   const classes = useStyles();
@@ -49,6 +49,7 @@ export default function HomeScreen({
                   : selectedNavbarItem.toLowerCase()
               }`}
               openOnFocus={true}
+              searchLocation={selectedNavbarItem}
               sourceId={sourceId}
               onSelectCategory={setSelectedMobileItem}
               categoryOptions={categoryOptions}

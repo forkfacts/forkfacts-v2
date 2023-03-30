@@ -1,8 +1,9 @@
 html {
   overflow: auto;
+  font-family: "Poppins" !important;
 }
 body {
-  font-family: "Poppins";
+  font-family: "Poppins" !important;
   font-style: normal;
   scroll-behavior: smooth;
 }

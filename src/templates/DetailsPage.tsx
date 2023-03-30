@@ -194,6 +194,8 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
     ...emptyNutrientGroupItems,
   ] as SelectedNutrient[];
 
+  console.log(filteredNutritionFilterItems);
+
   return (
     <>
       <Box sx={{ p: "8px" }}>

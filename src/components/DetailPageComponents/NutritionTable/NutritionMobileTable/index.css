@@ -20,6 +20,7 @@
 .slick-dots {
   overflow: hidden !important;
   display: flex;
+  position: relative;
 }
 
 .slick-dots li {

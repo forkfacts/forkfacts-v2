@@ -27,7 +27,7 @@ const NutritionMobileTable: React.FC<NutritionMobileTableProps> = ({ rows }) => 
     slidesToShow: 1,
     slidesToScroll: 1,
     fade: true,
-    adaptiveHeight: false,
+    adaptiveHeight: true,
     appendDots: (dots: any) => {
       return <MagicSliderDots dots={dots} numDotsToShow={10} dotWidth={30} />;
     },

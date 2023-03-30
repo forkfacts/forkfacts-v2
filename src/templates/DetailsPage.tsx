@@ -82,7 +82,7 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
       setRows(nutrientsWithRdis);
     } else {
       const nutrientsWithRdis = getSelectedNutrients(selectedNutrients)?.map((nutrient: any) => {
-        const nutrientWithRdi: any = nutritionFacts.filter(
+        const nutrientWithRdi: any = nutritionFacts?.filter(
           (nutrientRdi) => nutrientRdi.nutrient.name.toLowerCase() === nutrient.name.toLowerCase()
         )[0];
         const factTableRow: NutritionTableRow = {
@@ -178,8 +178,8 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
     });
 
   const emptyNutrientGroupItems: any = nutrientGroups
-    .filter((item: any) => item.nutrientGroup === "")[0]
-    .rows.map((flatRow) => {
+    ?.filter((item: any) => item.nutrientGroup === "")[0]
+    ?.rows?.map((flatRow) => {
       return {
         ...flatRow,
         checked: false,

@@ -27,7 +27,7 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ rows }) =
     }
   };
   const isCollapsed = (nutrient: any) => collapsedRows.includes(nutrient);
-  const rowsByNutrientGroup = rows.reduce((acc, row) => {
+  const rowsByNutrientGroup = rows?.reduce((acc, row) => {
     const nutrientGroup = row?.nutrientGroup;
     if (!acc.has(nutrientGroup)) {
       acc.set(nutrientGroup, [row]);
@@ -44,8 +44,6 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ rows }) =
       rows,
     })
   );
-
-  // console.log(rowsByNutrientGroupArray);
 
   return (
     <Box>
@@ -123,7 +121,7 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ rows }) =
           </TableHead>
           <TableBody>
             <>
-              {rowsByNutrientGroupArray?.reverse().map((row, index) => {
+              {rowsByNutrientGroupArray?.reverse()?.map((row, index) => {
                 if (row.nutrientGroup) {
                   return (
                     <React.Fragment key={index}>
@@ -268,7 +266,7 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ rows }) =
                     </React.Fragment>
                   );
                 }
-                if (!row.nutrientGroup) {
+                if (!row?.nutrientGroup) {
                   return row?.rows?.map((innerRow, index) => {
                     return (
                       <React.Fragment key={index}>

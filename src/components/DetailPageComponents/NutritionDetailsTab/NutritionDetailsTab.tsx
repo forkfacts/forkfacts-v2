@@ -62,7 +62,7 @@ const NutritionDetailsTab: React.FC<NutritionDetailsTabProps> = ({
           <NutritionSummary nutritionSummaryItems={nutritionSummaryItems} />
         </Box> */}
       </Box>
-      <Box sx={{ mt: mobile ? theme.spacing(2) : theme.spacing(8) }}>
+      <Box sx={{ mt: mobile ? theme.spacing(2) : theme.spacing(3) }}>
         {mobile || tablet ? (
           <NutritionMobileTable rows={nutritionTableItems} />
         ) : (

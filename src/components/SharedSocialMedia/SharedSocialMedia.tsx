@@ -118,8 +118,8 @@ const SharedSocialMedia: React.FC<SharedSocialMediaProps> = ({
         </Box>
         <Box
           sx={{
-            mt: mobile ? theme.spacing(3) : theme.spacing(5),
-            mb: mobile ? theme.spacing(1) : theme.spacing(3),
+            mt: mobile ? theme.spacing(3) : theme.spacing(4),
+            mb: mobile ? theme.spacing(1) : theme.spacing(1.5),
             fontWeight: theme.typography.fontWeightBold,
             color: theme.palette.customGray.textDark,
           }}
@@ -137,7 +137,7 @@ const SharedSocialMedia: React.FC<SharedSocialMediaProps> = ({
         <Box
           sx={{
             mt: theme.spacing(1),
-            mb: theme.spacing(3),
+            mb: theme.spacing(1),
             width: "100%",
             display: "flex",
           }}

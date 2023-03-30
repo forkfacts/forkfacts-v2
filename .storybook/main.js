@@ -24,7 +24,7 @@ module.exports = {
     config.resolve.alias["@forkfacts/models"] = path.resolve(__dirname, "../src/models");
     config.resolve.alias["@forkfacts/styles"] = path.resolve(__dirname, "../src/styles/");
     config.resolve.alias["@forkfacts/icons"] = path.resolve(__dirname, "../src/DesignIcons");
-    config.resolve.modules.push(path.resolve(__dirname, "../data"));
+    config.resolve.modules.push(path.resolve(__dirname, "data"));
     config.resolve.mainFields = ["browser", "module", "main"];
     return config;
   },

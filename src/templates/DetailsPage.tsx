@@ -112,10 +112,10 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
           };
           return factTableRow;
         } else {
-          console.log(nutrient.rows);
-          // const groupedFilter=nutrient.rows.map((nutrient)=>{
-          //    console.log(nu);
-          // })
+          const nutrientsWithRdis = nutrient.rows.map((nutrient) => {
+            return nutrient;
+          });
+          console.log();
         }
       });
       setRows(nutrientsWithRdis);

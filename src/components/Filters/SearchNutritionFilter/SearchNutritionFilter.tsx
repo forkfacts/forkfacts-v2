@@ -38,10 +38,13 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
       name: item.name,
       unit: item.unit,
       checked: item.checked,
-      subItems: item?.subItems?.map((item2) => {
+      nutrientGroup: item.nutrientGroup,
+      rows: item?.rows?.map((item2) => {
         return {
+          ...item2,
           name: item2.name,
-          checked: item.checked,
+          checked: item2.checked,
+          nutrientGroup: item2.nutrientGroup,
         };
       }),
     };
@@ -59,14 +62,14 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
     let filteredItems = [...filteredNutrient].slice();
     if (name && name !== "") {
       filteredItems = filteredItems.reduce((acc: any, item: any) => {
-        const subSearch = item?.subItems?.filter((subItem: any) =>
+        const subSearch = item?.rows?.filter((subItem: any) =>
           subItem?.name.toLowerCase().includes(name.toLowerCase())
         );
         if (item.name.toLowerCase().includes(name.toLowerCase()) || subSearch?.length > 0) {
           const newItem = {
             name: item.name,
             checked: item.checked,
-            subItems: subSearch,
+            rows: subSearch,
           };
           acc.push(newItem);
         }
@@ -84,7 +87,7 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
         const updatedItem = {
           ...filteredNutrient[itemIndex],
           checked: !filteredNutrient[itemIndex].checked,
-          subItems: filteredNutrient[itemIndex]?.subItems?.map((subItem) => ({
+          rows: filteredNutrient[itemIndex]?.rows?.map((subItem) => ({
             ...subItem,
             checked: !filteredNutrient[itemIndex]?.checked,
           })),
@@ -102,7 +105,7 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
     });
     const updatedNutrients = filteredNutrient.map((nutrient) => {
       if (nutrient.name === name1) {
-        const updatedSubItems: any = nutrient?.subItems?.map((subItem) => {
+        const updatedrows: any = nutrient?.rows?.map((subItem) => {
           if (subItem?.name === name2) {
             return { ...subItem, checked: !subItem?.checked };
           }
@@ -110,8 +113,8 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
         });
         return {
           ...nutrient,
-          subItems: updatedSubItems,
-          checked: updatedSubItems?.some((si: any) => si?.checked!),
+          rows: updatedrows,
+          checked: updatedrows?.some((si: any) => si?.checked!),
         };
       }
       return nutrient;
@@ -133,7 +136,7 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
         if (item.checked) {
           return {
             ...item,
-            subItems: item?.subItems?.filter((item2) => {
+            rows: item?.rows?.filter((item2) => {
               if (item2.checked) {
                 return item2;
               }
@@ -152,8 +155,10 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
         name: item.name,
         checked: false,
         unit: item.unit,
-        subItems: item?.subItems?.map((item2) => {
+        nutrientGroup: item.nutrientGroup,
+        rows: item?.rows?.map((item2) => {
           return {
+            ...item2,
             name: item2.name,
             checked: false,
           };
@@ -370,7 +375,7 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
                             color="primary"
                             checked={item.checked}
                             checkedIcon={
-                              item?.subItems?.every((item3) => item3.checked === true) ? (
+                              item?.rows?.every((item3) => item3.checked === true) ? (
                                 <CheckBoxIcon color="primary" sx={{ width: theme.spacing(3) }} />
                               ) : (
                                 <IndeterminateCheckBoxIcon
@@ -393,8 +398,8 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
                         </Box>
                       </AccordionSummary>
                       <AccordionDetails sx={{ mt: theme.spacing(-2), cursor: "default" }}>
-                        {item.subItems && (
-                          <ForLoops each={item.subItems}>
+                        {item.rows && (
+                          <ForLoops each={item.rows}>
                             {(item2, index2) => {
                               return (
                                 <Box

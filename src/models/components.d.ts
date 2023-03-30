@@ -297,11 +297,19 @@ export interface SearchNutritionFilterProps {
   margin?: string | number;
 }
 
+export interface SelectNutrientRow {
+  name: string;
+  nutrientGroup: string;
+  checked: boolean;
+  unit: string;
+}
+
 export interface SelectedNutrient {
   name: string;
-  subItems?: { name: string; checked: boolean }[];
+  nutrientGroup: string;
   checked: boolean;
-  unit: string; // todo(h2): do we need to store unit?
+  unit: string;
+  rows: SelectNutrientRow[];
 }
 export interface AllFiltersProps {}
 

@@ -24,14 +24,14 @@ module.exports = {
     config.resolve.alias["@forkfacts/models"] = path.resolve(__dirname, "../src/models");
     config.resolve.alias["@forkfacts/styles"] = path.resolve(__dirname, "../src/styles/");
     config.resolve.alias["@forkfacts/icons"] = path.resolve(__dirname, "../src/DesignIcons");
-    config.resolve.modules.push(path.resolve(__dirname, "data"));
+    config.resolve.modules.push(path.resolve(__dirname, "../data/usda_rdi_nutrient_mapping.json"));
     config.resolve.mainFields = ["browser", "module", "main"];
     return config;
   },
   resolve: {
     modules: [path.resolve(__dirname, "src"), "node_modules"],
   },
-  staticDirs: ["../static", "../data"],
+  staticDirs: ["../static", "/data/usda_rdi_nutrient_mapping.json"],
   framework: "@storybook/react",
   core: {
     builder: "@storybook/builder-webpack5",

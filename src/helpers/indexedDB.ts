@@ -8,6 +8,7 @@ interface DBData extends DBSchema {
       name: string;
       category: string;
       searchLocation: string;
+      searchId?: string;
     };
     key: string;
     indexes: { timestamp: Date };
@@ -47,14 +48,20 @@ export const addSearchEntry = async (searchData: SearchParams) => {
     const tx = db.transaction("items", "readwrite");
     const store = tx.objectStore("items");
     const allItems = await store.getAll();
+    const existingItem = allItems.find((item) => item.name === searchData.name);
+    if (existingItem) return;
     allItems.sort((a, b) => b.timestamp.getTime() - a.timestamp.getTime());
     if (allItems.length >= 5) {
       const lastItem = allItems[allItems.length - 1];
-      await store.delete(lastItem.name);
+      if (lastItem.searchId) {
+        await store.delete(lastItem.searchId);
+      }
     }
     await store.add(searchData);
     const recentSearches = await store.getAll();
-    recentSearches.sort((a, b) => b.timestamp.getTime() - a.timestamp.getTime());
+    recentSearches.sort(
+      (a, b) => new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime()
+    );
     await tx.done;
     return recentSearches.slice(0, 5);
   } catch (error) {

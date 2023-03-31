@@ -132,9 +132,9 @@ function AutoCompleteSearch(
         searchLocation: props.searchLocation ?? "Food",
       };
       await addSearchEntry(searchData);
-      const path = spaceToDashes(item.name);
-      navigate(path);
     }
+    const path = spaceToDashes(item.name);
+    navigate(path);
   };
 
   const onClearSearch = async () => {
@@ -168,8 +168,6 @@ function AutoCompleteSearch(
     }
     fetchData();
   }, [isOpen]);
-
-  console.log(recentSearches);
 
   return (
     <Box component="div" sx={{ overflow: "hidden !important" }}>

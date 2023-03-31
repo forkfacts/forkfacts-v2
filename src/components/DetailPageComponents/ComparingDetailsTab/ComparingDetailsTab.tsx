@@ -95,8 +95,8 @@ const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
             open={open}
             setIsOpen={setIsOpen}
             multiselectTitle="Filter foods"
-            renderSelectButton={
-              <>
+            RenderSelectButton={
+              <Box>
                 <Button
                   startIcon={<FilterListOutlinedIcon />}
                   variant="outlined"
@@ -116,7 +116,7 @@ const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
                     Filter foods
                   </Typography>
                 </Button>
-              </>
+              </Box>
             }
           />
         </Box>
@@ -129,8 +129,8 @@ const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
               open={isShowHideOpen}
               setIsOpen={setShowHideOpen}
               multiselectTitle="Show/Hide nutrients"
-              renderSelectButton={
-                <>
+              RenderSelectButton={
+                <Box>
                   <Button
                     startIcon={<VisibilityOutlinedIcon />}
                     variant="outlined"
@@ -150,7 +150,7 @@ const ComparingDetailsTab: React.FC<ComparingDetailsTabProps> = ({
                       Show/Hide
                     </Typography>
                   </Button>
-                </>
+                </Box>
               }
             />
           )}

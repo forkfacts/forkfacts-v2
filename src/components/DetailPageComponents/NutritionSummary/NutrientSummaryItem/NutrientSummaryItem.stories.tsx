@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { NutrientSummaryItem } from "@forkfacts/components";
 
 export default {
-  title: "Components/DetailsPageComponents/NutritionSummary",
+  title: "Components/DetailPageComponents/NutritionSummary",
   component: NutrientSummaryItem,
 } as ComponentMeta<typeof NutrientSummaryItem>;
 

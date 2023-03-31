@@ -41,26 +41,6 @@ export default {
   },
 } as ComponentMeta<typeof SearchResults>;
 
-const collectionMultipleListsItems = [
-  { image: "/recentImg.png", name: "Kidney beans light, Legume", url: "/:id" },
-  { image: "/image3.png", name: "Grape fruit juices", url: "/:id" },
-  {
-    image: "/image2.png",
-    name: "Baked white bread, Baked products",
-    url: "/:id",
-  },
-  {
-    image: "/image4.png",
-    name: "Grape fruit juice unsweentened, Fruit ...",
-    url: "/:id",
-  },
-  {
-    image: "/image5.png",
-    name: "Banana dehydrated/ banana powder",
-    url: "/:id",
-  },
-];
-
 const collectionListsItems = [
   { image: "/recentImg.png", name: "Kidney beans light, Legume", url: "/:id", category: "Food" },
   { image: "/image3.png", name: "Grape fruit juices", url: "/:id", category: "Food" },
@@ -84,11 +64,6 @@ const collectionListsItems = [
   },
 ];
 
-const collectionGroupedItems = [
-  { categoryName: "FRUIT AND FRUIT JUICES", collection: collectionMultipleListsItems },
-  { categoryName: "BABY FOODS", collection: collectionMultipleListsItems.slice(0, 3) },
-];
-
 const Template: ComponentStory<typeof SearchResults> = (args) => {
   return <SearchResults {...args} />;
 };
@@ -96,10 +71,9 @@ const Template: ComponentStory<typeof SearchResults> = (args) => {
 export const SearchResultsItemsMultipleDesktopCategories = Template.bind({});
 
 SearchResultsItemsMultipleDesktopCategories.args = {
-  ...SearchResultsItemsMultipleDesktopCategories.args,
-  collectionGroupedItems,
   multiple: true,
   onSelectItem: (item: SearchResultItemType) => item,
+  collectionListsItems,
 };
 
 SearchResultsItemsMultipleDesktopCategories.storyName =
@@ -108,9 +82,8 @@ SearchResultsItemsMultipleDesktopCategories.storyName =
 export const SearchResultsItemsSingleDesktopCategory = Template.bind({});
 
 SearchResultsItemsSingleDesktopCategory.args = {
-  ...SearchResultsItemsSingleDesktopCategory.args,
   collectionListsItems,
-  multiple: false,
+  multiple: true,
   onSelectItem: (item: SearchResultItemType) => item,
 };
 
@@ -123,10 +96,9 @@ SearchResultsItemsMultipleMobileCategories.parameters = {
   },
 };
 SearchResultsItemsMultipleMobileCategories.args = {
-  ...SearchResultsItemsMultipleMobileCategories.args,
-  collectionGroupedItems,
   multiple: true,
   onSelectItem: (item: SearchResultItemType) => item,
+  collectionListsItems,
 };
 SearchResultsItemsMultipleMobileCategories.argTypes = {
   multiple: {
@@ -143,9 +115,8 @@ SearchResultsItemsSingleMobileCategory.parameters = {
   },
 };
 SearchResultsItemsSingleMobileCategory.args = {
-  ...SearchResultsItemsSingleMobileCategory.args,
   collectionListsItems,
-  multiple: false,
+  multiple: true,
   onSelectItem: (item: SearchResultItemType) => item,
 };
 SearchResultsItemsSingleMobileCategory.argTypes = {

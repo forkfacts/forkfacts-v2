@@ -12,7 +12,7 @@ type NutrientType = {
 const MultipleSelects: React.FC<MultipleSelectsProps> = ({
   values,
   onSelectedValue,
-  renderSelectButton,
+  RenderSelectButton,
   open,
   setIsOpen,
   multiselectTitle,
@@ -56,27 +56,6 @@ const MultipleSelects: React.FC<MultipleSelectsProps> = ({
     setSelectNutrients(checkedNutrients);
   };
 
-  const onDoneFilter = () => {
-    const checkedNutrients = selectedNutrients.filter((item) => {
-      if (item.checked) {
-        return {
-          ...item,
-          checked: true,
-        };
-      }
-    });
-    if (checkedNutrients.length) {
-      onSelectedValue(
-        checkedNutrients.map((item) => {
-          return item?.name as string;
-        })
-      );
-    } else {
-      onSelectedValue([]);
-    }
-    setIsOpen(false);
-  };
-
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (ref.current && !ref.current.contains(event.target as Node)) {
@@ -95,7 +74,7 @@ const MultipleSelects: React.FC<MultipleSelectsProps> = ({
       sx={{ cursor: "pointer", zIndex: theme.zIndex.mobileStepper, position: "relative" }}
       ref={ref}
     >
-      <Box>{renderSelectButton}</Box>
+      <>{RenderSelectButton}</>
       {open && (
         <Box
           component="div"

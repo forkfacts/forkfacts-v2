@@ -4,6 +4,8 @@ public
 src/gatsby-types.d.ts
 .idea/
 .env
+.env.development
+.env.production
 .vscode
 data
 wget-log*

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Box, useMediaQuery, useTheme } from "@mui/material";
 import {
-  Layout,
   AutoCompleteSearch,
+  Layout,
   NavBar,
   PopularFrequentSearchCategories,
 } from "@forkfacts/components";
@@ -14,14 +14,11 @@ export default function HomeScreen({
   sidebarItems,
   navbarItems,
   PopularFrequentSearchItems,
-  onSelectPopularItem,
-  collectionGroupedItems,
   categoryOptions,
   sourceId,
   recommendations,
 }: HomeScreenProps) {
   const theme = useTheme();
-  const mobile = useMediaQuery(theme.breakpoints.down("md"));
   const [selectedNavbarItem, setSelectedNavbarItem] = useState("Food");
   const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false);
   const [selectedMobileItem, setSelectedMobileItem] = useState("Food");
@@ -29,7 +26,7 @@ export default function HomeScreen({
 
   return (
     <>
-      <Layout sidebarItems={sidebarItems}>
+      <Layout menuItems={sidebarItems}>
         <Box className={classes.desktopScreenWrapper}>
           <Box
             component="img"
@@ -55,17 +52,19 @@ export default function HomeScreen({
               sourceId={sourceId}
               onSelectCategory={setSelectedMobileItem}
               categoryOptions={categoryOptions}
-              collectionGroupedItems={collectionGroupedItems}
               setIsMobileSearchOpen={setIsMobileSearchOpen}
             />
           </Box>
           {!isMobileSearchOpen ? (
-            <Box className={classNames(classes.PopularFrequentStyles)}>
-              <PopularFrequentSearchCategories
-                PopularFrequentSearchItems={PopularFrequentSearchItems}
-                onSelectPopularItem={onSelectPopularItem}
-              />
-            </Box>
+            <>
+              {PopularFrequentSearchItems && PopularFrequentSearchItems.length ? (
+                <Box className={classNames(classes.PopularFrequentStyles)}>
+                  <PopularFrequentSearchCategories
+                    PopularFrequentSearchItems={PopularFrequentSearchItems}
+                  />
+                </Box>
+              ) : null}
+            </>
           ) : null}
         </Box>
       </Layout>

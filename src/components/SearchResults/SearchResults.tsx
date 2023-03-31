@@ -1,36 +1,65 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box, Typography, List, useTheme, useMediaQuery } from "@mui/material";
 import { ForLoops } from "@forkfacts/helpers";
-import { SearchResultsProps } from "@forkfacts/models";
+import { SearchResultItemCollectionType, SearchResultsProps } from "@forkfacts/models";
 import { ViewMoreButton, SearchResultItem } from "@forkfacts/components";
 import { useStyles } from "./searchResultsStyles";
 
 const SearchResults: React.FC<SearchResultsProps> = ({
-  collectionGroupedItems,
   collectionListsItems,
   multiple,
   onSelectItem,
-  handleViewMore,
 }) => {
   const classes = useStyles();
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.down("md"));
+  const resultResultLimit = Number(process.env.NUM_SEARCH_RESULT_VISIBLE) || 5;
+  const [viewMore, setViewMore] = useState(resultResultLimit);
 
+  const namesSet = new Set<string>();
+  const uniqueSearchResults = collectionListsItems.filter((item) => {
+    if (namesSet.has(item.name)) {
+      return false;
+    } else {
+      namesSet.add(item.name);
+      return true;
+    }
+  });
+
+  const groupedItems = uniqueSearchResults.reduce(
+    (groups: SearchResultItemCollectionType[], item: any) => {
+      const group = groups.find(
+        (g: SearchResultItemCollectionType) => g.categoryName === item.category
+      );
+      if (group) {
+        group.collection.push(item);
+      } else {
+        groups.push({ categoryName: item.category, collection: [item] });
+      }
+      return groups;
+    },
+    []
+  );
+  const handleGroupedViewMore = () => {
+    setViewMore(uniqueSearchResults.length);
+  };
   return (
     <Box className={classes.root}>
       {multiple ? (
         <Box>
-          {collectionGroupedItems && (
-            <ForLoops each={collectionGroupedItems}>
+          {groupedItems && (
+            <ForLoops each={groupedItems.slice(0, viewMore)}>
               {(value, idx) => {
                 return (
-                  <List key={idx} className={classes.listWrapper}>
+                  <List key={idx} sx={{ wordBreak: "break-all" }}>
                     <Box
                       sx={{
                         display: "flex",
                         alignItems: "center",
                         width: "100%",
-                        mb: theme.spacing(1.5),
+                        mb: theme.spacing(1),
+                        ml: theme.spacing(-2),
+                        wordBreak: "break-all",
                       }}
                     >
                       <Typography
@@ -52,6 +81,8 @@ const SearchResults: React.FC<SearchResultsProps> = ({
                           justifyContent: "center",
                           alignItems: "center",
                           borderRadius: "50%",
+                          fontSize: theme.spacing(1.7),
+                          pt: theme.spacing(0.5),
                         }}
                       >
                         {value.collection.length}
@@ -61,14 +92,24 @@ const SearchResults: React.FC<SearchResultsProps> = ({
                       <ForLoops each={value.collection}>
                         {(item, index) => {
                           return (
-                            <SearchResultItem key={index} item={item} onSelectItem={onSelectItem} />
+                            <SearchResultItem
+                              key={index}
+                              item={item}
+                              onSelectItem={onSelectItem}
+                              multiple={multiple}
+                            />
                           );
                         }}
                       </ForLoops>
                     </Box>
-                    <Box sx={{ ml: mobile ? theme.spacing(-1) : theme.spacing(1) }}>
-                      {value.collection.length > 3 && (
-                        <ViewMoreButton handleViewMore={handleViewMore} text="See more" />
+                    <Box
+                      sx={{
+                        ml: mobile ? theme.spacing(-1) : theme.spacing(-1.5),
+                        display: uniqueSearchResults?.length === viewMore ? "none" : "block",
+                      }}
+                    >
+                      {value.collection.length > resultResultLimit && (
+                        <ViewMoreButton handleViewMore={handleGroupedViewMore} text="See more" />
                       )}
                     </Box>
                   </List>
@@ -79,18 +120,28 @@ const SearchResults: React.FC<SearchResultsProps> = ({
         </Box>
       ) : (
         <Box>
-          {collectionListsItems && (
-            <List sx={{ padding: 0 }} className={classes.listWrapper}>
-              <ForLoops each={collectionListsItems}>
-                {(item, index) => {
-                  return <SearchResultItem key={index} item={item} onSelectItem={onSelectItem} />;
-                }}
-              </ForLoops>
-            </List>
-          )}
-          <Box sx={{ ml: mobile ? theme.spacing(-1) : theme.spacing(1) }}>
-            {collectionListsItems && collectionListsItems?.length > 3 && (
-              <ViewMoreButton handleViewMore={handleViewMore} text="View all" />
+          <List sx={{ padding: 0 }}>
+            <ForLoops each={uniqueSearchResults.slice(0, viewMore)}>
+              {(item, index) => {
+                return (
+                  <SearchResultItem
+                    key={index}
+                    item={item}
+                    onSelectItem={onSelectItem}
+                    multiple={multiple}
+                  />
+                );
+              }}
+            </ForLoops>
+          </List>
+          <Box
+            sx={{
+              ml: mobile ? theme.spacing(-2.5) : theme.spacing(-1),
+              display: uniqueSearchResults?.length === viewMore ? "none" : "block",
+            }}
+          >
+            {uniqueSearchResults?.length > resultResultLimit && (
+              <ViewMoreButton handleViewMore={handleGroupedViewMore} text="View all" />
             )}
           </Box>
         </Box>

@@ -9,6 +9,7 @@ import classnames from "classnames";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useStyles } from "./headerStyles";
 import { useMediaQuery, useTheme } from "@mui/material";
+import { navigate } from "gatsby";
 
 interface HeaderProps {
   handleToggleButton: () => void;
@@ -18,6 +19,11 @@ export default function Header({ handleToggleButton }: HeaderProps) {
   const classes = useStyles();
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.down("sm"));
+
+  const onSelectItem = () => {
+    navigate("/");
+  };
+
   return (
     <Box>
       <AppBar
@@ -27,20 +33,19 @@ export default function Header({ handleToggleButton }: HeaderProps) {
           zIndex: (theme) => theme.zIndex.drawer + 1,
           backgroundColor: ({ palette }) => palette.common.white,
           paddingY: mobile ? theme.spacing(2) : theme.spacing(1),
-          paddingX: theme.spacing(1),
+          paddingX: theme.spacing(0),
         }}
       >
         <Toolbar sx={{ position: "relative" }}>
-          <IconButton
-            size="large"
-            edge="start"
-            aria-label="menu"
-            sx={{ mr: 0.5 }}
-            onClick={handleToggleButton}
-          >
+          <IconButton size="large" edge="start" aria-label="menu" onClick={handleToggleButton}>
             <MenuIcon />
           </IconButton>
-          <Typography color="primary" variant={mobile ? "displayMedium" : "displayLarge"}>
+          <Typography
+            color="primary"
+            variant={mobile ? "displayMedium" : "displayLarge"}
+            onClick={onSelectItem}
+            sx={{ cursor: "pointer" }}
+          >
             Forkfacts
           </Typography>
           <Box className={classes.rightContent}>

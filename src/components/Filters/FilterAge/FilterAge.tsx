@@ -8,37 +8,38 @@ import CloseIcon from "@mui/icons-material/Close";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import RadioButtonCheckedIcon from "@mui/icons-material/RadioButtonChecked";
-import { AgeItemsProps, ageItem } from "@forkfacts/models";
+import { AgeItemsProps, RdiAge } from "@forkfacts/models";
 import { ForLoops } from "@forkfacts/helpers";
 import { withDropdown, withoutDropdown } from "./filterAgeStyles";
+import { useStore } from "../../../store/store";
 
-const FilterAge: React.FC<AgeItemsProps> = ({
-  ageItems,
-  onSelectAgeItem,
-  isDropdown,
-  margin = 0,
-}) => {
+const FilterAge: React.FC<AgeItemsProps> = ({ ageItems, isDropdown, margin = 0 }) => {
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.down("md"));
   const ref = useRef<HTMLDivElement>(null);
-  const [selectedAgeIndex, setSelectedAgeIndex] = useState<number | null>(2);
-  const [selectedItem, setSelectedItem] = useState("19 -30 Years");
+  const { selectedAge, setSelectedAge } = useStore((state) => state);
+  const ageString = selectedAge?.end
+    ? `${selectedAge.start}-${selectedAge.end} ${selectedAge.ageUnit}`
+    : `>70 years`;
+  const [selectedItem, setSelectedItem] = useState(ageString);
   const [open, setOpen] = useState(false);
 
-  const handleSelectAge = (item: ageItem, index: number) => {
-    let age = `${item.start + "-" + item.end} ${item.unit}`;
-    if (!item.start) {
-      age = `>70 years`;
+  const handleSelectAge = (item: RdiAge) => {
+    let ageString = "";
+    if (!item.end) {
+      ageString = `>70 years`;
     } else {
-      age = `${item.start + "-" + item.end} ${item.unit}`;
+      ageString = `${item.start}-${item.end} ${item.ageUnit}`;
     }
-    setSelectedAgeIndex(index);
-    setSelectedItem(age);
+    const newAge = {
+      start: item.start,
+      end: item.end,
+      ageUnit: item.ageUnit,
+    };
+    setSelectedAge(newAge);
+    setSelectedItem(ageString);
+    setOpen(false);
   };
-
-  useEffect(() => {
-    onSelectAgeItem(selectedItem);
-  }, [selectedItem]);
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -46,7 +47,6 @@ const FilterAge: React.FC<AgeItemsProps> = ({
         setOpen(false);
       }
     }
-
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
@@ -64,7 +64,7 @@ const FilterAge: React.FC<AgeItemsProps> = ({
               ? theme.palette.primary.light
               : theme.palette.background.default,
             borderColor: selectedItem ? theme.palette.primary.main : theme.palette.grey[700],
-            textTransform: "capitalize",
+
             whiteSpace: "nowrap",
             display: "flex",
             justifyContent: "center",
@@ -92,7 +92,7 @@ const FilterAge: React.FC<AgeItemsProps> = ({
                 }}
               />
             )}
-            {selectedItem ? selectedItem : "Age"}
+            {selectedItem ? ageString : "Age"}
           </Typography>
           {open ? (
             <ArrowDropUpIcon sx={{ color: theme.palette.iconColors.main }} />
@@ -152,53 +152,56 @@ const FilterAge: React.FC<AgeItemsProps> = ({
                       justifyContent: "flex-start",
                       alignItems: "center",
                     }}
-                    onClick={() => handleSelectAge(item, index)}
+                    onClick={() => handleSelectAge(item)}
                   >
                     <Checkbox
                       icon={<RadioButtonUncheckedIcon />}
                       checkedIcon={<RadioButtonCheckedIcon />}
-                      checked={selectedAgeIndex === index ? true : false}
+                      checked={
+                        (selectedAge.start === item.start && selectedAge.end == item.end) ||
+                        selectedAge.start > 70
+                          ? true
+                          : false
+                      }
                     />
-                    {item.start ? (
+                    {item.end || item.end === 0 ? (
                       <Typography
                         variant="bodyMedium"
                         sx={{
                           fontWeight: theme.typography.fontWeightLight,
-                          color: theme.palette.customGray.textBlack,
+                          color: theme.palette.customGray.main,
                           cursor: "pointer",
                         }}
                       >
-                        {item.start + "-" + item.end} {item.unit}
+                        {item.end === undefined ? 0 : item.start + "-" + item.end} {item.ageUnit}
                       </Typography>
                     ) : (
                       <Typography
                         variant="bodyMedium"
                         sx={{
                           fontWeight: theme.typography.fontWeightLight,
-                          color: theme.palette.customGray.textBlack,
+                          color: theme.palette.customGray.main,
                           display: "flex",
                           justifyContent: "center",
                           alignItems: "center",
                           ml: theme.spacing(-2.5),
                         }}
                       >
-                        {item.end >= 70 && !item.start ? (
-                          <ChevronRightIcon
-                            sx={{
-                              width: theme.spacing(2),
-                              height: theme.spacing(2),
-                              ml: theme.spacing(2),
-                            }}
-                          />
-                        ) : null}
+                        <ChevronRightIcon
+                          sx={{
+                            width: theme.spacing(2),
+                            height: theme.spacing(2),
+                            ml: theme.spacing(2),
+                          }}
+                        />
                         <Typography
                           variant="bodyMedium"
                           sx={{
                             fontWeight: theme.typography.fontWeightLight,
-                            color: theme.palette.customGray.textBlack,
+                            color: theme.palette.customGray.main,
                           }}
                         >
-                          {item.end} {item.unit}
+                          {item.start} {item.ageUnit}
                         </Typography>
                       </Typography>
                     )}

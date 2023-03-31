@@ -10,7 +10,7 @@ export const useStyles = makeStyles(({ typography, spacing, breakpoints, palette
     right: spacing(1.5),
   },
   authBtn: {
-    borderRadius: spacing(12.5),
+    borderRadius: spacing(1),
     color: palette.common.white,
     width: spacing(14),
     height: spacing(6),
@@ -24,6 +24,12 @@ export const useStyles = makeStyles(({ typography, spacing, breakpoints, palette
     },
     [breakpoints.down("md")]: {
       fontSize: typography.labelMedium.fontSize,
+      paddingTop: spacing(1),
+      width: spacing(12),
+      height: spacing(5),
+      paddingBottom: spacing(1),
+      paddingLeft: spacing(2),
+      paddingRight: spacing(2),
     },
   },
 }));

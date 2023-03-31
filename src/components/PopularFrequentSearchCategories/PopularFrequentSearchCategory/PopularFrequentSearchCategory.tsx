@@ -4,16 +4,11 @@ import Typography from "@mui/material/Typography";
 import { Box, Card, useMediaQuery, useTheme } from "@mui/material";
 import { ForLoops } from "@forkfacts/helpers";
 
-const PopularFrequentSearchCategory = ({
-  item,
-  onSelectPopularItem,
-}: PopularFrequentSearchCategoryProps) => {
+const PopularFrequentSearchCategory = ({ item }: PopularFrequentSearchCategoryProps) => {
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.between("xs", "sm"));
   const tablet = useMediaQuery(theme.breakpoints.only("md"));
-  const handleSelectedItem = () => {
-    onSelectPopularItem(item);
-  };
+  const handleSelectedItem = () => {};
   return (
     <Card
       sx={{

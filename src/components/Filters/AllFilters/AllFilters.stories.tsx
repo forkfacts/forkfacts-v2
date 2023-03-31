@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import { AllFilters } from "@forkfacts/components";
-import { ageItem, lifeStageItem, SearchNutritionFilterItem } from "@forkfacts/models";
+import { RdiAge, lifeStageItem, SelectedNutrient } from "@forkfacts/models";
 import { Baby, Kids, Lactation, Male, PregnantWoman, Woman } from "@forkfacts/icons";
 
 export default {
@@ -21,15 +21,15 @@ const lifeStageItems: lifeStageItem[] = [
     icon: Kids,
   },
   {
-    name: "Infant",
+    name: "Infants",
     icon: Baby,
   },
   {
-    name: "Female",
+    name: "females",
     icon: Woman,
   },
   {
-    name: "Male",
+    name: "males",
     icon: Male,
   },
   {
@@ -42,70 +42,72 @@ const lifeStageItems: lifeStageItem[] = [
   },
 ];
 
-const ageItems: ageItem[] = [
+const ageItems: RdiAge[] = [
   {
     start: 9,
     end: 13,
-    unit: "years",
+    ageUnit: "year",
   },
   {
     start: 14,
     end: 18,
-    unit: "years",
+    ageUnit: "year",
   },
   {
     start: 19,
     end: 30,
-    unit: "years",
+    ageUnit: "year",
   },
   {
     start: 31,
     end: 50,
-    unit: "years",
+    ageUnit: "year",
   },
   {
     start: 51,
     end: 70,
-    unit: "years",
+    ageUnit: "year",
   },
   {
-    end: 70,
-    unit: "years",
+    start: 70,
+    ageUnit: "year",
   },
+];
+const nutritionFilterItems: SelectedNutrient[] = [
+  {
+    name: "Vitamins",
+    nutrientGroup: "Vitamins",
+    rows: [
+      { name: "Vitamin B1", checked: false, nutrientGroup: "Vitamins" },
+      { name: "Vitamin B2", checked: false, nutrientGroup: "Vitamins" },
+      { name: "Vitamin B3", checked: false, nutrientGroup: "Vitamins" },
+      { name: "Vitamin B4", checked: false, nutrientGroup: "Vitamins" },
+    ],
+    checked: false,
+  },
+  {
+    name: "Proteins",
+    nutrientGroup: "Proteins",
+    rows: [
+      { name: "Protein B1", checked: false, nutrientGroup: "Proteins" },
+      { name: "Protein B2", checked: false, nutrientGroup: "Proteins" },
+    ],
+    checked: false,
+  },
+  { name: "Carbohydrate", rows: [], checked: false, nutrientGroup: "" },
+  { name: "Water", rows: [], checked: false, nutrientGroup: "" },
+  { name: "Fats", rows: [], checked: false, nutrientGroup: "" },
+  { name: "Fiber", rows: [], checked: false, nutrientGroup: "" },
+  { name: "Minerals", rows: [], checked: false, nutrientGroup: "" },
 ];
 
-const nutritionFilterItems: SearchNutritionFilterItem[] = [
-  {
-    name: "Vitamin",
-    subItems: [
-      { name: "Vitamin B1", checked: false },
-      { name: "Vitamin B2", checked: false },
-      { name: "Vitamin B3", checked: false },
-      { name: "Vitamin B4", checked: false },
-    ],
-    checked: false,
-  },
-  {
-    name: "Protein",
-    subItems: [
-      { name: "Protein B1", checked: false },
-      { name: "Protein B2", checked: false },
-    ],
-    checked: false,
-  },
-  { name: "Carbohydrate", subItems: [], checked: false },
-  { name: "Water", subItems: [], checked: false },
-  { name: "Fats", subItems: [], checked: false },
-  { name: "Fiber", subItems: [], checked: false },
-  { name: "Minerals", subItems: [], checked: false },
-];
 const Template: ComponentStory<typeof AllFilters> = (args) => {
   const [selectedNutritionFilterItems, setSelectedNutritionFilterItems] = useState<
-    SearchNutritionFilterItem[]
+    SelectedNutrient[]
   >([]);
-  const [selectedAge, setSelectedAge] = useState<ageItem>({} as ageItem);
+  const [selectedAge, setSelectedAge] = useState<RdiAge>({} as RdiAge);
   const [selectedLifeStage, setLifeStage] = useState("");
-  const handleSelectedAge = (value: ageItem) => {
+  const handleSelectedAge = (value: RdiAge) => {
     setSelectedAge(value);
   };
 
@@ -113,7 +115,7 @@ const Template: ComponentStory<typeof AllFilters> = (args) => {
     setLifeStage(value);
   };
 
-  const handleSelectNutritionFilterItem = (value: SearchNutritionFilterItem[] | any[]) => {
+  const handleSelectNutritionFilterItem = (value: SelectedNutrient[] | any[]) => {
     setSelectedNutritionFilterItems(value);
   };
   return (

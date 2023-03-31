@@ -17,6 +17,12 @@
   color: #4c42e8 !important;
 }
 
+.slick-dots {
+  overflow: hidden !important;
+  display: flex;
+  position: relative;
+}
+
 .slick-dots li {
   margin: 100px 0 0 0 !important;
   background-color: #ffffff !important;

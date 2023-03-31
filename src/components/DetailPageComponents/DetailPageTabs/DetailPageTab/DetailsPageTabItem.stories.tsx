@@ -3,9 +3,10 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import { DetailsPageTabItem } from "@forkfacts/components";
 import FastfoodOutlinedIcon from "@mui/icons-material/FastfoodOutlined";
+import { MenuItem } from "@forkfacts/models";
 
 export default {
-  title: "Components/DetailsPageComponents/DetailsPageTabItems",
+  title: "Components/DetailPageComponents/DetailsPageTab",
   component: DetailsPageTabItem,
   parameters: {
     viewport: {
@@ -15,7 +16,7 @@ export default {
 } as ComponentMeta<typeof DetailsPageTabItem>;
 
 const Template: ComponentStory<typeof DetailsPageTabItem> = (args) => (
-  <DetailsPageTabItem {...args} onSelectDetailsPageTabItem={args.onSelectDetailsPageTabItem} />
+  <DetailsPageTabItem {...args} />
 );
 
 export const UnselectedTabItem = Template.bind({});
@@ -23,8 +24,8 @@ export const UnselectedTabItem = Template.bind({});
 UnselectedTabItem.args = {
   index: 3,
   item: { label: "Nutrition", Icon: FastfoodOutlinedIcon, link: "/food" },
-  setSelectedIndex: (value: number) => {},
-  selectedIndex: 1,
+  handleClick: (value: MenuItem) => {},
+  selectedTab: "Recipes",
 };
 
 UnselectedTabItem.storyName = "UnselectTabItem";
@@ -34,8 +35,8 @@ export const SelectedTabItem = Template.bind({});
 SelectedTabItem.args = {
   index: 1,
   item: { label: "Nutrition", Icon: FastfoodOutlinedIcon, link: "/food" },
-  setSelectedIndex: (value: number) => {},
-  selectedIndex: 1,
+  handleClick: (value: MenuItem) => {},
+  selectedTab: "Nutrition",
 };
 
 SelectedTabItem.storyName = "SelectedTabItem";

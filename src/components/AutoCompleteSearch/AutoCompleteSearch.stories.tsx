@@ -109,7 +109,6 @@ Desktop.args = {
   placeholder: "Search food, recipes & library",
   openOnFocus: true,
   sourceId: "forkfact-v2",
-  collectionGroupedItems: collectionGroupedItems,
   categoryOptions: categoryOptions,
   recommendations,
 };
@@ -120,7 +119,6 @@ Mobile.args = {
   ...Mobile.args,
   openOnFocus: true,
   sourceId: "forkfact-v2",
-  collectionGroupedItems: collectionGroupedItems,
   placeholder: "Search",
   categoryOptions: categoryOptions,
   recommendations,
@@ -138,7 +136,6 @@ Tablet.args = {
   ...Tablet.args,
   openOnFocus: true,
   sourceId: "forkfact-v2",
-  collectionGroupedItems: collectionGroupedItems,
   placeholder: "Search",
   categoryOptions: categoryOptions,
   recommendations,

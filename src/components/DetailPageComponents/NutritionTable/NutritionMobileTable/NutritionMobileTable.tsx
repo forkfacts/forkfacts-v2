@@ -4,14 +4,21 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import { Box, Typography, useTheme } from "@mui/material";
 import { ForLoops } from "@forkfacts/helpers";
-import { NutritionTableItem } from "@forkfacts/models";
+import { NutritionMobileTableProps, NutritionTableRow } from "@forkfacts/models";
+import MagicSliderDots from "react-magic-slider-dots";
+import "react-magic-slider-dots/dist/magic-dots.css";
 import "./index.css";
 
-interface NutritionMobileTableProps {
-  nutritionTableItems: NutritionTableItem[];
+interface GroupType {
+  nutrientGroup: string;
+  amount?: string;
+  amountUnit?: string;
+  dailyValue?: string;
+  nutrient?: string;
+  rows: NutritionTableRow[];
 }
 
-const NutritionMobileTable: React.FC<NutritionMobileTableProps> = ({ nutritionTableItems }) => {
+const NutritionMobileTable: React.FC<NutritionMobileTableProps> = ({ rows }) => {
   const theme = useTheme();
   const settings = {
     dots: true,
@@ -20,13 +27,49 @@ const NutritionMobileTable: React.FC<NutritionMobileTableProps> = ({ nutritionTa
     slidesToShow: 1,
     slidesToScroll: 1,
     fade: true,
-    adaptiveHeight: false,
+    adaptiveHeight: true,
+    appendDots: (dots: any) => {
+      return <MagicSliderDots dots={dots} numDotsToShow={10} dotWidth={30} />;
+    },
   };
 
+  const rowsByNutrientGroup = rows?.reduce((acc, row) => {
+    const nutrientGroup = row?.nutrientGroup;
+    if (!acc.has(nutrientGroup)) {
+      acc.set(nutrientGroup, [row]);
+      return acc;
+    }
+    acc.set(nutrientGroup, [...(acc.get(nutrientGroup) as NutritionTableRow[]), row]);
+    return acc;
+  }, new Map<string, NutritionTableRow[]>());
+
+  const rowsByNutrientGroupArray = Array.from(
+    rowsByNutrientGroup.entries(),
+    ([nutrientGroup, rows]) => ({
+      nutrientGroup,
+      rows,
+    })
+  );
+  const filteredNutritionFilterItems: any = rowsByNutrientGroupArray.filter(
+    (item: any) => item.nutrientGroup !== ""
+  );
+
+  const emptyNutrientGroupItems =
+    rowsByNutrientGroupArray
+      ?.filter((item: any) => !item.nutrientGroup)[0]
+      ?.rows?.map((flatRow) => {
+        return {
+          ...flatRow,
+          rows: [],
+        };
+      }) || [];
+
+  const tableData = [...filteredNutritionFilterItems, ...emptyNutrientGroupItems] as GroupType[];
+  console.log(tableData);
   return (
     <Box sx={{ mb: theme.spacing(15), background: " #FFFFFF" }}>
       <Slider {...settings}>
-        {nutritionTableItems.map((item, index) => (
+        {tableData.map((item: GroupType, index: any) => (
           <Box
             key={index}
             sx={{
@@ -47,7 +90,7 @@ const NutritionMobileTable: React.FC<NutritionMobileTableProps> = ({ nutritionTa
                   textTransform: "uppercase",
                 }}
               >
-                {item.nutrient}
+                {item.nutrient ? item.nutrient : item.nutrientGroup}
               </Typography>
               {item.amount && (
                 <Box
@@ -97,46 +140,33 @@ const NutritionMobileTable: React.FC<NutritionMobileTableProps> = ({ nutritionTa
                         fontWeight: theme.typography.fontWeightRegular,
                       }}
                     >
-                      %Daily value
+                      % Daily value
                     </Typography>
-                    <Typography
-                      variant="titleSmall"
-                      sx={{
-                        color: theme.palette.customGray.main,
-                        fontWeight: theme.typography.fontWeightRegular,
-                      }}
-                    >
-                      {item.dailyValue}%
-                    </Typography>
+                    {item.dailyValue && (
+                      <Typography
+                        variant="titleSmall"
+                        sx={{
+                          color: theme.palette.customGray.main,
+                          fontWeight: theme.typography.fontWeightRegular,
+                        }}
+                      >
+                        {item.dailyValue}%
+                      </Typography>
+                    )}
                   </Box>
                 </Box>
               )}
             </Box>
-            {item.nutrientContents.length ? (
+            {item.rows.length ? (
               <Box>
-                <Box
-                  sx={{
-                    display: item.nutrientContents.length ? "flex" : "none",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                    mt: !item.amount ? theme.spacing(2) : theme.spacing(4),
-                    mb: theme.spacing(1),
-                  }}
-                >
-                  <Typography
-                    variant="labelSmall"
-                    sx={{
-                      color: theme.palette.customGray.dark,
-                      fontWeight: theme.typography.fontWeightRegular,
-                    }}
-                  >
-                    Nutrients
-                  </Typography>
+                <Box>
                   <Box
                     sx={{
-                      display: "flex",
+                      display: item.rows.length ? "flex" : "none",
+                      justifyContent: "space-between",
                       alignItems: "center",
-                      columnGap: theme.spacing(0.3),
+                      mt: !item.amount ? theme.spacing(2) : theme.spacing(4),
+                      mb: theme.spacing(1),
                     }}
                   >
                     <Typography
@@ -146,22 +176,38 @@ const NutritionMobileTable: React.FC<NutritionMobileTableProps> = ({ nutritionTa
                         fontWeight: theme.typography.fontWeightRegular,
                       }}
                     >
-                      Amount
+                      Nutrients
                     </Typography>
-                    <Typography
-                      variant="labelSmall"
+                    <Box
                       sx={{
-                        fontWeight: theme.typography.fontWeightRegular,
-                        color: theme.palette.customGray.main,
+                        display: "flex",
+                        alignItems: "center",
+                        columnGap: theme.spacing(0.3),
                       }}
                     >
-                      (%Daily value)
-                    </Typography>
+                      <Typography
+                        variant="labelSmall"
+                        sx={{
+                          color: theme.palette.customGray.dark,
+                          fontWeight: theme.typography.fontWeightRegular,
+                        }}
+                      >
+                        Amount
+                      </Typography>
+                      <Typography
+                        variant="labelSmall"
+                        sx={{
+                          fontWeight: theme.typography.fontWeightRegular,
+                          color: theme.palette.customGray.main,
+                        }}
+                      >
+                        (%Daily value)
+                      </Typography>
+                    </Box>
                   </Box>
                 </Box>
-
                 <Box sx={{ height: theme.spacing(0.2), backgroundColor: "#F3EFF4" }} />
-                <ForLoops each={item.nutrientContents}>
+                <ForLoops each={item.rows}>
                   {(subItem, index2) => (
                     <Box
                       key={index2}
@@ -191,24 +237,28 @@ const NutritionMobileTable: React.FC<NutritionMobileTableProps> = ({ nutritionTa
                           columnGap: theme.spacing(0.3),
                         }}
                       >
-                        <Typography
-                          variant="titleSmall"
-                          sx={{
-                            fontWeight: theme.typography.fontWeightRegular,
-                            color: theme.palette.customGray.dark,
-                          }}
-                        >
-                          {subItem.amount}
-                        </Typography>
-                        <Typography
-                          variant="titleSmall"
-                          sx={{
-                            fontWeight: theme.typography.fontWeightRegular,
-                            color: theme.palette.customGray.main,
-                          }}
-                        >
-                          ({subItem.dailyValue}%)
-                        </Typography>
+                        {subItem.amount && (
+                          <Typography
+                            variant="titleSmall"
+                            sx={{
+                              fontWeight: theme.typography.fontWeightRegular,
+                              color: theme.palette.customGray.dark,
+                            }}
+                          >
+                            {subItem.amount}
+                          </Typography>
+                        )}
+                        {subItem.dailyValue && (
+                          <Typography
+                            variant="titleSmall"
+                            sx={{
+                              fontWeight: theme.typography.fontWeightRegular,
+                              color: theme.palette.customGray.main,
+                            }}
+                          >
+                            ({subItem.dailyValue}%)
+                          </Typography>
+                        )}
                       </Box>
                     </Box>
                   )}

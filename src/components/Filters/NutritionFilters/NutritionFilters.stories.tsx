@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import { NutritionFilters } from "@forkfacts/components";
 import { Baby, Kids, Lactation, Male, PregnantWoman, Woman } from "@forkfacts/icons";
-import { ageItem, lifeStageItem, SearchNutritionFilterItem } from "@forkfacts/models";
+import { RdiAge, lifeStageItem, SelectedNutrient } from "@forkfacts/models";
 
 export default {
   title: "Components/Filters/NutritionFilters",
@@ -21,15 +21,15 @@ const lifeStageItems: lifeStageItem[] = [
     icon: Kids,
   },
   {
-    name: "Infant",
+    name: "Infants",
     icon: Baby,
   },
   {
-    name: "Female",
+    name: "females",
     icon: Woman,
   },
   {
-    name: "Male",
+    name: "males",
     icon: Male,
   },
   {
@@ -42,75 +42,69 @@ const lifeStageItems: lifeStageItem[] = [
   },
 ];
 
-const ageItems: ageItem[] = [
+const ageItems: RdiAge[] = [
   {
     start: 9,
     end: 13,
-    unit: "years",
+    ageUnit: "year",
   },
   {
     start: 14,
     end: 18,
-    unit: "years",
+    ageUnit: "year",
   },
   {
     start: 19,
     end: 30,
-    unit: "years",
+    ageUnit: "year",
   },
   {
     start: 31,
     end: 50,
-    unit: "years",
+    ageUnit: "year",
   },
   {
     start: 51,
     end: 70,
-    unit: "years",
+    ageUnit: "year",
+  },
+  {
+    start: 70,
+    ageUnit: "year",
   },
 ];
 
-const nutritionFilterItems: SearchNutritionFilterItem[] = [
-  { name: "Carbohydrate", subItems: [], checked: false },
-  {
-    name: "Protein",
-    subItems: [
-      { name: "Protein B1", checked: false },
-      { name: "Protein B2", checked: false },
-    ],
-    checked: false,
-  },
+const nutritionFilterItems: SelectedNutrient[] = [
   {
     name: "Vitamins",
-    subItems: [
-      { name: "Vitamin A", checked: false },
-      { name: "Vitamin B1", checked: false },
-      { name: "Vitamin B2", checked: false },
-      { name: "Vitamin B3", checked: false },
-      { name: "Vitamin B4", checked: false },
+    nutrientGroup: "Vitamins",
+    rows: [
+      { name: "Vitamin B1", checked: false, nutrientGroup: "Vitamins" },
+      { name: "Vitamin B2", checked: false, nutrientGroup: "Vitamins" },
+      { name: "Vitamin B3", checked: false, nutrientGroup: "Vitamins" },
+      { name: "Vitamin B4", checked: false, nutrientGroup: "Vitamins" },
     ],
     checked: false,
   },
-  { name: "Fats", subItems: [], checked: false },
-  { name: "Minerals", subItems: [], checked: false },
-  { name: "Water", subItems: [], checked: false },
-  { name: "Fiber", subItems: [], checked: false },
+  {
+    name: "Proteins",
+    nutrientGroup: "Proteins",
+    rows: [
+      { name: "Protein B1", checked: false, nutrientGroup: "Proteins" },
+      { name: "Protein B2", checked: false, nutrientGroup: "Proteins" },
+    ],
+    checked: false,
+  },
+  { name: "Carbohydrate", rows: [], checked: false, nutrientGroup: "" },
+  { name: "Water", rows: [], checked: false, nutrientGroup: "" },
+  { name: "Fats", rows: [], checked: false, nutrientGroup: "" },
+  { name: "Fiber", rows: [], checked: false, nutrientGroup: "" },
+  { name: "Minerals", rows: [], checked: false, nutrientGroup: "" },
 ];
 
 const Template: ComponentStory<typeof NutritionFilters> = (args) => {
-  const [selectLifeStage, setSelectedLifeStage] = useState("");
-  const [selectAge, setSelectedAge] = useState<ageItem>({} as ageItem);
-  const [selectSearchNutrition, seSelectedSearchNutrition] = useState(
-    [] as SearchNutritionFilterItem[]
-  );
-  return (
-    <NutritionFilters
-      {...args}
-      onSelectLifeStageItem={setSelectedLifeStage}
-      onSelectAgeItem={setSelectedAge}
-      onSelectNutritionFilterItem={seSelectedSearchNutrition}
-    />
-  );
+  const [selectSearchNutrition, seSelectedSearchNutrition] = useState([] as SelectedNutrient[]);
+  return <NutritionFilters {...args} />;
 };
 
 export const Desktop = Template.bind({});

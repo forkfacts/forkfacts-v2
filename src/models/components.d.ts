@@ -19,10 +19,11 @@ export interface filterItem {
   name: string;
 }
 
-export interface ageItem {
-  start?: number;
-  end: number;
-  unit: string;
+export interface RdiAge {
+  start: number;
+  end?: number;
+  ageUnit: "month" | "year";
+  index?: number;
 }
 
 export type lifeStageItem = {
@@ -30,7 +31,7 @@ export type lifeStageItem = {
   icon: SVGProps;
 };
 
-export interface DetailsPageTitlesItem {
+export interface FoodWithSameName {
   title: string;
 }
 
@@ -70,20 +71,16 @@ export interface compareTableItem {
   Iron: number;
 }
 
-export interface NutritionTableItem {
+export interface NutritionTableRow {
   nutrient: string;
-  dailyValue: number | null;
-  amount: string | null;
-  rdi: {
-    value: number | null;
-    weight: string;
+  dailyValue?: number | null;
+  amount?: number;
+  amountUnit?: string;
+  nutrientGroup: string;
+  rdi?: {
+    servingUnitSize?: number;
+    servingSizeUnit?: string;
   };
-  nutrientContents: Array<{
-    nutrient: string;
-    dailyValue: number;
-    amount: string;
-    rdi: { value: number; weight: string };
-  }>;
 }
 
 export interface recommendationType {
@@ -95,7 +92,7 @@ export interface SearchCategoryItemType {
   Icon: SvgIconComponent;
 }
 
-export type sidebarItem = SearchCategoryItemType & {
+export type MenuItem = SearchCategoryItemType & {
   link: string;
 };
 export interface SearchResultItemCollectionType {
@@ -111,7 +108,7 @@ interface selectedItemType {
   selectedIndex: number;
 }
 export interface NavbarProps {
-  navbarItems: Array<sidebarItem>;
+  navbarItems: Array<MenuItem>;
   onselectNavbarItem: Dispatch<SetStateAction<string>>;
 }
 
@@ -139,61 +136,50 @@ export interface RecentSearchHeaderProps {
   onClearSearch: () => void;
 }
 export interface LayoutProps {
-  sidebarItems: Array<sidebarItem>;
+  menuItems: Array<MenuItem>;
   children: JSX.Element | JSX.Element[];
 }
 
 export interface SearchResultItemProps {
   item: SearchResultItemType;
+  multiple?: boolean;
   onSelectItem: (item: SearchResultItemType) => void;
 }
 interface SideBarProps {
   drawerWidth: string;
   mobileOpen: boolean;
   handleDrawerToggle: () => void;
-  sidebarItems: Array<sidebarItem>;
+  sidebarItems: Array<MenuItem>;
   window?: any;
   drawerWidthExpanded: boolean;
 }
 
 interface ExtendSearchResultItemsProps {
   onSelectItem: (item: SearchResultItemType) => void;
-  handleViewMore?: () => void;
 }
-export type SearchResultsProps = (
-  | {
-      collectionListsItems?: Array<SearchResultItemType>;
-      multiple: true;
-      collectionGroupedItems: Array<SearchResultItemCollectionType>;
-    }
-  | {
-      collectionListsItems: Array<SearchResultItemType>;
-      multiple?: false;
-      collectionGroupedItems?: Array<SearchResultItemCollectionType>;
-    }
-) &
-  ExtendSearchResultItemsProps;
+export type SearchResultsProps = {
+  collectionListsItems: Array<SearchResultItemType>;
+  multiple?: true;
+} & ExtendSearchResultItemsProps;
 
 export interface SideBarItemProps {
   index: number;
   selectedIndex: number;
   drawerWidthExpanded: boolean;
-  item: sidebarItem;
-  handleSelectedIndex: (index: number, item: sidebarItem) => void;
+  item: MenuItem;
+  handleSelectedIndex: (index: number, item: MenuItem) => void;
 }
 
 export interface PopularFrequentSearchProps {
-  PopularFrequentSearchItems: Array<PopularFrequentSearchType>;
-  onSelectPopularItem: (item: PopularFrequentSearchType) => void;
+  PopularFrequentSearchItems?: Array<PopularFrequentSearchType>;
 }
 
 export interface PopularFrequentSearchCategoryProps {
   item: PopularFrequentSearchType;
-  onSelectPopularItem: (item: PopularFrequentSearchType) => void;
 }
 
 export interface NavBarItemProps {
-  item: sidebarItem;
+  item: MenuItem;
   index: number;
   setSelectedIndex: (item: number) => void;
   selectedIndex: number;
@@ -203,8 +189,7 @@ export interface NavBarItemProps {
 interface AutoCompleteSearchProps extends onSelectCategoryType {
   sourceId: string;
   categoryOptions: Array<SearchCategoryItemType>;
-  collectionGroupedItems: Array<SearchResultItemCollectionType>;
-  recommendations: Array<recommendationType>;
+  recommendations?: Array<recommendationType>;
   setIsMobileSearchOpen: Dispatch<SetStateAction<boolean>>;
 }
 interface SearchRecommendationItemProps {
@@ -214,29 +199,28 @@ interface SearchRecommendationItemProps {
 export interface SearchRecommendationsProps {
   recommendations: Array<recommendationType>;
 }
-export interface DetailsPageHeaderProps {
-  detailsHeaderValues: {
-    img: string;
+export interface FoodOverviewProps {
+  values: {
+    img?: string;
     name: string;
-    subTitle: string;
-    nutritionValues: Array<{ name: string; icon: string }>;
-    tag: string;
+    category: string;
+    nutritionValues?: Array<{ name: string; icon: string }>;
+    tag?: string;
   };
 }
-export interface DetailsPageTitlesProps {
-  DetailsPageTitlesItems: Array<DetailsPageTitlesItem>;
-  onSelectDetailsPageTitleItem: Dispatch<SetStateAction<string>>;
+export interface FoodsWithSameNameProps {
+  foodsWithSameNames: Array<FoodWithSameName>;
+  onSelectFoodWithSameName: Dispatch<SetStateAction<string>>;
 }
-export interface DetailsPageTabItemsProps {
-  tabItems: Array<sidebarItem>;
+export interface DetailPageTabsProps {
+  tabItems: Array<MenuItem>;
   onselectTabItem: Dispatch<SetStateAction<string>>;
 }
 export interface DetailsPageTabItemProps {
-  item: sidebarItem;
+  item: MenuItem;
   index: number;
-  setSelectedIndex: (item: number) => void;
-  selectedIndex: number;
-  onSelectDetailsPageTabItem: Dispatch<SetStateAction<string>>;
+  selectedTab: string;
+  handleClick: (item: sidebarItem) => void;
 }
 export interface ComparingDetailsTabProps {
   compareTableItems: Array<compareTableItem>;
@@ -265,25 +249,19 @@ export interface NutrientSummaryItemProps {
 export interface NutritionDetailsTabProps {
   nutritionSummaryItems: Array<summaryItem>;
   lifeStageItems: Array<lifeStageItem>;
-  onSelectLifeStageItem: Dispatch<SetStateAction<any | string>>;
-  ageItems: Array<ageItem>;
-  nutritionFilterItems: Array<SearchNutritionFilterItem>;
+  ageItems: Array<RdiAge>;
+  nutritionFilterItems: Array<SelectedNutrient>;
   measurementFilterItems: string[];
   onSelectMeasurementItem: (item: string) => void;
-  onSelectNutritionFilterItem: Dispatch<SetStateAction<SearchNutritionFilterItem[] | any>>;
-  onSelectAgeItem: dispatch<SetStateAction<ageItem>>;
   onSelectUnit: Dispatch<SetStateAction<string>>;
   units: string[];
-  nutritionTableItems: NutritionTableItem[];
+  nutritionTableItems: NutritionTableRow[];
 }
 
 export interface NutritionFilterProps {
   lifeStageItems: Array<lifeStageItem>;
-  onSelectLifeStageItem: Dispatch<SetStateAction<any | string>>;
-  ageItems: Array<ageItem>;
-  onSelectAgeItem: dispatch<SetStateAction<ageItem>>;
-  nutritionFilterItems: Array<SearchNutritionFilterItem>;
-  onSelectNutritionFilterItem: Dispatch<SetStateAction<SearchNutritionFilterItem[] | any>>;
+  ageItems: Array<RdiAge>;
+  nutritionFilterItems: Array<SelectedNutrient>;
 }
 
 export interface SelectNutrientsProps {
@@ -304,28 +282,32 @@ export interface NutrientServingSizeProps {
 
 export interface LifeStageProps {
   lifeStageItems: Array<lifeStageItem>;
-  onSelectLifeStageItem: Dispatch<SetStateAction<string | any>>;
   isDropdown: boolean;
 }
 
 export interface AgeItemsProps {
-  ageItems: Array<ageItem>;
-  onSelectAgeItem: dispatch<SetStateAction<ageItem>>;
+  ageItems: Array<RdiAge>;
   isDropdown: boolean;
   margin?: string | number;
 }
 
 export interface SearchNutritionFilterProps {
-  nutritionFilterItems: Array<SearchNutritionFilterItem>;
-  onSelectNutritionFilterItem: Dispatch<SetStateAction<SearchNutritionFilterItem[] | any>>;
+  nutritionFilterItems: Array<SelectedNutrient>;
   isDropdown: boolean;
   margin?: string | number;
 }
 
-export interface SearchNutritionFilterItem {
+export interface SelectNutrientRow {
   name: string;
-  subItems: { name: string; checked: boolean }[];
+  nutrientGroup: string;
   checked: boolean;
+}
+
+export interface SelectedNutrient {
+  name: string;
+  nutrientGroup: string;
+  checked: boolean;
+  rows: SelectNutrientRow[];
 }
 export interface AllFiltersProps {}
 
@@ -336,7 +318,7 @@ export interface MeasurementFilterProps {
 export interface MultipleSelectsProps {
   values: filterItem[];
   onSelectedValue: Dispatch<SetStateAction<string[]>>;
-  renderSelectButton?: String | React.ReactNode;
+  RenderSelectButton?: String | JSX.Element;
   open: boolean;
   setIsOpen: Dispatch<SetStateAction<boolean>>;
   multiselectTitle: string;
@@ -344,5 +326,9 @@ export interface MultipleSelectsProps {
 }
 
 export interface NutritionDesktopTableProps {
-  nutritionTableItems: NutritionTableItem[];
+  rows: NutritionTableRow[];
+}
+
+interface NutritionMobileTableProps {
+  rows: NutritionTableRow[];
 }

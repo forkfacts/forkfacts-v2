@@ -46,7 +46,7 @@ const Template: ComponentStory<typeof MultipleSelects> = (args) => {
         open={open}
         setIsOpen={setIsOpen}
         multiselectTitle="Filter foods"
-        renderSelectButton={
+        RenderSelectButton={
           <Button
             startIcon={<FilterListOutlinedIcon />}
             variant="outlined"

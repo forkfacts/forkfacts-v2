@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import { SearchNutritionFilter } from "@forkfacts/components";
-import { SearchNutritionFilterItem } from "@forkfacts/models";
+import { SelectedNutrient } from "@forkfacts/models";
+import { useStore } from "../../../store/store";
 
 export default {
   title: "Components/Filters/SearchNutritionFilter",
@@ -15,39 +16,37 @@ export default {
 } as ComponentMeta<typeof SearchNutritionFilter>;
 
 const Template: ComponentStory<typeof SearchNutritionFilter> = (args) => {
-  const [selectSearchNutrition, seSelectedSearchNutrition] = useState(
-    [] as SearchNutritionFilterItem[]
-  );
-  return (
-    <SearchNutritionFilter {...args} onSelectNutritionFilterItem={seSelectedSearchNutrition} />
-  );
+  const { selectedNutrients } = useStore();
+  console.log(selectedNutrients);
+  return <SearchNutritionFilter {...args} />;
 };
 
-const nutritionFilterItems: SearchNutritionFilterItem[] = [
-  { name: "Carbohydrate", subItems: [], checked: false },
-  {
-    name: "Protein",
-    subItems: [
-      { name: "Protein B1", checked: false },
-      { name: "Protein B2", checked: false },
-    ],
-    checked: false,
-  },
+const nutritionFilterItems: SelectedNutrient[] = [
   {
     name: "Vitamins",
-    subItems: [
-      { name: "Vitamin A", checked: false },
-      { name: "Vitamin B1", checked: false },
-      { name: "Vitamin B2", checked: false },
-      { name: "Vitamin B3", checked: false },
-      { name: "Vitamin B4", checked: false },
+    nutrientGroup: "Vitamins",
+    rows: [
+      { name: "Vitamin B1", checked: false, nutrientGroup: "Vitamins" },
+      { name: "Vitamin B2", checked: false, nutrientGroup: "Vitamins" },
+      { name: "Vitamin B3", checked: false, nutrientGroup: "Vitamins" },
+      { name: "Vitamin B4", checked: false, nutrientGroup: "Vitamins" },
     ],
     checked: false,
   },
-  { name: "Fats", subItems: [], checked: false },
-  { name: "Minerals", subItems: [], checked: false },
-  { name: "Water", subItems: [], checked: false },
-  { name: "Fiber", subItems: [], checked: false },
+  {
+    name: "Proteins",
+    nutrientGroup: "Proteins",
+    rows: [
+      { name: "Protein B1", checked: false, nutrientGroup: "Proteins" },
+      { name: "Protein B2", checked: false, nutrientGroup: "Proteins" },
+    ],
+    checked: false,
+  },
+  { name: "Carbohydrate", rows: [], checked: false, nutrientGroup: "" },
+  { name: "Water", rows: [], checked: false, nutrientGroup: "" },
+  { name: "Fats", rows: [], checked: false, nutrientGroup: "" },
+  { name: "Fiber", rows: [], checked: false, nutrientGroup: "" },
+  { name: "Minerals", rows: [], checked: false, nutrientGroup: "" },
 ];
 
 export const Desktop = Template.bind({});

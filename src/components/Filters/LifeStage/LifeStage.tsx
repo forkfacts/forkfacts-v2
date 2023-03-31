@@ -7,30 +7,20 @@ import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import { LifeStageItem } from "@forkfacts/components";
 import { withDropdown, withoutDropdown } from "./lifeStageStyles";
 import DoneIcon from "@mui/icons-material/Done";
+import { useStore } from "../../../store/store";
 
-const LifeStage: React.FC<LifeStageProps> = ({
-  lifeStageItems,
-  onSelectLifeStageItem,
-  isDropdown,
-}) => {
+const LifeStage: React.FC<LifeStageProps> = ({ lifeStageItems, isDropdown }) => {
   const theme = useTheme();
+  const { selectedLifeStage, setSelectedLifeStage } = useStore((state) => state);
   const mobile = useMediaQuery(theme.breakpoints.down("md"));
-  const [selectedItem, setSelectedItem] = useState<string>("Children");
+  const [selectedItem, setSelectedItem] = useState<string>(selectedLifeStage);
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
-  const handleSelectedItem = (name: string, index: number) => {
+  const handleSelectedItem = (name: string) => {
+    setSelectedLifeStage(name);
     setSelectedItem(name);
-  };
-
-  const onClearSelectedItem = () => {
-    setSelectedItem("");
-    onSelectLifeStageItem("");
     setOpen(false);
   };
-
-  useEffect(() => {
-    onSelectLifeStageItem(selectedItem);
-  }, [selectedItem]);
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -38,7 +28,6 @@ const LifeStage: React.FC<LifeStageProps> = ({
         setOpen(false);
       }
     }
-
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
@@ -85,7 +74,7 @@ const LifeStage: React.FC<LifeStageProps> = ({
                 }}
               />
             )}
-            {selectedItem ? selectedItem : "Life stage"}
+            {selectedItem ? selectedLifeStage : "Life stage"}
           </Typography>
           {open ? (
             <ArrowDropUpIcon sx={{ color: theme.palette.iconColors.main }} />
@@ -144,7 +133,7 @@ const LifeStage: React.FC<LifeStageProps> = ({
               <LifeStageItem
                 index={index}
                 key={index}
-                selectedItem={selectedItem}
+                selectedItem={selectedLifeStage}
                 handleSelectedItem={handleSelectedItem}
                 item={item}
               />

@@ -14,11 +14,8 @@ import { Box, useTheme, TextField, useMediaQuery, Button, Typography } from "@mu
 const NutritionDetailsTab: React.FC<NutritionDetailsTabProps> = ({
   nutritionSummaryItems,
   lifeStageItems,
-  onSelectLifeStageItem,
-  onSelectAgeItem,
   ageItems,
   nutritionFilterItems,
-  onSelectNutritionFilterItem,
   measurementFilterItems,
   onSelectMeasurementItem,
   onSelectUnit,
@@ -45,17 +42,14 @@ const NutritionDetailsTab: React.FC<NutritionDetailsTabProps> = ({
             flexWrap: "wrap",
           }}
         >
-          <Box sx={{ width: mobile || tablet ? "100%" : "50%" }}>
+          <Box sx={{ width: mobile || tablet ? "100%" : "65%" }}>
             <NutritionFilters
               lifeStageItems={lifeStageItems}
-              onSelectAgeItem={onSelectAgeItem}
               ageItems={ageItems}
-              onSelectLifeStageItem={onSelectLifeStageItem}
               nutritionFilterItems={nutritionFilterItems}
-              onSelectNutritionFilterItem={onSelectNutritionFilterItem}
             />
           </Box>
-          <Box sx={{ width: mobile || tablet ? "100%" : "50%" }}>
+          <Box sx={{ width: mobile || tablet ? "100%" : "35%" }}>
             <NutritionDetailsRightComp
               units={units}
               onSelectMeasurementItem={onSelectMeasurementItem}
@@ -64,16 +58,16 @@ const NutritionDetailsTab: React.FC<NutritionDetailsTabProps> = ({
             />
           </Box>
         </Box>
-        <Box sx={{ pr: theme.spacing(1.5) }}>
+        {/* <Box sx={{ pr: theme.spacing(1.5) }}>
           <NutritionSummary nutritionSummaryItems={nutritionSummaryItems} />
-        </Box>
+        </Box> */}
       </Box>
-      <Box sx={{ mt: mobile ? theme.spacing(3) : theme.spacing(8) }}>
+      <Box sx={{ mt: mobile ? theme.spacing(2) : theme.spacing(3) }}>
         {mobile || tablet ? (
-          <NutritionMobileTable nutritionTableItems={nutritionTableItems} />
+          <NutritionMobileTable rows={nutritionTableItems} />
         ) : (
           <Box sx={{ overflowX: "hidden" }}>
-            <NutritionDesktopTable nutritionTableItems={nutritionTableItems} />
+            <NutritionDesktopTable rows={nutritionTableItems} />
           </Box>
         )}
       </Box>
@@ -136,6 +130,7 @@ export const NutritionDetailsRightComp: React.FC<NutritionDetailsRightCompProps>
         width: "100%",
         justifyContent: mobile ? "space-between" : tablet ? "flex-start" : "flex-end",
         mt: mobile || tablet ? theme.spacing(3) : 0,
+        visibility: "hidden",
       }}
     >
       <Box

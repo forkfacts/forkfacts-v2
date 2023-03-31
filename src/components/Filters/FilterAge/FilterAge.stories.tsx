@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import { FilterAge } from "@forkfacts/components";
-import { ageItem } from "@forkfacts/models";
+import { RdiAge } from "@forkfacts/models";
 export default {
   title: "Components/Filters/FilterAge",
   component: FilterAge,
@@ -14,38 +14,37 @@ export default {
 } as ComponentMeta<typeof FilterAge>;
 
 const Template: ComponentStory<typeof FilterAge> = (args) => {
-  const [selectAge, setSelectedAge] = useState<ageItem>({} as ageItem);
-  return <FilterAge {...args} onSelectAgeItem={setSelectedAge} />;
+  return <FilterAge {...args} />;
 };
-const ageItems: ageItem[] = [
+const ageItems: RdiAge[] = [
   {
     start: 9,
     end: 13,
-    unit: "years",
+    ageUnit: "year",
   },
   {
     start: 14,
     end: 18,
-    unit: "years",
+    ageUnit: "year",
   },
   {
     start: 19,
     end: 30,
-    unit: "years",
+    ageUnit: "year",
   },
   {
     start: 31,
     end: 50,
-    unit: "years",
+    ageUnit: "year",
   },
   {
     start: 51,
     end: 70,
-    unit: "years",
+    ageUnit: "year",
   },
   {
-    end: 70,
-    unit: "years",
+    start: 70,
+    ageUnit: "year",
   },
 ];
 

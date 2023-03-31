@@ -5,15 +5,15 @@ dotenv.config();
 
 const files = [
   {
+    name: "usda_rdi_nutrient_mapping.json",
+  },
+  { name: "rdi.json" },
+  {
     name: "foundation_food_nutrition_facts.json",
   },
   {
     name: "sr_legacy_food_nutrition_facts.json",
   },
-  {
-    name: "usda_rdi_nutrient_mapping.json",
-  },
-  { name: "rdi.json" },
 ];
 
 /**
@@ -24,7 +24,7 @@ const files = [
  */
 
 const download = async (url, toDir, fileName) => {
-  return $`rm -rf ${toDir} && mkdir -p ${toDir} && wget ${url} -O "${toDir}/${fileName}"`;
+  return $`curl --create-dirs --output "${toDir}/${fileName}" ${url}`;
 };
 
 async function downloadFiles() {

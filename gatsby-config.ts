@@ -10,11 +10,12 @@ const config: GatsbyConfig = {
   siteMetadata: siteMetadata,
   graphqlTypegen: true,
   plugins: [
+    `gatsby-theme-material-ui`,
+    `gatsby-plugin-material-ui`,
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
     "gatsby-plugin-sitemap",
-    "gatsby-plugin-mui-emotion",
     {
       resolve: "gatsby-plugin-manifest",
       options: {
@@ -34,10 +35,12 @@ const config: GatsbyConfig = {
           "@forkfacts/screens": path.resolve(__dirname, "src/screens"),
           "@forkfacts/styles": path.resolve(__dirname, "src/styles"),
           "@forkfacts/icons": path.resolve(__dirname, "src/DesignIcons"),
+          "@forkfacts/generate-pages": path.resolve(__dirname, "src/pageGenerators"),
         },
         extensions: [".js", ".jsx", ".ts", ".tsx", ".css"],
       },
     },
+    "gatsby-transformer-json",
     {
       resolve: "gatsby-source-filesystem",
       options: {
@@ -53,6 +56,14 @@ const config: GatsbyConfig = {
         path: "./src/pages/",
       },
       __key: "pages",
+    },
+    {
+      resolve: `gatsby-plugin-typescript`,
+      options: {
+        isTSX: true,
+        jsxPragma: `jsx`,
+        allExtensions: true,
+      },
     },
   ],
 };

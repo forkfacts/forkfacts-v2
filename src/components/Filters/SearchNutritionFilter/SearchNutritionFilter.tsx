@@ -20,59 +20,54 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { ForLoops } from "@forkfacts/helpers";
-import { SearchNutritionFilterProps, SearchNutritionFilterItem } from "@forkfacts/models";
+import { SearchNutritionFilterProps, SelectedNutrient } from "@forkfacts/models";
 import { withDropdown, withoutDropdown } from "./searchNutrientStyles";
+import { useStore } from "../../../store/store";
 
 const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
   nutritionFilterItems,
-  onSelectNutritionFilterItem,
   isDropdown,
   margin = 0,
 }) => {
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.down("md"));
   const ref = useRef<HTMLDivElement>(null);
-
-  const newNutrients: SearchNutritionFilterItem[] = [...nutritionFilterItems].map((item) => {
+  const newNutrients: SelectedNutrient[] = [...nutritionFilterItems].map((item) => {
     return {
       name: item.name,
       checked: item.checked,
-      subItems: item.subItems.map((item2) => {
+      nutrientGroup: item.nutrientGroup,
+      rows: item?.rows?.map((item2) => {
         return {
+          ...item2,
           name: item2.name,
-          checked: item.checked,
+          checked: item2.checked,
+          nutrientGroup: item2.nutrientGroup,
         };
       }),
     };
   });
   const [filteredNutrient, setFilterNutrient] = useState([...newNutrients]);
-  const [selectedNutrient, setSelectedNutrient] = useState({
+  const [selectedNutrientName, setSelectedNutrientName] = useState({
     name: "",
   });
-  const [selectedItems, _] = useState<SearchNutritionFilterItem[]>([]);
+  const [selectedItems, _] = useState<SelectedNutrient[]>([]);
   const [open, setOpen] = useState(false);
   const [name, setName] = useState<string>("");
+  const { setSelectedNutrient, selectedNutrients } = useStore((state) => state);
 
-  const [firstSelectedItem, setFirstSelectedItem] = useState<{
-    name: string;
-    length: number;
-  }>({
-    name: "",
-    length: 0,
-  });
-
-  const renderFilterNutrients = useCallback((): SearchNutritionFilterItem[] => {
+  const renderFilterNutrients = useCallback((): SelectedNutrient[] => {
     let filteredItems = [...filteredNutrient].slice();
     if (name && name !== "") {
       filteredItems = filteredItems.reduce((acc: any, item: any) => {
-        const subSearch = item.subItems.filter((subItem: any) =>
-          subItem.name.toLowerCase().includes(name.toLowerCase())
+        const subSearch = item?.rows?.filter((subItem: any) =>
+          subItem?.name.toLowerCase().includes(name.toLowerCase())
         );
-        if (item.name.toLowerCase().includes(name.toLowerCase()) || subSearch.length > 0) {
+        if (item.name.toLowerCase().includes(name.toLowerCase()) || subSearch?.length > 0) {
           const newItem = {
             name: item.name,
             checked: item.checked,
-            subItems: subSearch,
+            rows: subSearch,
           };
           acc.push(newItem);
         }
@@ -81,7 +76,7 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
     }
 
     return filteredItems;
-  }, [name, filteredNutrient, selectedItems, selectedNutrient, selectedNutrient]);
+  }, [name, filteredNutrient, selectedItems, selectedNutrientName, selectedNutrientName]);
 
   const onHandleSelectedItem = useCallback(
     (name: string) => {
@@ -90,9 +85,9 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
         const updatedItem = {
           ...filteredNutrient[itemIndex],
           checked: !filteredNutrient[itemIndex].checked,
-          subItems: filteredNutrient[itemIndex].subItems.map((subItem) => ({
+          rows: filteredNutrient[itemIndex]?.rows?.map((subItem) => ({
             ...subItem,
-            checked: !filteredNutrient[itemIndex].checked,
+            checked: !filteredNutrient[itemIndex]?.checked,
           })),
         };
         const updatedNutrientList = Array.from(filteredNutrient);
@@ -103,21 +98,21 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
     [filteredNutrient]
   );
   const onSelectSubItem = (name1: string, name2: string) => {
-    setSelectedNutrient({
+    setSelectedNutrientName({
       name: name1,
     });
     const updatedNutrients = filteredNutrient.map((nutrient) => {
       if (nutrient.name === name1) {
-        const updatedSubItems = nutrient.subItems.map((subItem) => {
-          if (subItem.name === name2) {
-            return { ...subItem, checked: !subItem.checked };
+        const updatedrows: any = nutrient?.rows?.map((subItem) => {
+          if (subItem?.name === name2) {
+            return { ...subItem, checked: !subItem?.checked };
           }
           return subItem;
         });
         return {
           ...nutrient,
-          subItems: updatedSubItems,
-          checked: updatedSubItems.some((si) => si.checked),
+          rows: updatedrows,
+          checked: updatedrows?.some((si: any) => si?.checked!),
         };
       }
       return nutrient;
@@ -139,7 +134,7 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
         if (item.checked) {
           return {
             ...item,
-            subItems: item.subItems.filter((item2) => {
+            rows: item?.rows?.filter((item2) => {
               if (item2.checked) {
                 return item2;
               }
@@ -147,25 +142,20 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
           };
         }
       })
-      .filter((item) => item !== undefined) as SearchNutritionFilterItem[];
-    if (checkedNutrients) {
-      setFirstSelectedItem({
-        name: checkedNutrients[0]?.name,
-        length: checkedNutrients.length,
-      });
-    }
-    onSelectNutritionFilterItem(checkedNutrients);
+      .filter((item) => item !== undefined) as SelectedNutrient[];
+    setSelectedNutrient(checkedNutrients);
   }, [filteredNutrient]);
 
   const onClearSelectedItem = () => {
-    onSelectNutritionFilterItem([]);
-    setFirstSelectedItem({ name: "", length: 0 });
-    const clearNutrients: SearchNutritionFilterItem[] = [...nutritionFilterItems].map((item) => {
+    setSelectedNutrient([]);
+    const clearNutrients: SelectedNutrient[] = [...nutritionFilterItems].map((item) => {
       return {
         name: item.name,
         checked: false,
-        subItems: item.subItems.map((item2) => {
+        nutrientGroup: item.nutrientGroup,
+        rows: item?.rows?.map((item2) => {
           return {
+            ...item2,
             name: item2.name,
             checked: false,
           };
@@ -192,13 +182,13 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
     <Box sx={{ display: "block" }} ref={ref}>
       {isDropdown && (
         <Button
-          variant={firstSelectedItem.name ? "text" : "outlined"}
+          variant={selectedNutrients[0]?.name ? "text" : "outlined"}
           onClick={() => setOpen(!open)}
           sx={{
-            backgroundColor: firstSelectedItem.name
+            backgroundColor: selectedNutrients[0]?.name
               ? theme.palette.primary.light
               : theme.palette.background.default,
-            borderColor: firstSelectedItem.name
+            borderColor: selectedNutrients[0]?.name
               ? theme.palette.primary.main
               : theme.palette.grey[700],
             textTransform: "capitalize",
@@ -219,7 +209,7 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
               alignItems: "center",
             }}
           >
-            {firstSelectedItem.name && (
+            {selectedNutrients.length && selectedNutrients[0].name ? (
               <DoneIcon
                 sx={{
                   color: theme.palette.iconColors.main,
@@ -228,11 +218,11 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
                   mr: theme.spacing(0.5),
                 }}
               />
-            )}
-            {firstSelectedItem.name
-              ? `${firstSelectedItem.name} ${
-                  firstSelectedItem.length < 2 ? "" : `+${firstSelectedItem.length - 1}`
-                } `
+            ) : null}
+            {selectedNutrients[0]?.name
+              ? `${selectedNutrients[0]?.name} ${
+                  selectedNutrients?.length < 2 ? "" : `+${selectedNutrients.length - 1}`
+                }`
               : "Nutrients"}
           </Typography>
           {open ? (
@@ -340,11 +330,11 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
                 width: "8px",
               },
               "&::-webkit-scrollbar-thumb": {
-                backgroundColor: isDropdown ? theme.palette.customGray.dark : "",
+                backgroundColor: isDropdown ? theme.palette.customGray.textLight : "",
               },
             }}
           >
-            {renderFilterNutrients().length ? (
+            {renderFilterNutrients()?.length ? (
               <ForLoops each={renderFilterNutrients()}>
                 {(item, index) => {
                   return (
@@ -382,7 +372,7 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
                             color="primary"
                             checked={item.checked}
                             checkedIcon={
-                              item.subItems.every((item3) => item3.checked === true) ? (
+                              item?.rows?.every((item3) => item3.checked === true) ? (
                                 <CheckBoxIcon color="primary" sx={{ width: theme.spacing(3) }} />
                               ) : (
                                 <IndeterminateCheckBoxIcon
@@ -405,28 +395,30 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
                         </Box>
                       </AccordionSummary>
                       <AccordionDetails sx={{ mt: theme.spacing(-2), cursor: "default" }}>
-                        <ForLoops each={item.subItems}>
-                          {(item2, index2) => {
-                            return (
-                              <Box
-                                sx={{ display: "flex", alignItems: "center", cursor: "pointer" }}
-                                key={index2}
-                                onClick={() => onSelectSubItem(item.name, item2.name)}
-                              >
-                                <Checkbox color="primary" checked={item2.checked} />
-                                <Typography
-                                  variant="bodyMedium"
-                                  sx={{
-                                    fontWeight: theme.typography.fontWeightLight,
-                                    color: theme.palette.customGray.textDark,
-                                  }}
+                        {item.rows && (
+                          <ForLoops each={item.rows}>
+                            {(item2, index2) => {
+                              return (
+                                <Box
+                                  sx={{ display: "flex", alignItems: "center", cursor: "pointer" }}
+                                  key={index2}
+                                  onClick={() => onSelectSubItem(item.name, item2.name)}
                                 >
-                                  {item2.name}
-                                </Typography>
-                              </Box>
-                            );
-                          }}
-                        </ForLoops>
+                                  <Checkbox color="primary" checked={item2.checked} />
+                                  <Typography
+                                    variant="bodyMedium"
+                                    sx={{
+                                      fontWeight: theme.typography.fontWeightLight,
+                                      color: theme.palette.customGray.textDark,
+                                    }}
+                                  >
+                                    {item2.name}
+                                  </Typography>
+                                </Box>
+                              );
+                            }}
+                          </ForLoops>
+                        )}
                       </AccordionDetails>
                     </Accordion>
                   );
@@ -461,7 +453,7 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
               sx={{
                 fontWeight: theme.typography.fontWeightRegular,
                 cursor: "pointer",
-                color: firstSelectedItem.name
+                color: selectedNutrients.length
                   ? theme.palette.primary.main
                   : theme.palette.customGray.textDark,
               }}

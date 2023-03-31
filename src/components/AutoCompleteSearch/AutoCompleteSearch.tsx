@@ -11,13 +11,9 @@ import { Box, TextField, useTheme, useMediaQuery, Button, Typography } from "@mu
 import classnames from "classnames";
 import { SearchOutlined } from "@mui/icons-material";
 import InputAdornment from "@mui/material/InputAdornment";
-import {
-  SearchResults,
-  SearchCategories,
-  SearchRecommendations,
-  NoSearchResults,
-} from "@forkfacts/components";
+import { SearchResults, SearchCategories, NoSearchResults } from "@forkfacts/components";
 import { SearchResultItemType, AutoCompleteSearchProps } from "@forkfacts/models";
+import CircularProgress from "@mui/material/CircularProgress";
 import CloseIcon from "@mui/icons-material/Close";
 import { ForLoops } from "@forkfacts/helpers";
 import { navigate } from "gatsby";
@@ -29,8 +25,8 @@ import {
 } from "./autocompleteSearchStyles";
 import "../../styles/styles.css";
 
-const appId = process.env.GATSBY_SEARCH_APP_ID as string;
-const apiKey = process.env.GATSBY_SEARCH_API_KEY as string;
+const appId = "7d08c3e6a7bc49e0857cf459b47a6381";
+const apiKey = "JVO84ADVS3";
 const searchClient = algoliasearch(apiKey, appId);
 const INDEX_NAMES = ["ff_index", "sr_index"];
 
@@ -58,6 +54,7 @@ function AutoCompleteSearch(
   const { query, collections, isOpen, status } = autocompleteState;
   const mobile = useMediaQuery(theme.breakpoints.down("md"));
   const desktop = useMediaQuery(theme.breakpoints.up("md"));
+  const [loading, setLoading] = useState(true);
   const classes = useStyles({ isOpen });
   const autocomplete = useMemo(
     () =>
@@ -69,6 +66,7 @@ function AutoCompleteSearch(
       >({
         onStateChange({ state }) {
           setAutocompleteState(state);
+          setLoading(false);
         },
         shouldPanelOpen: () => true,
         getSources() {
@@ -78,15 +76,7 @@ function AutoCompleteSearch(
               getItems({ query }) {
                 return getAlgoliaResults({
                   searchClient,
-                  queries: [
-                    {
-                      indexName: query ? INDEX_NAMES[1] : INDEX_NAMES[0],
-                      query,
-                      params: {
-                        hitsPerPage: 4,
-                      },
-                    },
-                  ],
+                  queries: INDEX_NAMES.map((indexName) => ({ indexName, query })),
                 });
               },
               getItemUrl({ item }) {
@@ -116,7 +106,7 @@ function AutoCompleteSearch(
     if (desktop) {
       window.addEventListener("mousedown", onMouseDown);
       window.addEventListener("touchstart", onTouchStart);
-      window.addEventListener("touchmove", onTouchMove);
+      // window.addEventListener("touchmove", onTouchMove);
     }
     return () => {
       window.removeEventListener("mousedown", onMouseDown);
@@ -255,15 +245,16 @@ function AutoCompleteSearch(
           </Box>
         </Box>
         {isOpen && desktop && (
-          <Box
-            style={{
-              backgroundColor: theme.palette.grey[300],
-              width: "100%",
-              height: theme.spacing(0.125),
-            }}
-          />
+          <>
+            <Box
+              style={{
+                backgroundColor: theme.palette.grey[300],
+                width: "100%",
+                height: theme.spacing(0.125),
+              }}
+            />
+          </>
         )}
-
         {isOpen && (desktop || mobile) && (
           <Box
             component="div"
@@ -298,6 +289,7 @@ function AutoCompleteSearch(
                   sx={{
                     fontWeight: theme.typography.fontWeightRegular,
                     pr: theme.spacing(1.5),
+                    cursor: "pointer",
                   }}
                   onClick={onClearSearch}
                 >
@@ -310,10 +302,9 @@ function AutoCompleteSearch(
                 <Box
                   sx={{
                     width: "100%",
-                    paddingLeft: theme.spacing(1),
-                    paddingRight: theme.spacing(1),
+                    paddingLeft: theme.spacing(2),
+                    paddingRight: theme.spacing(2),
                     mt: mobile ? theme.spacing(1.3) : theme.spacing(2),
-                    ml: theme.spacing(-0.7),
                   }}
                 >
                   <ForLoops each={collections}>
@@ -340,15 +331,15 @@ function AutoCompleteSearch(
                     mt: mobile ? theme.spacing(0.5) : theme.spacing(1.5),
                   }}
                 >
-                  <SearchRecommendations recommendations={props.recommendations} />
+                  {/* <SearchRecommendations recommendations={props.recommendations} /> */}
                 </Box>
               </>
             ) : query && (desktop || mobile) ? (
               <Box
                 sx={{
                   width: "100%",
-                  paddingLeft: theme.spacing(1),
-                  paddingRight: theme.spacing(1),
+                  paddingLeft: theme.spacing(2),
+                  paddingRight: theme.spacing(2),
                   mb: theme.spacing(3),
                 }}
               >
@@ -362,7 +353,7 @@ function AutoCompleteSearch(
                         <Box component="section" key={`source-${index}`}>
                           {items.length > 0 && (
                             <SearchResults
-                              collectionGroupedItems={props.collectionGroupedItems}
+                              collectionListsItems={items}
                               onSelectItem={onSelectItem}
                               multiple={true}
                             />
@@ -374,6 +365,7 @@ function AutoCompleteSearch(
                 </ForLoops>
               </Box>
             ) : null}
+            {loading && !query && isOpen && <CircularProgress color="primary" />}
           </Box>
         )}
       </Box>

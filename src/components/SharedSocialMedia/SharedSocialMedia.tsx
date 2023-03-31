@@ -100,7 +100,7 @@ const SharedSocialMedia: React.FC<SharedSocialMediaProps> = ({
             display: "flex",
             alignItems: "center",
             gap: theme.spacing(2),
-            mt: theme.spacing(4),
+            mt: theme.spacing(2.5),
           }}
         >
           <EmailShareButton url={"youremail@example.com"} title={"Check out this website!"}>
@@ -118,8 +118,8 @@ const SharedSocialMedia: React.FC<SharedSocialMediaProps> = ({
         </Box>
         <Box
           sx={{
-            mt: mobile ? theme.spacing(3) : theme.spacing(5),
-            mb: mobile ? theme.spacing(1) : theme.spacing(3),
+            mt: mobile ? theme.spacing(3) : theme.spacing(4),
+            mb: mobile ? theme.spacing(1) : theme.spacing(1.5),
             fontWeight: theme.typography.fontWeightBold,
             color: theme.palette.customGray.textDark,
           }}
@@ -137,7 +137,7 @@ const SharedSocialMedia: React.FC<SharedSocialMediaProps> = ({
         <Box
           sx={{
             mt: theme.spacing(1),
-            mb: theme.spacing(3),
+            mb: theme.spacing(1),
             width: "100%",
             display: "flex",
           }}
@@ -155,7 +155,7 @@ const SharedSocialMedia: React.FC<SharedSocialMediaProps> = ({
             }}
             sx={{
               borderRadius: theme.spacing(8),
-              width: mobile ? "100%" : "60%",
+              width: mobile ? "100%" : "80%",
               caretColor: "transparent",
             }}
             value={link}

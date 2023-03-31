@@ -166,7 +166,7 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
       .map((item) => {
         return {
           ...item,
-          check: false,
+          checked: false,
           nutrientGroup: item.nutrientGroup,
           name: item.nutrientGroup,
           rows: item?.rows?.map((row) => {
@@ -177,8 +177,6 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
           }),
         };
       }) || [];
-
-  console.log();
 
   const emptyNutrientGroupItems =
     nutrientGroups

@@ -32,7 +32,7 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.down("md"));
   const ref = useRef<HTMLDivElement>(null);
-
+  console.log(nutritionFilterItems);
   const newNutrients: SelectedNutrient[] = [...nutritionFilterItems].map((item) => {
     return {
       name: item.name,

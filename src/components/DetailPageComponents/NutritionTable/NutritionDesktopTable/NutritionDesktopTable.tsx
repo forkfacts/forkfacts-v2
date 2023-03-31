@@ -7,18 +7,34 @@ import {
   TableHead,
   TableRow,
   Typography,
-  useMediaQuery,
   useTheme,
 } from "@mui/material";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import { CompareSorting } from "@forkfacts/icons";
-import React, { useState } from "react";
-import { NutritionDesktopTableProps, NutritionTableRow } from "@forkfacts/models";
+import React, { useEffect, useState } from "react";
+import { NutritionDesktopTableProps } from "@forkfacts/models";
+
+export interface NutritionTableRow {
+  nutrient: string;
+  dailyValue?: number | null;
+  amount?: number;
+  amountUnit?: string;
+  nutrientGroup: string;
+  rdi: {
+    value?: number | null;
+    weight?: string;
+  };
+}
+interface RowsByNutrientGroup {
+  nutrientGroup: string;
+  rows: NutritionTableRow[];
+}
 
 const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ rows }) => {
   const theme = useTheme();
   const [collapsedRows, setCollapsedRows] = useState<any>([]);
+  const [tableRows, setTableRows] = useState<RowsByNutrientGroup[]>([]);
   const toggleCollapse = (nutrient: any) => {
     if (collapsedRows.includes(nutrient)) {
       setCollapsedRows(collapsedRows.filter((row: any) => row !== nutrient));
@@ -27,24 +43,30 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ rows }) =
     }
   };
   const isCollapsed = (nutrient: any) => collapsedRows.includes(nutrient);
-  const rowsByNutrientGroup = rows?.reduce((acc, row) => {
-    const nutrientGroup = row?.nutrientGroup;
-    if (!acc.has(nutrientGroup)) {
-      acc.set(nutrientGroup, [row]);
+
+  useEffect(() => {
+    const rowsByNutrientGroup = rows?.reduce((acc, row) => {
+      const nutrientGroup = row?.nutrientGroup;
+      if (!acc.has(nutrientGroup)) {
+        acc.set(nutrientGroup, [row]);
+        return acc;
+      }
+      acc.set(nutrientGroup, [...(acc.get(nutrientGroup) as NutritionTableRow[]), row]);
       return acc;
-    }
-    acc.set(nutrientGroup, [...(acc.get(nutrientGroup) as NutritionTableRow[]), row]);
-    return acc;
-  }, new Map<string, NutritionTableRow[]>());
+    }, new Map<string, NutritionTableRow[]>());
 
-  const rowsByNutrientGroupArray = Array.from(
-    rowsByNutrientGroup.entries(),
-    ([nutrientGroup, rows]) => ({
-      nutrientGroup,
-      rows,
-    })
-  );
+    const rowsByNutrientGroupArray = Array.from(
+      rowsByNutrientGroup.entries(),
+      ([nutrientGroup, rows]) => ({
+        nutrientGroup,
+        rows,
+      })
+    );
+    setTableRows(rowsByNutrientGroupArray);
+  }, [rows]);
 
+  const sortByRDIValues = () => {};
+  const sortByDailyValues = () => {};
   return (
     <Box>
       <TableContainer>
@@ -69,6 +91,7 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ rows }) =
                     display: "inline-block",
                     color: theme.palette.customGray.dark,
                     fontWeight: theme.typography.fontWeightRegular,
+                    cursor: "pointer",
                   }}
                 >
                   %Daily Value
@@ -102,6 +125,7 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ rows }) =
                     display: "inline",
                     color: theme.palette.customGray.dark,
                     fontWeight: theme.typography.fontWeightRegular,
+                    cursor: "pointer",
                   }}
                 >
                   RDI
@@ -121,7 +145,7 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ rows }) =
           </TableHead>
           <TableBody>
             <>
-              {rowsByNutrientGroupArray?.reverse()?.map((row, index) => {
+              {tableRows?.reverse()?.map((row, index) => {
                 if (row.nutrientGroup) {
                   return (
                     <React.Fragment key={index}>

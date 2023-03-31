@@ -7,18 +7,27 @@ import {
   TableHead,
   TableRow,
   Typography,
-  useMediaQuery,
   useTheme,
 } from "@mui/material";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import { CompareSorting } from "@forkfacts/icons";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NutritionDesktopTableProps, NutritionTableRow } from "@forkfacts/models";
+
+interface RowsByNutrientGroup {
+  nutrientGroup: string;
+  rows: NutritionTableRow[];
+}
 
 const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ rows }) => {
   const theme = useTheme();
   const [collapsedRows, setCollapsedRows] = useState<any>([]);
+  const [tableRows, setTableRows] = useState<RowsByNutrientGroup[]>([]);
+  const [sortState, setSorState] = useState({
+    rdi: false,
+    daily: false,
+  });
   const toggleCollapse = (nutrient: any) => {
     if (collapsedRows.includes(nutrient)) {
       setCollapsedRows(collapsedRows.filter((row: any) => row !== nutrient));
@@ -27,24 +36,55 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ rows }) =
     }
   };
   const isCollapsed = (nutrient: any) => collapsedRows.includes(nutrient);
-  const rowsByNutrientGroup = rows?.reduce((acc, row) => {
-    const nutrientGroup = row?.nutrientGroup;
-    if (!acc.has(nutrientGroup)) {
-      acc.set(nutrientGroup, [row]);
+
+  useEffect(() => {
+    const rowsByNutrientGroup = rows?.reduce((acc, row) => {
+      const nutrientGroup = row?.nutrientGroup;
+      if (!acc.has(nutrientGroup)) {
+        acc.set(nutrientGroup, [row]);
+        return acc;
+      }
+      acc.set(nutrientGroup, [...(acc.get(nutrientGroup) as NutritionTableRow[]), row]);
       return acc;
-    }
-    acc.set(nutrientGroup, [...(acc.get(nutrientGroup) as NutritionTableRow[]), row]);
-    return acc;
-  }, new Map<string, NutritionTableRow[]>());
+    }, new Map<string, NutritionTableRow[]>());
 
-  const rowsByNutrientGroupArray = Array.from(
-    rowsByNutrientGroup.entries(),
-    ([nutrientGroup, rows]) => ({
-      nutrientGroup,
-      rows,
-    })
-  );
+    const rowsByNutrientGroupArray = Array.from(
+      rowsByNutrientGroup.entries(),
+      ([nutrientGroup, rows]) => ({
+        nutrientGroup,
+        rows,
+      })
+    );
+    setTableRows(rowsByNutrientGroupArray);
+  }, [rows]);
 
+  const sortByDailyValues = () => {
+    const sortedRows = [...tableRows];
+    sortedRows.forEach((group) => {
+      group.rows.sort((a, b) => {
+        if (!a.dailyValue && !b.dailyValue) return 0;
+        if (!a.dailyValue) return 1;
+        if (!b.dailyValue) return -1;
+        return a.dailyValue - b.dailyValue;
+      });
+    });
+    setSorState({ ...sortState, daily: true });
+    setTableRows(sortedRows);
+  };
+
+  const sortByRDIValues = () => {
+    const sortedRows = [...tableRows];
+    sortedRows.forEach((group) => {
+      group.rows.sort((a, b) => {
+        if (!a.rdi.value && !b.rdi.value) return 0;
+        if (!a.rdi.value) return 1;
+        if (!b.rdi.value) return -1;
+        return b.rdi.value - a.rdi.value;
+      });
+    });
+    setSorState({ ...sortState, rdi: true });
+    setTableRows(sortedRows);
+  };
   return (
     <Box>
       <TableContainer>
@@ -65,20 +105,25 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ rows }) =
               <TableCell align="right" sx={{ borderBottom: "none" }}>
                 <Typography
                   variant="labelLarge"
+                  onClick={sortByDailyValues}
                   sx={{
                     display: "inline-block",
                     color: theme.palette.customGray.dark,
                     fontWeight: theme.typography.fontWeightRegular,
+                    cursor: "pointer",
                   }}
                 >
-                  %Daily Value
+                  % Daily Value
                   <CompareSorting
+                    color={
+                      sortState.daily ? theme.palette.primary.main : theme.palette.customGray.dark
+                    }
                     width={theme.spacing(2.3)}
                     height={theme.spacing(2.3)}
                     style={{
                       marginLeft: theme.spacing(1),
                       display: "inline",
-                      paddingTop: theme.spacing(0.1),
+                      paddingTop: theme.spacing(0.2),
                     }}
                   />
                 </Typography>
@@ -102,10 +147,15 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ rows }) =
                     display: "inline",
                     color: theme.palette.customGray.dark,
                     fontWeight: theme.typography.fontWeightRegular,
+                    cursor: "pointer",
                   }}
+                  onClick={sortByRDIValues}
                 >
                   RDI
                   <CompareSorting
+                    color={
+                      sortState.rdi ? theme.palette.primary.main : theme.palette.customGray.dark
+                    }
                     width={theme.spacing(2.3)}
                     height={theme.spacing(2.3)}
                     style={{
@@ -121,7 +171,7 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ rows }) =
           </TableHead>
           <TableBody>
             <>
-              {rowsByNutrientGroupArray?.reverse()?.map((row, index) => {
+              {tableRows?.reverse()?.map((row, index) => {
                 if (row.nutrientGroup) {
                   return (
                     <React.Fragment key={index}>

@@ -1,5 +1,5 @@
 // import fs from "fs";
-import mappings from "../../data/usda_rdi_nutrient_mapping.json";
+const mappings = require("../../data/usda_rdi_nutrient_mapping.json");
 import { allAges, lifeStageItems } from "../RealData/realData";
 import { NutrientItem, NutritionFact } from "../models/pages";
 import { SelectedNutrient } from "../models/components";

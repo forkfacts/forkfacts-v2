@@ -87,7 +87,7 @@ const DetailsPageScreen: React.FC<DetailsPageScreenProps> = ({
           <Box
             sx={{
               px: mobile ? 0 : theme.spacing(1.5),
-              mt: mobile ? theme.spacing(1) : theme.spacing(5),
+              mt: mobile ? theme.spacing(1) : theme.spacing(2),
               width: "100%",
             }}
           >

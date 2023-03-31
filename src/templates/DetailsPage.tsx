@@ -166,7 +166,7 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
       .map((item) => {
         return {
           ...item,
-          check: false,
+          checked: false,
           nutrientGroup: item.nutrientGroup,
           name: item.nutrientGroup,
           rows: item?.rows?.map((row) => {
@@ -180,7 +180,7 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
 
   const emptyNutrientGroupItems =
     nutrientGroups
-      ?.filter((item: any) => !item.nutrientGroup)[0]
+      ?.filter((item: any) => item.nutrientGroup === "")[0]
       ?.rows?.map((flatRow) => {
         return {
           ...flatRow,
@@ -188,13 +188,10 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
           rows: [],
         };
       }) || [];
-
   const nutrients = [
     ...filteredNutritionFilterItems,
     ...emptyNutrientGroupItems,
   ] as SelectedNutrient[];
-
-  console.log(filteredNutritionFilterItems);
 
   return (
     <>
@@ -214,7 +211,7 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
           }}
           ageItems={ageRanges}
           lifeStageItems={lifeStageItems}
-          nutritionFilterItems={nutrients}
+          nutritionFilterItems={[...nutrients]}
           nutritionSummaryItems={[]} // todo(h2): Feature not available yet.
           measurementFilterItems={[]} // todo(h2): Feature not available yet.
           nutritionTableRows={rows}
@@ -226,7 +223,7 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
           }}
           multipleSelectItems={[]} // todo(h2): Feature not available yet.
           onSelectedValue={function (value: React.SetStateAction<string[]>): void {
-            throw new Error(`Feature not available yet.`);
+            throw new Error(`Feature is not available yet.`);
           }}
         />
       </Box>

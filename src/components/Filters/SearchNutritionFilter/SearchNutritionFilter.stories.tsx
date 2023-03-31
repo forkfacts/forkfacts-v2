@@ -23,7 +23,7 @@ const Template: ComponentStory<typeof SearchNutritionFilter> = (args) => {
 
 const nutritionFilterItems: SelectedNutrient[] = [
   {
-    name: "Vitamin",
+    name: "Vitamins",
     nutrientGroup: "Vitamins",
     rows: [
       { name: "Vitamin B1", checked: false, nutrientGroup: "Vitamins" },
@@ -34,7 +34,7 @@ const nutritionFilterItems: SelectedNutrient[] = [
     checked: false,
   },
   {
-    name: "Protein",
+    name: "Proteins",
     nutrientGroup: "Proteins",
     rows: [
       { name: "Protein B1", checked: false, nutrientGroup: "Proteins" },

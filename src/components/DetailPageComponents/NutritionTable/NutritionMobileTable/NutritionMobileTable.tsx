@@ -140,7 +140,7 @@ const NutritionMobileTable: React.FC<NutritionMobileTableProps> = ({ rows }) => 
                         fontWeight: theme.typography.fontWeightRegular,
                       }}
                     >
-                      %Daily value
+                      % Daily value
                     </Typography>
                     {item.dailyValue && (
                       <Typography

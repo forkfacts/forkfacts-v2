@@ -3,7 +3,7 @@ import { PageProps } from "gatsby";
 import { DetailsPageScreen } from "@forkfacts/screens";
 import { SEO } from "@forkfacts/components";
 
-import { getAgeRangesForLifeStage, getValueRounded } from "@forkfacts/helpers";
+import { getAgeRangesForLifeStage, getValueRounded, getFilterNutrients } from "@forkfacts/helpers";
 import { Box } from "@mui/material";
 import { lifeStageItems, menuItems, tabItems } from "../RealData/realData";
 const mappings = require("../../data/usda_rdi_nutrient_mapping.json");
@@ -54,30 +54,6 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
   const allRdis = recommendedDailyIntakes as any[];
   const nutritionFacts: NutritionFact[] = generateRdiForFood(thisFood, allRdis);
 
-  const getSelectedNutrients = (nutrients: SelectedNutrient[]) => {
-    const selectedNutrientsWithRows = [...nutrients]
-      .map((item) => {
-        const data: NutrientItem[] = [];
-        if (item?.rows) {
-          item?.rows?.map((item: any) => {
-            data.push(item);
-          });
-        }
-        return data;
-      })
-      .flat();
-    const unSelectedNutrientsRows = selectedNutrients
-      .map((item) => {
-        if (!item.rows?.length) {
-          return item;
-        }
-      })
-      .filter((item) => item !== undefined);
-    return [...selectedNutrientsWithRows, ...unSelectedNutrientsRows].filter(
-      (item) => item !== undefined
-    );
-  };
-
   useEffect(() => {
     const gender = selectedLifeStage;
     const age = selectedAge;
@@ -100,17 +76,17 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
             ? getValueRounded(Number(nutrientWithRdi?.percentDaily))
             : undefined,
           rdi: {
-            value: nutrientWithRdi?.rdi?.amount
+            servingUnitSize: nutrientWithRdi?.rdi?.amount
               ? Math.abs(nutrientWithRdi?.rdi?.amount)
               : undefined,
-            servingUnitSize: nutrientWithRdi?.rdi?.nutrientUnit,
+            servingSizeUnit: nutrientWithRdi?.rdi?.nutrientUnit,
           },
         };
         return factTableRow;
       });
       setRows(nutrientsWithRdis);
     } else {
-      const nutrientsWithRdis = getSelectedNutrients(selectedNutrients)?.map((nutrient: any) => {
+      const nutrientsWithRdis = getFilterNutrients(selectedNutrients)?.map((nutrient: any) => {
         const nutrientWithRdi: any = nutritionFacts?.filter(
           (nutrientRdi) => nutrientRdi.nutrient.name.toLowerCase() === nutrient.name.toLowerCase()
         )[0];
@@ -123,10 +99,10 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
             ? getValueRounded(Number(nutrientWithRdi?.percentDaily))
             : undefined,
           rdi: {
-            value: nutrientWithRdi?.rdi?.amount
+            servingUnitSize: nutrientWithRdi?.rdi?.amount
               ? Math.abs(nutrientWithRdi?.rdi?.amount)
               : undefined,
-            servingUnitSize: nutrientWithRdi?.rdi?.nutrientUnit,
+            servingSizeUnit: nutrientWithRdi?.rdi?.nutrientUnit,
           },
         };
         return factTableRow;

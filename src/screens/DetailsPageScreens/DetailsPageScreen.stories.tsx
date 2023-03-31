@@ -269,8 +269,8 @@ const nutritionTableItems: NutritionTableRow[] = [
     nutrientGroup: "Fats",
     amountUnit: "g",
     rdi: {
-      value: 120,
-      servingUnitSize: "g",
+      servingUnitSize: 120,
+      servingSizeUnit: "g",
     },
   },
   {
@@ -279,21 +279,19 @@ const nutritionTableItems: NutritionTableRow[] = [
     amount: 30,
     nutrientGroup: "Fats",
     amountUnit: "g",
-    rdi: { value: 120, servingUnitSize: "g" },
+    rdi: { servingUnitSize: 120, servingSizeUnit: "g" },
   },
   {
     nutrient: "Minerals",
     dailyValue: null,
     nutrientGroup: "Fats",
     amountUnit: "g",
-    rdi: { value: null, servingUnitSize: "g" },
   },
   {
     nutrient: "Vitamins",
     dailyValue: null,
     nutrientGroup: "Fats",
     amountUnit: "g",
-    rdi: { value: null, servingUnitSize: "g" },
   },
   {
     nutrient: "Protein",
@@ -301,7 +299,7 @@ const nutritionTableItems: NutritionTableRow[] = [
     nutrientGroup: "Fats",
     amount: 30,
     amountUnit: "g",
-    rdi: { value: 120, servingUnitSize: "g" },
+    rdi: { servingUnitSize: 120, servingSizeUnit: "g" },
   },
 ];
 export const Desktop = Template.bind({});

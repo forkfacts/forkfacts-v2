@@ -4,6 +4,13 @@ import { SelectedNutrient } from "../models/components";
 
 const ARTIFACT_PATH = ".raw";
 
+/**
+ * The purpose is to use `-` as separator in the URL naming scheme.
+ * This is important for SEO purposes
+ * Watch https://www.youtube.com/watch?v=AQcSFsQyct8 to learn more
+ * @param name
+ */
+
 export const spaceToDashes = (name: string) => {
   const pathname = name
     .toLowerCase()
@@ -61,7 +68,7 @@ export const getValueRounded = (amount: number) => {
   return Math.round(amount * 100) / 100;
 };
 
-export const getSelectedNutrients = (nutrients: SelectedNutrient[]) => {
+export const getFilterNutrients = (nutrients: SelectedNutrient[]) => {
   const selectedNutrientsWithRows = [...nutrients]
     .map((item) => {
       const data: NutrientItem[] = [];

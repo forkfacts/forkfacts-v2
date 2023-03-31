@@ -36,7 +36,6 @@ const createNutritionTable = ({ createPageFunction, foods, indexFileName }: any)
       const seo: any = {
         title: food.name,
         description: `${food.name}, ${food.category}`,
-        slug: pagePath,
       };
       createPageFunction({
         path: pagePath,
@@ -54,5 +53,4 @@ const createNutritionTable = ({ createPageFunction, foods, indexFileName }: any)
       });
     }
   });
-  // writeJsonToFile(`${indexFileName}.json`, ffSearchIndex);
 };

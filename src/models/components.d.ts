@@ -77,9 +77,9 @@ export interface NutritionTableRow {
   amount?: number;
   amountUnit?: string;
   nutrientGroup: string;
-  rdi: {
+  rdi?: {
     value?: number | null;
-    weight?: string;
+    servingUnitSize?: string;
   };
 }
 

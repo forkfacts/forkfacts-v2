@@ -1,16 +1,9 @@
-// import fs from "fs";
 import { allAges, lifeStageItems } from "../RealData/realData";
 import { NutrientItem } from "../models/pages";
 import { SelectedNutrient } from "../models/components";
 
 const ARTIFACT_PATH = ".raw";
 
-/**
- * The purpose is to use `-` as separator in the URL naming scheme.
- * This is important for SEO purposes
- * Watch https://www.youtube.com/watch?v=AQcSFsQyct8 to learn more
- * @param name
- */
 export const spaceToDashes = (name: string) => {
   const pathname = name
     .toLowerCase()

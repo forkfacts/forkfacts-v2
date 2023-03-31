@@ -1,4 +1,3 @@
-// gatsby-node.js
 import { GatsbyNode } from "gatsby";
 import { createDetailPage } from "../generators/DetailsPageGenerator";
 

@@ -18,7 +18,7 @@ const nutritionTableItems: NutritionTableRow[] = [
     amountUnit: "g",
     rdi: {
       value: 120,
-      weight: "g",
+      servingUnitSize: "g",
     },
   },
   {
@@ -27,21 +27,21 @@ const nutritionTableItems: NutritionTableRow[] = [
     amount: 30,
     nutrientGroup: "Fats",
     amountUnit: "g",
-    rdi: { value: 120, weight: "g" },
+    rdi: { value: 120, servingUnitSize: "g" },
   },
   {
     nutrient: "Minerals",
     dailyValue: null,
     nutrientGroup: "Fats",
     amountUnit: "g",
-    rdi: { value: null, weight: "g" },
+    rdi: { value: null, servingUnitSize: "g" },
   },
   {
     nutrient: "Vitamins",
     dailyValue: null,
     nutrientGroup: "Fats",
     amountUnit: "g",
-    rdi: { value: null, weight: "g" },
+    rdi: { value: null, servingUnitSize: "g" },
   },
   {
     nutrient: "Protein",
@@ -49,7 +49,7 @@ const nutritionTableItems: NutritionTableRow[] = [
     nutrientGroup: "Fats",
     amount: 30,
     amountUnit: "g",
-    rdi: { value: 120, weight: "g" },
+    rdi: { value: 120, servingUnitSize: "g" },
   },
 ];
 

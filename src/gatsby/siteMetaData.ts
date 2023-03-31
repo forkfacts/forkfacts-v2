@@ -5,5 +5,4 @@ export const siteMetadata: SeoProps = {
   description: `Example project for the Gatsby Head API`,
   image: `/gatsby-icon.png`,
   siteUrl: `https://www.yourdomain.tld`,
-  slug: "",
 };

@@ -169,7 +169,7 @@ To run this project, you'll need to set up some environment variables. These var
 1. Copy the contents of the `.env.sample` file to a new file called `.env` using the following command:
 
    ```
-   npm run build:env
+   npm run build:env:dev
    ```
 
    This command will copy all the keys and their default values from `.env.sample` to `.env` and `.env.development`.

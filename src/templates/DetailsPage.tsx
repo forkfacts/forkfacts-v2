@@ -103,7 +103,7 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
             value: nutrientWithRdi?.rdi?.amount
               ? Math.abs(nutrientWithRdi?.rdi?.amount)
               : undefined,
-            weight: nutrientWithRdi?.rdi?.nutrientUnit,
+            servingUnitSize: nutrientWithRdi?.rdi?.nutrientUnit,
           },
         };
         return factTableRow;
@@ -126,7 +126,7 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
             value: nutrientWithRdi?.rdi?.amount
               ? Math.abs(nutrientWithRdi?.rdi?.amount)
               : undefined,
-            weight: nutrientWithRdi?.rdi?.nutrientUnit,
+            servingUnitSize: nutrientWithRdi?.rdi?.nutrientUnit,
           },
         };
         return factTableRow;

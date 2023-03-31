@@ -17,7 +17,7 @@ export { default as SearchRecommendations } from "./SearchRecommendations/Search
 export { default as FoodsWithSameName } from "./DetailPageComponents/FoodsWithSameName/FoodsWithSameName";
 export { default as FoodOverview } from "./DetailPageComponents/FoodOverview/FoodOverview";
 export { default as DetailPageTabs } from "./DetailPageComponents/DetailPageTabs/DetailPageTabs";
-export { default as DetailsPageTabItem } from "./DetailPageComponents/DetailPageTabs/DetailPageTab";
+export { default as DetailsPageTabItem } from "./DetailPageComponents/DetailPageTabs/DetailPageTab/DetailPageTab";
 export { default as ComparingDetailsTab } from "./DetailPageComponents/ComparingDetailsTab/ComparingDetailsTab";
 export { default as SharedSocialMedia } from "./SharedSocialMedia/SharedSocialMedia";
 export { default as MultipleSelects } from "./MultipleSelects/MultipleSelects";

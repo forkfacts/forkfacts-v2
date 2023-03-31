@@ -76,10 +76,10 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ rows }) =
     const sortedRows = [...tableRows];
     sortedRows.forEach((group) => {
       group.rows.sort((a, b) => {
-        if (!a.rdi.value && !b.rdi.value) return 0;
-        if (!a.rdi.value) return 1;
-        if (!b.rdi.value) return -1;
-        return b.rdi.value - a.rdi.value;
+        if (!a.rdi?.servingUnitSize && !b.rdi?.servingUnitSize) return 0;
+        if (!a?.rdi?.servingUnitSize) return 1;
+        if (!b?.rdi?.servingUnitSize) return -1;
+        return b?.rdi?.servingUnitSize - a?.rdi?.servingUnitSize;
       });
     });
     setSorState({ ...sortState, rdi: true });
@@ -297,7 +297,7 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ rows }) =
                               </Typography>
                             </TableCell>
                             <TableCell align="right" sx={{ borderBottom: "none" }}>
-                              {content.rdi.value && (
+                              {content?.rdi?.servingUnitSize && (
                                 <Typography
                                   variant="bodyLarge"
                                   component="span"
@@ -307,7 +307,9 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ rows }) =
                                     textTransform: "lowercase",
                                   }}
                                 >
-                                  {`${Math.abs(content?.rdi?.value)}${content?.rdi?.weight}`}
+                                  {`${Math.abs(content?.rdi?.servingUnitSize)}${
+                                    content?.rdi?.servingSizeUnit
+                                  }`}
                                 </Typography>
                               )}
                             </TableCell>
@@ -386,7 +388,7 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ rows }) =
                             )}
                           </TableCell>
                           <TableCell align="right" sx={{ borderBottom: "1px solid #F3EFF4" }}>
-                            {innerRow?.rdi?.value && (
+                            {innerRow?.rdi?.servingUnitSize && (
                               <Typography
                                 variant="titleMedium"
                                 sx={{
@@ -396,7 +398,7 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ rows }) =
                                   pr: "20px",
                                 }}
                               >
-                                {`${innerRow?.rdi?.value}${innerRow?.rdi?.weight}`}
+                                {`${innerRow?.rdi?.servingUnitSize}${innerRow?.rdi?.servingSizeUnit}`}
                               </Typography>
                             )}
                           </TableCell>

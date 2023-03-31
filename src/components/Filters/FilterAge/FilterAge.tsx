@@ -34,7 +34,7 @@ const FilterAge: React.FC<AgeItemsProps> = ({ ageItems, isDropdown, margin = 0 }
     const newAge = {
       start: item.start,
       end: item.end,
-      ageUnit: "year",
+      ageUnit: item.ageUnit,
     };
     setSelectedAge(newAge);
     setSelectedItem(ageString);

@@ -10,7 +10,6 @@ const useSiteMetadata = () => {
           description
           image
           siteUrl
-          slug
         }
       }
     }

@@ -3,9 +3,10 @@ import { PageProps } from "gatsby";
 import { DetailsPageScreen } from "@forkfacts/screens";
 import { SEO } from "@forkfacts/components";
 
-import { generateRdiForFood, getAgeRangesForLifeStage, getValueRounded } from "@forkfacts/helpers";
+import { getAgeRangesForLifeStage, getValueRounded, getFilterNutrients } from "@forkfacts/helpers";
 import { Box } from "@mui/material";
 import { lifeStageItems, menuItems, tabItems } from "../RealData/realData";
+const mappings = require("../../data/usda_rdi_nutrient_mapping.json");
 import { useStore } from "../store/store";
 import {
   NutrientGroup,
@@ -14,6 +15,34 @@ import {
   NutritionTableRow,
   SelectedNutrient,
 } from "@forkfacts/models";
+
+export const mappingsByNutrient: Map<string, any> = mappings!.reduce((acc: any, mapping: any) => {
+  acc.set(mapping.usdaNutrientName, mapping);
+  return acc;
+}, new Map<string, any>());
+
+export const getNutrientRdiPercent = (nutrient: any, rdi: any): number | undefined => {
+  // rdi value of < 0 means that there is no data provided by NIH
+  if (!mappingsByNutrient.has(nutrient.name) || rdi.amount < 0) return undefined;
+
+  const multiplier = mappingsByNutrient.get(nutrient.name).usdaToRdiUnitMultiplier;
+  return ((nutrient.amount * multiplier) / rdi.amount) * 100;
+};
+export const generateRdiForFood = (food: any, rdis: any[]): NutritionFact[] => {
+  return food.nutrients
+    .map((nutrient: any) => {
+      const mappedRdi = mappingsByNutrient.get(nutrient.name);
+      if (!mappedRdi) return { nutrient };
+      const rdisForLifeStageAndAge = rdis.filter(
+        (rdi) => rdi.nutrient === mappedRdi.rdiNutrientName
+      );
+      return rdisForLifeStageAndAge.map((rdi) => {
+        const percentDaily = getNutrientRdiPercent(nutrient, rdi);
+        return { nutrient, rdi, percentDaily };
+      });
+    })
+    .flat();
+};
 
 const DynamicPageTemplate = ({ pageContext }: PageProps) => {
   const { food, recommendedDailyIntakes } = pageContext as any;
@@ -24,30 +53,6 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
   const thisFood = food as any;
   const allRdis = recommendedDailyIntakes as any[];
   const nutritionFacts: NutritionFact[] = generateRdiForFood(thisFood, allRdis);
-
-  const getSelectedNutrients = (nutrients: SelectedNutrient[]) => {
-    const selectedNutrientsWithRows = [...nutrients]
-      .map((item) => {
-        const data: NutrientItem[] = [];
-        if (item?.rows) {
-          item?.rows?.map((item: any) => {
-            data.push(item);
-          });
-        }
-        return data;
-      })
-      .flat();
-    const unSelectedNutrientsRows = selectedNutrients
-      .map((item) => {
-        if (!item.rows?.length) {
-          return item;
-        }
-      })
-      .filter((item) => item !== undefined);
-    return [...selectedNutrientsWithRows, ...unSelectedNutrientsRows].filter(
-      (item) => item !== undefined
-    );
-  };
 
   useEffect(() => {
     const gender = selectedLifeStage;
@@ -71,17 +76,17 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
             ? getValueRounded(Number(nutrientWithRdi?.percentDaily))
             : undefined,
           rdi: {
-            value: nutrientWithRdi?.rdi?.amount
+            servingUnitSize: nutrientWithRdi?.rdi?.amount
               ? Math.abs(nutrientWithRdi?.rdi?.amount)
               : undefined,
-            weight: nutrientWithRdi?.rdi?.nutrientUnit,
+            servingSizeUnit: nutrientWithRdi?.rdi?.nutrientUnit,
           },
         };
         return factTableRow;
       });
       setRows(nutrientsWithRdis);
     } else {
-      const nutrientsWithRdis = getSelectedNutrients(selectedNutrients)?.map((nutrient: any) => {
+      const nutrientsWithRdis = getFilterNutrients(selectedNutrients)?.map((nutrient: any) => {
         const nutrientWithRdi: any = nutritionFacts?.filter(
           (nutrientRdi) => nutrientRdi.nutrient.name.toLowerCase() === nutrient.name.toLowerCase()
         )[0];
@@ -94,10 +99,10 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
             ? getValueRounded(Number(nutrientWithRdi?.percentDaily))
             : undefined,
           rdi: {
-            value: nutrientWithRdi?.rdi?.amount
+            servingUnitSize: nutrientWithRdi?.rdi?.amount
               ? Math.abs(nutrientWithRdi?.rdi?.amount)
               : undefined,
-            weight: nutrientWithRdi?.rdi?.nutrientUnit,
+            servingSizeUnit: nutrientWithRdi?.rdi?.nutrientUnit,
           },
         };
         return factTableRow;

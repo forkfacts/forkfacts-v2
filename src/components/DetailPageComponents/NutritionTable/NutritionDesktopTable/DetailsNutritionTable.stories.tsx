@@ -17,8 +17,8 @@ const nutritionTableItems: NutritionTableRow[] = [
     nutrientGroup: "Fats",
     amountUnit: "g",
     rdi: {
-      value: 120,
-      weight: "g",
+      servingUnitSize: 120,
+      servingSizeUnit: "g",
     },
   },
   {
@@ -27,21 +27,19 @@ const nutritionTableItems: NutritionTableRow[] = [
     amount: 30,
     nutrientGroup: "Fats",
     amountUnit: "g",
-    rdi: { value: 120, weight: "g" },
+    rdi: { servingUnitSize: 120, servingSizeUnit: "g" },
   },
   {
     nutrient: "Minerals",
     dailyValue: null,
     nutrientGroup: "Fats",
     amountUnit: "g",
-    rdi: { value: null, weight: "g" },
   },
   {
     nutrient: "Vitamins",
     dailyValue: null,
     nutrientGroup: "Fats",
     amountUnit: "g",
-    rdi: { value: null, weight: "g" },
   },
   {
     nutrient: "Protein",
@@ -49,10 +47,9 @@ const nutritionTableItems: NutritionTableRow[] = [
     nutrientGroup: "Fats",
     amount: 30,
     amountUnit: "g",
-    rdi: { value: 120, weight: "g" },
+    rdi: { servingUnitSize: 120, servingSizeUnit: "g" },
   },
 ];
-
 const Template: ComponentStory<typeof NutritionDesktopTable> = (args) => {
   return (
     <Box

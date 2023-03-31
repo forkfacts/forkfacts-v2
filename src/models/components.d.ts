@@ -77,9 +77,9 @@ export interface NutritionTableRow {
   amount?: number;
   amountUnit?: string;
   nutrientGroup: string;
-  rdi: {
-    value?: number | null;
-    weight?: string;
+  rdi?: {
+    servingUnitSize?: number;
+    servingSizeUnit?: string;
   };
 }
 
@@ -319,7 +319,7 @@ export interface MeasurementFilterProps {
 export interface MultipleSelectsProps {
   values: filterItem[];
   onSelectedValue: Dispatch<SetStateAction<string[]>>;
-  renderSelectButton?: String | React.ReactNode;
+  RenderSelectButton?: String | JSX.Element;
   open: boolean;
   setIsOpen: Dispatch<SetStateAction<boolean>>;
   multiselectTitle: string;

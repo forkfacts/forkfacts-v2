@@ -318,7 +318,7 @@ export interface MeasurementFilterProps {
 export interface MultipleSelectsProps {
   values: filterItem[];
   onSelectedValue: Dispatch<SetStateAction<string[]>>;
-  renderSelectButton?: String | React.ReactNode;
+  RenderSelectButton?: String | JSX.Element;
   open: boolean;
   setIsOpen: Dispatch<SetStateAction<boolean>>;
   multiselectTitle: string;

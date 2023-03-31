@@ -63,7 +63,7 @@ const Template: ComponentStory<typeof NutritionMobileTable> = (args) => {
 
 export const Mobile = Template.bind({});
 Mobile.args = {
-  nutritionTableItems: nutritionTableItems,
+  rows: nutritionTableItems,
 };
 
 Mobile.parameters = {

@@ -46,61 +46,65 @@ const ageItems: RdiAge[] = [
   {
     start: 9,
     end: 13,
-    ageUnit: "years",
+    ageUnit: "year",
   },
   {
     start: 14,
     end: 18,
-    ageUnit: "years",
+    ageUnit: "year",
   },
   {
     start: 19,
     end: 30,
-    ageUnit: "years",
+    ageUnit: "year",
   },
   {
     start: 31,
     end: 50,
-    ageUnit: "years",
+    ageUnit: "year",
   },
   {
     start: 51,
     end: 70,
-    ageUnit: "years",
+    ageUnit: "year",
+  },
+  {
+    start: 70,
+    ageUnit: "year",
   },
 ];
 
 const nutritionFilterItems: SelectedNutrient[] = [
   {
-    name: "Vitamin",
-    unit: "mg",
-    subItems: [
-      { name: "Vitamin B1", checked: false },
-      { name: "Vitamin B2", checked: false },
-      { name: "Vitamin B3", checked: false },
-      { name: "Vitamin B4", checked: false },
+    name: "Vitamins",
+    nutrientGroup: "Vitamins",
+    rows: [
+      { name: "Vitamin B1", checked: false, nutrientGroup: "Vitamins" },
+      { name: "Vitamin B2", checked: false, nutrientGroup: "Vitamins" },
+      { name: "Vitamin B3", checked: false, nutrientGroup: "Vitamins" },
+      { name: "Vitamin B4", checked: false, nutrientGroup: "Vitamins" },
     ],
     checked: false,
   },
   {
-    name: "Protein",
-    unit: "mg",
-    subItems: [
-      { name: "Protein B1", checked: false },
-      { name: "Protein B2", checked: false },
+    name: "Proteins",
+    nutrientGroup: "Proteins",
+    rows: [
+      { name: "Protein B1", checked: false, nutrientGroup: "Proteins" },
+      { name: "Protein B2", checked: false, nutrientGroup: "Proteins" },
     ],
     checked: false,
   },
-  { name: "Carbohydrate", unit: "mg", subItems: [], checked: false },
-  { name: "Water", unit: "mg", subItems: [], checked: false },
-  { name: "Fats", unit: "mg", subItems: [], checked: false },
-  { name: "Fiber", unit: "mg", subItems: [], checked: false },
-  { name: "Minerals", unit: "mg", subItems: [], checked: false },
+  { name: "Carbohydrate", rows: [], checked: false, nutrientGroup: "" },
+  { name: "Water", rows: [], checked: false, nutrientGroup: "" },
+  { name: "Fats", rows: [], checked: false, nutrientGroup: "" },
+  { name: "Fiber", rows: [], checked: false, nutrientGroup: "" },
+  { name: "Minerals", rows: [], checked: false, nutrientGroup: "" },
 ];
 
 const Template: ComponentStory<typeof NutritionFilters> = (args) => {
   const [selectSearchNutrition, seSelectedSearchNutrition] = useState([] as SelectedNutrient[]);
-  return <NutritionFilters {...args} onSelectNutritionFilterItem={seSelectedSearchNutrition} />;
+  return <NutritionFilters {...args} />;
 };
 
 export const Desktop = Template.bind({});

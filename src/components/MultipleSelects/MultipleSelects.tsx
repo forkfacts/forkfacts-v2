@@ -12,7 +12,7 @@ type NutrientType = {
 const MultipleSelects: React.FC<MultipleSelectsProps> = ({
   values,
   onSelectedValue,
-  renderSelectButton,
+  RenderSelectButton,
   open,
   setIsOpen,
   multiselectTitle,
@@ -74,7 +74,7 @@ const MultipleSelects: React.FC<MultipleSelectsProps> = ({
       sx={{ cursor: "pointer", zIndex: theme.zIndex.mobileStepper, position: "relative" }}
       ref={ref}
     >
-      <Box>{renderSelectButton}</Box>
+      <>{RenderSelectButton}</>
       {open && (
         <Box
           component="div"

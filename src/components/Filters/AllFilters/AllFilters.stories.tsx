@@ -75,30 +75,30 @@ const ageItems: RdiAge[] = [
 ];
 const nutritionFilterItems: SelectedNutrient[] = [
   {
-    name: "Vitamin",
-    unit: "mg",
-    subItems: [
-      { name: "Vitamin B1", checked: false },
-      { name: "Vitamin B2", checked: false },
-      { name: "Vitamin B3", checked: false },
-      { name: "Vitamin B4", checked: false },
+    name: "Vitamins",
+    nutrientGroup: "Vitamins",
+    rows: [
+      { name: "Vitamin B1", checked: false, nutrientGroup: "Vitamins" },
+      { name: "Vitamin B2", checked: false, nutrientGroup: "Vitamins" },
+      { name: "Vitamin B3", checked: false, nutrientGroup: "Vitamins" },
+      { name: "Vitamin B4", checked: false, nutrientGroup: "Vitamins" },
     ],
     checked: false,
   },
   {
-    name: "Protein",
-    unit: "mg",
-    subItems: [
-      { name: "Protein B1", checked: false },
-      { name: "Protein B2", checked: false },
+    name: "Proteins",
+    nutrientGroup: "Proteins",
+    rows: [
+      { name: "Protein B1", checked: false, nutrientGroup: "Proteins" },
+      { name: "Protein B2", checked: false, nutrientGroup: "Proteins" },
     ],
     checked: false,
   },
-  { name: "Carbohydrate", unit: "mg", subItems: [], checked: false },
-  { name: "Water", unit: "mg", subItems: [], checked: false },
-  { name: "Fats", unit: "mg", subItems: [], checked: false },
-  { name: "Fiber", unit: "mg", subItems: [], checked: false },
-  { name: "Minerals", unit: "mg", subItems: [], checked: false },
+  { name: "Carbohydrate", rows: [], checked: false, nutrientGroup: "" },
+  { name: "Water", rows: [], checked: false, nutrientGroup: "" },
+  { name: "Fats", rows: [], checked: false, nutrientGroup: "" },
+  { name: "Fiber", rows: [], checked: false, nutrientGroup: "" },
+  { name: "Minerals", rows: [], checked: false, nutrientGroup: "" },
 ];
 
 const Template: ComponentStory<typeof AllFilters> = (args) => {

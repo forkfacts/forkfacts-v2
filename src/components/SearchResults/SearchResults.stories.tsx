@@ -83,7 +83,7 @@ export const SearchResultsItemsSingleDesktopCategory = Template.bind({});
 
 SearchResultsItemsSingleDesktopCategory.args = {
   collectionListsItems,
-  multiple: false,
+  multiple: true,
   onSelectItem: (item: SearchResultItemType) => item,
 };
 
@@ -116,7 +116,7 @@ SearchResultsItemsSingleMobileCategory.parameters = {
 };
 SearchResultsItemsSingleMobileCategory.args = {
   collectionListsItems,
-  multiple: false,
+  multiple: true,
   onSelectItem: (item: SearchResultItemType) => item,
 };
 SearchResultsItemsSingleMobileCategory.argTypes = {

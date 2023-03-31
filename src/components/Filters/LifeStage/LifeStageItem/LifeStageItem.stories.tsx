@@ -17,7 +17,6 @@ selectedItem.args = {
     name: "Children",
     icon: Kids,
   },
-  handleSelectedItem: (name: string, index: number) => {},
   index: 1,
   selectedItem: "Children",
 };
@@ -31,7 +30,6 @@ unSelectedItem.args = {
     name: "Children",
     icon: Baby,
   },
-  handleSelectedItem: (name: string, index: number) => {},
   index: 0,
   selectedItem: "Infants",
 };

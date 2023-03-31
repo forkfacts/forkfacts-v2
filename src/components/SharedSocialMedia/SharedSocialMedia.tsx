@@ -155,7 +155,7 @@ const SharedSocialMedia: React.FC<SharedSocialMediaProps> = ({
             }}
             sx={{
               borderRadius: theme.spacing(8),
-              width: mobile ? "100%" : "60%",
+              width: mobile ? "100%" : "80%",
               caretColor: "transparent",
             }}
             value={link}

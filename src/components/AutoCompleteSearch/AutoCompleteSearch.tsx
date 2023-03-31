@@ -15,7 +15,14 @@ import { SearchResults, SearchCategories, NoSearchResults } from "@forkfacts/com
 import { SearchResultItemType, AutoCompleteSearchProps } from "@forkfacts/models";
 import CircularProgress from "@mui/material/CircularProgress";
 import CloseIcon from "@mui/icons-material/Close";
-import { ForLoops } from "@forkfacts/helpers";
+import {
+  ForLoops,
+  addSearchEntry,
+  SearchParams,
+  fetchRecentSearches,
+  clearRecentDb,
+  spaceToDashes,
+} from "@forkfacts/helpers";
 import { navigate } from "gatsby";
 import {
   useStyles,
@@ -53,6 +60,7 @@ function AutoCompleteSearch(
   const theme = useTheme();
   const { query, collections, isOpen, status } = autocompleteState;
   const mobile = useMediaQuery(theme.breakpoints.down("md"));
+  const [recentSearches, setRecentSearches] = useState<SearchParams[] | SearchResultItemType[]>([]);
   const desktop = useMediaQuery(theme.breakpoints.up("md"));
   const [loading, setLoading] = useState(true);
   const classes = useStyles({ isOpen });
@@ -115,12 +123,24 @@ function AutoCompleteSearch(
     };
   }, [getEnvironmentProps, autocompleteState.isOpen]);
 
-  const onSelectItem = (item: SearchResultItemType) => {
-    navigate(item.url);
+  const onSelectItem = async (item: SearchResultItemType) => {
+    if (props.searchLocation !== "") {
+      const searchData: SearchParams = {
+        name: item.name,
+        category: item.category,
+        timestamp: new Date(),
+        searchLocation: props.searchLocation ?? "Food",
+      };
+      await addSearchEntry(searchData);
+    }
+    const path = spaceToDashes(item.name);
+    navigate(path);
   };
 
-  const onClearSearch = () => {
+  const onClearSearch = async () => {
     autocomplete.setQuery("");
+    await clearRecentDb();
+    setRecentSearches([]);
   };
 
   const onClosePage = () => {
@@ -139,6 +159,14 @@ function AutoCompleteSearch(
     if (desktop && !query) {
       props.setIsMobileSearchOpen(false);
     }
+  }, [isOpen]);
+
+  useEffect(() => {
+    async function fetchData() {
+      const searches = await (await fetchRecentSearches()).reverse();
+      setRecentSearches(searches as SearchParams[]);
+    }
+    fetchData();
   }, [isOpen]);
 
   return (
@@ -262,7 +290,7 @@ function AutoCompleteSearch(
             {...autocomplete.getPanelProps({})}
             sx={{ width: "100%" }}
           >
-            {!query && status === "idle" && (mobile || desktop) && (
+            {!query && status === "idle" && (mobile || desktop) && recentSearches.length ? (
               <Box
                 sx={{
                   width: "100%",
@@ -296,8 +324,8 @@ function AutoCompleteSearch(
                   Clear
                 </Typography>
               </Box>
-            )}
-            {!query && (mobile || desktop) ? (
+            ) : null}
+            {!query && recentSearches.length && (mobile || desktop) ? (
               <>
                 <Box
                   sx={{
@@ -307,21 +335,10 @@ function AutoCompleteSearch(
                     mt: mobile ? theme.spacing(1.3) : theme.spacing(2),
                   }}
                 >
-                  <ForLoops each={collections}>
-                    {(collection, index) => {
-                      const { source, items } = collection;
-                      return (
-                        <Box component="section" key={`source-${index}`}>
-                          {items.length > 0 && (
-                            <SearchResults
-                              collectionListsItems={items}
-                              onSelectItem={onSelectItem}
-                            />
-                          )}
-                        </Box>
-                      );
-                    }}
-                  </ForLoops>
+                  <SearchResults
+                    collectionListsItems={recentSearches as SearchResultItemType[]}
+                    onSelectItem={onSelectItem}
+                  />
                 </Box>
                 <Box
                   sx={{

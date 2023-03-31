@@ -24,6 +24,10 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ rows }) =
   const theme = useTheme();
   const [collapsedRows, setCollapsedRows] = useState<any>([]);
   const [tableRows, setTableRows] = useState<RowsByNutrientGroup[]>([]);
+  const [sortState, setSorState] = useState({
+    rdi: false,
+    daily: false,
+  });
   const toggleCollapse = (nutrient: any) => {
     if (collapsedRows.includes(nutrient)) {
       setCollapsedRows(collapsedRows.filter((row: any) => row !== nutrient));
@@ -64,6 +68,7 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ rows }) =
         return a.dailyValue - b.dailyValue;
       });
     });
+    setSorState({ ...sortState, daily: true });
     setTableRows(sortedRows);
   };
 
@@ -77,6 +82,7 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ rows }) =
         return b.rdi.value - a.rdi.value;
       });
     });
+    setSorState({ ...sortState, rdi: true });
     setTableRows(sortedRows);
   };
   return (
@@ -107,14 +113,17 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ rows }) =
                     cursor: "pointer",
                   }}
                 >
-                  %Daily Value
+                  % Daily Value
                   <CompareSorting
+                    color={
+                      sortState.daily ? theme.palette.primary.main : theme.palette.customGray.dark
+                    }
                     width={theme.spacing(2.3)}
                     height={theme.spacing(2.3)}
                     style={{
                       marginLeft: theme.spacing(1),
                       display: "inline",
-                      paddingTop: theme.spacing(0.1),
+                      paddingTop: theme.spacing(0.2),
                     }}
                   />
                 </Typography>
@@ -144,6 +153,9 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ rows }) =
                 >
                   RDI
                   <CompareSorting
+                    color={
+                      sortState.rdi ? theme.palette.primary.main : theme.palette.customGray.dark
+                    }
                     width={theme.spacing(2.3)}
                     height={theme.spacing(2.3)}
                     style={{

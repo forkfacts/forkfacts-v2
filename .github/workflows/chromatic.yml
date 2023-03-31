@@ -20,11 +20,6 @@ jobs:
           node-version: 18.x
       - name: Install dependencies
         run: npm install
-        # Set environment variables for the Chromatic build
-      - name: Set environment variables
-        env:
-          DATA_ENDPOINT: "https://forkfacts-data.sfo3.digitaloceanspaces.com/processed/ff-dev"
-        run: echo "Data endpoint is $DATA_ENDPOINT"
         # 👇 Adds Chromatic as a step in the workflow
       - name: Publish to Chromatic
         uses: chromaui/action@v1

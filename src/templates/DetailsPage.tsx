@@ -49,6 +49,8 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
     );
   };
 
+  console.log(nutritionFacts);
+
   useEffect(() => {
     const gender = selectedLifeStage;
     const age = selectedAge;
@@ -192,7 +194,7 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
     ...filteredNutritionFilterItems,
     ...emptyNutrientGroupItems,
   ] as SelectedNutrient[];
-
+  console.log(selectedAge);
   return (
     <>
       <Box sx={{ p: "8px" }}>

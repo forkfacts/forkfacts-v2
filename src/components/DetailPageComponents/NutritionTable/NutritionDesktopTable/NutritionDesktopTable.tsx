@@ -13,19 +13,8 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import { CompareSorting } from "@forkfacts/icons";
 import React, { useEffect, useState } from "react";
-import { NutritionDesktopTableProps } from "@forkfacts/models";
+import { NutritionDesktopTableProps, NutritionTableRow } from "@forkfacts/models";
 
-export interface NutritionTableRow {
-  nutrient: string;
-  dailyValue?: number | null;
-  amount?: number;
-  amountUnit?: string;
-  nutrientGroup: string;
-  rdi: {
-    value?: number | null;
-    weight?: string;
-  };
-}
 interface RowsByNutrientGroup {
   nutrientGroup: string;
   rows: NutritionTableRow[];
@@ -65,8 +54,31 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ rows }) =
     setTableRows(rowsByNutrientGroupArray);
   }, [rows]);
 
-  const sortByRDIValues = () => {};
-  const sortByDailyValues = () => {};
+  const sortByDailyValues = () => {
+    const sortedRows = [...tableRows];
+    sortedRows.forEach((group) => {
+      group.rows.sort((a, b) => {
+        if (!a.dailyValue && !b.dailyValue) return 0;
+        if (!a.dailyValue) return 1;
+        if (!b.dailyValue) return -1;
+        return a.dailyValue - b.dailyValue;
+      });
+    });
+    setTableRows(sortedRows);
+  };
+
+  const sortByRDIValues = () => {
+    const sortedRows = [...tableRows];
+    sortedRows.forEach((group) => {
+      group.rows.sort((a, b) => {
+        if (!a.rdi.value && !b.rdi.value) return 0;
+        if (!a.rdi.value) return 1;
+        if (!b.rdi.value) return -1;
+        return b.rdi.value - a.rdi.value;
+      });
+    });
+    setTableRows(sortedRows);
+  };
   return (
     <Box>
       <TableContainer>
@@ -87,6 +99,7 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ rows }) =
               <TableCell align="right" sx={{ borderBottom: "none" }}>
                 <Typography
                   variant="labelLarge"
+                  onClick={sortByDailyValues}
                   sx={{
                     display: "inline-block",
                     color: theme.palette.customGray.dark,
@@ -127,6 +140,7 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ rows }) =
                     fontWeight: theme.typography.fontWeightRegular,
                     cursor: "pointer",
                   }}
+                  onClick={sortByRDIValues}
                 >
                   RDI
                   <CompareSorting

@@ -1,4 +1,10 @@
-import { spaceToDashes } from "../helpers/utils";
+export const spaceToDashes = (name: string) => {
+  const pathname = name
+    .toLowerCase()
+    .trim()
+    .replace(/[^\w]+/g, "-");
+  return pathname.endsWith("-") ? pathname.substr(0, pathname.length - 1) : pathname;
+};
 
 const path = require("path");
 

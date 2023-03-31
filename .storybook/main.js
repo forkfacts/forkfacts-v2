@@ -51,4 +51,7 @@ module.exports = {
   core: {
     builder: "@storybook/builder-webpack5",
   },
+  env: {
+    DATA_ENDPOINT: "https://forkfacts-data.sfo3.digitaloceanspaces.com/processed/ff-dev",
+  },
 };

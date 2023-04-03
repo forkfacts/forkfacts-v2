@@ -37,6 +37,27 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ rows }) =
   };
   const isCollapsed = (nutrient: any) => collapsedRows.includes(nutrient);
 
+  function sortRowsByNutrientGroup(rowsByGroup: RowsByNutrientGroup[]) {
+    rowsByGroup.sort((a, b) => {
+      if (!a.nutrientGroup) {
+        return 1;
+      }
+      if (!b.nutrientGroup) {
+        return -1;
+      }
+      const groupA = a.nutrientGroup.toUpperCase();
+      const groupB = b.nutrientGroup.toUpperCase();
+      if (groupA < groupB) {
+        return -1;
+      }
+      if (groupA > groupB) {
+        return 1;
+      }
+      return 0;
+    });
+    return rowsByGroup;
+  }
+
   useEffect(() => {
     const rowsByNutrientGroup = rows?.reduce((acc, row) => {
       const nutrientGroup = row?.nutrientGroup;
@@ -55,7 +76,7 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ rows }) =
         rows,
       })
     );
-    setTableRows(rowsByNutrientGroupArray);
+    setTableRows(sortRowsByNutrientGroup(rowsByNutrientGroupArray));
   }, [rows]);
 
   const sortByDailyValues = () => {
@@ -99,27 +120,7 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ rows }) =
     });
     return rows;
   }
-  function sortRowsByNutrientGroup(rowsByGroup: RowsByNutrientGroup[]) {
-    rowsByGroup.sort((a, b) => {
-      if (!a.nutrientGroup) {
-        return 1;
-      }
-      if (!b.nutrientGroup) {
-        return -1;
-      }
-      // Otherwise, compare the nutrientGroup properties
-      const groupA = a.nutrientGroup.toUpperCase();
-      const groupB = b.nutrientGroup.toUpperCase();
-      if (groupA < groupB) {
-        return -1;
-      }
-      if (groupA > groupB) {
-        return 1;
-      }
-      return 0;
-    });
-    return rowsByGroup;
-  }
+
   return (
     <Box>
       <TableContainer>
@@ -206,7 +207,7 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ rows }) =
           </TableHead>
           <TableBody>
             <>
-              {sortRowsByNutrientGroup(tableRows)?.map((row, index) => {
+              {tableRows?.map((row, index) => {
                 if (row.nutrientGroup) {
                   return (
                     <React.Fragment key={index}>

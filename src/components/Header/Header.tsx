@@ -44,6 +44,7 @@ export default function Header({ handleToggleButton }: HeaderProps) {
                 color: theme.palette.customGray.main,
                 width: theme.spacing(3),
                 height: theme.spacing(3),
+                cursor: "pointer",
               }}
             />
           </IconButton>

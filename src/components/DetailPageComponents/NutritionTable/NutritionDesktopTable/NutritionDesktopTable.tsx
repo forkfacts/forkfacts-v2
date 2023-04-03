@@ -37,6 +37,27 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ rows }) =
   };
   const isCollapsed = (nutrient: any) => collapsedRows.includes(nutrient);
 
+  function sortRowsByNutrientGroup(rowsByGroup: RowsByNutrientGroup[]) {
+    rowsByGroup.sort((a, b) => {
+      if (!a.nutrientGroup) {
+        return 1;
+      }
+      if (!b.nutrientGroup) {
+        return -1;
+      }
+      const groupA = a.nutrientGroup.toUpperCase();
+      const groupB = b.nutrientGroup.toUpperCase();
+      if (groupA < groupB) {
+        return -1;
+      }
+      if (groupA > groupB) {
+        return 1;
+      }
+      return 0;
+    });
+    return rowsByGroup;
+  }
+
   useEffect(() => {
     const rowsByNutrientGroup = rows?.reduce((acc, row) => {
       const nutrientGroup = row?.nutrientGroup;
@@ -55,7 +76,7 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ rows }) =
         rows,
       })
     );
-    setTableRows(rowsByNutrientGroupArray);
+    setTableRows(sortRowsByNutrientGroup(rowsByNutrientGroupArray));
   }, [rows]);
 
   const sortByDailyValues = () => {
@@ -85,6 +106,21 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ rows }) =
     setSorState({ ...sortState, rdi: true });
     setTableRows(sortedRows);
   };
+  function sortNutritionTableRows(rows: NutritionTableRow[]) {
+    rows.sort((a, b) => {
+      const nameA = a.nutrient.toUpperCase();
+      const nameB = b.nutrient.toUpperCase();
+      if (nameA < nameB) {
+        return -1;
+      }
+      if (nameA > nameB) {
+        return 1;
+      }
+      return 0;
+    });
+    return rows;
+  }
+
   return (
     <Box>
       <TableContainer>
@@ -171,7 +207,7 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ rows }) =
           </TableHead>
           <TableBody>
             <>
-              {tableRows?.reverse()?.map((row, index) => {
+              {tableRows?.map((row, index) => {
                 if (row.nutrientGroup) {
                   return (
                     <React.Fragment key={index}>
@@ -319,7 +355,7 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ rows }) =
                   );
                 }
                 if (!row?.nutrientGroup) {
-                  return row?.rows?.map((innerRow, index) => {
+                  return sortNutritionTableRows(row?.rows)?.map((innerRow, index) => {
                     return (
                       <React.Fragment key={index}>
                         <TableRow sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>

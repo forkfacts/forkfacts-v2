@@ -65,7 +65,6 @@ const NutritionMobileTable: React.FC<NutritionMobileTableProps> = ({ rows }) => 
       }) || [];
 
   const tableData = [...filteredNutritionFilterItems, ...emptyNutrientGroupItems] as GroupType[];
-  console.log(tableData);
   return (
     <Box sx={{ mb: theme.spacing(15), background: " #FFFFFF" }}>
       <Slider {...settings}>
@@ -239,7 +238,7 @@ const NutritionMobileTable: React.FC<NutritionMobileTableProps> = ({ rows }) => 
                       >
                         {subItem.amount && (
                           <Typography
-                            variant="titleSmall"
+                            variant="labelMedium"
                             sx={{
                               fontWeight: theme.typography.fontWeightRegular,
                               color: theme.palette.customGray.dark,
@@ -250,7 +249,7 @@ const NutritionMobileTable: React.FC<NutritionMobileTableProps> = ({ rows }) => 
                         )}
                         {subItem.dailyValue && (
                           <Typography
-                            variant="titleSmall"
+                            variant="labelMedium"
                             sx={{
                               fontWeight: theme.typography.fontWeightRegular,
                               color: theme.palette.customGray.main,

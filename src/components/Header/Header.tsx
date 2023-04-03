@@ -10,6 +10,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { useStyles } from "./headerStyles";
 import { useMediaQuery, useTheme } from "@mui/material";
 import { navigate } from "gatsby";
+import { Forkfactslogo } from "@forkfacts/icons";
 
 interface HeaderProps {
   handleToggleButton: () => void;
@@ -38,16 +39,15 @@ export default function Header({ handleToggleButton }: HeaderProps) {
       >
         <Toolbar sx={{ position: "relative" }}>
           <IconButton size="large" edge="start" aria-label="menu" onClick={handleToggleButton}>
-            <MenuIcon />
+            <MenuIcon
+              sx={{
+                color: theme.palette.customGray.main,
+                width: theme.spacing(3),
+                height: theme.spacing(3),
+              }}
+            />
           </IconButton>
-          <Typography
-            color="primary"
-            variant={mobile ? "displayMedium" : "displayLarge"}
-            onClick={onSelectItem}
-            sx={{ cursor: "pointer" }}
-          >
-            Forkfacts
-          </Typography>
+          <Forkfactslogo onClick={onSelectItem} />
           <Box className={classes.rightContent}>
             <Button color="primary" variant="contained" className={classnames(classes.authBtn)}>
               Sign in

@@ -12,8 +12,8 @@ import AutoStoriesOutlinedIcon from "@mui/icons-material/AutoStoriesOutlined";
 import { lifeStageItem, MenuItem } from "@forkfacts/models";
 
 export const menuItems: MenuItem[] = [
-  { label: "Food", Icon: EggAltOutlinedIcon, link: "/food" },
-  { label: "Recipes", Icon: EmojiFoodBeverageOutlinedIcon, link: "/recipe" },
+  { label: "Food", Icon: EggAltOutlinedIcon, link: "/" },
+  { label: "Recipes", Icon: EmojiFoodBeverageOutlinedIcon, link: "/recipes" },
   { label: "Library", Icon: LibraryBooksOutlinedIcon, link: "/library" },
   { label: "Cookbook", Icon: AutoStoriesOutlinedIcon, link: "/Cookbook" },
   { label: "Grocery List", Icon: ShoppingCartOutlinedIcon, link: "/grocery-list" },
@@ -81,6 +81,6 @@ export const navbarItems = [
 
 export const categoryOptions = [
   { label: "Food", Icon: EggAltOutlinedIcon },
-  { label: "Recipe", Icon: EmojiFoodBeverageOutlinedIcon },
+  { label: "Recipes", Icon: EmojiFoodBeverageOutlinedIcon },
   { label: "Library", Icon: LibraryBooksOutlinedIcon },
 ];

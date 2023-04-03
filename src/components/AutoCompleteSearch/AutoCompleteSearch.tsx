@@ -11,7 +11,12 @@ import { Box, TextField, useTheme, useMediaQuery, Button, Typography } from "@mu
 import classnames from "classnames";
 import { SearchOutlined } from "@mui/icons-material";
 import InputAdornment from "@mui/material/InputAdornment";
-import { SearchResults, SearchCategories, NoSearchResults } from "@forkfacts/components";
+import {
+  SearchResults,
+  SearchCategories,
+  NoSearchResults,
+  ComingSoon,
+} from "@forkfacts/components";
 import { SearchResultItemType, AutoCompleteSearchProps } from "@forkfacts/models";
 import CircularProgress from "@mui/material/CircularProgress";
 import CloseIcon from "@mui/icons-material/Close";
@@ -290,57 +295,67 @@ function AutoCompleteSearch(
             {...autocomplete.getPanelProps({})}
             sx={{ width: "100%" }}
           >
-            {!query && status === "idle" && (mobile || desktop) && recentSearches.length ? (
-              <Box
-                sx={{
-                  width: "100%",
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  paddingLeft: theme.spacing(2),
-                  paddingRight: theme.spacing(0.5),
-                  mt: mobile ? theme.spacing(2) : theme.spacing(3),
-                }}
-                component="div"
-              >
-                <Typography
-                  variant="labelLarge"
-                  sx={{
-                    fontWeight: theme.typography.fontWeightRegular,
-                  }}
-                >
-                  Recently viewed
-                </Typography>
-                <Typography
-                  color="primary"
-                  variant="labelLarge"
-                  sx={{
-                    fontWeight: theme.typography.fontWeightRegular,
-                    pr: theme.spacing(1.5),
-                    cursor: "pointer",
-                  }}
-                  onClick={onClearSearch}
-                >
-                  Clear
-                </Typography>
-              </Box>
-            ) : null}
-            {!query && recentSearches.length && (mobile || desktop) ? (
+            {!query && status === "idle" && (mobile || desktop) ? (
               <>
-                <Box
-                  sx={{
-                    width: "100%",
-                    paddingLeft: theme.spacing(2),
-                    paddingRight: theme.spacing(2),
-                    mt: mobile ? theme.spacing(1.3) : theme.spacing(2),
-                  }}
-                >
-                  <SearchResults
-                    collectionListsItems={recentSearches as SearchResultItemType[]}
-                    onSelectItem={onSelectItem}
-                  />
-                </Box>
-                <Box
+                {props.selectedMobileItem === "Recipes" ||
+                props.selectedMobileItem === "Library" ? null : (
+                  <Box
+                    sx={{
+                      width: "100%",
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                      paddingLeft: theme.spacing(2),
+                      paddingRight: theme.spacing(0.5),
+                      mt: mobile ? theme.spacing(2) : theme.spacing(3),
+                    }}
+                    component="div"
+                  >
+                    <Typography
+                      variant="labelLarge"
+                      sx={{
+                        fontWeight: theme.typography.fontWeightRegular,
+                      }}
+                    >
+                      Recently viewed
+                    </Typography>
+                    <Typography
+                      color="primary"
+                      variant="labelLarge"
+                      sx={{
+                        fontWeight: theme.typography.fontWeightRegular,
+                        pr: theme.spacing(1.5),
+                        cursor: "pointer",
+                      }}
+                      onClick={onClearSearch}
+                    >
+                      Clear
+                    </Typography>
+                  </Box>
+                )}
+              </>
+            ) : null}
+            {!query && (mobile || desktop) ? (
+              <>
+                {props.selectedMobileItem === "Recipes" ||
+                props.selectedMobileItem === "Library" ? (
+                  <ComingSoon />
+                ) : (
+                  <Box
+                    sx={{
+                      width: "100%",
+                      paddingLeft: theme.spacing(2),
+                      paddingRight: theme.spacing(2),
+                      mt: mobile ? theme.spacing(1.3) : theme.spacing(2),
+                    }}
+                  >
+                    <SearchResults
+                      collectionListsItems={recentSearches as SearchResultItemType[]}
+                      onSelectItem={onSelectItem}
+                    />
+                  </Box>
+                )}
+                {/* <Box
                   sx={{
                     width: "100%",
                     px: theme.spacing(1.7),
@@ -348,39 +363,46 @@ function AutoCompleteSearch(
                     mt: mobile ? theme.spacing(0.5) : theme.spacing(1.5),
                   }}
                 >
-                  {/* <SearchRecommendations recommendations={props.recommendations} /> */}
-                </Box>
+                  <SearchRecommendations recommendations={props.recommendations} />
+                </Box> */}
               </>
             ) : query && (desktop || mobile) ? (
-              <Box
-                sx={{
-                  width: "100%",
-                  paddingLeft: theme.spacing(2),
-                  paddingRight: theme.spacing(2),
-                  mb: theme.spacing(3),
-                }}
-              >
-                <ForLoops each={collections}>
-                  {(collection, index) => {
-                    const { items } = collection;
-                    if (items.length === 0) {
-                      return <NoSearchResults key={`source-${index}`} />;
-                    } else {
-                      return (
-                        <Box component="section" key={`source-${index}`}>
-                          {items.length > 0 && (
-                            <SearchResults
-                              collectionListsItems={items}
-                              onSelectItem={onSelectItem}
-                              multiple={true}
-                            />
-                          )}
-                        </Box>
-                      );
-                    }
-                  }}
-                </ForLoops>
-              </Box>
+              <>
+                {props.selectedMobileItem === "Recipes" ||
+                props.selectedMobileItem === "Library" ? (
+                  <ComingSoon />
+                ) : (
+                  <Box
+                    sx={{
+                      width: "100%",
+                      paddingLeft: theme.spacing(2),
+                      paddingRight: theme.spacing(2),
+                      mb: theme.spacing(3),
+                    }}
+                  >
+                    <ForLoops each={collections}>
+                      {(collection, index) => {
+                        const { items } = collection;
+                        if (items.length === 0) {
+                          return <NoSearchResults key={`source-${index}`} />;
+                        } else {
+                          return (
+                            <Box component="section" key={`source-${index}`}>
+                              {items.length > 0 && (
+                                <SearchResults
+                                  collectionListsItems={items}
+                                  onSelectItem={onSelectItem}
+                                  multiple={true}
+                                />
+                              )}
+                            </Box>
+                          );
+                        }
+                      }}
+                    </ForLoops>
+                  </Box>
+                )}
+              </>
             ) : null}
             {loading && !query && isOpen && <CircularProgress color="primary" />}
           </Box>

@@ -192,6 +192,7 @@ interface AutoCompleteSearchProps extends onSelectCategoryType {
   categoryOptions: Array<SearchCategoryItemType>;
   recommendations?: Array<recommendationType>;
   setIsMobileSearchOpen: Dispatch<SetStateAction<boolean>>;
+  selectedMobileItem: string;
 }
 interface SearchRecommendationItemProps {
   item: recommendationItem;

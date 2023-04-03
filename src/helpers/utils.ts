@@ -10,7 +10,6 @@ const ARTIFACT_PATH = ".raw";
  * Watch https://www.youtube.com/watch?v=AQcSFsQyct8 to learn more
  * @param name
  */
-
 export const spaceToDashes = (name: string) => {
   const pathname = name
     .toLowerCase()

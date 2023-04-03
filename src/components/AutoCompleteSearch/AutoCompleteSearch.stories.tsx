@@ -26,7 +26,7 @@ export const Desktop = Template.bind({});
 
 const categoryOptions = [
   { label: "Food", Icon: EggAltOutlinedIcon },
-  { label: "Recipe", Icon: EmojiFoodBeverageOutlinedIcon },
+  { label: "Recipes", Icon: EmojiFoodBeverageOutlinedIcon },
   { label: "Library", Icon: BookmarkBorderOutlinedIcon },
 ];
 
@@ -96,12 +96,6 @@ const recommendations: recommendationType[] = [
     recommendationName: "Recipes",
     recommendationItems: [{ name: "Creamy broccoli pasta" }],
   },
-];
-
-const collectionGroupedItems = [
-  { categoryName: "FRUIT AND FRUIT JUICES", collection: collection },
-  { categoryName: "BABY FOODS", collection: collection.slice(0, 3) },
-  { categoryName: "SWEETS", collection: collection.slice(0, 4) },
 ];
 
 Desktop.args = {

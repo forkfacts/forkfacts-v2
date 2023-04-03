@@ -152,7 +152,7 @@ const { PopularFrequentSearchItems }: PopularFrequentSearchProps = {
 
 const categoryOptions = [
   { label: "Food", Icon: EggAltOutlinedIcon },
-  { label: "Recipe", Icon: EmojiFoodBeverageOutlinedIcon },
+  { label: "Recipes", Icon: EmojiFoodBeverageOutlinedIcon },
   { label: "Library", Icon: LibraryBooksOutlinedIcon },
 ];
 

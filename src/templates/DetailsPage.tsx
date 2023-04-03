@@ -44,8 +44,8 @@ export const generateRdiForFood = (food: any, rdis: any[]): NutritionFact[] => {
     .flat();
 };
 
-const DynamicPageTemplate = ({ pageContext }: PageProps) => {
-  const { food, recommendedDailyIntakes } = pageContext as any;
+const DetailsPageTemplate = ({ pageContext }: PageProps) => {
+  const { food, recommendedDailyIntakes, seo } = pageContext as any;
   const [rows, setRows] = useState<any[]>([]);
   const { selectedLifeStage, selectedAge, selectedNutrients, setSelectedAge } = useStore(
     (state) => state
@@ -198,8 +198,11 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
     ...emptyNutrientGroupItems,
   ] as SelectedNutrient[];
 
+  console.log(seo);
+
   return (
     <>
+      <SEO title={seo.title} description={seo.description} />
       <Box sx={{ p: "8px" }}>
         <DetailsPageScreen
           menuItems={menuItems}
@@ -236,6 +239,4 @@ const DynamicPageTemplate = ({ pageContext }: PageProps) => {
   );
 };
 
-export const Head = () => <SEO title="DetailPage" />;
-
-export default DynamicPageTemplate;
+export default DetailsPageTemplate;

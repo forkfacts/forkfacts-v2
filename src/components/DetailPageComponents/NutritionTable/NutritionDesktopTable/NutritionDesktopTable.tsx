@@ -85,6 +85,41 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ rows }) =
     setSorState({ ...sortState, rdi: true });
     setTableRows(sortedRows);
   };
+  function sortNutritionTableRows(rows: NutritionTableRow[]) {
+    rows.sort((a, b) => {
+      const nameA = a.nutrient.toUpperCase();
+      const nameB = b.nutrient.toUpperCase();
+      if (nameA < nameB) {
+        return -1;
+      }
+      if (nameA > nameB) {
+        return 1;
+      }
+      return 0;
+    });
+    return rows;
+  }
+  function sortRowsByNutrientGroup(rowsByGroup: RowsByNutrientGroup[]) {
+    rowsByGroup.sort((a, b) => {
+      if (!a.nutrientGroup) {
+        return 1;
+      }
+      if (!b.nutrientGroup) {
+        return -1;
+      }
+      // Otherwise, compare the nutrientGroup properties
+      const groupA = a.nutrientGroup.toUpperCase();
+      const groupB = b.nutrientGroup.toUpperCase();
+      if (groupA < groupB) {
+        return -1;
+      }
+      if (groupA > groupB) {
+        return 1;
+      }
+      return 0;
+    });
+    return rowsByGroup;
+  }
   return (
     <Box>
       <TableContainer>
@@ -171,7 +206,7 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ rows }) =
           </TableHead>
           <TableBody>
             <>
-              {tableRows?.reverse()?.map((row, index) => {
+              {sortRowsByNutrientGroup(tableRows)?.map((row, index) => {
                 if (row.nutrientGroup) {
                   return (
                     <React.Fragment key={index}>
@@ -319,7 +354,7 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ rows }) =
                   );
                 }
                 if (!row?.nutrientGroup) {
-                  return row?.rows?.map((innerRow, index) => {
+                  return sortNutritionTableRows(row?.rows)?.map((innerRow, index) => {
                     return (
                       <React.Fragment key={index}>
                         <TableRow sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>

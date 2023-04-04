@@ -303,11 +303,13 @@ export interface SelectNutrientRow {
   name: string;
   nutrientGroup: string;
   checked: boolean;
+  displayName?: string;
 }
 
 export interface SelectedNutrient {
   name: string;
   nutrientGroup: string;
+  displayName?: string;
   checked: boolean;
   rows: SelectNutrientRow[];
 }

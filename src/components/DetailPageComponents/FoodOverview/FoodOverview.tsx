@@ -13,9 +13,11 @@ const FoodOverview: React.FC<FoodOverviewPropsWithLocation> = ({ values }) => {
   const [isSharedMediaOpen, setIsSharedMediaOpen] = useState(false);
   const theme = useTheme();
   let fullUrl = "";
+
   if (typeof window !== "undefined") {
     fullUrl = window.location.href;
   }
+
   const mobile = useMediaQuery(theme.breakpoints.down("md"));
   return (
     <Box sx={{ position: "relative" }}>

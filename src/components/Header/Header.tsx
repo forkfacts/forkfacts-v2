@@ -48,7 +48,12 @@ export default function Header({ handleToggleButton }: HeaderProps) {
               }}
             />
           </IconButton>
-          <Forkfactslogo onClick={onSelectItem} />
+          <Forkfactslogo
+            onClick={onSelectItem}
+            style={{
+              cursor: "pointer",
+            }}
+          />
           <Box className={classes.rightContent}>
             <Button color="primary" variant="contained" className={classnames(classes.authBtn)}>
               Sign in

@@ -5,11 +5,7 @@ import { ForLoops } from "@forkfacts/helpers";
 import { SharedSocialMedia } from "@forkfacts/components";
 import React, { useState } from "react";
 
-interface FoodOverviewPropsWithLocation extends FoodOverviewProps {
-  //location: Location; // todo(h2): not sure how this is used
-}
-
-const FoodOverview: React.FC<FoodOverviewPropsWithLocation> = ({ values }) => {
+const FoodOverview: React.FC<FoodOverviewProps> = ({ values }) => {
   const [isSharedMediaOpen, setIsSharedMediaOpen] = useState(false);
   const theme = useTheme();
   let fullUrl = "";

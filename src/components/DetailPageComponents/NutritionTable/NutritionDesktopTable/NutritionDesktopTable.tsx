@@ -308,7 +308,7 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ rows }) =
                               {content?.dailyValue && (
                                 <Typography
                                   component="span"
-                                  variant="bodyLarge"
+                                  variant="bodyMedium"
                                   sx={{
                                     color: theme.palette.customGray.main,
                                     fontWeight: theme.typography.fontWeightLight,
@@ -323,7 +323,7 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ rows }) =
                             <TableCell align="right" sx={{ borderBottom: "none" }}>
                               <Typography
                                 component="span"
-                                variant="bodyLarge"
+                                variant="bodyMedium"
                                 sx={{
                                   color: theme.palette.customGray.main,
                                   fontWeight: theme.typography.fontWeightLight,
@@ -335,7 +335,7 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ rows }) =
                             <TableCell align="right" sx={{ borderBottom: "none" }}>
                               {content?.rdi?.servingUnitSize && (
                                 <Typography
-                                  variant="bodyLarge"
+                                  variant="bodyMedium"
                                   component="span"
                                   sx={{
                                     color: theme.palette.customGray.main,

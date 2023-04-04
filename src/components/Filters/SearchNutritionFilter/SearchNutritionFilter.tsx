@@ -32,6 +32,7 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.down("md"));
   const ref = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
   const newNutrients: SelectedNutrient[] = [...nutritionFilterItems].map((item) => {
     return {
       name: item.name,
@@ -178,6 +179,12 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
     };
   }, [ref]);
 
+  useEffect(() => {
+    if (open) {
+      if (inputRef.current) inputRef.current.focus();
+    }
+  }, [open]);
+
   return (
     <Box sx={{ display: "block" }} ref={ref}>
       {isDropdown && (
@@ -283,38 +290,21 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
             >
               <TextField
                 size="small"
-                sx={{
-                  width: "100%",
-                  marginTop: theme.spacing(1.7),
-                  color: theme.palette.customGray.textLight,
-                  fontSize: theme.typography.titleSmall.fontSize,
-                }}
                 fullWidth
                 name="name"
                 value={name}
                 placeholder="Search for nutrients"
                 onChange={handleChange}
+                inputRef={inputRef} // Set the inputRef to focus the input field
                 InputProps={{
-                  style: { borderRadius: theme.spacing(1) },
                   startAdornment: (
                     <InputAdornment position="start">
-                      <SearchOutlined
-                        sx={{
-                          width: theme.spacing(3),
-                          height: theme.spacing(3),
-                          cursor: "pointer",
-                          color: theme.palette.customGray.textDark,
-                        }}
-                      />
+                      <SearchOutlined />
                     </InputAdornment>
                   ),
                   endAdornment: (
                     <InputAdornment position="end">
-                      <Box>
-                        {name ? (
-                          <CloseIcon sx={{ cursor: "pointer" }} onClick={() => setName("")} />
-                        ) : null}
-                      </Box>
+                      {name && <CloseIcon sx={{ cursor: "pointer" }} onClick={() => setName("")} />}
                     </InputAdornment>
                   ),
                 }}

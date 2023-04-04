@@ -165,6 +165,7 @@ const FoodOverview: React.FC<FoodOverviewPropsWithLocation> = ({ values }) => {
                   link="https://www.forkfacts.app/raw-banana-23hy-ripe"
                   isSharedMediaOpen={isSharedMediaOpen}
                   setIsSharedMediaOpen={setIsSharedMediaOpen}
+                  shareName={values.name}
                 />
               </Box>
               <Typography

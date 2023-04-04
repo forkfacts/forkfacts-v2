@@ -5,22 +5,21 @@ import { ForLoops } from "@forkfacts/helpers";
 import { SharedSocialMedia } from "@forkfacts/components";
 import React, { useState } from "react";
 
-interface FoodOverviewPropsWithLocation extends FoodOverviewProps {
-  //location: Location; // todo(h2): not sure how this is used
-}
-
-const FoodOverview: React.FC<FoodOverviewPropsWithLocation> = ({ values }) => {
+const FoodOverview: React.FC<FoodOverviewProps> = ({ values }) => {
   const [isSharedMediaOpen, setIsSharedMediaOpen] = useState(false);
   const theme = useTheme();
   let fullUrl = "";
+
   if (typeof window !== "undefined") {
     fullUrl = window.location.href;
   }
+
   const mobile = useMediaQuery(theme.breakpoints.down("md"));
   return (
     <Box sx={{ position: "relative" }}>
       <SharedSocialMedia
         link={fullUrl}
+        shareName={values.name}
         isSharedMediaOpen={isSharedMediaOpen}
         setIsSharedMediaOpen={setIsSharedMediaOpen}
       />
@@ -164,6 +163,7 @@ const FoodOverview: React.FC<FoodOverviewPropsWithLocation> = ({ values }) => {
                   link="https://www.forkfacts.app/raw-banana-23hy-ripe"
                   isSharedMediaOpen={isSharedMediaOpen}
                   setIsSharedMediaOpen={setIsSharedMediaOpen}
+                  shareName={values.name}
                 />
               </Box>
               <Typography

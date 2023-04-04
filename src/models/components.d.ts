@@ -237,6 +237,7 @@ export interface SharedSocialMediaProps {
   isSharedMediaOpen: boolean;
   setIsSharedMediaOpen: Dispatch<SetStateAction<boolean>>;
   link: string;
+  shareName: string;
 }
 
 export interface NutritionSummaryProps {

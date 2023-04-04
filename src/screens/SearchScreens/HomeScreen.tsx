@@ -1,10 +1,11 @@
-import React, { useState } from "react";
-import { Box, useMediaQuery, useTheme } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { Box, useTheme } from "@mui/material";
 import {
   AutoCompleteSearch,
   Layout,
   NavBar,
   PopularFrequentSearchCategories,
+  ComingSoon,
 } from "@forkfacts/components";
 import { HomeScreenProps } from "@forkfacts/models";
 import classNames from "classnames";
@@ -24,6 +25,12 @@ export default function HomeScreen({
   const [selectedMobileItem, setSelectedMobileItem] = useState("Food");
   const classes = useStyles();
 
+  useEffect(() => {
+    if (!isMobileSearchOpen) {
+      setSelectedMobileItem("Food");
+    }
+  }, [isMobileSearchOpen]);
+
   return (
     <>
       <Layout menuItems={sidebarItems}>
@@ -41,20 +48,25 @@ export default function HomeScreen({
             </Box>
           ) : null}
           <Box className={classNames(classes.searchInputStyles)}>
-            <AutoCompleteSearch
-              recommendations={recommendations}
-              placeholder={`Search ${
-                isMobileSearchOpen
-                  ? selectedMobileItem.toLowerCase()
-                  : selectedNavbarItem.toLowerCase()
-              }`}
-              openOnFocus={true}
-              searchLocation={selectedNavbarItem}
-              sourceId={sourceId}
-              onSelectCategory={setSelectedMobileItem}
-              categoryOptions={categoryOptions}
-              setIsMobileSearchOpen={setIsMobileSearchOpen}
-            />
+            {selectedNavbarItem === "Recipes" || selectedNavbarItem === "Library" ? (
+              <ComingSoon />
+            ) : (
+              <AutoCompleteSearch
+                recommendations={recommendations}
+                placeholder={`Search ${
+                  isMobileSearchOpen
+                    ? selectedMobileItem.toLowerCase()
+                    : selectedNavbarItem.toLowerCase()
+                }`}
+                selectedSearchCategory={selectedMobileItem}
+                openOnFocus={true}
+                sourceId={sourceId}
+                searchLocation={selectedNavbarItem ?? selectedMobileItem}
+                onSelectCategory={setSelectedMobileItem}
+                categoryOptions={categoryOptions}
+                setIsMobileSearchOpen={setIsMobileSearchOpen}
+              />
+            )}
           </Box>
           {!isMobileSearchOpen ? (
             <>

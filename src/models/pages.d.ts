@@ -61,6 +61,7 @@ export interface NutritionFact {
 export type NutrientGroup = {
   nutrientGroup: string;
   name: string;
+  displayName: string;
   rows: NutrientItem[];
 };
 

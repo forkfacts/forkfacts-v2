@@ -390,7 +390,7 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
                               color: theme.palette.customGray.textDark,
                             }}
                           >
-                            {item.name}
+                            {!item.displayName ? item.name : item.displayName}
                           </Typography>
                         </Box>
                       </AccordionSummary>
@@ -412,7 +412,7 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
                                       color: theme.palette.customGray.textDark,
                                     }}
                                   >
-                                    {item2.name}
+                                    {!item2.displayName ? item2.name : item2.displayName}
                                   </Typography>
                                 </Box>
                               );

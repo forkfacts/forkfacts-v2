@@ -67,7 +67,7 @@ const DetailsPageTemplate = ({ pageContext }: PageProps) => {
             gender.toLowerCase() === nutrientRdi?.rdi?.applicableFor.toLowerCase()
         )[0];
         const factTableRow: NutritionTableRow = {
-          nutrient: nutrient.name,
+          nutrient: !nutrient.displayName ? nutrient.name : nutrient.displayName,
           nutrientGroup: nutrient.nutrientGroup,
           amount: nutrient?.amount,
           amountUnit: nutrient?.unit?.toLowerCase(),
@@ -90,7 +90,7 @@ const DetailsPageTemplate = ({ pageContext }: PageProps) => {
           (nutrientRdi) => nutrientRdi.nutrient.name.toLowerCase() === nutrient.name.toLowerCase()
         )[0];
         const factTableRow: NutritionTableRow = {
-          nutrient: nutrient.name,
+          nutrient: !nutrient.displayName ? nutrient.name : nutrient.displayName,
           nutrientGroup: nutrient.nutrientGroup,
           amount: nutrientWithRdi?.nutrient?.amount,
           amountUnit: nutrientWithRdi?.nutrient.unit?.toLowerCase(),
@@ -153,6 +153,7 @@ const DetailsPageTemplate = ({ pageContext }: PageProps) => {
         const group: NutrientGroup = {
           nutrientGroup: item.nutrientGroup,
           name: item.nutrientGroup,
+          displayName: item.displayName,
           rows: [item],
         };
         acc.push(group);
@@ -173,10 +174,12 @@ const DetailsPageTemplate = ({ pageContext }: PageProps) => {
           checked: false,
           nutrientGroup: item.nutrientGroup,
           name: item.nutrientGroup,
+          displayName: item.displayName,
           rows: item?.rows?.map((row) => {
             return {
               ...row,
               checked: false,
+              displayName: row.displayName,
             };
           }),
         };

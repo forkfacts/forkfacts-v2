@@ -21,6 +21,7 @@ const FoodOverview: React.FC<FoodOverviewPropsWithLocation> = ({ values }) => {
     <Box sx={{ position: "relative" }}>
       <SharedSocialMedia
         link={fullUrl}
+        shareName={values.name}
         isSharedMediaOpen={isSharedMediaOpen}
         setIsSharedMediaOpen={setIsSharedMediaOpen}
       />

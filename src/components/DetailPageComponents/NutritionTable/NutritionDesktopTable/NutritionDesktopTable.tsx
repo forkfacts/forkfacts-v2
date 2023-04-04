@@ -418,8 +418,7 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ rows }) =
                                   pr: "20px",
                                 }}
                               >
-                                {innerRow?.amount}
-                                {innerRow?.amountUnit}
+                                {innerRow?.amount} {innerRow?.amountUnit}
                               </Typography>
                             )}
                           </TableCell>

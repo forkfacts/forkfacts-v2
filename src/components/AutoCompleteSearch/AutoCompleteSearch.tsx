@@ -297,8 +297,8 @@ function AutoCompleteSearch(
           >
             {!query && status === "idle" && (mobile || desktop) ? (
               <>
-                {props.selectedMobileItem === "Recipes" ||
-                props.selectedMobileItem === "Library" ? null : (
+                {props.selectedSearchCategory === "Recipes" ||
+                props.selectedSearchCategory === "Library" ? null : (
                   <Box
                     sx={{
                       width: "100%",
@@ -337,8 +337,8 @@ function AutoCompleteSearch(
             ) : null}
             {!query && (mobile || desktop) ? (
               <>
-                {props.selectedMobileItem === "Recipes" ||
-                props.selectedMobileItem === "Library" ? (
+                {props.selectedSearchCategory === "Recipes" ||
+                props.selectedSearchCategory === "Library" ? (
                   <ComingSoon />
                 ) : (
                   <Box
@@ -368,8 +368,8 @@ function AutoCompleteSearch(
               </>
             ) : query && (desktop || mobile) ? (
               <>
-                {props.selectedMobileItem === "Recipes" ||
-                props.selectedMobileItem === "Library" ? (
+                {props.selectedSearchCategory === "Recipes" ||
+                props.selectedSearchCategory === "Library" ? (
                   <ComingSoon />
                 ) : (
                   <Box

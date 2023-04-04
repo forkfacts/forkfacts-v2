@@ -58,7 +58,7 @@ export default function HomeScreen({
                     ? selectedMobileItem.toLowerCase()
                     : selectedNavbarItem.toLowerCase()
                 }`}
-                selectedMobileItem={selectedMobileItem}
+                selectedSearchCategory={selectedMobileItem}
                 openOnFocus={true}
                 sourceId={sourceId}
                 searchLocation={selectedNavbarItem ?? selectedMobileItem}

@@ -48,6 +48,7 @@ const createNutritionTable = ({ createPageFunction, foods, indexFileName }: any)
       const seo: any = {
         title: generateSEOTitle(food.name),
         description: generateSEOMetaDescription(food.name, food.category),
+        pagePath,
       };
       createPageFunction({
         path: pagePath,

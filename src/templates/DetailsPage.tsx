@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { PageProps } from "gatsby";
 import { DetailsPageScreen } from "@forkfacts/screens";
-import { SEO } from "@forkfacts/components";
-
+import { SEO, useSEO } from "gatsby-plugin-seo";
 import { getAgeRangesForLifeStage, getValueRounded, getFilterNutrients } from "@forkfacts/helpers";
 import { Box } from "@mui/material";
 import { lifeStageItems, menuItems, tabItems } from "../RealData/realData";
@@ -198,11 +197,27 @@ const DetailsPageTemplate = ({ pageContext }: PageProps) => {
     ...emptyNutrientGroupItems,
   ] as SelectedNutrient[];
 
-  console.log(seo);
-
   return (
     <>
-      <SEO title={seo.title} description={seo.description} />
+      <SEO
+        title={seo.title}
+        description={seo.description}
+        pagePath={seo.pagePath}
+        appleTouch="/icon.png"
+        favicon32="/icon.png"
+        favicon16="/icon.png"
+        htmlLanguage="en"
+        locale="en_US"
+        schema={`{
+          "@context": "http://schema.org",
+          "@type": "WebPage",
+          "mainEntity": {
+            "@type": "Organization",
+            "name": "Forkacts",
+            "image": "https://forkfacts-v2.vercel.app/homeImg.svg"
+          }
+        }`}
+      />
       <Box sx={{ p: "8px" }}>
         <DetailsPageScreen
           menuItems={menuItems}

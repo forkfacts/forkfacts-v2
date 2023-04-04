@@ -104,16 +104,34 @@ const SharedSocialMedia: React.FC<SharedSocialMediaProps> = ({
             mt: theme.spacing(2.5),
           }}
         >
-          <EmailShareButton url={link} title={shareName}>
+          <EmailShareButton
+            url={link}
+            title={"Check out this website!"}
+            subject={`Nutrition Facts for ${shareName} `}
+          >
             <Email style={{ width: "44px", height: "44px" }} />
           </EmailShareButton>
-          <FacebookShareButton url={link} title={shareName}>
+          <FacebookShareButton
+            url={link}
+            quote={`Nutrition Facts for ${shareName}`}
+            hashtag={"nutrition facts"}
+            title={"Check out this website!"}
+          >
             <Facebook style={{ width: "44px", height: "44px" }} />
           </FacebookShareButton>
-          <TwitterShareButton url={link} title={shareName}>
+          <TwitterShareButton
+            url={link}
+            title={`Nutrition Facts for ${shareName}`}
+            hashtags={["nutritionfacts", "nutrition"]}
+          >
             <Twitter style={{ width: "44px", height: "44px" }} />
           </TwitterShareButton>
-          <LinkedinShareButton url={link} title={shareName}>
+          <LinkedinShareButton
+            url={link}
+            title={`Nutrition Facts for ${shareName}`}
+            source={"https://forkfacts.app"}
+            summary={"Check out this website!"}
+          >
             <Linkedin style={{ width: "44px", height: "44px" }} />
           </LinkedinShareButton>
         </Box>

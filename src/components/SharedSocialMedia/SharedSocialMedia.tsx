@@ -106,7 +106,7 @@ const SharedSocialMedia: React.FC<SharedSocialMediaProps> = ({
         >
           <EmailShareButton
             url={link}
-            title={"Check out this website!"}
+            body={"Check out this website!"}
             subject={`Nutrition Facts for ${shareName} `}
           >
             <Email style={{ width: "44px", height: "44px" }} />
@@ -115,7 +115,6 @@ const SharedSocialMedia: React.FC<SharedSocialMediaProps> = ({
             url={link}
             quote={`Nutrition Facts for ${shareName}`}
             hashtag={"nutrition facts"}
-            title={"Check out this website!"}
           >
             <Facebook style={{ width: "44px", height: "44px" }} />
           </FacebookShareButton>

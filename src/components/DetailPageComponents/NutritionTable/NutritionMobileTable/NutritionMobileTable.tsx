@@ -244,7 +244,7 @@ const NutritionMobileTable: React.FC<NutritionMobileTableProps> = ({ rows }) => 
                               color: theme.palette.customGray.dark,
                             }}
                           >
-                            {subItem.amount}
+                            {subItem.amount} {subItem.amountUnit}
                           </Typography>
                         )}
                         {subItem.dailyValue && (

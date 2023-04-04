@@ -343,7 +343,7 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ rows }) =
                                     textTransform: "lowercase",
                                   }}
                                 >
-                                  {`${Math.abs(content?.rdi?.servingUnitSize)}${
+                                  {`${Math.abs(content?.rdi?.servingUnitSize)} ${
                                     content?.rdi?.servingSizeUnit
                                   }`}
                                 </Typography>
@@ -404,7 +404,7 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ rows }) =
                                   pr: "20px",
                                 }}
                               >
-                                {innerRow?.dailyValue}%
+                                {innerRow?.dailyValue} %
                               </Typography>
                             )}
                           </TableCell>
@@ -434,7 +434,7 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ rows }) =
                                   pr: "20px",
                                 }}
                               >
-                                {`${innerRow?.rdi?.servingUnitSize}${innerRow?.rdi?.servingSizeUnit}`}
+                                {`${innerRow?.rdi?.servingUnitSize} ${innerRow?.rdi?.servingSizeUnit}`}
                               </Typography>
                             )}
                           </TableCell>

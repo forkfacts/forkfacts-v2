@@ -80,61 +80,63 @@ const DetailsPageScreen: React.FC<DetailsPageScreenProps> = ({
 
   return (
     <Layout menuItems={menuItems}>
-      <Box className={classes.desktopScreenWrapper}>
-        <GoBack />
-        <Box>
-          <Overview />
-          <Box
-            sx={{
-              px: mobile ? 0 : theme.spacing(1.5),
-              mt: mobile ? theme.spacing(1) : theme.spacing(2),
-              width: "100%",
-            }}
-          >
-            <DetailPageTabs tabItems={tabItems} onselectTabItem={setSelectedTabItem} />
-          </Box>
-          <Box
-            sx={{
-              px: mobile ? 0 : theme.spacing(1.5),
-              mt: mobile ? theme.spacing(3) : theme.spacing(5),
-              width: "100%",
-            }}
-          >
-            {selectedTabItem === "Nutrition" ? (
-              <NutritionDetailsTab
-                nutritionSummaryItems={nutritionSummaryItems}
-                lifeStageItems={lifeStageItems}
-                ageItems={ageItems}
-                nutritionTableItems={nutritionTableRows}
-                nutritionFilterItems={nutritionFilterItems}
-                measurementFilterItems={measurementFilterItems}
-                onSelectMeasurementItem={onSelectMeasurementItem}
-                onSelectUnit={onSelectUnit}
-                units={units}
-              />
-            ) : selectedTabItem === "Recipes" ? (
-              <Box>
-                <ComingSoon />
-              </Box>
-            ) : selectedTabItem === "Emissions" ? (
-              <Box>
-                <ComingSoon />
-              </Box>
-            ) : selectedTabItem === "Tips" ? (
-              <Box>
-                <ComingSoon />
-              </Box>
-            ) : selectedTabItem === "Compare foods" ? (
-              <Box>
-                <ComingSoon />
-                {/* <ComparingDetailsTab
+      <Box>
+        <Box className={classes.desktopScreenWrapper}>
+          <GoBack />
+          <Box>
+            <Overview />
+            <Box
+              sx={{
+                px: mobile ? 0 : theme.spacing(1.5),
+                mt: mobile ? theme.spacing(1) : theme.spacing(2),
+                width: "100%",
+              }}
+            >
+              <DetailPageTabs tabItems={tabItems} onselectTabItem={setSelectedTabItem} />
+            </Box>
+            <Box
+              sx={{
+                px: mobile ? 0 : theme.spacing(1.5),
+                mt: mobile ? theme.spacing(3) : theme.spacing(5),
+                width: "100%",
+              }}
+            >
+              {selectedTabItem === "Nutrition" ? (
+                <NutritionDetailsTab
+                  nutritionSummaryItems={nutritionSummaryItems}
+                  lifeStageItems={lifeStageItems}
+                  ageItems={ageItems}
+                  nutritionTableItems={nutritionTableRows}
+                  nutritionFilterItems={nutritionFilterItems}
+                  measurementFilterItems={measurementFilterItems}
+                  onSelectMeasurementItem={onSelectMeasurementItem}
+                  onSelectUnit={onSelectUnit}
+                  units={units}
+                />
+              ) : selectedTabItem === "Recipes" ? (
+                <Box>
+                  <ComingSoon />
+                </Box>
+              ) : selectedTabItem === "Emissions" ? (
+                <Box>
+                  <ComingSoon />
+                </Box>
+              ) : selectedTabItem === "Tips" ? (
+                <Box>
+                  <ComingSoon />
+                </Box>
+              ) : selectedTabItem === "Compare foods" ? (
+                <Box>
+                  <ComingSoon />
+                  {/* <ComparingDetailsTab
                   compareTableItems={compareTableItems}
                   compareTableDetails={compareTableDetails}
                   values={values}
                   onSelectedValue={onSelectedValue}
                 /> */}
-              </Box>
-            ) : null}
+                </Box>
+              ) : null}
+            </Box>
           </Box>
         </Box>
       </Box>

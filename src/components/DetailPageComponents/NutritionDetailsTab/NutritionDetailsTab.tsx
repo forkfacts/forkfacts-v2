@@ -42,7 +42,7 @@ const NutritionDetailsTab: React.FC<NutritionDetailsTabProps> = ({
             flexWrap: "wrap",
           }}
         >
-          <Box sx={{ width: mobile || tablet ? "100%" : "65%" }}>
+          <Box>
             <NutritionFilters
               lifeStageItems={lifeStageItems}
               ageItems={ageItems}

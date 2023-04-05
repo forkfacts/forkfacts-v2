@@ -5,7 +5,8 @@ export const useStyles = makeStyles(
   ({ spacing, breakpoints, typography, palette, zIndex }: Theme) => ({
     desktopScreenWrapper: {
       [breakpoints.up("md")]: {
-        maxWidth: spacing(150),
+        maxWidth: "100%",
+        width: "70%",
         marginLeft: "auto",
         marginRight: "auto",
         marginTop: spacing(10),
@@ -14,7 +15,7 @@ export const useStyles = makeStyles(
         alignItems: "center",
         overflow: "hidden",
       },
-      [breakpoints.down("md")]: {
+      [breakpoints.down("sm")]: {
         maxWidth: "100%",
         marginTop: spacing(10),
         flexDirection: "column",

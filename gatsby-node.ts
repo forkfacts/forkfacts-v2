@@ -16,8 +16,3 @@ require("ts-node").register({
 });
 
 exports.createPages = require("./src/gatsby/createPages").createPages;
-
-/**
- * This solution is suggested in Gatsby forums to resolve the build error: "cannot resolve fs"
- * https://github.com/gatsbyjs/gatsby/issues/564#issuecomment-527891177
- */

@@ -41,21 +41,25 @@ export default function SideBarItem({
         }}
       >
         <item.Icon
-          color={selectedIndex === index ? "primary" : "inherit"}
           sx={{
-            width: theme.spacing(2.5),
-            height: theme.spacing(2.5),
+            width: theme.spacing(3),
+            height: theme.spacing(3),
             fontWeight: 500,
+            color:
+              selectedIndex === index ? theme.palette.primary.main : theme.palette.customGray.dark,
           }}
         />
         <ListItemText
           primary={
             <Typography
               variant="titleSmall"
-              color={selectedIndex === index ? "primary" : theme.palette.customGray.dark}
               sx={{
                 ml: drawerWidthExpanded ? theme.spacing(2) : theme.spacing(0),
                 fontWeight: theme.typography.fontWeightRegular,
+                color:
+                  selectedIndex === index
+                    ? theme.palette.primary.main
+                    : theme.palette.customGray.dark,
               }}
             >
               {item.label}

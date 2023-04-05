@@ -2,12 +2,18 @@ import React, { useEffect, useState } from "react";
 import { PageProps } from "gatsby";
 import { DetailsPageScreen } from "@forkfacts/screens";
 import { SEO, useSEO } from "gatsby-plugin-seo";
-import { getAgeRangesForLifeStage, getValueRounded, getFilterNutrients } from "@forkfacts/helpers";
+import {
+  getAgeRangesForLifeStage,
+  getValueRounded,
+  getFilterNutrients,
+  setSelectedAgeByGender,
+} from "@forkfacts/helpers";
 import { Box } from "@mui/material";
 import { lifeStageItems, menuItems, tabItems } from "../RealData/realData";
 const mappings = require("../../data/usda_rdi_nutrient_mapping.json");
 import { useStore } from "../store/store";
 import {
+  DetailsPageTemplateContext,
   NutrientGroup,
   NutrientItem,
   NutritionFact,
@@ -44,7 +50,7 @@ export const generateRdiForFood = (food: any, rdis: any[]): NutritionFact[] => {
 };
 
 const DetailsPageTemplate = ({ pageContext }: PageProps) => {
-  const { food, recommendedDailyIntakes, seo } = pageContext as any;
+  const { food, recommendedDailyIntakes, seo } = pageContext as DetailsPageTemplateContext;
   const [rows, setRows] = useState<any[]>([]);
   const { selectedLifeStage, selectedAge, selectedNutrients, setSelectedAge } = useStore(
     (state) => state
@@ -111,38 +117,8 @@ const DetailsPageTemplate = ({ pageContext }: PageProps) => {
   }, [selectedAge, selectedLifeStage, selectedNutrients]);
 
   useEffect(() => {
-    const selectedGender = selectedLifeStage;
-    if (selectedGender === "Infants")
-      setSelectedAge({
-        start: 0,
-        end: 6,
-        ageUnit: "month",
-      });
-    else if (selectedGender === "Children")
-      setSelectedAge({
-        start: 1,
-        end: 3,
-        ageUnit: "year",
-      });
-    else if (selectedGender === "Males")
-      setSelectedAge({
-        start: 9,
-        end: 13,
-        ageUnit: "year",
-      });
-    else if (selectedGender === "Females")
-      setSelectedAge({
-        start: 31,
-        end: 50,
-        ageUnit: "year",
-      });
-    else if (selectedGender === "Pregnant" || selectedGender === "Lactation")
-      setSelectedAge({
-        start: 14,
-        end: 18,
-        ageUnit: "year",
-      });
-  }, [selectedLifeStage]);
+    setSelectedAgeByGender(selectedLifeStage, setSelectedAge);
+  }, [selectedLifeStage, setSelectedAge]);
 
   const ageRanges = getAgeRangesForLifeStage(selectedLifeStage);
 

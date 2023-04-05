@@ -72,3 +72,26 @@ export type NutrientItem = {
   nutrientGroup: string;
   unit: string;
 };
+
+export interface Food {
+  category: string;
+  name: string;
+  fdcId: number;
+  nutrients: {
+    amount: number;
+    name: string;
+    unit: string;
+    displayName: string;
+    nutrientGroup: string;
+  }[];
+}
+
+export interface DetailsPageTemplateContext {
+  food: Food;
+  recommendedDailyIntakes: any;
+  seo: {
+    title: string;
+    description: string;
+    pagePath: string;
+  };
+}

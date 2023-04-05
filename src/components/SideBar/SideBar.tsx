@@ -77,7 +77,7 @@ const SideBar: FC<SideBarProps> = ({
           sx={{
             width: drawerWidth,
             overflow: "hidden",
-            transition: transitions.create(["all"], {
+            transition: transitions.create(["width"], {
               easing: transitions.easing.sharp,
               duration: transitions.duration.enteringScreen,
             }),

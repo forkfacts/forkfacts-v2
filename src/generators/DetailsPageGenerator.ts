@@ -49,10 +49,10 @@ export const createDetailPage = (createPage: any) => {
   }
 };
 
-const createNutritionTable = ({ createPageFunction, foods, indexFileName }: any) => {
+const createNutritionTable = ({ createPageFunction, foods }: any) => {
   let ffSearchIndex: any = [];
   const template = path.resolve("src/templates/DetailsPage.tsx");
-  foods.forEach((food: any) => {
+  foods.forEach((food: Food) => {
     if (food.name) {
       function filterNutrient(food: Food, name: string, unit: string): number {
         const nutrient = food.nutrients.find(
@@ -76,7 +76,6 @@ const createNutritionTable = ({ createPageFunction, foods, indexFileName }: any)
       const carbohydrates = filterNutrient(food, CARBOHYDRATE_NAME, CARBOHYDRATE_UNIT);
       const protein = filterNutrient(food, PROTEIN_NAME, PROTEIN_UNIT);
       const seoInfo = generateSEOInfo(food.name, calories, protein, carbohydrates, fat);
-
       const pagePath = spaceToDashes(food["name"].toString());
       const seo: any = {
         title: seoInfo.title,

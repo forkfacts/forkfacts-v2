@@ -50,7 +50,7 @@ const Layout: FC<LayoutProps> = ({ children, menuItems }) => {
               sm: `calc(100% - ${Number(drawerWidth.split("px")[0])}px)`,
               xs: "100%",
             },
-
+            maxWidth: "100%",
             marginLeft: {
               sm: `${drawerWidth}px`,
               xs: 0,

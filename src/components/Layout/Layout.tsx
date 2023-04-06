@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { Box, CssBaseline, useTheme } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 import { customTheme } from "../../themes/theme";
@@ -26,11 +26,17 @@ const Layout: FC<LayoutProps> = ({ children, menuItems }) => {
     }
   };
 
+  useEffect(() => {
+    if (!drawerWidthExpanded) {
+      setDrawerWidth(theme.spacing(12.5));
+    }
+  }, [drawerWidthExpanded]);
+
   return (
     <ThemeProvider theme={customTheme}>
       <CssBaseline />
       <Header handleToggleButton={handleDrawerToggle} />
-      <Box sx={{ display: { sm: "flex", xs: "block" } }}>
+      <Box sx={{ display: { sm: "flex", xs: "block" }, overflow: "hidden", width: "100%" }}>
         <SideBar
           handleDrawerToggle={handleDrawerToggle}
           mobileOpen={mobileOpen}
@@ -41,8 +47,12 @@ const Layout: FC<LayoutProps> = ({ children, menuItems }) => {
         <Box
           sx={{
             width: {
-              md: `calc(100% - ${drawerWidth}px)`,
+              sm: `calc(100% - ${Number(drawerWidth.split("px")[0])}px)`,
               xs: "100%",
+            },
+            marginLeft: {
+              sm: `${drawerWidth}px`,
+              xs: 0,
             },
           }}
         >

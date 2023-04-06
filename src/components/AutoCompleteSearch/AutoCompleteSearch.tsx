@@ -37,8 +37,8 @@ import {
 import "../../styles/styles.css";
 import { spaceToDashes } from "../../Functions/PagesFunctions";
 
-const appId = "7d08c3e6a7bc49e0857cf459b47a6381";
-const apiKey = "JVO84ADVS3";
+const appId = process.env.GATSBY_SEARCH_APP_ID as string;
+const apiKey = process.env.GATSBY_SEARCH_API_KEY as string;
 const searchClient = algoliasearch(apiKey, appId);
 const INDEX_NAMES = ["ff_index", "sr_index"];
 

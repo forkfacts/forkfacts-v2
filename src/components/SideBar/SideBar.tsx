@@ -35,31 +35,29 @@ const SideBar: FC<SideBarProps> = ({
           flexShrink: 0,
           overflow: "hidden",
           [`& .MuiDrawer-paper`]: {
-            width: drawerWidth,
             boxSizing: "border-box",
           },
+          width: drawerWidth,
           borderWidth: 0,
         }}
       >
         <Toolbar />
-        <Box sx={{ width: drawerWidth, overflow: "auto", mt: spacing(3) }}>
-          <List>
-            <ForLoops each={sidebarItems.slice(0, sidebarItems ? sidebarItems.length : 3)}>
-              {(item, index) => {
-                return (
-                  <SideBarItem
-                    key={index}
-                    index={index}
-                    selectedIndex={selectedIndex}
-                    drawerWidthExpanded={drawerWidthExpanded}
-                    item={item}
-                    handleSelectedIndex={handleSelectedIndex}
-                  />
-                );
-              }}
-            </ForLoops>
-          </List>
-        </Box>
+        <List sx={{ width: drawerWidth, overflow: "auto", mt: spacing(3) }}>
+          <ForLoops each={sidebarItems.slice(0, sidebarItems ? sidebarItems.length : 3)}>
+            {(item, index) => {
+              return (
+                <SideBarItem
+                  key={index}
+                  index={index}
+                  selectedIndex={selectedIndex}
+                  drawerWidthExpanded={drawerWidthExpanded}
+                  item={item}
+                  handleSelectedIndex={handleSelectedIndex}
+                />
+              );
+            }}
+          </ForLoops>
+        </List>
       </Drawer>
       <Drawer
         variant="permanent"
@@ -70,39 +68,37 @@ const SideBar: FC<SideBarProps> = ({
             width: drawerWidth,
             borderWidth: drawerWidthExpanded ? 1 : 0,
             overflow: "hidden",
-            mr: drawerWidth ? spacing(2) : spacing(2),
           },
         }}
         open
       >
         <Toolbar />
-        <Box
+        <List
           sx={{
             width: drawerWidth,
             overflow: "hidden",
-            transition: transitions.create(["all"], {
+            transition: transitions.create(["width"], {
               easing: transitions.easing.sharp,
               duration: transitions.duration.enteringScreen,
             }),
+            ml: drawerWidthExpanded ? 0 : spacing(-1.5),
           }}
         >
-          <List>
-            <ForLoops each={sidebarItems.slice(0, drawerWidthExpanded ? sidebarItems.length : 3)}>
-              {(item, index) => {
-                return (
-                  <SideBarItem
-                    key={index}
-                    index={index}
-                    selectedIndex={selectedIndex}
-                    drawerWidthExpanded={drawerWidthExpanded}
-                    item={item}
-                    handleSelectedIndex={handleSelectedIndex}
-                  />
-                );
-              }}
-            </ForLoops>
-          </List>
-        </Box>
+          <ForLoops each={sidebarItems.slice(0, drawerWidthExpanded ? sidebarItems.length : 3)}>
+            {(item, index) => {
+              return (
+                <SideBarItem
+                  key={index}
+                  index={index}
+                  selectedIndex={selectedIndex}
+                  drawerWidthExpanded={drawerWidthExpanded}
+                  item={item}
+                  handleSelectedIndex={handleSelectedIndex}
+                />
+              );
+            }}
+          </ForLoops>
+        </List>
       </Drawer>
     </Box>
   );

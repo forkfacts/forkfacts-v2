@@ -6,7 +6,8 @@ const recommendedDailyIntakes = require("../../data/rdi.json");
 import { filterNutrient, generateSEOInfo, spaceToDashes } from "../Functions/PagesFunctions";
 import { Food } from "../models/pages";
 
-const ENERGY_NAME = "Energy (Atwater General Factors)";
+const ENERGY_NAME_ATWATER = "Energy (Atwater General Factors)";
+const ENERGY_NAME = "Energy";
 const ENERGY_UNIT = "KCAL";
 const FAT_NAME = "Total lipid (fat)";
 const FAT_UNIT = "G";
@@ -37,7 +38,8 @@ const createNutritionTable = ({ createPageFunction, foods }: any) => {
   const template = path.resolve("src/templates/DetailsPage.tsx");
   foods.forEach((food: Food) => {
     if (food.name) {
-      const calories = filterNutrient(food, ENERGY_NAME, ENERGY_UNIT);
+      let calories = filterNutrient(food, ENERGY_NAME_ATWATER, ENERGY_UNIT);
+      calories = calories > 0 ? calories : filterNutrient(food, ENERGY_NAME, ENERGY_UNIT);
       const fat = filterNutrient(food, FAT_NAME, FAT_UNIT);
       const carbohydrates = filterNutrient(food, CARBOHYDRATE_NAME, CARBOHYDRATE_UNIT);
       const protein = filterNutrient(food, PROTEIN_NAME, PROTEIN_UNIT);

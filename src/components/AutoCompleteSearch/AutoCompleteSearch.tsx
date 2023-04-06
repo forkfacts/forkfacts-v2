@@ -50,8 +50,6 @@ type AutocompleteItem = Hit<{
   url: string;
 }>;
 
-console.log(process.env.GATSBY_SEARCH_APP_ID);
-
 function AutoCompleteSearch(
   props: Partial<AutocompleteOptions<AutocompleteItem>> & AutoCompleteSearchProps
 ) {

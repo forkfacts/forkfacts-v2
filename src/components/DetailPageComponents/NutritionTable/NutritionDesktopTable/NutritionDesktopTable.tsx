@@ -113,7 +113,6 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ rows }) =
                     display: "inline-block",
                     color: theme.palette.customGray.dark,
                     fontWeight: theme.typography.fontWeightRegular,
-                    cursor: "pointer",
                   }}
                 >
                   % Daily Value
@@ -138,7 +137,6 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ rows }) =
                     display: "inline",
                     color: theme.palette.customGray.dark,
                     fontWeight: theme.typography.fontWeightRegular,
-                    cursor: "pointer",
                   }}
                 >
                   RDI

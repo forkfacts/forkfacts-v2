@@ -23,7 +23,7 @@ const NutritionDetailsTab: React.FC<NutritionDetailsTabProps> = ({
   units,
 }) => {
   const theme = useTheme();
-  const mobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const mobile = useMediaQuery(theme.breakpoints.down("md"));
   const tablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
 
   return (
@@ -66,7 +66,7 @@ const NutritionDetailsTab: React.FC<NutritionDetailsTabProps> = ({
         {mobile || tablet ? (
           <NutritionMobileTable rows={nutritionTableItems} />
         ) : (
-          <Box sx={{ overflowX: "hidden" }}>
+          <Box sx={{ overflowX: "scroll" }}>
             <NutritionDesktopTable rows={nutritionTableItems} />
           </Box>
         )}

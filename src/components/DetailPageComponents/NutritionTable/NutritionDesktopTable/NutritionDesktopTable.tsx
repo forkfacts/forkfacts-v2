@@ -123,8 +123,8 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ rows }) =
 
   return (
     <Box>
-      <TableContainer>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+      <TableContainer sx={{ minWidth: 650 }}>
+        <Table aria-label="simple table" size="small">
           <TableHead sx={{ border: "none", backgroundColor: "#FCFCFC", height: theme.spacing(5) }}>
             <TableRow>
               <TableCell sx={{ borderBottom: "none" }}>
@@ -202,7 +202,6 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ rows }) =
                   />
                 </Typography>
               </TableCell>
-              <TableCell align="right" sx={{ borderBottom: "none" }}></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>

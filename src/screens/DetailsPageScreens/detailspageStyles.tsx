@@ -15,7 +15,7 @@ export const useStyles = makeStyles(
         alignItems: "center",
         overflow: "hidden",
       },
-      [breakpoints.down("sm")]: {
+      [breakpoints.down("md")]: {
         maxWidth: "100%",
         marginTop: spacing(10),
         flexDirection: "column",

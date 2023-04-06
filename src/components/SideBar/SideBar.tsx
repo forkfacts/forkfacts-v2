@@ -35,9 +35,9 @@ const SideBar: FC<SideBarProps> = ({
           flexShrink: 0,
           overflow: "hidden",
           [`& .MuiDrawer-paper`]: {
-            width: drawerWidth,
             boxSizing: "border-box",
           },
+          width: drawerWidth,
           borderWidth: 0,
         }}
       >

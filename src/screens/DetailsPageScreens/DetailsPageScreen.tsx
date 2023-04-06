@@ -80,8 +80,8 @@ const DetailsPageScreen: React.FC<DetailsPageScreenProps> = ({
 
   return (
     <Layout menuItems={menuItems}>
-      <Box>
-        <Box className={classes.desktopScreenWrapper}>
+      <Box className={classes.desktopScreenWrapper}>
+        <Box sx={{ width: "100%", px: mobile ? 0 : 15 }}>
           <GoBack />
           <Box>
             <Overview />

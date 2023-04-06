@@ -6,14 +6,7 @@ export const useStyles = makeStyles(
     desktopScreenWrapper: {
       [breakpoints.up("md")]: {
         maxWidth: "100%",
-        width: "80%",
-        marginLeft: "auto",
-        marginRight: "auto",
         marginTop: spacing(10),
-        flexDirection: "column",
-        justifyContent: "space-between",
-        alignItems: "center",
-        overflow: "hidden",
       },
       [breakpoints.down("md")]: {
         maxWidth: "100%",

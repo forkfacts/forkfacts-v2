@@ -1,22 +1,7 @@
 import { allAges, lifeStageItems } from "../RealData/realData";
+import { Dispatch, SetStateAction } from "react";
 import { NutrientItem } from "../models/pages";
-import { SelectedNutrient } from "../models/components";
-
-const ARTIFACT_PATH = ".raw";
-
-/**
- * The purpose is to use `-` as separator in the URL naming scheme.
- * This is important for SEO purposes
- * Watch https://www.youtube.com/watch?v=AQcSFsQyct8 to learn more
- * @param name
- */
-export const spaceToDashes = (name: string) => {
-  const pathname = name
-    .toLowerCase()
-    .trim()
-    .replace(/[^\w]+/g, "-");
-  return pathname.endsWith("-") ? pathname.substr(0, pathname.length - 1) : pathname;
-};
+import { RdiAge, SelectedNutrient } from "../models/components";
 
 export function getAgeRangesForLifeStage(selectedLifeStageName: string = "Females"): any[] {
   const selectedLifeStage = lifeStageItems.find((item) => item.name === selectedLifeStageName);
@@ -81,3 +66,49 @@ export const getFilterNutrients = (nutrients: SelectedNutrient[]) => {
     (item) => item !== undefined
   );
 };
+
+export function setSelectedAgeByGender(
+  selectedGender: string,
+  setSelectedAge: Dispatch<SetStateAction<RdiAge>>
+): void {
+  switch (selectedGender) {
+    case "Infants":
+      setSelectedAge({
+        start: 0,
+        end: 6,
+        ageUnit: "month",
+      });
+      break;
+    case "Children":
+      setSelectedAge({
+        start: 1,
+        end: 3,
+        ageUnit: "year",
+      });
+      break;
+    case "Males":
+      setSelectedAge({
+        start: 9,
+        end: 13,
+        ageUnit: "year",
+      });
+      break;
+    case "Females":
+      setSelectedAge({
+        start: 31,
+        end: 50,
+        ageUnit: "year",
+      });
+      break;
+    case "Pregnant":
+    case "Lactation":
+      setSelectedAge({
+        start: 14,
+        end: 18,
+        ageUnit: "year",
+      });
+      break;
+    default:
+      break;
+  }
+}

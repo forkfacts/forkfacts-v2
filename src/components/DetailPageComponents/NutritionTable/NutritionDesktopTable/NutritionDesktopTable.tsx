@@ -11,7 +11,6 @@ import {
 } from "@mui/material";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
-import { CompareSorting } from "@forkfacts/icons";
 import React, { useEffect, useState } from "react";
 import { NutritionDesktopTableProps, NutritionTableRow } from "@forkfacts/models";
 

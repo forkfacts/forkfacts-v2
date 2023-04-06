@@ -26,7 +26,6 @@ import {
   SearchParams,
   fetchRecentSearches,
   clearRecentDb,
-  spaceToDashes,
 } from "@forkfacts/helpers";
 import { navigate } from "gatsby";
 import {
@@ -36,6 +35,7 @@ import {
   inputStyles,
 } from "./autocompleteSearchStyles";
 import "../../styles/styles.css";
+import { spaceToDashes } from "../../Functions/PagesFunctions";
 
 const appId = process.env.GATSBY_SEARCH_APP_ID as string;
 const apiKey = process.env.GATSBY_SEARCH_API_KEY as string;

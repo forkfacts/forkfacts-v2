@@ -3,22 +3,6 @@ import { Dispatch, SetStateAction } from "react";
 import { NutrientItem } from "../models/pages";
 import { RdiAge, SelectedNutrient } from "../models/components";
 
-const ARTIFACT_PATH = ".raw";
-
-/**
- * The purpose is to use `-` as separator in the URL naming scheme.
- * This is important for SEO purposes
- * Watch https://www.youtube.com/watch?v=AQcSFsQyct8 to learn more
- * @param name
- */
-export const spaceToDashes = (name: string) => {
-  const pathname = name
-    .toLowerCase()
-    .trim()
-    .replace(/[^\w]+/g, "-");
-  return pathname.endsWith("-") ? pathname.substr(0, pathname.length - 1) : pathname;
-};
-
 export function getAgeRangesForLifeStage(selectedLifeStageName: string = "Females"): any[] {
   const selectedLifeStage = lifeStageItems.find((item) => item.name === selectedLifeStageName);
   if (!selectedLifeStage) {

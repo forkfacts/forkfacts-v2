@@ -6,12 +6,6 @@ export const useStyles = makeStyles(
     desktopScreenWrapper: {
       [breakpoints.up("md")]: {
         maxWidth: "100%",
-<<<<<<< HEAD
-=======
-        width: "70%",
-        marginLeft: "auto",
-        marginRight: "auto",
->>>>>>> 7de179e (CU_#860qewbq0 fixed desktop layout responsive issue)
         marginTop: spacing(10),
       },
       [breakpoints.down("sm")]: {

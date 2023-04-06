@@ -80,13 +80,8 @@ const DetailsPageScreen: React.FC<DetailsPageScreenProps> = ({
 
   return (
     <Layout menuItems={menuItems}>
-<<<<<<< HEAD
       <Box className={classes.desktopScreenWrapper}>
         <Box sx={{ width: "100%", px: mobile ? 0 : 15 }}>
-=======
-      <Box>
-        <Box className={classes.desktopScreenWrapper}>
->>>>>>> 7de179e (CU_#860qewbq0 fixed desktop layout responsive issue)
           <GoBack />
           <Box>
             <Overview />

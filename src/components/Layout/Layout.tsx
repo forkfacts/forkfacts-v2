@@ -50,11 +50,6 @@ const Layout: FC<LayoutProps> = ({ children, menuItems }) => {
               sm: `calc(100% - ${Number(drawerWidth.split("px")[0])}px)`,
               xs: "100%",
             },
-<<<<<<< HEAD
-            maxWidth: "100%",
-=======
-
->>>>>>> 7de179e (CU_#860qewbq0 fixed desktop layout responsive issue)
             marginLeft: {
               sm: `${drawerWidth}px`,
               xs: 0,

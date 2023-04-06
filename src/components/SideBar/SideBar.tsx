@@ -42,21 +42,7 @@ const SideBar: FC<SideBarProps> = ({
         }}
       >
         <Toolbar />
-<<<<<<< HEAD
-        <List
-          sx={{
-            width: drawerWidth,
-            overflow: "auto",
-            mt: spacing(3),
-            transition: transitions.create(["width"], {
-              easing: transitions.easing.sharp,
-              duration: transitions.duration.enteringScreen,
-            }),
-          }}
-        >
-=======
         <List sx={{ width: drawerWidth, overflow: "auto", mt: spacing(3) }}>
->>>>>>> 7de179e (CU_#860qewbq0 fixed desktop layout responsive issue)
           <ForLoops each={sidebarItems.slice(0, sidebarItems ? sidebarItems.length : 3)}>
             {(item, index) => {
               return (

@@ -4,8 +4,12 @@ export function filterNutrient(food: Food, name: string, unit: string): number {
   const nutrient = food.nutrients.find(
     (nutrient) => nutrient.name === name && nutrient.unit === unit
   );
+  /*if (nutrient && name.startsWith("Energy")) {
+        console.log([food.name, food.fdcId, nutrient?.name, nutrient?.unit], [name, unit], [nutrient?.amount])
+    }*/
   return nutrient ? nutrient.amount : 0;
 }
+
 export function generateSEOInfo(
   name: string,
   calories: number,

@@ -12,10 +12,16 @@ const ToolsScreen: React.FC<ToolsScreenProps> = ({ menuItems }) => {
   return (
     <Layout menuItems={menuItems}>
       <Box className={classes.desktopScreenWrapper}>
-        <Typography variant="headline4" sx={{ fontWeight: 400 }}>
+        <Typography
+          variant="headline4"
+          sx={{
+            fontWeight: customTheme.typography.fontWeightLight,
+            color: customTheme.palette.customGray.main,
+          }}
+        >
           Tools
         </Typography>
-        <Grid container sx={{ mt: theme.spacing(5) }}>
+        <Grid container sx={{ mt: theme.spacing(3.5) }}>
           <Grid item md={4} sm={12}>
             <Box>
               <Box
@@ -34,7 +40,10 @@ const ToolsScreen: React.FC<ToolsScreenProps> = ({ menuItems }) => {
                 >
                   <Typography
                     variant="titleMedium"
-                    sx={{ fontWeight: 500, color: customTheme.palette.customGray.main }}
+                    sx={{
+                      fontWeight: customTheme.typography.fontWeightRegular,
+                      color: customTheme.palette.customGray.main,
+                    }}
                   >
                     Recommended daily intake
                   </Typography>
@@ -43,7 +52,7 @@ const ToolsScreen: React.FC<ToolsScreenProps> = ({ menuItems }) => {
                     sx={{
                       mt: theme.spacing(1),
                       color: customTheme.palette.customGray.dark,
-                      fontWeight: 500,
+                      fontWeight: customTheme.typography.fontWeightRegular,
                     }}
                   >
                     Check the values you need to take per day for all nutrients

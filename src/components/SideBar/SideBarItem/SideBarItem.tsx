@@ -5,27 +5,26 @@ import React from "react";
 
 export default function SideBarItem({
   index,
-  selectedIndex,
+  selectedItem,
   drawerWidthExpanded,
   item,
-  handleSelectedIndex,
+  handleSelectedItem,
 }: SideBarItemProps) {
   const theme = useTheme();
 
   const onRoutePage = () => {
     navigate(item.link);
-    handleSelectedIndex(index, item);
+    handleSelectedItem(item.label, item);
   };
 
   return (
     <ListItem
       onClick={onRoutePage}
       key={index}
-      divider={drawerWidthExpanded && index === 2 ? true : false}
       disablePadding
       sx={{
         backgroundColor:
-          selectedIndex === index && drawerWidthExpanded
+          selectedItem === item.label
             ? theme.palette.primary.light
             : theme.palette.background.default,
       }}
@@ -46,7 +45,9 @@ export default function SideBarItem({
             height: theme.spacing(3),
             fontWeight: 500,
             color:
-              selectedIndex === index ? theme.palette.primary.main : theme.palette.customGray.dark,
+              selectedItem === item.label
+                ? theme.palette.primary.main
+                : theme.palette.customGray.dark,
           }}
         />
         <ListItemText
@@ -57,7 +58,7 @@ export default function SideBarItem({
                 ml: drawerWidthExpanded ? theme.spacing(2) : theme.spacing(0),
                 fontWeight: theme.typography.fontWeightRegular,
                 color:
-                  selectedIndex === index
+                  selectedItem === item.label
                     ? theme.palette.primary.main
                     : theme.palette.customGray.dark,
               }}

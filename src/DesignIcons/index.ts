@@ -1,5 +1,6 @@
 export { default as CompareSorting } from "./CompareSorting";
 export { default as Baby } from "./Baby";
+export { default as Balance } from "./Balance";
 export { default as Email } from "./Email";
 export { default as Facebook } from "./Facebook";
 export { default as Forkfactslogo } from "./Forkfactslogo";

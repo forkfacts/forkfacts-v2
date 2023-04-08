@@ -6,6 +6,8 @@ import EmojiFoodBeverageOutlinedIcon from "@mui/icons-material/EmojiFoodBeverage
 import LibraryBooksOutlinedIcon from "@mui/icons-material/LibraryBooksOutlined";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import AutoStoriesOutlinedIcon from "@mui/icons-material/AutoStoriesOutlined";
+import HomeRepairServiceOutlinedIcon from "@mui/icons-material/HomeRepairServiceOutlined";
+import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 import { MenuItem, PopularFrequentSearchProps, recommendationType } from "@forkfacts/models";
 import { HomeScreen } from "@forkfacts/screens";
 
@@ -19,12 +21,14 @@ export default {
   },
 } as ComponentMeta<typeof HomeScreen>;
 
-const sidebarItems: MenuItem[] = [
-  { label: "Food", Icon: EggAltOutlinedIcon, link: "/food" },
-  { label: "Recipes", Icon: EmojiFoodBeverageOutlinedIcon, link: "/recipe" },
+export const menuItems: MenuItem[] = [
+  { label: "Food", Icon: EggAltOutlinedIcon, link: "/" },
+  { label: "Recipes", Icon: EmojiFoodBeverageOutlinedIcon, link: "/recipes" },
   { label: "Library", Icon: LibraryBooksOutlinedIcon, link: "/library" },
   { label: "Cookbook", Icon: AutoStoriesOutlinedIcon, link: "/Cookbook" },
-  { label: "Grocery List", Icon: ShoppingCartOutlinedIcon, link: "/grocery-list" },
+  { label: "Grocery", Icon: ShoppingCartOutlinedIcon, link: "/grocery" },
+  { label: "Tools", Icon: HomeRepairServiceOutlinedIcon, link: "/tools" },
+  { label: "Help", Icon: HelpOutlineOutlinedIcon, link: "/help" },
 ];
 
 const navbarItems = [
@@ -194,7 +198,7 @@ const Template: ComponentStory<typeof HomeScreen> = (args) => <HomeScreen {...ar
 export const Desktop = Template.bind({});
 
 Desktop.args = {
-  sidebarItems: sidebarItems,
+  sidebarItems: menuItems,
   navbarItems: navbarItems,
   PopularFrequentSearchItems: PopularFrequentSearchItems,
   sourceId: "forkfact-v2",
@@ -210,7 +214,7 @@ Mobile.parameters = {
 };
 
 Mobile.args = {
-  sidebarItems: sidebarItems,
+  sidebarItems: menuItems,
   categoryOptions: categoryOptions,
   PopularFrequentSearchItems: PopularFrequentSearchItems,
   sourceId: "forkfact-v2",
@@ -226,7 +230,7 @@ Tablet.parameters = {
 };
 
 Tablet.args = {
-  sidebarItems: sidebarItems,
+  sidebarItems: menuItems,
   categoryOptions: categoryOptions,
   PopularFrequentSearchItems: PopularFrequentSearchItems,
   navbarItems: navbarItems,

@@ -14,10 +14,10 @@ const SideBar: FC<SideBarProps> = ({
 }) => {
   const container = window ? () => window().document.body : undefined;
   const { transitions, spacing } = useTheme();
-  const [selectedIndex, setSelectedIndex] = useState<number>(0);
+  const [selectedItem, setSelectedItem] = useState<string>("Food");
 
-  const handleSelectedIndex = (index: number, item: MenuItem) => {
-    setSelectedIndex(index);
+  const handleSelectedItem = (name: string, item: MenuItem) => {
+    setSelectedItem(name);
   };
 
   return (
@@ -43,16 +43,16 @@ const SideBar: FC<SideBarProps> = ({
       >
         <Toolbar />
         <List sx={{ width: drawerWidth, overflow: "auto", mt: spacing(3) }}>
-          <ForLoops each={sidebarItems.slice(0, sidebarItems ? sidebarItems.length : 3)}>
+          <ForLoops each={sidebarItems}>
             {(item, index) => {
               return (
                 <SideBarItem
                   key={index}
                   index={index}
-                  selectedIndex={selectedIndex}
+                  selectedItem={selectedItem}
                   drawerWidthExpanded={drawerWidthExpanded}
                   item={item}
-                  handleSelectedIndex={handleSelectedIndex}
+                  handleSelectedItem={handleSelectedItem}
                 />
               );
             }}
@@ -69,31 +69,33 @@ const SideBar: FC<SideBarProps> = ({
             borderWidth: drawerWidthExpanded ? 1 : 0,
             overflow: "hidden",
           },
+          width: drawerWidth,
         }}
         open
       >
         <Toolbar />
         <List
           sx={{
-            width: drawerWidth,
             overflow: "hidden",
             transition: transitions.create(["width"], {
               easing: transitions.easing.sharp,
               duration: transitions.duration.enteringScreen,
             }),
-            ml: drawerWidthExpanded ? 0 : spacing(-1.5),
+            ml: drawerWidthExpanded ? 0 : spacing(-1),
+            display: "flex",
+            flexDirection: "column",
           }}
         >
-          <ForLoops each={sidebarItems.slice(0, drawerWidthExpanded ? sidebarItems.length : 3)}>
+          <ForLoops each={sidebarItems}>
             {(item, index) => {
               return (
                 <SideBarItem
                   key={index}
                   index={index}
-                  selectedIndex={selectedIndex}
+                  selectedItem={selectedItem}
                   drawerWidthExpanded={drawerWidthExpanded}
                   item={item}
-                  handleSelectedIndex={handleSelectedIndex}
+                  handleSelectedItem={handleSelectedItem}
                 />
               );
             }}

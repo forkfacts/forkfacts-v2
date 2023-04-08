@@ -164,10 +164,10 @@ export type SearchResultsProps = {
 
 export interface SideBarItemProps {
   index: number;
-  selectedIndex: number;
+  selectedItem: string;
   drawerWidthExpanded: boolean;
   item: MenuItem;
-  handleSelectedIndex: (index: number, item: MenuItem) => void;
+  handleSelectedItem: (index: string, item: MenuItem) => void;
 }
 
 export interface PopularFrequentSearchProps {

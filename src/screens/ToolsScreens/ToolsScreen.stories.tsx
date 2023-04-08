@@ -1,5 +1,6 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { MenuItem } from "@forkfacts/models";
 import EggAltOutlinedIcon from "@mui/icons-material/EggAltOutlined";
 import EmojiFoodBeverageOutlinedIcon from "@mui/icons-material/EmojiFoodBeverageOutlined";
 import LibraryBooksOutlinedIcon from "@mui/icons-material/LibraryBooksOutlined";
@@ -7,20 +8,14 @@ import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import AutoStoriesOutlinedIcon from "@mui/icons-material/AutoStoriesOutlined";
 import HomeRepairServiceOutlinedIcon from "@mui/icons-material/HomeRepairServiceOutlined";
 import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
-import { SideBar as Drawer } from "@forkfacts/components";
-import { MenuItem } from "@forkfacts/models";
-import { Box } from "@mui/material";
+import { ToolsScreen } from "@forkfacts/screens";
 
 export default {
-  title: "Components/SideBar",
-  component: Drawer,
-} as ComponentMeta<typeof Drawer>;
+  title: "Screens/ToolsScreen",
+  component: ToolsScreen,
+} as ComponentMeta<typeof ToolsScreen>;
 
-const Template: ComponentStory<typeof Drawer> = (args) => (
-  <Box sx={{ p: 4 }}>
-    <Drawer {...args} />
-  </Box>
-);
+const Template: ComponentStory<typeof ToolsScreen> = (args) => <ToolsScreen {...args} />;
 
 export const menuItems: MenuItem[] = [
   { label: "Food", Icon: EggAltOutlinedIcon, link: "/" },
@@ -32,22 +27,8 @@ export const menuItems: MenuItem[] = [
   { label: "Help", Icon: HelpOutlineOutlinedIcon, link: "/help" },
 ];
 
-export const SideBar = Template.bind({});
+export const Desktop = Template.bind({});
 
-SideBar.args = {
-  sidebarItems: menuItems,
-  drawerWidthExpanded: false,
-  mobileOpen: false,
+Desktop.args = {
+  menuItems,
 };
-
-SideBar.storyName = "unexpandedSideBar";
-
-export const expandedSideBar = Template.bind({});
-
-expandedSideBar.args = {
-  sidebarItems: menuItems,
-  drawerWidthExpanded: true,
-  mobileOpen: false,
-};
-
-expandedSideBar.storyName = "expandedSideBar";

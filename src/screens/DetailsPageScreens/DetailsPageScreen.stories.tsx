@@ -11,6 +11,8 @@ import SmokingRoomsOutlinedIcon from "@mui/icons-material/SmokingRoomsOutlined";
 import LibraryBooksOutlinedIcon from "@mui/icons-material/LibraryBooksOutlined";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import AutoStoriesOutlinedIcon from "@mui/icons-material/AutoStoriesOutlined";
+import HomeRepairServiceOutlinedIcon from "@mui/icons-material/HomeRepairServiceOutlined";
+import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 import { DetailsPageScreen } from "@forkfacts/screens";
 import {
   FoodWithSameName,
@@ -32,12 +34,14 @@ export default {
   },
 } as ComponentMeta<typeof DetailsPageScreen>;
 
-const menuItems: MenuItem[] = [
-  { label: "Food", Icon: EggAltOutlinedIcon, link: "/food" },
-  { label: "Recipes", Icon: EmojiFoodBeverageOutlinedIcon, link: "/recipe" },
+export const menuItems: MenuItem[] = [
+  { label: "Food", Icon: EggAltOutlinedIcon, link: "/" },
+  { label: "Recipes", Icon: EmojiFoodBeverageOutlinedIcon, link: "/recipes" },
   { label: "Library", Icon: LibraryBooksOutlinedIcon, link: "/library" },
   { label: "Cookbook", Icon: AutoStoriesOutlinedIcon, link: "/Cookbook" },
-  { label: "Grocery List", Icon: ShoppingCartOutlinedIcon, link: "/grocery-list" },
+  { label: "Grocery", Icon: ShoppingCartOutlinedIcon, link: "/grocery" },
+  { label: "Tools", Icon: HomeRepairServiceOutlinedIcon, link: "/tools" },
+  { label: "Help", Icon: HelpOutlineOutlinedIcon, link: "/help" },
 ];
 
 const tabs = [

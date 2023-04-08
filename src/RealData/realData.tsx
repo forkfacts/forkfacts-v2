@@ -8,6 +8,8 @@ import SmokingRoomsOutlinedIcon from "@mui/icons-material/SmokingRoomsOutlined";
 import LibraryBooksOutlinedIcon from "@mui/icons-material/LibraryBooksOutlined";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import AutoStoriesOutlinedIcon from "@mui/icons-material/AutoStoriesOutlined";
+import HomeRepairServiceOutlinedIcon from "@mui/icons-material/HomeRepairServiceOutlined";
+import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 
 import { lifeStageItem, MenuItem } from "@forkfacts/models";
 
@@ -16,7 +18,9 @@ export const menuItems: MenuItem[] = [
   { label: "Recipes", Icon: EmojiFoodBeverageOutlinedIcon, link: "/recipes" },
   { label: "Library", Icon: LibraryBooksOutlinedIcon, link: "/library" },
   { label: "Cookbook", Icon: AutoStoriesOutlinedIcon, link: "/Cookbook" },
-  { label: "Grocery List", Icon: ShoppingCartOutlinedIcon, link: "/grocery-list" },
+  { label: "Grocery", Icon: ShoppingCartOutlinedIcon, link: "/grocery" },
+  { label: "Tools", Icon: HomeRepairServiceOutlinedIcon, link: "/tools" },
+  { label: "Help", Icon: HelpOutlineOutlinedIcon, link: "/help" },
 ];
 
 export const tabItems = [

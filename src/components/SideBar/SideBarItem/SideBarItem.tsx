@@ -5,7 +5,7 @@ import React from "react";
 
 export default function SideBarItem({
   index,
-  selectedItem,
+  selectedItem = "Food",
   drawerWidthExpanded,
   item,
   handleSelectedItem,

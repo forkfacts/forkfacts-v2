@@ -46,75 +46,6 @@ const nutritionFilterItems: SelectedNutrient[] = [
   { name: "Minerals", rows: [], checked: false, nutrientGroup: "" },
 ];
 
-const nutritionTableItems: RdiNutritionTableRow[] = [
-  {
-    nutrient: "Fats",
-    recommendedAmount: 30,
-    nutrientGroup: "Fats",
-    recommendedUnit: "g",
-  },
-  {
-    nutrient: "Carbohydrates",
-    recommendedAmount: 30,
-    nutrientGroup: "Fats",
-    recommendedUnit: "g",
-  },
-  {
-    nutrient: "Minerals",
-    recommendedAmount: 40,
-    nutrientGroup: "Minerals",
-    recommendedUnit: "g",
-  },
-  {
-    nutrient: "Vitamins A",
-    recommendedAmount: 400,
-    nutrientGroup: "Vitamins",
-    recommendedUnit: "ug/d",
-  },
-  {
-    nutrient: "Vitamins B",
-    recommendedAmount: 25,
-    nutrientGroup: "Vitamins",
-    recommendedUnit: "mg/d",
-  },
-  {
-    nutrient: "Vitamins C",
-    recommendedAmount: 25,
-    nutrientGroup: "Vitamins",
-    recommendedUnit: "mg/d",
-  },
-  {
-    nutrient: "Vitamins D",
-    recommendedAmount: 15,
-    nutrientGroup: "Vitamins",
-    recommendedUnit: "mg/d",
-  },
-  {
-    nutrient: "Vitamins E",
-    recommendedAmount: 7,
-    nutrientGroup: "Vitamins",
-    recommendedUnit: "mg/d",
-  },
-  {
-    nutrient: "Vitamins K",
-    recommendedAmount: 55,
-    nutrientGroup: "Vitamins",
-    recommendedUnit: "ug/d",
-  },
-  {
-    nutrient: "Thiamin",
-    recommendedAmount: 0.6,
-    nutrientGroup: "Vitamins",
-    recommendedUnit: "mg/d",
-  },
-  {
-    nutrient: "Protein",
-    nutrientGroup: "Protein",
-    recommendedAmount: 30,
-    recommendedUnit: "g",
-  },
-];
-
 interface RecommendedDailyIntakeProps {
   menuItems: MenuItem[];
   genders: lifeStageItem[];
@@ -123,6 +54,7 @@ interface RecommendedDailyIntakeProps {
   setSelectedAge: (age: RdiAge) => void;
   selectedGender: string;
   setSelectedGender: (gender: string) => void;
+  rows: RdiNutritionTableRow[];
 }
 
 function AgeColumn({
@@ -213,6 +145,7 @@ const RecommendedDailyIntake: React.FC<RecommendedDailyIntakeProps> = ({
   selectedAge,
   setSelectedGender,
   selectedGender,
+  rows,
 }) => {
   const classes = useStyles();
   const theme = useTheme();
@@ -421,11 +354,11 @@ const RecommendedDailyIntake: React.FC<RecommendedDailyIntakeProps> = ({
               }}
             >
               <RdiViewNutrients
-                age={`${selectedAge.start}-${selectedGender}`}
+                age={`${selectedAge.start}-${selectedAge.end} ${selectedAge.ageUnit}`}
                 gender={selectedGender}
                 nutritionFilterItems={nutritionFilterItems}
                 onCloseRdiTable={onCloseRdiTable}
-                rows={nutritionTableItems}
+                rows={rows}
               />
             </Box>
           </Box>

@@ -36,11 +36,11 @@ const RdiViewNutrients: React.FC<RdiViewNutrientsProps> = ({
         >
           Showing for
           <Typography component="span" color="primary">
-            lactation{" "}
+            {gender}{" "}
           </Typography>
           between{" "}
           <Typography component="span" color="primary">
-            19-38 years{" "}
+            {age}{" "}
           </Typography>
           <Box
             sx={{
@@ -95,9 +95,11 @@ const RdiViewNutrients: React.FC<RdiViewNutrientsProps> = ({
       <Box sx={{ mt: theme.spacing(5) }}>
         <RdiDesktopTable rows={rows} />
       </Box>
-      <Box>
+      <Box sx={{ display: "flex", justifyContent: "flex-start" }}>
+        <Button startIcon={<CodeIcon />}>Embed</Button>
         <Button startIcon={<CodeIcon />}>Embed</Button>
       </Box>
+      <Box sx={{ mb: theme.spacing(100) }} />
     </Box>
   );
 };

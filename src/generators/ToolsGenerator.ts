@@ -12,7 +12,7 @@ export const toolsDetailPage = (createPageFunction: any) => {
       },
     });
 
-    // Create a child page for the "tools" page
+    // Create a child page for the "tools" pages
     const childPageTemplate = path.resolve("src/templates/tools/RecommendedDailyIntake.tsx");
     createPageFunction({
       path: "/tools/recommended-daily-intake",

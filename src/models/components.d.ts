@@ -83,6 +83,13 @@ export interface NutritionTableRow {
   };
 }
 
+export interface RdiNutritionTableRow {
+  nutrient: string;
+  recommendedAmount?: number;
+  recommendedUnit?: string;
+  nutrientGroup: string;
+}
+
 export interface recommendationType {
   recommendationName: string;
   recommendationItems: Array<recommendationItem>;
@@ -337,4 +344,7 @@ export interface NutritionDesktopTableProps {
 
 interface NutritionMobileTableProps {
   rows: NutritionTableRow[];
+}
+export interface RdiDesktopTableProps {
+  rows: RdiNutritionTableRow[];
 }

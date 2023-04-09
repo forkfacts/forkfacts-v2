@@ -8,19 +8,18 @@ interface RdiViewNutrientsProps {
   age: string;
   nutritionFilterItems: Array<SelectedNutrient>;
   gender: string;
+  onCloseRdiTable: () => void;
 }
 
 const RdiViewNutrients: React.FC<RdiViewNutrientsProps> = ({
   age,
   gender,
   nutritionFilterItems,
+  onCloseRdiTable,
 }) => {
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.down("md"));
 
-  const onRoute = () => {
-    navigate("/tools/recommended-daily-intake");
-  };
   return (
     <Box>
       <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
@@ -48,7 +47,12 @@ const RdiViewNutrients: React.FC<RdiViewNutrientsProps> = ({
               width: theme.spacing(0.2),
             }}
           />{" "}
-          <Typography component="span" color="primary" sx={{ cursor: "pointer" }} onClick={onRoute}>
+          <Typography
+            component="span"
+            color="primary"
+            sx={{ cursor: "pointer" }}
+            onClick={onCloseRdiTable}
+          >
             change
           </Typography>
         </Typography>

@@ -5,10 +5,15 @@ import { ToolsScreenProps } from "@forkfacts/models";
 import { useStyles } from "./toolsScrenStyles";
 import { Balance } from "@forkfacts/icons";
 import { customTheme } from "../../themes/theme";
+import { navigate } from "gatsby";
 
 const ToolsScreen: React.FC<ToolsScreenProps> = ({ menuItems }) => {
   const classes = useStyles();
   const theme = useTheme();
+  const onRoute = () => {
+    navigate("/tools/recommended-daily-intake");
+  };
+
   return (
     <Layout menuItems={menuItems}>
       <Box className={classes.desktopScreenWrapper}>
@@ -33,6 +38,7 @@ const ToolsScreen: React.FC<ToolsScreenProps> = ({ menuItems }) => {
                   borderRadius: theme.spacing(1),
                   cursor: "pointer",
                 }}
+                onClick={onRoute}
               >
                 <Balance />
                 <Box

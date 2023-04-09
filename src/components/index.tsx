@@ -35,3 +35,6 @@ export { default as NutritionDesktopTable } from "./DetailPageComponents/Nutriti
 export { default as NutritionMobileTable } from "./DetailPageComponents/NutritionTable/NutritionMobileTable/NutritionMobileTable";
 export { default as AutoCompleteSearch } from "./AutoCompleteSearch/AutoCompleteSearch";
 export { default as ComingSoon } from "./ComingSoon/ComingSoon";
+export { default as RdiMobileTable } from "./Rdi/MobileTable/RdiMobileTable";
+export { default as RdiDesktopTable } from "./Rdi/DesktopTable/RdiDesktopTable";
+export { default as RdiViewNutrients } from "./Rdi/RdiViewNutrients/RdiViewNutrients";

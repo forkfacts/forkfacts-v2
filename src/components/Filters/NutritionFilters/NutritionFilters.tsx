@@ -44,6 +44,7 @@ const NutritionFilters: React.FC<NutritionFilterProps> = ({
       <SearchNutritionFilter
         nutritionFilterItems={nutritionFilterItems}
         isDropdown
+        displayListIcon={false}
         margin={theme.spacing(-23.5)}
       />
     </Box>

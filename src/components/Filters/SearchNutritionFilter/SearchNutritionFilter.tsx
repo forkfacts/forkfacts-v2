@@ -12,11 +12,13 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
+import FilterListIcon from "@mui/icons-material/FilterList";
 import IndeterminateCheckBoxIcon from "@mui/icons-material/IndeterminateCheckBox";
 import DoneIcon from "@mui/icons-material/Done";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import CloseIcon from "@mui/icons-material/Close";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import ClearIcon from "@mui/icons-material/Clear";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { ForLoops } from "@forkfacts/helpers";
@@ -28,6 +30,7 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
   nutritionFilterItems,
   isDropdown,
   margin = 0,
+  displayListIcon,
 }) => {
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.down("md"));
@@ -188,56 +191,70 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
   return (
     <Box sx={{ display: "block" }} ref={ref}>
       {isDropdown && (
-        <Button
-          variant={selectedNutrients[0]?.name ? "text" : "outlined"}
-          onClick={() => setOpen(!open)}
-          sx={{
-            backgroundColor: selectedNutrients[0]?.name
-              ? theme.palette.primary.light
-              : theme.palette.background.default,
-            borderColor: selectedNutrients[0]?.name
-              ? theme.palette.primary.main
-              : theme.palette.grey[700],
-            textTransform: "capitalize",
-            whiteSpace: "nowrap",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            borderRadius: theme.spacing(1),
-          }}
-        >
-          <Typography
-            variant={mobile ? "labelMedium" : "labelLarge"}
-            sx={{
-              fontWeight: theme.typography.fontWeightRegular,
-              color: theme.palette.customGray.textDark,
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            {selectedNutrients.length && selectedNutrients[0].name ? (
-              <DoneIcon
-                sx={{
-                  color: theme.palette.iconColors.main,
-                  width: theme.spacing(2.25),
-                  height: theme.spacing(2.25),
-                  mr: theme.spacing(0.5),
-                }}
-              />
-            ) : null}
-            {selectedNutrients[0]?.name
-              ? `${selectedNutrients[0]?.name} ${
-                  selectedNutrients?.length < 2 ? "" : `+${selectedNutrients.length - 1}`
-                }`
-              : "Nutrients"}
-          </Typography>
-          {open ? (
-            <ArrowDropUpIcon sx={{ color: theme.palette.iconColors.main }} />
+        <>
+          {displayListIcon ? (
+            <Button
+              startIcon={<FilterListIcon />}
+              endIcon={selectedNutrients.length ? <ClearIcon /> : null}
+              variant="outlined"
+              color="primary"
+              onClick={() => setOpen(!open)}
+            >
+              Filter nutrients
+            </Button>
           ) : (
-            <ArrowDropDownIcon sx={{ color: theme.palette.iconColors.main }} />
+            <Button
+              variant={selectedNutrients[0]?.name ? "text" : "outlined"}
+              onClick={() => setOpen(!open)}
+              sx={{
+                backgroundColor: selectedNutrients[0]?.name
+                  ? theme.palette.primary.light
+                  : theme.palette.background.default,
+                borderColor: selectedNutrients[0]?.name
+                  ? theme.palette.primary.main
+                  : theme.palette.grey[700],
+                textTransform: "capitalize",
+                whiteSpace: "nowrap",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                borderRadius: theme.spacing(1),
+              }}
+            >
+              <Typography
+                variant={mobile ? "labelMedium" : "labelLarge"}
+                sx={{
+                  fontWeight: theme.typography.fontWeightRegular,
+                  color: theme.palette.customGray.textDark,
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                {selectedNutrients.length && selectedNutrients[0].name ? (
+                  <DoneIcon
+                    sx={{
+                      color: theme.palette.iconColors.main,
+                      width: theme.spacing(2.25),
+                      height: theme.spacing(2.25),
+                      mr: theme.spacing(0.5),
+                    }}
+                  />
+                ) : null}
+                {selectedNutrients[0]?.name
+                  ? `${selectedNutrients[0]?.name} ${
+                      selectedNutrients?.length < 2 ? "" : `+${selectedNutrients.length - 1}`
+                    }`
+                  : "Nutrients"}
+              </Typography>
+              {open ? (
+                <ArrowDropUpIcon sx={{ color: theme.palette.iconColors.main }} />
+              ) : (
+                <ArrowDropDownIcon sx={{ color: theme.palette.iconColors.main }} />
+              )}
+            </Button>
           )}
-        </Button>
+        </>
       )}
       {(open || !isDropdown) && (
         <Box

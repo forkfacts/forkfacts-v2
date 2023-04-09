@@ -298,6 +298,7 @@ export interface SearchNutritionFilterProps {
   nutritionFilterItems: Array<SelectedNutrient>;
   isDropdown: boolean;
   margin?: string | number;
+  displayListIcon: boolean;
 }
 
 export interface SelectNutrientRow {

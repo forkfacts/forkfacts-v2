@@ -1,11 +1,12 @@
 import { Layout } from "@forkfacts/components";
-import { Box, Grid, Typography, useTheme, useMediaQuery } from "@mui/material";
+import { Box, Grid, Typography, useTheme, useMediaQuery, Button } from "@mui/material";
 import { MenuItem, RdiAge, lifeStageItem } from "@forkfacts/models";
 import React, { useState } from "react";
 import { useStyles } from "../toolsScrenStyles";
 import CheckCircleOutlinedIcon from "@mui/icons-material/CheckCircleOutlined";
 import { customTheme } from "../../../themes/theme";
 import { ForLoops } from "@forkfacts/helpers";
+import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import Checkbox from "@mui/material/Checkbox";
 import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
 import RadioButtonCheckedIcon from "@mui/icons-material/RadioButtonChecked";
@@ -20,6 +21,87 @@ interface RecommendedDailyIntakeProps {
   selectedGender: string;
   setSelectedGender: (gender: string) => void;
 }
+
+function AgeColumn({
+  ages,
+  handleSelectAge,
+  selectedAge,
+}: {
+  ages: RdiAge[];
+  selectedAge: RdiAge;
+  handleSelectAge: (age: RdiAge) => void;
+}) {
+  const theme = useTheme();
+  return (
+    <div style={{ display: "inline-block", margin: "10px" }}>
+      {ages.map((item: any, index: number) => (
+        <Box
+          key={index}
+          sx={{
+            width: "auto",
+            display: "flex",
+            justifyContent: "flex-start",
+            alignItems: "center",
+            mb: theme.spacing(2),
+          }}
+          onClick={() => handleSelectAge(item)}
+        >
+          <Checkbox
+            icon={<RadioButtonUncheckedIcon />}
+            checkedIcon={<RadioButtonCheckedIcon />}
+            checked={
+              (selectedAge.start === item.start && selectedAge.end == item.end) ||
+              selectedAge.start > 70
+                ? true
+                : false
+            }
+          />
+          {item.end || item.end === 0 ? (
+            <Typography
+              variant="bodyMedium"
+              sx={{
+                fontWeight: customTheme.typography.fontWeightLight,
+                color: customTheme.palette.customGray.main,
+                cursor: "pointer",
+              }}
+            >
+              {item.end === undefined ? 0 : item.start + "-" + item.end} {item.ageUnit}
+            </Typography>
+          ) : (
+            <Typography
+              variant="bodyMedium"
+              sx={{
+                fontWeight: customTheme.typography.fontWeightLight,
+                color: customTheme.palette.customGray.main,
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                ml: theme.spacing(-2.5),
+              }}
+            >
+              <ChevronRightIcon
+                sx={{
+                  width: theme.spacing(2),
+                  height: theme.spacing(2),
+                  ml: theme.spacing(2),
+                }}
+              />
+              <Typography
+                variant="bodyMedium"
+                sx={{
+                  fontWeight: customTheme.typography.fontWeightLight,
+                  color: customTheme.palette.customGray.main,
+                }}
+              >
+                {item.start} {item.ageUnit}
+              </Typography>
+            </Typography>
+          )}
+        </Box>
+      ))}
+    </div>
+  );
+}
 const RecommendedDailyIntake: React.FC<RecommendedDailyIntakeProps> = ({
   menuItems,
   genders,
@@ -31,7 +113,6 @@ const RecommendedDailyIntake: React.FC<RecommendedDailyIntakeProps> = ({
 }) => {
   const classes = useStyles();
   const theme = useTheme();
-
   const mobile = useMediaQuery(theme.breakpoints.down("md"));
 
   const onSelectGender = (gender: string): void => {
@@ -52,256 +133,159 @@ const RecommendedDailyIntake: React.FC<RecommendedDailyIntakeProps> = ({
     };
     setSelectedAge(newAge);
   };
+
+  const columns = Math.ceil(ages.length / 4);
+  const ageChunks = Array(columns)
+    .fill(null)
+    .map((_, i) => ages.slice(i * 4, i * 4 + 4));
+
   return (
     <Layout menuItems={menuItems}>
       <Box className={classes.desktopScreenWrapper}>
-        <Typography
-          variant="headline4"
-          sx={{
-            fontWeight: customTheme.typography.fontWeightLight,
-            color: customTheme.palette.customGray.main,
-          }}
-        >
-          Recommended Daily Intake
-        </Typography>
-        <Box sx={{ mt: theme.spacing(4.5) }}>
+        <Box sx={{ p: mobile ? theme.spacing(2) : 0 }}>
           <Typography
-            variant="titleMedium"
+            variant={mobile ? "headline6" : "headline4"}
             sx={{
               fontWeight: customTheme.typography.fontWeightLight,
-              color: customTheme.palette.customGray.textDark,
+              color: customTheme.palette.customGray.main,
             }}
           >
-            Choose a life stage
+            Recommended Daily Intake
           </Typography>
-          <Grid container md={8} spacing={2} sx={{ mt: theme.spacing(1.5) }}>
-            <ForLoops each={genders}>
-              {(item, index) => (
-                <Grid item key={index} md={4}>
-                  <Box
-                    sx={{
-                      position: "relative",
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      flexDirection: "column",
-                      backgroundColor:
-                        selectedGender === item.name
-                          ? customTheme.palette.primary.main
-                          : customTheme.palette.common.white,
-                      height: theme.spacing(18.75),
-                      p: theme.spacing(1.25),
-                      cursor: "pointer",
-                      border: "1px solid #F2EFFF",
-                    }}
-                    onClick={() => onSelectGender(item.name)}
-                  >
-                    <item.icon
-                      color={
-                        selectedGender.toLowerCase() === item.name.toLowerCase()
-                          ? customTheme.palette.common.white
-                          : customTheme.palette.customGray.textLight
-                      }
-                      style={{
-                        width: theme.spacing(3.75),
-                        height: theme.spacing(3.75),
-                      }}
-                    />
-                    <Typography
-                      variant={mobile ? "labelMedium" : "subhead1"}
+          <Box sx={{ mt: mobile ? theme.spacing(3) : theme.spacing(4.5) }}>
+            <Typography
+              variant="titleMedium"
+              sx={{
+                fontWeight: customTheme.typography.fontWeightLight,
+                color: customTheme.palette.customGray.textDark,
+              }}
+            >
+              Choose a life stage
+            </Typography>
+            <Grid container md={7} spacing={2} sx={{ mt: theme.spacing(1.5) }}>
+              <ForLoops each={genders}>
+                {(item, index) => (
+                  <Grid item key={index} md={4} xs={4}>
+                    <Box
                       sx={{
-                        color:
+                        position: "relative",
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        flexDirection: "column",
+                        backgroundColor:
+                          selectedGender === item.name
+                            ? customTheme.palette.primary.main
+                            : customTheme.palette.common.white,
+                        height: mobile ? theme.spacing(15) : theme.spacing(18.75),
+                        p: theme.spacing(1.25),
+                        cursor: "pointer",
+                        border: "1px solid #F2EFFF",
+                        borderRadius: theme.spacing(1),
+                      }}
+                      onClick={() => onSelectGender(item.name)}
+                    >
+                      <item.icon
+                        color={
                           selectedGender.toLowerCase() === item.name.toLowerCase()
                             ? customTheme.palette.common.white
-                            : customTheme.palette.customGray.main,
-                        fontWeight: theme.typography.fontWeightRegular,
-                        mt: theme.spacing(1),
-                        textTransform: "capitalize",
-                      }}
-                    >
-                      {item.name}
-                    </Typography>
-                    <CheckCircleOutlinedIcon
-                      sx={{ position: "absolute", top: 10, right: 10, color: "#fff" }}
-                    />
-                  </Box>
-                </Grid>
-              )}
-            </ForLoops>
-          </Grid>
-        </Box>
-        <Box sx={{ mt: theme.spacing(4.5) }}>
-          <Typography
-            variant="titleMedium"
-            sx={{
-              fontWeight: customTheme.typography.fontWeightLight,
-              color: customTheme.palette.customGray.textDark,
-            }}
-          >
-            Select Age
-          </Typography>
-          <Box
-            component="div"
-            sx={{
-              width: "100%",
-              display: "flex",
-              mt: theme.spacing(1),
-            }}
-          >
-            <Box
-              sx={{
-                width: "15%",
-                display: "flex",
-                justifyContent: "flex-start",
-                alignItems: "center",
-                flexDirection: "column",
-              }}
-            >
-              <ForLoops each={ages.slice(0, 4)}>
-                {(item, index) => (
-                  <Box
-                    key={index}
-                    sx={{
-                      width: "100%",
-                      display: "flex",
-                      justifyContent: "flex-start",
-                      alignItems: "center",
-                    }}
-                    onClick={() => handleSelectAge(item)}
-                  >
-                    <Checkbox
-                      icon={<RadioButtonUncheckedIcon />}
-                      checkedIcon={<RadioButtonCheckedIcon />}
-                      checked={
-                        (selectedAge.start === item.start && selectedAge.end == item.end) ||
-                        selectedAge.start > 70
-                          ? true
-                          : false
-                      }
-                    />
-                    {item.end || item.end === 0 ? (
+                            : customTheme.palette.customGray.textLight
+                        }
+                        style={{
+                          width: theme.spacing(3.75),
+                          height: theme.spacing(3.75),
+                        }}
+                      />
                       <Typography
-                        variant="bodyMedium"
+                        variant={mobile ? "labelMedium" : "subhead1"}
                         sx={{
-                          fontWeight: customTheme.typography.fontWeightLight,
-                          color: customTheme.palette.customGray.main,
-                          cursor: "pointer",
+                          color:
+                            selectedGender.toLowerCase() === item.name.toLowerCase()
+                              ? customTheme.palette.common.white
+                              : customTheme.palette.customGray.main,
+                          fontWeight: theme.typography.fontWeightRegular,
+                          mt: theme.spacing(1),
+                          textTransform: "capitalize",
                         }}
                       >
-                        {item.end === undefined ? 0 : item.start + "-" + item.end} {item.ageUnit}
+                        {item.name}
                       </Typography>
-                    ) : (
-                      <Typography
-                        variant="bodyMedium"
-                        sx={{
-                          fontWeight: customTheme.typography.fontWeightLight,
-                          color: customTheme.palette.customGray.main,
-                          display: "flex",
-                          justifyContent: "center",
-                          alignItems: "center",
-                          ml: theme.spacing(-2.5),
-                        }}
-                      >
-                        <ChevronRightIcon
-                          sx={{
-                            width: theme.spacing(2),
-                            height: theme.spacing(2),
-                            ml: theme.spacing(2),
-                          }}
-                        />
-                        <Typography
-                          variant="bodyMedium"
-                          sx={{
-                            fontWeight: customTheme.typography.fontWeightLight,
-                            color: customTheme.palette.customGray.main,
-                          }}
-                        >
-                          {item.start} {item.ageUnit}
-                        </Typography>
-                      </Typography>
-                    )}
-                  </Box>
+                      <CheckCircleOutlinedIcon
+                        sx={{ position: "absolute", top: 10, right: 10, color: "#fff" }}
+                      />
+                    </Box>
+                  </Grid>
                 )}
               </ForLoops>
-            </Box>
-            <Box
+            </Grid>
+          </Box>
+          <Box sx={{ mt: theme.spacing(4.5) }}>
+            <Typography
+              variant="titleMedium"
               sx={{
-                width: "10%",
-                display: "flex",
-                justifyContent: "flex-start",
-                alignItems: "center",
-                flexDirection: "column",
+                fontWeight: customTheme.typography.fontWeightLight,
+                color: customTheme.palette.customGray.textDark,
               }}
             >
-              {ages.length > 4 && (
-                <ForLoops each={ages.slice(4, ages.length)}>
-                  {(item, index) => (
-                    <Box
+              Select Age
+            </Typography>
+            <Box
+              component="div"
+              sx={{
+                width: "100%",
+                display: "flex",
+                mt: theme.spacing(1),
+              }}
+            >
+              <Box
+                sx={{
+                  width: "100%",
+                  display: "flex",
+                  alignItems: "flex-start",
+                  columnGap: mobile ? theme.spacing(2) : theme.spacing(15),
+                  border: "1px solid #F2EFFF",
+                  borderRadius: theme.spacing(1),
+                  p: theme.spacing(1),
+                  maxWidth: theme.spacing(105),
+                  flexWrap: "wrap",
+                }}
+              >
+                <ForLoops each={ageChunks}>
+                  {(chunk, index) => (
+                    <AgeColumn
                       key={index}
-                      sx={{
-                        width: "100%",
-                        display: "flex",
-                        justifyContent: "flex-start",
-                        alignItems: "center",
-                      }}
-                      onClick={() => handleSelectAge(item)}
-                    >
-                      <Checkbox
-                        icon={<RadioButtonUncheckedIcon />}
-                        checkedIcon={<RadioButtonCheckedIcon />}
-                        checked={
-                          (selectedAge.start === item.start && selectedAge.end == item.end) ||
-                          selectedAge.start > 70
-                            ? true
-                            : false
-                        }
-                      />
-                      {item.end || item.end === 0 ? (
-                        <Typography
-                          variant="bodyMedium"
-                          sx={{
-                            fontWeight: customTheme.typography.fontWeightLight,
-                            color: customTheme.palette.customGray.main,
-                            cursor: "pointer",
-                          }}
-                        >
-                          {item.end === undefined ? 0 : item.start + "-" + item.end} {item.ageUnit}
-                        </Typography>
-                      ) : (
-                        <Typography
-                          variant="bodyMedium"
-                          sx={{
-                            fontWeight: customTheme.typography.fontWeightLight,
-                            color: customTheme.palette.customGray.main,
-                            display: "flex",
-                            justifyContent: "center",
-                            alignItems: "center",
-                            ml: theme.spacing(-2.5),
-                          }}
-                        >
-                          <ChevronRightIcon
-                            sx={{
-                              width: theme.spacing(2),
-                              height: theme.spacing(2),
-                              ml: theme.spacing(2),
-                            }}
-                          />
-                          <Typography
-                            variant="bodyMedium"
-                            sx={{
-                              fontWeight: customTheme.typography.fontWeightLight,
-                              color: customTheme.palette.customGray.main,
-                            }}
-                          >
-                            {item.start} {item.ageUnit}
-                          </Typography>
-                        </Typography>
-                      )}
-                    </Box>
+                      ages={chunk}
+                      selectedAge={selectedAge}
+                      handleSelectAge={handleSelectAge}
+                    />
                   )}
                 </ForLoops>
-              )}
+              </Box>
             </Box>
+          </Box>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "flex-end",
+              my: theme.spacing(8.75),
+            }}
+          >
+            <Button
+              variant="contained"
+              color="primary"
+              disabled={selectedAge && selectedGender ? false : true}
+              sx={{
+                fontSize: customTheme.typography.labelLarge.fontSize,
+                py: theme.spacing(1.25),
+                pr: theme.spacing(3),
+                pl: theme.spacing(2),
+                borderRadius: theme.spacing(1),
+                fontWeight: customTheme.typography.fontWeightRegular,
+              }}
+              startIcon={<VisibilityOutlinedIcon />}
+            >
+              View RDI
+            </Button>
           </Box>
         </Box>
       </Box>

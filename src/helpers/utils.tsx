@@ -33,7 +33,7 @@ export function getAgeRangesForLifeStage(selectedLifeStageName: string = "Female
           : null;
 
       default:
-        return null;
+        return ageRange;
     }
   });
   return ageRanges.filter((range) => range !== null);

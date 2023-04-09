@@ -11,7 +11,7 @@ import AutoStoriesOutlinedIcon from "@mui/icons-material/AutoStoriesOutlined";
 import HomeRepairServiceOutlinedIcon from "@mui/icons-material/HomeRepairServiceOutlined";
 import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 
-import { lifeStageItem, MenuItem } from "@forkfacts/models";
+import { lifeStageItem, MenuItem, RdiAge } from "@forkfacts/models";
 
 export const menuItems: MenuItem[] = [
   { label: "Food", Icon: EggAltOutlinedIcon, link: "/" },
@@ -64,17 +64,17 @@ export const lifeStageItems: lifeStageItem[] = [
   },
 ];
 
-export const allAges: any[] = [
-  { index: 0, start: 0, end: 6, ageUnit: "month" },
-  { index: 1, start: 7, end: 12, ageUnit: "month" },
-  { index: 2, start: 1, end: 3, ageUnit: "year" },
-  { index: 3, start: 4, end: 8, ageUnit: "year" },
-  { index: 4, start: 9, end: 13, ageUnit: "year" },
-  { index: 5, start: 14, end: 18, ageUnit: "year" },
-  { index: 6, start: 19, end: 30, ageUnit: "year" },
-  { index: 7, start: 31, end: 50, ageUnit: "year" },
-  { index: 8, start: 51, end: 70, ageUnit: "year" },
-  { index: 9, start: 70, ageUnit: "year" },
+export const allAges: RdiAge[] = [
+  { start: 0, end: 6, ageUnit: "month" },
+  { start: 7, end: 12, ageUnit: "month" },
+  { start: 1, end: 3, ageUnit: "year" },
+  { start: 4, end: 8, ageUnit: "year" },
+  { start: 9, end: 13, ageUnit: "year" },
+  { start: 14, end: 18, ageUnit: "year" },
+  { start: 19, end: 30, ageUnit: "year" },
+  { start: 31, end: 50, ageUnit: "year" },
+  { start: 51, end: 70, ageUnit: "year" },
+  { start: 70, ageUnit: "year" },
 ];
 
 export const navbarItems = [

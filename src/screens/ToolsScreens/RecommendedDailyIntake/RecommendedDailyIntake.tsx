@@ -162,7 +162,13 @@ const RecommendedDailyIntake: React.FC<RecommendedDailyIntakeProps> = ({
             >
               Choose a life stage
             </Typography>
-            <Grid container md={7} spacing={2} sx={{ mt: theme.spacing(1.5) }}>
+            <Grid
+              container
+              md={7}
+              columns={{ xs: 12, sm: 12, md: 12 }}
+              spacing={2}
+              sx={{ mt: theme.spacing(1.5) }}
+            >
               <ForLoops each={genders}>
                 {(item, index) => (
                   <Grid item key={index} md={4} xs={4}>

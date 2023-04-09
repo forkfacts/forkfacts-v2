@@ -188,11 +188,6 @@ const collection = [
   },
 ];
 
-const collectionGroupedItems = [
-  { categoryName: "FRUIT AND FRUIT JUICES", collection: collection },
-  { categoryName: "BABY FOODS", collection: collection.slice(0, 3) },
-];
-
 const Template: ComponentStory<typeof HomeScreen> = (args) => <HomeScreen {...args} />;
 
 export const Desktop = Template.bind({});

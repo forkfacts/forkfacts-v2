@@ -131,6 +131,16 @@ const RdiDesktopTable: React.FC<RdiDesktopTableProps> = ({ rows }) => {
                   Top sources
                 </Typography>
               </TableCell>
+              <TableCell align="right" sx={{ borderBottom: "none" }}>
+                <Typography
+                  variant="labelLarge"
+                  sx={{
+                    color: theme.palette.customGray.dark,
+                    fontWeight: theme.typography.fontWeightRegular,
+                    ml: theme.spacing(-7),
+                  }}
+                ></Typography>
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -173,37 +183,6 @@ const RdiDesktopTable: React.FC<RdiDesktopTableProps> = ({ rows }) => {
                               {row.nutrientGroup}
                             </Typography>
                           </Box>
-                        </TableCell>
-                        <TableCell align="right" sx={{ borderBottom: "1px solid #F3EFF4" }}>
-                          <Typography
-                            variant="titleMedium"
-                            sx={{
-                              color: theme.palette.customGray.main,
-                              fontWeight: theme.typography.fontWeightLight,
-                              pr: "20px",
-                            }}
-                          />
-                        </TableCell>
-                        <TableCell align="right" sx={{ borderBottom: "1px solid #F3EFF4" }}>
-                          <Typography
-                            variant="titleMedium"
-                            sx={{
-                              color: theme.palette.customGray.main,
-                              fontWeight: theme.typography.fontWeightLight,
-                              pr: "20px",
-                            }}
-                          />
-                        </TableCell>
-                        <TableCell align="right" sx={{ borderBottom: "1px solid #F3EFF4" }}>
-                          <Typography
-                            variant="titleMedium"
-                            sx={{
-                              color: theme.palette.customGray.main,
-                              fontWeight: theme.typography.fontWeightLight,
-                              textTransform: "lowercase",
-                              pr: "20px",
-                            }}
-                          />
                         </TableCell>
                       </TableRow>
                       {!isCollapsed(row.nutrientGroup) &&
@@ -251,16 +230,16 @@ const RdiDesktopTable: React.FC<RdiDesktopTableProps> = ({ rows }) => {
                             <TableCell align="right" sx={{ borderBottom: "none" }}>
                               <Typography
                                 component="span"
-                                variant="bodyMedium"
+                                variant="labelLarge"
+                                color="primary"
                                 sx={{
-                                  color: theme.palette.customGray.main,
-                                  fontWeight: theme.typography.fontWeightLight,
+                                  fontWeight: theme.typography.fontWeightRegular,
                                   display: "flex",
                                   alignItems: "center",
                                   justifyContent: "flex-end",
                                 }}
                               >
-                                <LaunchIcon />
+                                <LaunchIcon sx={{ mr: theme.spacing(2) }} />
                                 View top sources
                               </Typography>
                             </TableCell>
@@ -325,14 +304,17 @@ const RdiDesktopTable: React.FC<RdiDesktopTableProps> = ({ rows }) => {
                           </TableCell>
                           <TableCell align="right" sx={{ borderBottom: "1px solid #F3EFF4" }}>
                             <Typography
-                              variant="titleMedium"
+                              component="span"
+                              variant="labelLarge"
+                              color="primary"
                               sx={{
-                                color: theme.palette.customGray.main,
                                 fontWeight: theme.typography.fontWeightRegular,
-                                pr: "20px",
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "flex-end",
                               }}
                             >
-                              <LaunchIcon />
+                              <LaunchIcon sx={{ mr: theme.spacing(2) }} />
                               View top sources
                             </Typography>
                           </TableCell>

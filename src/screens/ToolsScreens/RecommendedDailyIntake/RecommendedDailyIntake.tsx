@@ -1,6 +1,12 @@
 import { Layout, RdiViewNutrients } from "@forkfacts/components";
 import { Box, Grid, Typography, useTheme, useMediaQuery, Button } from "@mui/material";
-import { MenuItem, RdiAge, SelectedNutrient, lifeStageItem } from "@forkfacts/models";
+import {
+  MenuItem,
+  RdiAge,
+  RdiNutritionTableRow,
+  SelectedNutrient,
+  lifeStageItem,
+} from "@forkfacts/models";
 import React, { useState } from "react";
 import { useStyles } from "../toolsScrenStyles";
 import CheckCircleOutlinedIcon from "@mui/icons-material/CheckCircleOutlined";
@@ -38,6 +44,75 @@ const nutritionFilterItems: SelectedNutrient[] = [
   { name: "Fats", rows: [], checked: false, nutrientGroup: "" },
   { name: "Fiber", rows: [], checked: false, nutrientGroup: "" },
   { name: "Minerals", rows: [], checked: false, nutrientGroup: "" },
+];
+
+const nutritionTableItems: RdiNutritionTableRow[] = [
+  {
+    nutrient: "Fats",
+    recommendedAmount: 30,
+    nutrientGroup: "Fats",
+    recommendedUnit: "g",
+  },
+  {
+    nutrient: "Carbohydrates",
+    recommendedAmount: 30,
+    nutrientGroup: "Fats",
+    recommendedUnit: "g",
+  },
+  {
+    nutrient: "Minerals",
+    recommendedAmount: 40,
+    nutrientGroup: "Minerals",
+    recommendedUnit: "g",
+  },
+  {
+    nutrient: "Vitamins A",
+    recommendedAmount: 400,
+    nutrientGroup: "Vitamins",
+    recommendedUnit: "ug/d",
+  },
+  {
+    nutrient: "Vitamins B",
+    recommendedAmount: 25,
+    nutrientGroup: "Vitamins",
+    recommendedUnit: "mg/d",
+  },
+  {
+    nutrient: "Vitamins C",
+    recommendedAmount: 25,
+    nutrientGroup: "Vitamins",
+    recommendedUnit: "mg/d",
+  },
+  {
+    nutrient: "Vitamins D",
+    recommendedAmount: 15,
+    nutrientGroup: "Vitamins",
+    recommendedUnit: "mg/d",
+  },
+  {
+    nutrient: "Vitamins E",
+    recommendedAmount: 7,
+    nutrientGroup: "Vitamins",
+    recommendedUnit: "mg/d",
+  },
+  {
+    nutrient: "Vitamins K",
+    recommendedAmount: 55,
+    nutrientGroup: "Vitamins",
+    recommendedUnit: "ug/d",
+  },
+  {
+    nutrient: "Thiamin",
+    recommendedAmount: 0.6,
+    nutrientGroup: "Vitamins",
+    recommendedUnit: "mg/d",
+  },
+  {
+    nutrient: "Protein",
+    nutrientGroup: "Protein",
+    recommendedAmount: 30,
+    recommendedUnit: "g",
+  },
 ];
 
 interface RecommendedDailyIntakeProps {
@@ -167,7 +242,12 @@ const RecommendedDailyIntake: React.FC<RecommendedDailyIntakeProps> = ({
     .fill(null)
     .map((_, i) => ages.slice(i * 4, i * 4 + 4));
 
-  const onOpenRdiTable = (): void => setIsOpenRdiTable(true);
+  const onOpenRdiTable = (): void => {
+    setIsOpenRdiTable(true);
+    if (typeof window !== "undefined") {
+      window.scrollTo(0, 0);
+    }
+  };
 
   const onCloseRdiTable = (): void => setIsOpenRdiTable(false);
 
@@ -345,6 +425,7 @@ const RecommendedDailyIntake: React.FC<RecommendedDailyIntakeProps> = ({
                 gender={selectedGender}
                 nutritionFilterItems={nutritionFilterItems}
                 onCloseRdiTable={onCloseRdiTable}
+                rows={nutritionTableItems}
               />
             </Box>
           </Box>

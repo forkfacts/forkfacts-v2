@@ -1,14 +1,15 @@
-import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
+import { Box, Button, Typography, useMediaQuery, useTheme } from "@mui/material";
 import React from "react";
-import { navigate } from "gatsby";
-import { SearchNutritionFilter } from "@forkfacts/components";
-import { SelectedNutrient } from "@forkfacts/models";
+import CodeIcon from "@mui/icons-material/Code";
+import { RdiDesktopTable, SearchNutritionFilter } from "@forkfacts/components";
+import { RdiNutritionTableRow, SelectedNutrient } from "@forkfacts/models";
 
 interface RdiViewNutrientsProps {
   age: string;
   nutritionFilterItems: Array<SelectedNutrient>;
   gender: string;
   onCloseRdiTable: () => void;
+  rows: RdiNutritionTableRow[];
 }
 
 const RdiViewNutrients: React.FC<RdiViewNutrientsProps> = ({
@@ -16,6 +17,7 @@ const RdiViewNutrients: React.FC<RdiViewNutrientsProps> = ({
   gender,
   nutritionFilterItems,
   onCloseRdiTable,
+  rows,
 }) => {
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.down("md"));
@@ -89,6 +91,12 @@ const RdiViewNutrients: React.FC<RdiViewNutrientsProps> = ({
             nutrients
           </Typography>
         </Box>
+      </Box>
+      <Box sx={{ mt: theme.spacing(5) }}>
+        <RdiDesktopTable rows={rows} />
+      </Box>
+      <Box>
+        <Button startIcon={<CodeIcon />}>Embed</Button>
       </Box>
     </Box>
   );

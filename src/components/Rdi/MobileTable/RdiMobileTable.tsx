@@ -40,6 +40,7 @@ const RdiMobileTable: React.FC<RdiDesktopTableProps> = ({ rows }) => {
     appendDots: (dots: any) => {
       return <MagicSliderDots dots={dots} numDotsToShow={15} dotWidth={20} />;
     },
+    swipe: false,
   };
   function sortRowsByNutrientGroup(rowsByGroup: RowsByNutrientGroup[]) {
     rowsByGroup.sort((a, b) => {

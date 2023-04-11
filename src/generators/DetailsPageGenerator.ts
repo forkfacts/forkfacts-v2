@@ -51,7 +51,7 @@ const createNutritionTable = ({ createPageFunction, foods }: any) => {
         pagePath,
       };
       createPageFunction({
-        path: pagePath,
+        path: `/recipes/${pagePath}`,
         component: template,
         context: {
           food,

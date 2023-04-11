@@ -138,7 +138,7 @@ function AutoCompleteSearch(
       };
       await addSearchEntry(searchData);
     }
-    const path = spaceToDashes(item.name);
+    const path = `recipes/${spaceToDashes(item.name)}`;
     navigate(path);
   };
 

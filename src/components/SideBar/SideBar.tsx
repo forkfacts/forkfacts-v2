@@ -84,6 +84,7 @@ const SideBar: FC<SideBarProps> = ({
             ml: drawerWidthExpanded ? 0 : spacing(-1),
             display: "flex",
             flexDirection: "column",
+            mt: spacing(3),
           }}
         >
           <ForLoops each={sidebarItems}>

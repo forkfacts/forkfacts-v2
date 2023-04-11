@@ -7,6 +7,8 @@ export const useStyles = makeStyles(
       [breakpoints.up("md")]: {
         maxWidth: "100%",
         marginTop: spacing(10),
+        paddingLeft: "55px",
+        paddingRight: "55px",
       },
       [breakpoints.down("sm")]: {
         maxWidth: "100%",

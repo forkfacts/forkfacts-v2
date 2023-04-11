@@ -1,8 +1,13 @@
 import { Box, Button, Typography, useMediaQuery, useTheme } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import CodeIcon from "@mui/icons-material/Code";
 import ShareOutlinedIcon from "@mui/icons-material/ShareOutlined";
-import { RdiMobileTable, RdiDesktopTable, SearchNutritionFilter } from "@forkfacts/components";
+import {
+  RdiMobileTable,
+  RdiDesktopTable,
+  SearchNutritionFilter,
+  SharedSocialMedia,
+} from "@forkfacts/components";
 import { RdiNutritionTableRow, SelectedNutrient } from "@forkfacts/models";
 import { customTheme } from "../../../themes/theme";
 import { useStore } from "../../../store/store";
@@ -24,7 +29,13 @@ const RdiViewNutrients: React.FC<RdiViewNutrientsProps> = ({
 }) => {
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.down("md"));
+  const [isSharedMediaOpen, setIsSharedMediaOpen] = useState(false);
   const { selectedNutrients } = useStore((state) => state);
+  let fullUrl = "";
+
+  if (typeof window !== "undefined") {
+    fullUrl = window.location.href;
+  }
   return (
     <Box>
       <Box>
@@ -37,7 +48,7 @@ const RdiViewNutrients: React.FC<RdiViewNutrientsProps> = ({
             mb: theme.spacing(4),
           }}
         >
-          Recommended Daily{" "}
+          Recommended Daily Intake
         </Typography>
       </Box>
       <Box
@@ -136,6 +147,7 @@ const RdiViewNutrients: React.FC<RdiViewNutrientsProps> = ({
           startIcon={<ShareOutlinedIcon />}
           color="primary"
           variant="contained"
+          onClick={() => setIsSharedMediaOpen(true)}
           sx={{
             pr: theme.spacing(3),
             pl: theme.spacing(2),
@@ -146,6 +158,12 @@ const RdiViewNutrients: React.FC<RdiViewNutrientsProps> = ({
           Share
         </Button>
       </Box>
+      <SharedSocialMedia
+        isSharedMediaOpen={isSharedMediaOpen}
+        setIsSharedMediaOpen={setIsSharedMediaOpen}
+        link={fullUrl}
+        shareName={" Recommended Daily Intake"}
+      />
     </Box>
   );
 };

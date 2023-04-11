@@ -330,8 +330,6 @@ export interface MultipleSelectsProps {
   values: filterItem[];
   onSelectedValue: Dispatch<SetStateAction<NutrientType[]>>;
   RenderSelectButton?: String | JSX.Element;
-  open: boolean;
-  setIsOpen: Dispatch<SetStateAction<boolean>>;
   multiselectTitle: string;
   margin: any;
 }

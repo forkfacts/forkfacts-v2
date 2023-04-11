@@ -18,7 +18,7 @@
 }
 
 .slick-dots {
-  overflow: hidden !important;
+  overflow: visible !important;
   display: flex;
   position: relative;
 }
@@ -26,4 +26,8 @@
 .slick-dots li {
   margin: 100px 0 0 0 !important;
   background-color: #ffffff !important;
+}
+
+.slick-list {
+  overflow: visible !important;
 }

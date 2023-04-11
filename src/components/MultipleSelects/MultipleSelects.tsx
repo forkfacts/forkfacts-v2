@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import Checkbox from "@mui/material/Checkbox";
 import { ForLoops } from "@forkfacts/helpers";
-import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
+import { Box, Button, Typography, useTheme } from "@mui/material";
 import { MultipleSelectsProps, filterItem } from "@forkfacts/models";
 import CloseIcon from "@mui/icons-material/Close";
-
+import FilterListOutlinedIcon from "@mui/icons-material/FilterListOutlined";
 type NutrientType = {
   checked: boolean;
 } & filterItem;
@@ -13,20 +13,21 @@ const MultipleSelects: React.FC<MultipleSelectsProps> = ({
   values,
   onSelectedValue,
   RenderSelectButton,
-  open,
-  setIsOpen,
   multiselectTitle,
   margin = 0,
 }) => {
   const theme = useTheme();
-  const mobile = useMediaQuery(theme.breakpoints.down("md"));
   const ref = useRef<HTMLDivElement>(null);
-  const newNutrients: NutrientType[] = [...values].map((item) => {
-    return {
-      name: item.name,
-      checked: false,
-    };
-  });
+  let newNutrients: NutrientType[] = [];
+  const [open, setIsOpen] = useState(false);
+  if (values?.length) {
+    newNutrients = [...values]?.map((item) => {
+      return {
+        name: item.name,
+        checked: false,
+      };
+    });
+  }
   const [selectedNutrients, setSelectNutrients] = useState<NutrientType[]>([...newNutrients]);
 
   const onSelectButtonItem = (name: string, index: number) => {
@@ -43,6 +44,7 @@ const MultipleSelects: React.FC<MultipleSelectsProps> = ({
         return item;
       }
     });
+    setIsOpen(true);
     return setSelectNutrients(results);
   };
 
@@ -62,7 +64,6 @@ const MultipleSelects: React.FC<MultipleSelectsProps> = ({
         setIsOpen(false);
       }
     }
-
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
@@ -70,17 +71,21 @@ const MultipleSelects: React.FC<MultipleSelectsProps> = ({
   }, [ref]);
 
   useEffect(() => {
-    if (selectedNutrients) {
-      onSelectedValue(selectedNutrients);
-    }
+    const selectedItem = selectedNutrients.filter((item) => item.checked === true);
+    onSelectedValue(selectedItem);
   }, [selectedNutrients]);
 
   return (
-    <Box
-      sx={{ cursor: "pointer", zIndex: theme.zIndex.mobileStepper, position: "relative" }}
-      ref={ref}
-    >
-      <>{RenderSelectButton}</>
+    <Box sx={{ display: "block", zIndex: theme.zIndex.appBar }} ref={ref}>
+      <Button>
+        <FilterListOutlinedIcon
+          color="primary"
+          onClick={() => {
+            setIsOpen(!open);
+            onSelectedValue([]);
+          }}
+        />
+      </Button>
       {open && (
         <Box
           component="div"
@@ -94,9 +99,9 @@ const MultipleSelects: React.FC<MultipleSelectsProps> = ({
             paddingTop: theme.spacing(2),
             paddingLeft: theme.spacing(2),
             paddingRight: theme.spacing(2),
-            zIndex: theme.zIndex.modal,
+            zIndex: theme.zIndex.appBar,
             backgroundColor: theme.palette.common.white,
-            ml: mobile ? theme.spacing(-17.5) : margin,
+            ml: margin ? margin : theme.spacing(-17.5),
             borderRadius: theme.spacing(1),
           }}
           boxShadow={1}
@@ -122,7 +127,9 @@ const MultipleSelects: React.FC<MultipleSelectsProps> = ({
             </Typography>
             <CloseIcon
               sx={{ width: theme.spacing(2), height: theme.spacing(2) }}
-              onClick={() => setIsOpen(false)}
+              onClick={() => {
+                setIsOpen(false);
+              }}
             />
           </Box>
           <Box

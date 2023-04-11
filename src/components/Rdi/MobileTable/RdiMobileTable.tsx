@@ -14,12 +14,13 @@ import {
   TableRow,
 } from "@mui/material";
 import { ForLoops } from "@forkfacts/helpers";
-import { RdiDesktopTableProps, RdiNutritionTableRow } from "@forkfacts/models";
+import { RdiDesktopTableProps, RdiNutritionTableRow, filterItem } from "@forkfacts/models";
 import FilterListOutlinedIcon from "@mui/icons-material/FilterListOutlined";
 import LaunchIcon from "@mui/icons-material/Launch";
 import MagicSliderDots from "react-magic-slider-dots";
 import "react-magic-slider-dots/dist/magic-dots.css";
 import "./index.css";
+import { MultipleSelects } from "@forkfacts/components";
 
 interface RowsByNutrientGroup {
   nutrientGroup: string;
@@ -29,6 +30,9 @@ interface RowsByNutrientGroup {
 const RdiMobileTable: React.FC<RdiDesktopTableProps> = ({ rows }) => {
   const theme = useTheme();
   const [tableRows, setTableRows] = useState<RowsByNutrientGroup[]>([]);
+  const [open, setIsOpen] = useState(false);
+  const [onSelectRows, setOnSelectedRows] = useState<filterItem[]>([]);
+
   const settings = {
     dots: true,
     infinite: true,
@@ -37,10 +41,22 @@ const RdiMobileTable: React.FC<RdiDesktopTableProps> = ({ rows }) => {
     slidesToScroll: 1,
     fade: true,
     adaptiveHeight: true,
+    afterChange: () => {
+      setOnSelectedRows([]);
+    },
+    beforeChange: () => {
+      setOnSelectedRows([]);
+    },
     appendDots: (dots: any) => {
+      <FilterListOutlinedIcon
+        color="primary"
+        onClick={() => {
+          setIsOpen(!open);
+          setOnSelectedRows([]);
+        }}
+      />;
       return <MagicSliderDots dots={dots} numDotsToShow={15} dotWidth={20} />;
     },
-    swipe: false,
   };
   function sortRowsByNutrientGroup(rowsByGroup: RowsByNutrientGroup[]) {
     rowsByGroup.sort((a, b) => {
@@ -83,7 +99,7 @@ const RdiMobileTable: React.FC<RdiDesktopTableProps> = ({ rows }) => {
     setTableRows(sortRowsByNutrientGroup(rowsByNutrientGroupArray));
   }, [rows]);
 
-  console.log(tableRows);
+  console.log(onSelectRows);
 
   return (
     <Box sx={{ mb: theme.spacing(15), background: " #FFFFFF" }}>
@@ -100,7 +116,7 @@ const RdiMobileTable: React.FC<RdiDesktopTableProps> = ({ rows }) => {
               backgroundColor: theme.palette.common.white,
             }}
           >
-            <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+            <Box sx={{ display: "flex", justifyContent: "space-between", position: "relative" }}>
               <Typography
                 variant="titleMedium"
                 sx={{
@@ -111,7 +127,16 @@ const RdiMobileTable: React.FC<RdiDesktopTableProps> = ({ rows }) => {
               >
                 {item.nutrientGroup}
               </Typography>
-              <FilterListOutlinedIcon color="primary" />
+              <Box sx={{ mr: theme.spacing(2), zIndex: theme.zIndex.appBar, position: "relative" }}>
+                <MultipleSelects
+                  values={item.rows?.map((item) => {
+                    return { name: item.nutrient };
+                  })}
+                  margin={theme.spacing(-30.5)}
+                  multiselectTitle={item.nutrientGroup}
+                  onSelectedValue={setOnSelectedRows}
+                />
+              </Box>
             </Box>
             {item.rows.length ? (
               <Box sx={{ mt: theme.spacing(1) }}>
@@ -160,9 +185,16 @@ const RdiMobileTable: React.FC<RdiDesktopTableProps> = ({ rows }) => {
                       </TableRow>
                     </TableHead>
                     <TableBody>
-                      <ForLoops each={item.rows}>
+                      <ForLoops
+                        each={
+                          onSelectRows.length === 0
+                            ? item.rows
+                            : item.rows.filter((row) => {
+                                return onSelectRows.some((filter) => filter.name === row.nutrient);
+                              })
+                        }
+                      >
                         {(subItem, index2) => {
-                          console.log(subItem);
                           return (
                             <TableRow
                               key={index2}
@@ -205,6 +237,7 @@ const RdiMobileTable: React.FC<RdiDesktopTableProps> = ({ rows }) => {
                                     display: "flex",
                                     alignItems: "center",
                                     justifyContent: "flex-start",
+                                    ml: theme.spacing(7),
                                   }}
                                 >
                                   <LaunchIcon sx={{ mr: theme.spacing(1) }} />

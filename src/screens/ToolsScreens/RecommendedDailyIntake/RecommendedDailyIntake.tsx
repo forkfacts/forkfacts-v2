@@ -28,6 +28,7 @@ interface RecommendedDailyIntakeProps {
   setSelectedGender: (gender: string) => void;
   rows: RdiNutritionTableRow[];
   nutritionFilters: SelectedNutrient[];
+  totalRdiNutrients: number;
 }
 
 function AgeColumn({
@@ -50,7 +51,7 @@ function AgeColumn({
             display: "flex",
             justifyContent: "flex-start",
             alignItems: "center",
-            mb: theme.spacing(2),
+            mb: theme.spacing(1.2),
           }}
           onClick={() => handleSelectAge(item)}
         >
@@ -99,6 +100,7 @@ function AgeColumn({
                 sx={{
                   fontWeight: customTheme.typography.fontWeightLight,
                   color: customTheme.palette.customGray.main,
+                  textAlign: "right",
                 }}
               >
                 {item.start} {item.ageUnit}
@@ -120,6 +122,7 @@ const RecommendedDailyIntake: React.FC<RecommendedDailyIntakeProps> = ({
   selectedGender,
   rows,
   nutritionFilters,
+  totalRdiNutrients,
 }) => {
   const classes = useStyles();
   const theme = useTheme();
@@ -144,10 +147,10 @@ const RecommendedDailyIntake: React.FC<RecommendedDailyIntakeProps> = ({
     setSelectedAge(newAge);
   };
 
-  const columns = Math.ceil(ages.length / 4);
+  const columns = Math.ceil(ages.length / 3);
   const ageChunks = Array(columns)
     .fill(null)
-    .map((_, i) => ages.slice(i * 4, i * 4 + 4));
+    .map((_, i) => ages.slice(i * 3, i * 3 + 3));
 
   const onOpenRdiTable = (): void => {
     setIsOpenRdiTable(true);
@@ -165,8 +168,7 @@ const RecommendedDailyIntake: React.FC<RecommendedDailyIntakeProps> = ({
           <Box
             sx={{
               px: mobile ? theme.spacing(2) : 0,
-              pt: theme.spacing(5),
-              // display: isOpenRdiTable ? "none" : "block",
+              pt: theme.spacing(3),
             }}
           >
             <Typography
@@ -178,28 +180,26 @@ const RecommendedDailyIntake: React.FC<RecommendedDailyIntakeProps> = ({
             >
               Recommended Daily Intake
             </Typography>
-            <Box sx={{ position: "relative", height: "100vh", width: "100%" }}>
-              <Box sx={{ mt: mobile ? theme.spacing(3) : theme.spacing(4.5) }}>
+            <Box sx={{ position: "relative", overflow: "hidden", width: "100%" }}>
+              <Box sx={{ mt: mobile ? theme.spacing(3) : theme.spacing(3.5) }}>
                 <Typography
                   variant="titleMedium"
                   sx={{
-                    fontWeight: customTheme.typography.fontWeightLight,
+                    fontWeight: customTheme.typography.fontWeightRegular,
                     color: customTheme.palette.customGray.textDark,
                   }}
                 >
                   Choose a life stage
                 </Typography>
-
                 <Grid
                   container
-                  md={7}
                   columns={{ xs: 12, sm: 12, md: 12 }}
                   spacing={2}
-                  sx={{ mt: theme.spacing(1.5) }}
+                  sx={{ mt: theme.spacing(0.3), maxWidth: theme.spacing(105) }}
                 >
                   <ForLoops each={genders}>
                     {(item, index) => (
-                      <Grid item key={index} md={4} xs={4}>
+                      <Grid item key={index} xs={4}>
                         <Box
                           sx={{
                             position: "relative",
@@ -212,6 +212,7 @@ const RecommendedDailyIntake: React.FC<RecommendedDailyIntakeProps> = ({
                                 ? customTheme.palette.primary.main
                                 : customTheme.palette.common.white,
                             height: mobile ? theme.spacing(15) : theme.spacing(18.75),
+                            width: mobile ? "auto" : "264px",
                             p: theme.spacing(1.25),
                             cursor: "pointer",
                             border: "1px solid #F2EFFF",
@@ -237,7 +238,7 @@ const RecommendedDailyIntake: React.FC<RecommendedDailyIntakeProps> = ({
                                 selectedGender.toLowerCase() === item.name.toLowerCase()
                                   ? customTheme.palette.common.white
                                   : customTheme.palette.customGray.main,
-                              fontWeight: theme.typography.fontWeightRegular,
+                              fontWeight: customTheme.typography.fontWeightRegular,
                               mt: theme.spacing(1),
                               textTransform: "capitalize",
                             }}
@@ -253,11 +254,11 @@ const RecommendedDailyIntake: React.FC<RecommendedDailyIntakeProps> = ({
                   </ForLoops>
                 </Grid>
               </Box>
-              <Box sx={{ mt: theme.spacing(4.5) }}>
+              <Box sx={{ mt: theme.spacing(4) }}>
                 <Typography
                   variant="titleMedium"
                   sx={{
-                    fontWeight: customTheme.typography.fontWeightLight,
+                    fontWeight: customTheme.typography.fontWeightRegular,
                     color: customTheme.palette.customGray.textDark,
                   }}
                 >
@@ -276,7 +277,7 @@ const RecommendedDailyIntake: React.FC<RecommendedDailyIntakeProps> = ({
                       width: "100%",
                       display: "flex",
                       alignItems: "flex-start",
-                      columnGap: mobile ? theme.spacing(2) : theme.spacing(15),
+                      columnGap: mobile ? theme.spacing(2) : theme.spacing(10),
                       border: "1px solid #F2EFFF",
                       borderRadius: theme.spacing(1),
                       p: theme.spacing(1),
@@ -301,7 +302,7 @@ const RecommendedDailyIntake: React.FC<RecommendedDailyIntakeProps> = ({
                 sx={{
                   display: "flex",
                   justifyContent: "flex-end",
-                  my: theme.spacing(8.75),
+                  my: theme.spacing(6.75),
                 }}
               >
                 <Button
@@ -339,6 +340,7 @@ const RecommendedDailyIntake: React.FC<RecommendedDailyIntakeProps> = ({
               nutritionFilterItems={nutritionFilters}
               onCloseRdiTable={onCloseRdiTable}
               rows={rows}
+              totalRdiNutrients={totalRdiNutrients}
             />
           </Box>
         )}

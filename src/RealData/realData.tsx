@@ -14,7 +14,7 @@ import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 import { lifeStageItem, MenuItem, RdiAge } from "@forkfacts/models";
 
 export const menuItems: MenuItem[] = [
-  { label: "Food", Icon: EggAltOutlinedIcon, link: "/" },
+  { label: "Food", Icon: EggAltOutlinedIcon, link: "" },
   { label: "Recipes", Icon: EmojiFoodBeverageOutlinedIcon, link: "/recipes/" },
   { label: "Library", Icon: LibraryBooksOutlinedIcon, link: "/library/" },
   { label: "Cookbook", Icon: AutoStoriesOutlinedIcon, link: "/Cookbook/" },

@@ -18,6 +18,7 @@ interface RdiViewNutrientsProps {
   gender: string;
   onCloseRdiTable: () => void;
   rows: RdiNutritionTableRow[];
+  totalRdiNutrients: number;
 }
 
 const RdiViewNutrients: React.FC<RdiViewNutrientsProps> = ({
@@ -26,6 +27,7 @@ const RdiViewNutrients: React.FC<RdiViewNutrientsProps> = ({
   nutritionFilterItems,
   onCloseRdiTable,
   rows,
+  totalRdiNutrients,
 }) => {
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.down("md"));
@@ -36,6 +38,7 @@ const RdiViewNutrients: React.FC<RdiViewNutrientsProps> = ({
   if (typeof window !== "undefined") {
     fullUrl = window.location.href;
   }
+
   return (
     <Box>
       <Box>
@@ -65,7 +68,7 @@ const RdiViewNutrients: React.FC<RdiViewNutrientsProps> = ({
             color: theme.palette.customGray.dark,
             display: "flex",
             alignItems: "center",
-            columnGap: theme.spacing(0.3),
+            columnGap: mobile ? theme.spacing(0.3) : theme.spacing(1),
           }}
         >
           Showing for
@@ -78,9 +81,9 @@ const RdiViewNutrients: React.FC<RdiViewNutrientsProps> = ({
           </Typography>
           <Box
             sx={{
-              height: theme.spacing(2.5),
+              height: theme.spacing(3.5),
               backgroundColor: theme.palette.customGray.dark,
-              width: theme.spacing(0.2),
+              width: theme.spacing(0.12),
             }}
           />{" "}
           <Typography
@@ -98,7 +101,7 @@ const RdiViewNutrients: React.FC<RdiViewNutrientsProps> = ({
             alignItems: "flex-end",
             flexDirection: "column",
             justifyContent: "flex-end",
-            rowGap: theme.spacing(1),
+            rowGap: theme.spacing(2),
           }}
         >
           <SearchNutritionFilter
@@ -107,26 +110,28 @@ const RdiViewNutrients: React.FC<RdiViewNutrientsProps> = ({
             margin={theme.spacing(-35)}
             displayListIcon={true}
           />
-          <Typography
-            variant="titleMedium"
-            sx={{
-              color: theme.palette.customGray.dark,
-            }}
-          >
-            Showing{" "}
+          {selectedNutrients.length ? (
             <Typography
-              component="span"
+              variant="titleMedium"
               sx={{
-                color: theme.palette.customGray.main,
+                color: theme.palette.customGray.dark,
               }}
             >
-              {`${selectedNutrients.length} of out ${rows.length}`}
-            </Typography>{" "}
-            nutrients
-          </Typography>
+              Showing{" "}
+              <Typography
+                component="span"
+                sx={{
+                  color: theme.palette.customGray.main,
+                }}
+              >
+                {`${rows.length} of out ${totalRdiNutrients}`}
+              </Typography>{" "}
+              nutrients
+            </Typography>
+          ) : null}
         </Box>
       </Box>
-      <Box sx={{ mt: theme.spacing(5) }}>
+      <Box sx={{ mt: theme.spacing(4) }}>
         {!mobile ? <RdiDesktopTable rows={rows} /> : <RdiMobileTable rows={rows} />}
       </Box>
       <Box sx={{ display: "flex", justifyContent: "flex-end", mb: theme.spacing(10) }}>

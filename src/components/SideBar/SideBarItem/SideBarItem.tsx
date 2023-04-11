@@ -28,12 +28,9 @@ export default function SideBarItem({
       key={index}
       disablePadding
       sx={{
-        backgroundColor:
-          selectedRoute.toLowerCase().startsWith(item.link.toLowerCase()) ||
-          (item.link.toLowerCase() === "/tools" &&
-            selectedRoute.toLowerCase().startsWith(item.link.toLowerCase() + "/"))
-            ? theme.palette.primary.light
-            : theme.palette.background.default,
+        backgroundColor: selectedRoute.toLowerCase().startsWith(item.link.toLowerCase())
+          ? theme.palette.primary.light
+          : theme.palette.background.default,
       }}
     >
       <ListItemButton
@@ -51,12 +48,9 @@ export default function SideBarItem({
             width: theme.spacing(3),
             height: theme.spacing(3),
             fontWeight: 500,
-            color:
-              selectedRoute.toLowerCase().startsWith(item.link.toLowerCase()) ||
-              (item.link.toLowerCase() === "/tools" &&
-                selectedRoute.toLowerCase().startsWith(item.link.toLowerCase() + "/"))
-                ? theme.palette.primary.main
-                : theme.palette.customGray.dark,
+            color: selectedRoute.toLowerCase().startsWith(item.link.toLowerCase())
+              ? theme.palette.primary.main
+              : theme.palette.customGray.dark,
           }}
         />
         <ListItemText
@@ -66,12 +60,9 @@ export default function SideBarItem({
               sx={{
                 ml: drawerWidthExpanded ? theme.spacing(2) : theme.spacing(0),
                 fontWeight: theme.typography.fontWeightRegular,
-                color:
-                  selectedRoute.toLowerCase().startsWith(item.link.toLowerCase()) ||
-                  (item.link.toLowerCase() === "/tools" &&
-                    selectedRoute.toLowerCase().startsWith(item.link.toLowerCase() + "/"))
-                    ? theme.palette.primary.main
-                    : theme.palette.customGray.dark,
+                color: selectedRoute.toLowerCase().startsWith(item.link.toLowerCase())
+                  ? theme.palette.primary.main
+                  : theme.palette.customGray.dark,
               }}
             >
               {item.label}

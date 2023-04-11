@@ -125,7 +125,7 @@ const RdiDesktopTable: React.FC<RdiDesktopTableProps> = ({ rows }) => {
                   sx={{
                     color: theme.palette.customGray.dark,
                     fontWeight: theme.typography.fontWeightRegular,
-                    ml: theme.spacing(-7),
+                    mr: theme.spacing(10),
                   }}
                 >
                   Top sources
@@ -184,6 +184,16 @@ const RdiDesktopTable: React.FC<RdiDesktopTableProps> = ({ rows }) => {
                             </Typography>
                           </Box>
                         </TableCell>
+                        <TableCell
+                          component="th"
+                          scope="row"
+                          sx={{ borderBottom: "1px solid #F3EFF4" }}
+                        />
+                        <TableCell
+                          component="th"
+                          scope="row"
+                          sx={{ borderBottom: "1px solid #F3EFF4" }}
+                        />
                       </TableRow>
                       {!isCollapsed(row.nutrientGroup) &&
                         row?.rows.map((content, index2) => (
@@ -221,6 +231,7 @@ const RdiDesktopTable: React.FC<RdiDesktopTableProps> = ({ rows }) => {
                                     fontWeight: theme.typography.fontWeightLight,
                                     textAlign: "right",
                                     mr: theme.spacing(1),
+                                    textTransform: "lowercase",
                                   }}
                                 >
                                   {content?.recommendedAmount} {content?.recommendedUnit}
@@ -248,81 +259,6 @@ const RdiDesktopTable: React.FC<RdiDesktopTableProps> = ({ rows }) => {
                         ))}
                     </React.Fragment>
                   );
-                }
-                if (!row?.nutrientGroup) {
-                  return sortNutritionTableRows(row?.rows)?.map((innerRow, index) => {
-                    return (
-                      <React.Fragment key={index}>
-                        <TableRow sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
-                          <TableCell
-                            component="th"
-                            scope="row"
-                            sx={{ borderBottom: "1px solid #F3EFF4" }}
-                          >
-                            <Box sx={{ display: "flex", alignItems: "center" }}>
-                              {isCollapsed(row?.nutrientGroup) ? (
-                                <ArrowRightIcon
-                                  onClick={() => toggleCollapse(row.nutrientGroup)}
-                                  sx={{
-                                    cursor: "pointer",
-                                    width: theme.spacing(3),
-                                    height: theme.spacing(3),
-                                    visibility: "hidden",
-                                  }}
-                                />
-                              ) : (
-                                <>
-                                  <ArrowDropDownIcon
-                                    onClick={() => toggleCollapse(row.nutrientGroup)}
-                                    sx={{ cursor: "pointer", visibility: "hidden" }}
-                                  />
-                                </>
-                              )}
-                              <Typography
-                                variant="titleMedium"
-                                sx={{
-                                  color: theme.palette.customGray.main,
-                                  fontWeight: theme.typography.fontWeightRegular,
-                                }}
-                              >
-                                {innerRow?.nutrient}
-                              </Typography>
-                            </Box>
-                          </TableCell>
-                          <TableCell align="right" sx={{ borderBottom: "1px solid #F3EFF4" }}>
-                            {innerRow?.recommendedAmount && (
-                              <Typography
-                                variant="titleMedium"
-                                sx={{
-                                  color: theme.palette.customGray.main,
-                                  fontWeight: theme.typography.fontWeightRegular,
-                                  pr: "20px",
-                                }}
-                              >
-                                {innerRow?.recommendedAmount} {innerRow?.recommendedUnit}
-                              </Typography>
-                            )}
-                          </TableCell>
-                          <TableCell align="right" sx={{ borderBottom: "1px solid #F3EFF4" }}>
-                            <Typography
-                              component="span"
-                              variant="labelLarge"
-                              color="primary"
-                              sx={{
-                                fontWeight: theme.typography.fontWeightRegular,
-                                display: "flex",
-                                alignItems: "center",
-                                justifyContent: "flex-end",
-                              }}
-                            >
-                              <LaunchIcon sx={{ mr: theme.spacing(2) }} />
-                              View top sources
-                            </Typography>
-                          </TableCell>
-                        </TableRow>
-                      </React.Fragment>
-                    );
-                  });
                 }
               })}
             </>

@@ -201,6 +201,14 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
               variant="outlined"
               color="primary"
               onClick={() => setOpen(!open)}
+              sx={{
+                fontSize: theme.typography.labelLarge.fontSize,
+                fontWeight: theme.typography.fontWeightRegular,
+                lineHeight: "20px",
+                py: theme.spacing(1.25),
+                pr: theme.spacing(3),
+                pl: theme.spacing(2),
+              }}
             >
               Filter nutrients
             </Button>

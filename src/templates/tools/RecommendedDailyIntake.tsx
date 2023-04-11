@@ -133,6 +133,7 @@ const RecommendedDailyIntakePage: React.FC<Props> = ({ pageContext }) => {
         setSelectedGender={setSelectedGender}
         ages={selectedGender ? ageRanges : allAges}
         rows={rows}
+        totalRdiNutrients={staticRows.length}
       />
     </Box>
   );

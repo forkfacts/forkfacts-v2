@@ -40,6 +40,7 @@ const ToolsScreen: React.FC<ToolsScreenProps> = ({ menuItems }) => {
                     borderRadius: theme.spacing(1),
                     cursor: "pointer",
                     columnGap: theme.spacing(3),
+                    width: mobile ? "auto" : "456px",
                   }}
                   onClick={onRoute}
                 >

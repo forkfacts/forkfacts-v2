@@ -4,12 +4,10 @@ import { ComponentMeta, ComponentStory } from "@storybook/react";
 import EggAltOutlinedIcon from "@mui/icons-material/EggAltOutlined";
 import EmojiFoodBeverageOutlinedIcon from "@mui/icons-material/EmojiFoodBeverageOutlined";
 import LibraryBooksOutlinedIcon from "@mui/icons-material/LibraryBooksOutlined";
-import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
-import AutoStoriesOutlinedIcon from "@mui/icons-material/AutoStoriesOutlined";
-import HomeRepairServiceOutlinedIcon from "@mui/icons-material/HomeRepairServiceOutlined";
-import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
-import { MenuItem, PopularFrequentSearchProps, recommendationType } from "@forkfacts/models";
+
+import { PopularFrequentSearchProps, recommendationType } from "@forkfacts/models";
 import { HomeScreen } from "@forkfacts/screens";
+import { menuItems } from "../../RealData/realData";
 
 export default {
   title: "Screens/SearchScreen/HomeScreen",
@@ -20,16 +18,6 @@ export default {
     },
   },
 } as ComponentMeta<typeof HomeScreen>;
-
-export const menuItems: MenuItem[] = [
-  { label: "Food", Icon: EggAltOutlinedIcon, link: "/" },
-  { label: "Recipes", Icon: EmojiFoodBeverageOutlinedIcon, link: "/recipes" },
-  { label: "Library", Icon: LibraryBooksOutlinedIcon, link: "/library" },
-  { label: "Cookbook", Icon: AutoStoriesOutlinedIcon, link: "/Cookbook" },
-  { label: "Grocery", Icon: ShoppingCartOutlinedIcon, link: "/grocery" },
-  { label: "Tools", Icon: HomeRepairServiceOutlinedIcon, link: "/tools" },
-  { label: "Help", Icon: HelpOutlineOutlinedIcon, link: "/help" },
-];
 
 const navbarItems = [
   { label: "Food", Icon: EggAltOutlinedIcon, link: "/food" },

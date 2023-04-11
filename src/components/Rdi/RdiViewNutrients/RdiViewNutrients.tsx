@@ -139,6 +139,7 @@ const RdiViewNutrients: React.FC<RdiViewNutrientsProps> = ({
             py: theme.spacing(1.25),
             mr: theme.spacing(2),
             borderRadius: theme.spacing(1),
+            visibility: "hidden",
           }}
         >
           Embed

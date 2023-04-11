@@ -1,7 +1,7 @@
 import { SEO } from "@forkfacts/components";
 import { RecommendedDailyIntake } from "@forkfacts/screens";
 import { Box } from "@mui/material";
-import { RdiAge, RdiNutritionTableRow, SelectedNutrient } from "@forkfacts/models";
+import { RdiAge, RdiNutritionTableRow } from "@forkfacts/models";
 import { menuItems, lifeStageItems, allAges } from "../../RealData/realData";
 import {
   getAgeRangesForLifeStage,

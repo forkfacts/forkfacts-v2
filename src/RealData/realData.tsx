@@ -15,12 +15,12 @@ import { lifeStageItem, MenuItem, RdiAge } from "@forkfacts/models";
 
 export const menuItems: MenuItem[] = [
   { label: "Food", Icon: EggAltOutlinedIcon, link: "/" },
-  { label: "Recipes", Icon: EmojiFoodBeverageOutlinedIcon, link: "/recipes" },
-  { label: "Library", Icon: LibraryBooksOutlinedIcon, link: "/library" },
-  { label: "Cookbook", Icon: AutoStoriesOutlinedIcon, link: "/Cookbook" },
-  { label: "Grocery", Icon: ShoppingCartOutlinedIcon, link: "/grocery" },
-  { label: "Tools", Icon: HomeRepairServiceOutlinedIcon, link: "/tools" },
-  { label: "Help", Icon: HelpOutlineOutlinedIcon, link: "/help" },
+  { label: "Recipes", Icon: EmojiFoodBeverageOutlinedIcon, link: "/recipes/" },
+  { label: "Library", Icon: LibraryBooksOutlinedIcon, link: "/library/" },
+  { label: "Cookbook", Icon: AutoStoriesOutlinedIcon, link: "/Cookbook/" },
+  { label: "Grocery", Icon: ShoppingCartOutlinedIcon, link: "/grocery/" },
+  { label: "Tools", Icon: HomeRepairServiceOutlinedIcon, link: "/tools/" },
+  { label: "Help", Icon: HelpOutlineOutlinedIcon, link: "/help/" },
 ];
 
 export const tabItems = [

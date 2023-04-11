@@ -14,7 +14,7 @@ const SideBar: FC<SideBarProps> = ({
 }) => {
   const container = window ? () => window().document.body : undefined;
   const { transitions, spacing } = useTheme();
-  const [selectedItem, setSelectedItem] = useState<string>("");
+  const [selectedItem, setSelectedItem] = useState<string>("Food");
 
   const handleSelectedItem = (name: string, item: MenuItem) => {
     setSelectedItem(name);

@@ -8,11 +8,7 @@ import CompareArrowsOutlinedIcon from "@mui/icons-material/CompareArrowsOutlined
 import { Baby, Kids, Lactation, Male, PregnantWoman, Woman } from "@forkfacts/icons";
 import FastfoodOutlinedIcon from "@mui/icons-material/FastfoodOutlined";
 import SmokingRoomsOutlinedIcon from "@mui/icons-material/SmokingRoomsOutlined";
-import LibraryBooksOutlinedIcon from "@mui/icons-material/LibraryBooksOutlined";
-import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
-import AutoStoriesOutlinedIcon from "@mui/icons-material/AutoStoriesOutlined";
-import HomeRepairServiceOutlinedIcon from "@mui/icons-material/HomeRepairServiceOutlined";
-import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
+import { menuItems } from "../../RealData/realData";
 import { DetailsPageScreen } from "@forkfacts/screens";
 import {
   FoodWithSameName,
@@ -33,16 +29,6 @@ export default {
     },
   },
 } as ComponentMeta<typeof DetailsPageScreen>;
-
-export const menuItems: MenuItem[] = [
-  { label: "Food", Icon: EggAltOutlinedIcon, link: "/" },
-  { label: "Recipes", Icon: EmojiFoodBeverageOutlinedIcon, link: "/recipes" },
-  { label: "Library", Icon: LibraryBooksOutlinedIcon, link: "/library" },
-  { label: "Cookbook", Icon: AutoStoriesOutlinedIcon, link: "/Cookbook" },
-  { label: "Grocery", Icon: ShoppingCartOutlinedIcon, link: "/grocery" },
-  { label: "Tools", Icon: HomeRepairServiceOutlinedIcon, link: "/tools" },
-  { label: "Help", Icon: HelpOutlineOutlinedIcon, link: "/help" },
-];
 
 const tabs = [
   { label: "Nutrition", Icon: FastfoodOutlinedIcon, link: "/food" },

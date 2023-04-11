@@ -1,16 +1,21 @@
 import { ListItem, ListItemText, Typography, useTheme, ListItemButton } from "@mui/material";
 import { SideBarItemProps } from "@forkfacts/models";
 import { navigate } from "gatsby";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 export default function SideBarItem({
   index,
-  selectedItem = "Food",
   drawerWidthExpanded,
   item,
   handleSelectedItem,
 }: SideBarItemProps) {
   const theme = useTheme();
+  const [selectedRoute, setSelectedRoute] = useState("");
+
+  useEffect(() => {
+    const path = window.location.pathname;
+    setSelectedRoute(path);
+  }, []);
 
   const onRoutePage = () => {
     navigate(item.link);
@@ -24,7 +29,9 @@ export default function SideBarItem({
       disablePadding
       sx={{
         backgroundColor:
-          selectedItem === item.label
+          selectedRoute.toLowerCase().startsWith(item.link.toLowerCase()) ||
+          (item.link.toLowerCase() === "/tools" &&
+            selectedRoute.toLowerCase().startsWith(item.link.toLowerCase() + "/"))
             ? theme.palette.primary.light
             : theme.palette.background.default,
       }}
@@ -45,7 +52,9 @@ export default function SideBarItem({
             height: theme.spacing(3),
             fontWeight: 500,
             color:
-              selectedItem === item.label
+              selectedRoute.toLowerCase().startsWith(item.link.toLowerCase()) ||
+              (item.link.toLowerCase() === "/tools" &&
+                selectedRoute.toLowerCase().startsWith(item.link.toLowerCase() + "/"))
                 ? theme.palette.primary.main
                 : theme.palette.customGray.dark,
           }}
@@ -58,7 +67,9 @@ export default function SideBarItem({
                 ml: drawerWidthExpanded ? theme.spacing(2) : theme.spacing(0),
                 fontWeight: theme.typography.fontWeightRegular,
                 color:
-                  selectedItem === item.label
+                  selectedRoute.toLowerCase().startsWith(item.link.toLowerCase()) ||
+                  (item.link.toLowerCase() === "/tools" &&
+                    selectedRoute.toLowerCase().startsWith(item.link.toLowerCase() + "/"))
                     ? theme.palette.primary.main
                     : theme.palette.customGray.dark,
               }}

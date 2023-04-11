@@ -50,7 +50,10 @@ const RecommendedDailyIntakePage: React.FC<Props> = ({ pageContext }) => {
           nutrient.ageStart === selectedAge.start &&
           (nutrient.ageEnd === selectedAge.end || nutrient.ageEnd === null) &&
           nutrient.ageUnit.toLowerCase() === selectedAge.ageUnit.toLowerCase() &&
-          nutrient.applicableFor.toLowerCase() === selectedGender.toLowerCase()
+          nutrient.applicableFor.toLowerCase() ===
+            (selectedGender.toLowerCase() === "Pregnant".toLowerCase()
+              ? "pregnancy"
+              : selectedGender.toLowerCase())
         ) {
           return nutrient;
         }

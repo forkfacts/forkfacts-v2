@@ -15,6 +15,7 @@ import {
 } from "@mui/material";
 import { ForLoops } from "@forkfacts/helpers";
 import { RdiDesktopTableProps, RdiNutritionTableRow } from "@forkfacts/models";
+import FilterListOutlinedIcon from "@mui/icons-material/FilterListOutlined";
 import LaunchIcon from "@mui/icons-material/Launch";
 import MagicSliderDots from "react-magic-slider-dots";
 import "react-magic-slider-dots/dist/magic-dots.css";
@@ -98,7 +99,7 @@ const RdiMobileTable: React.FC<RdiDesktopTableProps> = ({ rows }) => {
               backgroundColor: theme.palette.common.white,
             }}
           >
-            <Box>
+            <Box sx={{ display: "flex", justifyContent: "space-between" }}>
               <Typography
                 variant="titleMedium"
                 sx={{
@@ -109,49 +110,12 @@ const RdiMobileTable: React.FC<RdiDesktopTableProps> = ({ rows }) => {
               >
                 {item.nutrientGroup}
               </Typography>
+              <FilterListOutlinedIcon color="primary" />
             </Box>
             {item.rows.length ? (
-              <Box>
-                <Box>
-                  <Box
-                    sx={{
-                      display: item.rows.length ? "flex" : "none",
-                      justifyContent: "space-between",
-                      alignItems: "center",
-                      mb: theme.spacing(1),
-                    }}
-                  >
-                    <Typography
-                      variant="labelSmall"
-                      sx={{
-                        color: theme.palette.customGray.dark,
-                        fontWeight: theme.typography.fontWeightRegular,
-                      }}
-                    >
-                      Nutrients
-                    </Typography>
-                    <Typography
-                      variant="labelSmall"
-                      sx={{
-                        color: theme.palette.customGray.dark,
-                        fontWeight: theme.typography.fontWeightRegular,
-                      }}
-                    >
-                      Recommended amount
-                    </Typography>
-                    <Typography
-                      variant="labelSmall"
-                      sx={{
-                        color: theme.palette.customGray.dark,
-                        fontWeight: theme.typography.fontWeightRegular,
-                      }}
-                    >
-                      Top sources
-                    </Typography>
-                  </Box>
-                </Box>
+              <Box sx={{ mt: theme.spacing(1) }}>
                 <TableContainer>
-                  <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                  <Table sx={{ maxWidth: "100%" }} aria-label="simple table">
                     <TableHead>
                       <TableRow>
                         <TableCell>
@@ -172,6 +136,8 @@ const RdiMobileTable: React.FC<RdiDesktopTableProps> = ({ rows }) => {
                             sx={{
                               color: theme.palette.customGray.dark,
                               fontWeight: theme.typography.fontWeightRegular,
+                              whiteSpace: "nowrap",
+                              overflow: "hidden",
                             }}
                           >
                             Recommended amount
@@ -183,6 +149,8 @@ const RdiMobileTable: React.FC<RdiDesktopTableProps> = ({ rows }) => {
                             sx={{
                               color: theme.palette.customGray.dark,
                               fontWeight: theme.typography.fontWeightRegular,
+                              whiteSpace: "nowrap",
+                              overflow: "hidden",
                             }}
                           >
                             Top sources
@@ -205,6 +173,8 @@ const RdiMobileTable: React.FC<RdiDesktopTableProps> = ({ rows }) => {
                                   sx={{
                                     color: theme.palette.customGray.main,
                                     fontWeight: theme.typography.fontWeightRegular,
+                                    whiteSpace: "nowrap",
+                                    overflow: "hidden",
                                   }}
                                 >
                                   {subItem.nutrient}
@@ -216,21 +186,27 @@ const RdiMobileTable: React.FC<RdiDesktopTableProps> = ({ rows }) => {
                                   sx={{
                                     fontWeight: theme.typography.fontWeightRegular,
                                     color: theme.palette.customGray.dark,
+                                    whiteSpace: "nowrap",
+                                    overflow: "hidden",
                                   }}
                                 >
                                   {subItem.recommendedAmount} {subItem.recommendedUnit}
                                 </Typography>
                               </TableCell>
-                              <TableCell align="right">
-                                {" "}
+                              <TableCell align="left">
                                 <Typography
                                   color="primary"
                                   variant="labelMedium"
                                   sx={{
                                     fontWeight: theme.typography.fontWeightRegular,
+                                    whiteSpace: "nowrap",
+                                    overflow: "hidden",
+                                    display: "flex",
+                                    alignItems: "center",
+                                    justifyContent: "flex-start",
                                   }}
                                 >
-                                  <LaunchIcon sx={{ mr: theme.spacing(2) }} />
+                                  <LaunchIcon sx={{ mr: theme.spacing(1) }} />
                                   View
                                 </Typography>
                               </TableCell>

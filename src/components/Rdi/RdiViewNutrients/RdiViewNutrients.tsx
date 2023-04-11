@@ -1,9 +1,11 @@
 import { Box, Button, Typography, useMediaQuery, useTheme } from "@mui/material";
 import React from "react";
 import CodeIcon from "@mui/icons-material/Code";
+import ShareOutlinedIcon from "@mui/icons-material/ShareOutlined";
 import { RdiMobileTable, RdiDesktopTable, SearchNutritionFilter } from "@forkfacts/components";
 import { RdiNutritionTableRow, SelectedNutrient } from "@forkfacts/models";
 import { customTheme } from "../../../themes/theme";
+import { useStore } from "../../../store/store";
 
 interface RdiViewNutrientsProps {
   age: string;
@@ -22,26 +24,37 @@ const RdiViewNutrients: React.FC<RdiViewNutrientsProps> = ({
 }) => {
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.down("md"));
-
+  const { selectedNutrients } = useStore((state) => state);
   return (
     <Box>
-      <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+      <Box>
+        {" "}
         <Typography
           variant={mobile ? "headline6" : "headline4"}
           sx={{
             fontWeight: customTheme.typography.fontWeightLight,
             color: customTheme.palette.customGray.main,
+            mb: theme.spacing(4),
           }}
         >
           Recommended Daily{" "}
         </Typography>
+      </Box>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          mt: theme.spacing(3),
+        }}
+      >
         <Typography
-          variant="titleMedium"
+          variant={mobile ? "labelLarge" : "titleMedium"}
           sx={{
             color: theme.palette.customGray.dark,
             display: "flex",
             alignItems: "center",
-            columnGap: theme.spacing(0.5),
+            columnGap: theme.spacing(0.3),
           }}
         >
           Showing for
@@ -96,7 +109,7 @@ const RdiViewNutrients: React.FC<RdiViewNutrientsProps> = ({
                 color: theme.palette.customGray.main,
               }}
             >
-              "3 of out 50"
+              {`${selectedNutrients.length} of out ${rows.length}`}
             </Typography>{" "}
             nutrients
           </Typography>
@@ -105,9 +118,33 @@ const RdiViewNutrients: React.FC<RdiViewNutrientsProps> = ({
       <Box sx={{ mt: theme.spacing(5) }}>
         {!mobile ? <RdiDesktopTable rows={rows} /> : <RdiMobileTable rows={rows} />}
       </Box>
-      <Box sx={{ display: "flex", justifyContent: "flex-start" }}>
-        <Button startIcon={<CodeIcon />}>Embed</Button>
-        <Button startIcon={<CodeIcon />}>Embed</Button>
+      <Box sx={{ display: "flex", justifyContent: "flex-end", mb: theme.spacing(10) }}>
+        <Button
+          startIcon={<CodeIcon />}
+          variant="outlined"
+          sx={{
+            pr: theme.spacing(3),
+            pl: theme.spacing(2),
+            py: theme.spacing(1.25),
+            mr: theme.spacing(2),
+            borderRadius: theme.spacing(1),
+          }}
+        >
+          Embed
+        </Button>
+        <Button
+          startIcon={<ShareOutlinedIcon />}
+          color="primary"
+          variant="contained"
+          sx={{
+            pr: theme.spacing(3),
+            pl: theme.spacing(2),
+            py: theme.spacing(1.25),
+            borderRadius: theme.spacing(1),
+          }}
+        >
+          Share
+        </Button>
       </Box>
     </Box>
   );

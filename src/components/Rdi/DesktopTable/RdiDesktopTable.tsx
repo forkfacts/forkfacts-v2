@@ -337,7 +337,7 @@ const RdiDesktopTable: React.FC<RdiDesktopTableProps> = ({ rows }) => {
             color: theme.palette.customGray.textDark,
           }}
         >
-          Source: USDA
+          source: nih.gov
         </Typography>
       </Box>
     </Box>

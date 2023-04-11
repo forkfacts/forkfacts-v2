@@ -69,6 +69,12 @@ const MultipleSelects: React.FC<MultipleSelectsProps> = ({
     };
   }, [ref]);
 
+  useEffect(() => {
+    if (selectedNutrients) {
+      onSelectedValue(selectedNutrients);
+    }
+  }, [selectedNutrients]);
+
   return (
     <Box
       sx={{ cursor: "pointer", zIndex: theme.zIndex.mobileStepper, position: "relative" }}

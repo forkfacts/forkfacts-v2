@@ -195,7 +195,9 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
           {displayListIcon ? (
             <Button
               startIcon={<FilterListIcon />}
-              endIcon={selectedNutrients.length ? <ClearIcon /> : null}
+              endIcon={
+                selectedNutrients.length ? <ClearIcon onClick={onClearSelectedItem} /> : null
+              }
               variant="outlined"
               color="primary"
               onClick={() => setOpen(!open)}

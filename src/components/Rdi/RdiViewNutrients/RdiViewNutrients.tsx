@@ -1,8 +1,9 @@
 import { Box, Button, Typography, useMediaQuery, useTheme } from "@mui/material";
 import React from "react";
 import CodeIcon from "@mui/icons-material/Code";
-import { RdiDesktopTable, SearchNutritionFilter } from "@forkfacts/components";
+import { RdiMobileTable, RdiDesktopTable, SearchNutritionFilter } from "@forkfacts/components";
 import { RdiNutritionTableRow, SelectedNutrient } from "@forkfacts/models";
+import { customTheme } from "../../../themes/theme";
 
 interface RdiViewNutrientsProps {
   age: string;
@@ -25,6 +26,15 @@ const RdiViewNutrients: React.FC<RdiViewNutrientsProps> = ({
   return (
     <Box>
       <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+        <Typography
+          variant={mobile ? "headline6" : "headline4"}
+          sx={{
+            fontWeight: customTheme.typography.fontWeightLight,
+            color: customTheme.palette.customGray.main,
+          }}
+        >
+          Recommended Daily{" "}
+        </Typography>
         <Typography
           variant="titleMedium"
           sx={{
@@ -60,7 +70,7 @@ const RdiViewNutrients: React.FC<RdiViewNutrientsProps> = ({
         </Typography>
         <Box
           sx={{
-            display: "flex",
+            display: mobile ? "none" : "flex",
             alignItems: "flex-end",
             flexDirection: "column",
             justifyContent: "flex-end",
@@ -93,13 +103,12 @@ const RdiViewNutrients: React.FC<RdiViewNutrientsProps> = ({
         </Box>
       </Box>
       <Box sx={{ mt: theme.spacing(5) }}>
-        <RdiDesktopTable rows={rows} />
+        {!mobile ? <RdiDesktopTable rows={rows} /> : <RdiMobileTable rows={rows} />}
       </Box>
       <Box sx={{ display: "flex", justifyContent: "flex-start" }}>
         <Button startIcon={<CodeIcon />}>Embed</Button>
         <Button startIcon={<CodeIcon />}>Embed</Button>
       </Box>
-      <Box sx={{ mb: theme.spacing(100) }} />
     </Box>
   );
 };

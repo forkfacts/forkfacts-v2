@@ -18,34 +18,6 @@ import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
 import RadioButtonCheckedIcon from "@mui/icons-material/RadioButtonChecked";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 
-const nutritionFilterItems: SelectedNutrient[] = [
-  {
-    name: "Vitamins",
-    nutrientGroup: "Vitamins",
-    rows: [
-      { name: "Vitamin B1", checked: false, nutrientGroup: "Vitamins" },
-      { name: "Vitamin B2", checked: false, nutrientGroup: "Vitamins" },
-      { name: "Vitamin B3", checked: false, nutrientGroup: "Vitamins" },
-      { name: "Vitamin B4", checked: false, nutrientGroup: "Vitamins" },
-    ],
-    checked: false,
-  },
-  {
-    name: "Proteins",
-    nutrientGroup: "Proteins",
-    rows: [
-      { name: "Protein B1", checked: false, nutrientGroup: "Proteins" },
-      { name: "Protein B2", checked: false, nutrientGroup: "Proteins" },
-    ],
-    checked: false,
-  },
-  { name: "Carbohydrate", rows: [], checked: false, nutrientGroup: "" },
-  { name: "Water", rows: [], checked: false, nutrientGroup: "" },
-  { name: "Fats", rows: [], checked: false, nutrientGroup: "" },
-  { name: "Fiber", rows: [], checked: false, nutrientGroup: "" },
-  { name: "Minerals", rows: [], checked: false, nutrientGroup: "" },
-];
-
 interface RecommendedDailyIntakeProps {
   menuItems: MenuItem[];
   genders: lifeStageItem[];
@@ -55,6 +27,7 @@ interface RecommendedDailyIntakeProps {
   selectedGender: string;
   setSelectedGender: (gender: string) => void;
   rows: RdiNutritionTableRow[];
+  nutritionFilters: SelectedNutrient[];
 }
 
 function AgeColumn({
@@ -146,6 +119,7 @@ const RecommendedDailyIntake: React.FC<RecommendedDailyIntakeProps> = ({
   setSelectedGender,
   selectedGender,
   rows,
+  nutritionFilters,
 }) => {
   const classes = useStyles();
   const theme = useTheme();
@@ -187,135 +161,142 @@ const RecommendedDailyIntake: React.FC<RecommendedDailyIntakeProps> = ({
   return (
     <Layout menuItems={menuItems}>
       <Box className={classes.desktopScreenWrapper}>
-        <Box sx={{ px: mobile ? theme.spacing(2) : 0, pt: theme.spacing(5) }}>
-          <Typography
-            variant={mobile ? "headline6" : "headline4"}
+        {!isOpenRdiTable ? (
+          <Box
             sx={{
-              fontWeight: customTheme.typography.fontWeightLight,
-              color: customTheme.palette.customGray.main,
+              px: mobile ? theme.spacing(2) : 0,
+              pt: theme.spacing(5),
+              // display: isOpenRdiTable ? "none" : "block",
             }}
           >
-            Recommended Daily Intake
-          </Typography>
-          <Box sx={{ position: "relative", height: "100vh" }}>
-            <Box sx={{ mt: mobile ? theme.spacing(3) : theme.spacing(4.5) }}>
-              <Typography
-                variant="titleMedium"
-                sx={{
-                  fontWeight: customTheme.typography.fontWeightLight,
-                  color: customTheme.palette.customGray.textDark,
-                }}
-              >
-                Choose a life stage
-              </Typography>
-              <Grid
-                container
-                md={7}
-                columns={{ xs: 12, sm: 12, md: 12 }}
-                spacing={2}
-                sx={{ mt: theme.spacing(1.5) }}
-              >
-                <ForLoops each={genders}>
-                  {(item, index) => (
-                    <Grid item key={index} md={4} xs={4}>
-                      <Box
-                        sx={{
-                          position: "relative",
-                          display: "flex",
-                          justifyContent: "center",
-                          alignItems: "center",
-                          flexDirection: "column",
-                          backgroundColor:
-                            selectedGender === item.name
-                              ? customTheme.palette.primary.main
-                              : customTheme.palette.common.white,
-                          height: mobile ? theme.spacing(15) : theme.spacing(18.75),
-                          p: theme.spacing(1.25),
-                          cursor: "pointer",
-                          border: "1px solid #F2EFFF",
-                          borderRadius: theme.spacing(1),
-                        }}
-                        onClick={() => onSelectGender(item.name)}
-                      >
-                        <item.icon
-                          color={
-                            selectedGender.toLowerCase() === item.name.toLowerCase()
-                              ? customTheme.palette.common.white
-                              : customTheme.palette.customGray.textLight
-                          }
-                          style={{
-                            width: theme.spacing(3.75),
-                            height: theme.spacing(3.75),
-                          }}
-                        />
-                        <Typography
-                          variant={mobile ? "labelMedium" : "subhead1"}
-                          sx={{
-                            color:
-                              selectedGender.toLowerCase() === item.name.toLowerCase()
-                                ? customTheme.palette.common.white
-                                : customTheme.palette.customGray.main,
-                            fontWeight: theme.typography.fontWeightRegular,
-                            mt: theme.spacing(1),
-                            textTransform: "capitalize",
-                          }}
-                        >
-                          {item.name}
-                        </Typography>
-                        <CheckCircleOutlinedIcon
-                          sx={{ position: "absolute", top: 10, right: 10, color: "#fff" }}
-                        />
-                      </Box>
-                    </Grid>
-                  )}
-                </ForLoops>
-              </Grid>
-            </Box>
-            <Box sx={{ mt: theme.spacing(4.5) }}>
-              <Typography
-                variant="titleMedium"
-                sx={{
-                  fontWeight: customTheme.typography.fontWeightLight,
-                  color: customTheme.palette.customGray.textDark,
-                }}
-              >
-                Select Age
-              </Typography>
-              <Box
-                component="div"
-                sx={{
-                  width: "100%",
-                  display: "flex",
-                  mt: theme.spacing(1),
-                }}
-              >
-                <Box
+            <Typography
+              variant={mobile ? "headline6" : "headline4"}
+              sx={{
+                fontWeight: customTheme.typography.fontWeightLight,
+                color: customTheme.palette.customGray.main,
+              }}
+            >
+              Recommended Daily Intake
+            </Typography>
+            <Box sx={{ position: "relative", height: "100vh", width: "100%" }}>
+              <Box sx={{ mt: mobile ? theme.spacing(3) : theme.spacing(4.5) }}>
+                <Typography
+                  variant="titleMedium"
                   sx={{
-                    width: "100%",
-                    display: isOpenRdiTable ? "none" : "flex",
-                    alignItems: "flex-start",
-                    columnGap: mobile ? theme.spacing(2) : theme.spacing(15),
-                    border: "1px solid #F2EFFF",
-                    borderRadius: theme.spacing(1),
-                    p: theme.spacing(1),
-                    maxWidth: theme.spacing(105),
-                    flexWrap: "wrap",
+                    fontWeight: customTheme.typography.fontWeightLight,
+                    color: customTheme.palette.customGray.textDark,
                   }}
                 >
-                  <ForLoops each={ageChunks}>
-                    {(chunk, index) => (
-                      <AgeColumn
-                        key={index}
-                        ages={chunk}
-                        selectedAge={selectedAge}
-                        handleSelectAge={handleSelectAge}
-                      />
+                  Choose a life stage
+                </Typography>
+
+                <Grid
+                  container
+                  md={7}
+                  columns={{ xs: 12, sm: 12, md: 12 }}
+                  spacing={2}
+                  sx={{ mt: theme.spacing(1.5) }}
+                >
+                  <ForLoops each={genders}>
+                    {(item, index) => (
+                      <Grid item key={index} md={4} xs={4}>
+                        <Box
+                          sx={{
+                            position: "relative",
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            flexDirection: "column",
+                            backgroundColor:
+                              selectedGender === item.name
+                                ? customTheme.palette.primary.main
+                                : customTheme.palette.common.white,
+                            height: mobile ? theme.spacing(15) : theme.spacing(18.75),
+                            p: theme.spacing(1.25),
+                            cursor: "pointer",
+                            border: "1px solid #F2EFFF",
+                            borderRadius: theme.spacing(1),
+                          }}
+                          onClick={() => onSelectGender(item.name)}
+                        >
+                          <item.icon
+                            color={
+                              selectedGender.toLowerCase() === item.name.toLowerCase()
+                                ? customTheme.palette.common.white
+                                : customTheme.palette.customGray.textLight
+                            }
+                            style={{
+                              width: theme.spacing(3.75),
+                              height: theme.spacing(3.75),
+                            }}
+                          />
+                          <Typography
+                            variant={mobile ? "labelMedium" : "subhead1"}
+                            sx={{
+                              color:
+                                selectedGender.toLowerCase() === item.name.toLowerCase()
+                                  ? customTheme.palette.common.white
+                                  : customTheme.palette.customGray.main,
+                              fontWeight: theme.typography.fontWeightRegular,
+                              mt: theme.spacing(1),
+                              textTransform: "capitalize",
+                            }}
+                          >
+                            {item.name}
+                          </Typography>
+                          <CheckCircleOutlinedIcon
+                            sx={{ position: "absolute", top: 10, right: 10, color: "#fff" }}
+                          />
+                        </Box>
+                      </Grid>
                     )}
                   </ForLoops>
+                </Grid>
+              </Box>
+              <Box sx={{ mt: theme.spacing(4.5) }}>
+                <Typography
+                  variant="titleMedium"
+                  sx={{
+                    fontWeight: customTheme.typography.fontWeightLight,
+                    color: customTheme.palette.customGray.textDark,
+                  }}
+                >
+                  Select Age
+                </Typography>
+                <Box
+                  component="div"
+                  sx={{
+                    width: "100%",
+                    display: "flex",
+                    mt: theme.spacing(1),
+                  }}
+                >
+                  <Box
+                    sx={{
+                      width: "100%",
+                      display: "flex",
+                      alignItems: "flex-start",
+                      columnGap: mobile ? theme.spacing(2) : theme.spacing(15),
+                      border: "1px solid #F2EFFF",
+                      borderRadius: theme.spacing(1),
+                      p: theme.spacing(1),
+                      maxWidth: theme.spacing(105),
+                      flexWrap: "wrap",
+                    }}
+                  >
+                    <ForLoops each={ageChunks}>
+                      {(chunk, index) => (
+                        <AgeColumn
+                          key={index}
+                          ages={chunk}
+                          selectedAge={selectedAge}
+                          handleSelectAge={handleSelectAge}
+                        />
+                      )}
+                    </ForLoops>
+                  </Box>
                 </Box>
               </Box>
-            </Box>
-            {isOpenRdiTable ? null : (
               <Box
                 sx={{
                   display: "flex",
@@ -341,28 +322,26 @@ const RecommendedDailyIntake: React.FC<RecommendedDailyIntakeProps> = ({
                   View RDI
                 </Button>
               </Box>
-            )}
-            <Box
-              sx={{
-                position: "absolute",
-                display: isOpenRdiTable ? "block" : "none",
-                top: 0,
-                left: 0,
-                right: 0,
-                bottom: 0,
-                background: "#fff",
-              }}
-            >
-              <RdiViewNutrients
-                age={`${selectedAge.start}-${selectedAge.end} ${selectedAge.ageUnit}`}
-                gender={selectedGender}
-                nutritionFilterItems={nutritionFilterItems}
-                onCloseRdiTable={onCloseRdiTable}
-                rows={rows}
-              />
             </Box>
           </Box>
-        </Box>
+        ) : (
+          <Box
+            sx={{
+              display: "block",
+              background: "#fff",
+              px: mobile ? theme.spacing(2) : theme.spacing(10),
+              pt: theme.spacing(5),
+            }}
+          >
+            <RdiViewNutrients
+              age={`${selectedAge.start}-${selectedAge.end} ${selectedAge.ageUnit}`}
+              gender={selectedGender}
+              nutritionFilterItems={nutritionFilters}
+              onCloseRdiTable={onCloseRdiTable}
+              rows={rows}
+            />
+          </Box>
+        )}
       </Box>
     </Layout>
   );

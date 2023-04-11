@@ -322,8 +322,6 @@ export interface SelectedNutrient {
   checked: boolean;
   rows: SelectNutrientRow[];
 }
-export interface AllFiltersProps {}
-
 export interface MeasurementFilterProps {
   measurementFilterItems: string[];
   onSelectMeasurementItem: (item: string) => void;

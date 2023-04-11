@@ -1,10 +1,15 @@
 import { SEO } from "@forkfacts/components";
 import { RecommendedDailyIntake } from "@forkfacts/screens";
 import { Box } from "@mui/material";
-import { MenuItem, RdiAge, RdiNutritionTableRow, lifeStageItem } from "@forkfacts/models";
+import { RdiAge, RdiNutritionTableRow, SelectedNutrient } from "@forkfacts/models";
 import { menuItems, lifeStageItems, allAges } from "../../RealData/realData";
-import { getAgeRangesForLifeStage, setSelectedAgeByGender } from "@forkfacts/helpers";
+import {
+  getAgeRangesForLifeStage,
+  getFilterNutrients,
+  setSelectedAgeByGender,
+} from "@forkfacts/helpers";
 import React, { useEffect, useState } from "react";
+import { useStore } from "../../store/store";
 
 interface NutrientRequirement {
   applicableFor: string;
@@ -15,6 +20,7 @@ interface NutrientRequirement {
   nutrient: string;
   amount: number;
   nutrientUnit: string;
+  nutrientGroup: string;
 }
 
 interface Props {
@@ -28,6 +34,8 @@ const RecommendedDailyIntakePage: React.FC<Props> = ({ pageContext }) => {
   const { recommendedDailyIntakes, pageTitle } = pageContext;
   const [selectedAge, setSelectedAge] = useState<RdiAge>({} as RdiAge);
   const [selectedGender, setSelectedGender] = useState("");
+  const { selectedNutrients } = useStore((state) => state);
+  const [staticRows, setStaticRows] = useState<RdiNutritionTableRow[]>([]);
   const [rows, setRows] = useState<RdiNutritionTableRow[]>([]);
   useEffect(() => {
     setSelectedAgeByGender(selectedGender, setSelectedAge);
@@ -36,37 +44,85 @@ const RecommendedDailyIntakePage: React.FC<Props> = ({ pageContext }) => {
   const ageRanges = getAgeRangesForLifeStage(selectedGender);
 
   useEffect(() => {
-    const filteredRows: NutrientRequirement[] = recommendedDailyIntakes.filter((nutrient) => {
-      if (
-        nutrient.ageStart === selectedAge.start &&
-        (nutrient.ageEnd === selectedAge.end || nutrient.ageEnd === null) &&
-        nutrient.ageUnit.toLowerCase() === selectedAge.ageUnit.toLowerCase() &&
-        nutrient.applicableFor.toLowerCase() === selectedGender.toLowerCase()
-      ) {
-        return nutrient;
-      }
-      return false;
-    });
+    if (!selectedNutrients.length) {
+      const filteredRows: NutrientRequirement[] = recommendedDailyIntakes.filter((nutrient) => {
+        if (
+          nutrient.ageStart === selectedAge.start &&
+          (nutrient.ageEnd === selectedAge.end || nutrient.ageEnd === null) &&
+          nutrient.ageUnit.toLowerCase() === selectedAge.ageUnit.toLowerCase() &&
+          nutrient.applicableFor.toLowerCase() === selectedGender.toLowerCase()
+        ) {
+          return nutrient;
+        }
+        return false;
+      });
 
-    const mappedRows: RdiNutritionTableRow[] = filteredRows.map((nutrient) => {
-      return {
-        nutrient: nutrient.nutrient,
-        recommendedAmount: nutrient.amount,
-        recommendedUnit: nutrient.nutrientUnit,
-        nutrientGroup: nutrient.nutrient,
-      };
-    });
+      const mappedRows: RdiNutritionTableRow[] = filteredRows.map((nutrient) => {
+        return {
+          nutrient: nutrient.nutrient,
+          recommendedAmount: Math.abs(nutrient.amount),
+          recommendedUnit: nutrient.nutrientUnit,
+          nutrientGroup: nutrient.nutrientGroup,
+        };
+      });
+      setRows(mappedRows);
+      setStaticRows(mappedRows);
+    } else {
+      const data: any = getFilterNutrients(selectedNutrients)
+        .map((filteredNutrient) => {
+          const nutrientWithRdi = staticRows.filter((item) => {
+            if (item.nutrient === filteredNutrient?.name) {
+              return item;
+            }
+          });
+          return nutrientWithRdi;
+        })
+        .flat();
+      setRows([...data]);
+    }
+  }, [selectedAge, selectedGender, selectedNutrients]);
 
-    setRows(mappedRows);
-  }, [selectedAge, selectedGender, recommendedDailyIntakes]);
+  const rowsByNutrientGroup = staticRows?.reduce((acc, row) => {
+    const nutrientGroup = row?.nutrientGroup || "Others";
+    if (!acc.has(nutrientGroup)) {
+      acc.set(nutrientGroup, [row]);
+      return acc;
+    }
+    acc.set(nutrientGroup, [...(acc.get(nutrientGroup) as RdiNutritionTableRow[]), row]);
+    return acc;
+  }, new Map<string, RdiNutritionTableRow[]>());
 
-  console.log(rows);
+  const rowsByNutrientGroupArray = Array.from(
+    rowsByNutrientGroup.entries(),
+    ([nutrientGroup, rows]) => ({
+      nutrientGroup,
+      rows,
+    })
+  );
+
+  const nutritionFilters: any[] =
+    rowsByNutrientGroupArray
+      .filter((item: any) => item.nutrientGroup !== "")
+      .map((item) => {
+        return {
+          checked: false,
+          nutrientGroup: item.nutrientGroup,
+          name: item.nutrientGroup,
+          rows: item?.rows?.map((row) => {
+            return {
+              checked: false,
+              name: row.nutrient,
+            };
+          }),
+        };
+      }) || [];
 
   return (
     <Box>
       <SEO title={pageTitle} />
       <RecommendedDailyIntake
         menuItems={menuItems}
+        nutritionFilters={nutritionFilters}
         genders={lifeStageItems}
         setSelectedAge={setSelectedAge}
         selectedAge={selectedAge}

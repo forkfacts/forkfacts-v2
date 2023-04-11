@@ -56,7 +56,7 @@ const RdiDesktopTable: React.FC<RdiDesktopTableProps> = ({ rows }) => {
 
   useEffect(() => {
     const rowsByNutrientGroup = rows?.reduce((acc, row) => {
-      const nutrientGroup = row?.nutrientGroup;
+      const nutrientGroup = row?.nutrientGroup || "Others";
       if (!acc.has(nutrientGroup)) {
         acc.set(nutrientGroup, [row]);
         return acc;
@@ -237,6 +237,7 @@ const RdiDesktopTable: React.FC<RdiDesktopTableProps> = ({ rows }) => {
                                   display: "flex",
                                   alignItems: "center",
                                   justifyContent: "flex-end",
+                                  cursor: "pointer",
                                 }}
                               >
                                 <LaunchIcon sx={{ mr: theme.spacing(2) }} />

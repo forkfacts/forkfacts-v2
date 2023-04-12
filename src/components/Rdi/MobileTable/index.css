@@ -29,7 +29,6 @@
 }
 
 .slick-list {
-  overflow: auto !important;
-  overflow-x: hidden !important;
+  overflow: hidden !important;
   z-index: 2 !important;
 }

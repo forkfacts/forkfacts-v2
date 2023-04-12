@@ -207,6 +207,7 @@ const MultipleSelects: React.FC<MultipleSelectsProps> = ({
                 justifyContent: "flex-end",
                 alignItems: "center",
                 mt: theme.spacing(2),
+                mr: theme.spacing(2),
               }}
             >
               <Typography

@@ -147,7 +147,7 @@ const RdiMobileTable: React.FC<RdiDesktopTableProps> = ({ rows }) => {
                   values={item.rows?.map((item) => {
                     return { name: item.nutrient };
                   })}
-                  margin={theme.spacing(-30.5)}
+                  margin={theme.spacing(-25.5)}
                   multiselectTitle={item.nutrientGroup}
                   onSelectedValue={setOnSelectedRows}
                   getSelectedNutrients={onSelectRows}

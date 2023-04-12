@@ -51,7 +51,7 @@ function AgeColumn({
             display: "flex",
             justifyContent: "flex-start",
             alignItems: "center",
-            mb: theme.spacing(1.2),
+            mb: theme.spacing(4),
           }}
           onClick={() => handleSelectAge(item)}
         >
@@ -64,6 +64,7 @@ function AgeColumn({
                 ? true
                 : false
             }
+            sx={{ width: theme.spacing(2.5), height: theme.spacing(2.5) }}
           />
           {item.end || item.end === 0 ? (
             <Typography
@@ -72,6 +73,7 @@ function AgeColumn({
                 fontWeight: customTheme.typography.fontWeightLight,
                 color: customTheme.palette.customGray.main,
                 cursor: "pointer",
+                ml: theme.spacing(2.5),
               }}
             >
               {item.end === undefined ? 0 : item.start + "-" + item.end} {item.ageUnit}
@@ -85,7 +87,7 @@ function AgeColumn({
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
-                ml: theme.spacing(-2.5),
+                ml: theme.spacing(1),
               }}
             >
               <ChevronRightIcon
@@ -277,7 +279,7 @@ const RecommendedDailyIntake: React.FC<RecommendedDailyIntakeProps> = ({
                       width: "100%",
                       display: "flex",
                       alignItems: "flex-start",
-                      columnGap: mobile ? theme.spacing(2) : theme.spacing(10),
+                      columnGap: mobile ? theme.spacing(2) : theme.spacing(25),
                       border: "1px solid #F2EFFF",
                       borderRadius: theme.spacing(1),
                       p: theme.spacing(1),

@@ -12,7 +12,6 @@ type NutrientType = {
 const MultipleSelects: React.FC<MultipleSelectsProps> = ({
   values,
   onSelectedValue,
-  RenderSelectButton,
   multiselectTitle,
   margin = 0,
 }) => {
@@ -29,7 +28,7 @@ const MultipleSelects: React.FC<MultipleSelectsProps> = ({
     });
   }
   const [selectedNutrients, setSelectNutrients] = useState<NutrientType[]>([...newNutrients]);
-
+  const [isSelectedLength, setIsSelectedLength] = useState<number>(0);
   const onSelectButtonItem = (name: string, index: number) => {
     let results = selectedNutrients?.map((item, index) => {
       if (item.name === name) {
@@ -71,13 +70,22 @@ const MultipleSelects: React.FC<MultipleSelectsProps> = ({
   }, [ref]);
 
   useEffect(() => {
-    const selectedItem = selectedNutrients.filter((item) => item.checked === true);
-    onSelectedValue(selectedItem);
+    const selectedItems = selectedNutrients.filter((item) => item.checked === true);
+    onSelectedValue(selectedItems);
+    setIsSelectedLength(selectedItems.length);
   }, [selectedNutrients]);
 
   return (
     <Box sx={{ display: "block", zIndex: theme.zIndex.appBar }} ref={ref}>
-      <Button>
+      <Button
+        sx={{
+          py: "4px",
+          pl: "12px",
+          pr: "16px",
+          color: theme.palette.primary.light,
+          backgroundColor: isSelectedLength ? theme.palette.primary.light : "#fff",
+        }}
+      >
         <FilterListOutlinedIcon
           color="primary"
           onClick={() => {
@@ -85,6 +93,15 @@ const MultipleSelects: React.FC<MultipleSelectsProps> = ({
             onSelectedValue([]);
           }}
         />
+        {isSelectedLength ? (
+          <Typography
+            color="primary"
+            variant="labelLarge"
+            sx={{ ml: theme.spacing(1), fontWeight: theme.typography.fontWeightRegular }}
+          >
+            {isSelectedLength}
+          </Typography>
+        ) : null}
       </Button>
       {open && (
         <Box

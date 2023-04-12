@@ -57,6 +57,7 @@ const RdiMobileTable: React.FC<RdiDesktopTableProps> = ({ rows }) => {
       />;
       return <MagicSliderDots dots={dots} numDotsToShow={15} dotWidth={20} />;
     },
+    swipe: false,
   };
   function sortRowsByNutrientGroup(rowsByGroup: RowsByNutrientGroup[]) {
     rowsByGroup.sort((a, b) => {
@@ -99,8 +100,6 @@ const RdiMobileTable: React.FC<RdiDesktopTableProps> = ({ rows }) => {
     setTableRows(sortRowsByNutrientGroup(rowsByNutrientGroupArray));
   }, [rows]);
 
-  console.log(onSelectRows);
-
   return (
     <Box sx={{ mb: theme.spacing(15), background: " #FFFFFF" }}>
       <Slider {...settings}>
@@ -140,8 +139,8 @@ const RdiMobileTable: React.FC<RdiDesktopTableProps> = ({ rows }) => {
             </Box>
             {item.rows.length ? (
               <Box sx={{ mt: theme.spacing(1) }}>
-                <TableContainer>
-                  <Table sx={{ maxWidth: "100%" }} aria-label="simple table">
+                <TableContainer sx={{ maxWidth: "100%", overflow: "hidden" }}>
+                  <Table aria-label="simple table">
                     <TableHead>
                       <TableRow>
                         <TableCell>
@@ -162,8 +161,9 @@ const RdiMobileTable: React.FC<RdiDesktopTableProps> = ({ rows }) => {
                             sx={{
                               color: theme.palette.customGray.dark,
                               fontWeight: theme.typography.fontWeightRegular,
-                              whiteSpace: "nowrap",
+                              ml: "-30px",
                               overflow: "hidden",
+                              whiteSpace: "break-spaces",
                             }}
                           >
                             Recommended amount
@@ -218,7 +218,7 @@ const RdiMobileTable: React.FC<RdiDesktopTableProps> = ({ rows }) => {
                                   variant="labelMedium"
                                   sx={{
                                     fontWeight: theme.typography.fontWeightRegular,
-                                    color: theme.palette.customGray.dark,
+                                    color: theme.palette.customGray.main,
                                     whiteSpace: "nowrap",
                                     overflow: "hidden",
                                   }}

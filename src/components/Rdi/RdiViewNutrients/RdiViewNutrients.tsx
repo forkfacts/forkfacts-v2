@@ -11,6 +11,7 @@ import {
 import { RdiNutritionTableRow, SelectedNutrient } from "@forkfacts/models";
 import { customTheme } from "../../../themes/theme";
 import { useStore } from "../../../store/store";
+import { AddBoxTwoTone } from "@mui/icons-material";
 
 interface RdiViewNutrientsProps {
   age: string;
@@ -62,39 +63,37 @@ const RdiViewNutrients: React.FC<RdiViewNutrientsProps> = ({
           mt: theme.spacing(3),
         }}
       >
-        <Typography
-          variant={mobile ? "labelLarge" : "titleMedium"}
-          sx={{
-            color: theme.palette.customGray.dark,
-            display: "flex",
-            alignItems: "center",
-            columnGap: mobile ? theme.spacing(0.4) : theme.spacing(1),
-          }}
-        >
-          Showing for
-          <Typography component="span" color="primary">
-            {gender}{" "}
-          </Typography>
-          between{" "}
-          <Typography component="span" color="primary">
-            {age}{" "}
-          </Typography>
-          <Box
-            sx={{
-              height: theme.spacing(3.5),
-              backgroundColor: theme.palette.customGray.dark,
-              width: theme.spacing(0.12),
-            }}
-          />{" "}
+        <Box sx={{ display: "flex", alignItems: "center" }}>
           <Typography
-            component="span"
-            color="primary"
-            sx={{ cursor: "pointer" }}
-            onClick={onCloseRdiTable}
+            variant={mobile ? "labelLarge" : "titleMedium"}
+            sx={{
+              color: theme.palette.customGray.dark,
+              display: "flex",
+            }}
           >
-            change
+            Showing for&nbsp;<span style={{ color: theme.palette.primary.main }}>{gender}</span>
+            &nbsp;between&nbsp;
+            <span style={{ color: theme.palette.primary.main }}>{age}</span>
           </Typography>
-        </Typography>
+          <Box>
+            <Typography
+              component="span"
+              color="primary"
+              sx={{ cursor: "pointer", display: "flex", alignItems: "center" }}
+              onClick={onCloseRdiTable}
+            >
+              <Box
+                sx={{
+                  height: theme.spacing(3.5),
+                  backgroundColor: theme.palette.customGray.dark,
+                  width: theme.spacing(0.12),
+                  mx: theme.spacing(0.5),
+                }}
+              />{" "}
+              change
+            </Typography>
+          </Box>
+        </Box>
         <Box
           sx={{
             display: mobile ? "none" : "flex",

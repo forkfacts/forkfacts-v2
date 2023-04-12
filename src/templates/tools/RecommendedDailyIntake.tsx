@@ -2,7 +2,7 @@ import { SEO } from "@forkfacts/components";
 import { RecommendedDailyIntake } from "@forkfacts/screens";
 import { Box } from "@mui/material";
 import { RdiAge, RdiNutritionTableRow } from "@forkfacts/models";
-import { menuItems, lifeStageItems, allAges } from "../../RealData/realData";
+import { menuItems, lifeStageItems, rdiAges } from "../../RealData/realData";
 import {
   getAgeRangesForLifeStage,
   getFilterNutrients,
@@ -131,7 +131,7 @@ const RecommendedDailyIntakePage: React.FC<Props> = ({ pageContext }) => {
         selectedAge={selectedAge}
         selectedGender={selectedGender}
         setSelectedGender={setSelectedGender}
-        ages={selectedGender ? ageRanges : allAges}
+        ages={selectedGender ? ageRanges : rdiAges}
         rows={rows}
         totalRdiNutrients={staticRows.length}
       />

@@ -77,6 +77,15 @@ export const allAges: RdiAge[] = [
   { start: 70, ageUnit: "year" },
 ];
 
+export const rdiAges: RdiAge[] = [
+  { start: 9, end: 13, ageUnit: "year" },
+  { start: 14, end: 18, ageUnit: "year" },
+  { start: 19, end: 30, ageUnit: "year" },
+  { start: 31, end: 50, ageUnit: "year" },
+  { start: 51, end: 70, ageUnit: "year" },
+  { start: 70, ageUnit: "year" },
+];
+
 export const navbarItems = [
   { label: "Food", Icon: EggAltOutlinedIcon, link: "/food" },
   { label: "Recipes", Icon: EmojiFoodBeverageOutlinedIcon, link: "/recipe" },

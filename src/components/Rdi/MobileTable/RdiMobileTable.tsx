@@ -16,19 +16,18 @@ import {
 } from "@mui/material";
 import { ForLoops } from "@forkfacts/helpers";
 import { RdiDesktopTableProps, RdiNutritionTableRow, filterItem } from "@forkfacts/models";
-import FilterListOutlinedIcon from "@mui/icons-material/FilterListOutlined";
 import LaunchIcon from "@mui/icons-material/Launch";
 import MagicSliderDots from "react-magic-slider-dots";
 import "react-magic-slider-dots/dist/magic-dots.css";
 import "./index.css";
-import { MultipleSelects } from "@forkfacts/components";
+import { MultipleSelects, SearchNutritionFilter } from "@forkfacts/components";
 
 interface RowsByNutrientGroup {
   nutrientGroup: string;
   rows: RdiNutritionTableRow[];
 }
 
-const RdiMobileTable: React.FC<RdiDesktopTableProps> = ({ rows }) => {
+const RdiMobileTable: React.FC<RdiDesktopTableProps> = ({ rows, nutritionFilterItems }) => {
   const theme = useTheme();
   const [tableRows, setTableRows] = useState<RowsByNutrientGroup[]>([]);
   const [onSelectRows, setOnSelectedRows] = useState<filterItem[]>([]);
@@ -48,12 +47,6 @@ const RdiMobileTable: React.FC<RdiDesktopTableProps> = ({ rows }) => {
       setOnSelectedRows([]);
     },
     appendDots: (dots: any) => {
-      <FilterListOutlinedIcon
-        color="primary"
-        onClick={() => {
-          setOnSelectedRows([]);
-        }}
-      />;
       return <MagicSliderDots dots={dots} numDotsToShow={15} dotWidth={20} />;
     },
   };
@@ -103,7 +96,8 @@ const RdiMobileTable: React.FC<RdiDesktopTableProps> = ({ rows }) => {
       <Box
         sx={{
           display: "flex",
-          justifyContent: "flex-end",
+          justifyContent: "space-between",
+          alignItems: "flex-end",
           my: theme.spacing(1),
           pr: theme.spacing(1),
         }}
@@ -117,6 +111,14 @@ const RdiMobileTable: React.FC<RdiDesktopTableProps> = ({ rows }) => {
         >
           source: nih.gov
         </Typography>
+        {nutritionFilterItems?.length && (
+          <SearchNutritionFilter
+            nutritionFilterItems={nutritionFilterItems}
+            isDropdown={true}
+            margin={theme.spacing(-35)}
+            displayListIcon={true}
+          />
+        )}
       </Box>
       <Slider {...settings}>
         {tableRows.map((item, index: any) => (
@@ -142,17 +144,6 @@ const RdiMobileTable: React.FC<RdiDesktopTableProps> = ({ rows }) => {
               >
                 {item.nutrientGroup}
               </Typography>
-              <Box sx={{ zIndex: theme.zIndex.modal, position: "relative" }}>
-                <MultipleSelects
-                  values={item.rows?.map((item) => {
-                    return { name: item.nutrient };
-                  })}
-                  margin={theme.spacing(-25.5)}
-                  multiselectTitle={item.nutrientGroup}
-                  onSelectedValue={setOnSelectedRows}
-                  getSelectedNutrients={onSelectRows}
-                />
-              </Box>
             </Box>
             {item.rows.length ? (
               <Box sx={{ mt: theme.spacing(1) }}>
@@ -255,7 +246,7 @@ const RdiMobileTable: React.FC<RdiDesktopTableProps> = ({ rows }) => {
                                     fontSize: theme.typography.labelMedium.fontSize,
                                   }}
                                 >
-                                  View
+                                  Coming soon
                                 </Button>
                               </TableCell>
                             </TableRow>

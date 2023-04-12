@@ -131,7 +131,11 @@ const RdiViewNutrients: React.FC<RdiViewNutrientsProps> = ({
         </Box>
       </Box>
       <Box sx={{ mt: theme.spacing(4) }}>
-        {!mobile ? <RdiDesktopTable rows={rows} /> : <RdiMobileTable rows={rows} />}
+        {!mobile ? (
+          <RdiDesktopTable rows={rows} />
+        ) : (
+          <RdiMobileTable rows={rows} nutritionFilterItems={nutritionFilterItems} />
+        )}
       </Box>
       <Box sx={{ display: "flex", justifyContent: "flex-end", mb: theme.spacing(10) }}>
         <Button

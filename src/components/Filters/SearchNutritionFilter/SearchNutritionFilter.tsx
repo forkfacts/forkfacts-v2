@@ -202,12 +202,14 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
               color="primary"
               onClick={() => setOpen(!open)}
               sx={{
-                fontSize: theme.typography.labelLarge.fontSize,
+                fontSize: mobile
+                  ? theme.typography.labelSmall.fontSize
+                  : theme.typography.labelLarge.fontSize,
                 fontWeight: theme.typography.fontWeightRegular,
                 lineHeight: "20px",
-                py: theme.spacing(1.25),
-                pr: theme.spacing(3),
-                pl: theme.spacing(2),
+                py: mobile ? theme.spacing(1) : theme.spacing(1.25),
+                pr: mobile ? theme.spacing(1.5) : theme.spacing(3),
+                pl: mobile ? theme.spacing(1) : theme.spacing(2),
               }}
             >
               Filter nutrients

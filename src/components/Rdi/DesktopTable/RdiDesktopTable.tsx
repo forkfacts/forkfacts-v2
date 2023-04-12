@@ -113,7 +113,7 @@ const RdiDesktopTable: React.FC<RdiDesktopTableProps> = ({ rows }) => {
                   sx={{
                     color: theme.palette.customGray.dark,
                     fontWeight: theme.typography.fontWeightRegular,
-                    mr: theme.spacing(10),
+                    mr: theme.spacing(7),
                   }}
                 >
                   Top sources
@@ -125,7 +125,7 @@ const RdiDesktopTable: React.FC<RdiDesktopTableProps> = ({ rows }) => {
                   sx={{
                     color: theme.palette.customGray.dark,
                     fontWeight: theme.typography.fontWeightRegular,
-                    ml: theme.spacing(-7),
+                    ml: theme.spacing(-3),
                   }}
                 ></Typography>
               </TableCell>

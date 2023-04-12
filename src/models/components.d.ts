@@ -344,4 +344,5 @@ interface NutritionMobileTableProps {
 }
 export interface RdiDesktopTableProps {
   rows: RdiNutritionTableRow[];
+  nutritionFilterItems?: Array<SelectedNutrient>;
 }

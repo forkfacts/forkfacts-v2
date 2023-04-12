@@ -197,7 +197,7 @@ const RdiDesktopTable: React.FC<RdiDesktopTableProps> = ({ rows }) => {
                                 "&:last-child td, &:last-child th": {
                                   backgroundColor: "none",
                                 },
-                                "&:first-child td, &:first-child th": {
+                                "&:first-of-type td, &:first-of-type th": {
                                   "#FFFBFF": "none",
                                 },
                                 backgroundColor: isPink(index + index2 + 1) ? "#FFFBFF" : "none",

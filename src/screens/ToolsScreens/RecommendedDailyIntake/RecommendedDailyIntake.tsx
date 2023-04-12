@@ -304,7 +304,8 @@ const RecommendedDailyIntake: React.FC<RecommendedDailyIntakeProps> = ({
                 sx={{
                   display: "flex",
                   justifyContent: "flex-end",
-                  my: theme.spacing(6.75),
+                  position: "relative",
+                  mt: theme.spacing(3),
                 }}
               >
                 <Button
@@ -332,8 +333,8 @@ const RecommendedDailyIntake: React.FC<RecommendedDailyIntakeProps> = ({
             sx={{
               display: "block",
               background: "#fff",
-              px: mobile ? theme.spacing(2) : theme.spacing(10),
-              pt: theme.spacing(5),
+              pt: theme.spacing(4),
+              px: mobile ? theme.spacing(2) : 0,
             }}
           >
             <RdiViewNutrients

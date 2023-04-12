@@ -288,7 +288,7 @@ const RdiDesktopTable: React.FC<RdiDesktopTableProps> = ({ rows }) => {
           variant="labelMedium"
           sx={{
             fontWeight: theme.typography.fontWeightRegular,
-            color: theme.palette.customGray.textDark,
+            color: theme.palette.customGray.dark,
           }}
         >
           source: nih.gov

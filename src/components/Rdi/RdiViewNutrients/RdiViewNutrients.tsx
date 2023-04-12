@@ -90,7 +90,7 @@ const RdiViewNutrients: React.FC<RdiViewNutrientsProps> = ({
                   mx: theme.spacing(1),
                 }}
               />{" "}
-              <span> change</span>
+              <span>Change</span>
             </Typography>
           </Box>
         </Box>

@@ -30,7 +30,6 @@ interface RowsByNutrientGroup {
 const RdiMobileTable: React.FC<RdiDesktopTableProps> = ({ rows }) => {
   const theme = useTheme();
   const [tableRows, setTableRows] = useState<RowsByNutrientGroup[]>([]);
-  const [open, setIsOpen] = useState(false);
   const [onSelectRows, setOnSelectedRows] = useState<filterItem[]>([]);
 
   const settings = {
@@ -51,13 +50,11 @@ const RdiMobileTable: React.FC<RdiDesktopTableProps> = ({ rows }) => {
       <FilterListOutlinedIcon
         color="primary"
         onClick={() => {
-          setIsOpen(!open);
           setOnSelectedRows([]);
         }}
       />;
       return <MagicSliderDots dots={dots} numDotsToShow={15} dotWidth={20} />;
     },
-    swipe: false,
   };
   function sortRowsByNutrientGroup(rowsByGroup: RowsByNutrientGroup[]) {
     rowsByGroup.sort((a, b) => {
@@ -134,6 +131,7 @@ const RdiMobileTable: React.FC<RdiDesktopTableProps> = ({ rows }) => {
                   margin={theme.spacing(-30.5)}
                   multiselectTitle={item.nutrientGroup}
                   onSelectedValue={setOnSelectedRows}
+                  getSelectedNutrients={onSelectRows}
                 />
               </Box>
             </Box>

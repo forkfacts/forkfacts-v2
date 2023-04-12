@@ -30,4 +30,5 @@
 
 .slick-list {
   overflow: visible !important;
+  z-index: 2 !important;
 }

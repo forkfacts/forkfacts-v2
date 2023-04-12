@@ -14,6 +14,7 @@ const MultipleSelects: React.FC<MultipleSelectsProps> = ({
   onSelectedValue,
   multiselectTitle,
   margin = 0,
+  getSelectedNutrients,
 }) => {
   const theme = useTheme();
   const ref = useRef<HTMLDivElement>(null);
@@ -158,6 +159,15 @@ const MultipleSelects: React.FC<MultipleSelectsProps> = ({
               alignItems: "center",
               listStyle: "none",
               flexDirection: "column",
+              maxHeight: "480px",
+              overflowY: "auto",
+              overflowX: "hidden",
+              "&::-webkit-scrollbar": {
+                width: "8px",
+              },
+              "&::-webkit-scrollbar-thumb": {
+                backgroundColor: theme.palette.customGray.textLight,
+              },
             }}
           >
             <ForLoops each={selectedNutrients}>

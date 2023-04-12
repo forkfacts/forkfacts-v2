@@ -329,6 +329,7 @@ export interface MeasurementFilterProps {
 export interface MultipleSelectsProps {
   values: filterItem[];
   onSelectedValue: Dispatch<SetStateAction<NutrientType[]>>;
+  getSelectedNutrients?: filterItem[];
   RenderSelectButton?: String | JSX.Element;
   multiselectTitle: string;
   margin: any;

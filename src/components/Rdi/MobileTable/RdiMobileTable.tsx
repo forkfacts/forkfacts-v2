@@ -12,6 +12,7 @@ import {
   Typography,
   useTheme,
   TableRow,
+  Button,
 } from "@mui/material";
 import { ForLoops } from "@forkfacts/helpers";
 import { RdiDesktopTableProps, RdiNutritionTableRow, filterItem } from "@forkfacts/models";
@@ -99,6 +100,24 @@ const RdiMobileTable: React.FC<RdiDesktopTableProps> = ({ rows }) => {
 
   return (
     <Box sx={{ mb: theme.spacing(15), background: " #FFFFFF" }}>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "flex-end",
+          my: theme.spacing(1),
+          pr: theme.spacing(1),
+        }}
+      >
+        <Typography
+          variant="labelMedium"
+          sx={{
+            fontWeight: theme.typography.fontWeightRegular,
+            color: theme.palette.customGray.dark,
+          }}
+        >
+          source: nih.gov
+        </Typography>
+      </Box>
       <Slider {...settings}>
         {tableRows.map((item, index: any) => (
           <Box
@@ -123,7 +142,7 @@ const RdiMobileTable: React.FC<RdiDesktopTableProps> = ({ rows }) => {
               >
                 {item.nutrientGroup}
               </Typography>
-              <Box sx={{ mr: theme.spacing(2), zIndex: theme.zIndex.appBar, position: "relative" }}>
+              <Box sx={{ zIndex: theme.zIndex.modal, position: "relative" }}>
                 <MultipleSelects
                   values={item.rows?.map((item) => {
                     return { name: item.nutrient };
@@ -159,12 +178,11 @@ const RdiMobileTable: React.FC<RdiDesktopTableProps> = ({ rows }) => {
                             sx={{
                               color: theme.palette.customGray.dark,
                               fontWeight: theme.typography.fontWeightRegular,
-                              ml: "-30px",
                               overflow: "hidden",
                               whiteSpace: "break-spaces",
                             }}
                           >
-                            Recommended amount
+                            Recommended
                           </Typography>
                         </TableCell>
                         <TableCell align="right">
@@ -219,28 +237,26 @@ const RdiMobileTable: React.FC<RdiDesktopTableProps> = ({ rows }) => {
                                     color: theme.palette.customGray.main,
                                     whiteSpace: "nowrap",
                                     overflow: "hidden",
+                                    pr: theme.spacing(2),
                                   }}
                                 >
                                   {subItem.recommendedAmount} {subItem.recommendedUnit}
                                 </Typography>
                               </TableCell>
-                              <TableCell align="left">
-                                <Typography
+                              <TableCell align="right">
+                                <Button
+                                  startIcon={<LaunchIcon />}
                                   color="primary"
-                                  variant="labelMedium"
+                                  variant="text"
                                   sx={{
                                     fontWeight: theme.typography.fontWeightRegular,
                                     whiteSpace: "nowrap",
                                     overflow: "hidden",
-                                    display: "flex",
-                                    alignItems: "center",
-                                    justifyContent: "flex-start",
-                                    ml: theme.spacing(7),
+                                    fontSize: theme.typography.labelMedium.fontSize,
                                   }}
                                 >
-                                  <LaunchIcon sx={{ mr: theme.spacing(1) }} />
                                   View
-                                </Typography>
+                                </Button>
                               </TableCell>
                             </TableRow>
                           );

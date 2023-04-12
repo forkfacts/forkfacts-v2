@@ -269,7 +269,7 @@ const RdiDesktopTable: React.FC<RdiDesktopTableProps> = ({ rows }) => {
                                   }}
                                 >
                                   <LaunchIcon sx={{ mr: theme.spacing(2) }} />
-                                  View top sources
+                                  Coming soon
                                 </Typography>
                               </TableCell>
                             </TableRow>

@@ -48,11 +48,11 @@ const MultipleSelects: React.FC<MultipleSelectsProps> = ({
     return setSelectNutrients(results);
   };
 
-  const onSelectAll = () => {
+  const onResetFilter = () => {
     const checkedNutrients = selectedNutrients?.map((item) => {
       return {
         ...item,
-        checked: true,
+        checked: false,
       };
     });
     setSelectNutrients(checkedNutrients);
@@ -161,6 +161,7 @@ const MultipleSelects: React.FC<MultipleSelectsProps> = ({
               flexDirection: "column",
               maxHeight: "480px",
               overflowY: "auto",
+              zIndex: theme.zIndex.appBar,
               overflowX: "hidden",
               "&::-webkit-scrollbar": {
                 width: "8px",
@@ -211,12 +212,12 @@ const MultipleSelects: React.FC<MultipleSelectsProps> = ({
               <Typography
                 color="primary"
                 variant="labelLarge"
-                onClick={onSelectAll}
+                onClick={onResetFilter}
                 sx={{
                   fontWeight: theme.typography.fontWeightRegular,
                 }}
               >
-                Select All
+                Reset
               </Typography>
             </Box>
           </Box>

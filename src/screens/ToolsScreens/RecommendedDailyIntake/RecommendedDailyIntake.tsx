@@ -195,7 +195,7 @@ const RecommendedDailyIntake: React.FC<RecommendedDailyIntakeProps> = ({
                   container
                   columns={{ xs: 12, sm: 12, md: 12 }}
                   spacing={2}
-                  sx={{ mt: theme.spacing(0.3), maxWidth: theme.spacing(105) }}
+                  sx={{ mt: theme.spacing(0.3), maxWidth: theme.spacing(108) }}
                 >
                   <ForLoops each={genders}>
                     {(item, index) => (
@@ -262,7 +262,7 @@ const RecommendedDailyIntake: React.FC<RecommendedDailyIntakeProps> = ({
                     color: customTheme.palette.customGray.textDark,
                   }}
                 >
-                  Select Age
+                  Select age
                 </Typography>
                 <Box
                   component="div"

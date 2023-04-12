@@ -68,7 +68,7 @@ const RdiViewNutrients: React.FC<RdiViewNutrientsProps> = ({
             color: theme.palette.customGray.dark,
             display: "flex",
             alignItems: "center",
-            columnGap: mobile ? theme.spacing(0.3) : theme.spacing(1),
+            columnGap: mobile ? theme.spacing(0.4) : theme.spacing(1),
           }}
         >
           Showing for

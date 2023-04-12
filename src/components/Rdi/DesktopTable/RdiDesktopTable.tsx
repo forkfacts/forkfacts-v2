@@ -22,6 +22,7 @@ interface RowsByNutrientGroup {
 
 const RdiDesktopTable: React.FC<RdiDesktopTableProps> = ({ rows }) => {
   const theme = useTheme();
+  const [index, setIndex] = useState(0);
   const [collapsedRows, setCollapsedRows] = useState<any>([]);
   const [tableRows, setTableRows] = useState<RowsByNutrientGroup[]>([]);
   const toggleCollapse = (nutrient: any) => {
@@ -75,20 +76,7 @@ const RdiDesktopTable: React.FC<RdiDesktopTableProps> = ({ rows }) => {
     setTableRows(sortRowsByNutrientGroup(rowsByNutrientGroupArray));
   }, [rows]);
 
-  function sortNutritionTableRows(rows: RdiNutritionTableRow[]) {
-    rows.sort((a, b) => {
-      const nameA = a.nutrient.toUpperCase();
-      const nameB = b.nutrient.toUpperCase();
-      if (nameA < nameB) {
-        return -1;
-      }
-      if (nameA > nameB) {
-        return 1;
-      }
-      return 0;
-    });
-    return rows;
-  }
+  const isPink = (i: number) => i % 2 === 0;
 
   return (
     <Box>
@@ -149,11 +137,15 @@ const RdiDesktopTable: React.FC<RdiDesktopTableProps> = ({ rows }) => {
                 if (row.nutrientGroup) {
                   return (
                     <React.Fragment key={index}>
-                      <TableRow sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
+                      <TableRow
+                        sx={{
+                          "&:last-child td, &:last-child th": { border: 0 },
+                        }}
+                      >
                         <TableCell
                           component="th"
                           scope="row"
-                          sx={{ borderBottom: "1px solid #F3EFF4" }}
+                          sx={{ borderBottom: "1px solid #F3EFF4", pb: "10px" }}
                         >
                           <Box sx={{ display: "flex", alignItems: "center" }}>
                             {isCollapsed(row.nutrientGroup) ? (
@@ -187,75 +179,101 @@ const RdiDesktopTable: React.FC<RdiDesktopTableProps> = ({ rows }) => {
                         <TableCell
                           component="th"
                           scope="row"
-                          sx={{ borderBottom: "1px solid #F3EFF4" }}
+                          sx={{ borderBottom: "1px solid #F3EFF4", pb: "10px" }}
                         />
                         <TableCell
                           component="th"
                           scope="row"
-                          sx={{ borderBottom: "1px solid #F3EFF4" }}
+                          sx={{ borderBottom: "1px solid #F3EFF4", pb: "10px" }}
                         />
                       </TableRow>
                       {!isCollapsed(row.nutrientGroup) &&
                         row?.rows.map((content, index2) => (
-                          <TableRow
-                            key={index2}
-                            sx={{
-                              "&:first-of-type td": {
-                                backgroundColor: "none",
-                              },
-                              "&:nth-of-type(odd)": {
-                                backgroundColor: "#FFFBFF",
-                              },
-                            }}
-                          >
-                            <TableCell component="th" scope="row" sx={{ borderBottom: "none" }}>
-                              <Typography
-                                variant="bodyMedium"
+                          <>
+                            <Box mt={2} />
+                            <TableRow
+                              key={index2}
+                              sx={{
+                                "&:last-child td, &:last-child th": {
+                                  backgroundColor: "none",
+                                },
+                                "&:first-child td, &:first-child th": {
+                                  "#FFFBFF": "none",
+                                },
+                                backgroundColor: isPink(index + index2 + 1) ? "#FFFBFF" : "none",
+                              }}
+                            >
+                              <TableCell
+                                component="th"
+                                scope="row"
                                 sx={{
-                                  color: theme.palette.customGray.main,
-                                  fontWeight: theme.typography.fontWeightLight,
-                                  ml: theme.spacing(3),
-                                  textAlign: "right",
+                                  borderBottom: "none",
+                                  "&:first-child": { borderBottom: "none" },
+                                  mt: "10px",
                                 }}
                               >
-                                {content?.nutrient}
-                              </Typography>
-                            </TableCell>
-                            <TableCell align="right" sx={{ borderBottom: "none" }}>
-                              {content?.recommendedAmount && (
                                 <Typography
-                                  component="span"
                                   variant="bodyMedium"
                                   sx={{
                                     color: theme.palette.customGray.main,
                                     fontWeight: theme.typography.fontWeightLight,
+                                    ml: theme.spacing(3),
                                     textAlign: "right",
-                                    mr: theme.spacing(1),
-                                    textTransform: "lowercase",
                                   }}
                                 >
-                                  {content?.recommendedAmount} {content?.recommendedUnit}
+                                  {content?.nutrient}
                                 </Typography>
-                              )}
-                            </TableCell>
-                            <TableCell align="right" sx={{ borderBottom: "none" }}>
-                              <Typography
-                                component="span"
-                                variant="labelLarge"
-                                color="primary"
+                              </TableCell>
+                              <TableCell
+                                align="right"
                                 sx={{
-                                  fontWeight: theme.typography.fontWeightRegular,
-                                  display: "flex",
-                                  alignItems: "center",
-                                  justifyContent: "flex-end",
-                                  cursor: "pointer",
+                                  borderBottom: "none",
+                                  "&:first-child": { borderBottom: "none" },
+                                  mt: "10px",
                                 }}
                               >
-                                <LaunchIcon sx={{ mr: theme.spacing(2) }} />
-                                View top sources
-                              </Typography>
-                            </TableCell>
-                          </TableRow>
+                                {content?.recommendedAmount && (
+                                  <Typography
+                                    component="span"
+                                    variant="bodyMedium"
+                                    sx={{
+                                      color: theme.palette.customGray.main,
+                                      fontWeight: theme.typography.fontWeightLight,
+                                      textAlign: "right",
+                                      mr: theme.spacing(1),
+                                      textTransform: "lowercase",
+                                    }}
+                                  >
+                                    {content?.recommendedAmount} {content?.recommendedUnit}
+                                  </Typography>
+                                )}
+                              </TableCell>
+                              <TableCell
+                                align="right"
+                                sx={{
+                                  borderBottom: "none",
+                                  "&:first-child": { borderBottom: "none" },
+                                  mt: "10px",
+                                }}
+                              >
+                                <Typography
+                                  component="span"
+                                  variant="labelLarge"
+                                  color="primary"
+                                  sx={{
+                                    fontWeight: theme.typography.fontWeightRegular,
+                                    display: "flex",
+                                    alignItems: "center",
+                                    justifyContent: "flex-end",
+                                    cursor: "pointer",
+                                  }}
+                                >
+                                  <LaunchIcon sx={{ mr: theme.spacing(2) }} />
+                                  View top sources
+                                </Typography>
+                              </TableCell>
+                            </TableRow>
+                          </>
                         ))}
                     </React.Fragment>
                   );

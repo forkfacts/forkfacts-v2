@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import Checkbox from "@mui/material/Checkbox";
 import { ForLoops } from "@forkfacts/helpers";
-import { Box, Button, Typography, useTheme } from "@mui/material";
+import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { MultipleSelectsProps, filterItem } from "@forkfacts/models";
 import CloseIcon from "@mui/icons-material/Close";
-import FilterListOutlinedIcon from "@mui/icons-material/FilterListOutlined";
+
 type NutrientType = {
   checked: boolean;
 } & filterItem;
@@ -12,24 +12,23 @@ type NutrientType = {
 const MultipleSelects: React.FC<MultipleSelectsProps> = ({
   values,
   onSelectedValue,
+  RenderSelectButton,
+  open,
+  setIsOpen,
   multiselectTitle,
   margin = 0,
-  getSelectedNutrients,
 }) => {
   const theme = useTheme();
+  const mobile = useMediaQuery(theme.breakpoints.down("md"));
   const ref = useRef<HTMLDivElement>(null);
-  let newNutrients: NutrientType[] = [];
-  const [open, setIsOpen] = useState(false);
-  if (values?.length) {
-    newNutrients = [...values]?.map((item) => {
-      return {
-        name: item.name,
-        checked: false,
-      };
-    });
-  }
+  const newNutrients: NutrientType[] = [...values].map((item) => {
+    return {
+      name: item.name,
+      checked: false,
+    };
+  });
   const [selectedNutrients, setSelectNutrients] = useState<NutrientType[]>([...newNutrients]);
-  const [isSelectedLength, setIsSelectedLength] = useState<number>(0);
+
   const onSelectButtonItem = (name: string, index: number) => {
     let results = selectedNutrients?.map((item, index) => {
       if (item.name === name) {
@@ -44,15 +43,14 @@ const MultipleSelects: React.FC<MultipleSelectsProps> = ({
         return item;
       }
     });
-    setIsOpen(true);
     return setSelectNutrients(results);
   };
 
-  const onResetFilter = () => {
+  const onSelectAll = () => {
     const checkedNutrients = selectedNutrients?.map((item) => {
       return {
         ...item,
-        checked: false,
+        checked: true,
       };
     });
     setSelectNutrients(checkedNutrients);
@@ -64,6 +62,7 @@ const MultipleSelects: React.FC<MultipleSelectsProps> = ({
         setIsOpen(false);
       }
     }
+
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
@@ -77,33 +76,11 @@ const MultipleSelects: React.FC<MultipleSelectsProps> = ({
   }, [selectedNutrients]);
 
   return (
-    <Box sx={{ display: "block", zIndex: theme.zIndex.appBar }} ref={ref}>
-      <Button
-        sx={{
-          py: "4px",
-          pl: "12px",
-          pr: "16px",
-          color: theme.palette.primary.light,
-          backgroundColor: isSelectedLength ? theme.palette.primary.light : "#fff",
-        }}
-      >
-        <FilterListOutlinedIcon
-          color="primary"
-          onClick={() => {
-            setIsOpen(!open);
-            onSelectedValue([]);
-          }}
-        />
-        {isSelectedLength ? (
-          <Typography
-            color="primary"
-            variant="labelLarge"
-            sx={{ ml: theme.spacing(1), fontWeight: theme.typography.fontWeightRegular }}
-          >
-            {isSelectedLength}
-          </Typography>
-        ) : null}
-      </Button>
+    <Box
+      sx={{ cursor: "pointer", zIndex: theme.zIndex.mobileStepper, position: "relative" }}
+      ref={ref}
+    >
+      <>{RenderSelectButton}</>
       {open && (
         <Box
           component="div"
@@ -117,9 +94,9 @@ const MultipleSelects: React.FC<MultipleSelectsProps> = ({
             paddingTop: theme.spacing(2),
             paddingLeft: theme.spacing(2),
             paddingRight: theme.spacing(2),
-            zIndex: theme.zIndex.appBar,
+            zIndex: theme.zIndex.modal,
             backgroundColor: theme.palette.common.white,
-            ml: margin ? margin : theme.spacing(-17.5),
+            ml: mobile ? theme.spacing(-17.5) : margin,
             borderRadius: theme.spacing(1),
           }}
           boxShadow={1}
@@ -145,9 +122,7 @@ const MultipleSelects: React.FC<MultipleSelectsProps> = ({
             </Typography>
             <CloseIcon
               sx={{ width: theme.spacing(2), height: theme.spacing(2) }}
-              onClick={() => {
-                setIsOpen(false);
-              }}
+              onClick={() => setIsOpen(false)}
             />
           </Box>
           <Box
@@ -159,16 +134,6 @@ const MultipleSelects: React.FC<MultipleSelectsProps> = ({
               alignItems: "center",
               listStyle: "none",
               flexDirection: "column",
-              maxHeight: "480px",
-              overflowY: "auto",
-              zIndex: theme.zIndex.appBar,
-              overflowX: "hidden",
-              "&::-webkit-scrollbar": {
-                width: "8px",
-              },
-              "&::-webkit-scrollbar-thumb": {
-                backgroundColor: theme.palette.customGray.textLight,
-              },
             }}
           >
             <ForLoops each={selectedNutrients}>
@@ -207,18 +172,17 @@ const MultipleSelects: React.FC<MultipleSelectsProps> = ({
                 justifyContent: "flex-end",
                 alignItems: "center",
                 mt: theme.spacing(2),
-                mr: theme.spacing(2),
               }}
             >
               <Typography
                 color="primary"
                 variant="labelLarge"
-                onClick={onResetFilter}
+                onClick={onSelectAll}
                 sx={{
                   fontWeight: theme.typography.fontWeightRegular,
                 }}
               >
-                Reset
+                Select All
               </Typography>
             </Box>
           </Box>

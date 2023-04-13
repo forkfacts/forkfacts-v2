@@ -328,13 +328,13 @@ export interface MeasurementFilterProps {
 }
 export interface MultipleSelectsProps {
   values: filterItem[];
-  onSelectedValue: Dispatch<SetStateAction<NutrientType[]>>;
-  getSelectedNutrients?: filterItem[];
+  onSelectedValue: Dispatch<SetStateAction<string[]>>;
   RenderSelectButton?: String | JSX.Element;
+  open: boolean;
+  setIsOpen: Dispatch<SetStateAction<boolean>>;
   multiselectTitle: string;
   margin: any;
 }
-
 export interface NutritionDesktopTableProps {
   rows: NutritionTableRow[];
 }

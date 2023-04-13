@@ -361,7 +361,11 @@ const RecommendedDailyIntake: React.FC<RecommendedDailyIntakeProps> = ({
             }}
           >
             <RdiViewNutrients
-              age={`${selectedAge.start}-${selectedAge.end} ${selectedAge.ageUnit}`}
+              age={
+                !selectedAge.end
+                  ? `${selectedAge.start} ${selectedAge.ageUnit}s`
+                  : `${selectedAge.start}-${selectedAge.end} ${selectedAge.ageUnit}`
+              }
               gender={selectedGender}
               nutritionFilterItems={nutritionFilters}
               onCloseRdiTable={onCloseRdiTable}

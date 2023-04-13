@@ -35,7 +35,7 @@ const values: filterItem[] = [
 ];
 
 const Template: ComponentStory<typeof MultipleSelects> = (args) => {
-  const [_, setSelectedNutrients] = useState<string[]>([]);
+  const [_, setSelectedNutrients] = useState<filterItem[]>([]);
   const [open, setIsOpen] = useState(false);
   const theme = useTheme();
   return (

@@ -8,9 +8,7 @@ import CompareArrowsOutlinedIcon from "@mui/icons-material/CompareArrowsOutlined
 import { Baby, Kids, Lactation, Male, PregnantWoman, Woman } from "@forkfacts/icons";
 import FastfoodOutlinedIcon from "@mui/icons-material/FastfoodOutlined";
 import SmokingRoomsOutlinedIcon from "@mui/icons-material/SmokingRoomsOutlined";
-import LibraryBooksOutlinedIcon from "@mui/icons-material/LibraryBooksOutlined";
-import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
-import AutoStoriesOutlinedIcon from "@mui/icons-material/AutoStoriesOutlined";
+import { menuItems } from "../../RealData/realData";
 import { DetailsPageScreen } from "@forkfacts/screens";
 import {
   FoodWithSameName,
@@ -31,14 +29,6 @@ export default {
     },
   },
 } as ComponentMeta<typeof DetailsPageScreen>;
-
-const menuItems: MenuItem[] = [
-  { label: "Food", Icon: EggAltOutlinedIcon, link: "/food" },
-  { label: "Recipes", Icon: EmojiFoodBeverageOutlinedIcon, link: "/recipe" },
-  { label: "Library", Icon: LibraryBooksOutlinedIcon, link: "/library" },
-  { label: "Cookbook", Icon: AutoStoriesOutlinedIcon, link: "/Cookbook" },
-  { label: "Grocery List", Icon: ShoppingCartOutlinedIcon, link: "/grocery-list" },
-];
 
 const tabs = [
   { label: "Nutrition", Icon: FastfoodOutlinedIcon, link: "/food" },

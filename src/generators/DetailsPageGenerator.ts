@@ -16,7 +16,7 @@ const CARBOHYDRATE_UNIT = "G";
 const PROTEIN_NAME = "Protein";
 const PROTEIN_UNIT = "G";
 
-export const createDetailPage = (createPage: any) => {
+export const createDetailsPage = (createPage: any) => {
   try {
     createNutritionTable({
       createPageFunction: createPage,
@@ -51,7 +51,7 @@ const createNutritionTable = ({ createPageFunction, foods }: any) => {
         pagePath,
       };
       createPageFunction({
-        path: pagePath,
+        path: `/recipes/${pagePath}`,
         component: template,
         context: {
           food,

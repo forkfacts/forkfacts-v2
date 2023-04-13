@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { PageProps } from "gatsby";
 import { DetailsPageScreen } from "@forkfacts/screens";
-import { SEO, useSEO } from "gatsby-plugin-seo";
+import { SEO } from "gatsby-plugin-seo";
 import {
   getAgeRangesForLifeStage,
   getValueRounded,

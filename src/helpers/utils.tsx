@@ -24,16 +24,16 @@ export function getAgeRangesForLifeStage(selectedLifeStageName: string = "Female
       case "Females":
         return ageRange.ageUnit === "year" && ageRange.start >= 9 ? ageRange : null;
       case "Pregnant":
-        return ageRange.ageUnit === "year" && ageRange.start >= 14 && ageRange.end <= 50
+        return ageRange.ageUnit === "year" && ageRange.start >= 14 && ageRange?.end <= 50
           ? ageRange
           : null;
       case "Lactation":
-        return ageRange.ageUnit === "year" && ageRange.start >= 14 && ageRange.end <= 50
+        return ageRange.ageUnit === "year" && ageRange.start >= 14 && ageRange?.end <= 50
           ? ageRange
           : null;
 
       default:
-        return null;
+        return ageRange;
     }
   });
   return ageRanges.filter((range) => range !== null);

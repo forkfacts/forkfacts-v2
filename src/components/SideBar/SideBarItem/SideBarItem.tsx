@@ -1,31 +1,35 @@
 import { ListItem, ListItemText, Typography, useTheme, ListItemButton } from "@mui/material";
 import { SideBarItemProps } from "@forkfacts/models";
 import { navigate } from "gatsby";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 export default function SideBarItem({
   index,
-  selectedIndex,
   drawerWidthExpanded,
   item,
-  handleSelectedIndex,
+  handleSelectedItem,
 }: SideBarItemProps) {
   const theme = useTheme();
+  const [selectedRoute, setSelectedRoute] = useState("");
+
+  useEffect(() => {
+    const path = window.location.pathname;
+    setSelectedRoute(path);
+  }, []);
 
   const onRoutePage = () => {
     navigate(item.link);
-    handleSelectedIndex(index, item);
+    handleSelectedItem(item.label, item);
   };
 
   return (
     <ListItem
       onClick={onRoutePage}
       key={index}
-      divider={drawerWidthExpanded && index === 2 ? true : false}
       disablePadding
       sx={{
         backgroundColor:
-          selectedIndex === index && drawerWidthExpanded
+          (selectedRoute.startsWith(item.link) && item.link !== "/") || selectedRoute === item.link
             ? theme.palette.primary.light
             : theme.palette.background.default,
       }}
@@ -46,7 +50,10 @@ export default function SideBarItem({
             height: theme.spacing(3),
             fontWeight: 500,
             color:
-              selectedIndex === index ? theme.palette.primary.main : theme.palette.customGray.dark,
+              (selectedRoute.startsWith(item.link) && item.link !== "/") ||
+              selectedRoute === item.link
+                ? theme.palette.primary.main
+                : theme.palette.customGray.dark,
           }}
         />
         <ListItemText
@@ -57,7 +64,8 @@ export default function SideBarItem({
                 ml: drawerWidthExpanded ? theme.spacing(2) : theme.spacing(0),
                 fontWeight: theme.typography.fontWeightRegular,
                 color:
-                  selectedIndex === index
+                  (selectedRoute.startsWith(item.link) && item.link !== "/") ||
+                  selectedRoute === item.link
                     ? theme.palette.primary.main
                     : theme.palette.customGray.dark,
               }}

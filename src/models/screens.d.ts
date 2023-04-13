@@ -54,3 +54,7 @@ export interface DetailsPageScreenProps {
   onSelectedValue: Dispatch<SetStateAction<string[]>>;
   lifeStageItems: Array<lifeStageItem>;
 }
+
+interface ToolsScreenProps {
+  menuItems: MenuItem[];
+}

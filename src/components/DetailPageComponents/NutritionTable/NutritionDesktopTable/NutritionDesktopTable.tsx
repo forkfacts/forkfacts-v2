@@ -219,17 +219,7 @@ const NutritionDesktopTable: React.FC<NutritionDesktopTableProps> = ({ rows }) =
                       </TableRow>
                       {!isCollapsed(row.nutrientGroup) &&
                         row?.rows.map((content, index2) => (
-                          <TableRow
-                            key={index2}
-                            sx={{
-                              "&:first-of-type td": {
-                                backgroundColor: "none",
-                              },
-                              "&:nth-of-type(odd)": {
-                                backgroundColor: "#FFFBFF",
-                              },
-                            }}
-                          >
+                          <TableRow key={index2} sx={{}}>
                             <TableCell component="th" scope="row" sx={{ borderBottom: "none" }}>
                               <Typography
                                 variant="bodyMedium"

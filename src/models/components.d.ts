@@ -83,6 +83,13 @@ export interface NutritionTableRow {
   };
 }
 
+export interface RdiNutritionTableRow {
+  nutrient: string;
+  recommendedAmount?: number;
+  recommendedUnit?: string;
+  nutrientGroup: string;
+}
+
 export interface recommendationType {
   recommendationName: string;
   recommendationItems: Array<recommendationItem>;
@@ -164,10 +171,10 @@ export type SearchResultsProps = {
 
 export interface SideBarItemProps {
   index: number;
-  selectedIndex: number;
+  selectedItem: string;
   drawerWidthExpanded: boolean;
   item: MenuItem;
-  handleSelectedIndex: (index: number, item: MenuItem) => void;
+  handleSelectedItem: (index: string, item: MenuItem) => void;
 }
 
 export interface PopularFrequentSearchProps {
@@ -298,6 +305,7 @@ export interface SearchNutritionFilterProps {
   nutritionFilterItems: Array<SelectedNutrient>;
   isDropdown: boolean;
   margin?: string | number;
+  displayListIcon: boolean;
 }
 
 export interface SelectNutrientRow {
@@ -314,26 +322,28 @@ export interface SelectedNutrient {
   checked: boolean;
   rows: SelectNutrientRow[];
 }
-export interface AllFiltersProps {}
-
 export interface MeasurementFilterProps {
   measurementFilterItems: string[];
   onSelectMeasurementItem: (item: string) => void;
 }
 export interface MultipleSelectsProps {
   values: filterItem[];
-  onSelectedValue: Dispatch<SetStateAction<string[]>>;
+  onSelectedValue: Dispatch<SetStateAction<filterItem[]>>;
   RenderSelectButton?: String | JSX.Element;
   open: boolean;
   setIsOpen: Dispatch<SetStateAction<boolean>>;
   multiselectTitle: string;
   margin: any;
 }
-
 export interface NutritionDesktopTableProps {
   rows: NutritionTableRow[];
 }
 
 interface NutritionMobileTableProps {
   rows: NutritionTableRow[];
+}
+export interface RdiDesktopTableProps {
+  rows: RdiNutritionTableRow[];
+  nutritionFilterItems?: Array<SelectedNutrient>;
+  totalRdiNutrients?: number;
 }

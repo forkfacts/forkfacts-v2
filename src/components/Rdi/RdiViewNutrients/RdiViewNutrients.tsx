@@ -20,6 +20,7 @@ interface RdiViewNutrientsProps {
   onCloseRdiTable: () => void;
   rows: RdiNutritionTableRow[];
   totalRdiNutrients: number;
+  range: string;
 }
 
 const RdiViewNutrients: React.FC<RdiViewNutrientsProps> = ({
@@ -29,6 +30,7 @@ const RdiViewNutrients: React.FC<RdiViewNutrientsProps> = ({
   onCloseRdiTable,
   rows,
   totalRdiNutrients,
+  range,
 }) => {
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.down("md"));
@@ -72,7 +74,7 @@ const RdiViewNutrients: React.FC<RdiViewNutrientsProps> = ({
             }}
           >
             Showing for&nbsp;<span style={{ color: theme.palette.primary.main }}>{gender}</span>
-            &nbsp;between&nbsp;
+            &nbsp;{range}&nbsp;
             <span style={{ color: theme.palette.primary.main }}>{age}</span>
           </Typography>
           <Box>

@@ -366,6 +366,7 @@ const RecommendedDailyIntake: React.FC<RecommendedDailyIntakeProps> = ({
                   ? `${selectedAge.start} ${selectedAge.ageUnit}s`
                   : `${selectedAge.start}-${selectedAge.end} ${selectedAge.ageUnit}`
               }
+              range={`${!selectedAge.end ? "over" : "between"}`}
               gender={selectedGender}
               nutritionFilterItems={nutritionFilters}
               onCloseRdiTable={onCloseRdiTable}

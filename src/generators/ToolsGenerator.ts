@@ -1,7 +1,7 @@
 const path = require("path");
 const recommendedDailyIntakes = require("../../data/rdi.json");
 
-export const toolsDetailPage = (createPageFunction: any) => {
+export const createToolsPage = (createPageFunction: any) => {
   try {
     const template = path.resolve("src/templates/tools/ToolsPage.tsx");
     createPageFunction({
@@ -19,7 +19,12 @@ export const toolsDetailPage = (createPageFunction: any) => {
       component: childPageTemplate,
       context: {
         recommendedDailyIntakes,
-        pageTitle: "Recommended daily intake",
+        seo: {
+          pageTitle:
+            "Discover Your Daily Recommended Intake and Top Food Sources for Every Nutrient with Forkfacts",
+          description:
+            "Forkfacts provides personalized recommended daily intake as per NIH guidelines for all age groups, including infants, children, females, males, pregnant and lactating mothers. Find the best food sources for each nutrient and optimize your diet for a healthier life. Start your journey towards a well-nourished lifestyle with Forkfacts today!",
+        },
       },
     });
   } catch (error: any) {

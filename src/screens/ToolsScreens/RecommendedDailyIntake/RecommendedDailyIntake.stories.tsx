@@ -4,7 +4,7 @@ import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import { RecommendedDailyIntake } from "@forkfacts/screens";
 import { RdiAge } from "@forkfacts/models";
 import { getAgeRangesForLifeStage, setSelectedAgeByGender } from "@forkfacts/helpers";
-import { allAges, lifeStageItems, menuItems } from "../../../RealData/realData";
+import { rdiAges, lifeStageItems, menuItems } from "../../../RealData/realData";
 
 export default {
   title: "Screens/Tools/RecommendedDailyIntake",
@@ -31,7 +31,7 @@ const Template: ComponentStory<typeof RecommendedDailyIntake> = (args) => {
       selectedAge={selectedAge}
       selectedGender={selectedGender}
       setSelectedGender={setSelectedGender}
-      ages={selectedGender ? ageRanges : allAges}
+      ages={selectedGender ? ageRanges : rdiAges}
     />
   );
 };

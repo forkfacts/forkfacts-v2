@@ -26,12 +26,15 @@ interface NutrientRequirement {
 interface Props {
   pageContext: {
     recommendedDailyIntakes: NutrientRequirement[];
-    pageTitle: string;
+    seo: {
+      title: string;
+      description: string;
+    };
   };
 }
 
 const RecommendedDailyIntakePage: React.FC<Props> = ({ pageContext }) => {
-  const { recommendedDailyIntakes, pageTitle } = pageContext;
+  const { recommendedDailyIntakes, seo } = pageContext;
   const [selectedAge, setSelectedAge] = useState<RdiAge>({} as RdiAge);
   const [selectedGender, setSelectedGender] = useState("");
   const { selectedNutrients } = useStore((state) => state);
@@ -130,12 +133,7 @@ const RecommendedDailyIntakePage: React.FC<Props> = ({ pageContext }) => {
 
   return (
     <Box>
-      <SEO
-        title={
-          "Discover Your Daily Recommended Intake and Top Food Sources for Every Nutrient with Forkfacts"
-        }
-        description="Forkfacts provides personalized recommended daily intake as per NIH guidelines for all age groups, including infants, children, females, males, pregnant and lactating mothers. Find the best food sources for each nutrient and optimize your diet for a healthier life. Start your journey towards a well-nourished lifestyle with Forkfacts today!"
-      />
+      <SEO title={seo.title} description={seo.description} />
       <RecommendedDailyIntake
         menuItems={menuItems}
         isOpenRdiTable={isOpenRdiTable}

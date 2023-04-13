@@ -345,6 +345,7 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
               width: "100%",
               maxHeight: "500px",
               overflowY: "auto",
+              zIndex: theme.zIndex.modal,
               "&::-webkit-scrollbar": {
                 width: "8px",
               },

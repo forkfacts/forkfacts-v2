@@ -41,9 +41,8 @@ const RdiViewNutrients: React.FC<RdiViewNutrientsProps> = ({
   }
 
   return (
-    <Box>
+    <Box sx={{ height: "100%" }}>
       <Box>
-        {" "}
         <Typography
           variant={mobile ? "headline6" : "headline4"}
           sx={{
@@ -101,6 +100,7 @@ const RdiViewNutrients: React.FC<RdiViewNutrientsProps> = ({
             flexDirection: "column",
             justifyContent: "flex-end",
             rowGap: theme.spacing(2),
+            position: "relative",
           }}
         >
           <SearchNutritionFilter

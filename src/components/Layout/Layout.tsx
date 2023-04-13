@@ -36,7 +36,7 @@ const Layout: FC<LayoutProps> = ({ children, menuItems }) => {
     <ThemeProvider theme={customTheme}>
       <CssBaseline />
       <Header handleToggleButton={handleDrawerToggle} />
-      <Box sx={{ display: { sm: "flex", xs: "block" }, overflow: "hidden", width: "100%" }}>
+      <Box sx={{ display: { sm: "flex", xs: "block" }, width: "100%" }}>
         <SideBar
           handleDrawerToggle={handleDrawerToggle}
           mobileOpen={mobileOpen}

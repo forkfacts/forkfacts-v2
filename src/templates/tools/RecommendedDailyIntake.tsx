@@ -33,7 +33,7 @@ interface Props {
 const RecommendedDailyIntakePage: React.FC<Props> = ({ pageContext }) => {
   const { recommendedDailyIntakes, pageTitle } = pageContext;
   const [selectedAge, setSelectedAge] = useState<RdiAge>({} as RdiAge);
-  const [selectedGender, setSelectedGender] = useState("");
+  const [selectedGender, setSelectedGender] = useState("Females");
   const { selectedNutrients } = useStore((state) => state);
   const [staticRows, setStaticRows] = useState<RdiNutritionTableRow[]>([]);
   const [rows, setRows] = useState<RdiNutritionTableRow[]>([]);

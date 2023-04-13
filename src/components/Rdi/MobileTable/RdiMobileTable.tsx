@@ -246,7 +246,7 @@ const RdiMobileTable: React.FC<RdiDesktopTableProps> = ({ rows, nutritionFilterI
                                     fontSize: theme.typography.labelMedium.fontSize,
                                   }}
                                 >
-                                  Coming soon
+                                  Upcoming
                                 </Button>
                               </TableCell>
                             </TableRow>

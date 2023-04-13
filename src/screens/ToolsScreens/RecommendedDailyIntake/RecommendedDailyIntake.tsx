@@ -331,10 +331,12 @@ const RecommendedDailyIntake: React.FC<RecommendedDailyIntakeProps> = ({
         ) : (
           <Box
             sx={{
-              display: "block",
+              display: "flex",
+              flexDirection: "column",
               background: "#fff",
               pt: theme.spacing(4),
               px: mobile ? theme.spacing(2) : 0,
+              overflow: "visible",
             }}
           >
             <RdiViewNutrients

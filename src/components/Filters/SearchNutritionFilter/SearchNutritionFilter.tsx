@@ -210,6 +210,9 @@ const SearchNutritionFilter: React.FC<SearchNutritionFilterProps> = ({
                 py: mobile ? theme.spacing(1) : theme.spacing(1.25),
                 pr: mobile ? theme.spacing(1.5) : theme.spacing(3),
                 pl: mobile ? theme.spacing(1) : theme.spacing(2),
+                backgroundColor: selectedNutrients.length
+                  ? theme.palette.primary.light
+                  : "transparent",
               }}
             >
               Filter nutrients

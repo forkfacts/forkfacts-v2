@@ -70,9 +70,8 @@ const MultipleSelects: React.FC<MultipleSelectsProps> = ({
   }, [ref]);
 
   useEffect(() => {
-    const selectedItems = selectedNutrients.filter((item) => item.checked === true);
+    const selectedItems: any = selectedNutrients.filter((item) => item.checked === true);
     onSelectedValue(selectedItems);
-    setIsSelectedLength(selectedItems.length);
   }, [selectedNutrients]);
 
   return (

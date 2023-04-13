@@ -194,13 +194,9 @@ const RdiDesktopTable: React.FC<RdiDesktopTableProps> = ({ rows }) => {
                             <TableRow
                               key={index2}
                               sx={{
-                                "&:last-child td, &:last-child th": {
-                                  backgroundColor: "none",
+                                "&:nth-of-type(even)": {
+                                  backgroundColor: "#FFFBFF",
                                 },
-                                "&:first-of-type td, &:first-of-type th": {
-                                  "#FFFBFF": "none",
-                                },
-                                backgroundColor: isPink(index + index2 + 1) ? "#FFFBFF" : "none",
                               }}
                             >
                               <TableCell
@@ -208,8 +204,9 @@ const RdiDesktopTable: React.FC<RdiDesktopTableProps> = ({ rows }) => {
                                 scope="row"
                                 sx={{
                                   borderBottom: "none",
-                                  "&:first-child": { borderBottom: "none" },
-                                  mt: "10px",
+                                  "&:nth-of-type(even)": {
+                                    backgroundColor: "#FFFBFF",
+                                  },
                                 }}
                               >
                                 <Typography

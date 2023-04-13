@@ -184,6 +184,7 @@ const RdiMobileTable: React.FC<RdiDesktopTableProps> = ({ rows, nutritionFilterI
                               fontWeight: theme.typography.fontWeightRegular,
                               whiteSpace: "nowrap",
                               overflow: "hidden",
+                              pr: theme.spacing(1),
                             }}
                           >
                             Top sources

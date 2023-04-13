@@ -67,6 +67,7 @@ const RdiViewNutrients: React.FC<RdiViewNutrientsProps> = ({
             variant={mobile ? "labelLarge" : "titleMedium"}
             sx={{
               color: theme.palette.customGray.dark,
+              fontWeight: theme.typography.fontWeightRegular,
               display: "flex",
             }}
           >
@@ -76,9 +77,15 @@ const RdiViewNutrients: React.FC<RdiViewNutrientsProps> = ({
           </Typography>
           <Box>
             <Typography
+              variant={mobile ? "labelLarge" : "titleMedium"}
               component="span"
               color="primary"
-              sx={{ cursor: "pointer", display: "flex", alignItems: "center" }}
+              sx={{
+                cursor: "pointer",
+                display: "flex",
+                alignItems: "center",
+                fontWeight: theme.typography.fontWeightRegular,
+              }}
               onClick={onCloseRdiTable}
             >
               <Box

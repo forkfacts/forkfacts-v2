@@ -33,9 +33,10 @@ interface Props {
 const RecommendedDailyIntakePage: React.FC<Props> = ({ pageContext }) => {
   const { recommendedDailyIntakes, pageTitle } = pageContext;
   const [selectedAge, setSelectedAge] = useState<RdiAge>({} as RdiAge);
-  const [selectedGender, setSelectedGender] = useState("Females");
+  const [selectedGender, setSelectedGender] = useState("");
   const { selectedNutrients } = useStore((state) => state);
   const [staticRows, setStaticRows] = useState<RdiNutritionTableRow[]>([]);
+  const [isOpenRdiTable, setIsOpenRdiTable] = useState(false);
   const [rows, setRows] = useState<RdiNutritionTableRow[]>([]);
   useEffect(() => {
     setSelectedAgeByGender(selectedGender, setSelectedAge);
@@ -120,11 +121,30 @@ const RecommendedDailyIntakePage: React.FC<Props> = ({ pageContext }) => {
         };
       }) || [];
 
+  const onOpenRdiTable = (): void => {
+    setIsOpenRdiTable(true);
+    if (typeof window !== "undefined") {
+      window.scrollTo(0, 0);
+    }
+  };
+
   return (
     <Box>
-      <SEO title={pageTitle} />
+      {isOpenRdiTable ? (
+        <SEO
+          title={
+            "Discover Your Daily Recommended Intake and Top Food Sources for Every Nutrient with Forkfacts"
+          }
+          description="Forkfacts provides personalized recommended daily intake as per NIH guidelines for all age groups, including infants, children, females, males, pregnant and lactating mothers. Find the best food sources for each nutrient and optimize your diet for a healthier life. Start your journey towards a well-nourished lifestyle with Forkfacts today!"
+        />
+      ) : (
+        <SEO title={pageTitle} />
+      )}
       <RecommendedDailyIntake
         menuItems={menuItems}
+        isOpenRdiTable={isOpenRdiTable}
+        setIsOpenRdiTable={setIsOpenRdiTable}
+        onOpenRdiTable={onOpenRdiTable}
         nutritionFilters={nutritionFilters}
         genders={lifeStageItems}
         setSelectedAge={setSelectedAge}

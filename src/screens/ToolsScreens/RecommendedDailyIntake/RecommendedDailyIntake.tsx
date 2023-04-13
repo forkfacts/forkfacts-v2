@@ -7,7 +7,7 @@ import {
   SelectedNutrient,
   lifeStageItem,
 } from "@forkfacts/models";
-import React, { useState } from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
 import { useStyles } from "../toolsScrenStyles";
 import CheckCircleOutlinedIcon from "@mui/icons-material/CheckCircleOutlined";
 import { customTheme } from "../../../themes/theme";
@@ -29,6 +29,9 @@ interface RecommendedDailyIntakeProps {
   rows: RdiNutritionTableRow[];
   nutritionFilters: SelectedNutrient[];
   totalRdiNutrients: number;
+  isOpenRdiTable: boolean;
+  setIsOpenRdiTable: Dispatch<SetStateAction<boolean>>;
+  onOpenRdiTable: () => void;
 }
 
 function AgeColumn({
@@ -125,11 +128,13 @@ const RecommendedDailyIntake: React.FC<RecommendedDailyIntakeProps> = ({
   rows,
   nutritionFilters,
   totalRdiNutrients,
+  setIsOpenRdiTable,
+  isOpenRdiTable,
+  onOpenRdiTable,
 }) => {
   const classes = useStyles();
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.down("md"));
-  const [isOpenRdiTable, setIsOpenRdiTable] = useState(false);
   const onSelectGender = (gender: string): void => {
     setSelectedGender(gender);
   };
@@ -154,13 +159,6 @@ const RecommendedDailyIntake: React.FC<RecommendedDailyIntakeProps> = ({
     .fill(null)
     .map((_, i) => ages.slice(i * 3, i * 3 + 3));
 
-  const onOpenRdiTable = (): void => {
-    setIsOpenRdiTable(true);
-    if (typeof window !== "undefined") {
-      window.scrollTo(0, 0);
-    }
-  };
-
   const onCloseRdiTable = (): void => setIsOpenRdiTable(false);
 
   return (
@@ -183,7 +181,7 @@ const RecommendedDailyIntake: React.FC<RecommendedDailyIntakeProps> = ({
               Recommended Daily Intake
             </Typography>
             <Box sx={{ position: "relative", overflow: "hidden", width: "100%" }}>
-              <Box sx={{ mt: mobile ? theme.spacing(3) : theme.spacing(3.5) }}>
+              <Box sx={{ mt: mobile ? theme.spacing(3) : theme.spacing(4.5) }}>
                 <Typography
                   variant="titleMedium"
                   sx={{
@@ -197,11 +195,11 @@ const RecommendedDailyIntake: React.FC<RecommendedDailyIntakeProps> = ({
                   container
                   columns={{ xs: 12, sm: 12, md: 12 }}
                   spacing={2}
-                  sx={{ mt: theme.spacing(0.3), maxWidth: theme.spacing(108) }}
+                  sx={{ mt: theme.spacing(0.3), maxWidth: "100%" }}
                 >
                   <ForLoops each={genders}>
                     {(item, index) => (
-                      <Grid item key={index} xs={4}>
+                      <Grid item key={index} md={2} lg={2.5} xs={4}>
                         <Box
                           sx={{
                             position: "relative",
@@ -213,8 +211,8 @@ const RecommendedDailyIntake: React.FC<RecommendedDailyIntakeProps> = ({
                               selectedGender === item.name
                                 ? customTheme.palette.primary.main
                                 : customTheme.palette.common.white,
-                            height: mobile ? theme.spacing(15) : theme.spacing(18.75),
-                            width: mobile ? "auto" : "264px",
+                            height: mobile ? theme.spacing(15) : theme.spacing(12.5),
+                            maxWidth: mobile ? "auto" : theme.spacing(18.75),
                             p: theme.spacing(1.25),
                             cursor: "pointer",
                             border: "1px solid #F2EFFF",
@@ -256,7 +254,7 @@ const RecommendedDailyIntake: React.FC<RecommendedDailyIntakeProps> = ({
                   </ForLoops>
                 </Grid>
               </Box>
-              <Box sx={{ mt: theme.spacing(4) }}>
+              <Box sx={{ mt: theme.spacing(5) }}>
                 <Typography
                   variant="titleMedium"
                   sx={{
@@ -301,12 +299,23 @@ const RecommendedDailyIntake: React.FC<RecommendedDailyIntakeProps> = ({
                 </Box>
               </Box>
               <Box
-                sx={{
-                  display: "flex",
-                  justifyContent: "flex-end",
-                  position: "relative",
-                  mt: theme.spacing(3),
-                }}
+                sx={
+                  mobile
+                    ? {
+                        display: "flex",
+                        justifyContent: "flex-end",
+                        position: "fixed",
+                        right: 12,
+                        mt: theme.spacing(1),
+                      }
+                    : {
+                        display: "flex",
+                        justifyContent: "flex-end",
+                        position: "fixed",
+                        bottom: 100,
+                        right: 15,
+                      }
+                }
               >
                 <Button
                   variant="contained"

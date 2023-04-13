@@ -168,7 +168,7 @@ const RecommendedDailyIntake: React.FC<RecommendedDailyIntakeProps> = ({
           <Box
             sx={{
               px: mobile ? theme.spacing(2) : 0,
-              pt: theme.spacing(3),
+              pt: theme.spacing(1),
             }}
           >
             <Typography
@@ -181,7 +181,7 @@ const RecommendedDailyIntake: React.FC<RecommendedDailyIntakeProps> = ({
               Recommended Daily Intake
             </Typography>
             <Box sx={{ position: "relative", overflow: "hidden", width: "100%" }}>
-              <Box sx={{ mt: mobile ? theme.spacing(3) : theme.spacing(4.5) }}>
+              <Box sx={{ mt: mobile ? theme.spacing(1) : theme.spacing(4.5) }}>
                 <Typography
                   variant="titleMedium"
                   sx={{
@@ -209,13 +209,16 @@ const RecommendedDailyIntake: React.FC<RecommendedDailyIntakeProps> = ({
                             flexDirection: "column",
                             backgroundColor:
                               selectedGender === item.name
-                                ? customTheme.palette.primary.main
+                                ? customTheme.palette.primary.light
                                 : customTheme.palette.common.white,
-                            height: mobile ? theme.spacing(15) : theme.spacing(12.5),
+                            height: mobile ? theme.spacing(12) : theme.spacing(14.5),
                             maxWidth: mobile ? "auto" : theme.spacing(18.75),
                             p: theme.spacing(1.25),
                             cursor: "pointer",
-                            border: "1px solid #F2EFFF",
+                            border:
+                              selectedGender === item.name
+                                ? `1px solid ${theme.palette.primary.main}`
+                                : "1px solid#F2EFFF",
                             borderRadius: theme.spacing(1),
                           }}
                           onClick={() => onSelectGender(item.name)}
@@ -223,8 +226,8 @@ const RecommendedDailyIntake: React.FC<RecommendedDailyIntakeProps> = ({
                           <item.icon
                             color={
                               selectedGender.toLowerCase() === item.name.toLowerCase()
-                                ? customTheme.palette.common.white
-                                : customTheme.palette.customGray.textLight
+                                ? customTheme.palette.primary.main
+                                : "#929094"
                             }
                             style={{
                               width: theme.spacing(3.75),
@@ -236,7 +239,7 @@ const RecommendedDailyIntake: React.FC<RecommendedDailyIntakeProps> = ({
                             sx={{
                               color:
                                 selectedGender.toLowerCase() === item.name.toLowerCase()
-                                  ? customTheme.palette.common.white
+                                  ? customTheme.palette.primary.main
                                   : customTheme.palette.customGray.main,
                               fontWeight: customTheme.typography.fontWeightRegular,
                               mt: theme.spacing(1),
@@ -246,7 +249,16 @@ const RecommendedDailyIntake: React.FC<RecommendedDailyIntakeProps> = ({
                             {item.name}
                           </Typography>
                           <CheckCircleOutlinedIcon
-                            sx={{ position: "absolute", top: 10, right: 10, color: "#fff" }}
+                            color="primary"
+                            sx={{
+                              position: "absolute",
+                              top: 10,
+                              right: 10,
+                              display:
+                                selectedGender.toLowerCase() === item.name.toLowerCase()
+                                  ? "block"
+                                  : "none",
+                            }}
                           />
                         </Box>
                       </Grid>
@@ -254,7 +266,7 @@ const RecommendedDailyIntake: React.FC<RecommendedDailyIntakeProps> = ({
                   </ForLoops>
                 </Grid>
               </Box>
-              <Box sx={{ mt: theme.spacing(5) }}>
+              <Box sx={{ mt: mobile ? theme.spacing(1.5) : theme.spacing(5) }}>
                 <Typography
                   variant="titleMedium"
                   sx={{
@@ -277,7 +289,7 @@ const RecommendedDailyIntake: React.FC<RecommendedDailyIntakeProps> = ({
                       width: "100%",
                       display: "flex",
                       alignItems: "flex-start",
-                      columnGap: mobile ? theme.spacing(2) : theme.spacing(25),
+                      columnGap: mobile ? theme.spacing(1) : theme.spacing(25),
                       border: "1px solid #F2EFFF",
                       borderRadius: theme.spacing(1),
                       p: theme.spacing(1),
@@ -304,9 +316,9 @@ const RecommendedDailyIntake: React.FC<RecommendedDailyIntakeProps> = ({
                     ? {
                         display: "flex",
                         justifyContent: "flex-end",
-                        position: "fixed",
+                        position: "relative",
                         right: 12,
-                        mt: theme.spacing(1),
+                        my: theme.spacing(1),
                       }
                     : {
                         display: "flex",

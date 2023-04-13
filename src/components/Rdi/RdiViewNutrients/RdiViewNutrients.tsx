@@ -41,7 +41,7 @@ const RdiViewNutrients: React.FC<RdiViewNutrientsProps> = ({
   }
 
   return (
-    <Box sx={{ height: "100%" }}>
+    <Box sx={{ height: "100%", overflow: "visible" }}>
       <Box>
         <Typography
           variant={mobile ? "headline6" : "headline4"}
@@ -141,7 +141,11 @@ const RdiViewNutrients: React.FC<RdiViewNutrientsProps> = ({
         {!mobile ? (
           <RdiDesktopTable rows={rows} />
         ) : (
-          <RdiMobileTable rows={rows} nutritionFilterItems={nutritionFilterItems} />
+          <RdiMobileTable
+            rows={rows}
+            nutritionFilterItems={nutritionFilterItems}
+            totalRdiNutrients={totalRdiNutrients}
+          />
         )}
       </Box>
       <Box sx={{ display: "flex", justifyContent: "flex-end", mb: theme.spacing(10) }}>

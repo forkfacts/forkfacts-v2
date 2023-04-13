@@ -14,6 +14,7 @@ import {
   TableRow,
   Button,
 } from "@mui/material";
+import { useStore } from "../../../store/store";
 import { ForLoops } from "@forkfacts/helpers";
 import { RdiDesktopTableProps, RdiNutritionTableRow, filterItem } from "@forkfacts/models";
 import LaunchIcon from "@mui/icons-material/Launch";
@@ -27,9 +28,14 @@ interface RowsByNutrientGroup {
   rows: RdiNutritionTableRow[];
 }
 
-const RdiMobileTable: React.FC<RdiDesktopTableProps> = ({ rows, nutritionFilterItems }) => {
+const RdiMobileTable: React.FC<RdiDesktopTableProps> = ({
+  rows,
+  nutritionFilterItems,
+  totalRdiNutrients,
+}) => {
   const theme = useTheme();
   const [tableRows, setTableRows] = useState<RowsByNutrientGroup[]>([]);
+  const { selectedNutrients } = useStore((state) => state);
   const [onSelectRows, setOnSelectedRows] = useState<filterItem[]>([]);
 
   const settings = {
@@ -111,14 +117,46 @@ const RdiMobileTable: React.FC<RdiDesktopTableProps> = ({ rows, nutritionFilterI
         >
           source: nih.gov
         </Typography>
-        {nutritionFilterItems?.length && (
-          <SearchNutritionFilter
-            nutritionFilterItems={nutritionFilterItems}
-            isDropdown={true}
-            margin={theme.spacing(-35)}
-            displayListIcon={true}
-          />
-        )}
+        <Box>
+          {nutritionFilterItems?.length && (
+            <SearchNutritionFilter
+              nutritionFilterItems={nutritionFilterItems}
+              isDropdown={true}
+              margin={theme.spacing(-35)}
+              displayListIcon={true}
+            />
+          )}
+        </Box>
+      </Box>
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "flex-end",
+          justifyContent: "flex-end",
+        }}
+      >
+        {selectedNutrients?.length ? (
+          <>
+            <Typography
+              variant="labelMedium"
+              sx={{
+                color: theme.palette.customGray.dark,
+              }}
+            >
+              Showing{" "}
+              <Typography
+                variant="labelMedium"
+                component="span"
+                sx={{
+                  color: theme.palette.customGray.main,
+                }}
+              >
+                {`${rows.length} of out ${totalRdiNutrients}`}
+              </Typography>{" "}
+              nutrients
+            </Typography>
+          </>
+        ) : null}
       </Box>
       <Slider {...settings}>
         {tableRows.map((item, index: any) => (

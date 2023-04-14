@@ -2,19 +2,18 @@ import path from "path";
 import type { GatsbyConfig } from "gatsby";
 import { siteMetadata } from "./src/gatsby/siteMetaData";
 
-require("dotenv").config({
-  path: `.env.${process.env.NODE_ENV}`,
-});
+require("dotenv").config();
 
 const config: GatsbyConfig = {
   siteMetadata: siteMetadata,
   graphqlTypegen: true,
   plugins: [
+    `gatsby-theme-material-ui`,
+    `gatsby-plugin-material-ui`,
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
     "gatsby-plugin-sitemap",
-    "gatsby-plugin-mui-emotion",
     {
       resolve: "gatsby-plugin-manifest",
       options: {
@@ -33,10 +32,13 @@ const config: GatsbyConfig = {
           "@forkfacts/models": path.resolve(__dirname, "src/models"),
           "@forkfacts/screens": path.resolve(__dirname, "src/screens"),
           "@forkfacts/styles": path.resolve(__dirname, "src/styles"),
+          "@forkfacts/icons": path.resolve(__dirname, "src/DesignIcons"),
+          "@forkfacts/generate-pages": path.resolve(__dirname, "src/pageGenerators"),
         },
         extensions: [".js", ".jsx", ".ts", ".tsx", ".css"],
       },
     },
+    "gatsby-transformer-json",
     {
       resolve: "gatsby-source-filesystem",
       options: {
@@ -52,6 +54,39 @@ const config: GatsbyConfig = {
         path: "./src/pages/",
       },
       __key: "pages",
+    },
+    {
+      resolve: `gatsby-plugin-typescript`,
+      options: {
+        isTSX: true,
+        jsxPragma: `jsx`,
+        allExtensions: true,
+      },
+    },
+    {
+      resolve: "gatsby-plugin-seo",
+      options: {
+        siteName: "Forkfacts",
+        defaultSiteImage: path.resolve("static/icon.png"),
+        siteUrl: "https://forkfacts-v2.vercel.app/",
+        twitterCreator: "@ayomiku222",
+        twitterSite: "@ayomiku222",
+        globalSchema: `{
+            "@type": "WebSite",
+            "@id": "https://example.com/#website",
+            "url": "https://example.com/",
+            "name": "Forkfacts",
+            "publisher": {
+              "@id": "https://example.com/about/#organization"
+            },
+            "image": {
+              "@type": "ImageObject",
+              "@id": "https://example.com/#logo",
+              "url": "https://example.com/img/logo.png",
+              "caption": "Example Company Logo"
+            }
+          }`,
+      },
     },
   ],
 };

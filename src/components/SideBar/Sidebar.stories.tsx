@@ -5,8 +5,10 @@ import EmojiFoodBeverageOutlinedIcon from "@mui/icons-material/EmojiFoodBeverage
 import LibraryBooksOutlinedIcon from "@mui/icons-material/LibraryBooksOutlined";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import AutoStoriesOutlinedIcon from "@mui/icons-material/AutoStoriesOutlined";
+import HomeRepairServiceOutlinedIcon from "@mui/icons-material/HomeRepairServiceOutlined";
+import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 import { SideBar as Drawer } from "@forkfacts/components";
-import { sidebarItem } from "@forkfacts/models";
+import { MenuItem } from "@forkfacts/models";
 import { Box } from "@mui/material";
 
 export default {
@@ -20,18 +22,20 @@ const Template: ComponentStory<typeof Drawer> = (args) => (
   </Box>
 );
 
-const sidebarItems: sidebarItem[] = [
-  { label: "Food", Icon: EggAltOutlinedIcon, link: "/food" },
-  { label: "Recipe", Icon: EmojiFoodBeverageOutlinedIcon, link: "/recipe" },
+export const menuItems: MenuItem[] = [
+  { label: "Food", Icon: EggAltOutlinedIcon, link: "/" },
+  { label: "Recipes", Icon: EmojiFoodBeverageOutlinedIcon, link: "/recipes" },
   { label: "Library", Icon: LibraryBooksOutlinedIcon, link: "/library" },
-  { label: "Cookbook", Icon: AutoStoriesOutlinedIcon, link: "/cookbook" },
-  { label: "Grocery List", Icon: ShoppingCartOutlinedIcon, link: "/grocery-List" },
+  { label: "Cookbook", Icon: AutoStoriesOutlinedIcon, link: "/Cookbook" },
+  { label: "Grocery", Icon: ShoppingCartOutlinedIcon, link: "/grocery" },
+  { label: "Tools", Icon: HomeRepairServiceOutlinedIcon, link: "/tools" },
+  { label: "Help", Icon: HelpOutlineOutlinedIcon, link: "/help" },
 ];
 
 export const SideBar = Template.bind({});
 
 SideBar.args = {
-  sidebarItems: sidebarItems,
+  sidebarItems: menuItems,
   drawerWidthExpanded: false,
   mobileOpen: false,
 };
@@ -41,7 +45,7 @@ SideBar.storyName = "unexpandedSideBar";
 export const expandedSideBar = Template.bind({});
 
 expandedSideBar.args = {
-  sidebarItems: sidebarItems,
+  sidebarItems: menuItems,
   drawerWidthExpanded: true,
   mobileOpen: false,
 };

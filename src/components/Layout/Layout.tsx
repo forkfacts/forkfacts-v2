@@ -1,21 +1,15 @@
-import React, { FC, PropsWithChildren, useState } from "react";
-import { ThemeProvider, Box, CssBaseline, useTheme } from "@mui/material";
+import React, { FC, useEffect, useState } from "react";
+import { Box, CssBaseline, useTheme } from "@mui/material";
+import { ThemeProvider } from "@mui/material/styles";
 import { customTheme } from "../../themes/theme";
 import { Header, SideBar } from "@forkfacts/components";
 import { LayoutProps } from "@forkfacts/models";
-import { useStyles } from "./layoutStyles";
+import "@fontsource/poppins";
+import "@fontsource/poppins/500.css";
+import "@fontsource/poppins/600.css";
+import "@fontsource/poppins/700.css";
 
-const LayoutComponent: FC<PropsWithChildren> = ({ children }) => {
-  const classes = useStyles();
-
-  return (
-    <Box className={classes.root}>
-      <Box className={classes.main}>{children}</Box>
-    </Box>
-  );
-};
-
-const Layout: FC<LayoutProps> = ({ children, sidebarItems }) => {
+const Layout: FC<LayoutProps> = ({ children, menuItems }) => {
   const theme = useTheme();
   const [drawerWidth, setDrawerWidth] = useState(theme.spacing(12.25));
   const [drawerWidthExpanded, setDrawerWidthExpanded] = useState(false);
@@ -32,33 +26,39 @@ const Layout: FC<LayoutProps> = ({ children, sidebarItems }) => {
     }
   };
 
+  useEffect(() => {
+    if (!drawerWidthExpanded) {
+      setDrawerWidth(theme.spacing(12.5));
+    }
+  }, [drawerWidthExpanded]);
+
   return (
     <ThemeProvider theme={customTheme}>
-      <Box>
-        <Header handleToggleButton={handleDrawerToggle} />
-      </Box>
-      <LayoutComponent>
-        <Box sx={{ display: { sm: "flex", xs: "block" } }}>
-          <CssBaseline />
-          <SideBar
-            handleDrawerToggle={handleDrawerToggle}
-            mobileOpen={mobileOpen}
-            drawerWidth={drawerWidth}
-            sidebarItems={sidebarItems}
-            drawerWidthExpanded={drawerWidthExpanded}
-          />
-          <Box
-            sx={{
-              width: {
-                md: `calc(100% - ${drawerWidth})px`,
-                xs: "100%",
-              },
-            }}
-          >
-            {children}
-          </Box>
+      <CssBaseline />
+      <Header handleToggleButton={handleDrawerToggle} />
+      <Box sx={{ display: { sm: "flex", xs: "block" }, width: "100%" }}>
+        <SideBar
+          handleDrawerToggle={handleDrawerToggle}
+          mobileOpen={mobileOpen}
+          drawerWidth={drawerWidth}
+          sidebarItems={menuItems}
+          drawerWidthExpanded={drawerWidthExpanded}
+        />
+        <Box
+          sx={{
+            width: {
+              sm: `calc(100% - ${Number(drawerWidth.split("px")[0])}px)`,
+              xs: "100%",
+            },
+            marginLeft: {
+              sm: `${drawerWidth}px`,
+              xs: 0,
+            },
+          }}
+        >
+          {children}
         </Box>
-      </LayoutComponent>
+      </Box>
     </ThemeProvider>
   );
 };

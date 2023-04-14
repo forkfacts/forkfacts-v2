@@ -1,41 +1,60 @@
 import {
   collection,
-  SearchCategoryItemType,
-  onSelectCategoryType,
-  SearchResultItemCollectionType,
+  compareTableItem,
+  filterItem,
+  FoodWithSameName,
+  lifeStageItem,
+  MenuItem,
+  NutritionTableRow,
   PopularFrequentSearchType,
-  sidebarItem,
+  RdiAge,
+  recommendationType,
+  SearchCategoryItemType,
+  SearchResultItemCollectionType,
+  SelectedNutrient,
+  summaryItem,
 } from "@forkfacts/models";
+import { Dispatch, SetStateAction } from "react";
 
-export interface TypingSearchScreenProps extends onSelectCategoryType {
-  collectionGroupedItems: SearchResultItemCollectionType[];
+export interface HomeScreenProps {
+  sidebarItems: MenuItem[];
+  navbarItems: MenuItem[];
+  PopularFrequentSearchItems?: PopularFrequentSearchType[];
   categoryOptions: SearchCategoryItemType[];
-  onClearSearch: () => void;
-  onClosePage: () => void;
-  handleViewMore: () => void;
-  onSelectItem: (item: SearchResultItemType) => item;
-  showClearSearch: boolean;
-  multiple: boolean;
-}
-
-export interface RecentSearchScreenProps {
-  collectionListsItems: SearchResultItemType[];
-  onClearSearch: () => void;
-  onClosePage: () => void;
-  handleViewMore: () => void;
-  onSelectItem: (item: SearchResultItemType) => item;
-  showClearSearch: boolean;
-  multiple: boolean;
-}
-
-export interface HomeScreenProps extends onSelectCategoryType {
-  sidebarItems: sidebarItem[];
-  navbarItems: sidebarItem[];
-  PopularFrequentSearchItems: PopularFrequentSearchType[];
-  PopularFrequentSearchTitle: string;
-  onSelectPopularItem: (item: PopularFrequentSearchType) => void;
-  categoryOptions: SearchCategoryItemType[];
-  collectionGroupedItems: Array<SearchResultItemCollectionType>;
-  placeholder: string;
   sourceId: string;
+  recommendations?: Array<recommendationType>;
+}
+
+export interface DetailsPageScreenProps {
+  menuItems: MenuItem[];
+  foodsWithSameNames: Array<FoodWithSameName>;
+  foodOverview: {
+    img?: string;
+    name: string;
+    category: string;
+    nutritionValues?: Array<{ name: string; icon: string }>;
+    tag?: string;
+  };
+  tabItems: MenuItem[];
+  compareTableItems: Array<compareTableItem>;
+  compareTableDetails: {
+    name: string;
+    quantityAmount: string;
+  };
+  nutritionSummaryItems: Array<summaryItem>;
+  ageItems: Array<RdiAge>;
+  nutritionFilterItems: Array<SelectedNutrient>;
+  measurementFilterItems: string[];
+  onSelectMeasurementItem: (item: string) => void;
+  multipleSelectItems: filterItem[];
+  onSelectUnit: Dispatch<SetStateAction<string>>;
+  units: string[];
+  nutritionTableRows: NutritionTableRow[];
+  values: filterItem[];
+  onSelectedValue: Dispatch<SetStateAction<string[]>>;
+  lifeStageItems: Array<lifeStageItem>;
+}
+
+interface ToolsScreenProps {
+  menuItems: MenuItem[];
 }

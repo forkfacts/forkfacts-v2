@@ -42,70 +42,88 @@ export default {
 } as ComponentMeta<typeof SearchResults>;
 
 const collectionListsItems = [
-  { image: "/recentImg.png", name: "Kidney beans light, Legume", url: "/:id" },
-  { image: "/image3.png", name: "Grape fruit juices", url: "/:id" },
+  { image: "/recentImg.png", name: "Kidney beans light, Legume", url: "/:id", category: "Food" },
+  { image: "/image3.png", name: "Grape fruit juices", url: "/:id", category: "Food" },
   {
     image: "/image2.png",
     name: "Baked white bread, Baked products",
     url: "/:id",
+    category: "Food",
   },
   {
     image: "/image4.png",
     name: "Grape fruit juice unsweentened, Fruit ...",
     url: "/:id",
+    category: "Recipes",
   },
   {
     image: "/image5.png",
     name: "Banana dehydrated/ banana powder",
     url: "/:id",
+    category: "Library",
   },
 ];
 
-const collectionGroupedItems = [
-  { categoryName: "FRUIT AND FRUIT JUICES", collection: collectionListsItems },
-  { categoryName: "BABY FOODS", collection: collectionListsItems.slice(0, 3) },
-  { categoryName: "SWEETS", collection: collectionListsItems.slice(0, 4) },
-];
-
-const Template: ComponentStory<typeof SearchResults> = (args) => <SearchResults {...args} />;
-
-export const SearchResultsItemsMultipleCategories = Template.bind({});
-SearchResultsItemsMultipleCategories.parameters = {
-  viewport: {
-    defaultViewport: "iphone6",
-  },
+const Template: ComponentStory<typeof SearchResults> = (args) => {
+  return <SearchResults {...args} />;
 };
-SearchResultsItemsMultipleCategories.args = {
-  ...SearchResultsItemsMultipleCategories.args,
-  collectionGroupedItems,
+
+export const SearchResultsItemsMultipleDesktopCategories = Template.bind({});
+
+SearchResultsItemsMultipleDesktopCategories.args = {
+  multiple: true,
+  onSelectItem: (item: SearchResultItemType) => item,
+  collectionListsItems,
+};
+
+SearchResultsItemsMultipleDesktopCategories.storyName =
+  "SearchResultsItemsMultipleDesktopCategories";
+
+export const SearchResultsItemsSingleDesktopCategory = Template.bind({});
+
+SearchResultsItemsSingleDesktopCategory.args = {
+  collectionListsItems,
   multiple: true,
   onSelectItem: (item: SearchResultItemType) => item,
 };
-SearchResultsItemsMultipleCategories.argTypes = {
+
+SearchResultsItemsSingleDesktopCategory.storyName = "SearchResultsItemsSingleDesktopCategory";
+
+export const SearchResultsItemsMultipleMobileCategories = Template.bind({});
+SearchResultsItemsMultipleMobileCategories.parameters = {
+  viewport: {
+    defaultViewport: "iphonexr",
+  },
+};
+SearchResultsItemsMultipleMobileCategories.args = {
+  multiple: true,
+  onSelectItem: (item: SearchResultItemType) => item,
+  collectionListsItems,
+};
+SearchResultsItemsMultipleMobileCategories.argTypes = {
   multiple: {
     table: { defaultValue: { summary: true } },
     control: false,
   },
 };
-SearchResultsItemsMultipleCategories.storyName = "SearchResultsMultipleCategories";
+SearchResultsItemsMultipleMobileCategories.storyName = "SearchResultsItemsMultipleMobileCategories";
 
-export const SearchResultsItemsSingleCategory = Template.bind({});
-SearchResultsItemsSingleCategory.parameters = {
+export const SearchResultsItemsSingleMobileCategory = Template.bind({});
+SearchResultsItemsSingleMobileCategory.parameters = {
   viewport: {
-    defaultViewport: "iphone6",
+    defaultViewport: "iphonexr",
   },
 };
-SearchResultsItemsSingleCategory.args = {
-  ...SearchResultsItemsSingleCategory.args,
+SearchResultsItemsSingleMobileCategory.args = {
   collectionListsItems,
-  multiple: false,
+  multiple: true,
   onSelectItem: (item: SearchResultItemType) => item,
 };
-SearchResultsItemsSingleCategory.argTypes = {
+SearchResultsItemsSingleMobileCategory.argTypes = {
   multiple: {
     table: { defaultValue: { summary: false } },
     control: false,
   },
 };
 
-SearchResultsItemsSingleCategory.storyName = "SearchResultsSingleCategory";
+SearchResultsItemsSingleMobileCategory.storyName = "SearchResultsItemsSingleMobileCategory";

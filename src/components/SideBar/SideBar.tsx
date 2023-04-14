@@ -1,6 +1,6 @@
 import React, { FC, useState } from "react";
 import { Box, List, Drawer, Toolbar, useTheme } from "@mui/material";
-import { SideBarProps, sidebarItem } from "@forkfacts/models";
+import { SideBarProps, MenuItem } from "@forkfacts/models";
 import { ForLoops } from "@forkfacts/helpers";
 import { SideBarItem } from "@forkfacts/components";
 
@@ -13,11 +13,11 @@ const SideBar: FC<SideBarProps> = ({
   drawerWidthExpanded = false,
 }) => {
   const container = window ? () => window().document.body : undefined;
-  const { transitions } = useTheme();
-  const [selectedIndex, setSelectedIndex] = useState<number>(0);
+  const { transitions, spacing } = useTheme();
+  const [selectedItem, setSelectedItem] = useState<string>("Food");
 
-  const handleSelectedIndex = (index: number, item: sidebarItem) => {
-    setSelectedIndex(index);
+  const handleSelectedItem = (name: string, item: MenuItem) => {
+    setSelectedItem(name);
   };
 
   return (
@@ -35,31 +35,29 @@ const SideBar: FC<SideBarProps> = ({
           flexShrink: 0,
           overflow: "hidden",
           [`& .MuiDrawer-paper`]: {
-            width: drawerWidth,
             boxSizing: "border-box",
           },
+          width: drawerWidth,
           borderWidth: 0,
         }}
       >
         <Toolbar />
-        <Box sx={{ width: drawerWidth, overflow: "auto" }}>
-          <List>
-            <ForLoops each={sidebarItems.slice(0, sidebarItems ? sidebarItems.length : 3)}>
-              {(item, index) => {
-                return (
-                  <SideBarItem
-                    key={index}
-                    index={index}
-                    selectedIndex={selectedIndex}
-                    drawerWidthExpanded={drawerWidthExpanded}
-                    item={item}
-                    handleSelectedIndex={handleSelectedIndex}
-                  />
-                );
-              }}
-            </ForLoops>
-          </List>
-        </Box>
+        <List sx={{ width: drawerWidth, overflow: "auto", mt: spacing(3) }}>
+          <ForLoops each={sidebarItems}>
+            {(item, index) => {
+              return (
+                <SideBarItem
+                  key={index}
+                  index={index}
+                  selectedItem={selectedItem}
+                  drawerWidthExpanded={drawerWidthExpanded}
+                  item={item}
+                  handleSelectedItem={handleSelectedItem}
+                />
+              );
+            }}
+          </ForLoops>
+        </List>
       </Drawer>
       <Drawer
         variant="permanent"
@@ -71,37 +69,39 @@ const SideBar: FC<SideBarProps> = ({
             borderWidth: drawerWidthExpanded ? 1 : 0,
             overflow: "hidden",
           },
+          width: drawerWidth,
         }}
         open
       >
         <Toolbar />
-        <Box
+        <List
           sx={{
-            width: drawerWidth,
             overflow: "hidden",
-            transition: transitions.create(["all"], {
+            transition: transitions.create(["width"], {
               easing: transitions.easing.sharp,
               duration: transitions.duration.enteringScreen,
             }),
+            ml: drawerWidthExpanded ? 0 : spacing(-1),
+            display: "flex",
+            flexDirection: "column",
+            mt: spacing(3),
           }}
         >
-          <List>
-            <ForLoops each={sidebarItems.slice(0, drawerWidthExpanded ? sidebarItems.length : 3)}>
-              {(item, index) => {
-                return (
-                  <SideBarItem
-                    key={index}
-                    index={index}
-                    selectedIndex={selectedIndex}
-                    drawerWidthExpanded={drawerWidthExpanded}
-                    item={item}
-                    handleSelectedIndex={handleSelectedIndex}
-                  />
-                );
-              }}
-            </ForLoops>
-          </List>
-        </Box>
+          <ForLoops each={sidebarItems}>
+            {(item, index) => {
+              return (
+                <SideBarItem
+                  key={index}
+                  index={index}
+                  selectedItem={selectedItem}
+                  drawerWidthExpanded={drawerWidthExpanded}
+                  item={item}
+                  handleSelectedItem={handleSelectedItem}
+                />
+              );
+            }}
+          </ForLoops>
+        </List>
       </Drawer>
     </Box>
   );

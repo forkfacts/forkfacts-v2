@@ -1,14 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import EggAltOutlinedIcon from "@mui/icons-material/EggAltOutlined";
 import EmojiFoodBeverageOutlinedIcon from "@mui/icons-material/EmojiFoodBeverageOutlined";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
-import LibraryBooksOutlinedIcon from "@mui/icons-material/LibraryBooksOutlined";
-import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
-import AutoStoriesOutlinedIcon from "@mui/icons-material/AutoStoriesOutlined";
 import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlined";
-import { SearchCategoryItemType } from "@forkfacts/models";
 import { AutoCompleteSearch } from "@forkfacts/components";
+import { recommendationType } from "models/components";
 
 export default {
   title: "Components/AutoCompleteSearch",
@@ -20,15 +17,16 @@ export default {
   },
 } as ComponentMeta<typeof AutoCompleteSearch>;
 
-const Template: ComponentStory<typeof AutoCompleteSearch> = (args) => (
-  <AutoCompleteSearch {...args} />
-);
+const Template: ComponentStory<typeof AutoCompleteSearch> = (args) => {
+  const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false);
+  return <AutoCompleteSearch {...args} setIsMobileSearchOpen={setIsMobileSearchOpen} />;
+};
 
 export const Desktop = Template.bind({});
 
 const categoryOptions = [
   { label: "Food", Icon: EggAltOutlinedIcon },
-  { label: "Recipe", Icon: EmojiFoodBeverageOutlinedIcon },
+  { label: "Recipes", Icon: EmojiFoodBeverageOutlinedIcon },
   { label: "Library", Icon: BookmarkBorderOutlinedIcon },
 ];
 
@@ -60,44 +58,81 @@ const collection = [
   },
 ];
 
-const collectionGroupedItems = [
-  { categoryName: "FRUIT AND FRUIT JUICES", collection: collection },
-  { categoryName: "BABY FOODS", collection: collection.slice(0, 3) },
-  { categoryName: "SWEETS", collection: collection.slice(0, 4) },
+const recommendations: recommendationType[] = [
+  {
+    recommendationName: "Tags",
+    recommendationItems: [
+      {
+        name: "Chia seeds",
+        icon: "/tag1.svg",
+      },
+      {
+        name: "Kosher",
+        icon: "/tag2.svg",
+      },
+      {
+        name: "Flax seeds",
+        icon: "/tag3.svg",
+      },
+    ],
+  },
+  {
+    recommendationName: "COMPARE FOODS",
+    recommendationItems: [
+      { name: "Nuts and seeds", icon: "/tag4.svg" },
+      { name: "Legumes", icon: "/tag5.svg" },
+      { name: "Fruits", icon: "/tag3.svg" },
+    ],
+  },
+  {
+    recommendationName: "Vitamins and minerals",
+    recommendationItems: [
+      { name: "Vitamin A", icon: "/tag4.svg" },
+      { name: "Zinc", icon: "/tag4.svg" },
+      { name: "Vitamin B12", icon: "/tag5.svg" },
+    ],
+  },
+  {
+    recommendationName: "Recipes",
+    recommendationItems: [{ name: "Creamy broccoli pasta" }],
+  },
 ];
 
 Desktop.args = {
+  ...Desktop.args,
   placeholder: "Search food, recipes & library",
   openOnFocus: true,
   sourceId: "forkfact-v2",
+  categoryOptions: categoryOptions,
+  recommendations,
 };
 
 export const Mobile = Template.bind({});
 
 Mobile.args = {
+  ...Mobile.args,
   openOnFocus: true,
   sourceId: "forkfact-v2",
-  onSelectCategory: (item: SearchCategoryItemType) => {},
-  collectionGroupedItems: collectionGroupedItems,
   placeholder: "Search",
   categoryOptions: categoryOptions,
+  recommendations,
 };
 
 Mobile.parameters = {
   viewport: {
-    defaultViewport: "iphone6",
+    defaultViewport: "iphonexr",
   },
 };
 
 export const Tablet = Template.bind({});
 
 Tablet.args = {
+  ...Tablet.args,
   openOnFocus: true,
   sourceId: "forkfact-v2",
-  onSelectCategory: (item: SearchCategoryItemType) => {},
-  collectionGroupedItems: collectionGroupedItems,
   placeholder: "Search",
   categoryOptions: categoryOptions,
+  recommendations,
 };
 
 Tablet.parameters = {

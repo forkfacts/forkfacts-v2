@@ -1,7 +1,5 @@
 import React from "react";
-import { Button, Typography, useTheme } from "@mui/material";
-import { blue } from "@mui/material/colors";
-import { navigate } from "gatsby";
+import { Button, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { NavBarItemProps } from "@forkfacts/models";
 import { useStyles } from "./navbarStyles";
 
@@ -10,13 +8,15 @@ export default function NavBarItem({
   item,
   setSelectedIndex,
   selectedIndex,
+  onselectNavbarItem,
 }: NavBarItemProps) {
   const classes = useStyles();
-  const { spacing } = useTheme();
+  const theme = useTheme();
+  const mobile = useMediaQuery(theme.breakpoints.down("md"));
 
   const handleClick = () => {
     setSelectedIndex(index);
-    navigate(item.link);
+    onselectNavbarItem(item.label);
   };
 
   return (
@@ -24,15 +24,22 @@ export default function NavBarItem({
       className={classes.btn}
       variant="text"
       sx={{
-        color: ({ palette }) =>
-          selectedIndex === index ? palette.primary.dark : palette.grey[700],
-        borderColor: ({ palette }) =>
-          selectedIndex === index ? palette.primary.dark : palette.grey[700],
-        backgroundColor: ({ palette }) =>
-          selectedIndex === index ? blue["50"] : palette.background.default,
+        color: selectedIndex === index ? theme.palette.primary.main : theme.palette.customGray.main,
+        backgroundColor:
+          selectedIndex === index ? theme.palette.primary.light : theme.palette.background.default,
         display: "flex",
-        flexDirection: "column",
+        flexDirection: "row",
         alignItems: "center",
+        width: "100%",
+        paddingTop: theme.spacing(1.25),
+        paddingBottom: theme.spacing(1.25),
+        paddingLeft: theme.spacing(3),
+        paddingRight: theme.spacing(3),
+        border: `1px solid ${theme.palette.customGray.light}`,
+        borderTopRightRadius: index === 2 ? theme.spacing(1) : 0,
+        borderBottomRightRadius: index === 2 ? theme.spacing(1) : 0,
+        borderTopLeftRadius: index === 0 ? theme.spacing(1) : 0,
+        borderBottomLeftRadius: index === 0 ? theme.spacing(1) : 0,
       }}
       onClick={handleClick}
       size="small"
@@ -41,14 +48,21 @@ export default function NavBarItem({
           fontSize="medium"
           className={classes.icon}
           sx={{
-            width: spacing(1.9),
-            height: spacing(1.9),
-            marginBottom: spacing(1.25),
+            width: theme.spacing(1.9),
+            height: theme.spacing(1.9),
           }}
         />
       }
     >
-      <Typography variant="body1" sx={{ textTransform: "capitalize" }}>
+      <Typography
+        variant={mobile ? "titleSmall" : "titleMedium"}
+        sx={{
+          textTransform: "capitalize",
+          fontWeight: theme.typography.fontWeightRegular,
+          color:
+            selectedIndex === index ? theme.palette.primary.main : theme.palette.customGray.main,
+        }}
+      >
         {item.label}
       </Typography>
     </Button>

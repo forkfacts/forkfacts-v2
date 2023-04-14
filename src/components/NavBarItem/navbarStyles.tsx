@@ -3,9 +3,7 @@ import { Theme } from "@mui/material";
 
 export const useStyles = makeStyles(({ typography, palette, spacing, breakpoints }: Theme) => ({
   root: {
-    [breakpoints.down("sm")]: {
-      width: "100%",
-    },
+    width: "100%",
   },
   btn: {
     fontWeight: typography.fontWeightBold,

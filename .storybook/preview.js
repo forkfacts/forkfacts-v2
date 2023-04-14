@@ -3,10 +3,15 @@ import { action } from "@storybook/addon-actions";
 import { CssBaseline } from "@mui/material";
 import { addDecorator } from "@storybook/react";
 import { withConsole, setConsoleOptions } from "@storybook/addon-console";
-import { ThemeProvider } from "@mui/material";
+import { ThemeProvider } from "@mui/material/styles";
 import "@storybook/addon-actions/register";
-import "@fontsource/poppins"; // Defaults to weight 400.
+import "@fontsource/poppins";
+import "@fontsource/poppins/500.css";
+import "@fontsource/poppins/600.css";
+import "@fontsource/poppins/700.css";
 import { customTheme } from "../src/themes/theme";
+import { MINIMAL_VIEWPORTS } from "@storybook/addon-viewport";
+import "../src/styles/styles.css";
 
 const optionsCallback = (options) => ({ panelExclude: [...options.panelExclude, /Warning/] });
 addDecorator((storyFn, context) => withConsole(optionsCallback)(storyFn)(context));
@@ -30,6 +35,23 @@ window.___navigate = (pathname) => {
   action("NavigateTo:")(pathname);
 };
 
+const customViewports = {
+  iphone8: {
+    name: "iphone8",
+    styles: {
+      width: "414px",
+      height: "100%",
+    },
+  },
+  iphone8X: {
+    name: "iphone8X",
+    styles: {
+      width: "533px",
+      height: "100%",
+    },
+  },
+};
+
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
   controls: {
@@ -42,6 +64,12 @@ export const parameters = {
   options: {
     storySort: (a, b) =>
       a[1].kind === b[1].kind ? 0 : a[1].id.localeCompare(b[1].id, undefined, { numeric: true }),
+  },
+  viewport: {
+    viewports: {
+      ...MINIMAL_VIEWPORTS,
+      ...customViewports,
+    },
   },
 };
 /**

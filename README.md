@@ -123,6 +123,17 @@ To use the Controls addon, you need to write your stories using args. Storybook 
 
 By default, Storybook will choose a control for each arg based on the initial value of the arg. It works well with certain types of args, such as boolean values or free-text strings, but in other cases, you want a more restricted control. Read more at [storybook controls github tutorial](https://github.com/storybookjs/storybook/blob/next/docs/essentials/controls.md) and [storybook controls documentation](https://storybook.js.org/docs/react/essentials/controls).
 
+## Generating Icons
+
+To generate icons from SVG images downloaded from the project Figma design, use the following command:
+
+```
+npm run svgr
+
+```
+
+This will use the @svgr/cli package to generate TypeScript files for the SVG icons in the src/images/icons directory. The generated files will be placed in the src/DesignIcons directory. The --replace-attr-values '#000=currentColor' option replaces any #000 fill values with the currentColor value, which allows the icons to inherit the color of their parent element.
+
 ## Release
 
 We are using a version of [6 weeks cycle](https://3.basecamp-help.com/article/35-the-six-week-cycle). However, we may not
@@ -151,17 +162,23 @@ in order to merge to `main`. We prefer to merge to `main` (hence a release) as s
    updated storybook components. This can be of tremendous help during the code review.
 5. Once you are done with the work, assign your PR to a reviewer.
 
-## Environment variables needed in the project.
+## Setting up environment variables
 
-### Follow these steps to add environment variables before you run the project.
+To run this project, you'll need to set up some environment variables. These variables are used to connect to various APIs and services used in the project.
 
-1. Create .env file in project root directory.
-2. Add the following environment variables inside .env file
+1. Copy the contents of the `.env.sample` file to a new file called `.env` using the following command:
 
-```
-GATSBY_SEARCH_APP_ID =Algolia APP ID value
-GATSBY_SEARCH_API_KEY =Algolia APP KEY value
-```
+   ```
+   npm run build:env:dev
+   ```
+
+   This command will copy all the keys and their default values from `.env.sample` to `.env` and `.env.development`.
+
+2. Open the `.env` and `.env.development` files and replace the default values with the appropriate values for your local environment.
+
+3. Save the `.env` and `.env.development` files.
+
+With the environment variables set up, you're ready to run the project!
 
 **After you done that successfully, reach out to the project owner for the key values**
 

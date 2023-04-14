@@ -37,7 +37,7 @@ export default function HomeScreen({
         <Box className={classes.desktopScreenWrapper}>
           <Box
             component="img"
-            src="/banner.svg"
+            src="/homeImg.svg"
             alt="home page image"
             className={classes.img}
             sx={{ maxWidth: "100%" }}

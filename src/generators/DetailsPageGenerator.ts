@@ -1,3 +1,5 @@
+import { writeJsonToFile } from "../helpers/shared";
+
 const path = require("path");
 const ff_nutrition_facts = require("../../data/foundation_food_nutrition_facts.json");
 const sr_legacy_nutrition_facts = require("../../data/sr_legacy_food_nutrition_facts.json");
@@ -33,8 +35,14 @@ export const createDetailsPage = (createPage: any) => {
   }
 };
 
-const createNutritionTable = ({ createPageFunction, foods }: any) => {
-  let ffSearchIndex: any = [];
+interface SearchIndexEntry {
+  name: string;
+  hap_name: string;
+  category: string;
+  url: string;
+}
+const createNutritionTable = ({ createPageFunction, foods, indexFileName }: any) => {
+  let ffSearchIndex: SearchIndexEntry[] = [];
   const template = path.resolve("src/templates/DetailsPage.tsx");
   foods.forEach((food: Food) => {
     if (food.name) {
@@ -44,7 +52,8 @@ const createNutritionTable = ({ createPageFunction, foods }: any) => {
       const carbohydrates = filterNutrient(food, CARBOHYDRATE_NAME, CARBOHYDRATE_UNIT);
       const protein = filterNutrient(food, PROTEIN_NAME, PROTEIN_UNIT);
       const seoInfo = generateSEOInfo(food.name, calories, protein, carbohydrates, fat);
-      const pagePath = spaceToDashes(food["name"].toString());
+      const foodName = indexFileName === "ff_search_index" ? food.hap_name : food.name; // todo: until the point when we have SR Legacy name clean up
+      const pagePath = spaceToDashes(food.name);
       const seo: { title: string; description: string; pagePath: string } = {
         title: seoInfo.title,
         description: seoInfo.description,
@@ -61,9 +70,11 @@ const createNutritionTable = ({ createPageFunction, foods }: any) => {
       });
       ffSearchIndex.push({
         name: food.name,
+        hap_name: foodName,
         category: food.category,
         url: `/${pagePath}`,
       });
     }
   });
+  writeJsonToFile(`${indexFileName}.json`, ffSearchIndex);
 };

@@ -202,7 +202,7 @@ const DetailsPageTemplate = ({ pageContext }: PageProps) => {
           menuItems={menuItems}
           foodsWithSameNames={[]}
           foodOverview={{
-            name: food.name,
+            name: food.hap_name !== "" ? food.hap_name : food.name, // todo: changes when SR Legacy has updated name
             category: food.category,
           }}
           tabItems={tabItems}

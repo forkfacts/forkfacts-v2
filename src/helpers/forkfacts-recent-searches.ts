@@ -6,6 +6,7 @@ interface DBData extends DBSchema {
     value: {
       timestamp: Date;
       name: string;
+      hap_name: string;
       category: string;
       searchLocation: string;
       searchId?: string;
@@ -17,6 +18,7 @@ interface DBData extends DBSchema {
 
 export interface SearchParams {
   name: string;
+  hap_name: string;
   category: string;
   timestamp: Date;
   searchLocation: string;

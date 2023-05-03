@@ -53,7 +53,7 @@ const createNutritionTable = ({ createPageFunction, foods, indexFileName }: any)
       const protein = filterNutrient(food, PROTEIN_NAME, PROTEIN_UNIT);
       const seoInfo = generateSEOInfo(food.name, calories, protein, carbohydrates, fat);
       const foodName = indexFileName === "ff_search_index" ? food.hap_name : food.name; // todo: until the point when we have SR Legacy name clean up
-      const pagePath = spaceToDashes(foodName);
+      const pagePath = spaceToDashes(food.name);
       const seo: { title: string; description: string; pagePath: string } = {
         title: seoInfo.title,
         description: seoInfo.description,
@@ -74,7 +74,7 @@ const createNutritionTable = ({ createPageFunction, foods, indexFileName }: any)
         category: food.category,
         url: `/${pagePath}`,
       });
-      writeJsonToFile(`${indexFileName}.json`, ffSearchIndex);
     }
   });
+  writeJsonToFile(`${indexFileName}.json`, ffSearchIndex);
 };

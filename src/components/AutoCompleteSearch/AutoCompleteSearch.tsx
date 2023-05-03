@@ -46,6 +46,7 @@ type AutocompleteItem = Hit<{
   category: any;
   image: string;
   name: string;
+  hap_name: string;
   objectID: string;
   url: string;
 }>;
@@ -168,7 +169,7 @@ function AutoCompleteSearch(
 
   useEffect(() => {
     async function fetchData() {
-      const searches = await (await fetchRecentSearches()).reverse();
+      const searches = (await fetchRecentSearches()).reverse();
       setRecentSearches(searches as SearchParams[]);
     }
     fetchData();

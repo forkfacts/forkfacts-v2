@@ -53,7 +53,7 @@ export default function SearchResultItem({ item, onSelectItem, multiple }: Searc
                   fontWeight: theme.typography.fontWeightLight,
                 }}
               >
-                {item.name}
+                {item.hap_name}
               </Typography>
             </Box>
           }

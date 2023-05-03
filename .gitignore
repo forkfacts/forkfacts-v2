@@ -9,3 +9,4 @@ src/gatsby-types.d.ts
 .vscode
 data
 wget-log*
+.raw

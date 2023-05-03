@@ -133,6 +133,7 @@ function AutoCompleteSearch(
     if (props.searchLocation !== "") {
       const searchData: SearchParams = {
         name: item.name,
+        hap_name: item.hap_name,
         category: item.category,
         timestamp: new Date(),
         searchLocation: props.searchLocation ?? "Food",
@@ -169,7 +170,7 @@ function AutoCompleteSearch(
 
   useEffect(() => {
     async function fetchData() {
-      const searches = (await fetchRecentSearches()).reverse();
+      const searches = await (await fetchRecentSearches()).reverse();
       setRecentSearches(searches as SearchParams[]);
     }
     fetchData();

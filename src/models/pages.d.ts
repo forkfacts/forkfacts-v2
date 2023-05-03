@@ -76,6 +76,7 @@ export type NutrientItem = {
 export interface Food {
   category: string;
   name: string;
+  hap_name: string;
   fdcId: number;
   nutrients: {
     amount: number;

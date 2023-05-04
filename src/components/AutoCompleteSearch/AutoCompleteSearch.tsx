@@ -46,6 +46,7 @@ type AutocompleteItem = Hit<{
   category: any;
   image: string;
   name: string;
+  hap_name: string;
   objectID: string;
   url: string;
 }>;
@@ -132,13 +133,14 @@ function AutoCompleteSearch(
     if (props.searchLocation !== "") {
       const searchData: SearchParams = {
         name: item.name,
+        hap_name: item.hap_name,
         category: item.category,
         timestamp: new Date(),
         searchLocation: props.searchLocation ?? "Food",
       };
       await addSearchEntry(searchData);
     }
-    const path = `recipes/${spaceToDashes(item.name)}`;
+    const path = `${spaceToDashes(item.name)}`;
     navigate(path);
   };
 

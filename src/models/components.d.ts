@@ -5,6 +5,7 @@ import { SVGProps } from "react";
 
 export interface SearchResultItemType {
   name: string;
+  hap_name: string;
   url: string;
   image: string;
   category: string;

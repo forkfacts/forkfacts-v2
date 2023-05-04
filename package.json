@@ -12,7 +12,7 @@
   "scripts": {
     "develop": "gatsby develop",
     "start": "npm run download-data && gatsby develop",
-    "build": "npm run download-data && gatsby build",
+    "build": "npm run download-data && NODE_OPTIONS=--max-old-space-size=8192 gatsby build",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "typecheck": "tsc --noEmit",

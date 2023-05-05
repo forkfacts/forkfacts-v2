@@ -188,3 +188,6 @@ With the environment variables set up, you're ready to run the project!
 2. No use of @ts-ignore in the .tsx files.
 3. No console.log allowed in the code except in the development mode when you are debugging an issue. No information should be displayed on the browser console.
 4. Do not include a blank or inactive file in the project.
+
+## Supporters
+“This project is tested with BrowserStack.”

@@ -8,6 +8,7 @@ const config: GatsbyConfig = {
   siteMetadata: siteMetadata,
   graphqlTypegen: true,
   plugins: [
+    `gatsby-plugin-postcss`,
     `gatsby-theme-material-ui`,
     `gatsby-plugin-material-ui`,
     `gatsby-plugin-image`,
@@ -68,16 +69,16 @@ const config: GatsbyConfig = {
       options: {
         siteName: "Forkfacts",
         defaultSiteImage: path.resolve("static/icon.png"),
-        siteUrl: "https://forkfacts-v2.vercel.app/",
+        siteUrl: "https://www.forkfacts.app/",
         twitterCreator: "@ayomiku222",
         twitterSite: "@ayomiku222",
         globalSchema: `{
             "@type": "WebSite",
-            "@id": "https://example.com/#website",
-            "url": "https://example.com/",
+            "@id": "https://www.forkfacts.app/",
+            "url": "https://www.forkfacts.app/",
             "name": "Forkfacts",
             "publisher": {
-              "@id": "https://example.com/about/#organization"
+              "@id": "https://bonsaiilabs.com/"
             },
             "image": {
               "@type": "ImageObject",

@@ -1,3 +1,3 @@
-import { createPages } from "./src/gatsby/createPages";
+// import { createPages } from "./src/gatsby/createPages";
 
-exports.createPages = createPages;
+// exports.createPages = createPages;

@@ -2,6 +2,7 @@ import { Block, BlockTitle, Icon, Link, Navbar, Page, Tabbar, TabbarLink } from 
 import { MdDensityMedium, MdEmojiFoodBeverage, MdOutlineFavorite } from "react-icons/md";
 import React, { useState } from "react";
 import { MobilePanel } from "./MobilePanel";
+import { Typography } from "@mui/material";
 
 export default function MobileHome() {
   const [leftFloatingPanelOpened, setLeftFloatingPanelOpened] = useState<boolean>(false);
@@ -39,11 +40,11 @@ export default function MobileHome() {
           <h1>Hi man</h1>
         </BlockTitle>
         <Block>
-          <h1 className="material:text-xl font-extrabold text-red-500">
+          <Typography className="material:text-xl font-extrabold text-red-500">
             Donec et nulla auctor massa pharetra adipiscing ut sit amet sem. Suspendisse molestie
             velit vitae mattis tincidunt. Ut sit amet quam mollis, vulputate turpis vel, sagittis
             felis.
-          </h1>
+          </Typography>
         </Block>
       </div>
     </Page>

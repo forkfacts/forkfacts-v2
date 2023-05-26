@@ -21,7 +21,7 @@ const MobileDetails = () => {
       <div className="mt-1 shadow-summaryShadow">
         <FoodNutritionCard />
       </div>
-      <div className="mt-1 shadow-summaryShadow">
+      <div className="mt-1 shadow-summaryShadow mb-5">
         <SimilarFoods />
       </div>
     </Page>

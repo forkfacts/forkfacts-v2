@@ -1,23 +1,29 @@
 import { Page } from "konsta/react";
-import React, { useState } from "react";
+import React from "react";
 import DetailsHeader from "./FoodDetailsHeader";
 import FoodDetailsSearch from "./FoodDetailsSearch";
-import FoodSearchView from "./FoodSearchView";
 import FoodDetailsFilters from "../../FoodDetailsFilters/FoodDetailsFilters";
+import FoodDetailsSummary from "../../FoodDetailsSummary/FoodDetailsSummary";
+import FoodNutritionCard from "../../FoodNutritionCard/FoodNutritionCard";
+import SimilarFoods from "../../SimilarFoods/SimilarFoods";
 
 const MobileDetails = () => {
-  const [isFocused, setIsFocused] = useState(false);
   return (
     <Page className="bg-white">
-      {isFocused ? (
-        <FoodSearchView setIsFocused={setIsFocused} />
-      ) : (
-        <div className="px-[19px]">
-          <DetailsHeader />
-          <FoodDetailsSearch setIsFocused={setIsFocused} />
-          <FoodDetailsFilters />
-        </div>
-      )}
+      <div className="shadow-summaryShadow pb-8 px-[16px]">
+        <DetailsHeader />
+        <FoodDetailsSearch />
+        <FoodDetailsFilters />
+      </div>
+      <div className="shadow-summaryShadow mt-2 pt-3 pb-7">
+        <FoodDetailsSummary />
+      </div>
+      <div className="mt-1 shadow-summaryShadow">
+        <FoodNutritionCard />
+      </div>
+      <div className="mt-1 shadow-summaryShadow">
+        <SimilarFoods />
+      </div>
     </Page>
   );
 };

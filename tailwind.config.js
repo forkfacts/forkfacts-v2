@@ -1,5 +1,6 @@
 /** @type {(function({}=): any)|{}} */
 const konstaConfig = require("konsta/config");
+const plugin = require("tailwindcss/plugin");
 
 module.exports = konstaConfig({
   content: [
@@ -25,11 +26,21 @@ module.exports = konstaConfig({
         textLight: "#929094",
         customInputBackground: "#FFFBFF",
       },
+      boxShadow: {
+        summaryShadow: "0 35px 60px -15px rgba(0, 0, 0, 0.3)",
+      },
       fontWeight: {
         400: "400",
         500: "500",
         600: "600",
         700: "700",
+      },
+      styles: {
+        "::-webkit-scrollbar": {
+          width: "0px",
+          height: "0px",
+          background: "transparent",
+        },
       },
       fontSize: {
         caption: "0.75rem", // 12px
@@ -80,8 +91,8 @@ module.exports = konstaConfig({
         },
         caption: {
           css: {
-            fontSize: "1.25rem",
-            lineHeight: "2rem",
+            fontSize: "10px",
+            lineHeight: "16px",
             fontStyle: "normal",
             letterSpacing: "0.4px",
           },
@@ -222,8 +233,28 @@ module.exports = konstaConfig({
             letterSpacing: "0.1px",
           },
         },
+        labelSemiBold: {
+          css: {
+            fontSize: "14px",
+            lineHeight: "20px",
+            fontStyle: "normal",
+          },
+        },
       },
     },
   },
-  plugins: [require("@tailwindcss/typography")],
+  plugins: [
+    require("@tailwindcss/typography"),
+    plugin(function ({ addUtilities }) {
+      addUtilities({
+        ".scrollbar-hide": {
+          "-ms-overflow-style": "none",
+          "scrollbar-width": "none",
+          "&::-webkit-scrollbar": {
+            display: "none",
+          },
+        },
+      });
+    }),
+  ],
 });

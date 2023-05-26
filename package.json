@@ -6,6 +6,9 @@
   "keywords": [
     "gatsby"
   ],
+  "engines": {
+    "node": "18.x"
+  },
   "scripts": {
     "develop": "gatsby develop",
     "start": "npm run download-data && gatsby develop",

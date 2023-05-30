@@ -139,8 +139,8 @@ const FoodNutritionCard = () => {
       <div className="py-4">
         <h1 className="prose-titleMedium text-textDark font-500 mt-1.5 mb-4">NUTRITION</h1>
         <div className="flex justify-between mb-2">
-          <h3 className="prose-labelLarge text-dark font-500">Nutrition</h3>
-          <h3 className="prose-labelLarge text-dark font-500">% Daily value</h3>
+          <h3 className="prose-labelMedium text-dark font-500">Nutrition</h3>
+          <h3 className="prose-labelMedium text-dark font-500">% Daily value</h3>
         </div>
         <hr />
         <div className="mt-3">
@@ -148,14 +148,14 @@ const FoodNutritionCard = () => {
             <div key={index} className="mb-2">
               <div className="flex justify-between mb-2">
                 <div className="flex items-center gap-1">
-                  <h3 className="prose-labelSemiBold text-textDark font-500">{group.nutrient}</h3>
+                  <h3 className="prose-labelSemiBold text-textDark font-600">{group.nutrient}</h3>
                   <h3 className="prose-labelLarge text-dark font-500">
                     {" "}
                     {group.amount}
                     {group.amountUnit}
                   </h3>
                 </div>
-                <h3 className="prose-labelLarge text-main font-500">
+                <h3 className="prose-labelLarge text-main font-600">
                   {group.dailyValue ? `${group.dailyValue}%` : "-"}
                 </h3>
               </div>

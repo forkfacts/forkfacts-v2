@@ -162,9 +162,9 @@ const FoodNutritionCard = () => {
               {group.rows?.length ? (
                 <div className="w-[100%] relative py-2">
                   {group?.rows.map((row, index2) => (
-                    <>
+                    <div key={index2}>
                       <hr className={`${index2 !== 0 ? "hidden" : "block"} pt-2`} />
-                      <div key={row.nutrient} className="flex justify-between mb-1 w-[90%] ml-auto">
+                      <div className="flex justify-between mb-1 w-[90%] ml-auto">
                         <p className="prose-labelLarge text-dark font-500">
                           {row.nutrient} {row.amount}
                           {row.amountUnit}
@@ -178,7 +178,7 @@ const FoodNutritionCard = () => {
                           index2 + 1 === group.rows?.length ? "hidden" : "block"
                         } mt-3 mb-2`}
                       />
-                    </>
+                    </div>
                   ))}
                 </div>
               ) : null}

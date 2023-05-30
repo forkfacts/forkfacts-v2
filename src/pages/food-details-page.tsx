@@ -1,12 +1,11 @@
 import FoodDetails from "../features/FoodDetails";
-import { App } from "konsta/react";
 import React from "react";
 
 const FoodDetailsPage = () => {
   return (
-    <App theme="material" dark={false}>
+    <div>
       <FoodDetails />
-    </App>
+    </div>
   );
 };
 

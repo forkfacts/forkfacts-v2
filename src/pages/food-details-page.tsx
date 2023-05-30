@@ -1,8 +1,13 @@
 import React from "react";
-// import FoodDetails from "../features/FoodDetails/FoodDetails";
+import FoodDetails from "../features/FoodDetails/FoodDetails";
+import { PageProps } from "gatsby";
 
-const FoodDetailsPage = () => {
-  return <div>{/* <FoodDetails /> */}</div>;
+const FoodDetailsPage: React.FC<PageProps> = () => {
+  return (
+    <div>
+      <FoodDetails />
+    </div>
+  );
 };
 
 export default FoodDetailsPage;

@@ -33,7 +33,7 @@ const FoodDetailsSummary = () => {
                 </CircularProgressbarWithChildren>
               </div>
               <h2 className="prose-labelLarge font-500 text-main mt-2">{item.name}</h2>
-              <p className="text-center mt-1  font-normal prose-labelMedium text-dark">
+              <p className="text-center mt-1 prose-labelMedium text-textDark font-500">
                 {item.weight}
                 {item.unit}
               </p>

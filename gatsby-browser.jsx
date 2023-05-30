@@ -8,7 +8,7 @@ import "./src/styles/styles.css";
 
 export const wrapPageElement = ({ element }) => {
   return (
-    <App theme="material" dark={false}>
+    <App theme="material" dark={false} className="font-sans">
       {element}
     </App>
   );

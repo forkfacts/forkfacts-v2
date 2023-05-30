@@ -139,7 +139,7 @@ const FoodNutritionCard = () => {
       <div className="py-4">
         <h1 className="prose-titleMedium text-textDark font-500 mt-1.5 mb-4">NUTRITION</h1>
         <div className="flex justify-between mb-2">
-          <h3 className="prose-labelMedium text-dark font-500">Nutrition</h3>
+          <h3 className="prose-labelMedium text-dark font-500">Nutrients</h3>
           <h3 className="prose-labelMedium text-dark font-500">% Daily value</h3>
         </div>
         <hr />
@@ -149,7 +149,7 @@ const FoodNutritionCard = () => {
               <div className="flex justify-between mb-2">
                 <div className="flex items-center gap-1">
                   <h3 className="prose-labelSemiBold text-textDark font-600">{group.nutrient}</h3>
-                  <h3 className="prose-labelLarge text-textDark font-500">
+                  <h3 className="prose-labelLarge text-dark font-500">
                     {" "}
                     {group.amount}
                     {group.amountUnit}
@@ -187,14 +187,11 @@ const FoodNutritionCard = () => {
           ))}
         </div>
         <div className="flex justify-end w-full mt-3 mb-6">
-          <h4 className="prose-caption text-dark font-400">Source: USDA</h4>
+          <h4 className="prose-caption text-dark font-500">Source: USDA</h4>
         </div>
-        <div className="mb-2">
-          <Button
-            className="block bg-primaryLight text-primary text-[14px] leading-[20px] font-500 tracking-[0.1px]"
-            style={{ borderRadius: "36px" }}
-          >
-            View all Nutrients
+        <div className="mb-2 w-[100%]">
+          <Button className="block bg-[#E2DFFF] text-primary text-[14px] leading-[20px] font-500 tracking-[0.1px] rounded-lg max-w-full">
+            View all nutrients
             <MdArrowForwardIos className="ml-3 w-[18px] h-[18px]" />
           </Button>
         </div>

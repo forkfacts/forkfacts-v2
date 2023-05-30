@@ -21,7 +21,7 @@ const FoodDetailsSearch: React.FC<FoodDetailsSearchProps> = () => {
       <input
         type="text"
         className="rounded-[36px] h-[45px] pl-10 w-full border-[1px] border-[#C9C5CA] prose-bodyMedium bg-white indent-2 text-dark font-400"
-        placeholder="Search for foods, recipes"
+        placeholder="Search for food"
         // onFocus={handleFocus}
         // onBlur={handleBlur}
       />

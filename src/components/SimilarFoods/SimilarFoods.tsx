@@ -5,7 +5,7 @@ const SimilarFoods = () => {
     {
       name: "Banana overripe",
       nutrients: [
-        { name: "Banana overripe", amount: 240 },
+        { name: "Calories", amount: 240 },
         { name: "Carbs", amount: 10, amountUnit: "g" },
         { name: "Proteins", amount: 5, amountUnit: "g" },
         { name: "Fats", amount: 12, amountUnit: "g" },
@@ -14,7 +14,7 @@ const SimilarFoods = () => {
     {
       name: "Banana ripe",
       nutrients: [
-        { name: "Banana overripe", amount: 120 },
+        { name: "Calories", amount: 120 },
         { name: "Carbs", amount: 10, amountUnit: "g" },
         { name: "Proteins", amount: 10, amountUnit: "g" },
         { name: "Fats", amount: 5, amountUnit: "g" },

@@ -3,7 +3,7 @@ const recommendedDailyIntakes = require("../../data/rdi.json");
 
 export const createToolsPage = (createPageFunction: any) => {
   try {
-    const template = path.resolve("src/templates/tools/ToolsPage.tsx");
+    const template = path.resolve("src/pageTemplates/tools/ToolsPage.tsx");
     createPageFunction({
       path: "/tools",
       component: template,
@@ -13,7 +13,7 @@ export const createToolsPage = (createPageFunction: any) => {
     });
 
     // Create a child page for the "tools" pages
-    const childPageTemplate = path.resolve("src/templates/tools/RecommendedDailyIntake.tsx");
+    const childPageTemplate = path.resolve("src/pageTemplates/tools/RecommendedDailyIntake.tsx");
     createPageFunction({
       path: "/tools/recommended-daily-intake",
       component: childPageTemplate,

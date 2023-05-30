@@ -5,7 +5,7 @@ const ff_nutrition_facts = require("../../data/foundation_food_nutrition_facts.j
 const sr_legacy_nutrition_facts = require("../../data/sr_legacy_food_nutrition_facts.json");
 const recommendedDailyIntakes = require("../../data/rdi.json");
 
-import { filterNutrient, generateSEOInfo, spaceToDashes } from "../Functions/PagesFunctions";
+import { filterNutrient, generateSEOInfo, spaceToDashes } from "../functions/PagesFunctions";
 import { Food } from "../models/pages";
 
 const ENERGY_NAME_ATWATER = "Energy (Atwater General Factors)";
@@ -43,7 +43,7 @@ interface SearchIndexEntry {
 }
 const createNutritionTable = ({ createPageFunction, foods, indexFileName }: any) => {
   let ffSearchIndex: SearchIndexEntry[] = [];
-  const template = path.resolve("src/templates/DetailsPage.tsx");
+  const template = path.resolve("src/pageTemplates/DetailsPage.tsx");
   foods.forEach((food: Food) => {
     if (food.name) {
       let calories = filterNutrient(food, ENERGY_NAME_ATWATER, ENERGY_UNIT);

@@ -25,7 +25,7 @@ const SimilarFoods = () => {
     <div className="bg-white px-[16px]">
       <div>
         <h1 className="prose-titleMedium text-textDark font-500 pt-[20px]">SIMILAR FOODS</h1>
-        <div className="w-full overflow-x-auto scrollbar-none bg-white flex items-center custom-scrollbar gap-3 rounded-[8px] pb-10 pt-5">
+        <div className="w-full overflow-x-auto scrollbar-none bg-white flex items-center custom-scrollbar gap-3 rounded-[8px] pb-8 pt-5">
           {similarFoods.map((food, idx) => {
             return (
               <div

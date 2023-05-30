@@ -3,7 +3,7 @@ import React from "react";
 import { Layout } from "@forkfacts/components";
 import { ToolsScreenProps } from "@forkfacts/models";
 import { useStyles } from "./toolsScrenStyles";
-import { Balance } from "@forkfacts/icons";
+import { Balance } from "designIcons";
 import { customTheme } from "../../themes/theme";
 import { navigate } from "gatsby";
 

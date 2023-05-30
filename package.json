@@ -16,7 +16,7 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "prepare": "husky install",
-    "svgr": "npx @svgr/cli --out-dir src/DesignIcons --typescript --ignore-existing --replace-attr-values '#000=currentColor' src/images/icons",
+    "svgr": "npx @svgr/cli --out-dir src/designIcons --typescript --ignore-existing --replace-attr-values '#000=currentColor' src/images/icons",
     "download-data": "ts-node --experimentalSpecifierResolution node scripts/init.mjs",
     "build:env:dev": "cp .env.sample .env",
     "build:env:prod": "cp .env .env.production"

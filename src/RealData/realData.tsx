@@ -2,7 +2,7 @@ import EmojiFoodBeverageOutlinedIcon from "@mui/icons-material/EmojiFoodBeverage
 import EggAltOutlinedIcon from "@mui/icons-material/EggAltOutlined";
 import TipsAndUpdatesOutlinedIcon from "@mui/icons-material/TipsAndUpdatesOutlined";
 import CompareArrowsOutlinedIcon from "@mui/icons-material/CompareArrowsOutlined";
-import { Baby, Kids, Lactation, Male, PregnantWoman, Woman } from "@forkfacts/icons";
+import { Baby, Kids, Lactation, Male, PregnantWoman, Woman } from "designIcons";
 import FastfoodOutlinedIcon from "@mui/icons-material/FastfoodOutlined";
 import SmokingRoomsOutlinedIcon from "@mui/icons-material/SmokingRoomsOutlined";
 import LibraryBooksOutlinedIcon from "@mui/icons-material/LibraryBooksOutlined";

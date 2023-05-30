@@ -3,6 +3,7 @@ import { MdDensityMedium, MdEmojiFoodBeverage, MdOutlineFavorite } from "react-i
 import React, { useState } from "react";
 import { MobilePanel } from "./MobilePanel";
 import { Typography } from "@mui/material";
+import { Link as GatsbyLink } from "gatsby";
 
 export default function MobileHome() {
   const [leftFloatingPanelOpened, setLeftFloatingPanelOpened] = useState<boolean>(false);
@@ -46,6 +47,12 @@ export default function MobileHome() {
             felis.
           </Typography>
         </Block>
+        <h2>
+          View food details page{" "}
+          <GatsbyLink to="/food-details-page" className="text-red-500">
+            Food Details Page
+          </GatsbyLink>
+        </h2>
       </div>
     </Page>
   );

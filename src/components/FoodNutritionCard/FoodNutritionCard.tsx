@@ -165,10 +165,12 @@ const FoodNutritionCard = () => {
                     <div key={index2}>
                       <hr className={`${index2 !== 0 ? "hidden" : "block"} pt-2`} />
                       <div className="flex justify-between mb-1 w-[90%] ml-auto">
-                        <p className="prose-labelLarge text-dark font-500">
-                          {row.nutrient} {row.amount}
-                          {row.amountUnit}
-                        </p>
+                        <div className="flex items-center">
+                          <p className="prose-labelLarge text-dark font-500">{row.nutrient}</p>
+                          <p className="prose-labelLarge text-dark font-500 ml-3">
+                            {row.amount} {row.amountUnit}
+                          </p>
+                        </div>
                         <p className="prose-labelLarge text-dark font-500">
                           {row.dailyValue ? `${row.dailyValue}%` : "-"}
                         </p>

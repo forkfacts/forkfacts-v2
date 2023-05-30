@@ -149,13 +149,13 @@ const FoodNutritionCard = () => {
               <div className="flex justify-between mb-2">
                 <div className="flex items-center gap-1">
                   <h3 className="prose-labelSemiBold text-textDark font-600">{group.nutrient}</h3>
-                  <h3 className="prose-labelLarge text-dark font-500">
+                  <h3 className="prose-labelLarge text-textDark font-500">
                     {" "}
                     {group.amount}
                     {group.amountUnit}
                   </h3>
                 </div>
-                <h3 className="prose-labelLarge text-main font-600">
+                <h3 className="prose-labelLarge text-textDark font-600">
                   {group.dailyValue ? `${group.dailyValue}%` : "-"}
                 </h3>
               </div>
@@ -190,7 +190,10 @@ const FoodNutritionCard = () => {
           <h4 className="prose-caption text-dark font-400">Source: USDA</h4>
         </div>
         <div className="mb-2">
-          <Button className="block bg-primaryLight text-primary">
+          <Button
+            className="block bg-primaryLight text-primary text-[14px] leading-[20px] font-500 tracking-[0.1px]"
+            style={{ borderRadius: "36px" }}
+          >
             View all Nutrients
             <MdArrowForwardIos className="ml-3 w-[18px] h-[18px]" />
           </Button>

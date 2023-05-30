@@ -18,7 +18,7 @@ const FoodDetailsSummary = () => {
             <div className="mt-2 flex justify-center items-center flex-col">
               <div className="w-[50px] h-[50px]">
                 <CircularProgressbarWithChildren
-                  strokeWidth={12}
+                  strokeWidth={10}
                   value={item.percentage}
                   styles={buildStyles({
                     textColor: "#000",

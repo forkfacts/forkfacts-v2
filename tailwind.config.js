@@ -231,7 +231,7 @@ module.exports = konstaConfig({
     extend: {
       colors: {
         primary: "#4C42E8",
-        primaryLight: "#E2DFFF",
+        primaryLight: "#F2EFFF",
         switchColor: "#6660FF",
         light: "#E5E1E6",
         main: "#1C1B1F",
@@ -241,6 +241,7 @@ module.exports = konstaConfig({
         textBlack: "#000000",
         textLight: "#929094",
         customInputBackground: "#FFFBFF",
+        bgLightColor: "rgba(226, 223, 255, 0.5)",
       },
       boxShadow: {
         summaryShadow: "0 35px 60px -15px rgba(0, 0, 0, 0.3)",

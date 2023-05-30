@@ -10,3 +10,4 @@ src/gatsby-types.d.ts
 data
 wget-log*
 .raw
+*.DS_Store

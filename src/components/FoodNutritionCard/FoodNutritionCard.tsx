@@ -149,7 +149,7 @@ const FoodNutritionCard = () => {
               <div className="flex justify-between mb-2">
                 <div className="flex items-center gap-1">
                   <h3 className="prose-labelSemiBold text-textDark font-600">{group.nutrient}</h3>
-                  <h3 className="prose-labelLarge text-dark font-500 ml-2">
+                  <h3 className="prose-labelLarge text-dark font-500 ml-1.5">
                     {" "}
                     {group.amount}
                     {group.amountUnit}

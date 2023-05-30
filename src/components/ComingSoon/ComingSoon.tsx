@@ -1,12 +1,12 @@
-import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
+// import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
 import React from "react";
 
 const ComingSoon = () => {
-  const theme = useTheme();
-  const desktop = useMediaQuery(theme.breakpoints.up("md"));
+  // const theme = useTheme();
+  // const desktop = useMediaQuery(theme.breakpoints.up("md"));
   return (
-    <Box sx={{ display: "flex" }}>
-      <Box
+    <div style={{ display: "flex" }}>
+      {/* <Box
         sx={{
           width: "100%",
           display: "flex",
@@ -59,8 +59,9 @@ const ComingSoon = () => {
             sometime.
           </Typography>
         </Box>
-      </Box>
-    </Box>
+      </Box> */}
+      Good
+    </div>
   );
 };
 

@@ -4,7 +4,7 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { SearchResultItemProps } from "@forkfacts/models";
-import { useStyles } from "../../SearchResults/searchResultsStyles";
+import { useStyles } from "../searchResultsStyles";
 
 export default function SearchResultItem({ item, onSelectItem, multiple }: SearchResultItemProps) {
   const theme = useTheme();

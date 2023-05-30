@@ -2,10 +2,10 @@ import { Page } from "konsta/react";
 import React from "react";
 import DetailsHeader from "./FoodDetailsHeader";
 import FoodDetailsSearch from "./FoodDetailsSearch";
-import FoodDetailsFilters from "../../../FoodDetailsFilters/FoodDetailsFilters";
-import FoodDetailsSummary from "../../../FoodDetailsSummary/FoodDetailsSummary";
-import FoodNutritionCard from "../../../FoodNutritionCard/FoodNutritionCard";
-import SimilarFoods from "../../../SimilarFoods/SimilarFoods";
+import FoodDetailsFilters from "../FoodDetailsFilters/FoodDetailsFilters";
+import FoodDetailsSummary from "../FoodDetailsSummary/FoodDetailsSummary";
+import FoodNutritionCard from "../../FoodNutritionCard/FoodNutritionCard";
+import SimilarFoods from "../../SimilarFoods/SimilarFoods";
 
 const MobileDetails = () => {
   return (

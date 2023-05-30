@@ -1,6 +1,7 @@
 import React from "react";
 import { IoMdSearch } from "react-icons/io";
 import { BiArrowBack } from "react-icons/bi";
+import RecentlySearchResults from "../../../RecentlySearchResults/RecentlySearchResults";
 
 interface FoodSearchViewProps {
   setIsFocused: React.Dispatch<React.SetStateAction<boolean>>;
@@ -30,6 +31,7 @@ const FoodSearchView: React.FC<FoodSearchViewProps> = ({ setIsFocused }) => {
           </div>
         </div>
       </div>
+      <RecentlySearchResults />
     </div>
   );
 };

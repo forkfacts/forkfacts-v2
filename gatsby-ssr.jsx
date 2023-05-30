@@ -6,9 +6,9 @@ import "@fontsource/poppins/600.css";
 import "@fontsource/poppins/700.css";
 import "./src/styles/styles.css";
 
-export const wrapPageElement = ({ element, props }) => {
+export const wrapPageElement = ({ element }) => {
   return (
-    <App theme="material" dark={false} {...props}>
+    <App theme="material" dark={false}>
       {element}
     </App>
   );

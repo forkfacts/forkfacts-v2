@@ -1,5 +1,5 @@
 import React from "react";
-import { FoodDetails } from "@forkfacts/features";
+import FoodDetails from "../features/FoodDetails/FoodDetails";
 import { PageProps } from "gatsby";
 
 const FoodDetailsPage: React.FC<PageProps> = () => {

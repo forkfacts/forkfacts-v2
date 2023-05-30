@@ -26,9 +26,12 @@ const SimilarFoods = () => {
       <div>
         <h1 className="prose-titleMedium text-textDark font-500 pt-[20px]">SIMILAR FOODS</h1>
         <div className="w-full overflow-x-auto scrollbar-none bg-white flex items-center custom-scrollbar gap-3 rounded-[8px] pb-10 pt-5">
-          {similarFoods.map((food, index) => {
+          {similarFoods.map((food, idx) => {
             return (
-              <div className="min-w-[300px] border-[1px] border-[#E5E1E6] p-3 rounded-[8px]">
+              <div
+                className="min-w-[300px] border-[1px] border-[#E5E1E6] p-3 rounded-[8px]"
+                key={idx}
+              >
                 <h1 className="prose-titleMedium text-main font-500">{food.name}</h1>
                 <div className="flex mt-[16px] justify-between items-center">
                   {food.nutrients.map((nutrient, index) => {

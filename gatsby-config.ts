@@ -30,6 +30,7 @@ const config: GatsbyConfig = {
         alias: {
           "@forkfacts/components": path.resolve(__dirname, "src/components"),
           "@forkfacts/helpers": path.resolve(__dirname, "src/helpers"),
+          "@forkfacts/features": path.resolve(__dirname, "src/features"),
           "@forkfacts/models": path.resolve(__dirname, "src/models"),
           "@forkfacts/screens": path.resolve(__dirname, "src/screens"),
           "@forkfacts/styles": path.resolve(__dirname, "src/styles"),

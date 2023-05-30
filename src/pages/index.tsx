@@ -1,9 +1,9 @@
 import * as React from "react";
 import { PageProps } from "gatsby";
-import Home from "../features/Home";
+import { ComingSoon } from "@forkfacts/components";
 
 const IndexPage: React.FC<PageProps> = () => {
-  return <Home />;
+  return <ComingSoon />;
 };
 
 export default IndexPage;

@@ -1,11 +1,11 @@
 import React from "react";
-import FoodDetails from "../features/FoodDetails/FoodDetails";
 import { PageProps } from "gatsby";
+import { ComingSoon } from "@forkfacts/components";
 
 const FoodDetailsPage: React.FC<PageProps> = () => {
   return (
     <div>
-      <FoodDetails />
+      <ComingSoon />
     </div>
   );
 };

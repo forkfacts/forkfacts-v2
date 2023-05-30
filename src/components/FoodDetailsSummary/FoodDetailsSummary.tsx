@@ -23,7 +23,7 @@ const FoodDetailsSummary = () => {
                   styles={buildStyles({
                     textColor: "#000",
                     pathColor: "#6660FF",
-                    trailColor: "#C9C5CA",
+                    trailColor: "#E2DFFF",
                     textSize: "16px",
                   })}
                 >

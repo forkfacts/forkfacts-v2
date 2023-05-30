@@ -187,7 +187,7 @@ const FoodNutritionCard = () => {
           ))}
         </div>
         <div className="flex justify-end w-full mt-3 mb-6">
-          <h4 className="prose-caption text-dark font-500 bg-bgLightColor">Source: USDA</h4>
+          <h4 className="prose-caption text-dark font-500">Source: USDA</h4>
         </div>
         <div className="mb-2 w-[100%]">
           <Button className="block bg-primaryLight text-primary text-[14px] leading-[20px] font-500 tracking-[0.1px] rounded-lg max-w-full">

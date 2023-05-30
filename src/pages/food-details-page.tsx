@@ -1,4 +1,4 @@
-import FoodDetails from "../features/FoodDetails";
+import FoodDetails from "../features/FoodDetails/FoodDetails";
 import React from "react";
 
 const FoodDetailsPage = () => {

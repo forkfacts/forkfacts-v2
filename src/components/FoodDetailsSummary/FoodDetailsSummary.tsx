@@ -4,7 +4,7 @@ import { CircularProgressbarWithChildren, buildStyles } from "react-circular-pro
 
 const FoodDetailsSummary = () => {
   const nutritionSummaryItems = [
-    { percentage: 25, weight: 200, name: "Calories", unit: "g" },
+    { percentage: 25, weight: 200, name: "Calories" },
     { percentage: 23, weight: 76, name: "Carbs", unit: "g" },
     { percentage: 12, weight: 1, name: "Protein", unit: "g" },
     { percentage: 45, weight: 40, name: "Fat", unit: "g" },

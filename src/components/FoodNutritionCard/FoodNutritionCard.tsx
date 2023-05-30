@@ -143,9 +143,9 @@ const FoodNutritionCard = () => {
           <h3 className="prose-labelMedium text-dark font-500">% Daily value</h3>
         </div>
         <hr />
-        <div className="mt-3">
+        <div className="mt-5">
           {rowsByNutrientGroups.map((group, index) => (
-            <div key={index} className="mb-2">
+            <div key={index} className="mb-3">
               <div className="flex justify-between mb-2">
                 <div className="flex items-center gap-1">
                   <h3 className="prose-labelSemiBold text-textDark font-600">{group.nutrient}</h3>

@@ -190,7 +190,7 @@ const FoodNutritionCard = () => {
           <h4 className="prose-caption text-dark font-500">Source: USDA</h4>
         </div>
         <div className="mb-2 w-[100%]">
-          <Button className="block bg-[#E2DFFF] text-primary text-[14px] leading-[20px] font-500 tracking-[0.1px] rounded-lg max-w-full">
+          <Button className="block bg-primaryLight text-primary text-[14px] leading-[20px] font-500 tracking-[0.1px] rounded-lg max-w-full">
             View all nutrients
             <MdArrowForwardIos className="ml-3 w-[18px] h-[18px]" />
           </Button>

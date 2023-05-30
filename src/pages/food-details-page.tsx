@@ -1,4 +1,4 @@
-import FoodDetails from "../Features/FoodDetails";
+import FoodDetails from "../features/FoodDetails";
 import { App } from "konsta/react";
 import React from "react";
 

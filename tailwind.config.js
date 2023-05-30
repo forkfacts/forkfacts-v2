@@ -64,12 +64,12 @@ module.exports = konstaConfig({
         extraSmall: "0.75rem", // 12px
       },
       lineHeight: {
-        captionXS: "0.875rem", // 14px
-        leadingXX: "1.5rem", // 24px
-        leadingXXX: "2rem", // 32px
-        titleXl: "1.75rem", // 28px
-        labelX: "1.25rem", // 20px
-        leadingX: "1rem", // 16px
+        captionXS: "14px", // 14px
+        leadingXX: "24px", // 24px
+        leadingXXX: "32px", // 32px
+        titleXl: "28px", // 28px
+        labelX: "20px", // 20px
+        leadingX: "16px", // 16px
       },
       typography: {
         outlined: {

@@ -27,7 +27,9 @@ const FoodDetailsSummary = () => {
                     textSize: "16px",
                   })}
                 >
-                  <p className="text-center leading-28 font-normal text-gray-500">{item.weight}</p>
+                  <p className="text-center text-[12px] text-main leading-[28px] font-500">
+                    {item.percentage}%
+                  </p>
                 </CircularProgressbarWithChildren>
               </div>
               <h2 className="prose-labelLarge font-500 text-main mt-2">{item.name}</h2>

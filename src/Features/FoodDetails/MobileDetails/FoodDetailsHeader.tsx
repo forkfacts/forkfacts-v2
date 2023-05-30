@@ -18,7 +18,8 @@ const DetailsHeader = () => {
       }
       title="Banana, overripe, raw"
       centerTitle
-      titleClassName="text-[22px] text-main font-[500] leading-leadingXX"
+      className="top-0 fixed left-0 right-0 p-3"
+      titleClassName="text-[22px] text-main font-[500] leading-[20px]"
       bgClassName="bg-white"
     />
   );

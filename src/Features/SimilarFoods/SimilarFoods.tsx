@@ -12,7 +12,7 @@ const SimilarFoods = () => {
       ],
     },
     {
-      name: "Banana overripe",
+      name: "Banana ripe",
       nutrients: [
         { name: "Banana overripe", amount: 120 },
         { name: "Carbs", amount: 10, amountUnit: "g" },
@@ -24,7 +24,7 @@ const SimilarFoods = () => {
   return (
     <div className="bg-white px-[16px]">
       <div>
-        <h1 className="prose-titleMedium text-dark pt-[20px]">SIMILAR FOODS</h1>
+        <h1 className="prose-titleMedium text-textDark font-500 pt-[20px]">SIMILAR FOODS</h1>
         <div className="w-full overflow-x-auto scrollbar-none bg-white flex items-center custom-scrollbar gap-3 rounded-[8px] pb-10 pt-5">
           {similarFoods.map((food, index) => {
             return (
@@ -33,10 +33,11 @@ const SimilarFoods = () => {
                 <div className="flex mt-[16px] justify-between items-center">
                   {food.nutrients.map((nutrient, index) => {
                     return (
-                      <div className="flex">
+                      <div className="flex" key={index}>
                         <div>
                           <h2 className="prose-labelMedium text-main font-500">
-                            {nutrient.amount} {nutrient.amountUnit}
+                            {nutrient.amount}
+                            {nutrient.amountUnit}
                           </h2>
                           <h3 className="prose-labelMedium text-dark font-500">{nutrient.name}</h3>
                         </div>

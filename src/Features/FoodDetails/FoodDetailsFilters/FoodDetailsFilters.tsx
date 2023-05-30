@@ -6,7 +6,7 @@ import AllFilters from "./AllFilters";
 
 const FoodDetailsFilters = () => {
   return (
-    <div className="flex items-center mt-6 gap-6 overflow-x-auto overscroll-x-contain scrollbar-none custom-scrollbar">
+    <div className="flex items-center mt-6 gap-4 overflow-x-auto overscroll-x-contain scrollbar-none custom-scrollbar">
       <AllFilters />
       <Weight />
       <Gender />

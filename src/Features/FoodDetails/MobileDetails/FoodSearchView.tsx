@@ -25,7 +25,7 @@ const FoodSearchView: React.FC<FoodSearchViewProps> = ({ setIsFocused }) => {
             </div>
             <input
               type="text"
-              className="rounded-[36px] h-[45px] pl-10 w-full bg-customInputBackground border-[1px] border-[#fff] prose-bodySmall bg-white"
+              className="rounded-[36px] h-[45px] pl-10 w-full border-[1px] border-[#fff] prose-bodySmall bg-white"
               placeholder="Search for foods, recipes"
             />
           </div>

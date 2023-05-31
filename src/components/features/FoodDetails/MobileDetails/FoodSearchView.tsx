@@ -110,6 +110,11 @@ function FoodSearchView(
     setQuery(""); // for now let clear the search
   };
 
+  const onClearSearch = () => {
+    autocomplete.setIsOpen(false);
+    autocomplete.setQuery("");
+  };
+
   useEffect(() => {
     async function fetchData() {
       const searches = await (await fetchRecentSearches()).reverse();
@@ -139,14 +144,14 @@ function FoodSearchView(
               {...autocomplete.getInputProps({ inputElement: inputRef.current })}
             />
             {query && (
-              <div className="absolute right-0 bg-white top-1/2 transform -translate-y-1/2 w-10 h-5 rounded-full mr-10 z-20">
-                <MdOutlineCancel size={20} />
+              <div className="absolute right-0 bg-white top-1/2 transform -translate-y-1/2 w-10 h-5 rounded-full z-20">
+                <MdOutlineCancel size={20} onClick={onClearSearch} />
               </div>
             )}
           </form>
         </div>
       </div>
-      <div className="h-3" />
+      <div className="h-4" />
       <div className="h-16" />
       <>
         {isOpen && query ? (

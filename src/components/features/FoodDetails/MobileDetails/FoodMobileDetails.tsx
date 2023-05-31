@@ -13,7 +13,11 @@ const MobileDetails = () => {
   return (
     <Page className="bg-white">
       {openSearch ? (
-        <FoodSearchView setOpenSearch={setOpenSearch} placeholder="Search for foods" />
+        <FoodSearchView
+          setOpenSearch={setOpenSearch}
+          placeholder="Search for foods"
+          autoFocus={true}
+        />
       ) : (
         <div>
           <div className="shadow-summaryShadow pb-8 px-[15px]">

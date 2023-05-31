@@ -20,24 +20,34 @@ const SearchResults: React.FC<SearchResultsProps> = ({ collections, onSelectItem
           <div className=" mt-[20px]">
             {collections.map((result, index) => {
               return (
-                <div
-                  className="flex items-center gap-1.5 mb-[18px]"
-                  key={index}
-                  onClick={() => {
-                    onSelectItem(result);
-                  }}
-                >
-                  <div>
-                    <BiHistory className="text-dark w-[24px] h-[24px]" />
+                <div key={index}>
+                  <div
+                    className="flex items-center gap-1.5 mb-[18px]"
+                    onClick={() => {
+                      onSelectItem(result);
+                    }}
+                  >
+                    {!isSearch && (
+                      <div>
+                        <BiHistory className="text-dark w-[24px] h-[24px]" />
+                      </div>
+                    )}
+                    <h2 className="prose-titleSmall font-500 text-main">{result.name}</h2>
                   </div>
-                  <h2 className="prose-titleSmall font-500 text-main">{result.name}</h2>
+                  {isSearch && (
+                    <hr
+                      className={`${
+                        index + 1 === collections.length ? "hidden" : "block mt-3 mb-4 bg-[#DFD5EC]"
+                      }`}
+                    />
+                  )}
                 </div>
               );
             })}
           </div>
-          <hr />
+          {!isSearch && <hr />}
         </div>
-        <div className={`${isSearch ? "hidden" : "block"} mt-5 w-full`}>
+        <div className={`${isSearch ? "hidden" : "block"} mt-8 w-full`}>
           <div>
             <h1 className="prose-titleMedium text-dark font-500">RECOMMENDATIONS</h1>
           </div>
@@ -48,7 +58,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({ collections, onSelectItem
                   <h1 className="prose-titleSmall text-main font-500 mb-3">
                     {recommendation.category}
                   </h1>
-                  <div className="gap-4 flex items-center mt-6 overflow-x-auto overscroll-x-contain scrollbar-none custom-scrollbar">
+                  <div className="gap-4 flex items-center mt-4 overflow-x-auto overscroll-x-contain scrollbar-none custom-scrollbar">
                     {recommendation.collections.map((collection, index) => {
                       return (
                         <div
@@ -68,6 +78,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({ collections, onSelectItem
           </div>
         </div>
       </div>
+      <div className="h-[20vh]" />
     </div>
   );
 };

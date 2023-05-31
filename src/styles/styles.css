@@ -1,13 +1,20 @@
-html {
-  overflow: auto;
-  font-family: "Poppins" !important;
-}
-body {
-  font-family: "Poppins" !important;
-  font-style: normal;
-  scroll-behavior: smooth;
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  html {
+    font-family: "Poppins", sans-serif !important;
+  }
+}
+
+body {
+  font-family: "Poppins", sans-serif !important;
+  scroll-behavior: smooth;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+  background: transparent;
+}

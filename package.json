@@ -19,7 +19,7 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "prepare": "husky install",
-    "svgr": "npx @svgr/cli --out-dir src/DesignIcons --typescript --ignore-existing --replace-attr-values '#000=currentColor' src/images/icons",
+    "svgr": "npx @svgr/cli --out-dir src/designIcons --typescript --ignore-existing --replace-attr-values '#000=currentColor' src/images/icons",
     "download-data": "ts-node --experimentalSpecifierResolution node scripts/init.mjs",
     "build:env:dev": "cp .env.sample .env",
     "build:env:prod": "cp .env .env.production"
@@ -77,6 +77,7 @@
   },
   "devDependencies": {
     "@svgr/cli": "^6.5.1",
+    "@tailwindcss/typography": "^0.5.9",
     "@types/node": "^18.11.9",
     "@types/react": "^18.0.25",
     "@types/react-copy-to-clipboard": "^5.0.4",

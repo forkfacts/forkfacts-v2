@@ -1,15 +1,9 @@
 import * as React from "react";
 import { PageProps } from "gatsby";
-import { Box } from "@mui/material";
-import Home from "../features/Home";
-import WrapRootElement from "../libs/wrapRootElement";
+import { Home } from "@forkfacts/components";
 
 const IndexPage: React.FC<PageProps> = () => {
-  return (
-    <WrapRootElement>
-      <Home />
-    </WrapRootElement>
-  );
+  return <Home />;
 };
 
 export default IndexPage;

@@ -38,7 +38,8 @@
       "@forkfacts/models": ["models"],
       "@forkfacts/styles": ["styles"],
       "@forkfacts/icons": ["DesignIcons"],
-      "@forkfacts/generate-pages": ["pageGenerators"]
+      "@forkfacts/generate-pages": ["pageGenerators"],
+      "@forkfacts/features": ["features"]
     } /* Specify a set of entries that re-map imports to additional lookup locations. */,
     // "rootDirs": [],                                   /* Allow multiple folders to be treated as one when resolving modules. */
     // "typeRoots": [],                                  /* Specify multiple folders that act like `./node_modules/@types`. */
@@ -121,7 +122,7 @@
     "./plugins/**/*",
     "src/theme.d.ts",
     "download-data.ts",
-    "src/templates/DetailsPage.tsx",
+    "src/pagetemplates/DetailsPage.tsx",
     "src/pageGenerators/index.tsx"
   ],
   "exclude": ["node_modules"]

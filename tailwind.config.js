@@ -228,8 +228,6 @@ module.exports = konstaConfig({
     },
     extend: {
       colors: {
-        primary: "#4C42E8",
-        primaryLight: "#F2EFFF",
         switchColor: "#6660FF",
         light: "#E5E1E6",
         main: "#1C1B1F",
@@ -240,6 +238,17 @@ module.exports = konstaConfig({
         textLight: "#929094",
         customInputBackground: "#FFFBFF",
         bgLightColor: "rgba(226, 223, 255, 0.5)",
+        neutral: {
+          10: "#1C1B1F",
+          30: "47464F",
+          40: "textDark",
+          50: "#787680",
+          95: "#F3EFFA",
+        },
+        primary: {
+          40: "#4C42E8",
+          90: "#F2EFFF",
+        },
       },
       boxShadow: {
         summaryShadow: "0 35px 60px -15px rgba(0, 0, 0, 0.3)",
@@ -251,6 +260,12 @@ module.exports = konstaConfig({
           background: "transparent",
         },
       },
+    },
+  },
+  variants: {
+    extend: {
+      backgroundColor: ["dark"],
+      textColor: ["dark"],
     },
   },
   plugins: [

@@ -2,17 +2,17 @@ import React from "react";
 import { IoMdSearch } from "react-icons/io";
 
 interface FoodDetailsSearchProps {
-  // setIsFocused: React.Dispatch<React.SetStateAction<boolean>>;
+  setOpenSearch: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const FoodDetailsSearch: React.FC<FoodDetailsSearchProps> = () => {
-  // const handleFocus = () => {
-  //   setIsFocused(true);
-  // };
+const FoodDetailsSearch: React.FC<FoodDetailsSearchProps> = ({ setOpenSearch }) => {
+  const handleFocus = () => {
+    setOpenSearch(true);
+  };
 
-  // const handleBlur = () => {
-  //   setIsFocused(false);
-  // };
+  const handleBlur = () => {
+    setOpenSearch(false);
+  };
   return (
     <div className="w-full relative mt-20">
       <div className="absolute left-3 top-1/2 transform -translate-y-1/2">
@@ -22,8 +22,8 @@ const FoodDetailsSearch: React.FC<FoodDetailsSearchProps> = () => {
         type="text"
         className="rounded-[36px] h-[45px] pl-10 w-full border-[1px] border-[#C9C5CA] prose-bodyMedium bg-white indent-2 font-400 placeholder-dark placeholder:normal"
         placeholder="Search for food"
-        // onFocus={handleFocus}
-        // onBlur={handleBlur}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
       />
     </div>
   );

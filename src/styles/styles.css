@@ -18,3 +18,10 @@ body {
   height: 0px;
   background: transparent;
 }
+
+.aa-Form .aa-ClearButton {
+  display: none;
+}
+.aa-InputWrapperSuffix {
+  display: none;
+}

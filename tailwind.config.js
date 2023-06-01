@@ -228,8 +228,6 @@ module.exports = konstaConfig({
     },
     extend: {
       colors: {
-        primary: "#4C42E8",
-        primaryLight: "#F2EFFF",
         switchColor: "#6660FF",
         light: "#E5E1E6",
         main: "#1C1B1F",
@@ -246,6 +244,10 @@ module.exports = konstaConfig({
           40: "textDark",
           50: "#787680",
           95: "#F3EFFA",
+        },
+        primary: {
+          40: "#4C42E8",
+          90: "#F2EFFF",
         },
       },
       boxShadow: {

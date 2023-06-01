@@ -65,7 +65,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({ collections, onSelectItem
                           className="border-[1px] border-[#4C42E8] bg-white whitespace-nowrap rounded-[36px] h-[36px] flex justify-center items-center"
                           key={index}
                         >
-                          <button className="px-[16px] py-[8px] prose-labelLarge font-500 text-primary">
+                          <button className="px-[16px] py-[8px] prose-labelLarge font-500 text-primary-40">
                             {collection.name}
                           </button>
                         </div>

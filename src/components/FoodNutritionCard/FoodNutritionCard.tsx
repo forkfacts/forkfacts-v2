@@ -6,7 +6,7 @@ import { useStore } from "../../helpers/stores";
 const FoodNutritionCard = () => {
   const { nutrition } = useStore((state) => state.food);
 
-  const sortedNutrients = nutrition.slice().sort((a, b) => a.displayOrder - b.displayOrder);
+  const sortedNutrients = nutrition?.slice()?.sort((a, b) => a.displayOrder - b.displayOrder);
 
   return (
     <div className="bg-white px-[16px]">

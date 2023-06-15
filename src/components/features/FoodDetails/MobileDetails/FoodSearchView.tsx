@@ -20,7 +20,7 @@ import {
 } from "@forkfacts/helpers";
 import { SearchResultItemType } from "@forkfacts/models";
 import { Preloader } from "konsta/react";
-// import { navigate } from "gatsby";
+import { navigate } from "gatsby";
 
 interface FoodSearchViewProps {
   setOpenSearch: React.Dispatch<React.SetStateAction<boolean>>;
@@ -90,8 +90,6 @@ function FoodSearchView(
 
   const inputRef = useRef<HTMLInputElement>(null);
   const formRef = useRef<HTMLFormElement>(null);
-
-  const { setQuery } = autocomplete;
   const onClosePage = () => {
     props.setOpenSearch(false);
   };
@@ -105,9 +103,8 @@ function FoodSearchView(
       searchLocation: "Food",
     };
     await addSearchEntry(searchData);
-    const path = `${spaceToDashes(item.name)}`;
-    // navigate(path);
-    setQuery(""); // for now let clear the search
+    const path = `/${spaceToDashes(item.name)}/`;
+    navigate(path);
   };
 
   const onClearSearch = () => {

@@ -1,17 +1,18 @@
 import create from "zustand";
-import { Food, NutrientRequirement } from "../../models";
+import { Food, RDI, NutritionFact } from "../../models";
 
 interface StoreState {
-  recommendedDailyIntakes: NutrientRequirement[];
+  recommendedDailyIntakes: RDI[];
   food: Food;
-  setRecommendedDailyIntakes: (recommendedDailyIntakes: NutrientRequirement[]) => void;
-  setFood: (food: Food) => void;
+  nutrition: NutritionFact[];
+  setRecommendedDailyIntakes: (recommendedDailyIntakes: RDI[]) => void;
+  setFood: (food: Food, nutrition: NutritionFact[]) => void;
 }
 
 export const useStore = create<StoreState>((set) => ({
   recommendedDailyIntakes: [],
   food: {} as Food,
-  setRecommendedDailyIntakes: (recommendedDailyIntakes: NutrientRequirement[]) =>
-    set({ recommendedDailyIntakes }),
-  setFood: (food: Food) => set({ food }),
+  nutrition: [],
+  setRecommendedDailyIntakes: (recommendedDailyIntakes: RDI[]) => set({ recommendedDailyIntakes }),
+  setFood: (food: Food, nutrition: NutritionFact[]) => set({ food, nutrition }),
 }));

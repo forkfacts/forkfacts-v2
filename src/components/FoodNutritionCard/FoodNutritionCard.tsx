@@ -6,6 +6,8 @@ import { useStore } from "../../helpers/stores";
 const FoodNutritionCard = () => {
   const { nutrition } = useStore((state) => state.food);
 
+  const sortedNutrients = nutrition.slice().sort((a, b) => a.displayOrder - b.displayOrder);
+
   return (
     <div className="bg-white px-[16px]">
       <div className="py-4">
@@ -16,7 +18,7 @@ const FoodNutritionCard = () => {
         </div>
         <hr />
         <div className="mt-5">
-          {nutrition?.map((group, index) => (
+          {sortedNutrients?.map((group, index) => (
             <div
               key={index}
               className={`mb-3 ${
@@ -26,10 +28,6 @@ const FoodNutritionCard = () => {
               <div className="flex justify-between mb-2">
                 <div className="flex items-center gap-1">
                   <h3 className="prose-labelSemiBold text-textDark font-600">
-                    {group.displayOrder}
-                  </h3>
-                  <h3 className="prose-labelLarge text-dark font-500 ml-[8px]">
-                    {" "}
                     {group.nutrient.name}
                   </h3>
                   <h3 className="prose-labelLarge text-dark font-500 ml-[8px]">
@@ -44,37 +42,43 @@ const FoodNutritionCard = () => {
               </div>
               {group?.children?.length ? (
                 <div className="w-[100%] relative py-2">
-                  {group?.children.map((row, index2) => {
-                    return (
-                      <div
-                        key={index2}
-                        className={`${row.nutrient.amount === -9999 ? "hidden" : "block"}`}
-                      >
-                        <hr className={`${index2 !== 0 ? "hidden" : "block"} pt-2`} />
-                        <div className="flex justify-between mb-1 w-[90%] ml-auto">
-                          <div className="flex items-center">
+                  {group?.children
+                    .filter((item) => item.nutrient.amount !== -9999)
+                    .map((row, index2) => {
+                      return (
+                        <div
+                          key={index2}
+                          className={`${row.nutrient.amount === -9999 ? "hidden" : "block"}`}
+                        >
+                          <hr className={`${index2 !== 0 ? "hidden" : "block"} pt-2`} />
+                          <div className="flex justify-between mb-1 w-[90%] ml-auto">
+                            <div className="flex items-center">
+                              <p className="prose-labelLarge text-dark font-500">
+                                {row.nutrient.name}
+                              </p>
+                              <p className="prose-labelLarge text-dark font-500 ml-3">
+                                {row.nutrient.amount} {row.nutrient.unit}
+                              </p>
+                            </div>
                             <p className="prose-labelLarge text-dark font-500">
-                              {row.nutrient.name}
-                            </p>
-                            <p className="prose-labelLarge text-dark font-500 ml-3">
-                              {row.nutrient.amount} {row.nutrient.unit}
+                              {row.rdi?.amount ? `${row.rdi.unit}%` : "-"}
                             </p>
                           </div>
-                          <p className="prose-labelLarge text-dark font-500">
-                            {row.rdi?.amount ? `${row.rdi.unit}%` : "-"}
-                          </p>
+                          <hr
+                            className={`${
+                              index2 + 1 ===
+                              group?.children?.filter((item) => item.nutrient.amount !== -9999)
+                                .length
+                                ? "hidden"
+                                : "block"
+                            } mt-3 mb-2`}
+                          />
                         </div>
-                        <hr
-                          className={`${
-                            index2 + 1 === group.children?.length ? "hidden" : "block"
-                          } mt-3 mb-2`}
-                        />
-                      </div>
-                    );
-                  })}
+                      );
+                    })}
                 </div>
               ) : null}
-              <hr className={`${index + 1 === nutrition.length ? "hidden" : "block"}`} />
+              <hr className={`${index + 1 === sortedNutrients.length ? "hidden" : "block"}`} />
             </div>
           ))}
         </div>

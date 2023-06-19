@@ -44,6 +44,11 @@ export const getNutrientRdiPercent = (nutrient: NutritionFact, rdi: RDI): number
 export const generateRdiForFood = (food: NutritionFact[], rdis: RDI[]): NutritionFact[] => {
   const nutritionFacts: NutritionFact[] = [];
   const mergedFacts: Map<number, NutritionFact> = new Map();
+
+  if (!Array.isArray(food)) {
+    console.error('Invalid input: "food" parameter must be an array.');
+    return nutritionFacts;
+  }
   for (const nutrient of food) {
     const mappings = mappingsByNutrient.get(nutrient.nutrient.name);
     if (!mappings) {

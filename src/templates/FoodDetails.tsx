@@ -41,10 +41,10 @@ export const getNutrientRdiPercent = (nutrient: NutritionFact, rdi: RDI): number
   return highestPercentDaily;
 };
 
-export const generateRdiForFood = (food: NutritionFact[], rdis: RDI[]): NutritionFact[] => {
+export const generateRdiForFood = (food: NutritionFact[] = [], rdis: RDI[]): NutritionFact[] => {
   const nutritionFacts: NutritionFact[] = [];
   const mergedFacts: Map<number, NutritionFact> = new Map();
-  if (food.length) {
+  if (food) {
     for (const nutrient of food) {
       const mappings = mappingsByNutrient.get(nutrient.nutrient.name);
       if (!mappings) {
@@ -71,11 +71,9 @@ export const generateRdiForFood = (food: NutritionFact[], rdis: RDI[]): Nutritio
         }
       }
     }
-
     mergedFacts.forEach((fact) => {
       nutritionFacts.push(fact);
     });
-
     return nutritionFacts;
   }
   return food;
@@ -83,10 +81,12 @@ export const generateRdiForFood = (food: NutritionFact[], rdis: RDI[]): Nutritio
 
 const FoodDetails: React.FC<Props> = ({ pageContext: { recommendedDailyIntakes, food } }) => {
   const { setRecommendedDailyIntakes, setFood } = useStore((state) => state);
-  const data = generateRdiForFood(food.nutrition, recommendedDailyIntakes);
+
+  let nutrition = generateRdiForFood(food.nutrition, recommendedDailyIntakes);
+
   useEffect(() => {
     setRecommendedDailyIntakes(recommendedDailyIntakes);
-    setFood(food, data);
+    setFood(food, nutrition);
   }, [recommendedDailyIntakes, food, setRecommendedDailyIntakes, setFood]);
 
   return (

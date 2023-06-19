@@ -44,43 +44,41 @@ export const getNutrientRdiPercent = (nutrient: NutritionFact, rdi: RDI): number
 export const generateRdiForFood = (food: NutritionFact[], rdis: RDI[]): NutritionFact[] => {
   const nutritionFacts: NutritionFact[] = [];
   const mergedFacts: Map<number, NutritionFact> = new Map();
-
-  if (!Array.isArray(food)) {
-    console.error('Invalid input: "food" parameter must be an array.');
-    return nutritionFacts;
-  }
-  for (const nutrient of food) {
-    const mappings = mappingsByNutrient.get(nutrient.nutrient.name);
-    if (!mappings) {
-      nutritionFacts.push(nutrient);
-      continue;
-    }
-    const rdisForLifeStageAndAge = rdis.filter((rdi) => {
-      return mappings.some((mapping) => mapping.rdiNutrientName === rdi.nutrient);
-    });
-    for (const rdi of rdisForLifeStageAndAge) {
-      const percentDaily = getNutrientRdiPercent(nutrient, rdi);
-      const existingFact = mergedFacts.get(nutrient.displayOrder);
-      if (existingFact?.percentDaily) {
-        existingFact.percentDaily = percentDaily as number;
-      } else {
-        mergedFacts.set(nutrient.displayOrder, {
-          ...nutrient,
-          rdi: {
-            ...rdi,
-            amount: percentDaily as number,
-          },
-          percentDaily,
-        });
+  if (food.length) {
+    for (const nutrient of food) {
+      const mappings = mappingsByNutrient.get(nutrient.nutrient.name);
+      if (!mappings) {
+        nutritionFacts.push(nutrient);
+        continue;
+      }
+      const rdisForLifeStageAndAge = rdis.filter((rdi) => {
+        return mappings.some((mapping) => mapping.rdiNutrientName === rdi.nutrient);
+      });
+      for (const rdi of rdisForLifeStageAndAge) {
+        const percentDaily = getNutrientRdiPercent(nutrient, rdi);
+        const existingFact = mergedFacts.get(nutrient.displayOrder);
+        if (existingFact?.percentDaily) {
+          existingFact.percentDaily = percentDaily as number;
+        } else {
+          mergedFacts.set(nutrient.displayOrder, {
+            ...nutrient,
+            rdi: {
+              ...rdi,
+              amount: percentDaily as number,
+            },
+            percentDaily,
+          });
+        }
       }
     }
+
+    mergedFacts.forEach((fact) => {
+      nutritionFacts.push(fact);
+    });
+
+    return nutritionFacts;
   }
-
-  mergedFacts.forEach((fact) => {
-    nutritionFacts.push(fact);
-  });
-
-  return nutritionFacts;
+  return food;
 };
 
 const FoodDetails: React.FC<Props> = ({ pageContext: { recommendedDailyIntakes, food } }) => {

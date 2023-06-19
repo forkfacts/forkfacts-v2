@@ -23,7 +23,7 @@ export interface Food {
   name: string;
   hap_name: string;
   fdcId: number;
-  nutrition: NutritionFact[];
+  nutrients: NutritionFact[];
 }
 
 export interface NutritionFact {

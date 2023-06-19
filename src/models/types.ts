@@ -26,7 +26,7 @@ export interface Food {
   nutrition: NutritionFact[];
 }
 
-export type NutritionFact = {
+export interface NutritionFact {
   displayOrder: number;
   nutrient: {
     name: string;
@@ -40,7 +40,7 @@ export type NutritionFact = {
   };
   percentDaily?: number;
   children?: NutritionFact[];
-};
+}
 export interface RDI {
   applicableFor: string;
   ageStart: number;

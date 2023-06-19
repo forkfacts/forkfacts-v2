@@ -30,8 +30,7 @@ const FoodNutritionCard = () => {
                     <h3 className="prose-labelSemiBold text-textDark font-600">
                       {group.nutrient.name}
                     </h3>
-                    <h3 className="prose-labelLarge text-dark font-500 ml-[8px]">
-                      {" "}
+                    <h3 className="prose-labelLarge text-dark font-400 ml-[8px]">
                       {group.nutrient.amount}
                       {group.nutrient.unit}
                     </h3>
@@ -53,10 +52,10 @@ const FoodNutritionCard = () => {
                             <hr className={`${index2 !== 0 ? "hidden" : "block"} pt-2`} />
                             <div className="flex justify-between mb-1 w-[90%] ml-auto">
                               <div className="flex items-center">
-                                <p className="prose-bodyMedium text-textDark font-500">
+                                <p className="prose-bodyMedium text-textDark font-400">
                                   {row.nutrient.name}
                                 </p>
-                                <p className="prose-bodyMedium text-text font-400 ml-3">
+                                <p className="prose-bodyMedium text-dark font-400 ml-3">
                                   {row.nutrient.amount}
                                   {row.nutrient.unit}
                                 </p>

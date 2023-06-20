@@ -22,7 +22,7 @@ export const useStore = create<StoreState>((set) => ({
   nutrition: [],
   setRecommendedDailyIntakes: (recommendedDailyIntakes: RDI[]) => set({ recommendedDailyIntakes }),
   setFood: (food: Food, nutrition: NutritionFact[]) => set({ food, nutrition }),
-  selectedLifeStage: "",
+  selectedLifeStage: "Females",
   setSelectedLifeStage: (selectedGender: SetStateAction<string>) =>
     set((state) => ({
       ...state,
@@ -31,7 +31,11 @@ export const useStore = create<StoreState>((set) => ({
           ? selectedGender(state.selectedLifeStage)
           : selectedGender,
     })),
-  selectedAge: {} as RdiAge,
+  selectedAge: {
+    start: 31,
+    end: 50,
+    ageUnit: "Year",
+  },
   age: [],
   setAge: (age: RdiAge[]) => set({ age }),
   setSelectedAge: (newAge: SetStateAction<RdiAge>) =>

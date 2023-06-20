@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { BiFilter } from "react-icons/bi";
 import { useStore } from "../../helpers/stores";
-import { genders, allAges } from "../../helpers/static-data";
+import { genders } from "../../helpers/static-data";
 import { Navbar, Radio, Sheet } from "konsta/react";
 import { RdiAge } from "@forkfacts/models";
 import { RxChevronRight } from "react-icons/rx";
@@ -9,15 +9,14 @@ import { IoMdClose } from "react-icons/io";
 
 const AllFilters = () => {
   const [sheetOpened, setSheetOpened] = useState(false);
-  const { selectedLifeStage, setSelectedLifeStage, selectedAge, setSelectedAge } = useStore(
+  const { selectedLifeStage, setSelectedLifeStage, selectedAge, setSelectedAge, age } = useStore(
     (state) => state
   );
-  const [selectedItem, setSelectedItem] = useState<string>(selectedLifeStage);
   const handleSelectedItem = (name: string) => {
     setSelectedLifeStage(name);
-    setSelectedItem(name);
   };
   const handleSelectAge = (item: RdiAge) => {
+    if (!selectedLifeStage) return;
     let ageString = "";
     if (!item.end) {
       ageString = `>70 years`;
@@ -30,6 +29,10 @@ const AllFilters = () => {
       ageUnit: item.ageUnit,
     };
     setSelectedAge(newAge);
+  };
+  const resetButton = () => {
+    setSelectedAge({} as RdiAge);
+    setSelectedLifeStage("");
   };
   return (
     <div>
@@ -92,7 +95,7 @@ const AllFilters = () => {
           <div className="w-full px-3 pt-4 mb-14">
             <h1 className="mb-[20px] prose-titleMedium text-textDark font-500">Age</h1>
             <div className="flex gap-5 flex-col mb-3">
-              {allAges.map((age, index) => {
+              {age.map((age, index) => {
                 return (
                   <div className="flex gap-5" onClick={() => handleSelectAge(age)} key={index}>
                     <Radio
@@ -138,7 +141,7 @@ const AllFilters = () => {
                 return (
                   <div
                     className={`w-[33%] h-[120px] border-[1px] border-[#F2EFFF] flex items-center justify-center ${
-                      selectedItem.toLowerCase() === item.name.toLowerCase()
+                      selectedLifeStage.toLowerCase() === item.name.toLowerCase()
                         ? "bg-[#F2EFFF]"
                         : "bg-white"
                     }`}
@@ -148,14 +151,14 @@ const AllFilters = () => {
                     <div className="flex justify-center flex-col items-center">
                       <item.icon
                         color={
-                          selectedItem.toLowerCase() === item.name.toLowerCase()
+                          selectedLifeStage.toLowerCase() === item.name.toLowerCase()
                             ? "#4C42E8"
                             : "#929094"
                         }
                       />
                       <h1
                         className={`font-500 prose-titleMedium mt-1 ${
-                          selectedItem.toLowerCase() === item.name.toLowerCase()
+                          selectedLifeStage.toLowerCase() === item.name.toLowerCase()
                             ? "text-primary-40"
                             : "text-main"
                         }`}
@@ -179,7 +182,9 @@ const AllFilters = () => {
           </div>
         </div>
         <div className="sticky p-[24px] bottom-0 left-0 right-0 bg-white w-full h-[10vh] flex justify-end pb-safe overflow-hidden z-[999]">
-          <h1 className="text-primary-40 font-500 prose-labelLarge">Reset</h1>
+          <h1 className="text-primary-40 font-500 prose-labelLarge" onClick={resetButton}>
+            Reset
+          </h1>
         </div>
       </Sheet>
     </div>

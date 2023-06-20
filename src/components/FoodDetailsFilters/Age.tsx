@@ -62,7 +62,15 @@ const Age = () => {
         onBackdropClick={() => setSheetOpened(false)}
       >
         <div className="w-full">
-          <h1 className="mb-[20px] prose-titleMedium text-textDark font-500">Age</h1>
+          <div className="flex justify-between item mb-[20px]">
+            <h1 className="prose-titleMedium text-textDark font-500">Age</h1>
+            <span>
+              <IoMdClose
+                className="w-[18px] h-[18px] text-[#78767A]"
+                onClick={() => setSheetOpened(false)}
+              />
+            </span>
+          </div>
           <div className="flex gap-5 flex-col mb-3">
             {age.map((age, index) => {
               return (

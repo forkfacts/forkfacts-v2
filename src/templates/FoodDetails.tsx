@@ -91,7 +91,7 @@ const FoodDetails: React.FC<Props> = ({ pageContext: { recommendedDailyIntakes, 
     selectedLifeStage,
     setSelectedAge,
   } = useStore((state) => state);
-  const nutrition = generateRdiForFood(food.nutrients, recommendedDailyIntakes);
+  const nutritionFacts = generateRdiForFood(food.nutrients, recommendedDailyIntakes);
   const [rows, setRows] = useState<NutritionFact[]>([]);
   const ageRanges = getAgeRangesForLifeStage(selectedLifeStage);
 
@@ -104,40 +104,41 @@ const FoodDetails: React.FC<Props> = ({ pageContext: { recommendedDailyIntakes, 
     const gender = selectedLifeStage;
     const age = selectedAge;
     if (!selectedLifeStage && !Object.keys(selectedAge).length) {
-      setRows(food.nutrients);
+      setRows(nutritionFacts);
+    } else {
+      const nutrientsWithRdis = food.nutrients.map((nutrient) => {
+        const nutrientWithRdi = nutritionFacts.filter(
+          (nutrientRdi) =>
+            nutrientRdi.nutrient.name.toLowerCase() === nutrient.nutrient.name.toLowerCase() &&
+            age.start === nutrientRdi?.rdi?.ageStart &&
+            age.end === nutrientRdi?.rdi?.ageEnd &&
+            age?.ageUnit?.toLowerCase() === nutrientRdi?.rdi?.ageUnit &&
+            gender.toLowerCase() === nutrientRdi?.rdi?.applicableFor.toLowerCase()
+        )[0];
+        const factTableRow: any = {
+          ...nutrient,
+          displayOrder: nutrient.displayOrder,
+          nutrient: {
+            name: nutrient.nutrient.name,
+            amount: nutrient.nutrient.amount,
+            unit: nutrient.nutrient.unit,
+          },
+          percentDaily: nutrientWithRdi?.percentDaily
+            ? getValueRounded(Number(nutrientWithRdi?.percentDaily))
+            : undefined,
+          rdi: {
+            pct: nutrientWithRdi?.rdi?.pct as number,
+            unit: nutrient.rdi?.unit,
+            ageStart: nutrient.rdi?.ageStart,
+            ageEnd: nutrient.rdi?.ageEnd,
+            ageUnit: nutrient.rdi?.ageUnit,
+            applicableFor: nutrient.rdi?.applicableFor as string,
+          },
+        };
+        return factTableRow;
+      });
+      setRows(nutrientsWithRdis);
     }
-    const nutrientsWithRdis = food.nutrients.map((nutrient) => {
-      const nutrientWithRdi = nutrition.filter(
-        (nutrientRdi) =>
-          nutrientRdi.nutrient.name.toLowerCase() === nutrient.nutrient.name.toLowerCase() &&
-          age.start === nutrientRdi?.rdi?.ageStart &&
-          age.end === nutrientRdi?.rdi?.ageEnd &&
-          age?.ageUnit?.toLowerCase() === nutrientRdi?.rdi?.ageUnit &&
-          gender.toLowerCase() === nutrientRdi?.rdi?.applicableFor.toLowerCase()
-      )[0];
-      const factTableRow: any = {
-        ...nutrient,
-        displayOrder: nutrient.displayOrder,
-        nutrient: {
-          name: nutrient.nutrient.name,
-          amount: nutrient.nutrient.amount,
-          unit: nutrient.nutrient.unit,
-        },
-        percentDaily: nutrientWithRdi?.percentDaily
-          ? getValueRounded(Number(nutrientWithRdi?.percentDaily))
-          : undefined,
-        rdi: {
-          pct: nutrientWithRdi?.rdi?.pct as number,
-          unit: nutrient.rdi?.unit,
-          ageStart: nutrient.rdi?.ageStart,
-          ageEnd: nutrient.rdi?.ageEnd,
-          ageUnit: nutrient.rdi?.ageUnit,
-          applicableFor: nutrient.rdi?.applicableFor as string,
-        },
-      };
-      return factTableRow;
-    });
-    setRows(nutrientsWithRdis);
   }, [selectedAge, selectedLifeStage]);
 
   useEffect(() => {

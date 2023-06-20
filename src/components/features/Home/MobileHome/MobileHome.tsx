@@ -21,7 +21,7 @@ export default function MobileHome() {
         </>
       ) : (
         <>
-          <div className="flex justify-between items-center py-4 px-3 fixed top-0 left-0 right-0 bg-white">
+          <div className="flex justify-between items-center py-4 px-2 fixed top-0 left-0 right-0 bg-white">
             <RxHamburgerMenu className="w-[24px] h-[24px] text-main font-700" />
             <img src="/forkfacts-logo.svg" alt="logo" className="-ml-2" />
             <div />

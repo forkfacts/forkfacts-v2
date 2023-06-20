@@ -23,29 +23,44 @@ export const getMappingsByNutrient: () => Map<string, UsdaRdiNutrientMapping> = 
   }, new Map<string, UsdaRdiNutrientMapping>());
 const mappingsByNutrient = getMappingsByNutrient();
 
+const getMappingFor = (nutrient: string) => {
+  let nutrientNameToSearch;
+  switch (nutrient) {
+    case "Pantothenic acid":
+      // todo: change name when addressing https://app.clickup.com/t/860r5fh4b
+      nutrientNameToSearch = "Panthothenic Acid";
+      break;
+    default:
+      nutrientNameToSearch = nutrient;
+  }
+  const mapping = mappingsByNutrient.get(nutrientNameToSearch);
+  console.log(`${nutrient} => ${mapping}`);
+  return mapping;
+};
+
 export const getNutrientRdiPercent = (
   nutritionFact: NutritionFact,
   rdi: RDI
 ): number | undefined => {
   if (nutritionFact.nutrient.unit === "NOT_AVAILABLE" || rdi.amount < 0) {
-    console.log(`CASE 1: Nutrient Unit / RDI Amount unavailable`);
+    // console.log(`CASE 1: Nutrient Unit / RDI Amount unavailable`);
     return undefined;
   }
 
-  const mapping = mappingsByNutrient.get(nutritionFact.nutrient.name);
+  const mapping = getMappingFor(nutritionFact.nutrient.name);
   if (!mapping) {
-    console.log(`CASE 2: No mapping available for ${nutritionFact.nutrient.name}`);
+    // console.log(`CASE 2: No mapping available for ${nutritionFact.nutrient.name}`);
     return undefined;
   }
 
   if (nutritionFact.nutrient.unit.toLowerCase() !== mapping.rdiNutrientUnit.toLowerCase()) {
-    console.log(
-      `CASE 3: Units do not match => conversion needed for '${
-        nutritionFact.nutrient.name
-      }' from '${nutritionFact.nutrient.unit.toLowerCase()}' to '${rdi.nutrientUnit.toLowerCase()}' using multiplier '${
-        mapping.usdaToRdiUnitMultiplier
-      }'`
-    );
+    /*console.log(
+          `CASE 3: Units do not match => conversion needed for '${
+            nutritionFact.nutrient.name
+          }' from '${nutritionFact.nutrient.unit.toLowerCase()}' to '${rdi.nutrientUnit.toLowerCase()}' using multiplier '${
+            mapping.usdaToRdiUnitMultiplier
+          }'`
+        );*/
   }
   const multiplier = mapping.usdaToRdiUnitMultiplier;
   return ((nutritionFact.nutrient.amount * multiplier) / rdi.amount) * 100;
@@ -57,7 +72,7 @@ export const generateRdiForFood = (food: NutritionFact[] = [], rdis: RDI[]): Nut
   const mergedFacts: Map<number, NutritionFact> = new Map();
   for (const nutritionFact of food) {
     const rdisForLifeStageAndAge = rdis.filter(
-      (rdi) => rdi.nutrient === nutritionFact.nutrient.name
+      (rdi) => rdi.nutrient.toLowerCase() === nutritionFact.nutrient.name.toLowerCase()
     );
     if (rdisForLifeStageAndAge.length < 1) nutritionFacts.push(nutritionFact);
     // console.log(`rdisForLifeStageAndAge=${JSON.stringify(rdisForLifeStageAndAge)}`)
@@ -90,10 +105,10 @@ const FoodDetails: React.FC<Props> = ({ pageContext: { recommendedDailyIntakes, 
   const { setRecommendedDailyIntakes, setFood } = useStore((state) => state);
   const nutrition = generateRdiForFood(food.nutrients, recommendedDailyIntakes);
   /*
-      console.log(`food=>${JSON.stringify(food)}`)
-      console.log(`nutrition=>${JSON.stringify(nutrition)}`)
-      console.log(`rdi=>${JSON.stringify(recommendedDailyIntakes)}`)
-    */
+        console.log(`food=>${JSON.stringify(food)}`)
+        console.log(`nutrition=>${JSON.stringify(nutrition)}`)
+        console.log(`rdi=>${JSON.stringify(recommendedDailyIntakes)}`)
+      */
   useEffect(() => {
     setRecommendedDailyIntakes(recommendedDailyIntakes);
     setFood(food, nutrition);

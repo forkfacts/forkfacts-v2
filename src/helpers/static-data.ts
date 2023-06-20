@@ -1,5 +1,5 @@
 import { Gender, RdiAge, Recommendation } from "@forkfacts/models";
-import { Baby, Kids, Lactation, Male, PregnantWoman, Woman } from "icons";
+import { Baby, Kids, Lactation, Male, PregnantWoman, Woman } from "@forkfacts/icons";
 
 export const recommendations: Recommendation[] = [
   {

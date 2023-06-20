@@ -1,59 +1,69 @@
-import { Block, BlockTitle, Icon, Link, Navbar, Page, Tabbar, TabbarLink } from "konsta/react";
-import { MdDensityMedium, MdEmojiFoodBeverage, MdOutlineFavorite } from "react-icons/md";
-import React, { useState } from "react";
-import { MobilePanel } from "./MobilePanel";
-import { Typography } from "@mui/material";
-import { Link as GatsbyLink } from "gatsby";
+import React from "react";
+import { Page } from "konsta/react";
+import { useState } from "react";
+import { RxHamburgerMenu } from "react-icons/rx";
+import FoodDetailsSearch from "../../FoodDetails/MobileDetails/FoodDetailsSearch";
+import { recommendations } from "../../../../helpers/static-data";
+import FoodSearchView from "../../FoodDetails/MobileDetails/FoodSearchView";
 
 export default function MobileHome() {
-  const [leftFloatingPanelOpened, setLeftFloatingPanelOpened] = useState<boolean>(false);
-  const [activeTab, setActiveTab] = useState("tab-1");
+  const [openSearch, setOpenSearch] = useState(false);
 
   return (
-    <Page>
-      <Navbar
-        title="Popular foods"
-        centerTitle
-        className="bg-green-500"
-        left={
-          <Link navbar iconOnly>
-            <Icon material={<MdDensityMedium onClick={() => setLeftFloatingPanelOpened(true)} />} />
-          </Link>
-        }
-      />
-      <MobilePanel isOpen={leftFloatingPanelOpened} onClick={setLeftFloatingPanelOpened} />
-      <Tabbar labels icons className="left-0 bottom-0 fixed bg-black">
-        <TabbarLink
-          active={activeTab === "tab-1"}
-          onClick={() => setActiveTab("tab-1")}
-          icon={<Icon material={<MdEmojiFoodBeverage className="w-6 h-6" />} />}
-          label={"Foods"}
-        />
-        <TabbarLink
-          active={activeTab === "tab-3"}
-          onClick={() => setActiveTab("tab-3")}
-          icon={<Icon material={<MdOutlineFavorite className="w-6 h-6" />} />}
-          label={<h1 className="text-red-500">Nutrition</h1>}
-        />
-      </Tabbar>
-      <div className="">
-        <BlockTitle className="text-center text-red-500 text-3xl">
-          <h1>Hi man</h1>
-        </BlockTitle>
-        <Block>
-          <Typography className="material:text-xl font-extrabold text-red-500">
-            Donec et nulla auctor massa pharetra adipiscing ut sit amet sem. Suspendisse molestie
-            velit vitae mattis tincidunt. Ut sit amet quam mollis, vulputate turpis vel, sagittis
-            felis.
-          </Typography>
-        </Block>
-        <h2>
-          View food details page{" "}
-          <GatsbyLink to="/food-details-page" className="text-red-500">
-            Food Details Page
-          </GatsbyLink>
-        </h2>
-      </div>
+    <Page className="bg-white">
+      {openSearch ? (
+        <>
+          <FoodSearchView
+            setOpenSearch={setOpenSearch}
+            placeholder="Search for foods"
+            autoFocus={true}
+          />
+        </>
+      ) : (
+        <>
+          <div className="flex justify-between items-center py-4 px-3 fixed top-0 left-0 right-0 bg-white">
+            <RxHamburgerMenu className="w-[24px] h-[24px] text-main font-700" />
+            <img src="/forkfacts-logo.svg" alt="logo" className="-ml-2" />
+            <div />
+          </div>
+          <div className="px-3 mt-16">
+            <h1 className="text-[28px] leading-[36px] text-mai -mb-12 font-500">
+              Eating smart starts with <span className="text-[#4C42E8]">knowing</span>
+            </h1>
+            <FoodDetailsSearch setOpenSearch={setOpenSearch} />
+            <div className={` "block"} mt-12 w-full`}>
+              <div>
+                <h1 className="prose-titleMedium text-dark font-500">RECOMMENDATIONS</h1>
+              </div>
+              <div className="mt-[28px] w-full">
+                {recommendations.map((recommendation, index) => {
+                  return (
+                    <div key={index} className="mb-[22px] w-full">
+                      <h1 className="prose-titleSmall text-main font-500 mb-3">
+                        {recommendation.category}
+                      </h1>
+                      <div className="gap-4 flex items-center mt-4 overflow-x-auto overscroll-x-contain scrollbar-none custom-scrollbar">
+                        {recommendation.collections.map((collection, index) => {
+                          return (
+                            <div
+                              className="border-[1px] border-[#C9C5CA] bg-white whitespace-nowrap rounded-[36px] h-[36px] flex justify-center items-center"
+                              key={index}
+                            >
+                              <button className="px-[16px] py-[8px] prose-labelLarge font-500 text-main">
+                                {collection.name}
+                              </button>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        </>
+      )}
     </Page>
   );
 }

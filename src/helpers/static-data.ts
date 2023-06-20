@@ -1,4 +1,5 @@
-import { Recommendation } from "@forkfacts/models";
+import { Gender, RdiAge, Recommendation } from "@forkfacts/models";
+import { Baby, Kids, Lactation, Male, PregnantWoman, Woman } from "../designIcons";
 
 export const recommendations: Recommendation[] = [
   {
@@ -66,4 +67,44 @@ export const recommendations: Recommendation[] = [
       { name: "Dark Chocolate" },
     ],
   },
+];
+
+export const genders: Gender[] = [
+  {
+    name: "Children",
+    icon: Kids,
+  },
+  {
+    name: "Infants",
+    icon: Baby,
+  },
+  {
+    name: "Females",
+    icon: Woman,
+  },
+  {
+    name: "Males",
+    icon: Male,
+  },
+  {
+    name: "Pregnant",
+    icon: PregnantWoman,
+  },
+  {
+    name: "Lactation",
+    icon: Lactation,
+  },
+];
+
+export const allAges: RdiAge[] = [
+  { start: 0, end: 6, ageUnit: "Month" },
+  { start: 7, end: 12, ageUnit: "Month" },
+  { start: 1, end: 3, ageUnit: "Year" },
+  { start: 4, end: 8, ageUnit: "Year" },
+  { start: 9, end: 13, ageUnit: "Year" },
+  { start: 14, end: 18, ageUnit: "Year" },
+  { start: 19, end: 30, ageUnit: "Year" },
+  { start: 31, end: 50, ageUnit: "Year" },
+  { start: 51, end: 70, ageUnit: "Year" },
+  { start: 70, ageUnit: "Year" },
 ];

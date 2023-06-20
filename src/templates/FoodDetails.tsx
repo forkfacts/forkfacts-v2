@@ -1,8 +1,13 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { FoodDetails as FoodDetailsComponent } from "@forkfacts/components";
 import { useStore } from "../helpers/stores";
 const mappings = require("../../data/usda_rdi_nutrient_mapping.json");
 import { Food, RDI, NutritionFact, USDA } from "@forkfacts/models";
+import {
+  getAgeRangesForLifeStage,
+  getValueRounded,
+  setSelectedAgeByGender,
+} from "../helpers/utils";
 
 interface Props {
   pageContext: {
@@ -78,12 +83,72 @@ export const generateRdiForFood = (food: NutritionFact[] = [], rdis: RDI[]): Nut
 };
 
 const FoodDetails: React.FC<Props> = ({ pageContext: { recommendedDailyIntakes, food } }) => {
-  const { setRecommendedDailyIntakes, setFood } = useStore((state) => state);
+  const {
+    setRecommendedDailyIntakes,
+    setFood,
+    selectedAge,
+    setAge,
+    selectedLifeStage,
+    setSelectedAge,
+  } = useStore((state) => state);
   const nutrition = generateRdiForFood(food.nutrients, recommendedDailyIntakes);
+  const [rows, setRows] = useState<NutritionFact[]>([]);
+  const ageRanges = getAgeRangesForLifeStage(selectedLifeStage);
+
   useEffect(() => {
     setRecommendedDailyIntakes(recommendedDailyIntakes);
-    setFood(food, nutrition);
-  }, [recommendedDailyIntakes, food, setRecommendedDailyIntakes, setFood]);
+    setFood(food, rows);
+  }, [recommendedDailyIntakes, food, setRecommendedDailyIntakes, setFood, rows]);
+
+  useEffect(() => {
+    const gender = selectedLifeStage;
+    const age = selectedAge;
+    if (!selectedLifeStage && !Object.keys(selectedAge).length) {
+      setRows(food.nutrients);
+    }
+    const nutrientsWithRdis = food.nutrients.map((nutrient) => {
+      const nutrientWithRdi = nutrition.filter(
+        (nutrientRdi) =>
+          nutrientRdi.nutrient.name.toLowerCase() === nutrient.nutrient.name.toLowerCase() &&
+          age.start === nutrientRdi?.rdi?.ageStart &&
+          age.end === nutrientRdi?.rdi?.ageEnd &&
+          age?.ageUnit?.toLowerCase() === nutrientRdi?.rdi?.ageUnit &&
+          gender.toLowerCase() === nutrientRdi?.rdi?.applicableFor.toLowerCase()
+      )[0];
+      const factTableRow: any = {
+        ...nutrient,
+        displayOrder: nutrient.displayOrder,
+        nutrient: {
+          name: nutrient.nutrient.name,
+          amount: nutrient.nutrient.amount,
+          unit: nutrient.nutrient.unit,
+        },
+        percentDaily: nutrientWithRdi?.percentDaily
+          ? getValueRounded(Number(nutrientWithRdi?.percentDaily))
+          : undefined,
+        rdi: {
+          pct: nutrientWithRdi?.rdi?.pct as number,
+          unit: nutrient.rdi?.unit,
+          ageStart: nutrient.rdi?.ageStart,
+          ageEnd: nutrient.rdi?.ageEnd,
+          ageUnit: nutrient.rdi?.ageUnit,
+          applicableFor: nutrient.rdi?.applicableFor as string,
+        },
+      };
+      return factTableRow;
+    });
+    setRows(nutrientsWithRdis);
+  }, [selectedAge, selectedLifeStage]);
+
+  useEffect(() => {
+    if (selectedLifeStage) {
+      setAge(ageRanges);
+    }
+  }, [selectedLifeStage]);
+
+  useEffect(() => {
+    setSelectedAgeByGender(selectedLifeStage, setSelectedAge);
+  }, [selectedLifeStage, setSelectedAge]);
 
   return (
     <div>

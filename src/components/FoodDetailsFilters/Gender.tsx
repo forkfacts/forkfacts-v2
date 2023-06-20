@@ -1,23 +1,95 @@
+import { useStore } from "../../helpers/stores";
+import { genders } from "../../helpers/static-data";
 import { Sheet } from "konsta/react";
 import React, { useState } from "react";
 import { FaSortDown } from "react-icons/fa";
+import { IoMdClose } from "react-icons/io";
+import { RdiAge } from "../../models";
 
 const Gender = () => {
   const [sheetOpened, setSheetOpened] = useState(false);
+  const { selectedLifeStage, setSelectedLifeStage, setSelectedAge } = useStore((state) => state);
+  const [selectedItem, setSelectedItem] = useState<string>(selectedLifeStage);
+  const handleSelectedItem = (name: string) => {
+    setSelectedLifeStage(name);
+    setSelectedItem(name);
+    setSheetOpened(false);
+  };
+
+  const clearFilter = () => {
+    setSelectedLifeStage("");
+    setSelectedItem("");
+    setSelectedAge({} as RdiAge);
+  };
   return (
     <>
-      <button className="flex max-w-[111px] items-center gap-2 text-textDark py-[8px] pl-[16px] pr-[8px] border border-[#E5E1E6] rounded-[8px] whitespace-nowrap prose-labelLarge font-500">
-        <span>Children</span>
-        <FaSortDown className="w-[18px] h-[18px] -mt-2" />
+      <button
+        className={`flex max-w-[111px] items-center gap-2  py-[8px] pl-[16px] pr-[8px] rounded-[8px] whitespace-nowrap prose-labelLarge font-500 ${
+          selectedItem ? "text-primary-40  bg-[#F2EFFF]" : "text-textDark border border-[#E5E1E6]"
+        }`}
+      >
+        <span onClick={() => setSheetOpened(true)}>
+          {selectedItem ? selectedItem : "Life stage"}
+        </span>
+        {!selectedItem ? (
+          <FaSortDown className="w-[18px] h-[18px] -mt-2" />
+        ) : (
+          <IoMdClose
+            className={`w-[18px] h-[18px] ${selectedItem ? "text-primary-40" : "text-[#47464F]"}`}
+            onClick={() => clearFilter()}
+          />
+        )}
       </button>
-      <Sheet className="pb-safe" opened={sheetOpened} onBackdropClick={() => setSheetOpened(false)}>
-        <div>
-          <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Harum ad excepturi nesciunt
-            nobis aliquam. Quibusdam ducimus neque necessitatibus, molestias cupiditate velit nihil
-            alias incidunt, excepturi voluptatem dolore itaque sapiente dolores!
-          </p>
-          <div className="mt-4"></div>
+      <Sheet
+        className="pb-safe w-full px-3 pt-4 rounded-tr-[16px] rounded-tl-[16px]"
+        opened={sheetOpened}
+        onBackdropClick={() => setSheetOpened(false)}
+      >
+        <div className="w-full">
+          <h1 className="mb-[16px] prose-titleMedium text-textDark font-500">Life Stage</h1>
+          <div className="flex flex-wrap mb-3">
+            {genders.map((item, index) => {
+              return (
+                <div
+                  className={`w-[33%] h-[120px] border-[1px] border-[#F2EFFF] flex items-center justify-center ${
+                    selectedItem.toLowerCase() === item.name.toLowerCase()
+                      ? "bg-[#F2EFFF]"
+                      : "bg-white"
+                  }`}
+                  key={index}
+                  onClick={() => handleSelectedItem(item.name)}
+                >
+                  <div className="flex justify-center flex-col items-center">
+                    <item.icon
+                      color={
+                        selectedItem.toLowerCase() === item.name.toLowerCase()
+                          ? "#4C42E8"
+                          : "#929094"
+                      }
+                    />
+                    <h1
+                      className={`font-500 prose-titleMedium mt-1 ${
+                        selectedItem.toLowerCase() === item.name.toLowerCase()
+                          ? "text-primary-40"
+                          : "text-main"
+                      }`}
+                    >
+                      {item.name}
+                    </h1>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+          <div className="flex bg-[#F2EFFF] py-[8px] px-[16px] rounded-[4px] mb-5 justify-between mt-[24px]">
+            <h1 className="prose-titleSmall font-500 text-textDark">Remember by choice</h1>
+            <input
+              type="checkbox"
+              id="myCheckbox"
+              className="h-4 w-4 text-primary-40 transition duration-150 ease-in-out border-[10px] border-[#1C1B1F] font-500"
+              defaultChecked={false}
+            />
+          </div>
         </div>
       </Sheet>
     </>

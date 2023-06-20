@@ -35,8 +35,14 @@ export interface NutritionFact {
   };
   rdi?: {
     pct?: number;
-    amount?: number;
     unit?: string;
+    ageStart?: number;
+    ageEnd?: number;
+    ageUnit?: string;
+    amount: number;
+    nutrient: string;
+    nutrientUnit: string;
+    applicableFor: string;
   };
   percentDaily?: number;
   children?: NutritionFact[];
@@ -60,4 +66,16 @@ export interface USDA {
   rdiNutrientUnit: string;
   rdiNutrientTable: string;
   usdaToRdiUnitMultiplier: number;
+}
+
+export interface Gender {
+  name: string;
+  icon: any;
+}
+
+export interface RdiAge {
+  start: number;
+  end?: number;
+  ageUnit: "Month" | "Year";
+  index?: number;
 }

@@ -18,3 +18,46 @@ export interface SearchResult {
   url: string;
   image: string;
 }
+export interface Food {
+  category: string;
+  name: string;
+  hap_name: string;
+  fdcId: number;
+  nutrients: NutritionFact[];
+}
+
+export interface NutritionFact {
+  displayOrder: number;
+  nutrient: {
+    name: string;
+    amount: number;
+    unit: string;
+  };
+  rdi?: {
+    pct?: number;
+    amount?: number;
+    unit?: string;
+  };
+  percentDaily?: number;
+  children?: NutritionFact[];
+}
+export interface RDI {
+  applicableFor: string;
+  ageStart: number;
+  ageEnd: number;
+  importTable: string;
+  nutrient: string;
+  amount: number;
+  nutrientUnit: string;
+  nutrientGroup: string;
+}
+export interface USDA {
+  id: number;
+  usdaNutrientId: number;
+  usdaNutrientName: string;
+  usdaNutrientUnit: string;
+  rdiNutrientName: string;
+  rdiNutrientUnit: string;
+  rdiNutrientTable: string;
+  usdaToRdiUnitMultiplier: number;
+}

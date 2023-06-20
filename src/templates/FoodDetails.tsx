@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { FoodDetails as FoodDetailsComponent } from "@forkfacts/components";
 import { useStore } from "../helpers/stores";
+import { Food, NutritionFact, RDI, UsdaRdiNutrientMapping } from "@forkfacts/models";
 
 const mappings = require("../../data/usda_rdi_nutrient_mapping.json");
-import { Food, RDI, NutritionFact, UsdaRdiNutrientMapping } from "@forkfacts/models";
 
 interface Props {
   pageContext: {
@@ -16,46 +16,46 @@ interface Props {
   };
 }
 
-export const mappingsByNutrient: Map<string, UsdaRdiNutrientMapping[]> = mappings!.reduce(
-  (acc: Map<string, UsdaRdiNutrientMapping[]>, mapping: UsdaRdiNutrientMapping) => {
-    const existingMappings = acc.get(mapping.usdaNutrientName) || [];
-    existingMappings.push(mapping);
-    acc.set(mapping.usdaNutrientName, existingMappings);
+export const getMappingsByNutrient: () => Map<string, UsdaRdiNutrientMapping> = () =>
+  mappings!.reduce((acc: Map<string, UsdaRdiNutrientMapping>, mapping: UsdaRdiNutrientMapping) => {
+    acc.set(mapping.rdiNutrientName, mapping);
     return acc;
-  },
-  new Map<string, UsdaRdiNutrientMapping[]>()
-);
+  }, new Map<string, UsdaRdiNutrientMapping>());
+const mappingsByNutrient = getMappingsByNutrient();
 
-export const getNutrientRdiPercent = (nutrient: NutritionFact, rdi: RDI): number | undefined => {
-  const mappings = mappingsByNutrient.get(nutrient.nutrient.name);
-  if (!mappings || rdi.amount < 0) {
+export const getNutrientRdiPercent = (
+  nutritionFact: NutritionFact,
+  rdi: RDI
+): number | undefined => {
+  if (nutritionFact.nutrient.unit === "NOT_AVAILABLE" || rdi.amount < 0) {
+    console.log(`CASE 1: Nutrient Unit / RDI Amount unavailable`);
     return undefined;
   }
-  let highestPercentDaily = -Infinity;
-  for (const mapping of mappings) {
-    const multiplier = mapping.usdaToRdiUnitMultiplier;
-    const percentDaily = ((nutrient.nutrient.amount * multiplier) / rdi.amount) * 100;
-    if (percentDaily > highestPercentDaily) {
-      highestPercentDaily = percentDaily;
-    }
+
+  const mapping = mappingsByNutrient.get(nutritionFact.nutrient.name);
+  if (!mapping) {
+    console.log(`CASE 2: No mapping available for ${nutritionFact.nutrient.name}`);
+    return undefined;
   }
-  return highestPercentDaily;
+
+  if (nutritionFact.nutrient.unit.toLowerCase() !== mapping.rdiNutrientUnit.toLowerCase()) {
+    console.log(
+      `CASE 3: Units do not match => conversion needed for '${
+        nutritionFact.nutrient.name
+      }' from '${nutritionFact.nutrient.unit.toLowerCase()}' to '${rdi.nutrientUnit.toLowerCase()}' using multiplier '${
+        mapping.usdaToRdiUnitMultiplier
+      }'`
+    );
+  }
+  const multiplier = mapping.usdaToRdiUnitMultiplier;
+  return ((nutritionFact.nutrient.amount * multiplier) / rdi.amount) * 100;
 };
 
 export const generateRdiForFood = (food: NutritionFact[] = [], rdis: RDI[]): NutritionFact[] => {
+  console.log(mappingsByNutrient);
   const nutritionFacts: NutritionFact[] = [];
   const mergedFacts: Map<number, NutritionFact> = new Map();
   for (const nutritionFact of food) {
-    // console.log(JSON.stringify(Object.fromEntries(mappingsByNutrient)))
-    /*const mappings = mappingsByNutrient.get(nutritionFact.nutrient.name);
-        if (!mappings) {
-          nutritionFacts.push(nutritionFact);
-          continue;
-        }
-        const rdisForLifeStageAndAge = rdis.filter((rdi) => {
-          return mappings.some((mapping) => mapping.rdiNutrientName === rdi.nutrient);
-        });*/
-
     const rdisForLifeStageAndAge = rdis.filter(
       (rdi) => rdi.nutrient === nutritionFact.nutrient.name
     );
@@ -63,15 +63,7 @@ export const generateRdiForFood = (food: NutritionFact[] = [], rdis: RDI[]): Nut
     // console.log(`rdisForLifeStageAndAge=${JSON.stringify(rdisForLifeStageAndAge)}`)
 
     for (const rdi of rdisForLifeStageAndAge) {
-      if (nutritionFact.nutrient.unit !== rdi.nutrientUnit) {
-        console.log(
-          `Nutrient=${nutritionFact.nutrient.name} / NF Unit = ${nutritionFact.nutrient.unit} / RDI Unit=${rdi.nutrientUnit}, needs conversion`
-        );
-      }
-      const percentDaily =
-        nutritionFact.nutrient.unit === "NOT_AVAILABLE"
-          ? undefined
-          : (nutritionFact.nutrient.amount / rdi.amount) * 100;
+      const percentDaily = getNutrientRdiPercent(nutritionFact, rdi);
       const existingFact = mergedFacts.get(nutritionFact.displayOrder);
       if (existingFact?.percentDaily) {
         existingFact.percentDaily = percentDaily as number;

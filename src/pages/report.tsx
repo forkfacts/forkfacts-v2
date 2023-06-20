@@ -1,11 +1,11 @@
 import React from "react";
 const mappings = require("../../data/usda_rdi_nutrient_mapping.json");
-import { Food, RDI, USDA, NutritionFact } from "@forkfacts/models";
+import { Food, RDI, UsdaRdiNutrientMapping, NutritionFact } from "@forkfacts/models";
 import ff_nutrition_facts from "../../data/foundation_food_nutrition_facts.json";
 import sr_legacy_nutrition_facts from "../../data/sr_legacy_food_nutrition_facts.json";
 import recommendedDailyIntakes from "../../data/rdi.json";
 
-export const mappingsByNutrient = mappings!.reduce((acc: any, mapping: USDA) => {
+export const mappingsByNutrient = mappings!.reduce((acc: any, mapping: UsdaRdiNutrientMapping) => {
   const existingMappings = acc.get(mapping.usdaNutrientName) || [];
   existingMappings.push(mapping);
   acc.set(mapping.usdaNutrientName, existingMappings);
@@ -41,7 +41,9 @@ export const generateRdiForFood = (food: NutritionFact[], rdis: RDI[]) => {
       continue;
     }
     const rdisForLifeStageAndAge = rdis.filter((rdi: RDI) => {
-      return mappings.some((mapping: USDA) => mapping.rdiNutrientName === rdi.nutrient);
+      return mappings.some(
+        (mapping: UsdaRdiNutrientMapping) => mapping.rdiNutrientName === rdi.nutrient
+      );
     });
     for (const rdi of rdisForLifeStageAndAge) {
       const percentDaily = getNutrientRdiPercent(nutrient, rdi);

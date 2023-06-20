@@ -21,12 +21,12 @@ export default function MobileHome() {
         </>
       ) : (
         <>
-          <div className="flex justify-between items-center py-4 px-2 fixed top-0 left-0 right-0 bg-white">
+          <div className="flex justify-between items-center py-4 px-3 fixed top-0 left-0 right-0 bg-white">
             <RxHamburgerMenu className="w-[24px] h-[24px] text-main font-700" />
             <img src="/forkfacts-logo.svg" alt="logo" className="-ml-2" />
             <div />
           </div>
-          <div className="p-2 mt-16">
+          <div className="px-3 mt-16">
             <h1 className="text-[28px] leading-[36px] text-mai -mb-12 font-500">
               Eating smart starts with <span className="text-[#4C42E8]">knowing</span>
             </h1>

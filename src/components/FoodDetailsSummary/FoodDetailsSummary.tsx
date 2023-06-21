@@ -11,14 +11,14 @@ const FoodDetailsSummary = () => {
       <div className="w-full overflow-x-auto scrollbar-none custom-scrollbar">
         <div className="flex justify-between">
           {nutrition
-            .filter((item) => item.rdi?.amount !== undefined)
+            .filter((item) => item.nutrient.amount !== -9999)
             .map((item, idx) => (
               <div key={idx} className="mr-[35px]">
                 <div className="mt-2 flex justify-center items-center flex-col">
                   <div className="w-[50px] h-[50px]">
                     <CircularProgressbarWithChildren
                       strokeWidth={10}
-                      value={item.percentDaily as number}
+                      value={item.rdi?.amount ? Math.ceil(item.percentDaily as number) : 0}
                       styles={buildStyles({
                         textColor: "#000",
                         pathColor: "#6660FF",
@@ -27,7 +27,7 @@ const FoodDetailsSummary = () => {
                       })}
                     >
                       <p className="text-center text-[12px] text-main leading-[28px] font-500">
-                        {Math.ceil(item.percentDaily as number)}%
+                        {item.rdi?.amount ? Math.ceil(item.percentDaily as number) : 0}%
                       </p>
                     </CircularProgressbarWithChildren>
                   </div>

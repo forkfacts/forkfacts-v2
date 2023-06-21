@@ -70,10 +70,10 @@ export const getNutrientRdiPercent = (
   rdi: RDI
 ): number | undefined => {
   const mapping = getMappingFor(nutritionFact.nutrient.name, mappingsByNutrient);
-  // if (!mapping) {
-  //   console.log(`CASE 2: No mapping available for ${nutritionFact.nutrient.name}`);
-  //   return undefined;
-  // }
+  if (!mapping) {
+    // console.log(`CASE 2: No mapping available for ${nutritionFact.nutrient.name}`);
+    return undefined;
+  }
   const multiplier = mapping.usdaToRdiUnitMultiplier;
   const pDailyValue = ((nutritionFact.nutrient.amount * multiplier) / rdi.amount) * 100;
   return pDailyValue;

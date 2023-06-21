@@ -14,6 +14,7 @@ const Gender = () => {
     defaultFilter,
     setDefaultFilter,
     setSingleFilterSelection,
+    singleFilterSelection,
   } = useStore((state) => state);
 
   const handleSelectedItem = (name: string) => {
@@ -37,7 +38,7 @@ const Gender = () => {
     <>
       <button
         className={`flex max-w-[111px] items-center gap-2  py-[8px] pl-[16px] pr-[8px] rounded-[8px] whitespace-nowrap prose-labelLarge font-500 ${
-          selectedLifeStage && !defaultFilter
+          selectedLifeStage && !defaultFilter && !singleFilterSelection
             ? "text-primary-40  bg-[#F2EFFF]"
             : "text-textDark border border-[#E5E1E6]"
         }`}
@@ -45,7 +46,7 @@ const Gender = () => {
         <span onClick={() => setSheetOpened(true)}>
           {selectedLifeStage ? selectedLifeStage : "Life stage"}
         </span>
-        {selectedLifeStage && !defaultFilter ? (
+        {selectedLifeStage && !defaultFilter && !singleFilterSelection ? (
           <IoMdClose
             className={`w-[18px] h-[18px] ${
               selectedLifeStage && !defaultFilter ? "text-primary-40" : "text-[#47464F]"

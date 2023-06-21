@@ -93,7 +93,7 @@ const AllFilters = () => {
         </span>
       </button>
       <Sheet
-        className="pb-safe w-full rounded-tr-[16px] rounded-tl-[16px] h-[80vh] overflow-scroll "
+        className="pb-safe w-full rounded-tr-[16px] rounded-tl-[16px] h-[80vh] overflow-scroll hide-visible-scrollbar"
         opened={sheetOpened}
         onBackdropClick={() => setSheetOpened(false)}
       >

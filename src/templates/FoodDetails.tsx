@@ -29,6 +29,9 @@ const getMappingFor = (nutrient: string) => {
     case "Total fat":
       nutrientNameToSearch = "Fat";
       break;
+    case "Dietary fiber":
+      nutrientNameToSearch = "Total Fiber";
+      break;
     case "Carbohydrate, total":
       nutrientNameToSearch = "Carbohydrate";
       break;
@@ -50,6 +53,9 @@ const getRdisForNutrient = (nutrient: string, rdis: RDI[]): RDI[] => {
     case "Total fat":
       nutrientNameToSearch = "Fat";
       break;
+    case "Dietary fiber":
+      nutrientNameToSearch = "Total Fiber";
+      break;
     case "Carbohydrate, total":
       nutrientNameToSearch = "Carbohydrate";
       break;
@@ -59,7 +65,7 @@ const getRdisForNutrient = (nutrient: string, rdis: RDI[]): RDI[] => {
     default:
       nutrientNameToSearch = nutrient;
   }
-  console.log(`Finding RDIs for '${nutrient} (${nutrientNameToSearch})'`);
+  // console.log(`Finding RDIs for '${nutrient} (${nutrientNameToSearch})'`);
   const rdisForLifeStageAndAge = rdis.filter((rdi) => {
     return (
       rdi.nutrient === nutrientNameToSearch &&
@@ -69,8 +75,7 @@ const getRdisForNutrient = (nutrient: string, rdis: RDI[]): RDI[] => {
     );
   });
 
-  console.log(rdisForLifeStageAndAge);
-
+  // console.log(rdisForLifeStageAndAge);
   return rdisForLifeStageAndAge;
 };
 
@@ -91,15 +96,19 @@ export const getNutrientRdiPercent = (
 
   if (nutritionFact.nutrient.unit.toLowerCase() !== mapping.rdiNutrientUnit.toLowerCase()) {
     /*console.log(
-              `CASE 3: Units do not match => conversion needed for '${
-                nutritionFact.nutrient.name
-              }' from '${nutritionFact.nutrient.unit.toLowerCase()}' to '${rdi.nutrientUnit.toLowerCase()}' using multiplier '${
-                mapping.usdaToRdiUnitMultiplier
-              }'`
-            );*/
+                  `CASE 3: Units do not match => conversion needed for '${
+                    nutritionFact.nutrient.name
+                  }' from '${nutritionFact.nutrient.unit.toLowerCase()}' to '${rdi.nutrientUnit.toLowerCase()}' using multiplier '${
+                    mapping.usdaToRdiUnitMultiplier
+                  }'`
+                );*/
   }
   const multiplier = mapping.usdaToRdiUnitMultiplier;
-  return ((nutritionFact.nutrient.amount * multiplier) / rdi.amount) * 100;
+  const pDailyValue = ((nutritionFact.nutrient.amount * multiplier) / rdi.amount) * 100;
+  console.log(
+    `${nutritionFact.nutrient.name} => ${nutritionFact.nutrient.amount}/${rdi.amount} => ${pDailyValue}`
+  );
+  return pDailyValue;
 };
 
 export const generateRdiForFood = (food: NutritionFact[] = [], rdis: RDI[]): NutritionFact[] => {
@@ -113,6 +122,7 @@ export const generateRdiForFood = (food: NutritionFact[] = [], rdis: RDI[]): Nut
 
     for (const rdi of rdisForLifeStageAndAge) {
       const percentDaily = getNutrientRdiPercent(nutritionFact, rdi);
+
       const existingFact = mergedFacts.get(nutritionFact.displayOrder);
       if (existingFact?.percentDaily) {
         existingFact.percentDaily = percentDaily as number;
@@ -124,10 +134,14 @@ export const generateRdiForFood = (food: NutritionFact[] = [], rdis: RDI[]): Nut
             amount: percentDaily as number,
           },
           percentDaily,
+          children: nutritionFact.children
+            ? generateRdiForFood(nutritionFact.children, rdis)
+            : undefined,
         });
       }
     }
   }
+
   mergedFacts.forEach((fact) => {
     nutritionFacts.push(fact);
   });
@@ -139,10 +153,10 @@ const FoodDetails: React.FC<Props> = ({ pageContext: { recommendedDailyIntakes, 
   const { setRecommendedDailyIntakes, setFood } = useStore((state) => state);
   const nutrition = generateRdiForFood(food.nutrients, recommendedDailyIntakes);
   /*
-          console.log(`food=>${JSON.stringify(food)}`)
-          console.log(`nutrition=>${JSON.stringify(nutrition)}`)
-          console.log(`rdi=>${JSON.stringify(recommendedDailyIntakes)}`)
-        */
+            console.log(`food=>${JSON.stringify(food)}`)
+            console.log(`nutrition=>${JSON.stringify(nutrition)}`)
+            console.log(`rdi=>${JSON.stringify(recommendedDailyIntakes)}`)
+          */
   useEffect(() => {
     setRecommendedDailyIntakes(recommendedDailyIntakes);
     setFood(food, nutrition);

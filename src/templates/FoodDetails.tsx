@@ -8,7 +8,7 @@ import {
   filterByRDI,
   getAgeRangesForLifeStage,
   getMappingFor,
-  setSelectedAgeByGender,
+  setDefaultSelectedAgeForGender,
 } from "../helpers/utils";
 
 interface Props {
@@ -160,7 +160,7 @@ const FoodDetails: React.FC<Props> = ({ pageContext: { recommendedDailyIntakes, 
   }, [selectedLifeStage]);
 
   useEffect(() => {
-    setSelectedAgeByGender(selectedLifeStage, setSelectedAge);
+    setDefaultSelectedAgeForGender(selectedLifeStage, setSelectedAge);
   }, [selectedLifeStage, setSelectedAge]);
 
   return (

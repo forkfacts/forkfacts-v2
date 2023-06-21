@@ -59,7 +59,7 @@ export function getAgeRangesForLifeStage(selectedLifeStageName: string = "Female
   });
   return ageRanges.filter((range) => range !== null) as RdiAge[];
 }
-export function setSelectedAgeByGender(
+export function setDefaultSelectedAgeForGender(
   selectedGender: string,
   setSelectedAge: Dispatch<SetStateAction<RdiAge>>
 ): void {

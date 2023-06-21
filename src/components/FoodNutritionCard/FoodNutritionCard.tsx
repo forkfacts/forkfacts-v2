@@ -39,7 +39,7 @@ const FoodNutritionCard = () => {
                     </h3>
                   </div>
                   <h3 className="prose-labelLarge text-textDark font-600">
-                    {group.rdi?.amount ? `${Math.ceil(group.rdi.amount)}%` : ""}
+                    {group.percentDaily ? `${Math.ceil(group.percentDaily)}%` : ""}
                   </h3>
                 </div>
                 {group?.children?.length ? (
@@ -64,7 +64,7 @@ const FoodNutritionCard = () => {
                                 </p>
                               </div>
                               <p className="prose-labelLarge text-textDark font-600">
-                                {row.rdi?.amount ? `${Math.ceil(row.rdi.amount)}%` : ""}
+                                {row.percentDaily ? `${Math.ceil(row.percentDaily)}%` : ""}
                               </p>
                             </div>
                             <hr

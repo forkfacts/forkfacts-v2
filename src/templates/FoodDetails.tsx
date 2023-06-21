@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { FoodDetails as FoodDetailsComponent } from "@forkfacts/components";
 import { useStore } from "../helpers/stores";
 import { Food, NutritionFact, RDI, UsdaRdiNutrientMapping } from "@forkfacts/models";
@@ -54,7 +54,6 @@ const getRdisForNutrient = (
     default:
       nutrientNameToSearch = nutrient;
   }
-  console.log(`Finding RDIs for '${nutrient} (${nutrientNameToSearch})'`);
   const rdisForLifeStageAndAge = rdis.filter((rdi) => {
     return (
       rdi.nutrient === nutrientNameToSearch &&
@@ -70,10 +69,6 @@ export const getNutrientRdiPercent = (
   nutritionFact: NutritionFact,
   rdi: RDI
 ): number | undefined => {
-  if (nutritionFact.nutrient.unit === "NOT_AVAILABLE" || rdi.amount < 0) {
-    console.log(`CASE 1: Nutrient Unit / RDI Amount unavailable`);
-    return undefined;
-  }
   const mapping = getMappingFor(nutritionFact.nutrient.name, mappingsByNutrient);
   if (!mapping) {
     console.log(`CASE 2: No mapping available for ${nutritionFact.nutrient.name}`);

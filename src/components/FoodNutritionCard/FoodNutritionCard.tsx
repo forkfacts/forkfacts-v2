@@ -22,7 +22,10 @@ const FoodNutritionCard = () => {
               <div
                 key={index}
                 className={`mb-3 ${
-                  group.nutrient.amount === -9999 && !group.children?.length ? "hidden" : "block"
+                  group.nutrient.amount === -9999 ||
+                  (group.nutrient.unit === "NOT_AVAILABLE" && !group.children?.length)
+                    ? "hidden"
+                    : "block"
                 }`}
               >
                 <div className="flex justify-between mb-2">
@@ -61,7 +64,7 @@ const FoodNutritionCard = () => {
                                 </p>
                               </div>
                               <p className="prose-labelLarge text-textDark font-600">
-                                {row.rdi?.amount ? `${row.rdi.amount}%` : ""}
+                                {row.rdi?.amount ? `${Math.ceil(row.rdi.amount)}%` : ""}
                               </p>
                             </div>
                             <hr

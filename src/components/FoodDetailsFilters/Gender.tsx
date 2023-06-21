@@ -20,6 +20,7 @@ const Gender = () => {
     setSelectedLifeStage(name);
     setSheetOpened(false);
     setDefaultFilter(false);
+    setSingleFilterSelection(false);
   };
 
   const clearFilter = () => {
@@ -30,7 +31,6 @@ const Gender = () => {
       end: 50,
       ageUnit: "Year",
     });
-    setSingleFilterSelection(true);
   };
 
   return (

@@ -15,7 +15,9 @@ interface StoreState {
   age: RdiAge[];
   setAge: (age: RdiAge[]) => void;
   defaultFilter: boolean;
-  setDefaultFilter: React.Dispatch<React.SetStateAction<boolean>>;
+  setDefaultFilter: (defaultFilter: boolean) => void;
+  singleFilterSelection: boolean;
+  setSingleFilterSelection: (singleFilterSelection: boolean) => void;
 }
 
 export const useStore = create<StoreState>((set) => ({
@@ -40,7 +42,10 @@ export const useStore = create<StoreState>((set) => ({
   },
   age: [],
   defaultFilter: true,
-  setDefaultFilter: () => set({ defaultFilter: false }),
+  setDefaultFilter: (defaultFilter: boolean) => set({ defaultFilter: defaultFilter }),
+  singleFilterSelection: false,
+  setSingleFilterSelection: (singleFilterSelection: boolean) =>
+    set({ singleFilterSelection: singleFilterSelection }),
   setAge: (age: RdiAge[]) => set({ age }),
   setSelectedAge: (newAge: SetStateAction<RdiAge>) =>
     set((state) => ({

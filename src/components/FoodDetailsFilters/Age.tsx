@@ -8,8 +8,15 @@ import { IoMdClose } from "react-icons/io";
 
 const Age = () => {
   const [sheetOpened, setSheetOpened] = useState(false);
-  const { selectedAge, setSelectedAge, age, selectedLifeStage, defaultFilter, setDefaultFilter } =
-    useStore((state) => state);
+  const {
+    selectedAge,
+    setSelectedAge,
+    age,
+    selectedLifeStage,
+    defaultFilter,
+    setDefaultFilter,
+    setSingleFilterSelection,
+  } = useStore((state) => state);
   const ageString = selectedAge?.end
     ? `${selectedAge.start}-${selectedAge.end} ${selectedAge.ageUnit}`
     : ``;
@@ -29,6 +36,7 @@ const Age = () => {
     setSelectedAge(newAge);
     setSheetOpened(false);
     setDefaultFilter(false);
+    setSingleFilterSelection(true);
   };
 
   const openModal = () => {

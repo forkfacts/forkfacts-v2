@@ -13,6 +13,7 @@ const Gender = () => {
     setSelectedAge,
     defaultFilter,
     setDefaultFilter,
+    setSingleFilterSelection,
   } = useStore((state) => state);
 
   const handleSelectedItem = (name: string) => {
@@ -22,13 +23,14 @@ const Gender = () => {
   };
 
   const clearFilter = () => {
+    setDefaultFilter(true);
     setSelectedLifeStage("Females");
     setSelectedAge({
       start: 31,
       end: 50,
       ageUnit: "Year",
     });
-    setDefaultFilter(true);
+    setSingleFilterSelection(true);
   };
 
   return (

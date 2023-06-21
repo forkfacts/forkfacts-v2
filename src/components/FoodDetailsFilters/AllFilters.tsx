@@ -16,6 +16,8 @@ const AllFilters = () => {
     setSelectedAge,
     age,
     defaultFilter,
+    setDefaultFilter,
+    singleFilterSelection,
   } = useStore((state) => state);
   const handleSelectedItem = (name: string) => {
     setSelectedLifeStage(name);
@@ -34,10 +36,16 @@ const AllFilters = () => {
       ageUnit: item.ageUnit,
     };
     setSelectedAge(newAge);
+    setDefaultFilter(false);
   };
   const resetButton = () => {
-    setSelectedAge({} as RdiAge);
-    setSelectedLifeStage("");
+    setDefaultFilter(true);
+    setSelectedLifeStage("Females");
+    setSelectedAge({
+      start: 31,
+      end: 50,
+      ageUnit: "Year",
+    });
   };
   return (
     <div>
@@ -71,10 +79,15 @@ const AllFilters = () => {
               : "text-[#47464F]"
           }`}
         >
-          {Object.keys(selectedAge).length && selectedLifeStage && !defaultFilter
+          {Object.keys(selectedAge).length &&
+          selectedLifeStage &&
+          !defaultFilter &&
+          !singleFilterSelection
             ? 2
             : (Object.keys(selectedAge).length && !defaultFilter) ||
               (selectedLifeStage && !defaultFilter)
+            ? 1
+            : singleFilterSelection
             ? 1
             : null}
         </span>

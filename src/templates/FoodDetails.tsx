@@ -29,7 +29,14 @@ export const getMappingsByNutrient: () => Map<string, UsdaRdiNutrientMapping> = 
   }, new Map<string, UsdaRdiNutrientMapping>());
 const mappingsByNutrient = getMappingsByNutrient();
 
-const getRdisForNutrient = (nutrient: string, rdis: RDI[]): RDI[] => {
+const getRdisForNutrient = (
+  nutrient: string,
+  rdis: RDI[],
+  selectedLifeStage: string,
+  selectedAge: { ageStart: number; ageEnd?: number; ageUnit: "Month" | "Year" }
+): RDI[] => {
+  const applicableFor = selectedLifeStage;
+  const { ageStart, ageEnd } = selectedAge;
   let nutrientNameToSearch: string;
   switch (nutrient) {
     case "Total fat":
@@ -51,9 +58,9 @@ const getRdisForNutrient = (nutrient: string, rdis: RDI[]): RDI[] => {
   const rdisForLifeStageAndAge = rdis.filter((rdi) => {
     return (
       rdi.nutrient === nutrientNameToSearch &&
-      rdi.applicableFor === "females" &&
-      rdi.ageStart === 31 &&
-      rdi.ageEnd === 50
+      rdi.applicableFor === applicableFor.toLowerCase() &&
+      rdi.ageStart === ageStart &&
+      rdi.ageEnd === ageEnd
     );
   });
   return rdisForLifeStageAndAge;
@@ -67,7 +74,6 @@ export const getNutrientRdiPercent = (
     console.log(`CASE 1: Nutrient Unit / RDI Amount unavailable`);
     return undefined;
   }
-
   const mapping = getMappingFor(nutritionFact.nutrient.name, mappingsByNutrient);
   if (!mapping) {
     console.log(`CASE 2: No mapping available for ${nutritionFact.nutrient.name}`);
@@ -78,11 +84,21 @@ export const getNutrientRdiPercent = (
   return pDailyValue;
 };
 
-export const generateRdiForFood = (food: NutritionFact[] = [], rdis: RDI[]): NutritionFact[] => {
+export const generateRdiForFood = (
+  food: NutritionFact[] = [],
+  rdis: RDI[],
+  applicableFor: string,
+  selectedAge: { ageStart: number; ageEnd?: number; ageUnit: "Month" | "Year" }
+): NutritionFact[] => {
   const nutritionFacts: NutritionFact[] = [];
   const mergedFacts: Map<number, NutritionFact> = new Map();
   for (const nutritionFact of food) {
-    const rdisForLifeStageAndAge = getRdisForNutrient(nutritionFact.nutrient.name, rdis);
+    const rdisForLifeStageAndAge = getRdisForNutrient(
+      nutritionFact.nutrient.name,
+      rdis,
+      applicableFor,
+      selectedAge
+    );
     if (rdisForLifeStageAndAge.length < 1) nutritionFacts.push(nutritionFact);
     for (const rdi of rdisForLifeStageAndAge) {
       const percentDaily = getNutrientRdiPercent(nutritionFact, rdi);
@@ -99,7 +115,7 @@ export const generateRdiForFood = (food: NutritionFact[] = [], rdis: RDI[]): Nut
           },
           percentDaily,
           children: nutritionFact.children
-            ? generateRdiForFood(nutritionFact.children, rdis)
+            ? generateRdiForFood(nutritionFact.children, rdis, applicableFor, selectedAge)
             : undefined,
         });
       }
@@ -120,25 +136,27 @@ const FoodDetails: React.FC<Props> = ({ pageContext: { recommendedDailyIntakes, 
     selectedLifeStage,
     setSelectedAge,
   } = useStore((state) => state);
-  const nutritionFacts = generateRdiForFood(food.nutrients, recommendedDailyIntakes);
-  const [rows, setRows] = useState<NutritionFact[]>([]);
+  const { ageUnit, start: ageStart, end: ageEnd } = selectedAge;
+  const nutritionFacts = generateRdiForFood(
+    food.nutrients,
+    recommendedDailyIntakes,
+    selectedLifeStage,
+    { ageStart, ageEnd, ageUnit }
+  );
+
   const ageRanges = getAgeRangesForLifeStage(selectedLifeStage);
 
   useEffect(() => {
     setRecommendedDailyIntakes(recommendedDailyIntakes);
-    setFood(food, rows);
-  }, [recommendedDailyIntakes, food, setRecommendedDailyIntakes, setFood, rows]);
-
-  useEffect(() => {
-    const applicableFor = selectedLifeStage;
-    const { start: ageStart, end: ageEnd } = selectedAge;
-    const filteredData = filterByRDI(nutritionFacts, {
-      ageStart,
-      ageEnd,
-      applicableFor,
-    });
-    setRows(filteredData);
-  }, [selectedAge, selectedLifeStage]);
+    setFood(food, nutritionFacts);
+  }, [
+    recommendedDailyIntakes,
+    food,
+    setRecommendedDailyIntakes,
+    setFood,
+    selectedAge,
+    selectedLifeStage,
+  ]);
 
   useEffect(() => {
     if (selectedLifeStage) {

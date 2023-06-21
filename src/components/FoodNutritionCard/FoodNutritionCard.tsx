@@ -13,7 +13,7 @@ const FoodNutritionCard = () => {
         <h1 className="prose-titleMedium text-textDark font-500 mt-1.5 mb-4">NUTRITION</h1>
         <div className="flex justify-between mb-2">
           <h3 className="prose-labelMedium text-dark font-500">Nutrients</h3>
-          <h3 className="prose-bodyMedium text-dark font-400">% Daily value</h3>
+          <h3 className="prose-labelMedium text-dark font-500">% Daily value</h3>
         </div>
         <hr />
         <div className="mt-5">
@@ -32,7 +32,7 @@ const FoodNutritionCard = () => {
                     </h3>
                     <h3 className="prose-labelLarge text-dark font-400 ml-[8px]">
                       {group.nutrient.amount}
-                      {group.nutrient.unit}
+                      {group.nutrient.unit.toLowerCase()}
                     </h3>
                   </div>
                   <h3 className="prose-labelLarge text-textDark font-600">
@@ -55,12 +55,12 @@ const FoodNutritionCard = () => {
                                 <p className="prose-bodyMedium text-textDark font-400">
                                   {row.nutrient.name}
                                 </p>
-                                <p className="prose-bodyMedium text-dark font-400 ml-3">
+                                <p className="prose-bodyMedium text-dark font-600 ml-3">
                                   {row.nutrient.amount}
-                                  {row.nutrient.unit}
+                                  {row.nutrient.unit.toLowerCase()}
                                 </p>
                               </div>
-                              <p className="prose-bodyMedium text-dark font-400">
+                              <p className="prose-labelLarge text-textDark font-600">
                                 {row.rdi?.amount ? `${row.rdi.amount}%` : ""}
                               </p>
                             </div>

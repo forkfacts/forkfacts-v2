@@ -60,7 +60,14 @@ const getRdisForNutrient = (nutrient: string, rdis: RDI[]): RDI[] => {
       nutrientNameToSearch = nutrient;
   }
   console.log(`Finding RDIs for '${nutrient} (${nutrientNameToSearch})'`);
-  const rdisForLifeStageAndAge = rdis.filter((rdi) => rdi.nutrient === nutrientNameToSearch);
+  const rdisForLifeStageAndAge = rdis.filter((rdi) => {
+    return (
+      rdi.nutrient === nutrientNameToSearch &&
+      rdi.applicableFor === "females" &&
+      rdi.ageStart === 31 &&
+      rdi.ageEnd === 50
+    );
+  });
 
   console.log(rdisForLifeStageAndAge);
 

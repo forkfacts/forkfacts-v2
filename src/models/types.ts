@@ -51,7 +51,7 @@ export interface RDI {
   nutrientUnit: string;
   nutrientGroup: string;
 }
-export interface USDA {
+export interface UsdaRdiNutrientMapping {
   id: number;
   usdaNutrientId: number;
   usdaNutrientName: string;

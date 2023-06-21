@@ -9,9 +9,14 @@ import { IoMdClose } from "react-icons/io";
 
 const AllFilters = () => {
   const [sheetOpened, setSheetOpened] = useState(false);
-  const { selectedLifeStage, setSelectedLifeStage, selectedAge, setSelectedAge, age } = useStore(
-    (state) => state
-  );
+  const {
+    selectedLifeStage,
+    setSelectedLifeStage,
+    selectedAge,
+    setSelectedAge,
+    age,
+    defaultFilter,
+  } = useStore((state) => state);
   const handleSelectedItem = (name: string) => {
     setSelectedLifeStage(name);
   };
@@ -38,9 +43,10 @@ const AllFilters = () => {
     <div>
       <button
         className={`w-[44px] h-[34px] text-[#47464F]  rounded-[8px] flex justify-center items-center box-border z-[999] ${
-          Object.keys(selectedAge).length && selectedLifeStage
+          Object.keys(selectedAge).length && selectedLifeStage && !defaultFilter
             ? "bg-[#F2EFFF] pr-2 pl-1"
-            : Object.keys(selectedAge).length || selectedLifeStage
+            : (Object.keys(selectedAge).length && !defaultFilter) ||
+              (selectedLifeStage && !defaultFilter)
             ? "bg-[#F2EFFF] pr-2 pl-1"
             : "bg-white border-[1px] border-[#E5E1E6]"
         }`}
@@ -48,25 +54,27 @@ const AllFilters = () => {
       >
         <BiFilter
           className={`w-[24px] h-[24px] ${
-            Object.keys(selectedAge).length && selectedLifeStage
+            Object.keys(selectedAge).length && selectedLifeStage && !defaultFilter
               ? "text-primary-40"
-              : Object.keys(selectedAge).length || selectedLifeStage
+              : (Object.keys(selectedAge).length && !defaultFilter) ||
+                (selectedLifeStage && !defaultFilter)
               ? "text-primary-40"
               : "text-[#47464F]"
           }`}
         />
         <span
           className={`${
-            Object.keys(selectedAge) && selectedLifeStage
+            Object.keys(selectedAge) && selectedLifeStage && !defaultFilter
               ? "text-primary-40"
-              : Object.keys(selectedAge) || selectedLifeStage
+              : Object.keys(selectedAge) || (selectedLifeStage && !defaultFilter)
               ? "text-primary-40"
               : "text-[#47464F]"
           }`}
         >
-          {Object.keys(selectedAge).length && selectedLifeStage
+          {Object.keys(selectedAge).length && selectedLifeStage && !defaultFilter
             ? 2
-            : Object.keys(selectedAge).length || selectedLifeStage
+            : (Object.keys(selectedAge).length && !defaultFilter) ||
+              (selectedLifeStage && !defaultFilter)
             ? 1
             : null}
         </span>

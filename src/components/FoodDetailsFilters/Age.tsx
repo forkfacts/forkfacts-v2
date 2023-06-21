@@ -8,7 +8,8 @@ import { IoMdClose } from "react-icons/io";
 
 const Age = () => {
   const [sheetOpened, setSheetOpened] = useState(false);
-  const { selectedAge, setSelectedAge, age, selectedLifeStage } = useStore((state) => state);
+  const { selectedAge, setSelectedAge, age, selectedLifeStage, defaultFilter, setDefaultFilter } =
+    useStore((state) => state);
   const ageString = selectedAge?.end
     ? `${selectedAge.start}-${selectedAge.end} ${selectedAge.ageUnit}`
     : ``;
@@ -27,6 +28,7 @@ const Age = () => {
     };
     setSelectedAge(newAge);
     setSheetOpened(false);
+    setDefaultFilter(false);
   };
 
   const openModal = () => {
@@ -37,7 +39,7 @@ const Age = () => {
     <div>
       <button
         className={`flex max-w-[311px] items-center gap-2  py-[8px] pl-[16px] pr-[8px] rounded-[8px] whitespace-nowrap prose-labelLarge font-500 ${
-          Object.keys(selectedAge).length && ageString
+          Object.keys(selectedAge).length && ageString && !defaultFilter
             ? "text-primary-40  bg-[#F2EFFF]"
             : "text-textDark border border-[#E5E1E6]"
         }`}
@@ -45,7 +47,7 @@ const Age = () => {
         <span onClick={() => openModal()}>
           {Object.keys(selectedAge).length && ageString ? ageString : "Age"}
         </span>
-        {Object.keys(selectedAge).length && ageString ? (
+        {Object.keys(selectedAge).length && ageString && !defaultFilter ? (
           <IoMdClose
             className={`w-[18px] h-[18px] ${
               Object.keys(selectedAge).length && ageString ? "text-primary-40" : "text-[#47464F]"

@@ -61,7 +61,7 @@ const FoodNutritionCard = () => {
                                 </p>
                               </div>
                               <p className="prose-bodyMedium text-dark font-400">
-                                {row.rdi?.amount ? `${row.rdi.unit}%` : ""}
+                                {row.rdi?.amount ? `${row.rdi.amount}%` : ""}
                               </p>
                             </div>
                             <hr

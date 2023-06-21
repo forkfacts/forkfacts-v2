@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
-import { RdiAge } from "../models";
+import { NutritionFact, RdiAge, UsdaRdiNutrientMapping } from "../models";
 import { allAges, genders } from "./static-data";
 
 /**
@@ -104,3 +104,54 @@ export function setSelectedAgeByGender(
       break;
   }
 }
+
+export function filterByRDI(
+  nutritionFacts: NutritionFact[],
+  rdi: { ageStart: number; ageEnd?: number; applicableFor: string }
+): NutritionFact[] {
+  return nutritionFacts.filter((fact) => {
+    if (!rdi.ageEnd && fact.rdi) {
+      if (
+        fact.rdi.ageStart === rdi.ageStart &&
+        fact.rdi.applicableFor === rdi.applicableFor.toLowerCase()
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    } else if (
+      fact.rdi &&
+      fact.rdi.ageStart === rdi.ageStart &&
+      fact.rdi.ageEnd === rdi.ageEnd &&
+      fact.rdi.applicableFor === rdi.applicableFor.toLowerCase()
+    ) {
+      return true;
+    }
+    return false;
+  });
+}
+
+export const getMappingFor = (
+  nutrient: string,
+  mappingsByNutrient: Map<string, UsdaRdiNutrientMapping>
+) => {
+  let nutrientNameToSearch;
+  switch (nutrient) {
+    case "Total fat":
+      nutrientNameToSearch = "Fat";
+      break;
+    case "Dietary fiber":
+      nutrientNameToSearch = "Total Fiber";
+      break;
+    case "Carbohydrate, total":
+      nutrientNameToSearch = "Carbohydrate";
+      break;
+    case "Pantothenic acid":
+      nutrientNameToSearch = "Panthothenic Acid";
+      break;
+    default:
+      nutrientNameToSearch = nutrient;
+  }
+  const mapping = mappingsByNutrient.get(nutrientNameToSearch);
+  return mapping;
+};

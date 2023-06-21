@@ -4,25 +4,38 @@ import { Sheet } from "konsta/react";
 import React, { useState } from "react";
 import { FaSortDown } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
-import { RdiAge } from "../../models";
 
 const Gender = () => {
   const [sheetOpened, setSheetOpened] = useState(false);
-  const { selectedLifeStage, setSelectedLifeStage, setSelectedAge } = useStore((state) => state);
+  const {
+    selectedLifeStage,
+    setSelectedLifeStage,
+    setSelectedAge,
+    defaultFilter,
+    setDefaultFilter,
+  } = useStore((state) => state);
+
   const handleSelectedItem = (name: string) => {
     setSelectedLifeStage(name);
     setSheetOpened(false);
+    setDefaultFilter(false);
   };
 
   const clearFilter = () => {
-    setSelectedLifeStage("");
-    setSelectedAge({} as RdiAge);
+    setSelectedLifeStage("Females");
+    setSelectedAge({
+      start: 31,
+      end: 50,
+      ageUnit: "Year",
+    });
+    setDefaultFilter(true);
   };
+
   return (
     <>
       <button
         className={`flex max-w-[111px] items-center gap-2  py-[8px] pl-[16px] pr-[8px] rounded-[8px] whitespace-nowrap prose-labelLarge font-500 ${
-          selectedLifeStage
+          selectedLifeStage && !defaultFilter
             ? "text-primary-40  bg-[#F2EFFF]"
             : "text-textDark border border-[#E5E1E6]"
         }`}
@@ -30,15 +43,15 @@ const Gender = () => {
         <span onClick={() => setSheetOpened(true)}>
           {selectedLifeStage ? selectedLifeStage : "Life stage"}
         </span>
-        {!selectedLifeStage ? (
-          <FaSortDown className="w-[18px] h-[18px] -mt-2" />
-        ) : (
+        {selectedLifeStage && !defaultFilter ? (
           <IoMdClose
             className={`w-[18px] h-[18px] ${
-              selectedLifeStage ? "text-primary-40" : "text-[#47464F]"
+              selectedLifeStage && !defaultFilter ? "text-primary-40" : "text-[#47464F]"
             }`}
             onClick={() => clearFilter()}
           />
+        ) : (
+          <FaSortDown className="w-[18px] h-[18px] -mt-2" />
         )}
       </button>
       <Sheet

@@ -7,9 +7,6 @@ require("dotenv").config();
 const config: GatsbyConfig = {
   siteMetadata: siteMetadata,
   graphqlTypegen: true,
-  flags: {
-    DEV_SSR: true,
-  },
   plugins: [
     `gatsby-plugin-postcss`,
     `gatsby-theme-material-ui`,

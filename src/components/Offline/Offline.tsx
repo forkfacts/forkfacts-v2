@@ -9,12 +9,6 @@ const Offline = () => {
   );
 
   useEffect(() => {
-    if (isOnline) {
-      navigate("/");
-    }
-  }, [isOnline]);
-
-  useEffect(() => {
     const handleConnectionChange = () => {
       if (typeof window !== "undefined") {
         setIsOnline(navigator.onLine);
@@ -39,6 +33,11 @@ const Offline = () => {
       window.location.reload();
     }
   };
+
+  if (isOnline) {
+    navigate("/");
+    return null;
+  }
 
   return (
     <div className="flex justify-center items-center h-screen">

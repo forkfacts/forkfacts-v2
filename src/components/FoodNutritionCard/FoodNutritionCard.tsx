@@ -31,7 +31,11 @@ const FoodNutritionCard = () => {
                 <div className="flex justify-between mb-2">
                   <div className="flex items-center gap-1">
                     <h3 className="prose-labelSemiBold text-textDark font-600">
-                      {group.nutrient.name}
+                      {group.nutrient.name === "Total fat"
+                        ? "Fat"
+                        : group.nutrient.name === "Carbohydrate, total"
+                        ? "Carbs"
+                        : group.nutrient.name}
                     </h3>
                     <h3 className="prose-labelLarge text-dark font-400 ml-[8px]">
                       {group.nutrient.amount}
@@ -58,12 +62,12 @@ const FoodNutritionCard = () => {
                                 <p className="prose-bodyMedium text-textDark font-400">
                                   {row.nutrient.name}
                                 </p>
-                                <p className="prose-bodyMedium text-dark font-600 ml-3">
+                                <p className="prose-bodyMedium text-dark font-400 ml-3">
                                   {row.nutrient.amount}
                                   {row.nutrient.unit.toLowerCase()}
                                 </p>
                               </div>
-                              <p className="prose-labelLarge text-textDark font-600">
+                              <p className="prose-labelLarge text-textDark font-400">
                                 {row.percentDaily ? `${Math.ceil(row.percentDaily)}%` : ""}
                               </p>
                             </div>

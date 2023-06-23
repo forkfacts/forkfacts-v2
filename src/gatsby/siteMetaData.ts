@@ -1,4 +1,4 @@
-import { SeoProps } from "../models";
+import { SeoProps } from "../models/seo";
 
 export const siteMetadata: SeoProps = {
   title: `Using Gatsby Head`,

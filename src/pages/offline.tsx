@@ -6,33 +6,33 @@ import { navigate } from "gatsby";
 const OfflinePage = () => {
   const [isOnline, setIsOnline] = useState(true);
 
-  useEffect(() => {
-    const handleConnectionChange = () => {
-      setIsOnline(window.navigator.onLine);
-    };
-    if (typeof window !== "undefined" && isBrowser()) {
-      setIsOnline(window.navigator.onLine);
-      window && window.addEventListener("online", handleConnectionChange);
-      window && window.addEventListener("offline", handleConnectionChange);
-    }
+  // useEffect(() => {
+  //   const handleConnectionChange = () => {
+  //     setIsOnline(window.navigator.onLine);
+  //   };
+  //   if (typeof window !== "undefined") {
+  //     setIsOnline(window.navigator.onLine);
+  //     window && window.addEventListener("online", handleConnectionChange);
+  //     window && window.addEventListener("offline", handleConnectionChange);
+  //   }
 
-    return () => {
-      if (typeof window !== "undefined" && isBrowser()) {
-        window && window.removeEventListener("online", handleConnectionChange);
-        window && window.removeEventListener("offline", handleConnectionChange);
-      }
-    };
-  }, []);
+  //   return () => {
+  //     if (typeof window !== "undefined") {
+  //       window && window.removeEventListener("online", handleConnectionChange);
+  //       window && window.removeEventListener("offline", handleConnectionChange);
+  //     }
+  //   };
+  // }, []);
 
-  const handleRetry = () => {
-    if (typeof window !== "undefined" && isBrowser()) {
-      window && window.location.reload();
-    }
-  };
+  // const handleRetry = () => {
+  //   if (typeof window !== "undefined" ) {
+  //     window && window.location.reload();
+  //   }
+  // };
 
-  if (isOnline) {
-    navigate("/");
-  }
+  // if (isOnline) {
+  //   navigate("/");
+  // }
 
   return (
     <div className="flex justify-center items-center h-screen">
@@ -42,12 +42,10 @@ const OfflinePage = () => {
         <p className="w-64 text-center text-dark mt-2 mb-6 font-400">
           You are currently offline. Please check your internet connection.
         </p>
-        <Button onClick={handleRetry}>Try again</Button>
+        {/* <Button onClick={handleRetry}>Try again</Button> */}
       </div>
     </div>
   );
 };
-
-const isBrowser = () => typeof window !== "undefined";
 
 export default OfflinePage;

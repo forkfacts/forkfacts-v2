@@ -7,7 +7,7 @@ const OfflinePage = () => {
   const [isOnline, setIsOnline] = useState(true);
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
+    if (typeof window !== "undefined" && isBrowser()) {
       setIsOnline(window.navigator.onLine);
 
       const handleConnectionChange = () => {
@@ -46,5 +46,7 @@ const OfflinePage = () => {
     </div>
   );
 };
+
+const isBrowser = () => typeof window !== "undefined";
 
 export default OfflinePage;

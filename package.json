@@ -27,7 +27,6 @@
     "@algolia/autocomplete-preset-algolia": "1.7.3",
     "@algolia/autocomplete-theme-classic": "1.7.3",
     "@algolia/client-search": "4.9.1",
-    "@capacitor/core": "^5.0.5",
     "@capacitor/share": "^5.0.4",
     "@emotion/react": "^11.10.6",
     "@emotion/server": "latest",

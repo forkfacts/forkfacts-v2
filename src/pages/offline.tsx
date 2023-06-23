@@ -4,7 +4,7 @@ import { Button } from "konsta/react";
 import { navigate } from "gatsby";
 
 const OfflinePage = () => {
-  const [isOnline, setIsOnline] = useState(navigator.onLine);
+  const [isOnline, setIsOnline] = useState(window && window.navigator.onLine);
 
   useEffect(() => {
     if (isOnline) {

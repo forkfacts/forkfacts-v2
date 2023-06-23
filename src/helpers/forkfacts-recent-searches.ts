@@ -83,6 +83,20 @@ export const fetchRecentSearches = async (): Promise<SearchParams[]> => {
     return [];
   }
 };
+
+export const findSingleSearch = async (name: string): Promise<SearchParams | null> => {
+  try {
+    const db = await initDB();
+    const store = db.transaction("items", "readonly").objectStore("items");
+    const allFavorites = await store.getAll();
+    const favorite = allFavorites.find((fav) => fav.name === name);
+    return favorite || null;
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+};
+
 export const clearRecentDb = async () => {
   const db = await initDB();
   const tx = db.transaction("items", "readwrite");

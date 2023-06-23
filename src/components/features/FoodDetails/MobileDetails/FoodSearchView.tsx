@@ -17,6 +17,7 @@ import {
   SearchParams,
   addSearchEntry,
   spaceToDashes,
+  findSingleSearch,
 } from "@forkfacts/helpers";
 import { SearchResultItemType } from "@forkfacts/models";
 import { Preloader } from "konsta/react";
@@ -93,8 +94,14 @@ function FoodSearchView(
   const onClosePage = () => {
     props.setOpenSearch(false);
   };
+  const { setQuery, setIsOpen } = autocomplete;
 
   const onSelectItem = async (item: SearchResultItemType) => {
+    const isExist = await findSingleSearch(item.name);
+    if (isExist) {
+      props.setOpenSearch(false);
+    }
+
     const searchData: SearchParams = {
       name: item.name,
       hap_name: item.hap_name,
@@ -105,6 +112,8 @@ function FoodSearchView(
     await addSearchEntry(searchData);
     const path = `/${spaceToDashes(item.name)}/`;
     navigate(path);
+    setQuery("");
+    setIsOpen(false);
   };
 
   const onClearSearch = () => {

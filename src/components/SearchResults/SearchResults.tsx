@@ -22,7 +22,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({ collections, onSelectItem
               return (
                 <div key={index}>
                   <div
-                    className="flex items-center gap-1.5 mb-[18px]"
+                    className="flex items-center gap-1.5 mb-[18px] cursor-pointer"
                     onClick={() => {
                       onSelectItem(result);
                     }}

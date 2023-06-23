@@ -1,2 +1,2 @@
-export { default as FoodDetails } from "./features/FoodDetails/FoodDetails";
-export { default as Home } from "./features/Home";
+export { default as FoodDetails } from "./Features/FoodDetails/FoodDetails";
+export { default as Home } from "./Features/Home";

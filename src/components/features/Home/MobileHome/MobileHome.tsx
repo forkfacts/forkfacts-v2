@@ -5,9 +5,11 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import FoodDetailsSearch from "../../FoodDetails/MobileDetails/FoodDetailsSearch";
 import { recommendations } from "../../../../helpers/static-data";
 import FoodSearchView from "../../FoodDetails/MobileDetails/FoodSearchView";
+import Sidebar from "../../../Sidebar/Sidebar";
 
 export default function MobileHome() {
   const [openSearch, setOpenSearch] = useState(false);
+  const [leftPanelOpened, setLeftPanelOpened] = useState(false);
 
   return (
     <Page className="bg-white">
@@ -22,7 +24,10 @@ export default function MobileHome() {
       ) : (
         <>
           <div className="flex justify-between items-center py-4 px-3 fixed top-0 left-0 right-0 bg-white">
-            <RxHamburgerMenu className="w-[24px] h-[24px] text-main font-700" />
+            <RxHamburgerMenu
+              className="w-[24px] h-[24px] text-main font-700"
+              onClick={() => setLeftPanelOpened(true)}
+            />
             <img src="/forkfacts-logo.svg" alt="logo" className="-ml-2" />
             <div />
           </div>
@@ -64,6 +69,7 @@ export default function MobileHome() {
           </div>
         </>
       )}
+      <Sidebar leftPanelOpened={leftPanelOpened} setLeftPanelOpened={setLeftPanelOpened} />
     </Page>
   );
 }

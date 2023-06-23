@@ -42,8 +42,8 @@ const OfflinePage = () => {
     <div className="flex justify-center items-center h-screen">
       <div className="text-center flex flex-col justify-center items-center">
         <RiWifiOffLine className="w-12 h-12 text-primary-40 mb-4" />
-        <h1 className="text-main font-600 text-2xl">You are offline</h1>
-        <p className="w-64 text-center text-main mt-5 mb-6">
+        <h1 className="text-main font-600 text-[16px]">You are offline</h1>
+        <p className="w-64 text-center text-main mt-2 mb-6">
           You are currently offline. Please check your internet connection.
         </p>
         <Button onClick={handleRetry}>Try again</Button>

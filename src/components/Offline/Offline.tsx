@@ -10,7 +10,9 @@ const OfflinePage = () => {
 
   useEffect(() => {
     const handleConnectionChange = () => {
-      setIsOnline(window.navigator.onLine);
+      if (isBrowser) {
+        setIsOnline(window && window.navigator.onLine);
+      }
     };
     if (isBrowser) {
       setIsOnline(window.navigator.onLine);

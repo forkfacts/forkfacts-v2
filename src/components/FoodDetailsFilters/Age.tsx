@@ -16,6 +16,7 @@ const Age = () => {
     defaultFilter,
     setDefaultFilter,
     setSingleFilterSelection,
+    setSelectedLifeStage,
   } = useStore((state) => state);
   const ageString = selectedAge?.end
     ? `${selectedAge.start}-${selectedAge.end} ${selectedAge.ageUnit}`
@@ -43,6 +44,17 @@ const Age = () => {
     if (!selectedLifeStage) return;
     setSheetOpened(true);
   };
+
+  const clearFilter = () => {
+    setSelectedLifeStage("Females");
+    setSingleFilterSelection(false);
+    setSelectedAge({
+      start: 31,
+      end: 50,
+      ageUnit: "Year",
+    });
+    setDefaultFilter(true);
+  };
   return (
     <div>
       <button
@@ -60,7 +72,7 @@ const Age = () => {
             className={`w-[18px] h-[18px] ${
               Object.keys(selectedAge).length && ageString ? "text-primary-40" : "text-[#47464F]"
             }`}
-            onClick={() => setSelectedAge({} as RdiAge)}
+            onClick={() => clearFilter()}
           />
         ) : (
           <FaSortDown className="w-[18px] h-[18px] -mt-2" />

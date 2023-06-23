@@ -67,7 +67,7 @@ const FoodNutritionCard = () => {
                                   {row.nutrient.unit.toLowerCase()}
                                 </p>
                               </div>
-                              <p className="prose-labelLarge text-textDark font-400">
+                              <p className="prose-labelLarge text-textDark font-600">
                                 {row.percentDaily ? `${Math.ceil(row.percentDaily)}%` : ""}
                               </p>
                             </div>

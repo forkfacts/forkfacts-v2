@@ -35,7 +35,11 @@ const FoodDetailsSummary = () => {
                       })}
                     >
                       <p className="text-center text-[12px] text-main leading-[28px] font-500">
-                        {item.percentDaily ? `${Math.ceil(item.percentDaily as number)}%` : 0}
+                        {item.nutrient.name === "Calories"
+                          ? null
+                          : item.percentDaily && item.nutrient.name !== "Calories"
+                          ? `${Math.ceil(item.percentDaily as number)}%`
+                          : 0}
                       </p>
                     </CircularProgressbarWithChildren>
                   </div>

@@ -22,7 +22,7 @@ const MobileDetails = () => {
         />
       ) : (
         <div>
-          <div className="shadow-summaryShadow pb-8 px-[15px]">
+          <div className="shadow-summaryShadow pb-8 px-[15px] bg-white">
             <DetailsHeader />
             <FoodDetailsSearch setOpenSearch={setOpenSearch} />
             <FoodDetailsFilters />

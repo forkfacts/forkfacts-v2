@@ -130,7 +130,7 @@ function FoodSearchView(
   }, [isOpen, query]);
 
   return (
-    <div>
+    <div className="bg-white h-[100vh]">
       <div className="bg-[#F3EFF4] w-full fixed top-0 left-0 right-0 mb-10">
         <div className="flex items-center justify-between w-full gap-1 py-4 px-3">
           <div className="w-[10%] flex ">
@@ -159,7 +159,7 @@ function FoodSearchView(
       </div>
       <div className="h-4" />
       <div className="h-16" />
-      <>
+      <div className="bg-white">
         {isOpen && query ? (
           <div className="mt-6 w-full">
             <ForLoops each={collections}>
@@ -204,7 +204,7 @@ function FoodSearchView(
             onSelectItem={onSelectItem}
           />
         ) : null}
-      </>
+      </div>
     </div>
   );
 }

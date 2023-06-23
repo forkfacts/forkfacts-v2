@@ -22,6 +22,11 @@ body {
 .aa-Form .aa-ClearButton {
   display: none;
 }
+
+.bg-md-light-surface {
+  background-color: #ebebeb !important;
+}
+
 .aa-InputWrapperSuffix {
   display: none;
 }

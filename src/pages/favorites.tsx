@@ -60,7 +60,7 @@ const Favorites = () => {
   );
 
   return (
-    <Page className="bg-[#ebebeb] overflow-scroll">
+    <Page className="bg-[#ebebeb !important] overflow-scroll">
       {openSearch ? (
         <div className="bg-[#ebebeb]">
           <div className="bg-[#F3EFF4] w-full fixed top-0 left-0 right-0 mb-10 z-[99999]">

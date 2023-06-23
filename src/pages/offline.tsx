@@ -12,21 +12,21 @@ const OfflinePage = () => {
     };
     if (typeof window !== "undefined" && isBrowser()) {
       setIsOnline(window.navigator.onLine);
-      window.addEventListener("online", handleConnectionChange);
-      window.addEventListener("offline", handleConnectionChange);
+      window && window.addEventListener("online", handleConnectionChange);
+      window && window.addEventListener("offline", handleConnectionChange);
     }
 
     return () => {
       if (typeof window !== "undefined" && isBrowser()) {
-        window.removeEventListener("online", handleConnectionChange);
-        window.removeEventListener("offline", handleConnectionChange);
+        window && window.removeEventListener("online", handleConnectionChange);
+        window && window.removeEventListener("offline", handleConnectionChange);
       }
     };
   }, []);
 
   const handleRetry = () => {
     if (typeof window !== "undefined" && isBrowser()) {
-      window.location.reload();
+      window && window.location.reload();
     }
   };
 

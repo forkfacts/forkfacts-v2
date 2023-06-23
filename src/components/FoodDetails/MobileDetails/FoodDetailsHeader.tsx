@@ -2,8 +2,8 @@ import { Navbar } from "konsta/react";
 import React, { useRef, useState } from "react";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { IoMdMore } from "react-icons/io";
-import { useStore } from "../../../../helpers/stores";
-import Sidebar from "../../../Sidebar/Sidebar";
+import { useStore } from "../../../helpers/stores";
+import Sidebar from "../../Sidebar/Sidebar";
 import MoreDetailsOption from "./MoreDetailsOption";
 
 const DetailsHeader = () => {

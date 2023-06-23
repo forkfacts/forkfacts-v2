@@ -2,11 +2,13 @@ import { Page } from "konsta/react";
 import React, { useState } from "react";
 import DetailsHeader from "./FoodDetailsHeader";
 import FoodDetailsSearch from "./FoodDetailsSearch";
-import FoodDetailsFilters from "../../../Filters/FoodDetailsFilters/FoodDetailsFilters";
-import FoodDetailsSummary from "../../../FoodDetailsSummary/FoodDetailsSummary";
-import FoodNutritionCard from "../../../FoodNutritionCard/FoodNutritionCard";
-import SimilarFoods from "../../../SimilarFoods/SimilarFoods";
 import FoodSearchView from "./FoodSearchView";
+import {
+  FoodDetailsFilters,
+  FoodDetailsSummary,
+  FoodNutritionCard,
+  SimilarFoods,
+} from "@forkfacts/components";
 
 const MobileDetails = () => {
   const [openSearch, setOpenSearch] = useState(false);

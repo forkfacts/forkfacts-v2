@@ -3,9 +3,9 @@ import { Page } from "konsta/react";
 import { useState } from "react";
 import { RxHamburgerMenu } from "react-icons/rx";
 import FoodDetailsSearch from "../../FoodDetails/MobileDetails/FoodDetailsSearch";
-import { recommendations } from "../../../../helpers/static-data";
+import { recommendations } from "../../../helpers/static-data";
 import FoodSearchView from "../../FoodDetails/MobileDetails/FoodSearchView";
-import Sidebar from "../../../Sidebar/Sidebar";
+import Sidebar from "../../Sidebar/Sidebar";
 
 export default function MobileHome() {
   const [openSearch, setOpenSearch] = useState(false);

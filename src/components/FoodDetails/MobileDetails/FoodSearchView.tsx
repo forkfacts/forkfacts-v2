@@ -10,7 +10,7 @@ import {
 import { getAlgoliaResults } from "@algolia/autocomplete-preset-algolia";
 import { Hit } from "@algolia/client-search";
 import algoliasearch from "algoliasearch/lite";
-import SearchResults from "../../../SearchResults/SearchResults";
+import { SearchResults } from "@forkfacts/components";
 import {
   ForLoops,
   fetchRecentSearches,

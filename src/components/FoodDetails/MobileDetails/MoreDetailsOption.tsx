@@ -7,9 +7,9 @@ import {
   addFavorite,
   findFavoriteByName,
   removeFavorite,
-} from "../../../../helpers/ff_favorites";
-import { useStore } from "../../../../helpers/stores";
-import { spaceToDashes } from "../../../../helpers/utils";
+} from "../../../helpers/ff_favorites";
+import { useStore } from "../../../helpers/stores";
+import { spaceToDashes } from "../../../helpers/utils";
 import { Toast } from "konsta/react";
 
 interface MoreDetailsOptionProps {

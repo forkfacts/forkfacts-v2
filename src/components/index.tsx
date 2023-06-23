@@ -5,3 +5,4 @@ export { default as FoodDetailsFilters } from "../components/Filters/FoodDetails
 export { default as SearchResults } from "../components/SearchResults/SearchResults";
 export { default as FoodDetails } from "./FoodDetails";
 export { default as Home } from "./Home";
+export { default as Offline } from "./Offline/Offline";

@@ -1,27 +1,54 @@
+import React, { useState, useEffect } from "react";
+import { RiWifiOffLine } from "react-icons/ri";
 import { Button } from "konsta/react";
-import NetWorkWrapper from "../components/NetworkStatus/NetWorkWrapper";
-import React, { useState } from "react";
+import { navigate } from "gatsby";
 
 const OfflinePage = () => {
-  const [retryCount, setRetryCount] = useState(0);
+  const [isOnline, setIsOnline] = useState(navigator.onLine);
+
+  useEffect(() => {
+    if (isOnline) {
+      navigate("/");
+    }
+  }, [isOnline]);
+
+  useEffect(() => {
+    const handleConnectionChange = () => {
+      setIsOnline(navigator.onLine);
+    };
+
+    if (typeof window !== "undefined") {
+      window.addEventListener("online", handleConnectionChange);
+      window.addEventListener("offline", handleConnectionChange);
+    }
+
+    return () => {
+      if (typeof window !== "undefined") {
+        window.removeEventListener("online", handleConnectionChange);
+        window.removeEventListener("offline", handleConnectionChange);
+      }
+    };
+  }, []);
 
   const handleRetry = () => {
-    setRetryCount(retryCount + 1);
     window.location.reload();
   };
 
+  if (isOnline) {
+    return navigate("/");
+  }
+
   return (
-    <NetWorkWrapper>
-      <div className="flex justify-center items-center h-[100vh]">
-        <div className="text-center">
-          <h1 className="text-main font-500 prose-titleLarge">You are offline</h1>
-          <p className="w-[296px] text-center prose-titleMedium font-400 text-main mt-5 mb-6">
-            You are currently offline. Please check your internet connection.
-          </p>
-          {retryCount < 3 && <Button onClick={handleRetry}>Try again</Button>}
-        </div>
+    <div className="flex justify-center items-center h-screen">
+      <div className="text-center flex flex-col justify-center items-center">
+        <RiWifiOffLine className="w-12 h-12 text-primary-40 mb-4" />
+        <h1 className="text-main font-600 text-2xl">You are offline</h1>
+        <p className="w-64 text-center text-main mt-5 mb-6">
+          You are currently offline. Please check your internet connection.
+        </p>
+        <Button onClick={handleRetry}>Try again</Button>
       </div>
-    </NetWorkWrapper>
+    </div>
   );
 };
 

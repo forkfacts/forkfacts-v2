@@ -11,14 +11,14 @@ export default function NetWorkWrapper({ children }: Props) {
       window &&
         window.addEventListener("online", function (e) {
           navigate("/");
-          console.log("online");
+          console.log(">>>> user is online");
         });
     }
     return () => {
       if (typeof window !== "undefined") {
         window &&
           window.removeEventListener("online", function (e) {
-            console.log("online");
+            console.log(">>>>> user online");
             navigate("/");
           });
       }

@@ -76,3 +76,5 @@ export interface RdiAge {
   ageUnit: "Month" | "Year";
   index?: number;
 }
+
+export type LifeStage = "infants" | "children" | "males" | "females" | "pregnancy" | "lactation";

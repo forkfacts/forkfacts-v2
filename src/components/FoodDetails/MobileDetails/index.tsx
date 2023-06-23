@@ -22,18 +22,18 @@ const MobileDetails = () => {
         />
       ) : (
         <div>
-          <div className="shadow-summaryShadow pb-8 px-[15px] bg-white">
+          <div className="pb-8 px-[15px] bg-white">
             <DetailsHeader />
             <FoodDetailsSearch setOpenSearch={setOpenSearch} />
             <FoodDetailsFilters />
           </div>
-          <div className="shadow-summaryShadow mt-2 pt-3 pb-7">
+          <div className="mt-2 pt-3 pb-7">
             <FoodDetailsSummary />
           </div>
-          <div className="mt-1 shadow-summaryShadow">
+          <div className="-mt-6">
             <FoodNutritionCard />
           </div>
-          <div className="mt-1 shadow-summaryShadow mb-5">
+          <div className="mt-1 mb-5">
             <SimilarFoods />
           </div>
         </div>

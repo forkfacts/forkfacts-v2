@@ -12,7 +12,7 @@ export default function MobileHome() {
   const [leftPanelOpened, setLeftPanelOpened] = useState(false);
 
   return (
-    <Page className="bg-white h-[100vh]">
+    <Page className="bg-surface h-[100vh]">
       {openSearch ? (
         <>
           <FoodSearchView
@@ -22,7 +22,7 @@ export default function MobileHome() {
           />
         </>
       ) : (
-        <div className="bg-white h-[100vh]">
+        <div className="bg-white">
           <div className="flex justify-between items-center py-4 px-3 fixed top-0 left-0 right-0 bg-white z-[99999]">
             <RxHamburgerMenu
               className="w-[24px] h-[24px] text-main font-700"

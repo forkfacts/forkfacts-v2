@@ -10,8 +10,8 @@ const FoodDetailsSummary = () => {
     { percentage: 45, weight: 40, name: "Fat", unit: "g" },
   ];
   return (
-    <div className="w-full overflow-x-auto scrollbar-none px-[16px] bg-white -mt-4 custom-scrollbar">
-      <h1 className="prose-titleMedium text-textDark font-500 mt-5 mb-4">SUMMARY</h1>
+    <div className="w-full overflow-x-auto scrollbar-none px-[16px] bg-white -mt-4 custom-scrollbar pb-4">
+      <h1 className="prose-titleMedium text-textDark font-500 mt-4 mb-3">SUMMARY</h1>
       <div className="flex justify-between">
         {nutritionSummaryItems.map((item, idx) => (
           <div key={idx}>

@@ -1,7 +1,7 @@
 import React from "react";
 import MediaQuery from "react-responsive";
 import DesktopDetails from "./Desktop/DesktopDetails";
-import MobileDetails from "./MobileDetails/FoodMobileDetails";
+import MobileDetails from "./MobileDetails";
 
 function FoodDetails() {
   return (

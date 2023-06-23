@@ -37,7 +37,7 @@ const Sidebar: React.FC<SidebarProps> = ({ leftPanelOpened, setLeftPanelOpened }
         onBackdropClick={() => setLeftPanelOpened(false)}
         className="z-[999999]"
       >
-        <Page className="overflow-hidden">
+        <Page className="bg-surface overflow-hidden">
           <div className="w-[282px] h-[926px] p-[0px] rounded-lg justify-start items-start gap-[30px] inline-flex">
             <div className="h-[926px] px-4 pt-[62px] bg-white flex-col justify-start items-start gap-6 inline-flex">
               <div>

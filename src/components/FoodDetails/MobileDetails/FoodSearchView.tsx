@@ -123,14 +123,14 @@ function FoodSearchView(
 
   useEffect(() => {
     async function fetchData() {
-      const searches = await (await fetchRecentSearches()).reverse();
+      const searches = (await fetchRecentSearches()).reverse();
       setRecentSearches(searches as SearchParams[]);
     }
     fetchData();
   }, [isOpen, query]);
 
   return (
-    <div className="bg-white h-[100vh]">
+    <div className="bg-surface">
       <div className="bg-[#F3EFF4] w-full fixed top-0 left-0 right-0 mb-10">
         <div className="flex items-center justify-between w-full gap-1 py-4 px-3">
           <div className="w-[10%] flex ">

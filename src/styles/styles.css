@@ -27,6 +27,10 @@ body {
   background-color: #ebebeb !important;
 }
 
+.bg-surface {
+  background-color: #fff !important;
+}
+
 .aa-InputWrapperSuffix {
   display: none;
 }

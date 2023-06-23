@@ -90,9 +90,7 @@ const Favorites = () => {
                 <div className="mb-5" key={index} onClick={() => onSelectItem(item.name, item.url)}>
                   <div className="w-full h-10 py-2 rounded-lg justify-between items-center gap-[76px] inline-flex mb-3">
                     <div className="p-[0px] flex-col justify-center items-start gap-2 inline-flex">
-                      <div className="text-zinc-900 text-[16px] font-medium leading-normal tracking-wide">
-                        {item.name}
-                      </div>
+                      <div className="text-main font-500 prose-titleMedium">{item.name}</div>
                     </div>
                     <div>
                       <MdOutlineArrowForwardIos className="w-[18px] h-[18px] relative" />

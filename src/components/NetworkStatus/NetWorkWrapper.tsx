@@ -1,27 +1,29 @@
-import { navigate } from "gatsby";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 interface Props {
   children: JSX.Element | JSX.Element[];
 }
 
 export default function NetWorkWrapper({ children }: Props) {
+  const [online, setOnline] = useState<boolean>(navigator.onLine);
+
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      window &&
-        window.addEventListener("online", function (e) {
-          navigate("/");
-          console.log(">>>> user is online");
-        });
-    }
+    const handleOnline = () => {
+      setOnline(true);
+      console.log(">>>> user is online");
+    };
+
+    const handleOffline = () => {
+      setOnline(false);
+      console.log(">>>> user is offline");
+    };
+
+    window.addEventListener("online", handleOnline);
+    window.addEventListener("offline", handleOffline);
+
     return () => {
-      if (typeof window !== "undefined") {
-        window &&
-          window.removeEventListener("online", function (e) {
-            console.log(">>>>> user online");
-            navigate("/");
-          });
-      }
+      window.removeEventListener("online", handleOnline);
+      window.removeEventListener("offline", handleOffline);
     };
   }, []);
 

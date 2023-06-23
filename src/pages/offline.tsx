@@ -32,7 +32,6 @@ const OfflinePage = () => {
 
   if (isOnline) {
     navigate("/");
-    return null;
   }
 
   return (

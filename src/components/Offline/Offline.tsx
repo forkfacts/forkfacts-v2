@@ -3,25 +3,25 @@ import { RiWifiOffLine } from "react-icons/ri";
 import { Button } from "konsta/react";
 import { navigate } from "gatsby";
 
+const isBrowser = typeof window !== "undefined";
+
 const Offline = () => {
-  const [isOnline, setIsOnline] = useState(
-    typeof window !== "undefined" && window && navigator.onLine
-  );
+  const [isOnline, setIsOnline] = useState(isBrowser && window && navigator.onLine);
 
   useEffect(() => {
     const handleConnectionChange = () => {
-      if (typeof window !== "undefined") {
+      if (isBrowser) {
         setIsOnline(navigator.onLine);
       }
     };
 
-    if (typeof window !== "undefined") {
+    if (isBrowser) {
       window.addEventListener("online", handleConnectionChange);
       window.addEventListener("offline", handleConnectionChange);
     }
 
     return () => {
-      if (typeof window !== "undefined") {
+      if (isBrowser) {
         window.removeEventListener("online", handleConnectionChange);
         window.removeEventListener("offline", handleConnectionChange);
       }
@@ -29,7 +29,7 @@ const Offline = () => {
   }, []);
 
   const handleRetry = () => {
-    if (typeof window !== "undefined") {
+    if (isBrowser) {
       window.location.reload();
     }
   };

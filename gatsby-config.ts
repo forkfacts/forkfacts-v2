@@ -14,6 +14,7 @@ const config: GatsbyConfig = {
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
+    `gatsby-plugin-offline`,
     "gatsby-plugin-sitemap",
     {
       resolve: "gatsby-plugin-manifest",
@@ -38,15 +39,6 @@ const config: GatsbyConfig = {
           "@forkfacts/generate-pages": path.resolve(__dirname, "src/pageGenerators"),
         },
         extensions: [".js", ".jsx", ".ts", ".tsx", ".css"],
-      },
-    },
-    {
-      resolve: `gatsby-plugin-offline`,
-      options: {
-        appendScript: require.resolve(`src/sw.tsx`),
-        workboxConfig: {
-          importWorkboxFrom: `cdn`,
-        },
       },
     },
     "gatsby-transformer-json",

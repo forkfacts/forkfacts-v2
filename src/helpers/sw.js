@@ -4,10 +4,8 @@ const { registerRoute } = workbox.routing;
 const { CacheFirst } = workbox.strategies;
 const { CacheableResponsePlugin } = workbox.cacheableResponse;
 
-// The plugin will pass the files to cache here
 workbox.precaching.precacheAndRoute([]);
 
-// Precache offline page
 workbox.precaching.precacheAndRoute([{ url: "/offline", revision: null }]);
 
 registerRoute(

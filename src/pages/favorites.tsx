@@ -60,7 +60,7 @@ const Favorites = () => {
   );
 
   return (
-    <Page className="bg-[#ebebeb !important] overflow-scroll">
+    <Page className={"bg-[#ebebeb !important] overflow-scroll"}>
       {openSearch ? (
         <div className="bg-[#ebebeb]">
           <div className="bg-[#F3EFF4] w-full fixed top-0 left-0 right-0 mb-10 z-[99999]">
@@ -120,7 +120,8 @@ const Favorites = () => {
           />
           <div>
             {!favourites.length ? (
-              <div className="w-full h-[100vh] p-[0px] bg-white flex-col justify-center items-center gap-[36px] inline-flex mt-2">
+              <div className="w-full h-[100vh] p-[0px] bg-white flex-col justify-center items-center gap-[36px] inline-flex absolute top-0 left-0 right-0 bottom-0 overflow-hidden">
+                <div className="h-4 w-full bg-[#ebebeb] absolute top-0 mt-[3.3rem] left-0 right-0" />
                 <div className="p-[0px] flex-col justify-start items-center gap-6 flex -mt-8">
                   <img
                     src="/favourites.svg"

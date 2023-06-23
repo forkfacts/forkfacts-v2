@@ -4,30 +4,24 @@ import { Button } from "konsta/react";
 import { navigate } from "gatsby";
 
 const OfflinePage = () => {
-  const [isOnline, setIsOnline] = useState(window && window.navigator.onLine);
+  const [isOnline, setIsOnline] = useState(true);
 
   useEffect(() => {
-    if (isOnline) {
-      navigate("/");
-    }
-  }, [isOnline]);
-
-  useEffect(() => {
-    const handleConnectionChange = () => {
-      setIsOnline(navigator.onLine);
-    };
-
     if (typeof window !== "undefined") {
+      setIsOnline(window.navigator.onLine);
+
+      const handleConnectionChange = () => {
+        setIsOnline(window.navigator.onLine);
+      };
+
       window.addEventListener("online", handleConnectionChange);
       window.addEventListener("offline", handleConnectionChange);
-    }
 
-    return () => {
-      if (typeof window !== "undefined") {
+      return () => {
         window.removeEventListener("online", handleConnectionChange);
         window.removeEventListener("offline", handleConnectionChange);
-      }
-    };
+      };
+    }
   }, []);
 
   const handleRetry = () => {
@@ -35,7 +29,8 @@ const OfflinePage = () => {
   };
 
   if (isOnline) {
-    return navigate("/");
+    navigate("/");
+    return null;
   }
 
   return (

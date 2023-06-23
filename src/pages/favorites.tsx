@@ -9,7 +9,6 @@ import { TfiTrash } from "react-icons/tfi";
 import { IoMdSearch } from "react-icons/io";
 import { MdOutlineCancel } from "react-icons/md";
 import { MdOutlineArrowForwardIos } from "react-icons/md";
-import { addSearchEntry } from "../helpers/forkfacts-recent-searches";
 import { navigate } from "gatsby";
 
 const Favorites = () => {
@@ -30,15 +29,7 @@ const Favorites = () => {
       setFavourites(await fetchFavorites());
     }
   };
-  const onSelectItem = async (name: string, url: string) => {
-    const searchData = {
-      name: name,
-      hap_name: name,
-      category: "Food",
-      timestamp: new Date(),
-      searchLocation: "Food",
-    };
-    await addSearchEntry(searchData);
+  const onSelectItem = async (url: string) => {
     navigate(url);
   };
 
@@ -87,7 +78,7 @@ const Favorites = () => {
           <div className="bg-[#ebebeb]">
             <div className="bg-white pt-24 shadow-summaryShadow mb-4 pb-0.5 px-4">
               {searchIFavorites.map((item, index) => (
-                <div className="mb-5" key={index} onClick={() => onSelectItem(item.name, item.url)}>
+                <div className="mb-5" key={index} onClick={() => onSelectItem(item.url)}>
                   <div className="w-full h-10 py-2 rounded-lg justify-between items-center gap-[76px] inline-flex mb-3">
                     <div className="p-[0px] flex-col justify-center items-start gap-2 inline-flex">
                       <div className="text-main font-500 prose-titleMedium">{item.name}</div>
@@ -144,11 +135,7 @@ const Favorites = () => {
               <div className="mt-18 pt-5 pb-1 px-2 bg-white shadow">
                 {favourites.map((item, index) => {
                   return (
-                    <div
-                      key={index}
-                      className="mb-5"
-                      onClick={() => onSelectItem(item.name, item.url)}
-                    >
+                    <div key={index} className="mb-5" onClick={() => onSelectItem(item.url)}>
                       <div className="w-full px-4 py-1 rounded-lg flex justify-between items-center gap-[56px]">
                         <h1 className="text-main prose-titleMedium font-500">{item.name}</h1>
                         <div>

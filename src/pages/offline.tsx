@@ -7,25 +7,27 @@ const OfflinePage = () => {
   const [isOnline, setIsOnline] = useState(true);
 
   useEffect(() => {
+    const handleConnectionChange = () => {
+      setIsOnline(window.navigator.onLine);
+    };
     if (typeof window !== "undefined" && isBrowser()) {
       setIsOnline(window.navigator.onLine);
-
-      const handleConnectionChange = () => {
-        setIsOnline(window.navigator.onLine);
-      };
-
       window.addEventListener("online", handleConnectionChange);
       window.addEventListener("offline", handleConnectionChange);
+    }
 
-      return () => {
+    return () => {
+      if (typeof window !== "undefined" && isBrowser()) {
         window.removeEventListener("online", handleConnectionChange);
         window.removeEventListener("offline", handleConnectionChange);
-      };
-    }
+      }
+    };
   }, []);
 
   const handleRetry = () => {
-    window.location.reload();
+    if (typeof window !== "undefined" && isBrowser()) {
+      window.location.reload();
+    }
   };
 
   if (isOnline) {

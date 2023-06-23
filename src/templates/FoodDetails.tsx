@@ -72,7 +72,6 @@ export const getNutrientRdiPercent = (
 ): number | undefined => {
   const mapping = getMappingFor(nutritionFact.nutrient.name, mappingsByNutrient);
   if (!mapping) {
-    // console.log(`CASE 2: No mapping available for ${nutritionFact.nutrient.name}`);
     return undefined;
   }
   const multiplier = mapping.usdaToRdiUnitMultiplier;

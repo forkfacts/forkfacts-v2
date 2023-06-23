@@ -2,6 +2,7 @@ import { Button } from "konsta/react";
 import React from "react";
 import { MdArrowForwardIos } from "react-icons/md";
 import { useStore } from "../../helpers/stores";
+import { calculateCaloriesIntake } from "../../helpers";
 
 const FoodNutritionCard = () => {
   const { nutrition } = useStore((state) => state);
@@ -43,7 +44,11 @@ const FoodNutritionCard = () => {
                     </h3>
                   </div>
                   <h3 className="prose-labelLarge text-textDark font-600">
-                    {group.percentDaily ? `${Math.ceil(group.percentDaily)}%` : ""}
+                    {group.nutrient.name === "Calories"
+                      ? `${calculateCaloriesIntake(group.nutrient.amount)}%`
+                      : group.percentDaily
+                      ? `${Math.ceil(group.percentDaily)}%`
+                      : ""}
                   </h3>
                 </div>
                 {group?.children?.length ? (
@@ -93,7 +98,10 @@ const FoodNutritionCard = () => {
         <div className="flex justify-end w-full mt-3 mb-6">
           <h4 className="prose-caption text-dark font-500">Source: USDA</h4>
         </div>
-        <div className="mb-2 w-[100%]">
+        <div className="mb-2 w-[100%] text-center">
+          <h3 className="prose-caption text-dark font-400 mb-6 ">
+            2,000 calories a day is used for general nutrition advice
+          </h3>
           <Button className="block bg-primary-90 text-primary-40 text-[14px] leading-[20px] font-500 tracking-[0.1px] rounded-lg max-w-full">
             View all nutrients
             <MdArrowForwardIos className="ml-3 w-[18px] h-[18px]" />

@@ -2,6 +2,7 @@ import React from "react";
 import "react-circular-progressbar/dist/styles.css";
 import { CircularProgressbarWithChildren, buildStyles } from "react-circular-progressbar";
 import { useStore } from "../../helpers/stores";
+import { calculateCaloriesIntake } from "../../helpers";
 
 const FoodDetailsSummary = () => {
   const { nutrition } = useStore((state) => state);
@@ -26,7 +27,13 @@ const FoodDetailsSummary = () => {
                   <div className="w-[50px] h-[50px]">
                     <CircularProgressbarWithChildren
                       strokeWidth={10}
-                      value={item.rdi?.amount ? Math.ceil(item.percentDaily as number) : 0}
+                      value={
+                        item.nutrient.name === "Calories"
+                          ? calculateCaloriesIntake(item.nutrient.amount)
+                          : item.rdi?.amount
+                          ? Math.ceil(item.percentDaily as number)
+                          : 0
+                      }
                       styles={buildStyles({
                         textColor: "#000",
                         pathColor: "#6660FF",
@@ -36,7 +43,7 @@ const FoodDetailsSummary = () => {
                     >
                       <p className="text-center text-[12px] text-main leading-[28px] font-500">
                         {item.nutrient.name === "Calories"
-                          ? null
+                          ? `${calculateCaloriesIntake(item.nutrient.amount)}%`
                           : item.percentDaily && item.nutrient.name !== "Calories"
                           ? `${Math.ceil(item.percentDaily as number)}%`
                           : 0}

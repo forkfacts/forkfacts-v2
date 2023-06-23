@@ -155,3 +155,8 @@ export const getMappingFor = (
   const mapping = mappingsByNutrient.get(nutrientNameToSearch);
   return mapping;
 };
+
+export const calculateCaloriesIntake = (amount: number) => {
+  const pDailyValue = Math.ceil(((amount * 1) / 200) * 100);
+  return pDailyValue;
+};

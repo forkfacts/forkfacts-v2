@@ -129,9 +129,9 @@ const Favorites = () => {
                     className="w-[158px] h-[152px] relative"
                   />
                   <div className="p-[0px] flex-col justify-start items-center gap-6 flex">
-                    <div className="w-[286px] text-center prose-bodyLarge font-400 text-main">
+                    <p className="w-[286px] text-center prose-bodyLarge font-400 text-main">
                       You have not added any food to favourites
-                    </div>
+                    </p>
                     <div className="px-6 py-[10px] bg-indigo-100 bg-opacity-50 rounded-[36px] flex-col justify-center items-center gap-2 flex">
                       <div className="text-center font-500 prose-labelLarge text-primary-40">
                         Start searching

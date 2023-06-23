@@ -58,7 +58,7 @@ const getRdisForNutrient = (
     return (
       rdi.nutrient === nutrientNameToSearch &&
       rdi.applicableFor ===
-        (applicableFor.toLowerCase() === "pregnanct" ? "pregnancy" : applicableFor.toLowerCase()) &&
+        (applicableFor.toLowerCase() === "pregnant" ? "pregnancy" : applicableFor.toLowerCase()) &&
       rdi.ageStart === ageStart &&
       rdi.ageEnd === ageEnd
     );

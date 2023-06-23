@@ -1,8 +1,8 @@
-import { SeoProps } from "../models";
+import { SeoProps } from "../models/seo";
 
 export const siteMetadata: SeoProps = {
-  title: `Using Gatsby Head`,
+  title: `Forkfacts`,
   description: `Example project for the Gatsby Head API`,
-  image: `/gatsby-icon.png`,
-  siteUrl: `https://www.yourdomain.tld`,
+  image: `/icon.png`,
+  siteUrl: `https://www.forkfacts.app/`,
 };

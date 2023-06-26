@@ -12,6 +12,8 @@ const Offline = () => {
     const handleConnectionChange = () => {
       if (isBrowser) {
         setIsOnline(navigator.onLine);
+      } else {
+        navigate("/offline");
       }
     };
     if (isBrowser) {

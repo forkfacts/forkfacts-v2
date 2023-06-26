@@ -34,9 +34,13 @@ export interface NutritionFact {
     unit: string;
   };
   rdi?: {
-    pct?: number;
-    amount?: number;
-    unit?: string;
+    applicableFor: string;
+    ageStart: number;
+    ageEnd?: number;
+    importTable: string;
+    nutrient: string;
+    amount: number;
+    nutrientUnit: string;
   };
   percentDaily?: number;
   children?: NutritionFact[];
@@ -44,12 +48,11 @@ export interface NutritionFact {
 export interface RDI {
   applicableFor: string;
   ageStart: number;
-  ageEnd: number;
+  ageEnd?: number;
   importTable: string;
   nutrient: string;
   amount: number;
   nutrientUnit: string;
-  nutrientGroup: string;
 }
 export interface UsdaRdiNutrientMapping {
   id: number;
@@ -61,3 +64,17 @@ export interface UsdaRdiNutrientMapping {
   rdiNutrientTable: string;
   usdaToRdiUnitMultiplier: number;
 }
+
+export interface Gender {
+  name: string;
+  icon: any;
+}
+
+export interface RdiAge {
+  start: number;
+  end?: number;
+  ageUnit: "Month" | "Year";
+  index?: number;
+}
+
+export type LifeStage = "infants" | "children" | "males" | "females" | "pregnancy" | "lactation";

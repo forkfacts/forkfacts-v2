@@ -37,7 +37,7 @@
       "@forkfacts/screens": ["screens"],
       "@forkfacts/models": ["models"],
       "@forkfacts/styles": ["styles"],
-      "@forkfacts/icons": ["DesignIcons"],
+      "@forkfacts/icons": ["icons"],
       "@forkfacts/generate-pages": ["pageGenerators"],
       "@forkfacts/features": ["features"]
     } /* Specify a set of entries that re-map imports to additional lookup locations. */,

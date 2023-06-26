@@ -10,7 +10,7 @@ import "@fontsource/poppins/700.css";
 import "./src/styles/styles.css";
 import { navigate } from "gatsby";
 
-const isBrowser = typeof window !== "undefined";
+// const isBrowser = typeof window !== "undefined";
 
 const WrapPageElement = ({ element }) => {
   useEffect(() => {

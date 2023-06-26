@@ -135,9 +135,14 @@ const Favorites = () => {
               <div className="mt-18 pt-5 pb-1 px-2 bg-white shadow">
                 {favourites.map((item, index) => {
                   return (
-                    <div key={index} className="mb-5" onClick={() => onSelectItem(item.url)}>
+                    <div key={index} className="mb-5">
                       <div className="w-full px-4 py-1 rounded-lg flex justify-between items-center gap-[56px]">
-                        <h1 className="text-main prose-titleMedium font-500">{item.name}</h1>
+                        <h1
+                          className="text-main prose-titleMedium font-500"
+                          onClick={() => onSelectItem(item.url)}
+                        >
+                          {item.name}
+                        </h1>
                         <div>
                           <TfiTrash
                             className="w-[18px] h-[18px] relative cursor-pointer"

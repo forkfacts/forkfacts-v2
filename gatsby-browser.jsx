@@ -19,12 +19,6 @@ const WrapPageElement = ({ element }) => {
         window.addEventListener("offline", function (e) {
           navigate("/offline");
         });
-    } else if (
-      !navigator.connection &&
-      navigator.onLine &&
-      window.navigator.connection.type === "none"
-    ) {
-      navigate("/offline");
     }
     return () => {
       if (isBrowser) {

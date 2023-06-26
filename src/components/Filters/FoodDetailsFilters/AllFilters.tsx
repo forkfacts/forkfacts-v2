@@ -93,11 +93,11 @@ const AllFilters = () => {
         </span>
       </button>
       <Sheet
-        className="pb-safe w-full rounded-tr-[16px] rounded-tl-[16px] h-[80vh] overflow-scroll hide-visible-scrollbar"
+        className="pb-safe w-full rounded-tr-[16px] rounded-tl-[16px] h-[80vh] overflow-scroll hide-visible-scrollbar bg-surface"
         opened={sheetOpened}
         onBackdropClick={() => setSheetOpened(false)}
       >
-        <div>
+        <div className="bg-white">
           <Navbar
             title="ALL FILTERS"
             bgClassName="bg-white"
@@ -113,7 +113,7 @@ const AllFilters = () => {
           />
 
           <hr />
-          <div className="w-full px-3 pt-4 mb-14">
+          <div className="w-full px-3 pt-4 mb-14 bg-white h-full">
             <h1 className="mb-[20px] prose-titleMedium text-textDark font-500">Age</h1>
             <div className="flex gap-5 flex-col mb-3">
               {age.map((age, index) => {

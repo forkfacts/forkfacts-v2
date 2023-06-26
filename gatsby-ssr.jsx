@@ -6,8 +6,10 @@ import "@fontsource/poppins/500.css";
 import "@fontsource/poppins/600.css";
 import "@fontsource/poppins/700.css";
 import "./src/styles/styles.css";
+import { Helmet } from "react-helmet";
+import { HelmetProvider } from "react-helmet-async";
 
-export const WrapPageElement = ({ element }) => {
+const WrapPageElement = ({ element }) => {
   useEffect(() => {
     if (isBrowser) {
       window &&
@@ -31,10 +33,24 @@ export const WrapPageElement = ({ element }) => {
     };
   }, []);
   return (
-    <App theme="material" dark={false}>
-      {element}
-    </App>
+    <HelmetProvider>
+      <Helmet defer={false} />
+      <link rel="manifest" href="/manifest.webmanifest" />
+      <App theme="material" dark={false}>
+        {element}
+      </App>
+    </HelmetProvider>
   );
 };
 
-export const wrapPageElement = WrapPageElement;
+export const wrapRootElement = WrapPageElement;
+
+export const onServiceWorkerUpdateReady = () => {
+  const answer = window.confirm(
+    "This application has been updated. Reload to display the latest version?"
+  );
+  if (answer === true) {
+    window.location.reload();
+  }
+};
+export const registerServiceWorker = () => true;

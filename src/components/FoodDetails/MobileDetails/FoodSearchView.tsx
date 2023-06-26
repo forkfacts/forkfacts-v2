@@ -68,6 +68,7 @@ function FoodSearchView(
           setAutocompleteState(state);
         },
         shouldPanelOpen: () => true,
+
         getSources() {
           return [
             {
@@ -159,52 +160,60 @@ function FoodSearchView(
       </div>
       <div className="h-4" />
       <div className="h-16" />
-      <div className="bg-white">
-        {isOpen && query ? (
-          <div className="mt-6 w-full">
-            <ForLoops each={collections}>
-              {(collection, index) => {
-                const { items } = collection;
-                if (items.length === 0) {
-                  return (
-                    <div
-                      key={`source-${index}`}
-                      className="w-[90%] mx-auto flex justify-center items-center h-[80vh]"
-                    >
-                      <h1 className="text-dark prose-titleMedium font-500">No result found</h1>
-                    </div>
-                  );
-                } else {
-                  if (status === "loading") {
+      {status === "error" ? (
+        <>
+          <h1 className="prose-labelLarge mt-6 text-main font-500">
+            Encounter an error, Please check your internet connection
+          </h1>
+        </>
+      ) : (
+        <div className="bg-white">
+          {isOpen && query ? (
+            <div className="mt-6 w-full">
+              <ForLoops each={collections}>
+                {(collection, index) => {
+                  const { items } = collection;
+                  if (items.length === 0) {
                     return (
-                      <div key={`source-${index}`} className="w-[90%] mx-auto ">
-                        <Preloader size="w-4 h-4 pl-10" />
+                      <div
+                        key={`source-${index}`}
+                        className="w-[90%] mx-auto flex justify-center items-center h-[80vh]"
+                      >
+                        <h1 className="text-dark prose-titleMedium font-500">No result found</h1>
                       </div>
                     );
                   } else {
-                    return (
-                      <div key={`source-${index}`}>
-                        {items.length > 0 && (
-                          <SearchResults
-                            collections={collection.items}
-                            onSelectItem={onSelectItem}
-                            isSearch={isOpen && query}
-                          />
-                        )}
-                      </div>
-                    );
+                    if (status === "loading") {
+                      return (
+                        <div key={`source-${index}`} className="w-[90%] mx-auto">
+                          <Preloader size="w-4 h-4" />
+                        </div>
+                      );
+                    } else {
+                      return (
+                        <div key={`source-${index}`}>
+                          {items.length > 0 && (
+                            <SearchResults
+                              collections={collection.items}
+                              onSelectItem={onSelectItem}
+                              isSearch={isOpen && query}
+                            />
+                          )}
+                        </div>
+                      );
+                    }
                   }
-                }
-              }}
-            </ForLoops>
-          </div>
-        ) : !query ? (
-          <SearchResults
-            collections={recentSearches as SearchResultItemType[]}
-            onSelectItem={onSelectItem}
-          />
-        ) : null}
-      </div>
+                }}
+              </ForLoops>
+            </div>
+          ) : !query ? (
+            <SearchResults
+              collections={recentSearches as SearchResultItemType[]}
+              onSelectItem={onSelectItem}
+            />
+          ) : null}
+        </div>
+      )}
     </div>
   );
 }

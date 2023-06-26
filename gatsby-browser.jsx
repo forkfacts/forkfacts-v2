@@ -10,16 +10,24 @@ import "@fontsource/poppins/700.css";
 import "./src/styles/styles.css";
 import { navigate } from "gatsby";
 
+const isBrowser = typeof window !== "undefined";
+
 const WrapPageElement = ({ element }) => {
   useEffect(() => {
-    if (typeof window !== "undefined") {
+    if (isBrowser) {
       window &&
         window.addEventListener("offline", function (e) {
           navigate("/offline");
         });
+    } else if (
+      !navigator.connection &&
+      navigator.onLine &&
+      window.navigator.connection.type === "none"
+    ) {
+      navigate("/offline");
     }
     return () => {
-      if (typeof window !== "undefined") {
+      if (isBrowser) {
         window &&
           window.removeEventListener("offline", function (e) {
             navigate("/offline");

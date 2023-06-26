@@ -14,12 +14,10 @@ const Offline = () => {
         setIsOnline(navigator.onLine);
       }
     };
-
     if (isBrowser) {
       window.addEventListener("online", handleConnectionChange);
       window.addEventListener("offline", handleConnectionChange);
     }
-
     return () => {
       if (isBrowser) {
         window.removeEventListener("online", handleConnectionChange);
@@ -33,12 +31,10 @@ const Offline = () => {
       window.location.reload();
     }
   };
-
   if (isOnline) {
     navigate("/");
     return null;
   }
-
   return (
     <div className="flex justify-center items-center h-screen">
       <div className="text-center flex flex-col justify-center items-center">

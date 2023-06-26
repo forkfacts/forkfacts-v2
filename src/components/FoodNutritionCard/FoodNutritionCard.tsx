@@ -48,7 +48,7 @@ const FoodNutritionCard = () => {
                     {group.nutrient.name === "Calories"
                       ? `${calculateCaloriesIntake(group.nutrient.amount)}%`
                       : group.percentDaily
-                      ? `${Math.ceil(group.percentDaily)}%`
+                      ? `${Math.ceil(Math.abs(group.percentDaily))}%`
                       : ""}
                   </h3>
                 </div>
@@ -74,7 +74,9 @@ const FoodNutritionCard = () => {
                                 </p>
                               </div>
                               <p className="prose-labelLarge text-textDark font-600">
-                                {row.percentDaily ? `${Math.ceil(row.percentDaily)}%` : ""}
+                                {row.percentDaily
+                                  ? `${Math.ceil(Math.abs(row.percentDaily))}%`
+                                  : ""}
                               </p>
                             </div>
                             <hr

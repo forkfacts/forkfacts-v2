@@ -98,7 +98,7 @@ export const genders: Gender[] = [
 
 export const allAges: RdiAge[] = [
   { start: 0, end: 6, ageUnit: "Month" },
-  { start: 7, end: 12, ageUnit: "Month" },
+  { start: 6, end: 12, ageUnit: "Month" },
   { start: 1, end: 3, ageUnit: "Year" },
   { start: 4, end: 8, ageUnit: "Year" },
   { start: 9, end: 13, ageUnit: "Year" },

@@ -107,13 +107,16 @@ export const generateRdiForFood = (
       applicableFor,
       selectedAge
     );
-    if (rdisForLifeStageAndAge.length < 1) nutritionFacts.push(nutritionFact);
+    if (rdisForLifeStageAndAge.length < 1) {
+      nutritionFacts.push(nutritionFact);
+    }
+
     for (const rdi of rdisForLifeStageAndAge) {
       const percentDaily = getNutrientRdiPercent(nutritionFact, rdi);
 
       const existingFact = mergedFacts.get(nutritionFact.displayOrder);
       if (existingFact?.percentDaily) {
-        existingFact.percentDaily = percentDaily as number;
+        existingFact.percentDaily += percentDaily as number;
       } else {
         mergedFacts.set(nutritionFact.displayOrder, {
           ...nutritionFact,

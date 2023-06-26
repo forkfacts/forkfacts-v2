@@ -19,9 +19,19 @@ body {
   background: transparent;
 }
 
+.hide-visible-scrollbar::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+  background: transparent;
+}
+
 .aa-Form .aa-ClearButton {
   display: none;
 }
 .aa-InputWrapperSuffix {
   display: none;
+}
+
+.text-\[22px\] {
+  font-size: 16px !important;
 }

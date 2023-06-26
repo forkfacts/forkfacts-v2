@@ -4,6 +4,12 @@ import { useStore } from "../helpers/stores";
 import { Food, NutritionFact, RDI, UsdaRdiNutrientMapping } from "@forkfacts/models";
 
 const mappings = require("../../data/usda_rdi_nutrient_mapping.json");
+import {
+  filterByRDI,
+  getAgeRangesForLifeStage,
+  getMappingFor,
+  setDefaultSelectedAgeForGender,
+} from "../helpers/utils";
 
 interface Props {
   pageContext: {
@@ -23,31 +29,14 @@ export const getMappingsByNutrient: () => Map<string, UsdaRdiNutrientMapping> = 
   }, new Map<string, UsdaRdiNutrientMapping>());
 const mappingsByNutrient = getMappingsByNutrient();
 
-const getMappingFor = (nutrient: string) => {
-  let nutrientNameToSearch;
-  switch (nutrient) {
-    case "Total fat":
-      nutrientNameToSearch = "Fat";
-      break;
-    case "Dietary fiber":
-      nutrientNameToSearch = "Total Fiber";
-      break;
-    case "Carbohydrate, total":
-      nutrientNameToSearch = "Carbohydrate";
-      break;
-    case "Pantothenic acid":
-      // todo: change name when addressing https://app.clickup.com/t/860r5fh4b
-      nutrientNameToSearch = "Panthothenic Acid";
-      break;
-    default:
-      nutrientNameToSearch = nutrient;
-  }
-  const mapping = mappingsByNutrient.get(nutrientNameToSearch);
-  // console.log(`${nutrient} => ${mapping}`);
-  return mapping;
-};
-
-const getRdisForNutrient = (nutrient: string, rdis: RDI[]): RDI[] => {
+const getRdisForNutrient = (
+  nutrient: string,
+  rdis: RDI[],
+  selectedLifeStage: string,
+  selectedAge: { ageStart: number; ageEnd?: number; ageUnit: "Month" | "Year" }
+): RDI[] => {
+  const applicableFor = selectedLifeStage;
+  const { ageStart, ageEnd } = selectedAge;
   let nutrientNameToSearch: string;
   switch (nutrient) {
     case "Total fat":
@@ -65,17 +54,28 @@ const getRdisForNutrient = (nutrient: string, rdis: RDI[]): RDI[] => {
     default:
       nutrientNameToSearch = nutrient;
   }
-  // console.log(`Finding RDIs for '${nutrient} (${nutrientNameToSearch})'`);
   const rdisForLifeStageAndAge = rdis.filter((rdi) => {
-    return (
-      rdi.nutrient === nutrientNameToSearch &&
-      rdi.applicableFor === "females" &&
-      rdi.ageStart === 31 &&
-      rdi.ageEnd === 50
-    );
+    if (!rdi.ageEnd) {
+      return (
+        rdi.nutrient === nutrientNameToSearch &&
+        rdi.applicableFor ===
+          (applicableFor.toLowerCase() === "pregnant"
+            ? "pregnancy"
+            : applicableFor.toLowerCase()) &&
+        rdi.ageStart === ageStart
+      );
+    } else {
+      return (
+        rdi.nutrient === nutrientNameToSearch &&
+        rdi.applicableFor ===
+          (applicableFor.toLowerCase() === "pregnant"
+            ? "pregnancy"
+            : applicableFor.toLowerCase()) &&
+        rdi.ageStart === ageStart &&
+        rdi.ageEnd === ageEnd
+      );
+    }
   });
-
-  // console.log(rdisForLifeStageAndAge);
   return rdisForLifeStageAndAge;
 };
 
@@ -83,49 +83,40 @@ export const getNutrientRdiPercent = (
   nutritionFact: NutritionFact,
   rdi: RDI
 ): number | undefined => {
-  if (nutritionFact.nutrient.unit === "NOT_AVAILABLE" || rdi.amount < 0) {
-    // console.log(`CASE 1: Nutrient Unit / RDI Amount unavailable`);
-    return undefined;
-  }
-
-  const mapping = getMappingFor(nutritionFact.nutrient.name);
+  const mapping = getMappingFor(nutritionFact.nutrient.name, mappingsByNutrient);
   if (!mapping) {
-    // console.log(`CASE 2: No mapping available for ${nutritionFact.nutrient.name}`);
     return undefined;
-  }
-
-  if (nutritionFact.nutrient.unit.toLowerCase() !== mapping.rdiNutrientUnit.toLowerCase()) {
-    /*console.log(
-                  `CASE 3: Units do not match => conversion needed for '${
-                    nutritionFact.nutrient.name
-                  }' from '${nutritionFact.nutrient.unit.toLowerCase()}' to '${rdi.nutrientUnit.toLowerCase()}' using multiplier '${
-                    mapping.usdaToRdiUnitMultiplier
-                  }'`
-                );*/
   }
   const multiplier = mapping.usdaToRdiUnitMultiplier;
   const pDailyValue = ((nutritionFact.nutrient.amount * multiplier) / rdi.amount) * 100;
-  console.log(
-    `${nutritionFact.nutrient.name} => ${nutritionFact.nutrient.amount}/${rdi.amount} => ${pDailyValue}`
-  );
   return pDailyValue;
 };
 
-export const generateRdiForFood = (food: NutritionFact[] = [], rdis: RDI[]): NutritionFact[] => {
-  console.log(mappingsByNutrient);
+export const generateRdiForFood = (
+  food: NutritionFact[] = [],
+  rdis: RDI[],
+  applicableFor: string,
+  selectedAge: { ageStart: number; ageEnd?: number; ageUnit: "Month" | "Year" }
+): NutritionFact[] => {
   const nutritionFacts: NutritionFact[] = [];
   const mergedFacts: Map<number, NutritionFact> = new Map();
   for (const nutritionFact of food) {
-    const rdisForLifeStageAndAge = getRdisForNutrient(nutritionFact.nutrient.name, rdis);
-    if (rdisForLifeStageAndAge.length < 1) nutritionFacts.push(nutritionFact);
-    // console.log(`rdisForLifeStageAndAge=${JSON.stringify(rdisForLifeStageAndAge)}`)
+    const rdisForLifeStageAndAge = getRdisForNutrient(
+      nutritionFact.nutrient.name,
+      rdis,
+      applicableFor,
+      selectedAge
+    );
+    if (rdisForLifeStageAndAge.length < 1) {
+      nutritionFacts.push(nutritionFact);
+    }
 
     for (const rdi of rdisForLifeStageAndAge) {
       const percentDaily = getNutrientRdiPercent(nutritionFact, rdi);
 
       const existingFact = mergedFacts.get(nutritionFact.displayOrder);
       if (existingFact?.percentDaily) {
-        existingFact.percentDaily = percentDaily as number;
+        existingFact.percentDaily += percentDaily as number;
       } else {
         mergedFacts.set(nutritionFact.displayOrder, {
           ...nutritionFact,
@@ -135,32 +126,58 @@ export const generateRdiForFood = (food: NutritionFact[] = [], rdis: RDI[]): Nut
           },
           percentDaily,
           children: nutritionFact.children
-            ? generateRdiForFood(nutritionFact.children, rdis)
+            ? generateRdiForFood(nutritionFact.children, rdis, applicableFor, selectedAge)
             : undefined,
         });
       }
     }
   }
-
   mergedFacts.forEach((fact) => {
     nutritionFacts.push(fact);
   });
-
   return nutritionFacts;
 };
 
 const FoodDetails: React.FC<Props> = ({ pageContext: { recommendedDailyIntakes, food } }) => {
-  const { setRecommendedDailyIntakes, setFood } = useStore((state) => state);
-  const nutrition = generateRdiForFood(food.nutrients, recommendedDailyIntakes);
-  /*
-            console.log(`food=>${JSON.stringify(food)}`)
-            console.log(`nutrition=>${JSON.stringify(nutrition)}`)
-            console.log(`rdi=>${JSON.stringify(recommendedDailyIntakes)}`)
-          */
+  const {
+    setRecommendedDailyIntakes,
+    setFood,
+    selectedAge,
+    setAge,
+    selectedLifeStage,
+    setSelectedAge,
+  } = useStore((state) => state);
+  const { ageUnit, start: ageStart, end: ageEnd } = selectedAge;
+  const nutritionFacts = generateRdiForFood(
+    food.nutrients,
+    recommendedDailyIntakes,
+    selectedLifeStage,
+    { ageStart, ageEnd, ageUnit }
+  );
+
+  const ageRanges = getAgeRangesForLifeStage(selectedLifeStage);
+
   useEffect(() => {
     setRecommendedDailyIntakes(recommendedDailyIntakes);
-    setFood(food, nutrition);
-  }, [recommendedDailyIntakes, food, setRecommendedDailyIntakes, setFood]);
+    setFood(food, nutritionFacts);
+  }, [
+    recommendedDailyIntakes,
+    food,
+    setRecommendedDailyIntakes,
+    setFood,
+    selectedAge,
+    selectedLifeStage,
+  ]);
+
+  useEffect(() => {
+    if (selectedLifeStage) {
+      setAge(ageRanges);
+    }
+  }, [selectedLifeStage]);
+
+  useEffect(() => {
+    setDefaultSelectedAgeForGender(selectedLifeStage, setSelectedAge);
+  }, [selectedLifeStage, setSelectedAge]);
 
   return (
     <div>

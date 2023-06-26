@@ -36,7 +36,7 @@ export interface NutritionFact {
   rdi?: {
     applicableFor: string;
     ageStart: number;
-    ageEnd: number;
+    ageEnd?: number;
     importTable: string;
     nutrient: string;
     amount: number;
@@ -48,7 +48,7 @@ export interface NutritionFact {
 export interface RDI {
   applicableFor: string;
   ageStart: number;
-  ageEnd: number;
+  ageEnd?: number;
   importTable: string;
   nutrient: string;
   amount: number;

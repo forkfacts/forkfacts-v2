@@ -55,13 +55,26 @@ const getRdisForNutrient = (
       nutrientNameToSearch = nutrient;
   }
   const rdisForLifeStageAndAge = rdis.filter((rdi) => {
-    return (
-      rdi.nutrient === nutrientNameToSearch &&
-      rdi.applicableFor ===
-        (applicableFor.toLowerCase() === "pregnant" ? "pregnancy" : applicableFor.toLowerCase()) &&
-      rdi.ageStart === ageStart &&
-      rdi.ageEnd === ageEnd
-    );
+    if (!rdi.ageEnd) {
+      return (
+        rdi.nutrient === nutrientNameToSearch &&
+        rdi.applicableFor ===
+          (applicableFor.toLowerCase() === "pregnant"
+            ? "pregnancy"
+            : applicableFor.toLowerCase()) &&
+        rdi.ageStart === ageStart
+      );
+    } else {
+      return (
+        rdi.nutrient === nutrientNameToSearch &&
+        rdi.applicableFor ===
+          (applicableFor.toLowerCase() === "pregnant"
+            ? "pregnancy"
+            : applicableFor.toLowerCase()) &&
+        rdi.ageStart === ageStart &&
+        rdi.ageEnd === ageEnd
+      );
+    }
   });
   return rdisForLifeStageAndAge;
 };

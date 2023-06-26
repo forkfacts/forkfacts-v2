@@ -18,12 +18,12 @@ const Age = () => {
     setSingleFilterSelection,
     setSelectedLifeStage,
   } = useStore((state) => state);
-  const ageString = selectedAge?.end
-    ? `${selectedAge.start}-${selectedAge.end} ${selectedAge.ageUnit}`
-    : ``;
+  const ageString = !selectedAge.end
+    ? `>${selectedAge.start} ${selectedAge.ageUnit}`
+    : `${selectedAge.start}-${selectedAge.end} ${selectedAge.ageUnit}`;
 
   const handleSelectAge = (item: RdiAge) => {
-    let ageString = "";
+    let ageString;
     if (!item.end) {
       ageString = `>70 years`;
     } else {

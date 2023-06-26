@@ -19,7 +19,7 @@ const FoodDetailsSummary = () => {
                 item.nutrient.name === "Carbohydrate, total" ||
                 item.nutrient.name === "Total fat" ||
                 item.nutrient.name === "Protein" ||
-                item.nutrient.name === "Calories"
+                item.nutrient.name === "Sodium"
             )
             .map((item, idx) => (
               <div key={idx} className="mr-[35px]">
@@ -27,13 +27,7 @@ const FoodDetailsSummary = () => {
                   <div className="w-[50px] h-[50px]">
                     <CircularProgressbarWithChildren
                       strokeWidth={10}
-                      value={
-                        item.nutrient.name === "Calories"
-                          ? calculateCaloriesIntake(item.nutrient.amount)
-                          : item.rdi?.amount
-                          ? Math.ceil(item.percentDaily as number)
-                          : 0
-                      }
+                      value={item.rdi?.amount ? Math.ceil(item.percentDaily as number) : 0}
                       styles={buildStyles({
                         textColor: "#000",
                         pathColor: "#6660FF",
@@ -42,9 +36,7 @@ const FoodDetailsSummary = () => {
                       })}
                     >
                       <p className="text-center text-[12px] text-main leading-[28px] font-500">
-                        {item.nutrient.name === "Calories"
-                          ? `${calculateCaloriesIntake(item.nutrient.amount)}%`
-                          : item.percentDaily && item.nutrient.name !== "Calories"
+                        {item.percentDaily && item.nutrient.name !== "Calories"
                           ? `${Math.ceil(item.percentDaily as number)}%`
                           : 0}
                       </p>

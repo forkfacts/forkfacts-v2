@@ -24,6 +24,7 @@ const FoodNutritionCard = () => {
                 key={index}
                 className={`mb-3 ${
                   group.nutrient.amount === -9999 ||
+                  group.nutrient.name === "Calories" ||
                   (group.nutrient.unit === "NOT_AVAILABLE" && !group.children?.length)
                     ? "hidden"
                     : "block"
@@ -52,7 +53,7 @@ const FoodNutritionCard = () => {
                   </h3>
                 </div>
                 {group?.children?.length ? (
-                  <div className="w-[100%] relative py-2">
+                  <div className="w-[100%] relative">
                     {group?.children
                       .filter((item) => item.nutrient.amount !== -9999)
                       .map((row, index2) => {
@@ -61,8 +62,8 @@ const FoodNutritionCard = () => {
                             key={index2}
                             className={`${row.nutrient.amount === -9999 ? "hidden" : "block"}`}
                           >
-                            <hr className={`${index2 !== 0 ? "hidden" : "block"} pt-2`} />
-                            <div className="flex justify-between mb-1 w-[90%] ml-auto">
+                            <hr className={`${index2 !== 0 ? "hidden" : "block"}`} />
+                            <div className="flex justify-between w-[90%] ml-auto my-3.5">
                               <div className="flex items-center">
                                 <p className="prose-bodyMedium text-textDark font-400">
                                   {row.nutrient.name}
@@ -83,7 +84,7 @@ const FoodNutritionCard = () => {
                                   .length
                                   ? "hidden"
                                   : "block"
-                              } mt-3 mb-2`}
+                              }`}
                             />
                           </div>
                         );

@@ -160,3 +160,7 @@ export const calculateCaloriesIntake = (amount: number) => {
   const pDailyValue = Math.ceil(((amount * 1) / 200) * 100);
   return pDailyValue;
 };
+
+export const getPercentDaily = (percentDaily: number) => {
+  return Math.round(percentDaily);
+};

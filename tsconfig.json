@@ -114,6 +114,7 @@
     // Tell ts-node CLI to install the --loader automatically
     "esm": true
   },
+  "types": ["@types/testing-library__react"],
   "include": [
     "src",
     "src/pages/projects/gatsby-node.ts",

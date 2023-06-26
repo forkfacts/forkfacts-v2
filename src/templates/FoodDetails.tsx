@@ -19,6 +19,7 @@ interface Props {
       title: string;
       description: string;
     };
+    slug: string;
   };
 }
 
@@ -138,7 +139,7 @@ export const generateRdiForFood = (
   return nutritionFacts;
 };
 
-const FoodDetails: React.FC<Props> = ({ pageContext: { recommendedDailyIntakes, food } }) => {
+const FoodDetails: React.FC<Props> = ({ pageContext: { recommendedDailyIntakes, food, slug } }) => {
   const {
     setRecommendedDailyIntakes,
     setFood,
@@ -179,8 +180,10 @@ const FoodDetails: React.FC<Props> = ({ pageContext: { recommendedDailyIntakes, 
     setDefaultSelectedAgeForGender(selectedLifeStage, setSelectedAge);
   }, [selectedLifeStage, setSelectedAge]);
 
+  console.log(slug);
+
   return (
-    <div>
+    <div id={`ff-page-${slug}`} data-json={JSON.stringify(nutritionFacts)}>
       <FoodDetailsComponent />
     </div>
   );

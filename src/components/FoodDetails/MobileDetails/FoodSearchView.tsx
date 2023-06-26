@@ -113,8 +113,6 @@ function FoodSearchView(
     await addSearchEntry(searchData);
     const path = `/${spaceToDashes(item.name)}/`;
     navigate(path);
-    setQuery("");
-    setIsOpen(false);
   };
 
   const onClearSearch = () => {

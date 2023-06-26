@@ -14,14 +14,14 @@ const isBrowser = typeof window !== "undefined";
 
 const WrapPageElement = ({ element }) => {
   useEffect(() => {
-    if (isBrowser) {
+    if (typeof window !== "undefined") {
       window &&
         window.addEventListener("offline", function (e) {
           navigate("/offline");
         });
     }
     return () => {
-      if (isBrowser) {
+      if (typeof window !== "undefined") {
         window &&
           window.removeEventListener("offline", function (e) {
             navigate("/offline");

@@ -7,14 +7,7 @@ workbox.precaching.precacheAndRoute([]);
 self.addEventListener("install", function (event) {
   event.waitUntil(
     caches.open("offline-cache").then(function (cache) {
-      return cache.addAll([
-        "/",
-        "/offline.html",
-        "/css/style.css",
-        "/favorites/",
-        "/manifest.webmanifest",
-        "/*",
-      ]);
+      return cache.addAll(["/", "/offline.html", "/favorites/", "/manifest.webmanifest", "/*"]);
     })
   );
 });

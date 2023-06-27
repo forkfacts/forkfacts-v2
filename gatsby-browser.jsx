@@ -43,12 +43,24 @@ const WrapPageElement = ({ element }) => {
 
 export const wrapPageElement = WrapPageElement;
 
-export const onServiceWorkerUpdateReady = () => {
-  const answer = window.confirm(
-    "This application has been updated. Reload to display the latest version?"
-  );
-  if (answer === true) {
-    window.location.reload();
+export const onServiceWorkerUpdateReady = async (args) => {
+  const permissionResponse = await Notification.requestPermission();
+  if (permissionResponse === "granted") {
+    await args.serviceWorker.showNotification("Website update", {
+      body: "Our website just got a little bit better. We reloaded the site with the update to ensure a smooth experience for you.",
+    });
+  }
+  window.location.reload(true);
+
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker
+      .register("/src/helpers/sw.js")
+      .then(function (registration) {
+        console.log("Service Worker registered:", registration);
+      })
+      .catch(function (error) {
+        console.log("Service Worker registration failed:", error);
+      });
   }
 };
 export const registerServiceWorker = () => true;

@@ -50,6 +50,7 @@
     "gatsby-plugin-material-ui": "^4.0.2",
     "gatsby-plugin-mdx": "^5.0.0",
     "gatsby-plugin-offline": "^6.11.0",
+    "gatsby-plugin-offline-next": "^5.2.3",
     "gatsby-plugin-seo": "^0.0.2",
     "gatsby-plugin-sharp": "^5.1.0",
     "gatsby-plugin-sitemap": "^6.0.0",

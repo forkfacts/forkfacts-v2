@@ -14,11 +14,11 @@ const config: GatsbyConfig = {
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
+    `gatsby-plugin-offline`,
     {
-      resolve: `gatsby-plugin-offline`,
+      resolve: "gatsby-plugin-sw",
       options: {
-        importWorkboxFrom: "local",
-        appendScript: `./gatsby-service-worker.js`,
+        swPath: "src/helpers/sw.js",
       },
     },
     "gatsby-plugin-sitemap",

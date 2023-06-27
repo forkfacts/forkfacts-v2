@@ -183,7 +183,12 @@ const FoodDetails: React.FC<Props> = ({ pageContext: { recommendedDailyIntakes, 
   console.log(slug);
 
   return (
-    <div id={`ff-page-${slug}`} data-json={JSON.stringify(nutritionFacts)}>
+    <div
+      id={`ff-page-${slug}`}
+      data-json={JSON.stringify(nutritionFacts)}
+      age-json={JSON.stringify(ageRanges)}
+      selected-gender={selectedLifeStage}
+    >
       <FoodDetailsComponent />
     </div>
   );

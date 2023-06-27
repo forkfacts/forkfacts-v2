@@ -77,4 +77,4 @@ export interface RdiAge {
   index?: number;
 }
 
-export type LifeStage = "infants" | "children" | "males" | "females" | "pregnancy" | "lactation";
+export type LifeStage = "Infants" | "Children" | "Males" | "Females" | "Pregnant" | "Lactation";

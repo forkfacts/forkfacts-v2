@@ -162,6 +162,12 @@ in order to merge to `main`. We prefer to merge to `main` (hence a release) as s
    updated storybook components. This can be of tremendous help during the code review.
 5. Once you are done with the work, assign your PR to a reviewer.
 
+```
+var element = document.getElementById('ff-page-slug');
+var jsonData = JSON.parse(element.getAttribute('data-json'));
+
+```
+
 ## Setting up environment variables
 
 To run this project, you'll need to set up some environment variables. These variables are used to connect to various APIs and services used in the project.
@@ -190,4 +196,5 @@ With the environment variables set up, you're ready to run the project!
 4. Do not include a blank or inactive file in the project.
 
 ## Supporters
+
 “This project is tested with BrowserStack.”

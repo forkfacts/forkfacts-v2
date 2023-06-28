@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
-import { LifeStage, NutritionFact, RdiAge, UsdaRdiNutrientMapping } from "../models";
-import { allAges, genders } from "./static-data";
+import { LifeStage, NutritionFact, RdiAge, UsdaRdiNutrientMapping } from "../../models";
+import { allAges, genders } from "../static-data";
 
 /**
  * The purpose is to use `-` as separator in the URL naming scheme.
@@ -166,7 +166,7 @@ export const getPercentDaily = (percentDaily: number) => {
   return Math.round(percentDaily);
 };
 
-export function getSugarsRDV(lifestage: LifeStage, age: RdiAge): number | null {
+export function getSugarsRDV(lifestage: string, age: RdiAge): number | null {
   if (lifestage === "Children" && age.start >= 1 && (age?.end as number) <= 3) {
     return 25;
   } else if (lifestage === "Children" && age.start >= 4 && (age.end as number) <= 8) {

@@ -8,7 +8,7 @@ import {
   getAgeRangesForLifeStage,
   getMappingFor,
   setDefaultSelectedAgeForGender,
-} from "../helpers/utils";
+} from "../helpers/utils/utils";
 
 interface Props {
   pageContext: {
@@ -172,12 +172,7 @@ const FoodDetails: React.FC<Props> = ({ pageContext: { recommendedDailyIntakes, 
   }, [selectedLifeStage, setSelectedAge]);
 
   return (
-    <div
-      id={`ff-page-${slug}`}
-      data-json={JSON.stringify(nutritionFacts)}
-      age-json={JSON.stringify(ageRanges)}
-      selected-gender={selectedLifeStage}
-    >
+    <div id={`ff-page-${slug}`} data-json={JSON.stringify(nutritionFacts)}>
       <FoodDetailsComponent />
     </div>
   );

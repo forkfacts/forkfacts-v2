@@ -1,3 +1,3 @@
 export * from "./ArrayRendering";
 export * from "./forkfacts-recent-searches";
-export * from "./utils";
+export * from "./utils/utils";

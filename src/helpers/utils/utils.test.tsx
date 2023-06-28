@@ -1,7 +1,7 @@
 import React from "react";
-import { getAgeRangesForLifeStage, getPercentDaily, spaceToDashes } from "../helpers/utils";
+import { getAgeRangesForLifeStage, getPercentDaily, spaceToDashes } from "./utils";
 // import { render } from "@testing-library/react";
-import { RdiAge } from "../models";
+import { RdiAge } from "../../models";
 
 describe("Utils Testing", () => {
   test("Displays the correct title", () => {

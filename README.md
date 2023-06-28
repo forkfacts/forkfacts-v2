@@ -103,8 +103,8 @@ in order to merge to `main`. We prefer to merge to `main` (hence a release) as s
 ## How to fetch Attached json data for each generated page in browser
 
 ```
-var element = document.getElementById('ff-page-[food-name-route(fish-pollock-raw)]');
-var jsonData = JSON.parse(element.getAttribute('data-json'));
+let element = document.getElementById('ff-page-[food-name-route(fish-pollock-raw)]');
+let jsonData = JSON.parse(element.getAttribute('data-json'));
 
 ```
 

@@ -115,7 +115,7 @@ const Favorites = () => {
                   </form>
                 </div>
               </div>
-              {!favourites.length ? null : (
+              {!searchIFavorites.length || !query ? null : (
                 <div className="bg-[#ebebeb]">
                   <div className="bg-white pt-24 shadow-summaryShadow mb-4 pb-0.5 px-4">
                     {searchIFavorites.map((item, index) => (

@@ -52,76 +52,14 @@ cd forkfacts-v2 && npm install or npm i
 - Run `npm run build` to create production build.
 - Run `gatsby serve` to start production build locally. It will start project on http://localhost:9000/
 
-## How Storybook Works on the Project and with Gatsby.
+#### Running The App on Capacitor
 
-> **This setup is not necessary for this project, it has already been added in the project.**
+To run the app on android studio or excode locally, you must ensure you have the env variable key that will be pointing at server.url in the capacitor.config.ts file is set for capacitor to be able to use it.
 
-### How to Install Storybook with Gatsby
-
-- Run `npx sb init --builder webpack5` to install storybook.
-
-### Storybook Configuration with Gatsby
-
-- **Add the following code below to main.js file and preview.js inside the .storybook folder created when you initialized storybook on your project.**
-
-* Copy and paste on main.js:
-  ```
-  webpackFinal: async config => {
-  // Transpile Gatsby module because Gatsby includes un-transpiled ES6 code.
-  config.module.rules[0].exclude = [/node_modules\/(?!(gatsby|gatsby-script)\/)/]
-     // Remove core-js to prevent issues with Storybook
-     config.module.rules[0].exclude= [/core-js/]
-     // Use babel-plugin-remove-graphql-queries to remove static queries from components when rendering in storybook
-     config.module.rules[0].use[0].options.plugins.push(
-       require.resolve("babel-plugin-remove-graphql-queries")
-     )
-     config.resolve.mainFields=["browser", "module", "main"]
-     return config
-  }
-  ```
-* Copy and paste preview.js:
-
-  ```
-  import { action } from "@storybook/addon-actions"
-  // Gatsby's Link overrides:
-  // Gatsby Link calls the `enqueue` & `hovering` methods on the global variable **_loader.
-  // This global object isn't set in storybook context, requiring you to override it to empty functions (no-op),
-  // so Gatsby Link doesn't throw errors.
-  global._**loader = {
-  enqueue: () => {},
-  hovering: () => {},
-  }
-  // This global variable prevents the "**BASE_PATH** is not defined" error inside Storybook.
-  global.**BASE_PATH** = "/"
-  // Navigating through a gatsby app using gatsby-link or any other gatsby component will use the `___navigate` method.
-  // In Storybook, it makes more sense to log an action than doing an actual navigate. Check out the actions addon docs for more info: https://storybook.js.org/docs/react/essentials/actions
-  window.\_\_\_navigate = pathname => {
-  action("NavigateTo:")(pathname)
-
-  ```
-
-- To understand more, visit storybook setup with gatsby [Gatsby Storybook Installation Page](https://www.gatsbyjs.com/docs/how-to/testing/visual-testing-with-storybook/).
-- To understand how to setup storybook with React [Storybook Installation Page](https://storybook.js.org/docs/react/get-started/install)
-
-### How Run to storybook.
-
-##### Development
-
-- Run `npm run storybook` to start storybook. It will run on http://localhost:6006/. in order to run this command).
-
-##### Production
-
-- Run `npm run build-storybook` to create production build.
-
-### How to use Storybook Controls Addon.
-
-**Storybook Controls gives you a graphical UI to interact with a component's arguments dynamically without needing to code. It creates an addon panel next to your component examples ("stories"), so you can edit them live. Controls do not require any modification to your components**.
-
-To use the Controls addon, you need to write your stories using args. Storybook will automatically generate UI controls based on your args and what it can infer about your component. Still, you can configure the controls further using argTypes.
-
-#### Choosing the control type
-
-By default, Storybook will choose a control for each arg based on the initial value of the arg. It works well with certain types of args, such as boolean values or free-text strings, but in other cases, you want a more restricted control. Read more at [storybook controls github tutorial](https://github.com/storybookjs/storybook/blob/next/docs/essentials/controls.md) and [storybook controls documentation](https://storybook.js.org/docs/react/essentials/controls).
+1. Add the env GATSBY_APP_URL
+2. Run the development server using `npm run start:develop`
+3. Run `npm run sync && npm run open:android for android `
+4. Run `npm run sync && npm run open:ios for ios `
 
 ## Generating Icons
 

@@ -7,7 +7,6 @@ import { getPercentDaily } from "../../helpers";
 const FoodNutritionCard = () => {
   const { nutrition } = useStore((state) => state);
   const sortedNutrients = nutrition?.slice()?.sort((a, b) => a.displayOrder - b.displayOrder);
-
   return (
     <div className="bg-white px-[16px]">
       <div className="py-4">
@@ -45,13 +44,17 @@ const FoodNutritionCard = () => {
                     </h3>
                   </div>
                   <h3 className="prose-labelLarge text-textDark font-600">
-                    {group.percentDaily ? `${getPercentDaily(group.percentDaily)}%` : ""}
+                    {group.nutrient.name === "Calories"
+                      ? `${getPercentDaily(group.nutrient.amount)}%`
+                      : group.percentDaily
+                      ? `${getPercentDaily(group.percentDaily)}%`
+                      : ""}
                   </h3>
                 </div>
                 {group?.children?.length ? (
                   <div className="w-[100%] relative">
                     {group?.children
-                      .filter((item) => item.nutrient.amount !== -9999)
+                      .filter((item) => item.nutrient.amount !== -9999 || -1)
                       .map((row, index2) => {
                         return (
                           <div

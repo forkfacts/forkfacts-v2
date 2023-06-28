@@ -22,9 +22,9 @@ const FoodDetailsSummary = () => {
                 item.nutrient.name === "Sodium"
             )
             .map((item, idx) => (
-              <div key={idx} className="mr-[35px]">
+              <div key={idx} className="mr-[40px]">
                 <div className="mt-2 flex justify-center items-center flex-col">
-                  <div className="w-[50px] h-[50px]">
+                  <div className="w-[55px] h-[55px]">
                     <CircularProgressbarWithChildren
                       strokeWidth={10}
                       value={item.rdi?.amount ? getPercentDaily(item.percentDaily as number) : 0}

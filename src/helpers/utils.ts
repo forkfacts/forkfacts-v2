@@ -157,6 +157,11 @@ export const getMappingFor = (
   return mapping;
 };
 
+export const calculateCaloriesIntake = (amount: number) => {
+  const pDailyValue = Math.round(((amount * 1) / 200) * 100);
+  return pDailyValue;
+};
+
 export const getPercentDaily = (percentDaily: number) => {
   return Math.round(percentDaily);
 };

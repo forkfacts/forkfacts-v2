@@ -111,26 +111,18 @@ export const generateRdiForFood = (
     if (rdisForLifeStageAndAge.length < 1) {
       nutritionFacts.push(nutritionFact);
     }
-
     for (const rdi of rdisForLifeStageAndAge) {
       const percentDaily = getNutrientRdiPercent(nutritionFact, rdi);
-
-      const existingFact = mergedFacts.get(nutritionFact.displayOrder);
-      if (existingFact?.percentDaily) {
-        existingFact.percentDaily += percentDaily as number;
-      } else {
-        mergedFacts.set(nutritionFact.displayOrder, {
-          ...nutritionFact,
-          rdi: {
-            ...rdi,
-            amount: percentDaily as number,
-          },
-          percentDaily,
-          children: nutritionFact.children
-            ? generateRdiForFood(nutritionFact.children, rdis, applicableFor, selectedAge)
-            : undefined,
-        });
-      }
+      mergedFacts.set(nutritionFact.displayOrder, {
+        ...nutritionFact,
+        rdi: {
+          ...rdi,
+        },
+        percentDaily,
+        children: nutritionFact.children
+          ? generateRdiForFood(nutritionFact.children, rdis, applicableFor, selectedAge)
+          : undefined,
+      });
     }
   }
   mergedFacts.forEach((fact) => {

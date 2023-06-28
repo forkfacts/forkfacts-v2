@@ -2,7 +2,7 @@ import React from "react";
 import "react-circular-progressbar/dist/styles.css";
 import { CircularProgressbarWithChildren, buildStyles } from "react-circular-progressbar";
 import { useStore } from "../../helpers/stores";
-import { calculateCaloriesIntake, getPercentDaily } from "../../helpers";
+import { getPercentDaily } from "../../helpers";
 
 const FoodDetailsSummary = () => {
   const { nutrition } = useStore((state) => state);
@@ -10,7 +10,7 @@ const FoodDetailsSummary = () => {
   return (
     <div className=" px-[16px] bg-white -mt-4">
       <h1 className="prose-titleMedium text-textDark font-500 pt-5 mb-4">SUMMARY</h1>
-      <div className="w-full overflow-x-auto scrollbar-none custom-scrollbar">
+      <div className="w-full overflow-x-auto scrollbar-none custom-scrollbar pb-5">
         <div className="flex justify-between">
           {sortedNutrients
             .filter((item) => item.nutrient.amount !== -9999)
@@ -22,9 +22,9 @@ const FoodDetailsSummary = () => {
                 item.nutrient.name === "Sodium"
             )
             .map((item, idx) => (
-              <div key={idx} className="mr-[35px]">
+              <div key={idx} className="mr-[40px]">
                 <div className="mt-2 flex justify-center items-center flex-col">
-                  <div className="w-[50px] h-[50px]">
+                  <div className="w-[55px] h-[55px]">
                     <CircularProgressbarWithChildren
                       strokeWidth={10}
                       value={item.rdi?.amount ? getPercentDaily(item.percentDaily as number) : 0}

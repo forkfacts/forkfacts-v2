@@ -157,7 +157,7 @@ export const getMappingFor = (
 };
 
 export const calculateCaloriesIntake = (amount: number) => {
-  const pDailyValue = Math.ceil(((amount * 1) / 200) * 100);
+  const pDailyValue = Math.round(((amount * 1) / 200) * 100);
   return pDailyValue;
 };
 

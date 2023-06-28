@@ -6,11 +6,19 @@ import "@fontsource/poppins/500.css";
 import "@fontsource/poppins/600.css";
 import "@fontsource/poppins/700.css";
 import "./src/styles/styles.css";
+import { Helmet } from "react-helmet";
+import { HelmetProvider } from "react-helmet-async";
 
-export const wrapPageElement = ({ element }) => {
+const WrapPageElement = ({ element }) => {
   return (
-    <App theme="material" dark={false}>
-      {element}
-    </App>
+    <HelmetProvider>
+      <Helmet defer={false} />
+      <link rel="manifest" href="/manifest.webmanifest" />
+      <App theme="material" dark={false}>
+        {element}
+      </App>
+    </HelmetProvider>
   );
 };
+
+export const wrapRootElement = WrapPageElement;

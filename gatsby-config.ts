@@ -14,6 +14,12 @@ const config: GatsbyConfig = {
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
+    {
+      resolve: `gatsby-plugin-offline`,
+      options: {
+        precachePages: ["/", "/offline/", "/favorites/", "/manifest.webmanifest", "/*"],
+      },
+    },
     "gatsby-plugin-sitemap",
     {
       resolve: "gatsby-plugin-manifest",

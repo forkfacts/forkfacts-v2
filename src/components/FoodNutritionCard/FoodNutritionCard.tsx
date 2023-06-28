@@ -2,12 +2,11 @@ import { Button } from "konsta/react";
 import React from "react";
 import { MdArrowForwardIos } from "react-icons/md";
 import { useStore } from "../../helpers/stores";
-import { calculateCaloriesIntake, getPercentDaily } from "../../helpers";
+import { getPercentDaily } from "../../helpers";
 
 const FoodNutritionCard = () => {
   const { nutrition } = useStore((state) => state);
   const sortedNutrients = nutrition?.slice()?.sort((a, b) => a.displayOrder - b.displayOrder);
-
   return (
     <div className="bg-white px-[16px]">
       <div className="py-4">
@@ -46,7 +45,7 @@ const FoodNutritionCard = () => {
                   </div>
                   <h3 className="prose-labelLarge text-textDark font-600">
                     {group.nutrient.name === "Calories"
-                      ? `${calculateCaloriesIntake(group.nutrient.amount)}%`
+                      ? `${getPercentDaily(group.nutrient.amount)}%`
                       : group.percentDaily
                       ? `${getPercentDaily(group.percentDaily)}%`
                       : ""}
@@ -55,7 +54,7 @@ const FoodNutritionCard = () => {
                 {group?.children?.length ? (
                   <div className="w-[100%] relative">
                     {group?.children
-                      .filter((item) => item.nutrient.amount !== -9999)
+                      .filter((item) => item.nutrient.amount !== -9999 || -1)
                       .map((row, index2) => {
                         return (
                           <div

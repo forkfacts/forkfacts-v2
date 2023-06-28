@@ -28,6 +28,15 @@ body {
 .aa-Form .aa-ClearButton {
   display: none;
 }
+
+.bg-md-light-surface {
+  background-color: #ebebeb !important;
+}
+
+.bg-surface {
+  background-color: #fff !important;
+}
+
 .aa-InputWrapperSuffix {
   display: none;
 }

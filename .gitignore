@@ -11,5 +11,3 @@ data
 wget-log*
 .raw
 *.DS_Store
-
-.DS_Store

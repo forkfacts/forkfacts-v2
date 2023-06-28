@@ -7,4 +7,4 @@ export { default as FoodDetails } from "./FoodDetails";
 export { default as Home } from "./Home";
 export { default as Offline } from "./Offline/Offline";
 export { default as FoodSearchView } from "./FoodDetails/MobileDetails/FoodSearchView";
-export { default as DeleteFavorite } from "./DeleteFavorite/DeleteFavorite";
+export { default as DeleteFavorite } from "./DeleteFavourite/DeleteFavorite";

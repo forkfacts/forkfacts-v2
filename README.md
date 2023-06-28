@@ -100,8 +100,10 @@ in order to merge to `main`. We prefer to merge to `main` (hence a release) as s
    updated storybook components. This can be of tremendous help during the code review.
 5. Once you are done with the work, assign your PR to a reviewer.
 
+## How to fetch Attached json data for each generated page in browser
+
 ```
-var element = document.getElementById('ff-page-slug');
+var element = document.getElementById('ff-page-[food-name-route(fish-pollock-raw)]');
 var jsonData = JSON.parse(element.getAttribute('data-json'));
 
 ```

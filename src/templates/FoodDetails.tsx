@@ -5,7 +5,6 @@ import { Food, NutritionFact, RDI, UsdaRdiNutrientMapping } from "@forkfacts/mod
 
 const mappings = require("../../data/usda_rdi_nutrient_mapping.json");
 import {
-  filterByRDI,
   getAgeRangesForLifeStage,
   getMappingFor,
   setDefaultSelectedAgeForGender,
@@ -171,8 +170,6 @@ const FoodDetails: React.FC<Props> = ({ pageContext: { recommendedDailyIntakes, 
   useEffect(() => {
     setDefaultSelectedAgeForGender(selectedLifeStage, setSelectedAge);
   }, [selectedLifeStage, setSelectedAge]);
-
-  console.log(slug);
 
   return (
     <div

@@ -43,13 +43,15 @@ const FoodNutritionCard = () => {
                       {group.nutrient.unit.toLowerCase()}
                     </h3>
                   </div>
-                  <h3 className="prose-labelLarge text-textDark font-600">
-                    {group.nutrient.name === "Calories"
-                      ? `${getPercentDaily(group.nutrient.amount)}%`
-                      : group.percentDaily
-                      ? `${getPercentDaily(group.percentDaily)}%`
-                      : ""}
-                  </h3>
+                  {group.nutrient.amount === -9999 ? null : (
+                    <h3 className="prose-labelLarge text-textDark font-600">
+                      {group.nutrient.name === "Calories"
+                        ? `${getPercentDaily(group.nutrient.amount)}%`
+                        : group.percentDaily
+                        ? `${getPercentDaily(group.percentDaily)}%`
+                        : ""}
+                    </h3>
+                  )}
                 </div>
                 {group?.children?.length ? (
                   <div className="w-[100%] relative">
@@ -72,9 +74,11 @@ const FoodNutritionCard = () => {
                                   {row.nutrient.unit.toLowerCase()}
                                 </p>
                               </div>
-                              <p className="prose-labelLarge text-textDark font-600">
-                                {row.percentDaily ? `${getPercentDaily(row.percentDaily)}%` : ""}
-                              </p>
+                              {row.nutrient.amount === -9999 ? null : (
+                                <p className="prose-labelLarge text-textDark font-600">
+                                  {row.percentDaily ? `${getPercentDaily(row.percentDaily)}%` : ""}
+                                </p>
+                              )}
                             </div>
                             <hr
                               className={`${

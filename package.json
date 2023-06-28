@@ -10,6 +10,7 @@
     "node": "18.x"
   },
   "scripts": {
+    "test": "jest",
     "start:develop": "npm run download-data && gatsby develop -H 0.0.0.0",
     "start": "npm run download-data && gatsby develop",
     "build": "npm run download-data && NODE_OPTIONS=--max-old-space-size=8192 gatsby build",

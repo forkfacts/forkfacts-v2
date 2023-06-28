@@ -79,7 +79,7 @@ const Favorites = () => {
   };
 
   return (
-    <Page className={!favourites.length ? "bg-surface" : "bg-md-light-surface"}>
+    <Page className={!favourites.length || !query ? "bg-surface" : "bg-md-light-surface"}>
       {openEmptySearch ? (
         <>
           <FoodSearchView

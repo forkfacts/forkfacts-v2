@@ -10,7 +10,7 @@
     "node": "18.x"
   },
   "scripts": {
-    "develop": "gatsby develop",
+    "start:develop": "npm run download-data && gatsby develop -H 0.0.0.0",
     "start": "npm run download-data && gatsby develop",
     "build": "npm run download-data && NODE_OPTIONS=--max-old-space-size=8192 gatsby build",
     "serve": "gatsby serve",
@@ -20,13 +20,21 @@
     "svgr": "npx @svgr/cli --out-dir src/designIcons --typescript --ignore-existing --replace-attr-values '#000=currentColor' src/images/icons",
     "download-data": "ts-node --experimentalSpecifierResolution node scripts/init.mjs",
     "build:env:dev": "cp .env.sample .env",
-    "build:env:prod": "cp .env .env.production"
+    "build:env:prod": "cp .env .env.production",
+    "sync": "npm run build && npx cap sync",
+    "open:android": "npx cap open android",
+    "update:android": "npx cap update android",
+    "open:ios": ""
   },
   "dependencies": {
     "@algolia/autocomplete-core": "1.7.3",
     "@algolia/autocomplete-preset-algolia": "1.7.3",
     "@algolia/autocomplete-theme-classic": "1.7.3",
     "@algolia/client-search": "4.9.1",
+    "@capacitor/android": "^5.0.5",
+    "@capacitor/cli": "^5.0.5",
+    "@capacitor/core": "^5.0.5",
+    "@capacitor/ios": "^5.0.5",
     "@emotion/react": "^11.10.6",
     "@emotion/server": "latest",
     "@emotion/styled": "^11.10.6",

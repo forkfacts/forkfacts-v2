@@ -16,13 +16,9 @@ const FoodDetailsSummary = () => {
             .filter((item) => item.nutrient.amount !== -9999)
             .filter(
               (item) =>
-                (item.nutrient.name === "Carbohydrate, total"
-                  ? item.nutrient.name === "Carbohydrate, total"
-                  : item.nutrient.name === "Calcium") ||
+                item.nutrient.name === "Carbohydrate, total" ||
                 item.nutrient.name === "Total fat" ||
-                (item.nutrient.name === "Protein"
-                  ? item.nutrient.name === "Protein"
-                  : item.nutrient.name === "Iron") ||
+                item.nutrient.name === "Protein" ||
                 item.nutrient.name === "Sodium"
             )
             .map((item, idx) => (

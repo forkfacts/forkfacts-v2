@@ -162,5 +162,5 @@ export const calculateCaloriesIntake = (amount: number) => {
 };
 
 export const getPercentDaily = (percentDaily: number) => {
-  return Math.round(Math.abs(percentDaily));
+  return Math.round(percentDaily);
 };

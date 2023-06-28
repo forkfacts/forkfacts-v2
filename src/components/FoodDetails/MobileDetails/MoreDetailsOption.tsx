@@ -101,7 +101,7 @@ const MoreDetailsOption: React.FC<MoreDetailsOptionProps> = ({ isOpen, setIsOpen
           <div
             ref={modalRef}
             className={`${
-              isExist && Object.keys(isExist as Favorite).length ? "w-[295px]" : "w-[265px]"
+              isExist && Object.keys(isExist as Favorite).length ? "w-[295px]" : "w-[225px]"
             } px-6 py-5 bg-white shadow flex-col justify-end items-end inline-flex fixed z-50 rounded-[8px]`}
           >
             <div className="px-[0px] flex-col justify-start items-star gap-2 flex">
@@ -111,7 +111,7 @@ const MoreDetailsOption: React.FC<MoreDetailsOptionProps> = ({ isOpen, setIsOpen
               >
                 <BsShare className="w-6 h-6 relative text-primary-40" />
                 <h1 className="text-zinc-900 text-[16px] font-medium leading-normal tracking-wide whitespace-nowrap">
-                  Share food BsShare
+                  Share food
                 </h1>
               </div>
               <div

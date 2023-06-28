@@ -2,7 +2,7 @@ import { Button } from "konsta/react";
 import React from "react";
 import { MdArrowForwardIos } from "react-icons/md";
 import { useStore } from "../../helpers/stores";
-import { calculateCaloriesIntake, getPercentDaily } from "../../helpers";
+import { getPercentDaily } from "../../helpers";
 
 const FoodNutritionCard = () => {
   const { nutrition } = useStore((state) => state);
@@ -46,7 +46,7 @@ const FoodNutritionCard = () => {
                   </div>
                   <h3 className="prose-labelLarge text-textDark font-600">
                     {group.nutrient.name === "Calories"
-                      ? `${calculateCaloriesIntake(group.nutrient.amount)}%`
+                      ? `${getPercentDaily(group.nutrient.amount)}%`
                       : group.percentDaily
                       ? `${getPercentDaily(group.percentDaily)}%`
                       : ""}

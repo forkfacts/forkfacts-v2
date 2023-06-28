@@ -7,8 +7,6 @@ import { getPercentDaily } from "../../helpers";
 const FoodNutritionCard = () => {
   const { nutrition } = useStore((state) => state);
   const sortedNutrients = nutrition?.slice()?.sort((a, b) => a.displayOrder - b.displayOrder);
-
-  console.log(sortedNutrients);
   return (
     <div className="bg-white px-[16px]">
       <div className="py-4">

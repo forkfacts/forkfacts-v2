@@ -6,7 +6,6 @@ dotenv.config();
 const config: CapacitorConfig = {
   appId: "com.forkfacts.app",
   appName: "Forkfacts",
-  webDir: "www",
   bundledWebRuntime: false,
   server: {
     url: process.env.GATSBY_APP_URL,

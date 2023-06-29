@@ -9,7 +9,7 @@ import {
   removeFavorite,
 } from "../../../helpers/ff_favorites";
 import { useStore } from "../../../helpers/stores";
-import { spaceToDashes } from "../../../helpers/utils";
+import { spaceToDashes } from "../../../helpers/utils/utils";
 import { Toast } from "konsta/react";
 
 interface MoreDetailsOptionProps {

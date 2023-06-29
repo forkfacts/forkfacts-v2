@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
-import { NutritionFact, RdiAge, UsdaRdiNutrientMapping } from "../models";
-import { allAges, genders } from "./static-data";
+import { LifeStage, NutritionFact, RdiAge, UsdaRdiNutrientMapping } from "../../models";
+import { allAges, genders } from "../static-data";
 
 /**
  * The purpose is to use `-` as separator in the URL naming scheme.
@@ -59,6 +59,7 @@ export function getAgeRangesForLifeStage(selectedLifeStageName: string = "Female
   });
   return ageRanges.filter((range) => range !== null) as RdiAge[];
 }
+
 export function setDefaultSelectedAgeForGender(
   selectedGender: string,
   setSelectedAge: Dispatch<SetStateAction<RdiAge>>
@@ -164,3 +165,20 @@ export const calculateCaloriesIntake = (amount: number) => {
 export const getPercentDaily = (percentDaily: number) => {
   return Math.round(percentDaily);
 };
+
+export function getSugarsRDV(lifestage: string, age: RdiAge): number | null {
+  if (lifestage === "Children" && age.start >= 1 && (age?.end as number) <= 3) {
+    return 25;
+  } else if (lifestage === "Children" && age.start >= 4 && (age.end as number) <= 8) {
+    return 50;
+  } else if (
+    lifestage === "Pregnant" ||
+    lifestage === "Lactation" ||
+    lifestage === "Males" ||
+    lifestage === "Females"
+  ) {
+    return 50;
+  } else {
+    return null;
+  }
+}

@@ -5,11 +5,10 @@ import { Food, NutritionFact, RDI, UsdaRdiNutrientMapping } from "@forkfacts/mod
 
 const mappings = require("../../data/usda_rdi_nutrient_mapping.json");
 import {
-  filterByRDI,
   getAgeRangesForLifeStage,
   getMappingFor,
   setDefaultSelectedAgeForGender,
-} from "../helpers/utils";
+} from "../helpers/utils/utils";
 
 interface Props {
   pageContext: {
@@ -19,6 +18,7 @@ interface Props {
       title: string;
       description: string;
     };
+    slug: string;
   };
 }
 
@@ -130,7 +130,7 @@ export const generateRdiForFood = (
   return nutritionFacts;
 };
 
-const FoodDetails: React.FC<Props> = ({ pageContext: { recommendedDailyIntakes, food } }) => {
+const FoodDetails: React.FC<Props> = ({ pageContext: { recommendedDailyIntakes, food, slug } }) => {
   const {
     setRecommendedDailyIntakes,
     setFood,
@@ -172,7 +172,7 @@ const FoodDetails: React.FC<Props> = ({ pageContext: { recommendedDailyIntakes, 
   }, [selectedLifeStage, setSelectedAge]);
 
   return (
-    <div>
+    <div id={`ff-page-${slug}`} data-json={JSON.stringify(nutritionFacts)}>
       <FoodDetailsComponent />
     </div>
   );

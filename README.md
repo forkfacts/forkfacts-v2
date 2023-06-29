@@ -100,6 +100,14 @@ in order to merge to `main`. We prefer to merge to `main` (hence a release) as s
    updated storybook components. This can be of tremendous help during the code review.
 5. Once you are done with the work, assign your PR to a reviewer.
 
+## How to fetch Attached json data for each generated page in browser
+
+```
+let element = document.getElementById('ff-page-[food-name-route(fish-pollock-raw)]');
+let jsonData = JSON.parse(element.getAttribute('data-json'));
+
+```
+
 ## Setting up environment variables
 
 To run this project, you'll need to set up some environment variables. These variables are used to connect to various APIs and services used in the project.

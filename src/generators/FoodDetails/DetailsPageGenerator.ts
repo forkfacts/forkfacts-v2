@@ -41,6 +41,7 @@ const createNutritionTable = ({ createPageFunction, foods, indexFileName }: any)
         context: {
           food,
           recommendedDailyIntakes,
+          slug: pagePath,
         },
       });
       ffSearchIndex.push({

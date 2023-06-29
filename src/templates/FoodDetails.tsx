@@ -7,6 +7,7 @@ const mappings = require("../../data/usda_rdi_nutrient_mapping.json");
 import {
   getAgeRangesForLifeStage,
   getMappingFor,
+  getSugarsRDV,
   setDefaultSelectedAgeForGender,
 } from "../helpers/utils/utils";
 
@@ -81,7 +82,9 @@ const getRdisForNutrient = (
 
 export const getNutrientRdiPercent = (
   nutritionFact: NutritionFact,
-  rdi: RDI
+  rdi: RDI,
+  gender: string,
+  age: { ageStart: number; ageEnd?: number; ageUnit: "Month" | "Year" }
 ): number | undefined => {
   const mapping = getMappingFor(nutritionFact.nutrient.name, mappingsByNutrient);
   if (!mapping) {
@@ -89,6 +92,11 @@ export const getNutrientRdiPercent = (
   }
   const multiplier = mapping.usdaToRdiUnitMultiplier;
   const pDailyValue = ((nutritionFact.nutrient.amount * multiplier) / rdi.amount) * 100;
+  const sugarsRDV = getSugarsRDV(gender, age);
+  if (sugarsRDV !== null) {
+    const pSugarsRDV = (nutritionFact.nutrient.amount / sugarsRDV) * 100;
+    return pSugarsRDV;
+  }
   return pDailyValue;
 };
 
@@ -111,7 +119,7 @@ export const generateRdiForFood = (
       nutritionFacts.push(nutritionFact);
     }
     for (const rdi of rdisForLifeStageAndAge) {
-      const percentDaily = getNutrientRdiPercent(nutritionFact, rdi);
+      const percentDaily = getNutrientRdiPercent(nutritionFact, rdi, applicableFor, selectedAge);
       mergedFacts.set(nutritionFact.displayOrder, {
         ...nutritionFact,
         rdi: {

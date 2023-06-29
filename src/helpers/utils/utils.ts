@@ -166,16 +166,19 @@ export const getPercentDaily = (percentDaily: number) => {
   return Math.round(percentDaily);
 };
 
-export function getSugarsRDV(lifestage: string, age: RdiAge): number | null {
-  if (lifestage === "Children" && age.start >= 1 && (age?.end as number) <= 3) {
+export function getSugarsRDV(
+  gender: string,
+  age: { ageStart: number; ageEnd?: number; ageUnit: "Month" | "Year" }
+): number | null {
+  if (gender === "Children" && age.ageStart >= 1 && (age?.ageEnd as number) <= 3) {
     return 25;
-  } else if (lifestage === "Children" && age.start >= 4 && (age.end as number) <= 8) {
+  } else if (gender === "Children" && age.ageStart >= 4 && (age.ageEnd as number) <= 8) {
     return 50;
   } else if (
-    lifestage === "Pregnant" ||
-    lifestage === "Lactation" ||
-    lifestage === "Males" ||
-    lifestage === "Females"
+    gender === "Pregnant" ||
+    gender === "Lactation" ||
+    gender === "Males" ||
+    gender === "Females"
   ) {
     return 50;
   } else {

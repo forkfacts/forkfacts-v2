@@ -58,7 +58,7 @@ const Gender = () => {
         )}
       </button>
       <Sheet
-        className="pb-safe w-full px-3 pt-4 rounded-tr-[16px] rounded-tl-[16px]"
+        className="pb-safe w-full px-3 pt-4 rounded-tr-[16px] rounded-tl-[16px] bg-surface"
         opened={sheetOpened}
         onBackdropClick={() => setSheetOpened(false)}
       >
